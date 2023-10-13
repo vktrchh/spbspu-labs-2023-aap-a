@@ -4,6 +4,6 @@
 int main()
 {
   using namespace dobsov;
-  outCredentials();
+  outCredentials(Credentials{"sergey", "dobsov"});
   std::cout << "\n";
 }

@@ -1,6 +1,6 @@
 #include "credentials.hpp"
 #include <iostream>
-void dobsov::outCredentials()
+void dobsov::outCredentials(const Credentials & cr)
 {
-  std::cout << "dobsov.segey";
+  std::cout << cr.second << "." << cr.first;
 }
