@@ -1,7 +1,10 @@
 #include <iostream>
+#include <limits>
+
 int main()
 {
   int number = 0;
+  size_t count = 0;
   do
   {
     std::cin >> number;
@@ -9,6 +12,16 @@ int main()
     {
       std::cerr << "Is not a sequence\n";
       return 1;
+    }
+    else if (number != 0)
+    {
+      size_t max_size = std::numeric_limits< size_t >::max();
+      if (count == max_size)
+      {
+        std::cerr << "Sequence is too long\n";
+        return 2;
+      }
+      ++count;
     }
   }
   while (number != 0);
