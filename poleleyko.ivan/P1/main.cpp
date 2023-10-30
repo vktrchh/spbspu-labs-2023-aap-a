@@ -27,6 +27,15 @@ int main ()
       secMax = num;
     }
   }
-  std::cout << secMax;
+  if (!hasInput){
+    std::cerr << "Ошибка! Пустая последовательность.";
+    return 2;
+  }
+  std::cout << "Второе число по величине: ";
+  if(secMax == INT_MIN){
+    std::cout << 0;
+  } else{
+    std::cout << secMax << std::endl;
+  }
   return 0;
 }
