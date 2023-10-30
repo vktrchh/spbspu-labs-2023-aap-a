@@ -14,7 +14,7 @@ int main ()
     hasInput = true;
     if (num == 0) {
       if(!hasInput) {
-        std::cerr << "Ошибка! Пустая последовательность." << std::endl;
+        std::cerr << "Ошибка! Пустая последовательность.\n" << std::endl;
         return 2;
       }
       break;
@@ -28,12 +28,12 @@ int main ()
     }
   }
   if (!hasInput){
-    std::cerr << "Ошибка! Пустая последовательность.";
+    std::cerr << "Ошибка! Пустая последовательность.\n";
     return 2;
   }
   std::cout << "Второе число по величине: ";
   if(secMax == INT_MIN){
-    std::cout << 0;
+    std::cout << 0 << std::endl;
   } else{
     std::cout << secMax << std::endl;
   }
