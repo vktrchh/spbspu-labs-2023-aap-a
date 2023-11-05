@@ -1,10 +1,13 @@
 #include <iostream>
 #include <stdexcept>
-#include "sequence_counter.cpp"
+#include "sequence_counter.hpp"
+#include "pochtmax.hpp"
 
 int main()
 {
   int number = 0;
+  int maxim = 0;
+  int premaxim = 0;
   SequenceCounter counter;
   do
   {
@@ -25,8 +28,15 @@ int main()
         std::cerr << "Error: " << e.what() << "\n";
         return 2;
       }
+      pochtmax(number, maxim, premaxim);
     }
   }
   while (number != 0);
-  std::cout << counter.get_result() << "\n";
+  if (maxim == 0 || premaxim == 0)
+  {
+    std::cerr << "Not enough numbers entered\n";
+    return 2;
+  }
+  std::cout << premaxim << "\n";
+  return 0;
 }
