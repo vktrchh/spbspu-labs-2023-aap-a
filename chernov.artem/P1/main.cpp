@@ -1,10 +1,11 @@
 #include <iostream>
-#include <limits>
+#include <stdexcept>
+#include "sequence_counter.cpp"
 
 int main()
 {
   int number = 0;
-  size_t count = 0;
+  SequenceCounter counter;
   do
   {
     std::cin >> number;
@@ -15,14 +16,17 @@ int main()
     }
     else if (number != 0)
     {
-      size_t max_size = std::numeric_limits< size_t >::max();
-      if (count == max_size)
+      try
       {
-        std::cerr << "Sequence is too long\n";
+        counter.count(number);
+      }
+      catch (const std::exception & e)
+      {
+        std::cerr << "Error: " << e.what() << "\n";
         return 2;
       }
-      ++count;
     }
   }
   while (number != 0);
+  std::cout << counter.get_result() << "\n";
 }
