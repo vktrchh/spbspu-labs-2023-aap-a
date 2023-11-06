@@ -11,9 +11,9 @@ namespace chernov
     size_t operator()() const;
   private:
     int PifTriple(int number);
+    size_t piftriples_;
     int perv_el_;
     int vtor_el_;
-    size_t piftriples_;
   };
 }
 
