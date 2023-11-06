@@ -10,7 +10,7 @@ chernov::PifTriples_counter::PifTriples_counter():
 
 void chernov::PifTriples_counter::operator()(int number)
 {
-  if (PifTriple(number) == "triple" && perv_el_ != 0 && vtor_el_ != 0)
+  if (PifTriple(number) == 1 && perv_el_ != 0 && vtor_el_ != 0)
   {
     size_t max_size = std::numeric_limits< size_t >::max();
     if (piftriples_ == max_size)
@@ -23,18 +23,18 @@ void chernov::PifTriples_counter::operator()(int number)
   vtor_el_ = number;
 }
 
-const char* chernov::PifTriples_counter::PifTriple(int number)
+int chernov::PifTriples_counter::PifTriple(int number)
 {
   int a = perv_el_;
   int b = vtor_el_;
   int c = number;
   if ((a * a + b * b) == c * c)
   {
-    return "triple";
+    return 1;
   }
   else
   {
-    return "not triple";
+    return 0;
   }
 }
 
