@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include "sequence_counter.hpp"
 #include "pochtmax.hpp"
+#include "piftriples_counter.hpp"
 
 int main()
 {
@@ -9,6 +10,7 @@ int main()
   using namespace chernov;
   int maxim = 0;
   int premaxim = 0;
+  PifTriples_counter piftriples;
   SequenceCounter counter;
   do
   {
@@ -23,6 +25,7 @@ int main()
       try
       {
         counter(number);
+        piftriples(number);
       }
       catch (const std::exception & e)
       {
@@ -33,6 +36,8 @@ int main()
     }
   }
   while (number != 0);
+  std::cout << piftriples() << "\n";
+
   if (maxim == 0 || premaxim == 0)
   {
     std::cerr << "Not enough numbers entered\n";
