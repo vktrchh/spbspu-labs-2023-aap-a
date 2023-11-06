@@ -6,6 +6,7 @@
 int main()
 {
   int number = 0;
+  using namespace chernov;
   int maxim = 0;
   int premaxim = 0;
   SequenceCounter counter;
@@ -21,7 +22,7 @@ int main()
     {
       try
       {
-        counter.count(number);
+        counter(number);
       }
       catch (const std::exception & e)
       {

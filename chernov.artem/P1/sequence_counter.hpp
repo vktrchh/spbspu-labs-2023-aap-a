@@ -2,13 +2,16 @@
 #define SEQUENCE_COUNTER_HPP
 #include <cstddef>
 
-struct SequenceCounter
+namespace chernov
 {
-  SequenceCounter();
-  void count(int);
-  size_t get_result() const;
-private:
-  size_t count_;
-};
+  struct SequenceCounter
+  {
+    SequenceCounter();
+    void operator()(int);
+    size_t operator()() const;
+  private:
+    size_t count_;
+  };
+}
 
 #endif
