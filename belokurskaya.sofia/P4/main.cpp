@@ -29,18 +29,31 @@ int main(int argc, char * argv[])
   {
     std::cout << "Number is" << num << "\n";
   }
-  int i = 0;
+
+  size_t rows = 0, cols = 0;
   {
     std::fstream input(argv[2]);
-    input >> i;
+    input >> rows >> cols;
     if (!input)
     {
       std::cerr << "Cannot read a number\n";
       return 2;
     }
   }
-  std::cout << i << "\n";
+  int ** rowsptrs = new int *[rows];
+  for (size_t i = 0; i < rows; ++i)
+  {
+    rowsptrs[i] = new int[cols];
+  }
+
+  for (size_t i = 0; i < rows; ++i)
+  {
+    delete [] rowsptrs[i];
+  }
+  delete [] rowsptrs;
+
+  std::cout << rows << cols << "\n";
 
   std::ofstream output(argv[3]);
-  output << i << "\n";
+  output << rows << cols << "\n";
 }
