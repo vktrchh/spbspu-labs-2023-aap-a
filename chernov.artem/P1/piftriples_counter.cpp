@@ -1,14 +1,14 @@
+#include "piftriples_counter.hpp"
 #include <limits>
 #include <stdexcept>
-#include "piftriples_counter.hpp"
 
-chernov::PifTriples_counter::PifTriples_counter():
+chernov::PifTriplesCounter::PifTriplesCounter():
   piftriples_(0),
   perv_el_(0),
   vtor_el_(0)
 {}
 
-void chernov::PifTriples_counter::operator()(int number)
+void chernov::PifTriplesCounter::operator()(int number)
 {
   if (PifTriple(number) == 1 && perv_el_ != 0 && vtor_el_ != 0)
   {
@@ -23,7 +23,7 @@ void chernov::PifTriples_counter::operator()(int number)
   vtor_el_ = number;
 }
 
-int chernov::PifTriples_counter::PifTriple(int number)
+int chernov::PifTriplesCounter::PifTriple(int number)
 {
   int a = perv_el_;
   int b = vtor_el_;
@@ -38,7 +38,7 @@ int chernov::PifTriples_counter::PifTriple(int number)
   }
 }
 
-size_t chernov::PifTriples_counter::operator()() const
+size_t chernov::PifTriplesCounter::operator()() const
 {
   return piftriples_;
 }

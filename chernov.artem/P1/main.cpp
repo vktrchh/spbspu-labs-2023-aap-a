@@ -1,8 +1,8 @@
+#include "sequence_counter.hpp"
+#include "piftriples_counter.hpp"
+#include "pochtmax.hpp"
 #include <iostream>
 #include <stdexcept>
-#include "sequence_counter.hpp"
-#include "pochtmax.hpp"
-#include "piftriples_counter.hpp"
 
 int main()
 {
@@ -10,7 +10,7 @@ int main()
   using namespace chernov;
   int maxim = 0;
   int premaxim = 0;
-  PifTriples_counter piftriples;
+  PifTriplesCounter piftriples;
   SequenceCounter counter;
   do
   {

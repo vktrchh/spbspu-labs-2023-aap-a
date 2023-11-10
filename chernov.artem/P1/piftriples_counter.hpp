@@ -4,9 +4,9 @@
 
 namespace chernov
 {
-  struct PifTriples_counter
+  struct PifTriplesCounter
   {
-    PifTriples_counter();
+    PifTriplesCounter();
     void operator()(int number);
     size_t operator()() const;
   private:
