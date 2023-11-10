@@ -1,6 +1,6 @@
 #include "destroyMatrix.hpp"
 
-void petuhov::destroyMatrix(int * matrix, size_t rows)
+void petuhov::destroyMatrix(int * matrix)
 {
   if (matrix != nullptr)
   {

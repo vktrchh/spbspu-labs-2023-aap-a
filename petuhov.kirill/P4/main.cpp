@@ -83,7 +83,7 @@ int main(int argc, char ** argv)
       catch(const std::runtime_error & e)
       {
         std::cerr << e.what() << '\n';
-        petuhov::destroyMatrix(matrix, rows);
+        petuhov::destroyMatrix(matrix);
         return 4;
       }
     }
@@ -108,7 +108,7 @@ int main(int argc, char ** argv)
         break;
       }
     }
-    petuhov::destroyMatrix(matrix, rows);
+    petuhov::destroyMatrix(matrix);
     std::cout << isLowerTriangularMatrix << "\n";
     return 0;
   }
