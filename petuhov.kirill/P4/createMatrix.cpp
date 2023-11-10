@@ -12,7 +12,7 @@ int * petuhov::createMatrix(size_t rows, size_t cols)
   }
   catch (const std::bad_alloc &)
   {
-    petuhov::destroyMatrix(matrix, rows);
+    petuhov::destroyMatrix(matrix);
     throw;
   }
   return matrix;
