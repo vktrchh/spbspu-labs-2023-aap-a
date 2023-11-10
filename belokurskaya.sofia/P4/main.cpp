@@ -2,6 +2,42 @@
 #include <fstream>
 #include <cstdlib>
 
+void freeMatrix(int ** m, size_t rows)
+{
+  for (size_t i = 0; i < rows; ++i)
+  {
+    delete [] m[i];
+  }
+  delete [] m;
+}
+
+void freeMatrix(int ** m, size_t rows, size_t cols)
+{
+  freeMatrix(m, rows);
+}
+
+int ** createMatrix(size_t rows, size_t cols)
+{
+  int ** rowsptrs = new int *[rows];
+  for (size_t i = 0; i < rows; ++i)
+    {
+      rowsptrs[i] = nullptr;
+    }
+  try
+  {
+    for (size_t i = 0; i < rows; ++i)
+    {
+      rowsptrs[i] = new int[cols];
+    }
+    return rowsptrs;
+  }
+  catch (const std::bab_alloc &)
+  {
+    freeMatrix(rowsptrs, rows, cols);
+    throw "Error connected with free store\n";
+  }
+}
+
 int main(int argc, char * argv[])
 {
   for (int i = 0; i < argc; ++i)
@@ -40,17 +76,17 @@ int main(int argc, char * argv[])
       return 2;
     }
   }
-  int ** rowsptrs = new int *[rows];
-  for (size_t i = 0; i < rows; ++i)
-  {
-    rowsptrs[i] = new int[cols];
-  }
 
-  for (size_t i = 0; i < rows; ++i)
+  int ** rowptrs = nullptr;
+  try
   {
-    delete [] rowsptrs[i];
+    rowsptrs = createMatrix(rows, cols);
   }
-  delete [] rowsptrs;
+  catch (const std::bad_alloc &)
+  {
+    std::cerr << "Not enough memory\n";
+    return 3;
+  }
 
   std::cout << rows << cols << "\n";
 
