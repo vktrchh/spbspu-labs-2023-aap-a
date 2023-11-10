@@ -10,8 +10,8 @@ int main(int argc, char ** argv)
 {
   if (argc != 4)
   {
-      std::cerr << "Not enough arguments\n";
-      return 1;
+    std::cerr << "Not enough arguments\n";
+    return 1;
   }
   int arr_type = 0;
   try
@@ -22,7 +22,8 @@ int main(int argc, char ** argv)
       throw std::out_of_range("First parameter is out of range");
     }
   }
-  catch (const std::out_of_range & e) {
+  catch (const std::out_of_range & e)
+  {
     std::cerr << e.what() << "\n";
   }
   size_t rows = 0, cols = 0;
@@ -37,12 +38,15 @@ int main(int argc, char ** argv)
   {
     int matrix[10000] = {};
 
-    for (size_t i = 0; i < rows; ++i) {
-      for (size_t j = 0; j < cols; ++j) {
-          if (!(input >> matrix[i * cols + j])) {
-              std::cerr << "Error reading matrix element at row " << i << " and column " << j << "\n";
-              return 4;
-          }
+    for (size_t i = 0; i < rows; ++i)
+    {
+      for (size_t j = 0; j < cols; ++j)
+      {
+        if (!(input >> matrix[i * cols + j]))
+        {
+          std::cerr << "Error reading matrix element at row " << i << " and column " << j << "\n";
+          return 4;
+        }
       }
     }
     bool isLowerTriangularMatrix = true;
@@ -71,15 +75,15 @@ int main(int argc, char ** argv)
 
     try
     {
-      matrix = createMatrix(rows, cols);
+      matrix = petuhov::createMatrix(rows, cols);
       try
       {
-        fillMatrix(matrix, cols, rows, input);
+        petuhov::fillMatrix(matrix, cols, rows, input);
       }
       catch(const std::runtime_error & e)
       {
         std::cerr << e.what() << '\n';
-        destroyMatrix(matrix, rows);
+        petuhov::destroyMatrix(matrix, rows);
         return 4;
       }
     }
@@ -89,18 +93,22 @@ int main(int argc, char ** argv)
       return 4;
     }
     bool isLowerTriangularMatrix = true;
-    for (size_t i = 0; i < rows; ++i) {
-      for (size_t j = i + 1; j < cols; ++j) {
-          if (matrix[i][j] != 0) {
-              isLowerTriangularMatrix = false;
-              break;
-          }
-      }
-      if (!isLowerTriangularMatrix) {
+    for (size_t i = 0; i < rows; ++i)
+    {
+      for (size_t j = i + 1; j < cols; ++j)
+      {
+        if (matrix[i][j] != 0)
+        {
+          isLowerTriangularMatrix = false;
           break;
+        }
+      }
+      if (!isLowerTriangularMatrix)
+      {
+        break;
       }
     }
-    destroyMatrix(matrix, rows);
+    petuhov::destroyMatrix(matrix, rows);
     std::cout << isLowerTriangularMatrix << "\n";
     return 0;
   }

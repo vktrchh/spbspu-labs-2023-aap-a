@@ -2,7 +2,7 @@
 #include "destroyMatrix.hpp"
 #include <iostream>
 
-int ** createMatrix(size_t rows, size_t cols)
+int ** petuhov::createMatrix(size_t rows, size_t cols)
 {
   int ** matrix = nullptr;
 
@@ -16,7 +16,7 @@ int ** createMatrix(size_t rows, size_t cols)
   }
   catch (const std::bad_alloc &)
   {
-    destroyMatrix(matrix, rows);
+    petuhov::destroyMatrix(matrix, rows);
     throw;
   }
   return matrix;
