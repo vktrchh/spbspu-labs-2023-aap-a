@@ -11,7 +11,7 @@ void freeMatrix(int ** m, size_t rows)
   delete [] m;
 }
 
-void freeMatrix(int ** m, size_t rows, size_t cols)
+void freeMatrix(int ** m, size_t rows, size_t)
 {
   freeMatrix(m, rows);
 }
@@ -31,7 +31,7 @@ int ** createMatrix(size_t rows, size_t cols)
     }
     return rowsptrs;
   }
-  catch (const std::bab_alloc &)
+  catch (const std::bad_alloc &)
   {
     freeMatrix(rowsptrs, rows, cols);
     throw "Error connected with free store\n";
@@ -50,46 +50,96 @@ int main(int argc, char * argv[])
     return 1;
   }
 
-  char * endOfParsing = nullptr;
-  int num = std::strtoll(argv[1], &endOfParsing, 10);
-  if (num == 0 && endOfParsing == argv[1])
+  int num = 0;
+  try
   {
-    std::cerr << "Cannot parse a value\n";
-    return 2;
+    num = std::stoll(argv[1]);
   }
-  else if (num == 0 && endOfParsing != argv[1])
+  catch (const std::out_of_range &)
   {
-    std::cout << "Num is zero\n";
+    std::cerr << "Value of first comand line argument is too large\n";
+    return 1;
   }
-  else
+  catch (const std::invalid_argument &)
   {
-    std::cout << "Number is" << num << "\n";
+    std::cerr << "First argument is not a number\n";
+    return  1;
+  }
+
+  if (num > 2)
+  {
+    std::cerr << "Number of task is wrong\n";
+    return 1;
   }
 
   size_t rows = 0, cols = 0;
+  std::fstream input(argv[2]);
+  input >> rows >> cols;
+  if (!input)
   {
-    std::fstream input(argv[2]);
-    input >> rows >> cols;
+    std::cerr << "Cannot read a number\n";
+    return 2;
+  }
+
+  if (num == 1)
+  {
+    return 0;
+  }
+  else if (num == 2)
+  {
+    int** matrix = nullptr;
+    try
+    {
+       matrix = createMatrix(rows, cols);
+    }
+    catch (const std::exception& e)
+    {
+      freeMatrix(matrix, rows, cols);
+      std::cerr << e.what();
+      return 4;
+    }
+    for (size_t i = 0; i < rows; ++i)
+    {
+      for (size_t j = 0; j < cols; ++j)
+      {
+        input >> *(matrix[i] + j);
+      }
+    }
+    input.close();
     if (!input)
     {
-      std::cerr << "Cannot read a number\n";
+      std::cerr << "Invalid value of matrix argyment\n";
       return 2;
     }
-  }
+    size_t maxRow = 0;
+    size_t count = 1;
+    size_t max = 0;
+    for (size_t i = 0; i < rows; ++i)
+    {
+      for (size_t j = 0; j < cols - 1; ++j)
+      {
+        if (matrix[i][j] == matrix[i][j + 1])
+        {
+          ++count;
+        }
+        else
+        {
+          count = 1;
+        }
+        if (count > max)
+        {
+          max = count;
+          maxRow = i;
+        }
+        else
+        {
+          max = 0;
+        }
+      }
+    }
+    freeMatrix(matrix, rows, cols);
 
-  int ** rowptrs = nullptr;
-  try
-  {
-    rowsptrs = createMatrix(rows, cols);
+    std::ofstream output(argv[3]);
+    output << maxRow;
   }
-  catch (const std::bad_alloc &)
-  {
-    std::cerr << "Not enough memory\n";
-    return 3;
-  }
-
-  std::cout << rows << cols << "\n";
-
-  std::ofstream output(argv[3]);
-  output << rows << cols << "\n";
 }
