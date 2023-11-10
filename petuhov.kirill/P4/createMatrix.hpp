@@ -3,6 +3,6 @@
 #include <cstdlib>
 namespace petuhov
 {
-  int ** createMatrix(size_t rows, size_t cols);
+  int * createMatrix(size_t rows, size_t cols);
 }
 #endif

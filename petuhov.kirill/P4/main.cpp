@@ -71,7 +71,7 @@ int main(int argc, char ** argv)
   }
   else if (arr_type == 2)
   {
-    int ** matrix = nullptr;
+    int * matrix = nullptr;
 
     try
     {
@@ -97,7 +97,7 @@ int main(int argc, char ** argv)
     {
       for (size_t j = i + 1; j < cols; ++j)
       {
-        if (matrix[i][j] != 0)
+        if (matrix[i*cols+j] != 0)
         {
           isLowerTriangularMatrix = false;
           break;

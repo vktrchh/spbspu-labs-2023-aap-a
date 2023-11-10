@@ -3,6 +3,6 @@
 #include "cstdlib"
 namespace petuhov
 {
-  void destroyMatrix(int ** matrix, size_t rows);
+  void destroyMatrix(int * matrix, size_t rows);
 }
 #endif
