@@ -36,18 +36,39 @@ int main(int argc, char ** argv)
   if (arr_type == 1)
   {
     int matrix[10000] = {};
+
     for (size_t i = 0; i < rows; ++i) {
-        for (size_t j = 0; j < cols; ++j) {
-            if (!(input >> matrix[i * cols + j])) {
-                std::cerr << "Error reading matrix element at row " << i << " and column " << j << "\n";
-                return 4;
-            }
+      for (size_t j = 0; j < cols; ++j) {
+          if (!(input >> matrix[i * cols + j])) {
+              std::cerr << "Error reading matrix element at row " << i << " and column " << j << "\n";
+              return 4;
+          }
+      }
+    }
+    bool isLowerTriangularMatrix = true;
+
+    for (size_t i = 0; i < rows; ++i)
+    {
+      for (size_t j = i + 1; j < cols; ++j)
+      {
+        if (!isLowerTriangularMatrix)
+        {
+          break;
         }
+        if(matrix[i * cols + j] != 0)
+        {
+          isLowerTriangularMatrix = false;
+          break;
+        }
+      }
+      std::cout << isLowerTriangularMatrix << "\n";
+      return 0;
     }
   }
   else if (arr_type == 2)
   {
     int ** matrix = nullptr;
+
     try
     {
       matrix = createMatrix(rows, cols);
@@ -67,6 +88,20 @@ int main(int argc, char ** argv)
       std::cerr << "Not enough memory\n";
       return 4;
     }
+    bool isLowerTriangularMatrix = true;
+    for (size_t i = 0; i < rows; ++i) {
+      for (size_t j = i + 1; j < cols; ++j) {
+          if (matrix[i][j] != 0) {
+              isLowerTriangularMatrix = false;
+              break;
+          }
+      }
+      if (!isLowerTriangularMatrix) {
+          break;
+      }
+    }
     destroyMatrix(matrix, rows);
+    std::cout << isLowerTriangularMatrix << "\n";
+    return 0;
   }
 }
