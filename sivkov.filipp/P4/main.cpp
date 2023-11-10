@@ -9,7 +9,7 @@
 int main(int argc, char * argv[])
 {
   //проверка на правильность ввода ком. строки
-  if (argc != 4) 
+  if (argc != 4)
   {
     std::cout << "Error command line\n";
     return 1;
