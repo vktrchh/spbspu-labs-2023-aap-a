@@ -36,6 +36,14 @@ int main(int argc, char ** argv)
   if (arr_type == 1)
   {
     int matrix[10000] = {};
+    for (size_t i = 0; i < rows; ++i) {
+        for (size_t j = 0; j < cols; ++j) {
+            if (!(input >> matrix[i * cols + j])) {
+                std::cerr << "Error reading matrix element at row " << i << " and column " << j << "\n";
+                return 4;
+            }
+        }
+    }
   }
   else if (arr_type == 2)
   {
