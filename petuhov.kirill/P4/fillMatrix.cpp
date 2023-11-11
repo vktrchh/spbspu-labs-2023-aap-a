@@ -9,6 +9,7 @@ void petuhov::fillMatrix(int * matrix, size_t rows, size_t cols, std::ifstream &
     {
       if (!(input >> matrix[i*cols+j]))
       {
+        input.close();
         throw std::runtime_error("Error reading matrix");
       }
     }

@@ -27,13 +27,15 @@ int main(int argc, char ** argv)
     std::cerr << e.what() << "\n";
   }
   size_t rows = 0, cols = 0;
-  std::ifstream input(argv[2]);
-  input >> rows >> cols;
-  if (!input)
+  std::ifstream inputFile(argv[2]);
+  inputFile >> rows >> cols;
+  if (!inputFile)
   {
     std::cerr << "Cannot read a number\n";
     return 2;
   }
+  bool isLowerTriangularMatrix = true;
+
   if (arr_type == 1)
   {
     int matrix[10000] = {};
@@ -42,15 +44,14 @@ int main(int argc, char ** argv)
     {
       for (size_t j = 0; j < cols; ++j)
       {
-        if (!(input >> matrix[i * cols + j]))
+        if (!(inputFile >> matrix[i * cols + j]))
         {
           std::cerr << "Error reading matrix element at row " << i << " and column " << j << "\n";
+          inputFile.close();
           return 4;
         }
       }
     }
-    bool isLowerTriangularMatrix = true;
-
     for (size_t i = 0; i < rows; ++i)
     {
       for (size_t j = i + 1; j < cols; ++j)
@@ -65,8 +66,6 @@ int main(int argc, char ** argv)
           break;
         }
       }
-      std::cout << isLowerTriangularMatrix << "\n";
-      return 0;
     }
   }
   else if (arr_type == 2)
@@ -78,7 +77,7 @@ int main(int argc, char ** argv)
       matrix = petuhov::createMatrix(rows, cols);
       try
       {
-        petuhov::fillMatrix(matrix, cols, rows, input);
+        petuhov::fillMatrix(matrix, cols, rows, inputFile);
       }
       catch(const std::runtime_error & e)
       {
@@ -92,7 +91,6 @@ int main(int argc, char ** argv)
       std::cerr << "Not enough memory\n";
       return 4;
     }
-    bool isLowerTriangularMatrix = true;
     for (size_t i = 0; i < rows; ++i)
     {
       for (size_t j = i + 1; j < cols; ++j)
@@ -109,7 +107,15 @@ int main(int argc, char ** argv)
       }
     }
     petuhov::destroyMatrix(matrix);
-    std::cout << isLowerTriangularMatrix << "\n";
-    return 0;
   }
+
+  std::ofstream outputFile(argv[3]);
+  if (!outputFile) {
+    std::cerr << "Cannot write output\n";
+    outputFile.close();
+    return 5;
+  }
+  outputFile << isLowerTriangularMatrix << "\n";
+  outputFile.close();
+  return 0;
 }
