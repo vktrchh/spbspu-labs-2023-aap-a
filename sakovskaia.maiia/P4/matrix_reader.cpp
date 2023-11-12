@@ -22,3 +22,11 @@ void sakovskaia::dynamicMatrix(std::fstream & in, int * a, int b)
     }
   }
 }
+
+void sakovskaia::printAnswer(std::fstream & out, int * a, int b)
+{
+  for (int i = 0; i < b; i++)
+  {
+    out << a[i];
+  }
+}
