@@ -1,7 +1,7 @@
 #include "matrix.hpp"
 #include <math.h>
 
-void sakovskaia::CounterclockWiseMatrixCounter::operator()(int * a, int rows, int columns)
+void sakovskaia::counterclockWiseMatrixCounter::operator()(int * a, int rows, int columns)
 {
   int n = 0;
   int cnt = 0;
@@ -29,7 +29,7 @@ void sakovskaia::CounterclockWiseMatrixCounter::operator()(int * a, int rows, in
   }
 }
 
-void sakovskaia::AnswerCounter::operator()(int * inputmatrix, int * counterclockwisematrix, int size)
+void sakovskaia::answerCounter::operator()(int * inputmatrix, int * counterclockwisematrix, int size)
 {
   for (int index = 0; index < size; ++index)
   {

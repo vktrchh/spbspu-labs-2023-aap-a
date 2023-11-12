@@ -6,8 +6,8 @@
 int main(int argc, char * argv[])
 {
   using namespace sakovskaia;
-  CounterclockWiseMatrixCounter matrixcounter;
-  AnswerCounter answercounter;
+  counterclockWiseMatrixCounter matrixcounter;
+  answerCounter answercounter;
   if (argc != 4)
   {
     std::cerr << "Error in command line arguments\n";

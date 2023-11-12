@@ -6,14 +6,14 @@ namespace sakovskaia
   void staticMatrix(std::fstream & in, int * a, int b);
   void dynamicMatrix(std::fstream & in, int * a, int b);
   void printAnswer(std::fstream & out, int * a, int b);
-  struct CounterclockWiseMatrixCounter
+  struct counterclockWiseMatrixCounter
   {
-    CounterclockWiseMatrixCounter();
+    counterclockWiseMatrixCounter();
     void operator()(int *, int, int);
   };
-  struct AnswerCounter
+  struct answerCounter
   {
-    AnswerCounter();
+    answerCounter();
     void operator()(int *, int *, int);
   };
 }
