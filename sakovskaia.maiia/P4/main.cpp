@@ -1,9 +1,12 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include "matrix_reader.cpp"
 
 int main(int argc, char * argv[])
 {
+  using namespace sakovskaia;
+  CounterclockWiseMatrix counter;
   if (argc != 4)
   {
     std::cerr << "Error in command line arguments\n";
@@ -31,4 +34,43 @@ int main(int argc, char * argv[])
   }
 
   std::fstream output(argv[3]);
+
+  if (num == 1)
+  {
+    try
+    {
+      int inputmatrix[rows * columns] = {};
+      int counterclockwisematrix[rows * columns];
+      staticMatrix(input, inputmatrix, rows * columns);
+      counter(counterclockwisematrix, rows, columns);
+      counter(inputmatrix, counterclockwisematrix, rows * columns);
+    }
+    catch (const std::logic_error & e)
+    {
+      std::cerr << e.what() << "\n";
+      return 2;
+    }
+  }
+  else if (num == 2)
+  {
+    try
+    {
+      int * inputmatrix = new int[rows * columns];
+      int counterclockwisematrix[rows * columns];
+      dynamicMatrix(input, inputmatrix, rows * columns);
+      counter(counterclockwisematrix, rows, columns);
+      counter(inputmatrix, counterclockwisematrix, rows * columns);
+      delete [] inputmatrix;
+    }
+    catch (const std::logic_error & e)
+    {
+      std::cerr << e.what() << "\n";
+      return 2;
+    }
+  }
+  else if ((num > 2) || (num < 1))
+  {
+    std::cerr << "First parameter is out of range\n";
+    return 1;
+  }
 }
