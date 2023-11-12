@@ -42,35 +42,40 @@ int main(int argc, char * argv[])
     try
     {
       int inputmatrix[rows * columns] = {};
-      int counterclockwisematrix[rows * columns];
+      int counterclockwisematrix[rows * columns] = {};
       staticMatrix(input, inputmatrix, rows * columns);
       matrixcounter(counterclockwisematrix, rows, columns);
       answercounter(inputmatrix, counterclockwisematrix, rows * columns);
-      printAnswer(output, inputmatrix, rows * columns);
+      sakovskaia::printAnswer(output, counterclockwisematrix, rows * columns);
     }
     catch (const std::logic_error & e)
     {
       std::cerr << e.what() << "\n";
       return 2;
     }
+    input.close();
+    output.close();
   }
   else if (num == 2)
   {
     try
     {
       int * inputmatrix = new int[rows * columns];
-      int counterclockwisematrix[rows * columns];
+      int * counterclockwisematrix = new int[rows * columns];
       dynamicMatrix(input, inputmatrix, rows * columns);
       matrixcounter(counterclockwisematrix, rows, columns);
       answercounter(inputmatrix, counterclockwisematrix, rows * columns);
-      printAnswer(output, inputmatrix, rows * columns);
+      printAnswer(output, counterclockwisematrix, rows * columns);
       delete [] inputmatrix;
+      delete [] counterclockwisematrix;
     }
     catch (const std::logic_error & e)
     {
       std::cerr << e.what() << "\n";
       return 2;
     }
+    input.close();
+    output.close();
   }
   else if ((num > 2) || (num < 1))
   {
