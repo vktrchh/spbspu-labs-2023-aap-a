@@ -9,12 +9,12 @@ namespace sakovskaia
   struct CounterclockWiseMatrixCounter
   {
     CounterclockWiseMatrixCounter();
-    void operator()(int, int, int);
+    void operator()(int *, int, int);
   };
   struct AnswerCounter
   {
     AnswerCounter();
-    void operator()(int, int, int);
+    void operator()(int *, int *, int);
   };
 }
 #endif
