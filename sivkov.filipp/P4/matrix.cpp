@@ -1,3 +1,4 @@
+#include <iostream>
 #include "matrix.hpp"
 #include <memory>
 
@@ -28,6 +29,7 @@ int ** createMatrix(size_t rows, size_t cols)
   catch (const std::bad_alloc&)
   {
     freeMatrix(rowsptrs, rows);
+    std::cout << "Error with matrix\n";
     throw;
   }
 }

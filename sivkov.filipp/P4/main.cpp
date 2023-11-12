@@ -1,5 +1,4 @@
 #include <fstream>
-#include <limits>
 #include <iostream>
 #include <stdexcept>
 #include <cstdlib>
@@ -56,4 +55,34 @@ int main(int argc, char * argv[])
     std::cerr << "Not enough memory\n";
     return 2;
   }
+  if ((rows == 0) && (cols == 0))
+  {
+    std::cerr << "Matrix cannot = 0";
+    return 2;
+  }
+  //задание:
+  size_t count = 0;
+  if (numOfTask == 1)
+  {
+    createMatrix(rows, cols);
+    for (size_t i = 0; i != 5; i++)
+    {
+      for (size_t j = 0; j != 3; j++)
+      {
+        if ((i != 0) && (j != 0) && (j != cols - 1) && (i != rows - 1))
+        {
+          std::cout << rowsptrs[i][j] << "\n";
+          if ((rowsptrs[i][j] > rowsptrs[i - 1][j]) && (rowsptrs[i][j] > rowsptrs[i+1][j]))
+          {
+            if ((rowsptrs[i][j] > rowsptrs[i][j - 1]) && (rowsptrs[i][j] > rowsptrs[i][j + 1]))
+            {
+              ++count;
+              std::cout << "+1\n";
+            }
+          }
+        }
+      }
+    }
+  }
+  std::cout << count << "\n";
 }
