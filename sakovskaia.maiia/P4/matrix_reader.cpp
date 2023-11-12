@@ -1,21 +1,21 @@
 #include "matrix.hpp"
 
-void sakovskaia::staticMatrix(std::fstream & in, int * a, int b)
+void sakovskaia::staticMatrix(std::ifstream & input, int * a, int b)
 {
   for (int i = 0; i < b; i++)
   {
-    if (!(in >> a[i]))
+    if (!(input >> a[i]))
     {
       throw (std::logic_error("Cannot create matrix"));
     }
   }
 }
 
-void sakovskaia::dynamicMatrix(std::fstream & in, int * a, int b)
+void sakovskaia::dynamicMatrix(std::ifstream & input, int * a, int b)
 {
   for (int i = 0; i < b; i++)
   {
-    if (!(in >> a[i]))
+    if (!(input >> a[i]))
     {
       delete [] a;
       throw (std::logic_error("Cannot create matrix"));
@@ -23,10 +23,10 @@ void sakovskaia::dynamicMatrix(std::fstream & in, int * a, int b)
   }
 }
 
-void sakovskaia::printAnswer(std::fstream & out, int * a, int b)
+void sakovskaia::printAnswer(std::ofstream & output, int * a, int b)
 {
   for (int i = 0; i < b; i++)
   {
-    out << a[i];
+    output << a[i];
   }
 }

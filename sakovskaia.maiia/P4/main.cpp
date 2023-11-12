@@ -2,6 +2,7 @@
 #include <fstream>
 #include <cstdlib>
 #include "matrix_reader.cpp"
+#include "matrix_counter.cpp"
 
 int main(int argc, char * argv[])
 {
@@ -25,7 +26,7 @@ int main(int argc, char * argv[])
     return 1;
   }
 
-  std::fstream input(argv[2]);
+  std::ifstream input(argv[2]);
   int rows = 0, columns = 0;
   input >> rows >> columns;
   if (!input)
@@ -34,7 +35,7 @@ int main(int argc, char * argv[])
     return 2;
   }
 
-  std::fstream output(argv[3]);
+  std::ofstream output(argv[3]);
 
   if (num == 1)
   {

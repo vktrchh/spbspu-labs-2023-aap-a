@@ -1,11 +1,11 @@
-#ifndef MATRIX_H
-#define MATRIX_H
+#ifndef MATRIX_HPP
+#define MATRIX_HPP
 #include <fstream>
 namespace sakovskaia
 {
-  void staticMatrix(std::fstream & in, int * a, int b);
-  void dynamicMatrix(std::fstream & in, int * a, int b);
-  void printAnswer(std::fstream & out, int * a, int b);
+  void staticMatrix(std::ifstream & input, int * a, int b);
+  void dynamicMatrix(std::ifstream & input, int * a, int b);
+  void printAnswer(std::ofstream & output, int * a, int b);
   struct counterclockWiseMatrixCounter
   {
     counterclockWiseMatrixCounter();
