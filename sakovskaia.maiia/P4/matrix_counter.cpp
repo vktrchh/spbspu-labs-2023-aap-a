@@ -1,11 +1,10 @@
 #include "matrix.hpp"
 #include <math.h>
 
-void sakovskaia::counterClockwiseCircleMatrix(int * a, int rows, int columns)
+void sakovskaia::CounterclockWiseMatrix::operator()(int * a, int rows, int columns)
 {
   int n = 0;
   int cnt = 0;
-  int cntrows = rows;
   int cntcolumns = columns;
   for (int circle = 1; circle <= (ceil((std::min(rows, columns)) / 2)); ++circle)
   {
@@ -30,7 +29,7 @@ void sakovskaia::counterClockwiseCircleMatrix(int * a, int rows, int columns)
   }
 }
 
-void sakovskaia::roadToAnswer(int * inputmatrix, int * counterclockwisematrix, int size)
+void sakovskaia::CounterclockWiseMatrix::operator()(int * inputmatrix, int * counterclockwisematrix, int size)
 {
   for (int index = 0; index < size; ++index)
   {

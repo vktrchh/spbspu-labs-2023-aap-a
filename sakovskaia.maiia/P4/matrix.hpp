@@ -3,7 +3,13 @@
 #include <fstream>
 namespace sakovskaia
 {
-  void staticMatrix(std::fstream & in, int * a, int b);
-  void dynamicMatrix(std::fstream & in, int * a, int b);
+  struct CounterclockWiseMatrixCounter
+  {
+    CounterclockWiseMatrixCounter();
+    void staticMatrix(std::fstream & in, int * a, int b);
+    void dynamicMatrix(std::fstream & in, int * a, int b);
+    void operator()(int, int, int);
+    void operator()(int, int, int);
+  };
 }
 #endif
