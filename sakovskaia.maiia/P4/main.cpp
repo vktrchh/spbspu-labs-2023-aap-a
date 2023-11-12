@@ -44,6 +44,7 @@ int main(int argc, char * argv[])
       staticMatrix(input, inputmatrix, rows * columns);
       counter(counterclockwisematrix, rows, columns);
       counter(inputmatrix, counterclockwisematrix, rows * columns);
+      printAnswer(output, inputmatrix, rows * columns);
     }
     catch (const std::logic_error & e)
     {
@@ -60,6 +61,7 @@ int main(int argc, char * argv[])
       dynamicMatrix(input, inputmatrix, rows * columns);
       counter(counterclockwisematrix, rows, columns);
       counter(inputmatrix, counterclockwisematrix, rows * columns);
+      printAnswer(output, inputmatrix, rows * columns);
       delete [] inputmatrix;
     }
     catch (const std::logic_error & e)
