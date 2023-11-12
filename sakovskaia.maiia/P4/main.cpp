@@ -6,7 +6,8 @@
 int main(int argc, char * argv[])
 {
   using namespace sakovskaia;
-  CounterclockWiseMatrix counter;
+  CounterclockWiseMatrixCounter matrixcounter;
+  AnswerCounter answercounter;
   if (argc != 4)
   {
     std::cerr << "Error in command line arguments\n";
@@ -42,8 +43,8 @@ int main(int argc, char * argv[])
       int inputmatrix[rows * columns] = {};
       int counterclockwisematrix[rows * columns];
       staticMatrix(input, inputmatrix, rows * columns);
-      counter(counterclockwisematrix, rows, columns);
-      counter(inputmatrix, counterclockwisematrix, rows * columns);
+      matrixcounter(counterclockwisematrix, rows, columns);
+      answercounter(inputmatrix, counterclockwisematrix, rows * columns);
       printAnswer(output, inputmatrix, rows * columns);
     }
     catch (const std::logic_error & e)
@@ -59,8 +60,8 @@ int main(int argc, char * argv[])
       int * inputmatrix = new int[rows * columns];
       int counterclockwisematrix[rows * columns];
       dynamicMatrix(input, inputmatrix, rows * columns);
-      counter(counterclockwisematrix, rows, columns);
-      counter(inputmatrix, counterclockwisematrix, rows * columns);
+      matrixcounter(counterclockwisematrix, rows, columns);
+      answercounter(inputmatrix, counterclockwisematrix, rows * columns);
       printAnswer(output, inputmatrix, rows * columns);
       delete [] inputmatrix;
     }
