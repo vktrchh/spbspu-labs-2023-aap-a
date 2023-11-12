@@ -10,6 +10,10 @@ namespace sakovskaia
   {
     CounterclockWiseMatrixCounter();
     void operator()(int, int, int);
+  };
+  struct AnswerCounter
+  {
+    AnswerCounter();
     void operator()(int, int, int);
   };
 }
