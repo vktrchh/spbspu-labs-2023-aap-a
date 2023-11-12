@@ -83,18 +83,47 @@ int main(int argc, char * argv[])
 
   if (num == 1)
   {
+    int matrix[10000];
+    size_t count = 1;
+    size_t maxRow = 0;
+    size_t max = 0;
+    for (size_t i = 0; i < rows; ++i)
+    {
+      for (size_t j = 0; j < cols; ++j)
+      {
+        input >> matrix[i * rows + j];
+      }
+      if (matrix[i] == matrix[i + 1])
+      {
+        ++count;
+        if (count > max)
+        {
+          max = count;
+          maxRow = i + 1;
+        }
+      }
+      else
+      {
+        count = 1;
+      }
+    }
+    std::ofstream output(argv[3]);
+    output << maxRow;
+    std::cout << maxRow << "\n";
+
+    input.close();
     return 0;
   }
   else if (num == 2)
   {
-    int** matrix = nullptr;
+    int* matrix = new int[rows * cols];
     try
     {
-       matrix = createMatrix(rows, cols);
+       matrix = new int[rows * cols];
     }
     catch (const std::exception& e)
     {
-      freeMatrix(matrix, rows, cols);
+      delete [] matrix;
       std::cerr << e.what();
       return 4;
     }
@@ -102,7 +131,7 @@ int main(int argc, char * argv[])
     {
       for (size_t j = 0; j < cols; ++j)
       {
-        input >> *(matrix[i] + j);
+        input >> matrix[i * rows + j];
       }
     }
     input.close();
@@ -118,9 +147,18 @@ int main(int argc, char * argv[])
     {
       for (size_t j = 0; j < cols - 1; ++j)
       {
-        if (matrix[i][j] == matrix[i][j + 1])
+        if (matrix[i * rows + j] == matrix[i * rows + j + 1])
         {
           ++count;
+          if (count > max)
+          {
+            max = count;
+            maxRow = i + 1;
+          }
+          else
+          {
+            max = 0;
+          }
         }
         else
         {
@@ -129,7 +167,7 @@ int main(int argc, char * argv[])
         if (count > max)
         {
           max = count;
-          maxRow = i;
+          maxRow = i + 1;
         }
         else
         {
@@ -137,9 +175,10 @@ int main(int argc, char * argv[])
         }
       }
     }
-    freeMatrix(matrix, rows, cols);
+    delete [] matrix;
 
     std::ofstream output(argv[3]);
     output << maxRow;
+    std::cout << maxRow << "\n";
   }
 }
