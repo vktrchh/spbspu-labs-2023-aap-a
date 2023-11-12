@@ -109,7 +109,6 @@ int main(int argc, char * argv[])
     }
     std::ofstream output(argv[3]);
     output << maxRow;
-    std::cout << maxRow << "\n";
 
     input.close();
     return 0;
@@ -179,6 +178,5 @@ int main(int argc, char * argv[])
 
     std::ofstream output(argv[3]);
     output << maxRow;
-    std::cout << maxRow << "\n";
   }
 }
