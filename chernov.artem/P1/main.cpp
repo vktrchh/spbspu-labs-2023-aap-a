@@ -32,15 +32,14 @@ int main()
     }
   }
   while (number != 0);
-  try
+  std::cout << pifTriples() << "\n";
+  if (pochtMaxim() == 0)
+  {
+    std::cerr << "Not enough numbers entered\n";
+  }
+  else
   {
     std::cout << pochtMaxim() << "\n";
-    std::cout << pifTriples() << "\n";
-  }
-  catch (const std::exception & e)
-  {
-    std::cerr << "Error: " << e.what() << "\n";
-    return 2;
   }
   return 0;
 }

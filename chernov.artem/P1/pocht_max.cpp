@@ -33,10 +33,6 @@ void chernov::PochtMax::operator()(int number)
       }
     }
   }
-  if (number == 0)
-  {
-    throw std::logic_error("Not enough numbers entered");
-  }
 }
 
 size_t chernov::PochtMax::operator()() const
