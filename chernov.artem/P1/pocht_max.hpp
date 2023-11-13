@@ -11,7 +11,6 @@ namespace chernov
     int operator()() const;
   private:
     void schetPremaxim(int number);
-    int propusk_;
     int premaxim_;
     int maxim_;
   };
