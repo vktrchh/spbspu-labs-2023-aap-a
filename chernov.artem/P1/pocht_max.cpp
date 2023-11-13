@@ -10,7 +10,6 @@ chernov::PochtMax::PochtMax():
 
 void chernov::PochtMax::operator()(int number)
 {
-  size_t max_size = std::numeric_limits< size_t >::max();
   if (maxim_ == 0)
   {
     maxim_ = number;
@@ -35,7 +34,7 @@ void chernov::PochtMax::operator()(int number)
   }
 }
 
-size_t chernov::PochtMax::operator()() const
+int chernov::PochtMax::operator()() const
 {
   return premaxim_;
 }

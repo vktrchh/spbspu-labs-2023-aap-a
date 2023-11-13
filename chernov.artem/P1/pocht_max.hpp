@@ -8,7 +8,7 @@ namespace chernov
   {
     PochtMax();
     void operator()(int number);
-    size_t operator()() const;
+    int operator()() const;
   private:
     void schetPremaxim(int number);
     int propusk_;
