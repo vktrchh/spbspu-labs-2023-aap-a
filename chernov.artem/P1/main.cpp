@@ -1,6 +1,5 @@
-#include "sequence_counter.hpp"
 #include "piftriples_counter.hpp"
-#include "pochtmax.hpp"
+#include "pocht_max.hpp"
 #include <iostream>
 #include <stdexcept>
 
@@ -8,10 +7,8 @@ int main()
 {
   int number = 0;
   using namespace chernov;
-  int maxim = 0;
-  int premaxim = 0;
-  PifTriplesCounter piftriples;
-  SequenceCounter counter;
+  PifTriplesCounter pifTriples;
+  PochtMax pochtMaxim;
   do
   {
     std::cin >> number;
@@ -24,25 +21,26 @@ int main()
     {
       try
       {
-        counter(number);
-        piftriples(number);
+        pochtMaxim(number);
+        pifTriples(number);
       }
       catch (const std::exception & e)
       {
         std::cerr << "Error: " << e.what() << "\n";
         return 2;
       }
-      pochtmax(number, maxim, premaxim);
     }
   }
   while (number != 0);
-  std::cout << piftriples() << "\n";
-
-  if (maxim == 0 || premaxim == 0)
+  try
   {
-    std::cerr << "Not enough numbers entered\n";
+    std::cout << pochtMaxim() << "\n";
+    std::cout << pifTriples() << "\n";
+  }
+  catch (const std::exception & e)
+  {
+    std::cerr << "Error: " << e.what() << "\n";
     return 2;
   }
-  std::cout << premaxim << "\n";
   return 0;
 }
