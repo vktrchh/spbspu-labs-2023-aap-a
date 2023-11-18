@@ -21,4 +21,7 @@ int main()
   std::cin >> std::skipws;
 
   std::cout << buffer << "\n";
+  delete [] buffer;
+
+  return 0;
 }
