@@ -9,6 +9,7 @@ int main()
   char symb = 0;
   size_t i = 0;
   bool status = true;
+
   char* actualArray = new char[arraySize + bufferSize]{};
 
   std::cin >> std::noskipws;
@@ -20,7 +21,7 @@ int main()
       buffer[i++] = symb;
       if (symb == '\n')
       {
-        buffer[i - 1] = 0;
+        buffer[i - 1] = '\0';
         status = false;
         break;
       }
