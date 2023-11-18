@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <cstring>
 
 int main()
 {
@@ -54,6 +55,14 @@ int main()
     if (!status)
     {
       std::cout << actualArray << '\n';
+      if (std::strchr(actualArray, 'a') != nullptr)
+      {
+        std::cout << "1\n";
+      }
+      else
+      {
+        std::cout << "0\n";
+      }
       delete [] actualArray;
       actualArray = nullptr;
     }
