@@ -2,7 +2,7 @@
 #include <iostream>
 #include <iomanip>
 
-std::pair<char*, size_t> inputArray(char* actualArray)
+std::pair<char*, size_t> nikitov::inputArray(char* actualArray)
 {
   const size_t bufferSize = 25;
   size_t arraySize = 0;

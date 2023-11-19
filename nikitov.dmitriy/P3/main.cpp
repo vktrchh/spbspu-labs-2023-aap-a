@@ -7,6 +7,7 @@ int main()
   char* firstArray = nullptr;
   char* secondArray = nullptr;
 
+  using namespace nikitov;
   std::pair <char*, size_t> firstPair = inputArray(firstArray);
   std::pair <char*, size_t> secondPair = inputArray(secondArray);
 

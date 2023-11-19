@@ -3,5 +3,9 @@
 
 #include <cstddef>
 #include <utility>
-std::pair<char*, size_t> inputArray(char* actualArray);
+
+namespace nikitov
+{
+  std::pair<char*, size_t> inputArray(char* actualArray);
+}
 #endif
