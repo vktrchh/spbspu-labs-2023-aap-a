@@ -6,6 +6,6 @@
 
 namespace nikitov
 {
-  std::pair<char*, size_t> inputArray(char* actualArray);
+  std::pair< char*, size_t > inputArray(char* actualArray);
 }
 #endif

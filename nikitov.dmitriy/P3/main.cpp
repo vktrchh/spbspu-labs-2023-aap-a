@@ -8,9 +8,18 @@ int main()
   char* secondArray = nullptr;
 
   using namespace nikitov;
+  try
+  {
   std::pair <char*, size_t> firstPair = inputArray(firstArray);
   std::pair <char*, size_t> secondPair = inputArray(secondArray);
-
+  }
+  catch(...)
+  {
+  std::cerr << "Error: array out of range\n";
+  delete [] firstArray;
+  delete [] secondArray;
+  return 1;
+  }
   firstArray = firstPair.first;
   secondArray = secondPair.first;
   size_t firstSize = firstPair.second;

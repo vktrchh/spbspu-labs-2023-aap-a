@@ -1,11 +1,13 @@
 #include "input_array.hpp"
 #include <iostream>
-#include <iomanip>
+#include <limits>
+#include <stdexcept>
 
-std::pair<char*, size_t> nikitov::inputArray(char* actualArray)
+std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
 {
   const size_t bufferSize = 25;
   size_t arraySize = 0;
+  size_t maxLim = std::numeric_limits< size_t >::max();
 
   char symb = 0;
   size_t i = 0;
@@ -33,6 +35,12 @@ std::pair<char*, size_t> nikitov::inputArray(char* actualArray)
     {
       actualArray[position] = buffer[j];
       ++position;
+    }
+
+    if (arraySize > maxLim - bufferSize)
+    {
+      delete [] buffer;
+      throw "Array size out of range";
     }
     arraySize += bufferSize;
 
