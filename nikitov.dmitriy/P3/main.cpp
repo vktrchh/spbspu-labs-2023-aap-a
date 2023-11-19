@@ -1,7 +1,6 @@
 #include <iostream>
-#include <iomanip>
-#include <cstring>
 #include "input_array.hpp"
+#include "check_matches.hpp"
 
 int main()
 {
@@ -15,10 +14,8 @@ int main()
   secondArray = secondPair.first;
   size_t firstSize = firstPair.second;
   size_t secondSize = secondPair.second;
-  std::cout << firstArray << '\n';
-  std::cout << firstSize << '\n';
-  std::cout << secondArray << '\n';
-  std::cout << secondSize << '\n';
+
+  std::cout << checkMatches(firstArray, secondArray, firstSize, secondSize) << '\n';
   delete [] firstArray;
   delete [] secondArray;
 
