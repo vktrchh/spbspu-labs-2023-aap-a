@@ -19,10 +19,6 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
     throw "Error: Memory out";
   }
 
-  if (!std::cin)
-  {
-    throw "Error: Wrong input";
-  }
   std::cin >> std::noskipws;
   do
   {
@@ -36,6 +32,10 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
       buffer[i++] = symb;
       if (symb == '\n' || symb == '\0')
       {
+        if (i == 1)
+        {
+          throw "Error: Wrong input";
+        }
         buffer[i - 1] = '\0';
         status = false;
         break;
