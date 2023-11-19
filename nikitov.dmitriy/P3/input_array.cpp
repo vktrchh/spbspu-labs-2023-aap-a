@@ -13,12 +13,20 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
   size_t i = 0;
   bool status = true;
 
-  actualArray = new char[arraySize + bufferSize]{};
+  actualArray = new (std::nothrow) char[arraySize + bufferSize]{};
+  if (actualArray == nullptr)
+  {
+    throw "Error: Memory out";
+  }
 
   std::cin >> std::noskipws;
   do
   {
-    char* buffer = new char[bufferSize]{};
+    char* buffer = new (std::nothrow) char[bufferSize]{};
+    if (buffer == nullptr)
+    {
+      throw "Error: Memory out";
+    }
     while ((i != bufferSize) && (std::cin >> symb))
     {
       buffer[i++] = symb;
@@ -36,22 +44,32 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
       actualArray[position] = buffer[j];
       ++position;
     }
+    delete [] buffer;
 
     if (arraySize > maxLim - bufferSize)
     {
-      delete [] buffer;
-      throw "Array size out of range";
+      throw "Error: Array size out of range";
     }
     arraySize += bufferSize;
 
-    char* tempArray = new char[arraySize]{};
+    char* tempArray = new (std::nothrow) char[arraySize]{};
+    if (tempArray == nullptr)
+    {
+      throw "Error: Memory out";
+    }
     for (size_t j = 0; j != arraySize; ++j)
     {
       tempArray[j] = actualArray[j];
     }
     delete [] actualArray;
 
-    actualArray = new char[arraySize + bufferSize]{};
+
+    actualArray = new (std::nothrow) char[arraySize + bufferSize]{};
+    if (actualArray == nullptr)
+    {
+      delete [] tempArray;
+      throw "Error: Memory out";
+    }
     for (size_t j = 0; j != arraySize; ++j)
     {
       actualArray[j] = tempArray[j];
@@ -63,10 +81,10 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
     if (!status)
     {
       std::cin >> std::skipws;
-      return std::pair<char*, size_t>(actualArray, arraySize);
+      return std::pair< char*, size_t >(actualArray, arraySize);
     }
   }
   while (status);
 
-  return std::pair<char*, size_t>(nullptr, 0);
+  return std::pair< char*, size_t >(nullptr, 0);
 }
