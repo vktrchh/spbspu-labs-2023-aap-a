@@ -1,4 +1,5 @@
 #include "matrix.hpp"
+#include "matrix_input_res.hpp"
 
 void sakovskaia::staticMatrix(std::ifstream & input, int * a, int b)
 {
@@ -23,7 +24,7 @@ void sakovskaia::dynamicMatrix(std::ifstream & input, int * a, int b)
   }
 }
 
-void sakovskaia::printAnswer(std::ofstream & output, int * a, int b)
+std::ofstream & sakovskaia::printAnswer(std::ofstream & output, int * a, int b)
 {
   for (int i = 0; i < b; i++)
   {

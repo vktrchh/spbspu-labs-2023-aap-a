@@ -1,4 +1,5 @@
 #include "matrix.hpp"
+#include "matrix_input_res.hpp"
 #include <math.h>
 
 void sakovskaia::counterclockWiseMatrixCounter::operator()(int * a, int rows, int columns)

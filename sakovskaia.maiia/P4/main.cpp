@@ -1,8 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
-#include "matrix_reader.cpp"
-#include "matrix_counter.cpp"
+#include "matrix.hpp"
+#include "matrix_input_res.hpp"
 
 int main(int argc, char * argv[])
 {
