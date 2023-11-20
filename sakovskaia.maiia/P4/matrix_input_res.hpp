@@ -10,6 +10,7 @@ namespace sakovskaia
   {
     answerCounter();
     void operator()(int *, int *, int);
+    int index;
   };
 }
 #endif

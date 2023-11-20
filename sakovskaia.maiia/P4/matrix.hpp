@@ -11,6 +11,11 @@ namespace sakovskaia
   {
     counterclockWiseMatrixCounter();
     void operator()(int *, int, int);
+    int n;
+    int cnt;
+    int cntcolumns;
+    int circle;
+    int index;
   };
 }
 #endif
