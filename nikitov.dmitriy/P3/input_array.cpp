@@ -43,8 +43,8 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
     }
     if (!std::cin)
     {
-      throw "Error: Wrong input";
       delete [] buffer;
+      throw "Error: Wrong input";
     }
 
     size_t position = arraySize;
