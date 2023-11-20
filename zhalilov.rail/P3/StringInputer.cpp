@@ -10,10 +10,10 @@ zhalilov::StringInputer::StringInputer():
 
 void zhalilov::StringInputer::resize()
 {
-  char *temp = new(std::nothrow) char(m_strSize * 2);
+  char *temp = new(std::nothrow) char[m_strSize * 2];
   if (temp == nullptr)
   {
-    delete m_string;
+    delete[] m_string;
     m_string = nullptr;
     return;
   }
@@ -21,7 +21,7 @@ void zhalilov::StringInputer::resize()
   {
     temp[i] = m_string[i];
   }
-  delete m_string;
+  delete[] m_string;
   m_string = temp;
   temp = nullptr;
   m_strSize *= 2;
@@ -29,21 +29,23 @@ void zhalilov::StringInputer::resize()
 
 char *zhalilov::StringInputer::operator()()
 {
-  delete m_string;
+  delete[] m_string;
   m_dataInd = 0;
-  m_string = new(std::nothrow) char(100);
+  m_string = new(std::nothrow) char[100];
   if (!m_string)
   {
     return nullptr;
   }
   m_strSize = 100;
 
+  std::cin >> std::noskipws;
   char temp = 0;
   while (std::cin >> temp)
   {
     m_string[m_dataInd] = temp;
-    if (temp == '\0')
+    if (temp == '\n')
     {
+      m_string[m_dataInd] = '\0';
       break;
     }
     if (m_strSize == m_dataInd + 1)
@@ -56,5 +58,6 @@ char *zhalilov::StringInputer::operator()()
     }
     m_dataInd++;
   }
+  std::cin >> std::skipws;
   return m_string;
 }
