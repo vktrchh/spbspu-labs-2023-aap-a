@@ -2,13 +2,45 @@
 #include <limits>
 #include <stdexcept>
 
+class Dict()
+{
+  Dict(char simvol)
+  {
+    simvol_(simvol),
+    counter_(0)
+  }
+
+  public:
+    void operator()(char simvol)
+    {
+      size_t max_size = std::numeric_limits< size_t >::max();
+      if (counter_ == max_size)
+      {
+        std::cerr << "The number of this symbol is too large\n";
+      }
+      else
+      {
+        counter_++;
+      }
+    }
+
+    size_t operator()() const
+    {
+      return counter_;
+    }
+
+  private:
+    size_t counter_;
+    char simvol_;
+};
+
 char * enlargeArray(char * array, size_t size)
 {
   char * newArray = new char[size + 10]{};
 
   try
   {
-    for (int i = 0; i < size; ++i)
+    for (size_t i = 0; i < size; ++i)
     {
       newArray[i] = array[i];
     }
@@ -29,13 +61,18 @@ bool overflow(size_t number)
   return number == max_size;
 }
 
+char * frqTop(char * array, size_t size)
+{
+  
+}
+
 int main()
 {
   size_t size = 10;
   char * array = new char[size]{};
 
   char input = 0;
-  int i = 0;
+  size_t i = 0;
   std::cin >> std::noskipws;
 
   while ((std::cin >> input) && (i < size))
@@ -51,7 +88,7 @@ int main()
       return 1;
     }
 
-    if (overflow)
+    if (overflow(i) || overflow(size))
     {
       delete [] array;
       std::cerr << "Sequecne is too long\n";
@@ -74,9 +111,10 @@ int main()
 
   std::cin >> std::skipws;
 
-  for (int i = 0; i < size; ++i)
+  for (size_t i = 0; i < size; ++i)
   {
     std::cout << array[i];
   }
   return 0;
 }
+
