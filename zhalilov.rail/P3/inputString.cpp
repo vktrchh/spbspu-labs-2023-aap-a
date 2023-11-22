@@ -8,7 +8,7 @@ char *zhalilov::resizeString(char string[], size_t &strSize)
   {
     temp[i] = string[i];
   }
-  delete[] string; 
+  delete[] string;
   strSize *= 2;
   return temp;
 }
