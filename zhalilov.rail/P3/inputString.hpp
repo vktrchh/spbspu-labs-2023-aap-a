@@ -1,8 +1,7 @@
 #ifndef INPUTSTRING_HPP
 #define INPUTSTRING_HPP
 
-#include <fstream>
-#include <cstddef>
+#include <iostream>
 
 namespace zhalilov
 {

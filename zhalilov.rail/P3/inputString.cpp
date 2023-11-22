@@ -41,7 +41,7 @@ char *zhalilov::inputString(std::istream &input)
       catch (const std::bad_alloc &e)
       {
         delete[] string;
-        throw;
+        throw e;
       }
     }
     dataIndex++;

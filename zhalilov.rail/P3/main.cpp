@@ -4,16 +4,16 @@
 
 int main()
 {
-  using namespace  zhalilov;
-  char *aray = nullptr;
+  using namespace zhalilov;
+  char *string = nullptr;
   try
   {
-    aray = inputString(std::cin);
+    string = inputString(std::cin);
   }
-  catch (...)
+  catch (const std::bad_alloc &e)
   {
-    std::cout << "gdfgdfg";
-    return 0;
+    std::cerr << "Error: " << e.what();
+    return 1;
   }
-  std::cout << aray;
- }
+
+}
