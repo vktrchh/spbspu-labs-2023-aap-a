@@ -1,17 +1,19 @@
 #include <iostream>
 
-#include "StringInputer.hpp"
+#include "inputString.hpp"
 
 int main()
 {
   using namespace  zhalilov;
-  char * aray;
-  StringInputer input;
-  aray = input();
-  int i = 0;
-  while(aray[i] != '\0')
+  char *aray = nullptr;
+  try
   {
-    std::cout << aray[i];
-    i++;
+    aray = inputString(std::cin);
   }
-}
+  catch (...)
+  {
+    std::cout << "gdfgdfg";
+    return 0;
+  }
+  std::cout << aray;
+ }
