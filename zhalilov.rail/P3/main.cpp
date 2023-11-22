@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "inputString.hpp"
+#include "commonestSymbs.hpp"
 
 int main()
 {
@@ -16,4 +17,16 @@ int main()
     return 1;
   }
 
+  char *result = nullptr;
+  try
+  {
+    result = commonestSymbs(string);
+  }
+  catch (const std::bad_alloc &e)
+  {
+    std::cout << "Error: " << e.what();
+    delete[] string;
+    return 1;
+  }
+  std::cout << result << "\n";
 }
