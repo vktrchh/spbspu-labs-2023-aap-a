@@ -33,7 +33,7 @@ char *zhalilov::inputString(std::istream &input)
   {
     throw e;
   }
-  for (int i = 0; i < strSize; i++)
+  for (size_t i = 0; i < strSize; i++)
   {
     string[i] = 0;
   }
