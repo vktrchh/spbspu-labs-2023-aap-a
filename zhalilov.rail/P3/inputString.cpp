@@ -33,6 +33,10 @@ char *zhalilov::inputString(std::istream &input)
   {
     throw e;
   }
+  for (int i = 0; i < strSize; i++)
+  {
+    string[i] = 0;
+  }
   input >> std::noskipws;
   char temp = 0;
   while (input >> temp)
