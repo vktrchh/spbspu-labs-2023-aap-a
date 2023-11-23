@@ -16,6 +16,11 @@ int main()
     std::cerr << "Error: " << e.what();
     return 1;
   }
+  if (!string)
+  {
+    std::cerr << "Invalid input";
+    return 1;
+  }
   char *result = nullptr;
   try
   {
