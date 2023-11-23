@@ -18,7 +18,7 @@ int main()
   }
   if (!string)
   {
-    std::cerr << "Invalid input";
+    std::cerr << "Invalid input\n";
     return 1;
   }
   char *result = nullptr;
