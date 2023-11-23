@@ -31,6 +31,6 @@ int main()
   {
     result[i] = 0;
   }
-  result = comnstSymbs(result, string);
+  comnstSymbs(result, string);
   std::cout << result << "\n";
 }
