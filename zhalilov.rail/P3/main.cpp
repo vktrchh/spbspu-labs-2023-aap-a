@@ -23,8 +23,8 @@ int main()
   }
   catch (const std::bad_alloc &e)
   {
-    std::cerr << "Error: " << e.what();
     delete[] string;
+    std::cerr << "Error: " << e.what();
     return 1;
   }
   for (int i = 0; i < 3; i++)
