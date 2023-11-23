@@ -3,7 +3,10 @@
 char *zhalilov::resizeString(char string[], size_t &strSize)
 {
   char *temp = nullptr;
-  temp = new char[strSize * 2];
+  try
+  {
+    temp = new char[strSize * 2];
+  }
   for (size_t i = 0; i < strSize; i++)
   {
     temp[i] = string[i];
@@ -52,6 +55,11 @@ char *zhalilov::inputString(std::istream &input)
       }
     }
     dataIndex++;
+  }
+  if (!input)
+  {
+    delete[] string;
+    return nullptr;
   }
   input >> std::skipws;
   return string;
