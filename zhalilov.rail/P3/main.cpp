@@ -27,11 +27,11 @@ int main()
     std::cerr << "Error: " << e.what();
     return 1;
   }
-  //for (int i = 0; i < 3; i++)
-  //{
-  //  result[i] = 0;
-  //}
+  for (int i = 0; i < 3; i++)
+  {
+    result[i] = 0;
+  }
   comnstSymbs(result, string);
   std::cout << result << "\n";
-  std::cout << "\n";
+  delete[] result;
 }
