@@ -3,14 +3,17 @@
 #include <cstddef>
 #include <cctype>
 
-char *zhalilov::commonestSymbs(const char *string)
+char *zhalilov::comnstSymbs(char *result, const char *string)
 {
   size_t alphabet[26];
   for (int i = 0; i < 26; i++)
   {
     alphabet[i] = 0;
   }
-
+  if (!string)
+  {
+    return nullptr;
+  }
   while (*string != '\0')
   {
     if (isalpha(*string))
@@ -44,7 +47,6 @@ char *zhalilov::commonestSymbs(const char *string)
     max = 0;
   }
 
-  char *result = new char[3];
   int resultIndex = 0;
   for (int i = 0; i < 26; i++)
   {

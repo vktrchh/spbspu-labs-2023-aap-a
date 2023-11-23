@@ -16,17 +16,21 @@ int main()
     std::cerr << "Error: " << e.what();
     return 1;
   }
-
   char *result = nullptr;
   try
-  {
-    result = commonestSymbs(string);
+  { 
+    result = new char[3];
+    for (int i = 0; i < 3; i++)
+    {
+      result[i] = 0;
+    }
   }
   catch (const std::bad_alloc &e)
   {
-    std::cout << "Error: " << e.what();
+    std::cerr << "Error: " << e.what();
     delete[] string;
     return 1;
   }
+  result = comnstSymbs(result, string);
   std::cout << result << "\n";
 }

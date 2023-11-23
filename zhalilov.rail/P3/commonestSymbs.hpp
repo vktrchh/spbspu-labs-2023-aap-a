@@ -3,7 +3,7 @@
 
 namespace zhalilov
 {
-  char *commonestSymbs(const char *string);
+  char *comnstSymbs(char *result, const char *string);
 }
 
 #endif
