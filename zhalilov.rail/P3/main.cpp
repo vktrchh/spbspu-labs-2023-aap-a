@@ -38,5 +38,6 @@ int main()
   }
   comnstSymbs(result, string);
   std::cout << result << "\n";
+  delete[] string;
   delete[] result;
 }
