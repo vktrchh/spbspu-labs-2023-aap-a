@@ -11,7 +11,6 @@ int main()
   size_t symbol_array_size = 0;
   char * end_array = nullptr;
   char * start_array = nullptr;
-
   try
   {
   start_array = new char [1];
@@ -24,21 +23,18 @@ int main()
     delete [] end_array;
     return 1;
   }
-
   std::cin >> std::skipws;
   char * digit_array = new char [10];
   if (!(checkDigit(end_array, digit_array, symbol_array_size)))
   {
     delete [] end_array;
     delete [] digit_array;
-    std::cout << "Не нашлось(\n";
     return 0;
   }
   else
   {
     delete [] end_array;
     delete [] digit_array;
-    std::cout << "Нашлось!\n";
     return 3;
   }
 }
