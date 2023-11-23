@@ -10,6 +10,10 @@ char *zhalilov::comnstSymbs(char *result, const char *string)
   {
     alphabet[i] = 0;
   }
+  if (!string)
+  {
+    return result;
+  }
   while (*string)
   {
     if (isalpha(*string))
