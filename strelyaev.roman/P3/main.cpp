@@ -1,6 +1,6 @@
 #include <iostream>
 #include <iomanip>
-#include "checkDigit.h"
+#include "checkdigit.h"
 #include "arrayinput.h"
 
 
