@@ -14,7 +14,7 @@ char *zhalilov::comnstSymbs(char *result, const char *string)
   {
     return nullptr;
   }
-  while (*string != '\0')
+  while (*string)
   {
     if (isalpha(*string))
     {

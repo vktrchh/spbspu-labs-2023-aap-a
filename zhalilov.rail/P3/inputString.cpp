@@ -17,8 +17,15 @@ char *zhalilov::inputString(std::istream &input)
 {
   size_t strSize = 100;
   size_t dataIndex = 0;
-  char *string = new char[strSize];
-
+  char *string = nullptr;
+  try
+  {
+    string = new char[strSize];
+  }
+  catch (const std::bad_alloc &e)
+  {
+    throw e;
+  }
   input >> std::noskipws;
   char temp = 0;
   while (input >> temp)
