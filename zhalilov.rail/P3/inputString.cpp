@@ -7,6 +7,10 @@ char *zhalilov::resizeString(char string[], size_t &strSize)
   {
     temp = new char[strSize * 2];
   }
+  catch (const std::bad_alloc &e)
+  {
+    throw e;
+  }
   for (size_t i = 0; i < strSize; i++)
   {
     temp[i] = string[i];
