@@ -23,17 +23,35 @@ void removeSpaces(char *dest, const char *src, size_t buff)
 int main()
 {
   size_t size = 20;
-  char *buff = new char[size]{};
+  char *buff = nullptr;
   char *string = nullptr;
   char **strPtr = nullptr;
   char c = '\0';
   size_t counter = 0;
+  try
+  {
+    buff = new char[size] {'\0'};
+  }
+  catch (const std::exception &e)
+  {
+    std::cerr << e.what() << '\n';
+    return 1;
+  }
+
   while (std::cin.get(c))
     {
       if (counter == size - 1)
       {
         size *= 2;
+        try
+        {
         string = new char[size];
+        }
+        catch (const std::exception &e)
+        {
+          std::cerr << e.what() << '\n';
+          delete[] buff;
+          return 1;
         for (size_t i = 0; i < size/2; i++)
         {
           string[i] = buff[i];
@@ -50,7 +68,18 @@ int main()
         break;
       }
     }
-  char *dest = new char[size]{'\0'};
+  char dest* = nullptr;
+  try
+  {
+    dest = new char[size] {'\0'};
+  }
+  catch (const std::exception  &e)
+  {
+    std::cerr << e.what() << '\n';
+    delete[] string;
+    delete[] buff;
+    return 1;
+  }
   removeSpaces(dest, buff, size);
   std::ofstream out("output");
   out << dest;
