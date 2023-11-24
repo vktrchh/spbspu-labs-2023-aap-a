@@ -48,7 +48,7 @@ int main()
         break;
       }
     }
-  char *dest = new char[size];
+  char *dest = new char[size]{'\0'};
   removeSpaces(dest, buff, size);
   std::ofstream out("output");
   out << dest;
