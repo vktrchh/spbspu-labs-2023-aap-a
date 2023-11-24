@@ -1,5 +1,5 @@
 #include <iostream>
-#include <cctype>
+
 
 int main()
 {
@@ -8,4 +8,18 @@ int main()
   char *string = nullptr;
   char **strPtr = nullptr;
   char c = '\0';
+  while (std::cin.get(c))
+    {
+      if (counter == size - 1)
+      {
+        size *= 2;
+        string = new char[size];
+        for (size_t i = 0; i < size/2; i++)
+        {
+          string[i] = buff[i];
+        }
+        strPtr = &buff;
+        buff = string;
+        string = *strPtr;
+      }
 }
