@@ -16,6 +16,10 @@ char *zhalilov::resizeString(char string[], size_t &strSize)
     temp[i] = string[i];
   }
   delete[] string;
+  for (size_t i = strSize; i < strSize * 2; i++)
+  {
+    temp[i] = 0;
+  }
   strSize *= 2;
   return temp;
 }
