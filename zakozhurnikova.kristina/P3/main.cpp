@@ -1,5 +1,18 @@
 #include <iostream>
+#include <cstddef>
+#include <fstream>
 
+void removeSpaces(char *dest, const char *src, size_t buff)
+{
+  size_t index = 0;
+  for (size_t  i = 1; i < buff; i++)
+  {
+    if (src[i - 1] != ' ')
+    {
+      dest[index] = src[i - 1]; 
+      index++;
+    }
+  }
 
 int main()
 {
@@ -29,4 +42,10 @@ int main()
         std::cout << "End of line\n";
         break;
       }
+    }
+  char *dest = new char[size];
+  removeSpaces(dest, buff, size);
+  std::ofstream out("output");
+  out << dest;
+  return 0;
 }
