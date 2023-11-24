@@ -34,7 +34,7 @@ int main()
   // std::cout << "taks 2 str 1 - " << taskTwoStringOne << "\n";
   // std::cout << "taks 2 str 2 - " << taskTwoStringTwo << "\n";
 
-  size_t answerTaskOne = ara::countOfdifferentLetters(taskOneString, arrSize);
+  size_t answerTaskOne = ara::countOfdifferentLetters(taskOneString);
 
   std::cout << "Answer on task 1: " << answerTaskOne << "\n";
 

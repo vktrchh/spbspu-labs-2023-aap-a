@@ -4,6 +4,6 @@
 #include <cctype>
 namespace ara
 {
-  size_t countOfdifferentLetters(char * myArray, size_t arraySize);
+  size_t countOfdifferentLetters(char * myArray);
 }
 #endif

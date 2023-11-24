@@ -1,6 +1,6 @@
 #include "taskOne.hpp"
 
-size_t ara::countOfdifferentLetters(char *myArray, size_t arraySize)
+size_t ara::countOfdifferentLetters(char *myArray)
 {
   size_t countOfDifferentLet = 0;
   char alphabet[26] = {0};
