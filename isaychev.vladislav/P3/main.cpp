@@ -64,6 +64,12 @@ int main()
     }
     length1++;
   }
+  if (length1 == 0)
+  {
+    std::cerr << "Not enough characters in string\n";
+    delete [] str;
+    return 2;
+  }
   const char * str2 = "AFD12hd";
   size_t length2 = 0;
   while (str2[length2] != '\0')
