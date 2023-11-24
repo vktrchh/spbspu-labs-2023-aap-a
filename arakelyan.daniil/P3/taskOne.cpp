@@ -2,20 +2,24 @@
 
 size_t ara::countOfdifferentLetters(char *myArray, size_t arraySize)
 {
-  size_t arr[arraySize];
   size_t countOfDifferentLet = 0;
-  // int index = 0;
+  char alphabet[26] = {0};
   for (size_t i = 0; myArray[i] != '\0'; i++)
   {
-    if (std::isalpha(myArray[i]))
+    char symb = std::tolower(myArray[i]);
+    if (std::isalpha(symb))
     {
-      arr[i] = 1;
+      int ourSimb = symb - 'a';
+      alphabet[ourSimb] = 1;
     }
   }
 
-  for (size_t i = 0; arr[i] != '\0'; i++)
+  for (size_t i = 0; i < 26; i++)
   {
-    ++countOfDifferentLet;
+    if (alphabet[i] > 0)
+    {
+      ++countOfDifferentLet;
+    }
   }
   return countOfDifferentLet;
 }

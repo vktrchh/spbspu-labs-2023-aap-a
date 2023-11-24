@@ -30,7 +30,7 @@ int main()
 
   // std::cout << "arrSize task 1 - " << arrSize << "\n";
   // std::cout << "arrSize task 2 - " << arrSizeTaskTwo << "\n";
-  std::cout << "taks 1 str - " << taskOneString << "\n";
+  // std::cout << "taks 1 str - " << taskOneString << "\n";
   // std::cout << "taks 2 str 1 - " << taskTwoStringOne << "\n";
   // std::cout << "taks 2 str 2 - " << taskTwoStringTwo << "\n";
 
