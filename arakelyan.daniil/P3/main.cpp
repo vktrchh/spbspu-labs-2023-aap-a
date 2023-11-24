@@ -37,7 +37,7 @@ int main()
 
   size_t answerTaskOne = 0;
   answerTaskOne = ara::countOfdifferentLetters(taskOneString, arrSize);
-  
+
   std::cout << "Answer on task 1: " << answerTaskOne << "\n";
 
   return 0;
