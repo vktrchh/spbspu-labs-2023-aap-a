@@ -18,6 +18,7 @@ void removeSpaces(char *dest, const char *src, size_t buff)
       index++;
     }
   }
+}
 
 int main()
 {
@@ -26,6 +27,7 @@ int main()
   char *string = nullptr;
   char **strPtr = nullptr;
   char c = '\0';
+  size_t counter = 0;
   while (std::cin.get(c))
     {
       if (counter == size - 1)
