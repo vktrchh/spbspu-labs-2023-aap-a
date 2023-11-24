@@ -17,16 +17,14 @@ int main (int argc, char * argv[])
     return 1;
   }
 
-  int firstArgument = 0;
-  try
+  char * endOfParsing = nullptr;
+  int firstArgument = std::strtoll(argv[1],&endOfParsing,0);
+  if (*endOfParsing != '\0')
   {
-    firstArgument = std::stoll(argv[1]);
-  }
-  catch (const std::invalid_argument & e)
-  {
-    std::cerr << "Invalid first argument\n";
+    std::cerr << "Invalid first value.\n";
     return 1;
   }
+
   if ((firstArgument < 1) || (firstArgument > 2))
   {
     std::cerr << "Number of tusk must be 1 or 2\n";
@@ -47,28 +45,28 @@ int main (int argc, char * argv[])
     return 2;
   }
 
+  size_t rows = 0;
+  size_t cols = 0;
+
+  if (!(input >> rows) || !(input >> cols))
+  {
+    std::cerr << "Cannot read input file\n";
+    return 2;
+  }
+  if (rows == 0 && cols == 0)
+  {
+    std::cout << "Rows: 0; Cols: 0\n";
+    return 0;
+  }
+  if (rows * cols == 0)
+  {
+    std::cerr << "Incorrect matrix dimensions\n";
+    return 2;
+  }
+
 
   if (firstArgument == 1)
   {
-    size_t rows = 0;
-    size_t cols = 0;
-
-    if (!(input >> rows) || !(input >> cols))
-    {
-      std::cerr << "Cannot read input file\n";
-      return 2;
-    }
-    if (rows == 0 && cols == 0)
-    {
-      std::cout << "Rows: 0; Cols: 0\n";
-      return 0;
-    }
-    if (rows * cols == 0)
-    {
-      std::cerr << "Incorrect matrix dimensions\n";
-      return 2;
-    }
-
     int matrix[10000] = {};
     double smoothedMatrix[10000] = {};
     try
@@ -79,31 +77,12 @@ int main (int argc, char * argv[])
     }
     catch (const std::logic_error & e)
     {
-      std::cerr << "Error: " << e.what();
+      std::cerr << "Error: " << e.what() << "\n";
       return 2;
     }
   }
   else if (firstArgument == 2)
   {
-    size_t rows = 0;
-    size_t cols = 0;
-
-    if (!(input >> rows) || !(input >> cols))
-    {
-      std::cerr << "Cannot read input file\n";
-      return 2;
-    }
-    if (rows == 0 && cols == 0)
-    {
-      std::cout << "Rows: 0; Cols: 0\n";
-      return 0;
-    }
-    if (rows * cols == 0)
-    {
-      std::cerr << "Incorrect matrix dimensions\n";
-      return 2;
-    }
-
     int * matrix = new int[rows*cols];
     if (!matrix)
     {
