@@ -9,7 +9,12 @@ void removeSpaces(char *dest, const char *src, size_t buff)
   {
     if (src[i - 1] != ' ')
     {
-      dest[index] = src[i - 1]; 
+      dest[index] = src[i - 1];
+      index++;
+    }
+    if (src[i] == ' ' && src[i -1] != ' ')
+    {
+      dest[index] = src[i];
       index++;
     }
   }
