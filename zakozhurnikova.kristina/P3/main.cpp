@@ -22,4 +22,11 @@ int main()
         buff = string;
         string = *strPtr;
       }
+      buff[counter] = c;
+      counter++;
+      if(c == '\n')
+      {
+        std::cout << "End of line\n";
+        break;
+      }
 }
