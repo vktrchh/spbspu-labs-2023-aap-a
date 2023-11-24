@@ -3,6 +3,7 @@
 #include <cctype>
 #include <stdexcept>
 #include "inputArray.hpp"
+#include "taskOne.hpp"
 
 int main()
 {
@@ -16,8 +17,8 @@ int main()
   try
   {
     taskOneString = ara::inputArray(arrSize);
-    taskTwoStringOne = ara::inputArray(arrSizeTaskTwo);
-    taskTwoStringTwo = ara::inputArray(arrSizeTaskTwo);
+    // taskTwoStringOne = ara::inputArray(arrSizeTaskTwo);
+    // taskTwoStringTwo = ara::inputArray(arrSizeTaskTwo);
   }
   catch (const std::exception & e)
   {
@@ -27,8 +28,17 @@ int main()
     delete [] taskTwoStringTwo;
     return 1;
   }
+
+  // std::cout << "arrSize task 1 - " << arrSize << "\n";
+  // std::cout << "arrSize task 2 - " << arrSizeTaskTwo << "\n";
   std::cout << "taks 1 str - " << taskOneString << "\n";
-  std::cout << "taks 2 str 1 - " << taskTwoStringOne << "\n";
-  std::cout << "taks 2 str 2 - " << taskTwoStringTwo << "\n";
+  // std::cout << "taks 2 str 1 - " << taskTwoStringOne << "\n";
+  // std::cout << "taks 2 str 2 - " << taskTwoStringTwo << "\n";
+
+  size_t answerTaskOne = 0;
+  answerTaskOne = ara::countOfdifferentLetters(taskOneString, arrSize);
+  
+  std::cout << "Answer on task 1: " << answerTaskOne << "\n";
+
   return 0;
 }
