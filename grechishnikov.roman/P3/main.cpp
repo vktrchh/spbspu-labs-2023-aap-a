@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstddef>
 #include <exception>
-
+#include "reallocate.hpp"
 int main(int argc, char ** argv)
 {
   size_t len = 10;
@@ -24,6 +24,21 @@ int main(int argc, char ** argv)
     std::cin >> chInput;
     curStr[curPos] = chInput;
     curPos++;
+    if (curPos % len == 0)
+    {
+      try
+      {
+        curStr = reallocate(curStr, len);
+      }
+      catch (const std::bad_alloc)
+      {
+        std::cerr << "Cannot reallocate string\n";
+        delete[] curStr;
+        return 1;
+      }
+    }
   }
   std::cin >> std::skipws;
+
+  delete[] curStr;
 }
