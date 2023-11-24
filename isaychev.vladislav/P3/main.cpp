@@ -1,10 +1,11 @@
 #include <iostream>
 #include <iomanip>
 #include <cstddef>
+#include "extractChars.hpp"
 
 int main()
 {
-  int capacity = 10;
+  size_t capacity = 10;
   char * str = nullptr;
   str = new char[capacity]{};
   char curr_char = 0;
@@ -21,14 +22,14 @@ int main()
     if (length1 == capacity - 1)
     {
       char * str_temp = new char[capacity]{};
-      for (int j = 0; j < length1; ++j)
+      for (size_t j = 0; j < capacity; ++j)
       {
         str_temp[j] = str[j];
       }
       delete [] str;
       capacity += 10;
       str = new char[capacity]{};
-      for (int j = 0; j < length1; ++j)
+      for (size_t j = 0; j < capacity; ++j)
       {
         str[j] = str_temp[j];
       }
@@ -42,16 +43,9 @@ int main()
   {
     length2++;
   }
-  char * str_after_extr = nullptr;
-  str_after_extr = new char[capacity]{};
-
-// for tests
-
-/*  for (int k = 0; k < capacity; ++k)
-  {
-    std::cout << str[k] << " ";
-  }
-  std::cout << "\n" << capacity << "\n";*/
+  char * str_after_extr = new char[capacity]{};
+  extractChars(str, str2, str_after_extr, length1, length2);
+  std::cout << str_after_extr << "\n";
   delete [] str_after_extr;
   delete [] str;
 }
