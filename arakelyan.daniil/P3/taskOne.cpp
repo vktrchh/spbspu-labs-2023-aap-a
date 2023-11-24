@@ -1,5 +1,4 @@
 #include "taskOne.hpp"
-#include <_ctype.h>
 
 size_t ara::countOfdifferentLetters(char *myArray, size_t arraySize)
 {

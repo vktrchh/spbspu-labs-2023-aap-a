@@ -10,7 +10,7 @@ int main()
   size_t arrSize = 0;
   char * taskOneString = nullptr;
 
-  size_t arrSizeTaskTwo = 0;
+  // size_t arrSizeTaskTwo = 0;
   char * taskTwoStringOne = nullptr;
   char * taskTwoStringTwo = nullptr;
 
