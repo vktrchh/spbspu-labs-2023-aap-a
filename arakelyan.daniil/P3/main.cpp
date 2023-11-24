@@ -40,5 +40,8 @@ int main()
 
   std::cout << "Answer on task 1: " << answerTaskOne << "\n";
 
+  delete [] taskOneString;
+  delete [] taskTwoStringOne;
+  delete [] taskTwoStringTwo;
   return 0;
 }
