@@ -24,7 +24,7 @@ int main()
   char *result = nullptr;
   try
   {
-    result = new char[3];
+    result = new char[4];
   }
   catch (const std::bad_alloc &e)
   {
@@ -36,6 +36,7 @@ int main()
   {
     result[i] = 0;
   }
+  result[4] = '\0';
   comnstSymbs(result, string);
   std::cout << result << "\n";
   delete[] string;
