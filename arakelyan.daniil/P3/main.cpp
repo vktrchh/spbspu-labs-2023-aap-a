@@ -43,7 +43,7 @@ char * inputArray(size_t & arrSize)
     if (index == arrSize - 1)
     {
       arrSize *= 2;
-      
+
       char * tempBuffer = new char[arrSize];
       if (!tempBuffer)
       {
@@ -54,7 +54,7 @@ char * inputArray(size_t & arrSize)
       {
         tempBuffer[j] = mainBuffer[j];
       }
-      
+
       delete [] mainBuffer;
 
       mainBuffer = tempBuffer;
