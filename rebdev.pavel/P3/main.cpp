@@ -33,7 +33,3 @@ int main()
   delete[] secondStr;
   return 0;
 }
-
-/*[DGT-SND] Сформировать новую строку из двух исходных, добавив в первую все символы, встреча-ющиеся во второй и являющиеся десятичными цифрами
-abc_def //Expects output (return 0) with second string "g1h2k": abc_def12
-*/

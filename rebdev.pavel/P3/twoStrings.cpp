@@ -13,9 +13,9 @@ char * rebdev::stringConversion(char * firstString, char * secondString)
       numOfDig+=1;
     }
   }
-   
+
   char * newStr = new char[std::strlen(firstString) + numOfDig];
-  
+
   for (size_t i = 0; i < std::strlen(firstString) - 1; ++i)
   {
     newStr[i] = firstString[i];
