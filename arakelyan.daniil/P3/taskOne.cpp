@@ -21,5 +21,12 @@ size_t ara::countOfdifferentLetters(char *myArray)
       ++countOfDifferentLet;
     }
   }
-  return countOfDifferentLet;
+  if (countOfDifferentLet == 0)
+  {
+    return 0;
+  }
+  else
+  {
+    return countOfDifferentLet;
+  }
 }

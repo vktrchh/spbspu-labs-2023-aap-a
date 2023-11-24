@@ -35,8 +35,18 @@ int main()
   // std::cout << "taks 2 str 2 - " << taskTwoStringTwo << "\n";
 
   size_t answerTaskOne = ara::countOfdifferentLetters(taskOneString);
-
-  std::cout << "Answer on task 1: " << answerTaskOne << "\n";
+  if (answerTaskOne == 0)
+  {
+    std::cerr << "Error: No input\n";
+    delete [] taskOneString;
+    delete [] taskTwoStringOne;
+    delete [] taskTwoStringTwo;
+    return 1;
+  }
+  else
+  {
+    std::cout << "Answer on task 1: " << answerTaskOne << "\n";
+  }
 
   delete [] taskOneString;
   delete [] taskTwoStringOne;
