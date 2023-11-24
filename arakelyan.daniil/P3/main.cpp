@@ -1,23 +1,27 @@
 #include <exception>
+#include <ios>
 #include <iostream>
-#include <stdexcept>
 #include <cctype>
+#include <stdexcept>
 
 char * inputArray(size_t & arrSize);
 
 int main()
 {
   size_t arrSize = 0;
-  char * outString = nullptr;
-  try {
-    outString = inputArray(arrSize);
-    std::cout << outString << "\n";
-  } catch (const std::exception & e) {
+  char * ourString = nullptr;
+  try
+  {
+   ourString = inputArray(arrSize);
+  }
+  catch (const std::exception & e)
+  {
     std::cerr << "Error: " << e.what() << "\n";
-    delete [] outString;
+    delete [] ourString;
     return 1;
   }
-
+  std::cout << ourString;
+  return 0;
 }
 
 
@@ -34,8 +38,8 @@ char * inputArray(size_t & arrSize)
   {
     throw std::logic_error("Can't create mainBuffer");
   }
-
-  while ((std::cin >> sym) && sym != '\n')
+  std::cin >> std::noskipws;
+  while ((std::cin >> sym) && (sym != '\n'))
   {
     if (index == arrSize - 1)
     {
@@ -56,8 +60,8 @@ char * inputArray(size_t & arrSize)
 
       mainBuffer = tempBuffer;
     }
-    mainBuffer[index] = sym;
+    mainBuffer[index++] = sym;
   }
-  
+  mainBuffer[index] = '\0';
   return mainBuffer;
 }
