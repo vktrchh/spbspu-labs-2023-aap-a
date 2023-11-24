@@ -56,7 +56,7 @@ int main()
         delete [] str_temp;
         return 1;
       }
-      for (size_t j = 0; j < capacity; ++j)
+      for (size_t j = 0; j < length1 + 1; ++j)
       {
         str[j] = str_temp[j];
       }
