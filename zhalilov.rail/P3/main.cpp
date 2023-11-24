@@ -36,7 +36,7 @@ int main()
   {
     result[i] = 0;
   }
-  result[4] = '\0';
+  result[3] = '\0';
   comnstSymbs(result, string);
   std::cout << result << "\n";
   delete[] string;
