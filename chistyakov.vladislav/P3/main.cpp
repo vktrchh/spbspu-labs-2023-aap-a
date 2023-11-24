@@ -2,38 +2,6 @@
 #include <limits>
 #include <stdexcept>
 
-class Dict()
-{
-  Dict(char simvol)
-  {
-    simvol_(simvol),
-    counter_(0)
-  }
-
-  public:
-    void operator()(char simvol)
-    {
-      size_t max_size = std::numeric_limits< size_t >::max();
-      if (counter_ == max_size)
-      {
-        std::cerr << "The number of this symbol is too large\n";
-      }
-      else
-      {
-        counter_++;
-      }
-    }
-
-    size_t operator()() const
-    {
-      return counter_;
-    }
-
-  private:
-    size_t counter_;
-    char simvol_;
-};
-
 char * enlargeArray(char * array, size_t size)
 {
   char * newArray = new char[size + 10]{};
@@ -61,9 +29,45 @@ bool overflow(size_t number)
   return number == max_size;
 }
 
-char * frqTop(char * array, size_t size)
+void frqTop(char * array, size_t size)
 {
-  
+  char * dictChar = new char[128]{};
+  size_t * dictNumsOfChar = new size_t[128]{};
+
+  char nowChar = 0;
+
+  for (size_t i = 0; i < size; ++i)
+  {
+    nowChar = array[i];
+    if (nowChar == 0)
+    {
+      break;
+    }
+
+    for (int j = 0; j < 128; ++j)
+    {
+      if (dictChar[j] == 0)
+      {
+        dictChar[j] = nowChar;
+        dictNumsOfChar[j] += 1;
+        break;
+      }
+      else if (dictChar[j] == nowChar)
+      {
+        dictNumsOfChar[j] += 1;
+        break;
+      }
+    }
+  }
+
+  for (int d = 0; d < 128; ++d)
+  {
+    if (dictChar[d] == 0)
+    {
+      break;
+    }
+    std::cout << dictChar[d] << " " << dictNumsOfChar[d] << "\n";
+  }
 }
 
 int main()
@@ -81,7 +85,8 @@ int main()
     {
       break;
     }
-    else if (!std::cin)
+
+    if (!std::cin)
     {
       std::cerr << "Bad input!\n";
       delete [] array;
@@ -103,7 +108,7 @@ int main()
       {
         array = enlargeArray(array, size);
       }
-      while (array != nullptr);
+      while (array == nullptr);
 
       size += 10;
     }
@@ -111,10 +116,7 @@ int main()
 
   std::cin >> std::skipws;
 
-  for (size_t i = 0; i < size; ++i)
-  {
-    std::cout << array[i];
-  }
+  frqTop(array, size);
+
   return 0;
 }
-
