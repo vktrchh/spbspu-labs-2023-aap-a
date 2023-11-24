@@ -2,6 +2,8 @@
 #include <cstddef>
 #include <exception>
 #include "reallocate.hpp"
+#include "countUnic.hpp"
+
 int main(int argc, char ** argv)
 {
   size_t len = 10;
@@ -40,5 +42,6 @@ int main(int argc, char ** argv)
   }
   std::cin >> std::skipws;
 
+  std::cout << countUnic(curStr, curPos) << "\n";
   delete[] curStr;
 }
