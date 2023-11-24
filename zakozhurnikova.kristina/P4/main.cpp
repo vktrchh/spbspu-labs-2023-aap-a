@@ -17,8 +17,8 @@ int main(int argc, const char * argv[])
     std::cerr << e.what() << "\n";
     return 1;
   }
-  int rows = 0;
-  int cols = 0;
+  size_t rows = 0;
+  size_t cols = 0;
   std::ifstream input;
   std::ofstream output;
   try
@@ -43,24 +43,35 @@ int main(int argc, const char * argv[])
     return 0;
   }
   const size_t s = rows * cols;
+  int *matrix = nullptr;
+  int *original = nullptr;
+  int **matrixPtr = &matrix;
+  int **originalPtr = &original;
   if (option == 1)
   {
-    int matrix[s]{};
-    int original[s]{};
+    int matrix[s];
+    int original[s];
+    for (size_t i = 0; i < s; i++)
+    {
+      matrix[i] = 0;
+      original[i] = 0;
+    }
+    *matrixPtr = static_cast<int *>(matrix);
+    *originalPtr = static_cast<int *>(original);
   }
   else
   {
-    int* matrix = nullptr;
-    int* original = nullptr;
     try
     {
-      matrix = new int [rows * cols]{ 0 };
-      original = new int [rows * cols]{ 0 };
+      *matrixPtr = new int [rows * cols]{0};
+      *originalPtr = new int [rows * cols]{0};
     }
     catch (const std::exception &e)
     {
-      delete[] matrix;
-      delete[] original;
+      delete[] *matrixPtr;
+      delete[] *originalPtr;
+      matrixPtr = nullptr;
+      originalPtr = nullptr;
       std::cerr << e.what() << '\n';
       return 1;
     }
@@ -74,21 +85,19 @@ int main(int argc, const char * argv[])
       if (!input)
       {
         std::cerr << "Incorrect input!\n";
-        if (option == 2)
-        {
-          delete[] matrix;
-          delete[] original;
-        }
+        delete[] matrix;
+        delete[] original;
+        matrixPtr = nullptr;
+        originalPtr = nullptr;
         return 1;
       }
     }
   }
   zakozhurnikova::substractMatrix(original, matrix, rows, cols);
   zakozhurnikova::writeToFile(output, original, rows, cols);
-  if (option == 2)
-  {
-    delete[] matrix;
-    delete[] original;
-  }
+  delete[] matrix;
+  delete[] original;
+  matrixPtr = nullptr;
+  originalPtr = nullptr;
   return 0;
 }

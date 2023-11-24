@@ -1,5 +1,18 @@
 #include "file_operation.h"
 
+int zakozhurnikova::rightArgument(const char *arg)
+{
+  while (*arg)
+  {
+    if (!isdigit(*arg))
+    {
+      return 0;
+    }
+    arg++;
+  }
+  return -1;
+}
+
 int zakozhurnikova::rightArguments(int argc, const char** argv)
 {
   if (argc != 4)
@@ -9,7 +22,7 @@ int zakozhurnikova::rightArguments(int argc, const char** argv)
   }
   char* ptr = nullptr;
   int option = std::strtol(argv[1], &ptr, 10);
-  if (option == 0 && ptr == argv[1])
+  if (!rightArgument(argv[1]))
   {
     throw std::invalid_argument("First parameter is not a number");
     return 1;
@@ -22,13 +35,11 @@ int zakozhurnikova::rightArguments(int argc, const char** argv)
   return option;
 }
 
-void zakozhurnikova::writeToFile(std::ofstream& out, int *matrix, int rows, int cols)
+void zakozhurnikova::writeToFile(std::ofstream& out, int *matrix, size_t rows, size_t cols)
 {
-  for (int i = 0; i < rows; i++)
+  for (size_t i = 0; i < rows * cols - 1; i++)
   {
-    for (int j = 0; j < cols; j++)
-    {
-      out << matrix[i * cols + j] << ' ';
-    }
+    out << matrix[i] << ' ';
   }
+  out << matrix[rows * cols - 1];
 }
