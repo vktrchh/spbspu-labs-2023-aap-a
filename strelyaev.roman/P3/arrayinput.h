@@ -7,3 +7,4 @@ namespace strelyaev
   char * inputArray(const char *, const size_t, size_t *);
 }
 #endif
+

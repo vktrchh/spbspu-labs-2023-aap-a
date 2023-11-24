@@ -19,3 +19,4 @@ int strelyaev::checkDigit(const char * symbol_array, char * digit_array, const s
   }
   return 0;
 }
+
