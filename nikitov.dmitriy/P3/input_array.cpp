@@ -38,7 +38,7 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
         break;
       }
     }
-    if (!std::cin && i == 0)
+    if (!std::cin && symb == 0)
     {
       delete [] actualArray;
       delete [] buffer;
