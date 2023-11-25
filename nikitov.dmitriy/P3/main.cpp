@@ -15,7 +15,6 @@ int main()
   catch(const char* errorMessage)
   {
     std::cerr << errorMessage << '\n';
-    delete [] firstArray;
     return 1;
   }
 

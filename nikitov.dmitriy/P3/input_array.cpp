@@ -25,6 +25,7 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
     char* buffer = new (std::nothrow) char[bufferSize]{};
     if (buffer == nullptr)
     {
+      delete [] actualArray;
       throw "Error: Memory out";
     }
     while ((i != bufferSize) && (std::cin >> symb))
@@ -34,6 +35,8 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
       {
         if (i == 1)
         {
+          delete [] actualArray;
+          delete [] buffer;
           throw "Error: Wrong input";
         }
         buffer[i - 1] = '\0';
@@ -43,6 +46,7 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
     }
     if (!std::cin)
     {
+      delete [] actualArray;
       delete [] buffer;
       throw "Error: Wrong input";
     }
@@ -57,6 +61,7 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
 
     if (arraySize > maxLim - bufferSize)
     {
+      delete [] actualArray;
       throw "Error: Array size out of range";
     }
     arraySize += bufferSize;
@@ -64,6 +69,7 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
     char* tempArray = new (std::nothrow) char[arraySize]{};
     if (tempArray == nullptr)
     {
+      delete [] actualArray;
       throw "Error: Memory out";
     }
     for (size_t j = 0; j != arraySize; ++j)
@@ -76,6 +82,7 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
     actualArray = new (std::nothrow) char[arraySize + bufferSize]{};
     if (actualArray == nullptr)
     {
+      delete [] actualArray;
       delete [] tempArray;
       throw "Error: Memory out";
     }
