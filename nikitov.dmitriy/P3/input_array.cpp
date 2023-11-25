@@ -30,14 +30,14 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
     }
     while ((i != bufferSize) && (std::cin >> symb))
     {
-      buffer[i++] = symb;
-      if (!std::cin && symb != 0)
+      if (!std::cin)
       {
         buffer[i] = '\0';
         status = false;
         break;
       }
-      else if (symb == '\n')
+      buffer[i++] = symb;
+      if (symb == '\n')
       {
         buffer[i - 1] = '\0';
         status = false;
