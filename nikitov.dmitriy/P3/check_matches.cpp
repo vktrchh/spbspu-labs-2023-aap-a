@@ -1,6 +1,6 @@
 #include "check_matches.hpp"
 
-int nikitov::checkMatches(char* firstArray, char* secondArray, size_t firstSize, size_t secondSize)
+int nikitov::checkMatches(char* firstArray, const char* secondArray, size_t firstSize, size_t secondSize)
 {
   for (size_t i = 0; i != firstSize; ++i)
   {
