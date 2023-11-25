@@ -22,6 +22,9 @@ char * transformString(const char * input)
       }
     }
   }
+
+return result;
+
 }
 
 
@@ -31,9 +34,10 @@ int main()
   {
     std::cin >> std::noskipws;
 
-    std::cin >> std::skipws;
-    char * result = transformString(input.c_str());
+    std::string inputSkipws;
+    std::cin >> std::skipws >> inputSkipws;
 
+    char * result = transformString(inputSkipws.c_str());
     std::cout << result << "\n";
     delete [] result;
     return 0;
