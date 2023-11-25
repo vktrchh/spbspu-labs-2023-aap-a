@@ -12,7 +12,7 @@ int main()
   {
     curStr = new char[len];
   }
-  catch (const std::bad_alloc)
+  catch (const std::bad_alloc &e)
   {
     std::cerr << "Cannot allocate memory\n";
     return 1;
