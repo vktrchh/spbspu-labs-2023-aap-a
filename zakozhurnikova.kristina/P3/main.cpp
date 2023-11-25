@@ -52,6 +52,7 @@ int main()
           std::cerr << e.what() << '\n';
           delete[] buff;
           return 1;
+        }
         for (size_t i = 0; i < size/2; i++)
         {
           string[i] = buff[i];
