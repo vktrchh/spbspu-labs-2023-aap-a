@@ -20,7 +20,7 @@ int main()
     return 1;
   }
 
-  size_t answerTaskOne = ara::countOfdifferentLetters(inputString);
+  size_t answerTaskOne = arakelyanTaskOne::countOfdifferentLetters(inputString);
   if (answerTaskOne == 0)
   {
     std::cerr << "Error: No input\n";
