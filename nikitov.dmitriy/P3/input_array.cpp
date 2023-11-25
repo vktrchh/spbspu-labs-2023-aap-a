@@ -44,6 +44,12 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
       delete [] buffer;
       throw "Error: Wrong input";
     }
+    else
+    {
+      buffer[i] = '\0';
+      status = false;
+      break;
+    }
 
     size_t position = arraySize;
     for (size_t j = 0; j != bufferSize; ++j)
