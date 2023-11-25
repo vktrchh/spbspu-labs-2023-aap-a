@@ -13,7 +13,7 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
   size_t i = 0;
   bool status = true;
 
-  actualArray = new (std::nothrow) char[arraySize + bufferSize]{};
+  actualArray = new (std::nothrow) char[bufferSize]{};
   if (actualArray == nullptr)
   {
     throw "Error: Memory out";
