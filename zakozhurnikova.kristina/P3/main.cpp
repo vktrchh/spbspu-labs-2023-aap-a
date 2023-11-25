@@ -68,7 +68,7 @@ int main()
         break;
       }
     }
-  char dest* = nullptr;
+  char *dest = nullptr;
   try
   {
     dest = new char[size] {'\0'};
