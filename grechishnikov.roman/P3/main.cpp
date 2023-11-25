@@ -4,7 +4,7 @@
 #include "reallocate.hpp"
 #include "countUnic.hpp"
 
-int main(int argc, char ** argv)
+int main()
 {
   size_t len = 10;
   char * curStr = nullptr;
@@ -32,7 +32,7 @@ int main(int argc, char ** argv)
       {
         curStr = reallocate(curStr, len);
       }
-      catch (const std::bad_alloc)
+      catch (const std::bad_alloc &e)
       {
         std::cerr << "Cannot reallocate string\n";
         delete[] curStr;
