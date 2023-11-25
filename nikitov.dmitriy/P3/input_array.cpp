@@ -38,10 +38,16 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
         break;
       }
     }
-    if (std::cin.eof())
+    if (!std::cin && (actualArray[0] != '\0' || buffer[0] != '\0'))
     {
       buffer[i] = '\0';
       status = false;
+    }
+    else
+    {
+      delete [] actualArray;
+      delete [] buffer;
+      throw "Error: Wrong input";
     }
     std::cout << buffer[i];
     size_t position = arraySize;
