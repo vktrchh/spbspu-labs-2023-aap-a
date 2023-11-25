@@ -7,7 +7,7 @@ int main()
   char* string1 = nullptr;
   char* string2 = nullptr;
 
-  try 
+  try
   {
     string1 = read_str();
     string2 = read_str();

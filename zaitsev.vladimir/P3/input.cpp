@@ -44,7 +44,7 @@ char* read_str()
   if (!std::cin)
   {
     delete[] str;
-    throw std::ios_base::failure("String could not be read"); 
+    throw std::ios_base::failure("String could not be read");
     return nullptr;
   }
 
