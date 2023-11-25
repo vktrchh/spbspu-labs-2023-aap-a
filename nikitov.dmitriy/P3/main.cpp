@@ -21,6 +21,12 @@ int main()
   firstArray = firstPair.first;
   size_t firstSize = firstPair.second;
 
+  if (firstArray[0] == '\0')
+  {
+    std::cerr << "Error: Empty input\n";
+    delete [] firstArray;;
+    return 1;
+  }
   const char* secondArray = "abc";
   size_t secondSize = 3;
 
