@@ -38,7 +38,7 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
         break;
       }
     }
-    if (!std::cin && (actualArray[0] != '\0' || buffer[0] != '\0'))
+    if (std::cin.eof() && (buffer[0] != '\0' || actualArray[0] != '\0'))
     {
       buffer[i] = '\0';
       status = false;
@@ -49,7 +49,6 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
       delete [] buffer;
       throw "Error: Wrong input";
     }
-    std::cout << buffer[i];
     size_t position = arraySize;
     for (size_t j = 0; j != bufferSize; ++j)
     {
