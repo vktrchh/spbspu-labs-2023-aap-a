@@ -9,43 +9,41 @@ char* read_str()
   size_t capacity = 20;
   size_t size = 0;
   char x;
-  char* str = new char[capacity];
-  if (!str)
+  char* str = nullptr;
+
+  try
   {
-    throw std::exception("Failed to allocate memory for a string");
-  }
-  while (std::cin.get(x))
-  {
-    if (size == capacity)
+    str = new char[capacity];
+    while (std::cin.get(x))
     {
-      char* new_str = resize_str(str, capacity, 2 * capacity);
-      if (new_str)
+      if (size == capacity)
       {
+        char* new_str = resize_str(str, capacity, capacity + 100);
         char* temp = str;
         str = new_str;
         delete[] temp;
-        capacity *= 2;
+        capacity += 100;
       }
-      else
+      if (x == '\n')
       {
-        delete[] str;
-        throw std::exception("Failed to allocate memory for a string");
+        str[size] = '\0';
+        break;
       }
+      str[size] = x;
+      ++size;
     }
-    if (x == '\n')
-    {
-      str[size] = '\0';
-      break;
-    }
-    str[size] = x;
-    ++size;
   }
-
+  catch(const std::bad_alloc&)
+  {
+    delete[] str;
+    return nullptr;
+  }
+  
   if (!std::cin)
   {
     delete[] str;
+    str = nullptr;
     throw std::ios_base::failure("String could not be read");
-    return nullptr;
   }
 
   return str;
@@ -54,9 +52,6 @@ char* read_str()
 char* resize_str(const char* str, size_t old_size, size_t new_size)
 {
   char* new_str = new char[new_size];
-  if (new_str)
-  {
-    memcpy(new_str, str, std::min(old_size,new_size));
-  }
+  memcpy(new_str, str, std::min(old_size, new_size));
   return new_str;
 }
