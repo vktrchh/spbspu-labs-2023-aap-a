@@ -23,6 +23,14 @@ char * transformString(const char * input)
     }
   }
 
+  for (size_t i = 0; i < std::strlen(result); ++i)
+  {
+    if (std::isupper(result[i]))
+    {
+      result[i] = std::tolower(result[i]);
+    }
+  }
+
 return result;
 
 }
