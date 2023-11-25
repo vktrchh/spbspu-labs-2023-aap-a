@@ -31,7 +31,7 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
     while ((i != bufferSize) && (std::cin >> symb))
     {
       buffer[i++] = symb;
-      if (!std::cin & symb != 0)
+      if (!std::cin && symb != 0)
       {
         buffer[i] = '\0';
         status = false;
