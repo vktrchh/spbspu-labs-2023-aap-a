@@ -7,40 +7,24 @@
 int main()
 {
   size_t arrSize = 0;
-  char * taskOneString = nullptr;
-
-  // size_t arrSizeTaskTwo = 0;
-  char * taskTwoStringOne = nullptr;
-  char * taskTwoStringTwo = nullptr;
-
+  char * inputString = nullptr;
+  const char * defoltStringForTaskTwo = "def_ghk";
   try
   {
-    taskOneString = ara::inputArray(arrSize);
-    // taskTwoStringOne = ara::inputArray(arrSizeTaskTwo);
-    // taskTwoStringTwo = ara::inputArray(arrSizeTaskTwo);
+    inputString = ara::inputArray(arrSize);
   }
   catch (const std::exception & e)
   {
     std::cerr << "Error: " << e.what() << "\n";
-    delete [] taskOneString;
-    delete [] taskTwoStringOne;
-    delete [] taskTwoStringTwo;
+    delete [] inputString;
     return 1;
   }
 
-  // std::cout << "arrSize task 1 - " << arrSize << "\n";
-  // std::cout << "arrSize task 2 - " << arrSizeTaskTwo << "\n";
-  // std::cout << "taks 1 str - " << taskOneString << "\n";
-  // std::cout << "taks 2 str 1 - " << taskTwoStringOne << "\n";
-  // std::cout << "taks 2 str 2 - " << taskTwoStringTwo << "\n";
-
-  size_t answerTaskOne = ara::countOfdifferentLetters(taskOneString);
+  size_t answerTaskOne = ara::countOfdifferentLetters(inputString);
   if (answerTaskOne == 0)
   {
     std::cerr << "Error: No input\n";
-    delete [] taskOneString;
-    delete [] taskTwoStringOne;
-    delete [] taskTwoStringTwo;
+    delete [] inputString;
     return 1;
   }
   else
@@ -48,8 +32,6 @@ int main()
     std::cout << "Answer on task 1: " << answerTaskOne << "\n";
   }
 
-  delete [] taskOneString;
-  delete [] taskTwoStringOne;
-  delete [] taskTwoStringTwo;
+  delete [] inputString;
   return 0;
 }
