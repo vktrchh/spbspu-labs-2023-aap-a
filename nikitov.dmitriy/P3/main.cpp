@@ -24,7 +24,7 @@ int main()
   if (firstArray[0] == '\0')
   {
     std::cerr << "Error: Empty input\n";
-    delete [] firstArray;;
+    delete [] firstArray;
     return 1;
   }
   const char* secondArray = "abc";
