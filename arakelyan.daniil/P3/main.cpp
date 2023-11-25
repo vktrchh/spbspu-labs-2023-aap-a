@@ -8,7 +8,7 @@ int main()
 {
   size_t arrSize = 0;
   char * inputString = nullptr;
-  const char * defoltStringForTaskTwo = "def_ghk";
+  // const char * defoltStringForTaskTwo = "def_ghk";
   try
   {
     inputString = ara::inputArray(arrSize);
