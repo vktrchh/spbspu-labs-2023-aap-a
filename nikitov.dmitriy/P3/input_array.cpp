@@ -33,12 +33,6 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
       buffer[i++] = symb;
       if (symb == '\n')
       {
-        if (i == 1)
-        {
-          delete [] actualArray;
-          delete [] buffer;
-          throw "Error: Wrong input";
-        }
         buffer[i - 1] = '\0';
         status = false;
         break;
