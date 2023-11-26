@@ -36,7 +36,7 @@ char* zaitsev::readStr()
     delete[] str;
     throw e;
   }
-  
+
   if (!std::cin)
   {
     delete[] str;

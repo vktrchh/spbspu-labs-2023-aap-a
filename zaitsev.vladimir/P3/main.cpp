@@ -36,6 +36,7 @@ int main()
   else
   {
     std::cerr << "Failed to allocate memory" << '\n';
+    delete[] string1;
     return 1;
   }
   delete[] string1;
