@@ -9,12 +9,6 @@ int main()
   try
   {
     string = baranov::inputString(std::cin, size);
-    if (!std::cin)
-    {
-      delete[] string;
-      std::cerr << "Error: Can not read string\n";
-      return 2;
-    }
   }
   catch (const std::bad_alloc & e)
   {
