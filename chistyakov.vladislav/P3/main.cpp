@@ -29,37 +29,24 @@ bool overflow(size_t number)
   return number == max_size;
 }
 
-char * sort(char * array)
+char * sort(char * array, size_t lenght)
 {
-  char max = 0;
-  char min = 127;
-  char mid = 0;
-
-  for (int i = 0; i < 3; ++i)
+  for (size_t i = 1; i < lenght; ++i)
   {
-    if (array[i] > max)
+    char isSort = 1;
+    for (size_t j = 0; j < lenght - i; ++j)
     {
-      max = array[i];
+      if (array[j] > array[j + 1])
+      {
+        std::swap(array[j], array[j + 1]);
+        isSort = 0;
+      }
     }
-
-    if (array[i] < min)
+    if (isSort)
     {
-      min = array[i];
-    }
-  }
-
-  for (int i = 0; i < 3; ++i)
-  {
-    if (array[i] != max && array[i] != min)
-    {
-      mid = array[i];
       break;
     }
   }
-
-  array[0] = min;
-  array[1] = mid;
-  array[2] = max;
 
   return array;
 }
@@ -140,7 +127,7 @@ char * frqTop(char * array, size_t size)
   delete [] dictChar;
   delete [] dictNumsOfChar;
 
-  result = sort(result);
+  result = sort(result, 3);
 
   return result;
 }
