@@ -50,7 +50,7 @@ char * baranov::inputString(std::istream & input, size_t & stringSize)
       break;
     }
   }
-  if (!input)
+  if (string[0] == 0)
   {
     delete[] string;
     throw std::logic_error("Can not read string\n");
