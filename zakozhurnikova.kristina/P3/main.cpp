@@ -1,17 +1,6 @@
 #include <iostream>
 #include <cstddef>
 
-size_t getSize(const char *string)
-{
-  size_t len = 0;
-  while (*string)
-  {
-    len++;
-    string++;
-  }
-  return len;
-}
-
 void removeSpaces(char *dest, const char *src, size_t buff)
 {
   size_t index = 0;
@@ -43,7 +32,6 @@ int main()
   size_t size = 20;
   char *buff = nullptr;
   char *string = nullptr;
-  char **strPtr = nullptr;
   char c = '\0';
   size_t counter = 0;
   try
@@ -60,32 +48,42 @@ int main()
     {
       if (counter == size - 1)
       {
-        size *= 2;
         try
         {
-          string = new char[size];
+          string = new char[size] {'\0'};
         }
         catch (const std::exception &e)
         {
           std::cerr << e.what() << '\n';
           delete[] buff;
-          delete[] strPtr;
-          strPtr = nullptr;
+          buff = nullptr;
+          return 1;
+        }
+        size *= 2;
+        delete[] buff;
+        buff = nullptr;
+        try
+        {
+          buff = new char[size] {'\0'};
+        }
+        catch (const std::exception &e)
+        {
+          std::cerr << e.what() << '\n';
+          delete[] string;
+          string = nullptr;
           return 1;
         }
         for (size_t i = 0; i < size/2; i++)
         {
-          string[i] = buff[i];
+          buff[i] = string[i];
         }
-        strPtr = &buff;
-        buff = string;
-        string = *strPtr;
+        delete[] string;
+        string = nullptr;
       }
       buff[counter] = c;
       counter++;
       if(c == '\n')
       {
-        std::cout << "End of line\n";
         break;
       }
     }
@@ -99,29 +97,20 @@ int main()
     std::cerr << e.what() << '\n';
     delete[] string;
     delete[] buff;
-    delete[] tmp;
-    strPtr = nullptr;
     return 1;
   }
   removeSpaces(tmp, buff, size);
-  char *dest = nullptr;
-  size_t len = getSize(tmp);
-  try
+  char *head = tmp;
+  while (*head)
   {
-    dest = new char[len];
+    std::cout << *head;
+    head++;
   }
-  catch (const std::exception &e)
-  {
-    std::cerr << e.what() << '\n';
-    delete [] tmp;
-    delete [] string;
-    delete [] buff;
-    strPtr = nullptr;
-    return 0;
-  }
-  for (size_t i = 0; i < len; i++)
-  {
-    dest[i] = tmp[i];
-  }
-  std::cout << dest << '\n';
+  std::cout << '\n';
+  head = nullptr;
+  delete[] tmp;
+  delete[] buff;
+  buff = nullptr;
+  tmp = nullptr;
+  return 0;
 }
