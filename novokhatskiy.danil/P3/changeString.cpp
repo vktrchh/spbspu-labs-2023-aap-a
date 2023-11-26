@@ -1,14 +1,12 @@
-#include <iostream>
-#include <cctype>
+#include "changeString.hpp"
 
-void novokhatskiy::changeString(const char* in, char* out)
+char* novokhatskiy::changeString(const char* in, char* out)
 {
+  char* result = out;
   do
   {
-    if (!std::isalpha(*in))
-    {
-      *out++ = *in;
-    }
+    std::isalpha(*in) || (*out++ = *in);
   }
-  while (*++in);
+  while (*in++);
+  return result;
 }

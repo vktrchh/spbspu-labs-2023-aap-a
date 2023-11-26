@@ -5,7 +5,7 @@
 
 namespace novokhatskiy
 {
-  void changeString(const char* in, char* out);
+  char* changeString(const char* in, char* out);
 }
 
 #endif
