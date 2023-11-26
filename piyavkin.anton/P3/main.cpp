@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cctype>
 
 int main()
 {
@@ -12,7 +13,7 @@ int main()
     char * a = input;
     try
     {
-      input = new char [n+1];
+      input = new char [n+1]{};
     }
     catch (...)
     {
@@ -37,6 +38,23 @@ int main()
   std::cin >> std::skipws;
   for (size_t i = 0; i < n; ++i)
   {
-    std::cout << input[i];
+    input[i] = tolower(input[i]);
+  }
+  bool * alphabet = new bool [26]{};
+  for (size_t i = 0; i < n; ++i)
+  {
+    int k = input[i]-'a';
+    if (k >= 0 && k <= 26)
+    {
+      alphabet[k] = true;
+    }
+  }
+  for (int i = 0; i < 26; ++i)
+  {
+    if (alphabet[i] == false)
+    {
+      char l = 'a' + i;
+      std::cout << l;
+    }
   }
 }
