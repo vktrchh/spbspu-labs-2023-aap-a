@@ -45,48 +45,54 @@ int main()
   }
 
   while (std::cin.get(c))
+  {
+    if (counter == size - 1)
     {
-      if (counter == size - 1)
+      try
       {
-        try
-        {
-          string = new char[size] {'\0'};
-        }
-        catch (const std::exception &e)
-        {
-          std::cerr << e.what() << '\n';
-          delete[] buff;
-          buff = nullptr;
-          return 1;
-        }
-        size *= 2;
+        string = new char[size] {'\0'};
+      }
+      catch (const std::exception &e)
+      {
+        std::cerr << e.what() << '\n';
         delete[] buff;
         buff = nullptr;
-        try
-        {
-          buff = new char[size] {'\0'};
-        }
-        catch (const std::exception &e)
-        {
-          std::cerr << e.what() << '\n';
-          delete[] string;
-          string = nullptr;
-          return 1;
-        }
-        for (size_t i = 0; i < size/2; i++)
-        {
-          buff[i] = string[i];
-        }
+        return 1;
+      }
+      size *= 2;
+      delete[] buff;
+      buff = nullptr;
+      try
+      {
+        buff = new char[size] {'\0'};
+      }
+      catch (const std::exception &e)
+      {
+        std::cerr << e.what() << '\n';
         delete[] string;
         string = nullptr;
+        return 1;
       }
-      buff[counter] = c;
-      counter++;
-      if(c == '\n')
+      for (size_t i = 0; i < size/2; i++)
       {
-        break;
+        buff[i] = string[i];
       }
+      delete[] string;
+      string = nullptr;
     }
+    buff[counter] = c;
+    counter++;
+    if(c == '\n')
+    {
+      break;
+    }
+  }
+  if (buff[0] == '\n' || !buff[0])
+  {
+    std::cerr << "Empty string\n";
+    delete[]  buff;
+    return 1;
+  }
   char *tmp = nullptr;
   try
   {
