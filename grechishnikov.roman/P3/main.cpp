@@ -30,7 +30,7 @@ int main()
     {
       try
       {
-        curStr = reallocate(curStr, len);
+        curStr = reallocate(curStr, len, len + 10);
       }
       catch (const std::bad_alloc &e)
       {
@@ -38,6 +38,7 @@ int main()
         delete[] curStr;
         return 1;
       }
+      len += 10;
     }
   }
   std::cin >> std::skipws;

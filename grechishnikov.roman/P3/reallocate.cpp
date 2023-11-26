@@ -1,18 +1,17 @@
 #include "reallocate.hpp"
 
-char* reallocate(char* str, size_t& len)
+char* reallocate(char* str, size_t lenF, size_t lenS)
 {
-  char* newStr = new char [len + 10];
-  for (size_t i = 0; i < len + 10; ++i)
+  char* newStr = new char [lenS];
+  for (size_t i = 0; i < lenS; ++i)
   {
     newStr[i] = 0;
   }
-
-  for (size_t i = 0; i < len; ++i)
+  size_t min = (lenF < lenS) ? lenF : lenS;
+  for (size_t i = 0; i < min; ++i)
   {
     newStr[i] = str[i];
   }
   delete[] str;
-  len += 10;
   return newStr;
 }
