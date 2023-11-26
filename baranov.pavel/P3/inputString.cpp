@@ -1,6 +1,6 @@
 #include "inputString.hpp"
 
-char * expandString(const char * string, const size_t size, const size_t newSize)
+char * baranov::expandString(const char * string, const size_t size, const size_t newSize)
 {
   char * result = new char[newSize];
   for (size_t i = 0; i < size; ++i)
@@ -15,7 +15,7 @@ char * expandString(const char * string, const size_t size, const size_t newSize
   return result;
 }
 
-char * inputString(std::istream & input, size_t & stringSize)
+char * baranov::inputString(std::istream & input, size_t & stringSize)
 {
   const size_t bufferSize = 20;
   stringSize = bufferSize;

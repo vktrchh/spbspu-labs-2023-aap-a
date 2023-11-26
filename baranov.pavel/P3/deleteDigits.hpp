@@ -2,7 +2,10 @@
 #define DELETE_DIGITS_HPP
 #include <cstddef>
 
-void deleteDigits(const char * string, const size_t size, char * result);
+namespace baranov
+{
+  void deleteDigits(const char * string, const size_t size, char * result);
+}
 
 #endif
 

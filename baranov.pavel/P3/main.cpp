@@ -8,9 +8,10 @@ int main()
   size_t size = 0;
   try
   {
-    string = inputString(std::cin, size);
+    string = baranov::inputString(std::cin, size);
     if (!std::cin)
     {
+      delete[] string;
       std::cerr << "Error: Can not read string\n";
       return 2;
     }
@@ -37,7 +38,7 @@ int main()
     std::cerr << "Error: " << e.what() << '\n';
     return 1;
   }
-  deleteDigits(string, size, result);
+  baranov::deleteDigits(string, size, result);
   std::cout << result << '\n';
 
   delete[] string;
