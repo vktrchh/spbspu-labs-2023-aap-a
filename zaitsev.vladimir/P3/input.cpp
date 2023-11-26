@@ -3,8 +3,7 @@
 #include <stdexcept>
 #include <limits>
 
-
-char* read_str()
+char* zaitsev::readStr()
 {
   size_t capacity = 20;
   size_t size = 0;
@@ -19,7 +18,7 @@ char* read_str()
     {
       if (size == capacity)
       {
-        resize_str(std::addressof(str), capacity, capacity * 2);
+        resizeStr(std::addressof(str), capacity, capacity * 2);
         capacity *= 2;
       }
       if (x == '\n')
@@ -48,7 +47,7 @@ char* read_str()
   return str;
 }
 
-void resize_str(char** str, size_t old_size, size_t new_size)
+void zaitsev::resizeStr(char** str, size_t old_size, size_t new_size)
 {
   char* new_str = new char[new_size];
   memcpy(new_str, *str, std::min(old_size, new_size));

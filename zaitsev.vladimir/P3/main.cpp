@@ -6,31 +6,39 @@
 int main()
 {
   char* string1 = nullptr;
-  char* string2 = nullptr;
+  const char* string2 = "abc_ef";
   char* res = nullptr;
-
+  using namespace zaitsev;
   try
   {
-    string1 = read_str();
-    string2 = read_str();
-    res = unique_chars(string1, string2);
+    string1 = readStr();
+    res = uniqueChars(string1, string2);
   }
   catch (const std::bad_alloc&)
   {
     delete[] string1;
-    delete[] string2;
+    delete[] res;
     std::cerr << "Failed to allocate memory" << '\n';
-    return 2;
+    return 1;
   }
   catch (const std::exception& e)
   {
     std::cerr << e.what() << '\n';
     delete[] string1;
-    delete[] string2;
+    delete[] res;
     return 2;
   }
-  std::cout << string1<<" "<<string2<<" !"<<res<<"!";
+
+  if (res)
+  {
+    std::cout << res << "\n";
+  }
+  else
+  {
+    std::cerr << "Failed to allocate memory" << '\n';
+    return 1;
+  }
   delete[] string1;
-  delete[] string2;
+  delete[] res;
   return 0;
 }
