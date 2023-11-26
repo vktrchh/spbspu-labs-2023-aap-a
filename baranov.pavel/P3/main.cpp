@@ -1,36 +1,57 @@
 #include <iostream>
 
-char * inputString(std::istream & input, const size_t bufferSize)
+char * expandString(const char * string, const size_t size, const size_t newSize)
 {
-  char * buffer = new char[bufferSize]{0};
+  char * result = new char[newSize];
+  for (size_t i = 0; i < size; ++i)
+  {
+    result[i] = string[i];
+  }
+  delete[] string;
+  return result;
+}
+
+char * inputString(std::istream & input)
+{
+  const size_t bufferSize = 20;
+  size_t stringSize = 20;
+  char * string = new char[bufferSize]{0};
   char c;
   size_t i = 0;
-  while ((input >> c) && (i < bufferSize))
+  input >> std::noskipws;
+  while ((input >> c))
   {
-    buffer[i++] = c;
-    if (c == '\n')
+    if (i < stringSize)
     {
-      buffer[i - 1] = 0;
-      break;
+      string[i++] = c;
+      if (c == '\n')
+      {
+        string[i - 1] = 0;
+        break;
+      }
+    }
+    else
+    {
+      string = expandString(string, stringSize, stringSize + bufferSize);
+      stringSize += bufferSize;
     }
   }
-  return buffer;
+  input >> std::skipws;
+  return string;
 }
 
 int main()
 {
-  std::cin >> std::noskipws;
   try
   {
-    char * buffer = inputString(std::cin, 20);
-    std::cout << buffer << '\n';
-    delete[] buffer;
+    char * string = inputString(std::cin);
+    std::cout << string << '\n';
+    delete[] string;
   }
   catch(std::bad_alloc & e)
   {
     std::cerr << "Error: " << e.what() << '\n';
     return 1;
   }
-  std::cin >> std::skipws;
 }
 
