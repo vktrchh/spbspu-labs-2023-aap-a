@@ -1,4 +1,18 @@
 #include <iostream>
+#include <cctype>
+
+void deleteDigits(const char * string, const size_t & size, char * result)
+{
+  size_t j = 0;
+  for (size_t i = 0; i < size; ++i)
+  {
+    if (!std::isdigit(string[i]))
+    {
+      result[j] = string[i];
+      ++j;
+    }
+  }
+}
 
 char * expandString(const char * string, const size_t size, const size_t newSize)
 {
@@ -11,10 +25,10 @@ char * expandString(const char * string, const size_t size, const size_t newSize
   return result;
 }
 
-char * inputString(std::istream & input)
+char * inputString(std::istream & input, size_t & stringSize)
 {
   const size_t bufferSize = 20;
-  size_t stringSize = 20;
+  stringSize = bufferSize;
   char * string = new char[bufferSize]{0};
   char c;
   size_t i = 0;
@@ -47,16 +61,22 @@ char * inputString(std::istream & input)
 
 int main()
 {
+  char * string = nullptr;
+  size_t size = 0;
   try
   {
-    char * string = inputString(std::cin);
-    std::cout << string << '\n';
-    delete[] string;
+    string = inputString(std::cin, size);
   }
-  catch(const std::bad_alloc & e)
+  catch (const std::bad_alloc & e)
   {
     std::cerr << "Error: " << e.what() << '\n';
     return 1;
   }
+
+  char * result = new char[size];
+  deleteDigits(string, size, result);
+  std::cout << result << '\n';
+  delete[] string;
+  delete[] result;
 }
 
