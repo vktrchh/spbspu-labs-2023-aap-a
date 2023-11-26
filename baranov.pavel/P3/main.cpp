@@ -23,7 +23,15 @@ char * inputString(std::istream & input)
   {
     if (i >= stringSize)
     {
-      string = expandString(string, stringSize, stringSize + bufferSize);
+      try
+      {
+        string = expandString(string, stringSize, stringSize + bufferSize);
+      }
+      catch (const std::bad_alloc & e)
+      {
+        delete[] string;
+        throw e;
+      }
       stringSize += bufferSize;
     }
     string[i++] = c;
@@ -45,7 +53,7 @@ int main()
     std::cout << string << '\n';
     delete[] string;
   }
-  catch(std::bad_alloc & e)
+  catch(const std::bad_alloc & e)
   {
     std::cerr << "Error: " << e.what() << '\n';
     return 1;
