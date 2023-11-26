@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cstddef>
-#include <fstream>
 
 void removeSpaces(char *dest, const char *src, size_t buff)
 {
@@ -70,6 +69,11 @@ int main()
       }
     }
   char *dest = nullptr;
+  for (size_t i = 0; i < size; i++)
+  {
+    std::cout << buff[i];
+  }
+  std::cout << '\n';
   try
   {
     dest = new char[size] {'\0'};
@@ -82,7 +86,5 @@ int main()
     return 1;
   }
   removeSpaces(dest, buff, size);
-  std::ofstream out("output");
-  out << dest;
   return 0;
 }
