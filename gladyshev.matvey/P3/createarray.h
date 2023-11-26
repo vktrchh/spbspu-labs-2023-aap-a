@@ -1,0 +1,11 @@
+#ifndef CREATEARRAY_H
+#define CREATEARRAY_H
+
+#include <cstddef>
+
+namespace gladyshev
+{
+  char * createFinalArray(char * start, char * finish, size_t len, const char * lol);
+}
+
+#endif
