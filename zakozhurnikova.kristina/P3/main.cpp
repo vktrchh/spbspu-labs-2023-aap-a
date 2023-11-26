@@ -1,10 +1,8 @@
 #include <iostream>
-#include <cstddef>
-
 void removeSpaces(char *dest, const char *src, size_t buff)
 {
   size_t index = 0;
-  for (size_t  i = 1; i < buff; i++)
+  for (size_t i = 1; i < buff; i++)
   {
     if (src[i] == '\0')
     {
@@ -15,7 +13,7 @@ void removeSpaces(char *dest, const char *src, size_t buff)
       dest[index] = src[i - 1];
       index++;
     }
-    if (src[i] == ' ' && src[i -1] != ' ')
+    if (src[i] == ' ' && src[i - 1] != ' ')
     {
       dest[index] = src[i];
       index++;
@@ -36,7 +34,7 @@ int main()
   size_t counter = 0;
   try
   {
-    buff = new char[size] {'\0'};
+    buff = new char[size]{'\0'};
   }
   catch (const std::exception &e)
   {
@@ -50,7 +48,7 @@ int main()
     {
       try
       {
-        string = new char[size] {'\0'};
+        string = new char[size]{'\0'};
       }
       catch (const std::exception &e)
       {
@@ -59,21 +57,25 @@ int main()
         buff = nullptr;
         return 1;
       }
+      for (size_t i = 0; i < size; i++)
+      {
+        string[i] = buff[i];
+      }
+
       size *= 2;
       delete[] buff;
       buff = nullptr;
       try
       {
-        buff = new char[size] {'\0'};
+        buff = new char[size]{'\0'};
       }
       catch (const std::exception &e)
       {
         std::cerr << e.what() << '\n';
         delete[] string;
         string = nullptr;
-        return 1;
       }
-      for (size_t i = 0; i < size/2; i++)
+      for (size_t i = 0; i < size / 2; i++)
       {
         buff[i] = string[i];
       }
@@ -82,7 +84,7 @@ int main()
     }
     buff[counter] = c;
     counter++;
-    if(c == '\n')
+    if (c == '\n')
     {
       break;
     }
@@ -90,15 +92,15 @@ int main()
   if (buff[0] == '\n' || !buff[0])
   {
     std::cerr << "Empty string\n";
-    delete[]  buff;
+    delete[] buff;
     return 1;
   }
   char *tmp = nullptr;
   try
   {
-    tmp = new char[size] {'\0'};
+    tmp = new char[size]{'\0'};
   }
-  catch (const std::exception  &e)
+  catch (const std::exception &e)
   {
     std::cerr << e.what() << '\n';
     delete[] string;
