@@ -6,6 +6,10 @@ void removeSpaces(char *dest, const char *src, size_t buff)
   size_t index = 0;
   for (size_t  i = 1; i < buff; i++)
   {
+    if (src[i] == '\0')
+    {
+      break;
+    }
     if (src[i - 1] != ' ')
     {
       dest[index] = src[i - 1];
@@ -16,6 +20,10 @@ void removeSpaces(char *dest, const char *src, size_t buff)
       dest[index] = src[i];
       index++;
     }
+  }
+  if (dest[index - 1] == ' ')
+  {
+    dest[index - 1] = '\0';
   }
 }
 
@@ -44,12 +52,14 @@ int main()
         size *= 2;
         try
         {
-        string = new char[size];
+          string = new char[size];
         }
         catch (const std::exception &e)
         {
           std::cerr << e.what() << '\n';
           delete[] buff;
+          delete[] strPtr;
+          strPtr = nullptr;
           return 1;
         }
         for (size_t i = 0; i < size/2; i++)
@@ -83,8 +93,14 @@ int main()
     std::cerr << e.what() << '\n';
     delete[] string;
     delete[] buff;
+    delete[] dest;
+    strPtr = nullptr;
     return 1;
   }
   removeSpaces(dest, buff, size);
+  delete [] dest;
+  delete [] string;
+  delete [] buff;
+  strPtr = nullptr;
   return 0;
 }
