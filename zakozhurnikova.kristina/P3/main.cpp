@@ -1,6 +1,17 @@
 #include <iostream>
 #include <cstddef>
 
+size_t getSize(const char *string)
+{
+  size_t len = 0;
+  while (*string)
+  {
+    len++;
+    string++;
+  }
+  return len;
+}
+
 void removeSpaces(char *dest, const char *src, size_t buff)
 {
   size_t index = 0;
@@ -78,29 +89,39 @@ int main()
         break;
       }
     }
-  char *dest = nullptr;
-  for (size_t i = 0; i < size; i++)
-  {
-    std::cout << buff[i];
-  }
-  std::cout << '\n';
+  char *tmp = nullptr;
   try
   {
-    dest = new char[size] {'\0'};
+    tmp = new char[size] {'\0'};
   }
   catch (const std::exception  &e)
   {
     std::cerr << e.what() << '\n';
     delete[] string;
     delete[] buff;
-    delete[] dest;
+    delete[] tmp;
     strPtr = nullptr;
     return 1;
   }
-  removeSpaces(dest, buff, size);
-  delete [] dest;
-  delete [] string;
-  delete [] buff;
-  strPtr = nullptr;
-  return 0;
+  removeSpaces(tmp, buff, size);
+  char *dest = nullptr;
+  size_t len = getSize(tmp);
+  try
+  {
+    dest = new char[len];
+  }
+  catch (const std::exception &e)
+  {
+    std::cerr << e.what() << '\n';
+    delete [] tmp;
+    delete [] string;
+    delete [] buff;
+    strPtr = nullptr;
+    return 0;
+  }
+  for (size_t i = 0; i < len; i++)
+  {
+    dest[i] = tmp[i];
+  }
+  std::cout << dest << '\n';
 }
