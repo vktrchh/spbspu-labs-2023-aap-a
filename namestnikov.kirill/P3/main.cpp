@@ -65,6 +65,12 @@ int main()
     return 1;
   }
   uniqueSymArray(result, input1, input2, i1, i2);
+  size_t length = 0;
+  for (int i = 0; result[i] != '\0'; ++i)
+  {
+    ++length;
+  }
+  std::sort(result, result + length);
   std::cout << result << "\n";
   delete[] input1;
   delete[] input2;
