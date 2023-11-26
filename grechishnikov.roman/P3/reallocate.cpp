@@ -1,6 +1,6 @@
 #include "reallocate.hpp"
 
-char* reallocate(char* str, size_t lenF, size_t lenS)
+char* grechishnikov::reallocate(char* str, size_t lenF, size_t lenS)
 {
   char* newStr = new char [lenS];
   for (size_t i = 0; i < lenS; ++i)

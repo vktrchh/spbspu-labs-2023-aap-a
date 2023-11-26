@@ -2,6 +2,9 @@
 #define REALLOCATE_HPP
 #include <cstddef>
 
-char* reallocate(char* str, size_t lenF, size_t lenS);
+namespace grechishnikov
+{
+  char* reallocate(char* str, size_t lenF, size_t lenS);
+}
 
 #endif

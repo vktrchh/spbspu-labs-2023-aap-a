@@ -6,6 +6,8 @@
 
 int main()
 {
+  using namespace grechishnikov;
+
   size_t len = 10;
   char * curStr = nullptr;
   try

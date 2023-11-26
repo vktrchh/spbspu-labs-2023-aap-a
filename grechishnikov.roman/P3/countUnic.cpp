@@ -1,6 +1,6 @@
 #include "countUnic.hpp"
 
-size_t countUnic(char* str, size_t len)
+size_t grechishnikov::countUnic(char* str, size_t len)
 {
   size_t rez = 0;
   char unicLett[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
