@@ -9,6 +9,11 @@ int main()
   try
   {
     string = inputString(std::cin, size);
+    if (!std::cin)
+    {
+      std::cerr << "Error: Can not read string\n";
+      return 2;
+    }
   }
   catch (const std::bad_alloc & e)
   {
