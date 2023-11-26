@@ -1,5 +1,25 @@
 #include <iostream>
 #include <iomanip>
+#include <algorithm>
+
+
+void uniqueSymArray(char * result, const char * str1, const char * str2, size_t num1, size_t num2)
+{
+  for (size_t i = 0; i < num1; ++i)
+  {
+     if ((std::find(str1, str1 + num1, str1[i]) != str1 + num1) && (std::find(str2, str2 + num2, str1[i]) == str2 + num2))
+     {
+       *result++ = str1[i];
+     }
+  }
+  for (size_t i = 0; i < num2; ++i)
+  {
+    if ((std::find(str1, str1 + num1, str2[i]) == str1 + num1) && (std::find(str2, str2 + num2, str2[i]) != str2 + num2))
+    {
+      *result++ = str2[i];
+    }
+  }
+}
 
 
 int main()
@@ -32,8 +52,21 @@ int main()
     }
   }
   std::cin >> std::skipws;
-  std::cout << input1 << "\n";
-  std::cout << input2 << "\n";
+  char * result = nullptr;
+  try
+  {
+     result = new char[100];
+  }
+  catch (const std::bad_alloc & e)
+  {
+    delete[] input1;
+    delete[] input2;
+    std::cerr << "Error: " << e.what();
+    return 1;
+  }
+  uniqueSymArray(result, input1, input2, i1, i2);
+  std::cout << result << "\n";
   delete[] input1;
   delete[] input2;
+  delete[] result;
 }
