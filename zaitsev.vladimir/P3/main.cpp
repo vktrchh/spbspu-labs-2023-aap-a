@@ -1,16 +1,19 @@
 #include <iostream>
 #include <stdexcept>
 #include "input.h"
+#include "unique_symbols.h"
 
 int main()
 {
   char* string1 = nullptr;
   char* string2 = nullptr;
+  char* res = nullptr;
 
   try
   {
     string1 = read_str();
     string2 = read_str();
+    res = unique_chars(string1, string2);
   }
   catch (const std::bad_alloc&)
   {
@@ -26,7 +29,7 @@ int main()
     delete[] string2;
     return 2;
   }
-  std::cout << string1<<" "<<string2;
+  std::cout << string1<<" "<<string2<<" !"<<res<<"!";
   delete[] string1;
   delete[] string2;
   return 0;
