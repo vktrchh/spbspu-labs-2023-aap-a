@@ -21,19 +21,16 @@ char * inputString(std::istream & input)
   input >> std::noskipws;
   while ((input >> c))
   {
-    if (i < stringSize)
-    {
-      string[i++] = c;
-      if (c == '\n')
-      {
-        string[i - 1] = 0;
-        break;
-      }
-    }
-    else
+    if (i >= stringSize)
     {
       string = expandString(string, stringSize, stringSize + bufferSize);
       stringSize += bufferSize;
+    }
+    string[i++] = c;
+    if (c == '\n')
+    {
+      string[i - 1] = 0;
+      break;
     }
   }
   input >> std::skipws;
