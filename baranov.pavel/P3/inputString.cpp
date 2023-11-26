@@ -50,12 +50,12 @@ char * baranov::inputString(std::istream & input, size_t & stringSize)
       break;
     }
   }
-  input >> std::skipws;
   if (!input)
   {
     delete[] string;
     throw std::logic_error("Can not read string\n");
   }
+  input >> std::skipws;
   return string;
 }
 
