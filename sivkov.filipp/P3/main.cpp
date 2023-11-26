@@ -49,7 +49,31 @@ int main()
     }
 
   }
-  std::cout << string << "\n";
+  char* arrayWithOutSpace = new char[size];
+  int isSpace = 0;
+  int indexArr = 0;
+  for (int j = 0; j < k; j++)
+    {
+      if (std::isspace(string[j]))
+      {
+        if (isSpace == 0)
+        {
+          arrayWithOutSpace[indexArr++] = ' ';
+          isSpace = 1;
+        }
+      }
+      else
+      {
+        arrayWithOutSpace[indexArr++] = string[j];
+        isSpace = 0;
+      }
+    }
+
+
+
+
+  std::cout << arrayWithOutSpace << "\n";
   delete[] string;
+  delete[] arrayWithOutSpace;
   return 0;
 }
