@@ -2,9 +2,11 @@
 #include <iomanip>
 #include <cstddef>
 #include "extractChars.hpp"
+#include "addLat.hpp"
 
 int main()
 {
+  using namespace isaychev;
   size_t capacity = 10;
   char * str = nullptr;
   try
@@ -90,5 +92,19 @@ int main()
   extractChars(str, str2, str_after_extr, length1, length2);
   std::cout << str_after_extr << "\n";
   delete [] str_after_extr;
+  char * strLat = nullptr;
+  try
+  {
+    strLat = new char[length1 + length2];
+  }
+  catch (const std::bad_alloc &)
+  {
+    std::cerr << "can't allocate memory for final string for 2nd task\n";
+    delete [] str;
+    return 1;
+  }
+  addLat(str, str2, strLat, length1, length2);
+  std::cout << strLat << "\n";
+  delete [] strLat;
   delete [] str;
 }

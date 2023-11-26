@@ -1,6 +1,6 @@
 #include "extractChars.hpp"
 
-void extractChars(const char * str_base, const char * str_sec, char * wk_str, ulli_t lgth1, ulli_t lgth2)
+void isaychev::extractChars(const char * str_base, const char * str_sec, char * wk_str, ulli_t lgth1, ulli_t lgth2)
 {
   ulli_t i = 0;
   ulli_t j = 0;
