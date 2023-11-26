@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cctype>
 
-void deleteDigits(const char * string, const size_t & size, char * result)
+void deleteDigits(const char * string, const size_t size, char * result)
 {
   size_t j = 0;
   for (size_t i = 0; i < size; ++i)
@@ -73,9 +73,20 @@ int main()
     return 1;
   }
 
-  char * result = new char[size];
+  char * result = nullptr;
+  try
+  {
+    result = new char[size];
+  }
+  catch (const std::bad_alloc & e)
+  {
+    delete[] string;
+    std::cerr << "Error: " << e.what() << '\n';
+    return 1;
+  }
   deleteDigits(string, size, result);
   std::cout << result << '\n';
+
   delete[] string;
   delete[] result;
 }
