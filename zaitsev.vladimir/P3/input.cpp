@@ -14,15 +14,13 @@ char* read_str()
   try
   {
     str = new char[capacity];
-    while (std::cin.get(x))
+    std::cin.get(x);
+    while (std::cin)
     {
       if (size == capacity)
       {
-        char* new_str = resize_str(str, capacity, capacity + 100);
-        char* temp = str;
-        str = new_str;
-        delete[] temp;
-        capacity += 100;
+        resize_str(std::addressof(str), capacity, capacity * 2);
+        capacity *= 2;
       }
       if (x == '\n')
       {
@@ -31,27 +29,30 @@ char* read_str()
       }
       str[size] = x;
       ++size;
+      std::cin.get(x);
     }
   }
-  catch(const std::bad_alloc&)
+  catch(const std::bad_alloc&e)
   {
     delete[] str;
-    return nullptr;
+    throw e;
   }
   
   if (!std::cin)
   {
     delete[] str;
     str = nullptr;
-    throw std::ios_base::failure("String could not be read");
+    throw std::exception("Failed to read string");
   }
 
   return str;
 }
 
-char* resize_str(const char* str, size_t old_size, size_t new_size)
+void resize_str(char** str, size_t old_size, size_t new_size)
 {
   char* new_str = new char[new_size];
-  memcpy(new_str, str, std::min(old_size, new_size));
-  return new_str;
+  memcpy(new_str, *str, std::min(old_size, new_size));
+  char* temp = *str;
+  *str = new_str;
+  delete[] temp;
 }
