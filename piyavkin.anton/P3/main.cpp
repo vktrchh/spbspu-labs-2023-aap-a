@@ -13,52 +13,64 @@ char * CpLine(char * old_line, char * new_line, size_t length)
 
 int main()
 {
-  size_t n = 0;
+  size_t length = 0;
   char c = 0;
   size_t i = 0;
-  char * input = new char [0]{};
+  char * new_line = new char [0]{};
   std::cin >> std::noskipws;
   while (c != '\n')
   {
-    char * a = input;
+    char * old_line = new_line;
     try
     {
-      input = new char [n+1]{};
+      new_line = new char [length + 1]{};
     }
     catch (...)
     {
       std::cerr << "Dynamic memory overflow";
-      delete [] a;
+      delete [] old_line;
       return 1;
     }
-    input = CpLine(a, input, n);
+    new_line = CpLine(old_line, new_line, length);
     std::cin >> c;
     if (!std::cin)
     {
       std::cerr << "Line not read";
       return 1;
     }
-    input[i] = c;
-    input[i] = tolower(input[i]);
+    new_line[i] = c;
+    new_line[i] = tolower(new_line[i]);
     ++i;
-    ++n;
+    ++length;
   }
   std::cin >> std::skipws;
-  bool * alphabet = new bool [26]{};
-  for (size_t i = 0; i < n; ++i)
+  bool * alphabet = nullptr;
+  try
   {
-    int k = input[i]-'a';
-    if (k >= 0 && k <= 26)
+    alphabet = new bool [26]{};
+  }
+  catch (...)
+  {
+    std::cerr << "Dynamic memory overflow";
+    delete [] new_line;
+    return 1;
+  }
+  for (size_t i = 0; i < length; ++i)
+  {
+    int symbol = new_line[i]-'a';
+    if (symbol >= 0 && symbol <= 26)
     {
-      alphabet[k] = true;
+      alphabet[symbol] = true;
     }
   }
   for (int i = 0; i < 26; ++i)
   {
     if (alphabet[i] == false)
     {
-      char l = 'a' + i;
-      std::cout << l;
+      char letter = 'a' + i;
+      std::cout << letter;
     }
   }
+  delete [] new_line;
+  delete [] alphabet;
 }
