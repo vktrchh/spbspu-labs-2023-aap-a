@@ -8,4 +8,12 @@ int main()
   char replacementChar = 0;
   char* buffer = nullptr;
   char* result = nullptr;
+  try
+  {
+    buffer = inputString(std::cin);
+  }
+  catch ()
+  {
+
+  }
 }
