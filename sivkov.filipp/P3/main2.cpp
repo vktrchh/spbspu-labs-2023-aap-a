@@ -1,9 +1,10 @@
 #include <iostream>
+#include <string>
 
 int main()
 {
   char c = 0;
-  size_t k1 = 0, k2 = 0;
+  size_t k1 = 0, k2 = 0, k3 = 0;
   size_t size = 20;
   char* string1 = new char[size];
   char* string2 = new char[size];
@@ -11,17 +12,15 @@ int main()
   if (!string1 || !string2)
   {
     std::cerr << "Error with arrays" << "\n";
-     delete[] string1;
-     delete[] string2;
-     return 1;
+    delete[] string1;
+    delete[] string2;
+    return 1;
   }
-
   std::cin >> std::noskipws;
   int newlineCount = 0;
-
-  while (std::cin >> c) 
+  while (std::cin >> c)
   {
-    if (c == '\n') 
+    if (c == '\n')
     {
       newlineCount++;
     }
@@ -73,19 +72,33 @@ int main()
       }
       if (c != '\n')
       {
-        string2[k2++] = c;
+      string2[k2++] = c;
       }
     }
   }
-
     string1[k1] = '\0';
     string2[k2] = '\0';
+    char* finalString = new char[k1 + k2 + 1];
 
-    std::cout << "first " << string1 << "\n";
-    std::cout << "second " << string2 << "\n";
+    for (size_t j = 0; j < k1; j++)
+    {
+      finalString[k3++] = string1[j];
+    }
+    for (size_t j = 0; j < k2; j++)
+    {
+      if (std::isdigit(string2[j]))
+      {
+        finalString[k3++] = string2[j];
+      }
+    }
+    finalString[k3] = '\0';
+
+    std::cout << finalString << "\n";
 
     delete[] string1;
     delete[] string2;
+    delete[] finalString;
 
     return 0;
 }
+
