@@ -19,4 +19,13 @@ int main()
   }
   std::cout << "with replacing: ";
   std::cin >> targetChar >> replacementChar;
+  try
+  {
+    result = modifieldstring(buffer, targetChar, replacementChar);
+  }
+  catch (const std::exception& ba)
+  {
+    std::cerr << "Error: " << ba.what() << '\n';
+    return 1;
+  }
 }
