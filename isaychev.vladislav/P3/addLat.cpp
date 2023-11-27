@@ -34,16 +34,19 @@ void isaychev::addLat(const char * str1, const char * str2, char * str3, ulli_t 
       }
     }
   }
-  ulli_t ctrl = 0;
-  for (ulli_t i = 0; i < num - ctrl - 1; ++i)
+  for(ulli_t k = 0; k < num; ++k)
   {
-    if (str3[i] == str3[i + 1])
+    for (ulli_t i = k + 1; i < num; ++i)
     {
-      for (ulli_t j = i; j < num - ctrl - 1; ++j)
+      if (str3[k] == str3[k + 1])
       {
-        str3[j] = str3[j + 1];
+        for (ulli_t j = i; j < num - 1; ++j)
+        {
+          str3[j] = str3[j + 1];
+        }
+        num--;
       }
-      ctrl++;
     }
   }
+  str3[num] = '\0';
 }
