@@ -1,6 +1,16 @@
 #include <iostream>
 #include <cctype>
 
+char * CpLine(char * old_line, char * new_line, size_t length)
+{
+  for (size_t i = 0; i < length; ++i)
+  {
+    new_line[i] = old_line[i];
+  }
+  delete [] old_line;
+  return new_line;
+}
+
 int main()
 {
   size_t n = 0;
@@ -18,13 +28,10 @@ int main()
     catch (...)
     {
       std::cerr << "Dynamic memory overflow";
+      delete [] a;
       return 1;
     }
-    for (size_t j = 0; j < n; ++j)
-    {
-      input[j] = a[j];
-    }
-    delete [] a;
+    input = CpLine(a, input, n);
     std::cin >> c;
     if (!std::cin)
     {
