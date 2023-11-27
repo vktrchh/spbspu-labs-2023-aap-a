@@ -1,14 +1,22 @@
+#include <_ctype.h>
+#include <ios>
 #include <iostream>
 #include <cctype>
 #include <stdexcept>
 #include "inputArray.hpp"
 #include "taskOne.hpp"
+#include "taskTwo.hpp"
 
 int main()
 {
+  size_t alphabetWeight = 26;
+
   size_t arrSize = 0;
   char * inputString = nullptr;
-  // const char * defoltStringForTaskTwo = "def_ghk";
+
+  size_t inCodeArrSize = 9;
+  const char *defoltStringForTaskTwo = "def ghk";
+
   try
   {
     inputString = ara::inputArray(arrSize);
@@ -21,17 +29,20 @@ int main()
   }
 
   size_t answerTaskOne = arakelyanTaskOne::countOfdifferentLetters(inputString);
-  if (answerTaskOne == 0)
+  char * answerTaskTwo = new char[alphabetWeight];
+  if (!answerTaskTwo)
   {
-    std::cerr << "Error: No input\n";
+    std::cerr << "Cannot create array for second task\n";
     delete [] inputString;
     return 1;
   }
-  else
-  {
-    std::cout << "Answer on task 1: " << answerTaskOne << "\n";
-  }
 
+/*   identicalLetters(inputString, defoltStringForTaskTwo, answerTaskTwo, arrSize,  inCodeArrSize, alphabetWeight); */
+
+  std::cout << "\nAnswer on task 1: " << answerTaskOne << "\n";
+  std::cout << "Answer on task 2: " << answerTaskTwo << "\n";
+
+  delete [] answerTaskTwo;
   delete [] inputString;
   return 0;
 }
