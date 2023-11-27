@@ -7,6 +7,7 @@ int main()
   size_t k = 0;
   size_t size = 20;
   char* string = new char[size];
+  using namespace sivkov;
 
   if (!string)
   {

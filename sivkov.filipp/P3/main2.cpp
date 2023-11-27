@@ -8,6 +8,7 @@ int main()
   size_t size = 20;
   char* string1 = new char[size];
   char* string2 = new char[size];
+  using namespace sivkov;
 
   if (!string1 || !string2)
   {

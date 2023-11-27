@@ -1,6 +1,6 @@
 #include "removing_spaces.hpp"
 #include <iostream>
-void deleteSpace(char* string,size_t size,size_t k,char* arrayWithOutSpace)
+void sivkov::deleteSpace(char* string,size_t size,size_t k,char* arrayWithOutSpace)
 {
   int isSpace = 0;
   int indexArr = 0;
