@@ -1,9 +1,12 @@
 #include <iostream>
 #include <new>
+#include "inputstring.hpp"
+#include "modifiedstring.hpp"
 
 int main()
 {
   using namespace marishin;
+  std::cin >> std::noskipws;
   char targetChar = 0;
   char replacementChar = 0;
   char* buffer = nullptr;
@@ -12,11 +15,12 @@ int main()
   {
     buffer = inputString(std::cin);
   }
-  catch (const std::exception& ba))
+  catch (const std::exception& ba)
   {
     std::cerr << "Error: " << ba.what() << '\n';
     return 1;
   }
+  std::cin >> std::skipws;
   std::cout << "with replacing: ";
   std::cin >> targetChar >> replacementChar;
   try
@@ -28,4 +32,7 @@ int main()
     std::cerr << "Error: " << ba.what() << '\n';
     return 1;
   }
+  std::cout << "result: " << result;
+  delete[] buffer;
+  delete[] result;
 }
