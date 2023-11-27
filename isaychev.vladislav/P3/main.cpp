@@ -95,7 +95,7 @@ int main()
   char * strLat = nullptr;
   try
   {
-    strLat = new char[length1 + length2];
+    strLat = new char[length1 + length2]{};
   }
   catch (const std::bad_alloc &)
   {
