@@ -1,31 +1,10 @@
+#include "cpline.hpp"
+#include "alphabet.hpp"
 #include <iostream>
-#include <cctype>
-
-char * CpLine(char * old_line, char * new_line, size_t length)
-{
-  for (size_t i = 0; i < length; ++i)
-  {
-    new_line[i] = old_line[i];
-  }
-  delete [] old_line;
-  return new_line;
-}
-
-bool * Alphabet(bool * alphabet, char * line, size_t length)
-{
-  for (size_t i = 0; i < length; ++i)
-  {
-    int symbol = line[i]-'a';
-    if (symbol >= 0 && symbol <= 26)
-    {
-      alphabet[symbol] = true;
-    }
-  }
-  return alphabet;
-}
 
 int main()
 {
+  using namespace piyavkin;
   size_t length = 0;
   char c = 0;
   size_t i = 0;
