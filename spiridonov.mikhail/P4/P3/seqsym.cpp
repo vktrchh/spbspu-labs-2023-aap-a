@@ -1,13 +1,14 @@
 #include "seqsym.hpp"
+#include <cstring>
 
 using namespace spiridonov;
 
-int spiridonov::hasConsecutiveDuplicates(const char* str)
+size_t spiridonov::hasConsecutiveDuplicates(const size_t* array, const size_t size)
 {
-  int length = strlen(str);
-  for (int i = 1; i < length; i++)
+
+  for (int i = 1; i < size; i++)
   {
-    if (str[i] == str[i - 1])
+    if (array[i] == array[i - 1])
     {
       return 1;
     }

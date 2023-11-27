@@ -1,31 +1,34 @@
 #include "seqsym.hpp"
+#include "inputArray.hpp"
 #include <iostream>
-#include <cstring>
-#include <cctype>
+  #include <cctype>
+#include <stdexcept>
 
 using namespace spiridonov;
 
 int main()
 {
-  const size_t max_size = 100;
-  char str[max_size];
+  size_t str = 0;
+  size_t * outdatedArray = nullptr;
+  size_t * currArray = nullptr;
+  size_t* size = nullptr;
+  //size_t * array = spiridonov::inputArray(outdatedArray,currArray, str);
+
   try
   {
-    std::cout << "Enter a string: ";
-    std::cin.getline(str, max_size);
+    size = spiridonov::inputArray(outdatedArray, currArray, str);
   }
-
-  catch (const char* error)
+  catch (const std::exception& e)
   {
-    std::cerr << error << "\n";
+    std::cerr << "Error: " << e.what() << "\n";
     return 1;
   }
-  char array[] = { 0 };
-
-  size_t result = spiridonov::hasConsecutiveDuplicates(str);
+  //size_t size = 0;
+  //char * array = spiridonov::inputArray(size);
 
   try
   {
+    size_t result = spiridonov::hasConsecutiveDuplicates(currArray, *size);
     if (result == 1)
     {
       std::cout << "Array has consecutive duplicates\n";
@@ -35,13 +38,14 @@ int main()
       std::cout << "Array does not have consecutive duplicates\n";
     }
   }
-  catch (const char* error)
+  catch (const std::runtime_error& e)
   {
-    std::cerr << error << "\n";
-    delete[] str;
+    std::cerr << e.what() << "\n";
+    delete[] currArray;
+    //delete[] size;
     return 1;
   }
-
-  std::cout << "Result: " << spiridonov::hasConsecutiveDuplicates(str) << "\n";
+  delete[] currArray;
+  std::cout << "Result: " << spiridonov::hasConsecutiveDuplicates(currArray, *size) << "\n";
   return 0;
 }

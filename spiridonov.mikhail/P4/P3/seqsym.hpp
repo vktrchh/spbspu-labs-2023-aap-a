@@ -1,11 +1,10 @@
 #ifndef SEQSYM_HPP
 #define SEQSYM_HPP
-#include <cstring>
+#include <cstddef>
+#include <fstream>
 
 namespace spiridonov
 {
-  int hasConsecutiveDuplicates(const char* str);
+  size_t hasConsecutiveDuplicates(const size_t* array, const size_t size);
 }
-
 #endif
-
