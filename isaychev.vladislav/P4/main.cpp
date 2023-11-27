@@ -1,4 +1,6 @@
-#include <iostream>
+#include <stdexcept>
+#include <fstream>
+#include <cstdlib>
 #include "fillMatrix.hpp"
 #include "searchLines.hpp"
 
@@ -28,69 +30,50 @@ int main(int argc, char * argv[])
   }
   size_t rows = 0;
   size_t columns = 0;
+  std::ifstream input(argv[2]);
+  input >> rows >> columns;
+  if (!input)
+  {
+    std::cerr << "Number of rows and columns in array must be described as positive integer number\n";
+    return 2;
+  }
+  else if (columns == 0 && rows == 0)
+  {
+    std::ofstream output(argv[3]);
+    output << rows << "\n";
+    return 0;
+  }
+  int * dynMatrix = nullptr;
+  int * arrName = nullptr;
+  size_t lineSearch = 0;
   if (ctrl_parameter == 1)
   {
-    int Matrix[10000] = {};
-    std::ifstream input(argv[2]);
-    input >> rows >> columns;
-    if (!input)
-    {
-      std::cerr << "Number of rows and columns in array must be described as positive integer number\n";
-      return 2;
-    }
-    if (columns == 0 && rows == 0)
-    {
-      std::ofstream output(argv[3]);
-      output << rows << "\n";
-      return 0;
-    }
-    try
-    {
-      isaychev::fillMatrix(input, Matrix, rows, columns);
-    }
-    catch (const std::invalid_argument &e)
-    {
-      std::cerr << e.what() << "\n";
-      return 2;
-    }
-    {
-      std::ofstream output(argv[3]);
-      output << isaychev::searchLines(Matrix, rows, columns) << "\n";
-    }
+    int matrixStat[10000] = {};
+    arrName = matrixStat;
   }
   else if (ctrl_parameter == 2)
   {
-    std::ifstream input(argv[2]);
-    input >> rows >> columns;
-    if (!input)
+    dynMatrix = new int[rows * columns]{};
+    arrName = dynMatrix;
+  }
+  try
+  {
+    isaychev::fillMatrix(input, arrName, rows, columns);
+  }
+  catch (const std::invalid_argument &e)
+  {
+    std::cerr << e.what() << "\n";
+    if (dynMatrix != nullptr)
     {
-      std::cerr << "Number of rows and columns in array must be described as positive integer number\n";
-      return 2;
+      delete [] dynMatrix;
     }
-    if (columns == 0 && rows == 0)
-    {
-      std::ofstream output(argv[3]);
-      output << rows << "\n";
-      return 0;
-    }
-    else
-    {
-      int * DynMatrix = new int[rows * columns]();
-      try
-      {
-        isaychev::fillMatrix(input, DynMatrix, rows, columns);
-      }
-      catch(const std::invalid_argument &e)
-      {
-        std::cerr << e.what() << "\n";
-        delete[] DynMatrix;
-        return 2;
-      }
-      {
-        std::ofstream output(argv[3]);
-        output << isaychev::searchLines(DynMatrix, rows, columns) << "\n";
-      }
-      delete[] DynMatrix;
-    }
+    return 2;
+  }
+  lineSearch = isaychev::searchLines(arrName, rows, columns);
+  std::ofstream output(argv[3]);
+  output << lineSearch << "\n";
+  if (dynMatrix != nullptr)
+  {
+    delete [] dynMatrix;
   }
 }
