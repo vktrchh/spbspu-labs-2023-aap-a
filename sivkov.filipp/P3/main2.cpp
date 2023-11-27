@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-
+#include "copyNum.hpp"
 int main()
 {
   char c = 0;
@@ -80,18 +80,7 @@ int main()
     string2[k2] = '\0';
     char* finalString = new char[k1 + k2 + 1];
 
-    for (size_t j = 0; j < k1; j++)
-    {
-      finalString[k3++] = string1[j];
-    }
-    for (size_t j = 0; j < k2; j++)
-    {
-      if (std::isdigit(string2[j]))
-      {
-        finalString[k3++] = string2[j];
-      }
-    }
-    finalString[k3] = '\0';
+    copyNum(string1, string2, finalString, k1, k2, k3);
 
     std::cout << finalString << "\n";
 
