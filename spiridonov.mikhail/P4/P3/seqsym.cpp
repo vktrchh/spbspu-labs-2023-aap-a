@@ -2,16 +2,19 @@
 
 using namespace spiridonov;
 
-size_t spiridonov::hasConsecutiveDuplicates(const size_t* array, const size_t size)
+int spiridonov::hasConsecutiveDuplicates(const char* str)
 {
-
-  for (int i = 1; i < size; i++)
+  int length = strlen(str);
+  for (int i = 1; i < length; i++)
   {
-    if (array[i] == array[i - 1])
+    if (str[i] == str[i - 1])
     {
       return 1;
     }
+    else
+    {
+      return 0;
+    }
   }
-
-  return 0;
+   return 0;
 }

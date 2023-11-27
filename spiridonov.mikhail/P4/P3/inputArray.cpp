@@ -1,48 +1,44 @@
 #include <iostream>
 #include "inputArray.hpp"
 
-namespace spiridonov
+using namespace spiridonov;
+
+char * spiridonov::inputArray(std::istream& input, size_t& sizeOfStr)
 {
-  //void spiridonov::extencionArray(const size_t* outdatedArray, size_t* actualArray, size_t& str)
-  //{
-    //for (size_t i = 0; i < str; i++)
-    //{
-      //actualArray[i] = outdatedArray[i];
-    //}
-    //delete[] outdatedArray;
-  //}
-
-  size_t * spiridonov::inputArray(std::istream& input, size_t &sizeOfStr)
+  char * currentArray = new char[sizeOfStr];
+  char character = 0;
+  size_t i = 0;
+  input >> std::noskipws;
+  while ((input >> character) && (character != '\n'))
   {
-    size_t* actualArray = new size_t[sizeOfStr];
-    //spiridonov::extencionArray(outdatedArray, actualArray, str);
+    currentArray[i] = character;
+    i++;
 
-    size_t character = 0;
-    size_t i = 0;
-
-    while ((input >> character) && (character != '\n'))
+    if (i >= sizeOfStr)
     {
-      //std::cin >> character;
-      actualArray[i] = character;
-      i++;
-
-      if (i == sizeOfStr)
+      try
       {
-        //character += 5;
-        size_t newSize = sizeOfStr + 5;
-        size_t * newArray = new size_t[newSize];
-        //spiridonov::extencionArray(actualArray, *newArray, size);
-        for (size_t j = 0; j < sizeOfStr; ++j)
+        char* newArray = new char[sizeOfStr + 10];
+        for (size_t j = 0; j < i; ++j)
         {
-          newArray[j] = actualArray[j];
+          newArray[j] = currentArray[j];
         }
-        delete[] actualArray;
-        actualArray = newArray;
-        sizeOfStr = newSize;
+        delete[] currentArray;
+        currentArray = newArray;
+        sizeOfStr += 10;
+      }
+      catch (...)
+      {
+        delete[] currentArray;
+        throw;
       }
     }
-    //actualArray[i] = '\n';
-    //sizeOfStr = i;
-    return actualArray;
   }
+  char* finalArray = new char[i];
+  for (size_t j = 0; j < i; ++j)
+  {
+    finalArray[j] = currentArray[j];
+  }
+  delete[] currentArray;
+  return finalArray;
 }

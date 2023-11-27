@@ -4,8 +4,8 @@
 
 namespace spiridonov
 {
-  size_t * extencionArray(const size_t * currentArray, const size_t strOld, size_t strNew);
-  size_t * inputArray(std::istream& input, size_t & sizeOfStr);
+  char* extencionArray(const char* currentArray, const size_t strOld, size_t strNew);
+  char* inputArray(std::istream& input, size_t& sizeOfStr);
 }
 
 #endif
