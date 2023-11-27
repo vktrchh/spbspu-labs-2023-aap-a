@@ -39,14 +39,11 @@ int main()
       return 1;
     }
     input[i] = c;
+    input[i] = tolower(input[i]);
     ++i;
     ++n;
   }
   std::cin >> std::skipws;
-  for (size_t i = 0; i < n; ++i)
-  {
-    input[i] = tolower(input[i]);
-  }
   bool * alphabet = new bool [26]{};
   for (size_t i = 0; i < n; ++i)
   {
