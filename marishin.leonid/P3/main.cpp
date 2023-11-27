@@ -17,4 +17,6 @@ int main()
     std::cerr << "Error: " << ba.what() << '\n';
     return 1;
   }
+  std::cout << "with replacing: ";
+  std::cin >> targetChar >> replacementChar;
 }
