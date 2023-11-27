@@ -1,18 +1,16 @@
 #include "seqsym.hpp"
-#include <cstring>
 
-using namespace spiridonov;
-
-size_t spiridonov::hasConsecutiveDuplicates(const size_t* array, const size_t size)
+namespace spiridonov
 {
-
-  for (int i = 1; i < size; i++)
+  size_t spiridonov::hasConsecutiveDuplicates(const size_t* array, const size_t size)
   {
-    if (array[i] == array[i - 1])
+    for (size_t i = 1; i < size; i++)
     {
-      return 1;
+      if (array[i] == array[i - 1])
+      {
+        return 1;
+      }
     }
+    return 0;
   }
-
-  return 0;
 }
