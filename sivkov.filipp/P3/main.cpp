@@ -1,4 +1,5 @@
 #include <iostream>
+#include "removing_spaces.hpp"
 
 int main()
 {
@@ -50,33 +51,7 @@ int main()
 
   }
   char* arrayWithOutSpace = new char[size];
-  int isSpace = 0;
-  int indexArr = 0;
-  for (size_t j = 0; j < k; j++)
-  {
-    if (std::isspace(string[j]))
-    {
-      if (isSpace == 0)
-      {
-        arrayWithOutSpace[indexArr++] = ' ';
-        isSpace = 1;
-      }
-    }
-    else
-    {
-      arrayWithOutSpace[indexArr++] = string[j];
-      isSpace = 0;
-    }
-  }
-  if (indexArr > 0 && arrayWithOutSpace[0] == ' ')
-  {
-    for (int j = 0; j < indexArr - 1; j++)
-    {
-      arrayWithOutSpace[j] = arrayWithOutSpace[j + 1];
-    }
-    indexArr--;
-  }
-  arrayWithOutSpace[indexArr] = '\0';
+  deleteSpace(string, size, k, arrayWithOutSpace);
   std::cout << arrayWithOutSpace << "\n";
   delete[] string;
   delete[] arrayWithOutSpace;
