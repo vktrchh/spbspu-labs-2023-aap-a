@@ -4,7 +4,7 @@ int main()
 {
   char c = 0;
   size_t k = 0;
-  int size = 20;
+  size_t size = 20;
   char* string = new char[size];
 
   if (!string)
@@ -52,7 +52,7 @@ int main()
   char* arrayWithOutSpace = new char[size];
   int isSpace = 0;
   int indexArr = 0;
-  for (int j = 0; j < k; j++)
+  for (size_t j = 0; j < k; j++)
   {
     if (std::isspace(string[j]))
     {
