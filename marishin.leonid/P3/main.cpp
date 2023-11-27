@@ -12,8 +12,9 @@ int main()
   {
     buffer = inputString(std::cin);
   }
-  catch ()
+  catch (const std::exception& ba))
   {
-
+    std::cerr << "Error: " << ba.what() << '\n';
+    return 1;
   }
 }
