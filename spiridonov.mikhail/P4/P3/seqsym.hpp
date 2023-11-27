@@ -1,7 +1,6 @@
 #ifndef SEQSYM_HPP
 #define SEQSYM_HPP
 #include <cstddef>
-#include <fstream>
 
 namespace spiridonov
 {

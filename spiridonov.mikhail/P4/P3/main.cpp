@@ -6,18 +6,16 @@
 int main()
 {
   size_t str = 0;
-  size_t* outdatedArray = nullptr;
-  size_t actualArraySize = 15;
-  size_t* actualArray = new size_t[actualArraySize];
-  size_t size = actualArraySize;
+  size_t * currentArray = nullptr;
+  //size_t actualArraySize = 15;
+  //size_t* actualArray = new size_t[actualArraySize];
+  size_t size = 0;
 
   try
   {
-    size_t resultSize = 0;
-    actualArray = spiridonov::inputArray(actualArray, &size, resultSize);
-    str = resultSize;
+    currentArray = spiridonov::inputArray(std::cin, size);
 
-    size_t result = spiridonov::hasConsecutiveDuplicates(actualArray, str);
+    size_t result = spiridonov::hasConsecutiveDuplicates(currentArray, size);
     if (result == 1)
     {
       std::cout << "Array has consecutive duplicates\n";
@@ -27,12 +25,13 @@ int main()
       std::cout << "Array does not have consecutive duplicates\n";
     }
   }
-  catch (const std::runtime_error& e)
+  catch (const std::exception& e)
   {
-    std::cerr << e.what() << "\n";
-    delete[] actualArray;
-    return 1;
+    std::cerr << "Failed work: " << e.what() << "\n";
+    delete[] currentArray;
+    return 2;
   }
-  delete[] actualArray;
+
+  delete[] currentArray;
   return 0;
 }
