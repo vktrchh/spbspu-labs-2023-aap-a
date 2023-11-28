@@ -1,6 +1,6 @@
-#include "alphabet.hpp"
+#include "createalphabet.hpp"
 
-bool * piyavkin::Alphabet(bool * alphabet, char * line, size_t length)
+bool * piyavkin::createAlphabet(bool * alphabet, char * line, size_t length)
 {
   for (size_t i = 0; i < length; ++i)
   {

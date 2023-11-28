@@ -1,5 +1,5 @@
 #include "cpline.hpp"
-#include "alphabet.hpp"
+#include "createalphabet.hpp"
 #include <iostream>
 
 int main()
@@ -23,7 +23,7 @@ int main()
       delete [] old_line;
       return 1;
     }
-    new_line = CpLine(old_line, new_line, length);
+    new_line = cpLine(old_line, new_line, length);
     std::cin >> c;
     if (!std::cin)
     {
@@ -46,10 +46,12 @@ int main()
   catch (...)
   {
     std::cerr << "Dynamic memory overflow";
+    delete [] alphabet;
+    delete [] new_alphabet;
     delete [] new_line;
     return 1;
   }
-  alphabet = Alphabet(alphabet, new_line, length);
+  alphabet = createAlphabet(alphabet, new_line, length);
   size_t size = 0;
   size_t n = 0;
   for (int i = 0; i < 26; ++i)
@@ -68,7 +70,7 @@ int main()
         delete [] old_alphabet;
         return 1;
       }
-      new_alphabet = CpLine(old_alphabet, new_alphabet, size);
+      new_alphabet = cpLine(old_alphabet, new_alphabet, size);
       new_alphabet[n] = letter;
       ++size;
       ++n;
