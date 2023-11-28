@@ -28,6 +28,8 @@ int main()
     if (!std::cin)
     {
       std::cerr << "Line not read";
+      delete [] new_line;
+      delete [] old_line;
       return 1;
     }
     new_line[i] = c;
