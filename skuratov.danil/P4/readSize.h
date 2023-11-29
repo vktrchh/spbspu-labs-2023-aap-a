@@ -2,7 +2,8 @@
 #define READ_SIZE_H
 
 #include <fstream>
+#include <cstddef>
 
-void readSize(const std::ifstream& in, size_t& rows, size_t& cols);
+void readSize(std::ifstream in, size_t& rows, size_t& cols);
 
 #endif
