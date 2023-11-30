@@ -10,7 +10,7 @@ chernov::PifTriplesCounter::PifTriplesCounter():
 
 void chernov::PifTriplesCounter::operator()(int number)
 {
-  if (pifTriple(number) == 1 && first_el_ != 0 && second_el_ != 0)
+  if (piftrCounter(number) == 1 && first_el_ != 0 && second_el_ != 0)
   {
     size_t max_size = std::numeric_limits< size_t >::max();
     if (piftriples_ == max_size)
@@ -23,7 +23,7 @@ void chernov::PifTriplesCounter::operator()(int number)
   second_el_ = number;
 }
 
-bool chernov::PifTriplesCounter::pifTriple(int number)
+bool chernov::PifTriplesCounter::piftrCounter(int number)
 {
   int a = first_el_;
   int b = second_el_;

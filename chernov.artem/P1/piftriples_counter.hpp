@@ -10,7 +10,7 @@ namespace chernov
     void operator()(int number);
     size_t operator()() const;
   private:
-    bool pifTriple(int number);
+    bool piftrCounter(int number);
     size_t piftriples_;
     int first_el_;
     int second_el_;
