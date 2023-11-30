@@ -29,15 +29,13 @@ int main()
   }
 
   size_t answerTaskOne = arakelyanTaskOne::countOfdifferentLetters(inputString);
-  char * answerTaskTwo = new char[alphabetWeight];
-  if (!answerTaskTwo)
-  {
-    std::cerr << "Cannot create array for second task\n";
-    delete [] inputString;
-    return 1;
-  }
-
-/*   identicalLetters(inputString, defoltStringForTaskTwo, answerTaskTwo, arrSize,  inCodeArrSize, alphabetWeight); */
+  char * answerTaskTwo = nullptr;
+  // if (!answerTaskTwo)
+  // {
+  //   std::cerr << "Cannot create array for second task\n";
+  //   delete [] inputString;
+  //   return 1;
+  // }
 
   std::cout << "\nAnswer on task 1: " << answerTaskOne << "\n";
   std::cout << "Answer on task 2: " << answerTaskTwo << "\n";
