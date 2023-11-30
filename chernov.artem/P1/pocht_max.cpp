@@ -1,6 +1,6 @@
 #include "pocht_max.hpp"
-#include <limits>
 #include <stdexcept>
+#include <limits>
 
 chernov::AlmostMax::AlmostMax():
   premaxim_(0),

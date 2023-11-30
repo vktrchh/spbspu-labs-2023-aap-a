@@ -1,6 +1,6 @@
 #include "piftriples_counter.hpp"
-#include <limits>
 #include <stdexcept>
+#include <limits>
 
 chernov::PifTriplesCounter::PifTriplesCounter():
   piftriples_(0),
