@@ -2,12 +2,12 @@
 #include <limits>
 #include <stdexcept>
 
-chernov::PochtMax::PochtMax():
+chernov::AlmostMax::AlmostMax():
   premaxim_(0),
   maxim_(0)
 {}
 
-void chernov::PochtMax::operator()(int number)
+void chernov::AlmostMax::operator()(int number)
 {
   if (maxim_ == 0)
   {
@@ -30,7 +30,7 @@ void chernov::PochtMax::operator()(int number)
   }
 }
 
-int chernov::PochtMax::operator()() const
+int chernov::AlmostMax::operator()() const
 {
   return premaxim_;
 }

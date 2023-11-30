@@ -8,7 +8,7 @@ int main()
   int number = 0;
   using namespace chernov;
   PifTriplesCounter pifTriples;
-  PochtMax pochtMaxim;
+  AlmostMax almostMaxim;
   do
   {
     std::cin >> number;
@@ -21,7 +21,7 @@ int main()
     {
       try
       {
-        pochtMaxim(number);
+        almostMaxim(number);
         pifTriples(number);
       }
       catch (const std::exception & e)
@@ -33,13 +33,13 @@ int main()
   }
   while (number != 0);
   std::cout << pifTriples() << "\n";
-  if (pochtMaxim() == 0)
+  if (almostMaxim() == 0)
   {
     std::cerr << "Not enough numbers entered\n";
   }
   else
   {
-    std::cout << pochtMaxim() << "\n";
+    std::cout << almostMaxim() << "\n";
   }
   return 0;
 }

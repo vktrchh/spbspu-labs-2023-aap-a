@@ -12,8 +12,8 @@ namespace chernov
   private:
     bool pifTriple(int number);
     size_t piftriples_;
-    int perv_el_;
-    int vtor_el_;
+    int first_el_;
+    int second_el_;
   };
 }
 

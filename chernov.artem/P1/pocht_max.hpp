@@ -4,9 +4,9 @@
 
 namespace chernov
 {
-  struct PochtMax
+  struct AlmostMax
   {
-    PochtMax();
+    AlmostMax();
     void operator()(int number);
     int operator()() const;
   private:
