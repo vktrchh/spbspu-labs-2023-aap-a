@@ -42,7 +42,7 @@ char* zaitsev::readStr()
   {
     delete[] str;
     str = nullptr;
-    throw std::exception("Failed to read string");
+    throw std::runtime_error("Failed to read string");
   }
 
   return str;
