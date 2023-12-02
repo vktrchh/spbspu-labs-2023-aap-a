@@ -1,6 +1,5 @@
 #include "changeString.hpp"
 
-const int size = 16;
 int main()
 {
   using namespace novokhatskiy;
