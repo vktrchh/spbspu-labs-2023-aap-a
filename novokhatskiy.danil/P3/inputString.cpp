@@ -11,7 +11,7 @@ char* novokhatskiy::inputString(std::istream &input)
   }
   catch (const std::bad_alloc& err)
   {
-    throw err;
+    throw;
   }
   char symbol = 0;
   input >> std::noskipws;
@@ -33,17 +33,11 @@ char* novokhatskiy::inputString(std::istream &input)
       }
       catch (...)
       {
-        delete[] string;
+        throw;
       }
     }
     cycleIndex++;
   }
   input >> std::skipws;
-  char* mainString = new char[sizeString];
-  for (size_t i = 0; i < sizeString; ++i)
-  {
-    mainString[i] = string[i];
-  }
-  delete[] string;
-  return mainString;
+  return string;
 }
