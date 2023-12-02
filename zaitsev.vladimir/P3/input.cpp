@@ -1,5 +1,6 @@
 #include "input.h"
 #include <iostream>
+#include <cstddef>
 #include <stdexcept>
 #include <limits>
 
