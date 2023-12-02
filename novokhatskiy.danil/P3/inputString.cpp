@@ -11,14 +11,13 @@ char* novokhatskiy::inputString(std::istream &input)
   }
   catch (const std::bad_alloc& err)
   {
-    delete[] string;
     throw err;
   }
   char symbol = 0;
   input >> std::noskipws;
   while ((input >> symbol) && (symbol != '\n')) 
   {
-    string[cycleIndex] == symbol;
+    string[cycleIndex] = symbol;
     if (cycleIndex >= sizeString)
     {
       try
@@ -30,23 +29,21 @@ char* novokhatskiy::inputString(std::istream &input)
         }
         delete[] string;
         string = newString;
-        delete[] newString;
         sizeString += 15;
       }
       catch (...)
       {
         delete[] string;
-        
       }
     }
     cycleIndex++;
   }
+  input >> std::skipws;
   char* mainString = new char[sizeString];
   for (size_t i = 0; i < sizeString; ++i)
   {
-    mainString[sizeString] = string[sizeString];
+    mainString[i] = string[i];
   }
   delete[] string;
-  input >> std::skipws;
   return mainString;
 }
