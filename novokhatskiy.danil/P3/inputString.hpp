@@ -4,7 +4,7 @@
 
 namespace novokhatskiy
 {
-  char* inputString(std::ifstream& input);
+  char* inputString(std::istream& input);
 }
 
 #endif

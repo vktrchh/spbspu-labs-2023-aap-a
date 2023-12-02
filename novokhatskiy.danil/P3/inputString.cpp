@@ -1,6 +1,6 @@
 #include "inputString.hpp"
 
-char* novokhatskiy::inputString(std::istream& input)
+char* novokhatskiy::inputString(std::istream &input)
 {
   size_t sizeString = 20;
   size_t cycleIndex = 0;
@@ -30,6 +30,7 @@ char* novokhatskiy::inputString(std::istream& input)
         }
         delete[] string;
         string = newString;
+        delete[] newString;
         sizeString += 15;
       }
       catch (...)
@@ -40,6 +41,12 @@ char* novokhatskiy::inputString(std::istream& input)
     }
     cycleIndex++;
   }
+  char* mainString = new char[sizeString];
+  for (size_t i = 0; i < sizeString; ++i)
+  {
+    mainString[sizeString] = string[sizeString];
+  }
+  delete[] string;
   input >> std::skipws;
-  return string;
+  return mainString;
 }

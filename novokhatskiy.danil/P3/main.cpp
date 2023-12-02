@@ -1,18 +1,18 @@
 #include "changeString.hpp"
+#include "inputString.hpp"
+#include <iostream>
+#include <stdexcept>
 
 int main()
 {
   using namespace novokhatskiy;
   char* buffer = nullptr;
-  int result = 0;
   try
   {
-    buffer = new char[size];
-    std::cin.getline(buffer, size);
+    buffer = inputString(std::cin);
     if (!std::cin)
     {
       std::cerr << "Can't read the string\n";
-      result = 1;
       return 1;
     }
     else
@@ -23,10 +23,10 @@ int main()
   }
   catch (const std::bad_alloc &e)
   {
+    delete[] buffer; 
     throw e;
-    result = 1;
   }
   delete[] buffer;
-  return result;
+  return 0;
 }
 
