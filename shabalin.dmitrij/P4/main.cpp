@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream> 
 #include <cstdlib> 
+#include <string> 
 
 int convert(char * str)
 {
@@ -19,9 +20,16 @@ int main(int argc, char * argv[])
     return 1;
   }
   //argv[1]
-  int num = std::strtoll(argv[1], nullptr, 10);
-  std::cout << "Num is " << num << "\n";
-
+  int num = 0;
+  try 
+  {
+    num = std::stoll(argv[1]);
+  }
+  catch (const std::invalid_argument &)
+  {
+    std::cerr << "Can not parse a value\n";
+    return 3;
+  }
   //agrv[2]
   int i = 0;
   {
