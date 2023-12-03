@@ -4,6 +4,6 @@
 #include <fstream>
 #include <cstddef>
 
-void writeArray(std::ostream& out, int input[], size_t size);
+void writeArray(std::ostream& out, int input, size_t size);
 
 #endif

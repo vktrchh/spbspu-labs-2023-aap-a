@@ -1,6 +1,6 @@
 #include "readArray.h"
 
-int* readArray(std::ifstream& in, int array[], size_t& size)
+int* readArray(std::ifstream& in, int array[], const size_t& size)
 {
   if (!in)
   {
