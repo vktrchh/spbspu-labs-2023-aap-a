@@ -1,4 +1,5 @@
 #include "writeArray.h"
+#include <stdexcept>
 
 void writeArray(std::ostream& out, int input, size_t size)
 {

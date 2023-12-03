@@ -1,4 +1,6 @@
 #include "readArray.h"
+#include <fstream>
+#include <stdexcept>
 
 int* readArray(std::ifstream& in, int array[], const size_t& size)
 {

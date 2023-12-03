@@ -1,4 +1,5 @@
 #include "readSize.h"
+#include <stdexcept>
 
 void readSize(std::ifstream& in, size_t& rows, size_t& cols)
 {

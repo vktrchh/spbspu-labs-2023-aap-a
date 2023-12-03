@@ -2,6 +2,7 @@
 #include <fstream>
 #include <cctype>
 #include <cstddef>
+#include <stdexcept>
 
 #include "readArray.h"
 #include "readSize.h"
