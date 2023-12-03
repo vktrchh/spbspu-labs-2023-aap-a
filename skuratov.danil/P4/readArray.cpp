@@ -1,6 +1,6 @@
 #include "readArray.h"
 
-void readArray(std::ifstream in, int array[], const size_t& size)
+int* readArray(std::ifstream& in, int array[], size_t& size)
 {
   if (!in)
   {
@@ -20,4 +20,5 @@ void readArray(std::ifstream in, int array[], const size_t& size)
   {
     throw std::runtime_error("Invalid input file");
   }
+  return array;
 }

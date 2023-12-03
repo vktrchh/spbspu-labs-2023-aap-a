@@ -3,9 +3,14 @@
 #include <cctype>
 #include <cstddef>
 
+#include "readArray.h"
+#include "readSize.h"
+
 int main(int argc, char* argv[])
 {
   const size_t MAX_SIZE = 10000;
+  size_t rows = 0;
+  size_t cols = 0;
 
   if (argc < 4)
   {
@@ -18,8 +23,8 @@ int main(int argc, char* argv[])
     return 1;
   }
 
-  char* inputFileName = argv[2];
-  char* outputFileName = argv[3];
+  const char* inputFileName = argv[2];
+  const char* outputFileName = argv[3];
   int taskNumber = std::atoi(argv[1]);
 
   std::ifstream in(inputFileName);
@@ -27,7 +32,7 @@ int main(int argc, char* argv[])
 
   try
   {
-
+    readSize(in, rows, cols);
   }
   catch (const std::runtime_error& error)
   {
@@ -35,29 +40,49 @@ int main(int argc, char* argv[])
     return 2;
   }
 
-  try
-  {
+  size_t sizeOfArray = rows * cols;
 
-  }
-  catch (const std::runtime_error& error)
+  if ((sizeOfArray < MAX_SIZE) && (rows != 0 || cols != 0))
   {
-    std::cerr << error.what() << '\n';
-    return 2;
-  }
+    int* dynamicArray = new int[sizeOfArray];
+    int staticArray[MAX_SIZE] = {};
 
-  if (taskNumber == 1)
-  {
+    if (taskNumber == 1)
+    {
+      try
+      {
+        // task
+      }
+      catch (const std::runtime_error& error)
+      {
+        std::cerr << error.what() << '\n';
+        delete[] dynamicArray;
+        return 2;
+      }
+      delete[] dynamicArray;
+    }
+    else if (taskNumber == 2)
+    {
+      try
+      {
+        // task
+      }
+      catch (const std::runtime_error& error)
+      {
+        std::cerr << error.what() << '\n';
+        delete[] dynamicArray;
+        return 2;
+      }
+      delete[] dynamicArray;
+    }
+    else
+    {
+      std::cerr << "Invalid first parameter" << '\n';
+      delete[] dynamicArray;
+      return 1;
+    }
     
+    delete[] dynamicArray;
   }
-  else if (taskNumber == 2)
-  {
-    
-  }
-  else
-  {
-  	std::cerr << "Invalid first parameter" << '\n';
-    return 1;
-  }
-
   return 0;
 }

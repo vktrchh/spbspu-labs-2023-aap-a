@@ -1,6 +1,6 @@
 #include "readSize.h"
 
-void readSize(std::ifstream in, size_t& rows, size_t& cols)
+void readSize(std::ifstream& in, size_t& rows, size_t& cols)
 {
   if (!in)
   {
