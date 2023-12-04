@@ -7,4 +7,3 @@
 int* readArray(std::ifstream& in, int array[], const size_t& size);
 
 #endif
-

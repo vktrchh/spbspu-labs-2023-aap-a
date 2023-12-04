@@ -6,8 +6,8 @@ int* readArray(std::ifstream& in, int array[], const size_t& size)
 {
   if (!in)
   {
-  	for (size_t i = 0; i < size - 1; ++i)
-  	{
+    for (size_t i = 0; i < size - 1; ++i)
+    {
       if (std::isdigit(array[i]))
       {
         in >> array[i];
@@ -16,7 +16,7 @@ int* readArray(std::ifstream& in, int array[], const size_t& size)
       {
         throw std::runtime_error("Invalid array");
       }
-  	}
+    }
   }
   else
   {
