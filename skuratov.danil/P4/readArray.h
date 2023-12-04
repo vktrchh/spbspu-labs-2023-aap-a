@@ -4,6 +4,6 @@
 #include <fstream>
 #include <cstddef>
 
-int* readArray(std::ifstream& in, int array[], const size_t& size);
+int* readArray(std::ifstream& in, int* array, const size_t& size);
 
 #endif
