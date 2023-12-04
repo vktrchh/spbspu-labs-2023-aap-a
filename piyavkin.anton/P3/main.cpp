@@ -9,10 +9,11 @@ int main()
   char c = 0;
   size_t i = 0;
   char * new_line = new char [0]{};
+  char * old_line = nullptr;
   std::cin >> std::noskipws;
   while (c != '\n')
   {
-    char * old_line = new_line;
+    old_line = new_line;
     try
     {
       new_line = new char [length + 1]{};
@@ -29,7 +30,6 @@ int main()
     {
       std::cerr << "Line not read";
       delete [] new_line;
-      delete [] old_line;
       return 1;
     }
     new_line[i] = c;
