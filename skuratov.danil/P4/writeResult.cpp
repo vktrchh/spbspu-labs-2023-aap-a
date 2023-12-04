@@ -1,7 +1,7 @@
-#include "writeArray.h"
+#include "writeResult.h"
 #include <stdexcept>
 
-void writeArray(std::ostream& out, int input, size_t size)
+void writeResult(std::ostream& out, int input)
 {
   if (!out)
   {

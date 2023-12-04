@@ -1,6 +1,6 @@
 #include "findMinSumAlongSecondaryDiagonal.h"
 
-#include <cmath>
+#include <climits>
 #include <algorithm>
 #include <stdexcept>
 

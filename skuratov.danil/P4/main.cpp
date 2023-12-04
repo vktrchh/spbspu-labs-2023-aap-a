@@ -6,7 +6,7 @@
 
 #include "readArray.h"
 #include "readSize.h"
-#include "writeArray.h"
+#include "writeResult.h"
 #include "countSaddlePoints.h"
 #include "findMinSumAlongSecondaryDiagonal.h"
 
@@ -50,7 +50,7 @@ int main(int argc, char* argv[])
       {
         readArray(in, staticArray, MAX_SIZE);
         int res = countSaddlePoints(staticArray, rows, cols);
-        writeArray(out, res, MAX_SIZE);
+        writeResult(out, res);
       }
       catch (const std::runtime_error& error)
       {
@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
       {
         readArray(in, dynamicArray, sizeOfArray);
         int res = findMinSumAlongSecondaryDiagonal(dynamicArray, rows, cols);
-        writeArray(out, res, sizeOfArray);
+        writeResult(out, res);
       }
       catch (const std::runtime_error& error)
       {
