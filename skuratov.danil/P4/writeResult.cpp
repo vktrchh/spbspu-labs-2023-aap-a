@@ -3,7 +3,7 @@
 
 void writeResult(std::ostream& out, int input)
 {
-  if (!out)
+  if (out)
   {
     out << input;
   }

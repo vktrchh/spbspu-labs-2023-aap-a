@@ -4,7 +4,7 @@
 
 int* readArray(std::ifstream& in, int array[], const size_t& size)
 {
-  if (!in)
+  if (in)
   {
     for (size_t i = 0; i < size - 1; ++i)
     {

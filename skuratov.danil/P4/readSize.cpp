@@ -3,7 +3,7 @@
 
 void readSize(std::ifstream& in, size_t& rows, size_t& cols)
 {
-  if (!in)
+  if (in)
   {
     in >> rows >> cols;
   }
