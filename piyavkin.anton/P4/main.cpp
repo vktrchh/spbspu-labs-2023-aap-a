@@ -1,8 +1,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
-#include "nonzero.hpp"
-#include "downtrimatrix.hpp"
+#include "checknonzero.hpp"
+#include "checklowertriangularmatrix.hpp"
 #include "inputarray.hpp"
 
 int main(int argc, char * argv[])
@@ -13,13 +13,18 @@ int main(int argc, char * argv[])
     std::cerr << "Arguments entered incorrectly\n";
     return 1;
   }
+  int num = 0;
   try
   {
-    int num = std::stoll(argv[1]);
+    char * endOfParsing = nullptr;
+    num = std::strtoll(argv[1], std::addressof(endOfParsing), 10);
+    if (*endOfParsing != '\0')
+    {
+      throw std::exception();
+    }
     if (num != 1 && num != 2)
     {
-      std::cerr << "The first parameter is incorrectly specified\n";
-      return 3;
+      throw std::exception();
     }
   }
   catch (...)
@@ -27,42 +32,42 @@ int main(int argc, char * argv[])
     std::cerr << "The first parameter is incorrectly specified\n";
     return 3;
   }
-  int num = std::stoll(argv[1]);
+  size_t rows = 0;
+  size_t cols = 0;
+  std::ifstream input(argv[2]);
+  input >> rows >> cols;
+  int * matrix = nullptr;
+  int a[10000]{};
   if (num == 1)
   {
-    int rows = 0;
-    int cols = 0;
-    std::ifstream input(argv[2]);
-    input >> rows >> cols;
-    int matrix[10000];
-    for (int i = 0; i < rows * cols; ++i)
-    {
-      input >> matrix[i];
-    }
-    if (!input)
-    {
-      std::cerr << "Can not read number\n";
-      return 2;
-    }
-    std::ofstream output(argv[3]);
-    output << DownTriMatrix(rows * cols, rows, cols, matrix) * NonZero(rows * cols, matrix) << "\n";
+    matrix = a;
   }
   if (num == 2)
   {
-    int rows = 0;
-    int cols = 0;
-    std::ifstream input(argv[2]);
-    input >> rows >> cols;
-    int * matrix = new int [rows*cols];
-    size_t result = InputArray(input, matrix, rows * cols, rows * cols);
-    if (!input)
+    try
     {
-      std::cerr << "Can not read\n";
-      delete [] matrix;
-      return 2;
+      matrix = new int [rows * cols]{};
     }
-    std::ofstream output(argv[3]);
-    output << DownTriMatrix(result, rows, cols, matrix) * NonZero(result, matrix) << "\n";
+    catch (...)
+    {
+      std::cerr << "Dynamic memory overflow";
+      return 3;
+    }
+  }
+  size_t result = inputArray(input, matrix, rows * cols, rows * cols);
+  if (!input)
+  {
+    if (num == 2)
+    {
+      delete [] matrix;
+    }
+    std::cerr << "Can not read number\n";
+    return 2;
+  }
+  std::ofstream output(argv[3]);
+  output << (checkLowerTriangularMatrix(result, rows, cols, matrix) && checkNonZero(rows * cols, matrix)) << "\n";
+  if (num == 2)
+  {
     delete [] matrix;
   }
 }
