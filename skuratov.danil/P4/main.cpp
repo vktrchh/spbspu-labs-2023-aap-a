@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
   size_t cols = 0;
   if (argc < 4)
   {
-    std::cerr << "Not enough parameters" << '\n'; 
+    std::cerr << "Not enough parameters" << '\n';
     return 1;
   }
   else if (argc > 4)
@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
         delete[] dynamicArray;
         return 1;
       }
-    } 
+    }
     else
     {
       std::cerr << "Invalid first parameter" << '\n';
@@ -93,7 +93,7 @@ int main(int argc, char* argv[])
   }
   catch (const std::runtime_error& error)
   {
-    std::cerr << error.what() << '\n'; 
+    std::cerr << error.what() << '\n';
     return 1;
   }
   return 0;
