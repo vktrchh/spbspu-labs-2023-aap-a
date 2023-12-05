@@ -37,20 +37,9 @@ int main()
     ++length;
   }
   std::cin >> std::skipws;
-  bool * alphabet = nullptr;
+  bool alphabet [26] = {};
   char * new_alphabet = nullptr;
-  try
-  {
-    alphabet = new bool [26]{};
-    new_alphabet = new char [0]{};
-  }
-  catch (...)
-  {
-    std::cerr << "Dynamic memory overflow\n";
-    delete [] new_line;
-    return 1;
-  }
-  alphabet = createAlphabet(alphabet, new_line, length);
+  createAlphabet(alphabet, new_line, length);
   size_t size = 0;
   size_t n = 0;
   for (int i = 0; i < 26; ++i)
@@ -77,7 +66,6 @@ int main()
     }
   }
   delete [] new_line;
-  delete [] alphabet;
   for (size_t i = 0; i < n; ++i)
   {
     std::cout << new_alphabet[i];
