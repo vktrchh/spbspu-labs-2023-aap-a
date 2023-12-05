@@ -8,17 +8,40 @@ int findMinSumAlongSecondaryDiagonal(int* array, size_t rows, size_t cols)
 {
   if (rows != cols)
   {
-    throw std::runtime_error("Matrix is not square. Cannot find secondary diagonal");
+    throw std::runtime_error("Matrix is not square");
   }
   int minSum = INT_MAX;
-  for (size_t k = 0; k < cols; ++k)
+  for (size_t startCol = cols - 1; startCol > 0; --startCol)
   {
     int currentSum = 0;
-    for (size_t i = 0, j = k; i < rows && j < cols; ++i, ++j)
+    size_t row = 0;
+    size_t col = startCol;
+    while (col < cols && row < rows)
     {
-      currentSum += array[i * cols + j];
+      currentSum += array[row * cols + col];
+      ++row;
+      ++col;
     }
-    minSum = std::min(minSum, currentSum);
+    if (currentSum < minSum)
+    {
+      minSum = currentSum;
+    }
   }
-  return (minSum == INT_MAX) ? 0 : minSum;
+  for (size_t startRow = 1; startRow < rows - 1; ++startRow)
+  {
+    int currentSum = 0;
+    size_t row = startRow;
+    size_t col = 0;
+    while (col < cols && row < rows)
+    {
+      currentSum += array[row * cols + col];
+      ++row;
+      ++col;
+    }
+    if (currentSum < minSum)
+    {
+      minSum = currentSum;
+    }
+  }
+  return minSum;
 }
