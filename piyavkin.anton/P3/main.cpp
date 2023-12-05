@@ -47,8 +47,6 @@ int main()
   catch (...)
   {
     std::cerr << "Dynamic memory overflow\n";
-    delete [] alphabet;
-    delete [] new_alphabet;
     delete [] new_line;
     return 1;
   }
@@ -69,6 +67,7 @@ int main()
       {
         std::cerr << "Dynamic memory overflow\n";
         delete [] old_alphabet;
+        delete [] new_line;
         return 1;
       }
       new_alphabet = cpLine(old_alphabet, new_alphabet, size);
