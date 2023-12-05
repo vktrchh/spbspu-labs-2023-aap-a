@@ -50,7 +50,7 @@ int main(int argc, char* argv[])
         {
           std::cerr << error.what() << '\n';
           delete[] dynamicArray;
-          return 2;
+          return 0;
         }
         delete[] dynamicArray;
       }
@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
         {
           std::cerr << error.what() << '\n';
           delete[] dynamicArray;
-          return 2;
+          return 0;
         }
        delete[] dynamicArray;
       }
