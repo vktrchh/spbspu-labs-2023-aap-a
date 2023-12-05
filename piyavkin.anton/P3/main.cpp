@@ -9,18 +9,17 @@ int main()
   char c = 0;
   size_t i = 0;
   char * new_line = new char [0]{};
-  char * old_line = nullptr;
   std::cin >> std::noskipws;
   while (c != '\n')
   {
-    old_line = new_line;
+    char * old_line = new_line;
     try
     {
       new_line = new char [length + 1]{};
     }
     catch (...)
     {
-      std::cerr << "Dynamic memory overflow";
+      std::cerr << "Dynamic memory overflow\n";
       delete [] old_line;
       return 1;
     }
@@ -28,7 +27,7 @@ int main()
     std::cin >> c;
     if (!std::cin)
     {
-      std::cerr << "Line not read";
+      std::cerr << "Line not read\n";
       delete [] new_line;
       return 1;
     }
@@ -47,7 +46,7 @@ int main()
   }
   catch (...)
   {
-    std::cerr << "Dynamic memory overflow";
+    std::cerr << "Dynamic memory overflow\n";
     delete [] alphabet;
     delete [] new_alphabet;
     delete [] new_line;
@@ -68,7 +67,7 @@ int main()
       }
       catch (...)
       {
-        std::cerr << "Dynamic memory overflow";
+        std::cerr << "Dynamic memory overflow\n";
         delete [] old_alphabet;
         return 1;
       }
