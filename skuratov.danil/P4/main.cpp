@@ -33,55 +33,55 @@ int main(int argc, char* argv[])
   try
   {
     readSize(in, rows, cols);
+    size_t sizeOfArray = rows * cols;
+    if ((sizeOfArray < MAX_SIZE) && (rows != 0 || cols != 0))
+    {
+      int* dynamicArray = new int[sizeOfArray];
+      int staticArray[MAX_SIZE] = {};
+      if (taskNumber == 1)
+      {
+        try
+        {
+          readArray(in, staticArray, MAX_SIZE);
+          int res = countSaddlePoints(staticArray, rows, cols);
+          writeResult(out, res);
+        }
+        catch (const std::runtime_error& error)
+        {
+          std::cerr << error.what() << '\n';
+          delete[] dynamicArray;
+          return 2;
+        }
+        delete[] dynamicArray;
+      }
+      else if (taskNumber == 2)
+      {
+        try
+        {
+        readArray(in, dynamicArray, sizeOfArray);
+        int res = findMinSumAlongSecondaryDiagonal(dynamicArray, rows, cols);
+        writeResult(out, res);
+        }
+        catch (const std::runtime_error& error)
+        {
+          std::cerr << error.what() << '\n';
+          delete[] dynamicArray;
+          return 2;
+        }
+       delete[] dynamicArray;
+      }
+      else
+      {
+        std::cerr << "Invalid first parameter" << '\n';
+        delete[] dynamicArray;
+        return 1;
+      }
+    }
   }
   catch (const std::runtime_error& error)
   {
     std::cerr << error.what() << '\n';
     return 2;
-  }
-  size_t sizeOfArray = rows * cols;
-  if ((sizeOfArray < MAX_SIZE) && (rows != 0 || cols != 0))
-  {
-    int* dynamicArray = new int[sizeOfArray];
-    int staticArray[MAX_SIZE] = {};
-    if (taskNumber == 1)
-    {
-      try
-      {
-        readArray(in, staticArray, MAX_SIZE);
-        int res = countSaddlePoints(staticArray, rows, cols);
-        writeResult(out, res);
-      }
-      catch (const std::runtime_error& error)
-      {
-        std::cerr << error.what() << '\n';
-        delete[] dynamicArray;
-        return 2;
-      }
-      delete[] dynamicArray;
-    }
-    else if (taskNumber == 2)
-    {
-      try
-      {
-        readArray(in, dynamicArray, sizeOfArray);
-        int res = findMinSumAlongSecondaryDiagonal(dynamicArray, rows, cols);
-        writeResult(out, res);
-      }
-      catch (const std::runtime_error& error)
-      {
-        std::cerr << error.what() << '\n';
-        delete[] dynamicArray;
-        return 2;
-      }
-      delete[] dynamicArray;
-    }
-    else
-    {
-      std::cerr << "Invalid first parameter" << '\n';
-      delete[] dynamicArray;
-      return 1;
-    }
   }
   return 0;
 }
