@@ -17,7 +17,7 @@ int main()
     {
       new_line = new char [length + 1]{};
     }
-    catch (...)
+    catch (std::bad_alloc&)
     {
       std::cerr << "Dynamic memory overflow\n";
       delete [] old_line;
@@ -66,5 +66,6 @@ int main()
   {
     std::cout << new_alphabet[i];
   }
+  std::cout << "\n";
   delete [] new_alphabet;
 }
