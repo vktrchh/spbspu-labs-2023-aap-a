@@ -7,7 +7,6 @@ int main()
   using namespace piyavkin;
   size_t length = 0;
   char c = 0;
-  size_t i = 0;
   char * new_line = new char [0]{};
   std::cin >> std::noskipws;
   while (c != '\n')
@@ -23,7 +22,7 @@ int main()
       delete [] old_line;
       return 1;
     }
-    new_line = cpLine(old_line, new_line, length);
+    cpLine(old_line, new_line, length);
     std::cin >> c;
     if (!std::cin)
     {
@@ -31,9 +30,7 @@ int main()
       delete [] new_line;
       return 1;
     }
-    new_line[i] = c;
-    new_line[i] = tolower(new_line[i]);
-    ++i;
+    new_line[length] = tolower(c);
     ++length;
   }
   std::cin >> std::skipws;
@@ -41,7 +38,6 @@ int main()
   char * new_alphabet = nullptr;
   createAlphabet(alphabet, new_line, length);
   size_t size = 0;
-  size_t n = 0;
   for (int i = 0; i < 26; ++i)
   {
     if (alphabet[i] == false)
@@ -59,14 +55,13 @@ int main()
         delete [] new_line;
         return 1;
       }
-      new_alphabet = cpLine(old_alphabet, new_alphabet, size);
-      new_alphabet[n] = letter;
+      cpLine(old_alphabet, new_alphabet, size);
+      new_alphabet[size] = letter;
       ++size;
-      ++n;
     }
   }
   delete [] new_line;
-  for (size_t i = 0; i < n; ++i)
+  for (size_t i = 0; i < size; ++i)
   {
     std::cout << new_alphabet[i];
   }

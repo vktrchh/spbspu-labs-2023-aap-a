@@ -3,6 +3,6 @@
 #include <cstddef>
 namespace piyavkin
 {
-  char * cpLine(char * old_line, char * new_line, size_t length);
+  void cpLine(char * old_line, char * new_line, size_t length);
 }
 #endif
