@@ -3,6 +3,6 @@
 #include <cstddef>
 namespace piyavkin
 {
-  void createAlphabet(bool * const alphabet, char * line, size_t length);
+  size_t createAlphabet(bool * const alphabet, char * line, size_t length);
 }
 #endif
