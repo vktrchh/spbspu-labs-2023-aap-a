@@ -29,4 +29,3 @@ char * strelyaev::inputArray(const char * old_array, const size_t old_array_size
   }
   return inputArray(new_array, old_array_size + 10, current_array_size);
 }
-
