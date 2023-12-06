@@ -2,14 +2,17 @@
 #include <fstream>
 #include <stdexcept>
 
-int* readArray(std::ifstream& in, int array[], const size_t& rows, const size_t& cols);
+int* readArray(std::ifstream& in, int array[], const size_t& rows, const size_t& cols)
 {
-  for (size_t i = 0; i < size - 1; ++i)
+  for (size_t i = 0; i < rows; ++i)
   {
-    in >> array[i];
-    if (!in)
+    for (size_t j = 0; j < cols; ++j)
     {
-       throw std::runtime_error("Invalid input file");
+      in >> array[i * cols + j];
+      if (!in)
+      {
+        throw std::runtime_error("Invalid input array from file");
+      }
     }
   }
   return array;
