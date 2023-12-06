@@ -1,5 +1,6 @@
 #include "checkdigit.h"
 #include <cctype>
+
 int strelyaev::checkDigit(const char * symbol_array, char * digit_array, const size_t symbol_array_size)
 {
   int position = 0;
