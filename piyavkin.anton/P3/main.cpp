@@ -42,14 +42,25 @@ int main()
   char * new_alphabet = nullptr;
   try
   {
-    new_alphabet = new char [count];
+    new_alphabet = new char [count+1];
   }
   catch (...)
   {
     std::cerr << "Dynamic memory overflow\n";
     return 1;
   }
+  new_alphabet[count] = '\0';
+  char letter = 0;
   size_t size = 0;
+  for (size_t i = 0; i < 26; ++i)
+  {
+    if (alphabet[i] == false)
+    {
+      letter = 'a' + i;
+      new_alphabet[size] = letter;
+      ++size;
+    }
+  }
   for (size_t i = 0; i < size; ++i)
   {
     std::cout << new_alphabet[i];
