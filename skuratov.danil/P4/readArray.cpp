@@ -2,7 +2,7 @@
 #include <fstream>
 #include <stdexcept>
 
-int* readArray(std::ifstream& in, int array[], const size_t& size)
+int* readArray(std::ifstream& in, int array[], const size_t& rows, const size_t& cols);
 {
   for (size_t i = 0; i < size - 1; ++i)
   {
