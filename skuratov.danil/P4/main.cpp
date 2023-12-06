@@ -18,13 +18,13 @@ int main(int argc, char* argv[])
 
   if (argc < 4)
   {
-      std::cerr << "Not enough parameters" << '\n';
-      return 1;
+    std::cerr << "Not enough parameters" << '\n';
+    return 1;
   }
   else if (argc > 4)
   {
-      std::cerr << "Too many arguments" << '\n';
-      return 1;
+    std::cerr << "Too many arguments" << '\n';
+    return 1;
   }
 
   const char* inputFileName = argv[2];
@@ -51,7 +51,7 @@ int main(int argc, char* argv[])
           {
             throw std::runtime_error("Not enough data for task 1");
           }
-          readArray(in, staticArray, MAX_SIZE);
+          readArray(in, staticArray, rows, cols);
           int res = countSaddlePoints(staticArray, rows, cols);
           writeResult(out, res);
         }
@@ -70,7 +70,7 @@ int main(int argc, char* argv[])
           {
             throw std::runtime_error("Not enough data for task 2");
           }
-          readArray(in, dynamicArray, sizeOfArray);
+          readArray(in, dynamicArray, rows, cols);
           int res = findMinSumAlongSecondaryDiagonal(dynamicArray, rows, cols);
           writeResult(out, res);
         }
