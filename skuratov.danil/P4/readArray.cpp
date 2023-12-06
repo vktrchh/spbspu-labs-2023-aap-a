@@ -4,16 +4,13 @@
 
 int* readArray(std::ifstream& in, int array[], const size_t& size)
 {
-  if (in)
+  for (size_t i = 0; i < size - 1; ++i)
   {
-    for (size_t i = 0; i < size - 1; ++i)
+    in >> array[i];
+    if (!in)
     {
-      in >> array[i];
+       throw std::runtime_error("Invalid input file");
     }
-  }
-  else
-  {
-    throw std::runtime_error("Invalid input file");
   }
   return array;
 }

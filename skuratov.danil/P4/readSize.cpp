@@ -3,11 +3,8 @@
 
 void readSize(std::ifstream& in, size_t& rows, size_t& cols)
 {
-  if (in)
-  {
-    in >> rows >> cols;
-  }
-  else
+  in >> rows >> cols;
+  if (!in)
   {
     throw std::runtime_error("Invalid input file");
   }
