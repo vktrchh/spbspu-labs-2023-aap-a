@@ -5,7 +5,6 @@
 namespace rebdev
 {
   char * inputStr(std::istream & input, char * str);
-  char * newStr(char * oldStr, size_t size);
 }
 
 #endif

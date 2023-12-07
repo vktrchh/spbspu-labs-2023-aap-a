@@ -6,7 +6,7 @@ char * rebdev::inputStr(std::istream & input, char * str)
   input >> std::noskipws;
 
   char sym = 0;
-  size_t sizeOfStr = 1;
+  size_t sizeOfStr = 0;
 
   while (sym != '\n')
   {
@@ -18,26 +18,27 @@ char * rebdev::inputStr(std::istream & input, char * str)
       return nullptr;
     }
 
-    str = newStr(str, sizeOfStr);
-    str[sizeOfStr - 1] = sym;
+    try
+    {
+      char * str2 = new char[sizeOfStr + 1];
+      for (size_t i = 0; i < sizeOfStr; ++i)
+      {
+        str2[i] = str[i];
+      }
+
+      delete[] str;
+      str = str2;
+      str2 = nullptr;
+    }
+    catch (const std::logic_error & e)
+    {
+      throw e;
+    }
+
+    str[sizeOfStr] = sym;
     sizeOfStr += 1;
   }
 
   input >> std::skipws;
   return str;
-}
-
-char * rebdev::newStr(char * oldStr, size_t size)
-{
-
-  char * newStr = new char[size];
-  for(size_t i = 0; i < (size - 1); ++i)
-  {
-    newStr[i] = oldStr[i];
-  }
-  delete[] oldStr;
-  oldStr = newStr;
-  newStr = nullptr;
-
-  return oldStr;
 }
