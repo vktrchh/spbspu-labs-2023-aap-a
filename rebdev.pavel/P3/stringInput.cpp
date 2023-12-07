@@ -33,7 +33,7 @@ char * rebdev::inputStr(std::istream & input, char * str)
     }
     catch (const std::logic_error & e)
     {
-      delete[] str2
+      delete[] str2;
       throw e;
     }
 
