@@ -10,7 +10,7 @@ int main()
   char * new_line = nullptr;
   char * old_line = nullptr;
   std::cin >> std::noskipws;
-  while (sym != '\n')
+  while (std::cin >> sym /*!= '\n'*/)
   {
     old_line = new_line;
     try
@@ -24,18 +24,30 @@ int main()
       return 1;
     }
     cpLine(old_line, new_line, length);
-    std::cin >> sym;
-    if (!std::cin)
-    {
-      std::cerr << "Line not read\n";
-      delete [] new_line;
-      return 1;
-    }
+//    std::cin >> sym;
+//    if (!std::cin)
+//    {
+//      std::cerr << "Line not read\n";
+//      delete [] new_line;
+//      return 1;
+//    }
     new_line[length] = tolower(sym);
     ++length;
+    if (sym == '\n')
+    {
+      break;
+    }
   }
   std::cin >> std::skipws;
-  new_line[length-1] = '\0';
+  if (new_line != nullptr)
+  {
+    new_line[length-1] = '\0';
+  }
+  else
+  {
+    std::cerr << "Line not read\n";
+    return 1;
+  }
   bool alphabet [26] = {};
   size_t count = createAlphabet(alphabet, new_line, length);
   delete [] new_line;
