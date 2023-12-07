@@ -3,7 +3,6 @@
 #include "checkdigit.h"
 #include "arrayinput.h"
 
-
 int main()
 {
   using namespace strelyaev;
@@ -18,7 +17,7 @@ int main()
   }
   catch (...)
   {
-    std::cerr << "Unable to create an array";
+    std::cerr << "Unable to create an array\n";
     delete [] start_array;
     delete [] end_array;
     return 1;
