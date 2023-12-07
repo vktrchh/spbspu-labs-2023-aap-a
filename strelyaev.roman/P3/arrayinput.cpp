@@ -1,7 +1,7 @@
 #include "arrayinput.h"
 #include <iostream>
 
-void strelyaev::moveArray(const char * old_array, const size_t old_array_size, char * new_array)
+void strelyaev::moveArray(const char * old_array, size_t old_array_size, char * new_array)
 {
   for (size_t i = 0; i < old_array_size; i++)
   {
@@ -10,7 +10,7 @@ void strelyaev::moveArray(const char * old_array, const size_t old_array_size, c
   delete [] old_array;
 }
 
-char * strelyaev::inputArray(const char * old_array, const size_t old_array_size, size_t * current_array_size)
+char * strelyaev::inputArray(char * old_array, size_t old_array_size, size_t * current_array_size)
 {
   char * new_array = new char [*current_array_size += 10];
   strelyaev::moveArray(old_array, old_array_size, new_array);

@@ -4,7 +4,7 @@
 
 namespace strelyaev
 {
-  void moveArray(char *, size_t, char *);
-  char * inputArray(char *, size_t, size_t *);
+  void moveArray(const char * old_array, size_t old_array_size, char * new_array);
+  char * inputArray(char * old_array, size_t old_array_size, size_t * current_array_size);
 }
 #endif
