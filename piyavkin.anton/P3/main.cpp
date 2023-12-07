@@ -1,5 +1,6 @@
 #include "cpline.hpp"
 #include "createalphabet.hpp"
+#include "createline.hpp"
 #include <iostream>
 
 int main()
@@ -10,7 +11,7 @@ int main()
   char * new_line = nullptr;
   char * old_line = nullptr;
   std::cin >> std::noskipws;
-  while (std::cin >> sym /*!= '\n'*/)
+  while (std::cin >> sym)
   {
     old_line = new_line;
     try
@@ -24,13 +25,6 @@ int main()
       return 1;
     }
     cpLine(old_line, new_line, length);
-//    std::cin >> sym;
-//    if (!std::cin)
-//    {
-//      std::cerr << "Line not read\n";
-//      delete [] new_line;
-//      return 1;
-//    }
     new_line[length] = tolower(sym);
     ++length;
     if (sym == '\n')
@@ -62,18 +56,8 @@ int main()
     return 1;
   }
   new_alphabet[count] = '\0';
-  char letter = 0;
-  size_t size = 0;
-  for (size_t i = 0; i < 26; ++i)
-  {
-    if (alphabet[i] == false)
-    {
-      letter = 'a' + i;
-      new_alphabet[size] = letter;
-      ++size;
-    }
-  }
-  for (size_t i = 0; i < size; ++i)
+  createLine(alphabet, new_alphabet);
+  for (size_t i = 0; i < count+1; ++i)
   {
     std::cout << new_alphabet[i];
   }
