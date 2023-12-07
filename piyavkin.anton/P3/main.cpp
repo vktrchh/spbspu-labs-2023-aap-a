@@ -15,7 +15,7 @@ int main()
     old_line = new_line;
     try
     {
-      new_line = new char [length + 2]{};
+      new_line = new char [length + 1]{};
     }
     catch (std::bad_alloc&)
     {
@@ -35,7 +35,7 @@ int main()
     ++length;
   }
   std::cin >> std::skipws;
-  new_line[length] = '\0';
+  new_line[length-1] = '\0';
   bool alphabet [26] = {};
   size_t count = createAlphabet(alphabet, new_line, length);
   delete [] new_line;
@@ -65,5 +65,6 @@ int main()
   {
     std::cout << new_alphabet[i];
   }
+  std::cout << '\n';
   delete [] new_alphabet;
 }
