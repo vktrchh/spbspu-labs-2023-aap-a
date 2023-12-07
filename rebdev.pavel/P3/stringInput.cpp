@@ -35,7 +35,7 @@ char * rebdev::newStr(char * oldStr, size_t size)
   {
     newStr[i] = oldStr[i];
   }
-
+  delete[] oldStr;
   oldStr = newStr;
   newStr = nullptr;
 
