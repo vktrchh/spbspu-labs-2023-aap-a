@@ -7,7 +7,7 @@
 int main()
 {
   char * firstStr = nullptr;
-  char * secondStr("Some123321 String 329408 with 3 number!");
+  char secondStr[] = {"Some123321 String 329408 with 3 number!"};
   using namespace rebdev;
 
   try
