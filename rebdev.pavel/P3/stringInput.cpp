@@ -1,13 +1,12 @@
 #include "stringInput.hpp"
-#include <stack>
 #include <cstddef>
 
-char * rebdev::inputStr(std::istream & input)
+char * rebdev::inputStr(std::istream & input, char * str)
 {
   input >> std::noskipws;
 
   char sym = 0;
-  std::stack<char> newStack;
+  size_t sizeOfStr = 1;
 
   while (sym != '\n')
   {
@@ -19,19 +18,26 @@ char * rebdev::inputStr(std::istream & input)
       return nullptr;
     }
 
-    newStack.push(sym);
+    str = newStr(str, sizeOfStr);
+    str[sizeOfStr - 1] = sym;
+    sizeOfStr += 1;
   }
 
-  char * firstStr = new char[newStack.size()];
-  for(size_t i = (newStack.size() - 1); i >= 0; --i)
+  input >> std::skipws;
+  return str;
+}
+
+char * rebdev::newStr(char * oldStr, size_t size)
+{
+
+  char * newStr = new char[size];
+  for(size_t i = 0; i < (size - 1); ++i)
   {
-    firstStr[i] = newStack.top();
-    newStack.pop();
-    if (i == 0)
-    {
-      break;
-    }
+    newStr[i] = oldStr[i];
   }
 
-  return firstStr;
+  oldStr = newStr;
+  newStr = nullptr;
+
+  return oldStr;
 }

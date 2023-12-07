@@ -7,14 +7,13 @@
 int main()
 {
   char * firstStr = nullptr;
-  char * secondStr = nullptr;
+  char * secondStr("Some123321 String 329408 with 3 number!");
   using namespace rebdev;
 
   try
   {
-    firstStr = inputStr(std::cin);
-    secondStr = inputStr(std::cin);
-    if ((firstStr == nullptr) || (secondStr == nullptr))
+    firstStr = inputStr(std::cin, firstStr);
+    if ((firstStr == nullptr))
     {
       throw std::logic_error("Error message");
     }
@@ -22,7 +21,6 @@ int main()
   catch (std::logic_error & e)
   {
     delete[] firstStr;
-    delete[] secondStr;
     return 1;
   }
 
@@ -30,6 +28,5 @@ int main()
   std::cout << rez << '\n';
   delete[] rez;
   delete[] firstStr;
-  delete[] secondStr;
   return 0;
 }
