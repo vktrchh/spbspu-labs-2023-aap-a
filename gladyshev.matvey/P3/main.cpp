@@ -21,6 +21,7 @@ int main()
     if (!std::cin)
     {
       std::cerr << "Bad input\n";
+      delete[] basearray;
       return 1;
     }
     if ((currsym == '\n') and (counter == 0))
