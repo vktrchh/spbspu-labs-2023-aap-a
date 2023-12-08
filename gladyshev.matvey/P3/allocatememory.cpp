@@ -11,6 +11,7 @@ char * gladyshev::newMemory(char * basicar, size_t len)
   {
     std::cerr << "Error in data\n";
     delete[] basicar;
+    throw;
   }
   for (size_t i = 0; i < len; ++i)
   {

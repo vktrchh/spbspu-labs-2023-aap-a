@@ -1,14 +1,14 @@
 #include <iomanip>
 
-#include "allocatememory.h"
 #include "checkvowel.h"
+#include "allocatememory.h"
 #include "createarray.h"
 
 int main()
 {
   using namespace gladyshev;
   const size_t vowelSize = 11;
-  const char vowels[vowelSize] = "AEIOUaeiou";
+  const char vowarr[vowelSize] = "AEIOUaeiou";
   char currsym = 0;
   size_t length = 11;
   size_t counter = 0;
@@ -16,8 +16,19 @@ int main()
   char * finalarray = nullptr;
   basearray = new char[length];
   std::cin >> std::noskipws;
-  while (std::cin >> currsym && currsym != '\n')
+  while (true)
   {
+    std::cin >> currsym;
+    if (!std::cin)
+    {
+      std::cerr << "Bad input";
+      return 1;
+    }
+    if (currsym == '\n')
+    {
+      basearray[counter] = '\0';
+      break;
+    }
     basearray[counter] = currsym;
     if ((counter + 1) == length)
     {
@@ -37,7 +48,7 @@ int main()
   }
   try
   {
-    finalarray = new char[length];
+    finalarray = new char[counter];
   }
   catch (const std::bad_alloc & e)
   {
@@ -45,7 +56,7 @@ int main()
     delete[] basearray;
     return 2;
   }
-  finalarray = createFinalArray(basearray, finalarray, length, vowels, vowelSize);
+  finalarray = createFinalArray(basearray, finalarray, counter, vowarr, vowelSize);
   std::cout << finalarray << "\n";
   delete[] basearray;
   delete[] finalarray;
