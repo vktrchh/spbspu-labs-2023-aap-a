@@ -7,7 +7,7 @@ int main(int argc, char * argv[])
 {
   if (argc != 4)
   {
-    std::cerr << "Error in command line arguments\n";
+    std::cerr << "Error in command line arguments" << "\n";	
     return 1;
   }
   //argv[1]
@@ -23,7 +23,7 @@ int main(int argc, char * argv[])
   std::fstream input(argv[2]);
   if (!input)
   {
-    std::cerr << "Cannot read a number\n";
+    std::cerr << "Cannot read a number" << "\n";
     return 2;
   }
   //argv[3]
