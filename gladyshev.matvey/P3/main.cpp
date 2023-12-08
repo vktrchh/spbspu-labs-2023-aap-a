@@ -15,7 +15,7 @@ int main()
   char * finalarray = nullptr;
   basearray = new char[length];
   std::cin >> std::noskipws;
-  while (currsym != '\n')
+  while ((currsym != '\n') && (std::cin))
   {
     std::cin >> currsym;
     if ((currsym == '\n') and (counter == 0))
