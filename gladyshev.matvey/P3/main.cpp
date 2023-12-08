@@ -7,7 +7,8 @@
 int main()
 {
   using namespace gladyshev;
-  const char vowels[11] = "AEIOUaeiou";
+  const int vowelSize = 11;
+  const char vowels[vowelSize] = "AEIOUaeiou";
   char currsym = '0';
   size_t length = 11;
   size_t counter = 0;
@@ -53,7 +54,7 @@ int main()
     delete[] basearray;
     return 2;
   }
-  finalarray = createFinalArray(basearray, finalarray, length, vowels);
+  finalarray = createFinalArray(basearray, finalarray, length, vowels, vowelSize);
   std::cout << finalarray << "\n";
   delete[] basearray;
   delete[] finalarray;
