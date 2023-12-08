@@ -9,22 +9,15 @@ int main()
   using namespace gladyshev;
   const size_t vowelSize = 11;
   const char vowels[vowelSize] = "AEIOUaeiou";
-  char currsym = '0';
+  char currsym = 0;
   size_t length = 11;
   size_t counter = 0;
   char * basearray = nullptr;
   char * finalarray = nullptr;
   basearray = new char[length];
   std::cin >> std::noskipws;
-  while (true)
+  while (std::cin >> currsym)
   {
-    std::cin >> currsym;
-    if (!std::cin)
-    {
-      std::cerr << "Bad input\n";
-      delete[] basearray;
-      return 1;
-    }
     if (currsym == '\n')
     {
       break;
