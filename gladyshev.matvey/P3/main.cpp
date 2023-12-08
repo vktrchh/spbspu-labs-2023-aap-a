@@ -15,19 +15,9 @@ int main()
   char * finalarray = nullptr;
   basearray = new char[length];
   std::cin >> std::noskipws;
-  while (currsym != '\n')
+  while (currsym != '\n' && std::cin)
   {
     std::cin >> currsym;
-    if (!std::cin)
-    {
-      std::cerr << "Bad input\n";
-      delete[] basearray;
-      return 1;
-    }
-    if (currsym == '\n')
-    {
-      break;
-    }
     basearray[counter] = currsym;
     if ((counter + 1) == length)
     {
