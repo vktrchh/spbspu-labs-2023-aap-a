@@ -18,6 +18,12 @@ int main()
   std::cin >> std::noskipws;
   while (std::cin >> currsym)
   {
+    if (!std::cin)
+    {
+      std::cerr << "Bad input\n";
+      delete[] basearray;
+      return 1;
+    }
     if (currsym == '\n')
     {
       break;
