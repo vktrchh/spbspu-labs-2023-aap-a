@@ -7,7 +7,7 @@
 int main()
 {
   using namespace gladyshev;
-  const char vowels[] = "AEIOUaeiou";
+  const char vowels[11] = "AEIOUaeiou";
   char currsym = '0';
   size_t length = 11;
   size_t counter = 0;
@@ -15,7 +15,7 @@ int main()
   char * finalarray = nullptr;
   basearray = new char[length];
   std::cin >> std::noskipws;
-  while (currsym != '\n' && std::cin)
+  while (currsym != '\n')
   {
     std::cin >> currsym;
     basearray[counter] = currsym;
@@ -30,6 +30,7 @@ int main()
       {
         std::cerr << "Leak\n";
         delete[] basearray;
+        return 1;
       }
     }
     ++counter;
