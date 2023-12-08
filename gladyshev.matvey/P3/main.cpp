@@ -24,12 +24,6 @@ int main()
       delete[] basearray;
       return 1;
     }
-    if ((currsym == '\n') and (counter == 0))
-    {
-      std::cerr << "No data\n";
-      delete[] basearray;
-      return 2;
-    }
     basearray[counter] = currsym;
     if ((counter + 1) == length)
     {
