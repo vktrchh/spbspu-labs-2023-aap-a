@@ -24,9 +24,8 @@ int main()
       delete[] basearray;
       return 1;
     }
-    if (currsym == '\n')
+    if (currsym == '\n' && counter != 0)
     {
-      basearray[counter] = '\0';
       break;
     }
     basearray[counter] = currsym;
