@@ -18,11 +18,6 @@ int main()
   std::cin >> std::noskipws;
   while (std::cin >> currsym)
   {
-    if (currsym == '\n' && counter == 0)
-    {
-      std::cerr << "Lack of data\n";
-      return 1;
-    }
     if (currsym == '\n')
     {
       break;
