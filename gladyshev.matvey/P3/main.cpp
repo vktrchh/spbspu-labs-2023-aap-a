@@ -18,6 +18,11 @@ int main()
   while (currsym != '\n')
   {
     std::cin >> currsym;
+    if (!std::cin)
+    {
+      std::cerr << "Bad input\n";
+      return 1;
+    }
     basearray[counter] = currsym;
     if ((counter + 1) == length)
     {
