@@ -11,17 +11,9 @@ int main()
   char currsym = '0';
   size_t length = 11;
   size_t counter = 0;
-  char * finalarray = nullptr;
   char * basearray = nullptr;
-  try
-  {
-    basearray = new char[length];
-  }
-  catch (const std::bad_alloc & e)
-  {
-    std::cerr << "Error in data\n";
-    return 2;
-  }
+  char * finalarray = nullptr;
+  basearray = new char[length];
   std::cin >> std::noskipws;
   while (currsym != '\n')
   {

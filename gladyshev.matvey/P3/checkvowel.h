@@ -5,7 +5,7 @@
 
 namespace gladyshev
 {
-  bool isntVowel(char a, const char * lol);
+  bool isntVowel(char a, const char * vowels);
 }
 
 #endif

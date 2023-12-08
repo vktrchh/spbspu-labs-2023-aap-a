@@ -5,7 +5,7 @@
 
 namespace gladyshev
 {
-  char * createFinalArray(char * start, char * finish, size_t len, const char * lol);
+  char * createFinalArray(const char * start, char * finish, size_t len, const char * vowels);
 }
 
 #endif
