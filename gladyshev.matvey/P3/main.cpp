@@ -15,16 +15,14 @@ int main()
   char * finalarray = nullptr;
   basearray = new char[length];
   std::cin >> std::noskipws;
-  while (true)
+  while (std::cin >> currsym)
   {
-    std::cin >> currsym;
-    if (!std::cin)
+    if (currsym == '\n' && counter == 0)
     {
-      std::cerr << "Bad input\n";
-      delete[] basearray;
+      std::cerr << "Lack of data\n";
       return 1;
     }
-    if (currsym == '\n' && counter != 0)
+    if (currsym == '\n')
     {
       break;
     }
