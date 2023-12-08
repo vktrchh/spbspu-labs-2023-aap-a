@@ -7,7 +7,7 @@
 int main()
 {
   using namespace gladyshev;
-  const int vowelSize = 11;
+  const size_t vowelSize = 11;
   const char vowels[vowelSize] = "AEIOUaeiou";
   char currsym = '0';
   size_t length = 11;

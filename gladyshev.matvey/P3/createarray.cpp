@@ -1,7 +1,7 @@
 #include "createarray.h"
 #include "checkvowel.h"
 
-char * gladyshev::createFinalArray(const char * start, char * finish, size_t len, const char * vowels, const int vowelSize)
+char * gladyshev::createFinalArray(const char * start, char * finish, size_t len, const char * vowels, const size_t vowelSize)
 {
   size_t nummain = 0;
   size_t numsup = 0;
