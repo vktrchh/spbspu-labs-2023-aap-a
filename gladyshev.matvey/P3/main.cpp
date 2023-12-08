@@ -18,6 +18,12 @@ int main()
   std::cin >> std::noskipws;
   while (std::cin >> currsym)
   {
+    if (currsym == '\n' && counter < 2)
+    {
+      std::cerr << "So small\n";
+      delete[] basearray;
+      return 1;
+    }
     if (currsym == '\n')
     {
       basearray[counter] = '\0';
