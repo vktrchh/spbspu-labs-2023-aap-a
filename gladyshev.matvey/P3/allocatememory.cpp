@@ -17,6 +17,10 @@ char * gladyshev::newMemory(char * basicar, size_t len)
   {
     newarr[i] = basicar[i];
   }
+  for (size_t i = len; i < len + 11; ++i)
+  {
+    newarr[i] = 0;
+  }
   delete[] basicar;
   return newarr;
 }

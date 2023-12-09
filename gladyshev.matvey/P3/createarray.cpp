@@ -14,5 +14,6 @@ char * gladyshev::createFinalArray(const char * start, char * finish, size_t len
     }
     ++nummain;
   }
+  finish[numsup] = '\0';
   return finish;
 }

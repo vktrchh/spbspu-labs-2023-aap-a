@@ -16,15 +16,23 @@ int main()
   char * finalarray = nullptr;
   basearray = new char[length];
   std::cin >> std::noskipws;
-  while (currsym != '\n')
+  while (std::cin >> currsym)
   {
-    std::cin >> currsym;
-    if (!std::cin)
+    try
     {
-      std::cout << "Bad input\n";
+    basearray[counter] = currsym;
+    }
+    catch (const std::bad_alloc & e)
+    {
+      std::cerr << "Error input\n";
+      delete[] basearray;
       return 1;
     }
-    basearray[counter] = currsym;
+    if (currsym == '\n')
+    {
+      basearray[counter] = '\0';
+      break;
+    }
     if ((counter + 1) == length)
     {
       try
@@ -41,9 +49,10 @@ int main()
     }
     ++counter;
   }
-  if (currsym == '\n')
+  if (counter == 0)
   {
-    basearray[counter] = '\0';
+    std::cerr << "Lack of data\n";
+    return 1;
   }
   try
   {
