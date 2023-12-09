@@ -25,10 +25,16 @@ char * strelyaev::inputArray(char * old_array, size_t old_array_size, size_t * c
   }
   strelyaev::moveArray(old_array, old_array_size, new_array);
   char c = 0;
-  size_t i = 0; //old_array_size - 1;
+  size_t i = 0;
   while ((c != '\n') && (i < old_array_size + 10))
   {
     std::cin >> c;
+    if (!std::cin)
+    {
+      std::cerr << "Bad input\n";
+      delete [] new_array;
+      return 1;
+    }
     new_array[i] = c;
     i++;
   }
