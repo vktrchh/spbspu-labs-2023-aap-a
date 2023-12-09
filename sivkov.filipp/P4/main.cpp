@@ -48,7 +48,6 @@ int main(int argc, char * argv[])
 
   size_t rows = 0, cols = 0;
   std::ifstream input(argv[2]);
-  input >> rows >> cols;
   if (!input.is_open())
   {
     std::cerr << "Cannot open file!\n";
@@ -59,6 +58,11 @@ int main(int argc, char * argv[])
     std::cerr << "Cannot read numbers!\n";
     return 2;
   }
+  if (input.peek() == EOF)
+  {
+    std::cerr << "File empty!\n";
+  }
+  input >> rows >> cols;
   if (numOfTask == 1)
   {
     int statMatrix[10000] = {0};
