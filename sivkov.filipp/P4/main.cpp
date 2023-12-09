@@ -61,6 +61,7 @@ int main(int argc, char * argv[])
   if (input.peek() == EOF)
   {
     std::cerr << "File empty!\n";
+    return 2;
   }
   input >> rows >> cols;
   if (numOfTask == 1)
