@@ -3,7 +3,7 @@
 
 void strelyaev::moveArray(const char * old_array, size_t old_array_size, char * new_array)
 {
-  for (size_t i = 0; i < old_array_size; i++)
+  for (size_t i = 0; i < old_array_size - 1; i++)
   {
     new_array[i] = old_array[i];
   }
