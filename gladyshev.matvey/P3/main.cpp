@@ -18,17 +18,18 @@ int main()
   std::cin >> std::noskipws;
   while (std::cin >> currsym)
   {
-    if (currsym == '\n' && counter == 0)
+    if (currsym == '\n' && counter < 2)
     {
       std::cerr << "So small\n";
       delete[] basearray;
       return 1;
     }
+    basearray[counter] = currsym;
     if (currsym == '\n')
     {
+      basearray[counter + 1] = '\0';
       break;
     }
-    basearray[counter] = currsym;
     if ((counter + 1) == length)
     {
       try
@@ -44,10 +45,6 @@ int main()
       }
     }
     ++counter;
-  }
-  if (basearray != nullptr)
-  {
-    basearray[counter - 1] = '\0';
   }
   try
   {
