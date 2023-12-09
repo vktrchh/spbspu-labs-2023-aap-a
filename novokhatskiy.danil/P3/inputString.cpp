@@ -17,7 +17,7 @@ char* novokhatskiy::inputString(std::istream &input)
   input >> std::noskipws;
   while ((input >> symbol) && (symbol != '\n')) 
   {
-    if (cycleIndex >= sizeString)
+    if (cycleIndex + 1 >= sizeString)
     {
       try
       {
@@ -32,6 +32,7 @@ char* novokhatskiy::inputString(std::istream &input)
       }
       catch (...)
       {
+        delete[] string;
         throw;
       }
     }

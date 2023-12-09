@@ -5,7 +5,10 @@ char* novokhatskiy::changeString(const char* in, char* out)
   char* result = out;
   do
   {
-    std::isalpha(*in) || (*out++ = *in);
+    if (!std::isalpha(*in))
+    {
+      *out++ = *in;
+    }
   }
   while (*in++);
   return result;
