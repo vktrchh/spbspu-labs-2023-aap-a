@@ -26,7 +26,7 @@ int main()
     }
     if (currsym == '\n')
     {
-      basearray[counter + 1] = '\0';
+      basearray[counter - 1] = '\0';
       break;
     }
     basearray[counter] = currsym;
