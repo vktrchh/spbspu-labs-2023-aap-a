@@ -30,6 +30,5 @@ int main()
   std::cin >> std::skipws;
   std::cout << checkDigit() << "\n";
   delete [] end_array;
-  delete [] digit_array;
   return 0;
 }
