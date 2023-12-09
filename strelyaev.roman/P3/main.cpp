@@ -29,7 +29,7 @@ int main()
     return 1;
   }
   std::cin >> std::skipws;
-  char * digit_array = new char [10];
+  char * digit_array = new char [11];
   std::cout << checkDigit(end_array, digit_array, symbol_array_size) << "\n";
   delete [] end_array;
   delete [] digit_array;
