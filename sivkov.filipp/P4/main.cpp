@@ -75,7 +75,8 @@ int main(int argc, char * argv[])
     count = localMaxCounter(dynamicMatrix, rows, cols, count, numOfTask);
   }
 
-  std::cout << "\n" << count;
+  std::ofstream output(argv[3]);
+  output << count << '\n';
 
   return 0;
 }

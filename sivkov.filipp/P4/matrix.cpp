@@ -24,7 +24,6 @@ int* fillMatrix(int* m, char* arg, int numOfTask)
     for (size_t i = 0; i < size; i++)
     {
       input >> m[i];
-      std::cout << m[i];
     }
     return m;
   }
