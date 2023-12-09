@@ -16,20 +16,15 @@ int main()
   char * finalarray = nullptr;
   basearray = new char[length];
   std::cin >> std::noskipws;
-  while (std::cin >> currsym)
+  while (currsym != '\n')
   {
-    if (currsym == '\n' && counter < 2)
+    std::cin >> currsym;
+    if (!std::cin)
     {
-      std::cerr << "So small\n";
-      delete[] basearray;
+      std::cout << "Bad input\n";
       return 1;
     }
     basearray[counter] = currsym;
-    if (currsym == '\n')
-    {
-      basearray[counter + 1] = '\0';
-      break;
-    }
     if ((counter + 1) == length)
     {
       try
@@ -45,6 +40,10 @@ int main()
       }
     }
     ++counter;
+  }
+  if (currsym == '\n')
+  {
+    basearray[counter] = '\0';
   }
   try
   {
