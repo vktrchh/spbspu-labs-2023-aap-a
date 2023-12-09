@@ -26,7 +26,7 @@ char * strelyaev::inputArray(char * old_array, size_t old_array_size, size_t * c
   strelyaev::moveArray(old_array, old_array_size, new_array);
   char c = 0;
   size_t i = 0;
-  while ((c != '\n') && (i < old_array_size + 10))
+  while ((c != '\n') && (i < old_array_size + 9))
   {
     std::cin >> c;
     if (!std::cin)
