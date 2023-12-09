@@ -65,5 +65,6 @@ int checkRepDgt(char * string)
       digits[position++] = string[i];
     }
   }
+  delete [] digits;
   return 0;
 }
