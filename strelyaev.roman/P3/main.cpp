@@ -11,11 +11,6 @@ int main()
   char * end_array = nullptr;
   char * start_array = nullptr;
 
-  if (!std::cin)
-  {
-    std::cerr << "Input is empty\n";
-    return 1;
-  }
   try
   {
   start_array = new char [1];
