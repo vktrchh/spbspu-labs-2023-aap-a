@@ -25,7 +25,7 @@ int* fillMatrix(int* m, char* arg, int numOfTask)
     {
       if (!(input >> m[i]))
       {
-        std::cout << "size of elements != rows * cols!\n";
+        std::cerr << "size of elements != rows * cols!\n";
         return m;
       }
     }
