@@ -8,6 +8,10 @@ char * extendString(char * string, size_t size)
     size_t i = 0;
     while ((c != '\n') && (std::cin >> c))
     {
+      if (!std::cin)
+      {
+        return nullptr;
+      }
       string[i++] = c;
       if (i == (size - 1))
       {

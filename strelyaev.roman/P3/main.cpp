@@ -22,7 +22,7 @@ int main()
   string = extendString(string, size);
   if (string == nullptr)
   {
-    std::cerr << "Unable to allocate buffer memory\n";
+    std::cerr << "Unable to create a string\n";
     return 1;
   }
   std::cout << checkRepDgt(string) << "\n";
