@@ -48,11 +48,11 @@ int main(int argc, char * argv[])
   if (numOfTask == 1)
   {
     int statMatrix[10000] = {0};
-    for (int i = 0; i < cols * rows; i++)
+    for (size_t i = 0; i < cols * rows; i++)
     {
       input >> statMatrix[i];
     }
-    for (int i = 0; i < cols * rows - 1; i++)
+    for (size_t i = 0; i < cols * rows - 1; i++)
     {
       if ((i > cols) && (i < rows * cols - cols) && ((i % cols) != 0 && (i % rows) != 0))
       {
@@ -66,11 +66,11 @@ int main(int argc, char * argv[])
   if (numOfTask == 2)
   {
     int* dynamicMatrix = new int[cols * rows];
-    for (int i = 0; i < cols * rows; i++)
+    for (size_t i = 0; i < cols * rows; i++)
     {
       input >> dynamicMatrix[i];
     }
-    for (int i = 0; i < cols * rows - 1; i++)
+    for (size_t i = 0; i < cols * rows - 1; i++)
     {
       if ((i > cols) && (i < rows * cols - cols) && ((i % cols) != 0 && (i % rows) != 0))
       {
