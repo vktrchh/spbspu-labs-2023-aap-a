@@ -1,34 +1,25 @@
 #include <iostream>
 #include <iomanip>
-#include "checkdigit.h"
-#include "arrayinput.h"
+#include "extendstring.h"
 
 int main()
 {
-  using namespace strelyaev;
   std::cin >> std::noskipws;
-  size_t symbol_array_size = 0;
-  char * end_array = nullptr;
-  char * start_array = nullptr;
 
+  char * string = nullptr;
+  size_t size = 0;
   try
   {
-  start_array = new char [1];
-  end_array = inputArray(start_array, 1, &symbol_array_size);
+    size = 10;
+    string = new char [10];
   }
   catch (...)
   {
-    std::cerr << "Unable to create an array\n";
-    delete [] start_array;
-    delete [] end_array;
+    std::cerr << "Unable to allocate memory\n";
     return 1;
   }
-  if (end_array == nullptr)
-  {
-    return 1;
-  }
-  std::cin >> std::skipws;
-  std::cout << checkDigit() << "\n";
-  delete [] end_array;
-  return 0;
+
+  string = extendString(string, size);
+  std::cout << checkRepDgt(string) << "\n";
+  delete [] string;
 }
