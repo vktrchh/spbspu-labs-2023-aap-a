@@ -13,7 +13,7 @@ int main()
 
   try
   {
-  start_array = new char [1]{0};
+  start_array = new char [1];
   end_array = inputArray(start_array, 1, &symbol_array_size);
   }
   catch (...)
@@ -25,7 +25,7 @@ int main()
   }
   std::cin >> std::skipws;
   char * digit_array = new char [11];
-  std::cout << checkDigit(end_array, digit_array, symbol_array_size - 1) << "\n";
+  std::cout << checkDigit(end_array, digit_array, symbol_array_size) << "\n";
   delete [] end_array;
   delete [] digit_array;
   return 0;
