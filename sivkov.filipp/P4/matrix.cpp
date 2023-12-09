@@ -1,35 +1,40 @@
+#include <fstream>
 #include <iostream>
 #include "matrix.hpp"
-#include <memory>
 
-void freeMatrix(int ** m, size_t rows)
-{
-  for (size_t i = 0; i < rows; ++i)
-  {
-    delete[] m[i];
-  }
-  delete[] m;
-}
 
-int ** createMatrix(size_t rows, size_t cols)
+int* fillMatrix(int* m, char* arg, int numOfTask)
 {
-  int ** rowsptrs = new int* [rows];
-  for (size_t i = 0; i < rows; ++i)
+  std::ifstream input(arg);
+  size_t rows = 0, cols = 0;
+  input >> rows >> cols;
+  size_t size = rows * cols;
+  if (!input.is_open())
   {
-    rowsptrs[i] = nullptr;
+    std::cerr << "Error opening file";
+    if (numOfTask == 2)
+    {
+      delete[] m;
+    }
+    throw;
   }
+
   try
   {
-    for (size_t i = 0; i < rows; ++i)
+    for (size_t i = 0; i < size; i++)
     {
-      rowsptrs[i] = new int[cols];
+      input >> m[i];
+      std::cout << m[i];
     }
-    return rowsptrs;
+    return m;
   }
   catch (const std::bad_alloc&)
   {
-    freeMatrix(rowsptrs, rows);
-    std::cout << "Error with matrix\n";
+    std::cerr << "Error with array\n";
+    if (numOfTask == 2)
+    {
+      delete[] m;
+    }
     throw;
   }
 }

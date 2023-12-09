@@ -3,12 +3,26 @@
 #include <stdexcept>
 #include <cstdlib>
 #include <string>
+#include <fstream>
+#include "matrix.hpp"
+#include "localMax.hpp"
 
 int main(int argc, char * argv[])
 {
-  if (argc != 4)
+  int count = 0;
+  if (argc == 1)
   {
-    std::cout << "Error command line\n";
+    std::cout << "Not enough arguments\n";
+    return 1;
+  }
+  else if ( argc > 4)
+  {
+    std::cout << "Too many arguments\n";
+    return 1;
+  }
+  else if (argc != 4)
+  {
+    std::cout << "Error comand line\n";
     return 1;
   }
   int numOfTask = 0;
@@ -19,16 +33,17 @@ int main(int argc, char * argv[])
   catch (const std::out_of_range&)
   {
     std::cerr << "Value of first CLA is too large\n";
-    return 2;
+    return 1;
   }
   catch (const std::invalid_argument&)
   {
     std::cerr << "Cannot parse a value\n";
-    return 2;
+    return 1;
   }
   if ((numOfTask != 1) && (numOfTask != 2))
   {
     std::cerr << "Error number of task";
+    return 1;
   }
 
   size_t rows = 0, cols = 0;
@@ -44,42 +59,23 @@ int main(int argc, char * argv[])
     std::cerr << "Cannot read numbers!\n";
     return 2;
   }
-
+  size_t size = rows * cols;
   if (numOfTask == 1)
   {
     int statMatrix[10000] = {0};
-    for (size_t i = 0; i < cols * rows; i++)
-    {
-      input >> statMatrix[i];
-    }
-    for (size_t i = 0; i < cols * rows - 1; i++)
-    {
-      if ((i > cols) && (i < rows * cols - cols) && ((i % cols) != 0 && (i % rows) != 0))
-      {
-        if ((statMatrix[i] > statMatrix[i - 1]) && (statMatrix[i] > statMatrix[i + 1]))
-        {
-          std::cout << statMatrix[i] << "\t" << i << "\n";
-        }
-      }
-    }
+    fillMatrix(statMatrix, argv[2], numOfTask);
+    count = localMaxCounter(statMatrix, rows, cols, count, numOfTask);
   }
+
   if (numOfTask == 2)
   {
     int* dynamicMatrix = new int[cols * rows];
-    for (size_t i = 0; i < cols * rows; i++)
-    {
-      input >> dynamicMatrix[i];
-    }
-    for (size_t i = 0; i < cols * rows - 1; i++)
-    {
-      if ((i > cols) && (i < rows * cols - cols) && ((i % cols) != 0 && (i % rows) != 0))
-      {
-        if ((dynamicMatrix[i] > dynamicMatrix[i - 1]) && (dynamicMatrix[i] > dynamicMatrix[i + 1]))
-        {
-          std::cout << dynamicMatrix[i] << "\t" << i << "\n";
-        }
-      }
-    }
-    delete[] dynamicMatrix;
+    fillMatrix(dynamicMatrix, argv[2], numOfTask);
+
+    count = localMaxCounter(dynamicMatrix, rows, cols, count, numOfTask);
   }
+
+  std::cout << "\n" << count;
+
+  return 0;
 }
