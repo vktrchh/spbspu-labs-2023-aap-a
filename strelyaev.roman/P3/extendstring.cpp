@@ -12,8 +12,17 @@ char * extendString(char * string, size_t size)
       if (i == (size - 1))
       {
         buffer_size += 10;
-        char * buffer = new char [buffer_size];
-        for (int j = 0; j < i; j++)
+        char * buffer = nullptr;
+        try
+        {
+          buffer = new char [buffer_size];
+        }
+        catch (...)
+        {
+          delete [] buffer;
+          return nullptr;
+        }
+        for (size_t j = 0; j < i; j++)
         {
           buffer[j] = string[j];
         }
@@ -28,7 +37,6 @@ char * extendString(char * string, size_t size)
 
 int checkRepDgt(char * string)
 {
-
   char * digits = nullptr;
   try
   {
@@ -47,7 +55,7 @@ int checkRepDgt(char * string)
   {
     if (std::isdigit(string[i]))
     {
-      for (int j = 0; j < position; j++)
+      for (size_t j = 0; j < position; j++)
       {
         if (digits[j] == string[i])
         {
