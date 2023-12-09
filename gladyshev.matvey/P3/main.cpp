@@ -52,6 +52,7 @@ int main()
   if (counter == 0)
   {
     std::cerr << "Lack of data\n";
+    delete[] basearray;
     return 1;
   }
   try
