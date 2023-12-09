@@ -6,7 +6,7 @@ char * extendString(char * string, size_t size)
     size_t buffer_size = size;
     char c = 0;
     size_t i = 0;
-    while ((c != '\n') && (std::cin >> c))
+    while ((std::cin >> c) && (c!= '\n'))
     {
       if (!std::cin)
       {
@@ -36,6 +36,10 @@ char * extendString(char * string, size_t size)
       }
     }
     string[i] = '\0';
+    if ((string[0] == '\n') || (string[0] == '\0'))
+    {
+      return nullptr;
+    }
     return string;
 }
 
