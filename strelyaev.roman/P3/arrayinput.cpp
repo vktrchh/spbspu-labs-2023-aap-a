@@ -33,7 +33,7 @@ char * strelyaev::inputArray(char * old_array, size_t old_array_size, size_t * c
     {
       std::cerr << "Bad input\n";
       delete [] new_array;
-      return 1;
+      return nullptr;
     }
     new_array[i] = c;
     i++;
