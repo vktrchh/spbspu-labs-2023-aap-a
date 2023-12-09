@@ -25,7 +25,7 @@ int main()
   }
   std::cin >> std::skipws;
   char * digit_array = new char [11];
-  std::cout << checkDigit(end_array, digit_array, symbol_array_size) << "\n";
+  std::cout << checkDigit() << "\n";
   delete [] end_array;
   delete [] digit_array;
   return 0;
