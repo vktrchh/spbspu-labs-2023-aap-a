@@ -12,38 +12,38 @@ int main()
   char currsym = 0;
   size_t length = 11;
   size_t counter = 0;
-  char * basearray = nullptr;
-  char * finalarray = nullptr;
-  basearray = new char[length];
+  char * baseArray = nullptr;
+  char * finalArray = nullptr;
+  baseArray = new char[length];
   std::cin >> std::noskipws;
   while (std::cin >> currsym)
   {
     try
     {
-    basearray[counter] = currsym;
+    baseArray[counter] = currsym;
     }
     catch (const std::bad_alloc & e)
     {
       std::cerr << "Error input\n";
-      delete[] basearray;
+      delete[] baseArray;
       return 1;
     }
     if (currsym == '\n')
     {
-      basearray[counter] = '\0';
+      baseArray[counter] = '\0';
       break;
     }
     if ((counter + 1) == length)
     {
       try
       {
-        basearray = newMemory(basearray, length);
+        baseArray = newMemory(baseArray, length);
         length += 11;
       }
       catch (const std::bad_alloc & e)
       {
         std::cerr << "Leak\n";
-        delete[] basearray;
+        delete[] baseArray;
         return 1;
       }
     }
@@ -52,23 +52,23 @@ int main()
   if (counter == 0)
   {
     std::cerr << "Lack of data\n";
-    delete[] basearray;
+    delete[] baseArray;
     return 1;
   }
   try
   {
-    finalarray = new char[counter];
+    finalArray = new char[counter];
   }
   catch (const std::bad_alloc & e)
   {
     std::cerr << "Error in data\n";
-    delete[] basearray;
+    delete[] baseArray;
     return 2;
   }
-  finalarray = createFinalArray(basearray, finalarray, counter, vowarr, vowelSize);
-  std::cout << finalarray << "\n";
-  delete[] basearray;
-  delete[] finalarray;
+  finalArray = createFinalArray(baseArray, finalArray, counter, vowarr, vowelSize);
+  std::cout << finalArray << "\n";
+  delete[] baseArray;
+  delete[] finalArray;
   std::cin >> std::skipws;
   return 0;
 }
