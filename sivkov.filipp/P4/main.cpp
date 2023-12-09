@@ -46,7 +46,7 @@ int main(int argc, char * argv[])
     return 1;
   }
 
-  size_t rows = 0, cols = 0;
+  size_t rows, cols;
   std::ifstream input(argv[2]);
   if (!input.is_open())
   {
