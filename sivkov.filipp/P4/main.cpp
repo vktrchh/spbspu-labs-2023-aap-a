@@ -65,7 +65,7 @@ int main(int argc, char * argv[])
   }
   if (input.peek() == EOF)
   {
-    std::cerr << "Empty file\n";
+    std::cerr << "empty file!\n";
     return 2;
   }
   if (numOfTask == 1)
