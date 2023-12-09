@@ -59,7 +59,6 @@ int main(int argc, char * argv[])
     std::cerr << "Cannot read numbers!\n";
     return 2;
   }
-  size_t size = rows * cols;
   if (numOfTask == 1)
   {
     int statMatrix[10000] = {0};
