@@ -12,12 +12,21 @@ void strelyaev::moveArray(const char * old_array, size_t old_array_size, char * 
 
 char * strelyaev::inputArray(char * old_array, size_t old_array_size, size_t * current_array_size)
 {
-  char * new_array = new char [*current_array_size += 10];
+  char * new_array = nullptr;
+  try
+  {
+    new_array = new char [*current_array_size += 10];
+  }
+  catch (...)
+  {
+    delete [] new_array;
+    delete [] old_array;
+    return  nullptr;
+  }
   strelyaev::moveArray(old_array, old_array_size, new_array);
-
   char c = 0;
-  size_t i = old_array_size - 1;
-  while ((c != '\n') && (i < old_array_size + 9))
+  size_t i = 0; //old_array_size - 1;
+  while ((c != '\n') && (i < old_array_size + 10))
   {
     std::cin >> c;
     new_array[i] = c;
@@ -25,7 +34,7 @@ char * strelyaev::inputArray(char * old_array, size_t old_array_size, size_t * c
   }
   if (c == '\n')
   {
-    return new_array;
+    return  new_array;
   }
   return inputArray(new_array, old_array_size + 10, current_array_size);
 }

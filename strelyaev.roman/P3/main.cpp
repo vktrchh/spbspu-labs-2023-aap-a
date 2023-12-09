@@ -10,6 +10,12 @@ int main()
   size_t symbol_array_size = 0;
   char * end_array = nullptr;
   char * start_array = nullptr;
+
+  if (!std::cin)
+  {
+    std::cerr << "Input is empty\n";
+    return 1;
+  }
   try
   {
   start_array = new char [1];
@@ -24,16 +30,8 @@ int main()
   }
   std::cin >> std::skipws;
   char * digit_array = new char [10];
-  if (!(checkDigit(end_array, digit_array, symbol_array_size)))
-  {
-    delete [] end_array;
-    delete [] digit_array;
-    return 0;
-  }
-  else
-  {
-    delete [] end_array;
-    delete [] digit_array;
-    return 3;
-  }
+  std::cout << checkDigit(end_array, digit_array, symbol_array_size) << "\n";
+  delete [] end_array;
+  delete [] digit_array;
+  return 0;
 }
