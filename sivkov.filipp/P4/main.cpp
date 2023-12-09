@@ -58,12 +58,12 @@ int main(int argc, char * argv[])
     std::cerr << "Cannot read numbers!\n";
     return 2;
   }
+  input >> rows >> cols;
   if (input.peek() == EOF)
   {
     std::cerr << "File empty!\n";
     return 2;
   }
-  input >> rows >> cols;
   if (numOfTask == 1)
   {
     int statMatrix[10000] = {0};
