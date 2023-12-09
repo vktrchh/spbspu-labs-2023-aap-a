@@ -11,6 +11,7 @@ char* novokhatskiy::inputString(std::istream &input)
   }
   catch (const std::bad_alloc& err)
   {
+    delete[] string;
     throw;
   }
   char symbol = 0;
