@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include "matrix.hpp"
@@ -26,7 +27,7 @@ int* fillMatrix(int* m, char* arg, int numOfTask)
       if (!(input >> m[i]))
       {
         std::cerr << "size of elements != rows * cols!\n";
-        return nullptr;
+        std::exit(EXIT_FAILURE);
       }
     }
     return m;
