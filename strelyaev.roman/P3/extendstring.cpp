@@ -38,6 +38,7 @@ char * extendString(char * string, size_t size)
     string[i] = '\0';
     if ((string[0] == '\n') || (string[0] == '\0'))
     {
+      delete [] string;
       return nullptr;
     }
     return string;
