@@ -12,7 +12,18 @@ void strelyaev::moveArray(char * old_array, size_t old_array_size, char * new_ar
 
 char * strelyaev::inputArray(char * old_array, size_t old_array_size, size_t * current_array_size)
 {
-  char * new_array = new char [*current_array_size += 10];
+  char * new_array = nullptr;
+  try
+  {
+    new_array = new char [*current_array_size += 10];
+  }
+  catch (...)
+  {
+    delete [] new_array;
+    delete [] old_array;
+    std::cerr << "Unable to create new array\n";
+    return nullptr;
+  }
   strelyaev::moveArray(old_array, old_array_size, new_array);
 
   char c = 0;
