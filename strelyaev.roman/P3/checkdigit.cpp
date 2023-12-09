@@ -4,5 +4,5 @@
 
 int strelyaev::checkDigit()
 {
-  return 0;
+  return 1;
 }

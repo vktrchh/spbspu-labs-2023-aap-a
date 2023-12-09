@@ -23,8 +23,11 @@ int main()
     delete [] end_array;
     return 1;
   }
+  if (end_array == nullptr)
+  {
+    return 1;
+  }
   std::cin >> std::skipws;
-  char * digit_array = new char [11];
   std::cout << checkDigit() << "\n";
   delete [] end_array;
   delete [] digit_array;
