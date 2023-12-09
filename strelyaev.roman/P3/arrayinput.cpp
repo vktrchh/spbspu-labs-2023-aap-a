@@ -15,7 +15,7 @@ char * strelyaev::inputArray(char * old_array, size_t old_array_size, size_t * c
   char * new_array = nullptr;
   try
   {
-    new_array = new char [*current_array_size += 10];
+    new_array = new char [*current_array_size += 10]{0};
   }
   catch (...)
   {
