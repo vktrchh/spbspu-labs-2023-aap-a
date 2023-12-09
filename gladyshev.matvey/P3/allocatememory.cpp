@@ -1,6 +1,6 @@
 #include "allocatememory.h"
 
-char * gladyshev::newMemory(char * basicar, size_t len)
+char * gladyshev::newMemory(const char * basicar, size_t len)
 {
   char * newarr = nullptr;
   try
