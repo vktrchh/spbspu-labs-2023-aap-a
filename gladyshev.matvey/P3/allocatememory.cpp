@@ -9,7 +9,6 @@ char * gladyshev::newMemory(const char * basicar, size_t len)
   }
   catch (const std::bad_alloc & e)
   {
-    std::cerr << "Error in data\n";
     delete[] basicar;
     throw;
   }
