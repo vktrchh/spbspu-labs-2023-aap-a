@@ -23,6 +23,11 @@ int* fillMatrix(int* m, char* arg, int numOfTask)
   {
     for (size_t i = 0; i < size; i++)
     {
+      if (m[i] == '\0' && i < size)
+      {
+        std::cout << "size is not equal to number of elements\n";
+        return nullptr;
+      }
       input >> m[i];
     }
     return m;
