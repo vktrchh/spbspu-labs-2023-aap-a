@@ -3,17 +3,14 @@
 #include <stdexcept>
 #include <cstdlib>
 #include <string>
-#include "matrix.hpp"
 
 int main(int argc, char * argv[])
 {
-  //проверка на правильность ввода ком. строки
   if (argc != 4)
   {
     std::cout << "Error command line\n";
     return 1;
   }
-  //argv[1] - номер задания
   int numOfTask = 0;
   try
   {
@@ -31,58 +28,58 @@ int main(int argc, char * argv[])
   }
   if ((numOfTask != 1) && (numOfTask != 2))
   {
-  std::cerr << "Error number of task";
+    std::cerr << "Error number of task";
   }
-  //argv[2] - имя файла с матрицей
+
   size_t rows = 0, cols = 0;
+  std::ifstream input(argv[2]);
+  input >> rows >> cols;
+  if (!input.is_open())
   {
-    std::ifstream input(argv[2]);
-    input >> rows >> cols;
-    if (!input)
-    {
-      std::cerr << "Cannot read a number!\n";
-      return 2;
-    }
-  }
-  int** rowsptrs = nullptr;
-  try
-  {
-    rowsptrs = createMatrix(rows, cols);
-    freeMatrix(rowsptrs, rows);
-  }
-  catch (const std::bad_alloc&)
-  {
-    std::cerr << "Not enough memory\n";
+    std::cerr << "Cannot open file!\n";
     return 2;
   }
-  if ((rows == 0) && (cols == 0))
+   if (!input)
   {
-    std::cerr << "Matrix cannot = 0";
+    std::cerr << "Cannot read numbers!\n";
     return 2;
   }
-  //задание:
-  size_t count = 0;
+
   if (numOfTask == 1)
   {
-    createMatrix(rows, cols);
-    for (size_t i = 0; i != 5; i++)
+    int statMatrix[10000] = {0};
+    for (int i = 0; i < cols * rows; i++)
     {
-      for (size_t j = 0; j != 3; j++)
+      input >> statMatrix[i];
+    }
+    for (int i = 0; i < cols * rows - 1; i++)
+    {
+      if ((i > cols) && (i < rows * cols - cols) && ((i % cols) != 0 && (i % rows) != 0))
       {
-        if ((i != 0) && (j != 0) && (j != cols - 1) && (i != rows - 1))
+        if ((statMatrix[i] > statMatrix[i - 1]) && (statMatrix[i] > statMatrix[i + 1]))
         {
-          std::cout << rowsptrs[i][j] << "\n";
-          if ((rowsptrs[i][j] > rowsptrs[i - 1][j]) && (rowsptrs[i][j] > rowsptrs[i+1][j]))
-          {
-            if ((rowsptrs[i][j] > rowsptrs[i][j - 1]) && (rowsptrs[i][j] > rowsptrs[i][j + 1]))
-            {
-              ++count;
-              std::cout << "+1\n";
-            }
-          }
+          std::cout << statMatrix[i] << "\t" << i << "\n";
         }
       }
     }
   }
-  std::cout << count << "\n";
+  if (numOfTask == 2)
+  {
+    int* dynamicMatrix = new int[cols * rows];
+    for (int i = 0; i < cols * rows; i++)
+    {
+      input >> dynamicMatrix[i];
+    }
+    for (int i = 0; i < cols * rows - 1; i++)
+    {
+      if ((i > cols) && (i < rows * cols - cols) && ((i % cols) != 0 && (i % rows) != 0))
+      {
+        if ((dynamicMatrix[i] > dynamicMatrix[i - 1]) && (dynamicMatrix[i] > dynamicMatrix[i + 1]))
+        {
+          std::cout << dynamicMatrix[i] << "\t" << i << "\n";
+        }
+      }
+    }
+    delete[] dynamicMatrix;
+  }
 }
