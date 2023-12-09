@@ -23,7 +23,7 @@ int main()
   }
   catch (const std::bad_alloc &e)
   {
-    delete[] buffer; 
+    delete[] buffer;
     throw e;
   }
   delete[] buffer;
