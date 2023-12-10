@@ -10,7 +10,8 @@ namespace agarkov
     size_t operator()() const;
   private:
     size_t number_;
-    int lastNumber_;
+    int first_number_;
+    int last_number_;
   };
 }
 #endif

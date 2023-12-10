@@ -15,10 +15,10 @@ int main()
 
     if (!std::cin)
     {
-      std::cerr << "is not a sequence\n";
+      std::cerr << "Is not a sequence\n";
       return 1;
     }
-    else if (num != 0)
+    else if (number != 0)
     {
 
       try
@@ -32,6 +32,6 @@ int main()
       }
     }
   }
-  while (num != 0);
+  while (number != 0);
   std::cout << "Answer: " << counter() << "\n";
 }
