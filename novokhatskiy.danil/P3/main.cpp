@@ -19,7 +19,6 @@ int main()
     {
       buffer = changeString(buffer, buffer);
       std::cout << buffer << "\n";
-      delete[] buffer;
     }
   }
   catch (const std::bad_alloc &e)
@@ -27,7 +26,6 @@ int main()
     delete[] buffer;
     throw e;
   }
-  delete[] buffer;
   return 0;
 }
 
