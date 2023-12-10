@@ -6,12 +6,12 @@ namespace agarkov
   struct NumberOfSequence
   {
     NumberOfSequence();
-    void operator()(int number);
+    void operator()(int num);
     size_t operator()() const;
   private:
-    size_t t_;
+    size_t k_;
     int num_;
-    int num_last_;
+    int num_old_;
   };
 }
 #endif

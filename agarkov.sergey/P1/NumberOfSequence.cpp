@@ -4,27 +4,27 @@
 #include <stdexcept>
 
 agarkov::NumberOfSequence::NumberOfSequence():
-  t_(0),
+  k_(0),
   num_(0),
-  num_last_(0)
+  num_old_(0)
 {}
 
-void agarkov::NumberOfSequence::operator()(int number)
+void agarkov::NumberOfSequence::operator()(int num)
 {
   size_t max_size = std::numeric_limits< size_t >::max();
   num_ = num;
-  if ((num_last_ != 0) && (num_last_ % num_ == 0))
+  if ((num_old_ != 0) && (num_old_ % num_ == 0))
   {
-    if (num_ == max_size)
+    if (k_ == max_size)
     {
-      throw std::logic_error("Sequence is too long\n");
+      throw std::logic_error("sequence is too long");
     }
-    ++num_;
+    ++k_;
   }
-  num_last_ = num_;
+  num_old_ = num;
 }
 size_t agarkov::NumberOfSequence::operator()() const
-
 {
-   return num_;
+  return k_;
 }
+
