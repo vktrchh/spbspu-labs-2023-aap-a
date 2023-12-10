@@ -34,10 +34,16 @@ char* zaitsev::readStr()
       std::cin.get(x);
     }
   }
-  catch(const std::bad_alloc&e)
+  catch (const std::bad_alloc& e)
   {
     delete[] str;
     throw e;
+  }
+
+  if (!size && !std::cin)
+  {
+    delete[] str;
+    return nullptr;
   }
 
   return str;

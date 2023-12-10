@@ -6,12 +6,17 @@
 int main()
 {
   char* string1 = nullptr;
-  const char* string2 = "";
+  const char* string2 = "abc_ef";
   char* res = nullptr;
   using namespace zaitsev;
   try
   {
     string1 = readStr();
+    if (!string1)
+    {
+      std::cerr << "Failed to read string" << '\n';
+      return 2;
+    }
     res = uniqueChars(string1, string2);
   }
   catch (const std::bad_alloc&)
@@ -22,9 +27,15 @@ int main()
     return 1;
   }
 
+  if (!string1)
+  {
+    std::cerr << "Failed to read string" << '\n';
+    return 2;
+  }
+
   if (res)
   {
-    std::cout << res;
+    std::cout << res << "\n";
   }
   else
   {

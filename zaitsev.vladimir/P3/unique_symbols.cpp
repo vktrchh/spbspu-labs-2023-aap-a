@@ -10,7 +10,7 @@ char* zaitsev::uniqueChars(const char* str1, const char* str2)
   size_t size = 0;
   try
   {
-    const size_t basic_size = 20;
+    constexpr size_t basic_size = 20;
     res = new char[basic_size];
     res[0] = '\0';
     capacity = basic_size;
@@ -44,6 +44,10 @@ int zaitsev::isCharInStr(const char* str, char c)
 
 void zaitsev::addUnique(const char* basic_str, const char* comp_str, char** res_str, size_t* capacity, size_t* size)
 {
+  if (!basic_str)
+  {
+    return;
+  }
   const size_t step = 20;
   const char* pos = basic_str;
   while (*pos)
