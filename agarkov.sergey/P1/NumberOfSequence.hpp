@@ -9,9 +9,9 @@ namespace agarkov
     void operator()(int num);
     size_t operator()() const;
   private:
-    size_t k_;
+    size_t t_;
     int num_;
-    int num_old_;
+    int num_last_;
   };
 }
 #endif

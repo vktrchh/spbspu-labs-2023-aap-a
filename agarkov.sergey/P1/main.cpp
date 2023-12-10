@@ -15,7 +15,7 @@ int main()
 
     if (!std::cin)
     {
-      std::cerr << "is not a seq...\n";
+      std::cerr << "Is not a sequence\n";
       return 1;
     }
     else if (num != 0)
@@ -27,11 +27,11 @@ int main()
       }
       catch (const std::exception & e)
       {
-        std::cerr << "Error: " << e.what() << "\n";
+        std::cerr << "error: " << e.what() << "\n";
         return 2;
       }
     }
   }
   while (num != 0);
-  std::cout << "Answer: " << counter() << "\n";
+  std::cout << "answer: " << counter() << "\n";
 }
