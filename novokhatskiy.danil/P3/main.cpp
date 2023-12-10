@@ -6,7 +6,7 @@
 int main()
 {
   using namespace novokhatskiy;
-  char* buffer = 0;
+  char* buffer = nullptr;
   try
   {
     buffer = inputString(std::cin);
@@ -19,6 +19,7 @@ int main()
     {
       buffer = changeString(buffer, buffer);
       std::cout << buffer << "\n";
+      delete[] buffer;
     }
   }
   catch (const std::bad_alloc &e)
