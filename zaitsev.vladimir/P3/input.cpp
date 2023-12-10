@@ -39,13 +39,6 @@ char* zaitsev::readStr()
     throw e;
   }
 
-  if (!std::cin)
-  {
-    delete[] str;
-    str = nullptr;
-    throw std::runtime_error("Failed to read string");
-  }
-
   return str;
 }
 

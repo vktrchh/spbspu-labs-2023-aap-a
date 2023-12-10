@@ -21,13 +21,6 @@ int main()
     std::cerr << "Failed to allocate memory" << '\n';
     return 1;
   }
-  catch (const std::exception& e)
-  {
-    std::cerr << e.what() << '\n';
-    delete[] string1;
-    delete[] res;
-    return 2;
-  }
 
   if (res)
   {
