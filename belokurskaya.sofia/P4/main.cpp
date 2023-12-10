@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 
-
 void freeMatrix(int ** m, size_t rows)
 {
   for (size_t i = 0; i < rows; ++i)
@@ -54,6 +53,13 @@ void processMatrix(int ** matrix, size_t rows, size_t cols, const char * number)
   size_t maxRow = findMaxRow(& matrix[0][0], rows, cols);
 
   std::ofstream output(number);
+
+  if (!input)
+  {
+    std::cerr << "Error opening output file\n";
+    freematrix(matrix, rows);
+    exit(2);
+  }
   output << maxRow;
 }
 
@@ -89,6 +95,7 @@ int main(int argc, char * argv[])
 
   size_t rows = 0, cols = 0;
   std::ifstream input(argv[2]);
+
   input >> rows >> cols;
 
   if (!input)
@@ -114,24 +121,28 @@ int main(int argc, char * argv[])
         input >> matrix[i * cols + j];
       }
     }
+
     processMatrix(& matrix, rows, cols, argv[3]);
+
     delete [] matrix;
   }
 
   else if (num == 2)
   {
-    int *  matrix = new int[rows * cols];
+    int ** matrix = new int[rows * cols];
 
     for (size_t i = 0; i < rows; ++i)
     {
       for (size_t j = 0; j < cols; ++j)
       {
-        input >> matrix[i * rows + j];
+        input >> matrix[i][j];
       }
     }
+
     processMatrix(& matrix, rows, cols, argv[3]);
-    delete [] matrix;
+
+    freeMatrix(matrix, rows);
   }
-  input.close();
+
   return 0;
 }
