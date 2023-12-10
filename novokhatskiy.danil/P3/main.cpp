@@ -6,7 +6,7 @@
 int main()
 {
   using namespace novokhatskiy;
-  char* buffer = nullptr;
+  char* buffer = 0;
   try
   {
     buffer = inputString(std::cin);

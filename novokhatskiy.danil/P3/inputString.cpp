@@ -4,7 +4,7 @@ char* novokhatskiy::inputString(std::istream &input)
 {
   size_t sizeString = 20;
   size_t cycleIndex = 0;
-  char* string = nullptr;
+  char* string = 0;
   try
   {
     string = new char[sizeString];
