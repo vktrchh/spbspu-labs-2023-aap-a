@@ -1,6 +1,6 @@
 #include "removeSpaces.h"
 
-void removeSpaces(char *dest, const char *src, size_t buff)
+void zakozhurnikova::removeSpaces(char *dest, const char *src, size_t buff)
 {
   size_t index = 0;
   for (size_t i = 1; i < buff; i++)

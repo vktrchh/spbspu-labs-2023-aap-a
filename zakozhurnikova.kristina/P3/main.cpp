@@ -83,7 +83,7 @@ int main()
     delete[] buff;
     return 1;
   }
-  removeSpaces(tmp, buff, size);
+  zakozhurnikova::removeSpaces(tmp, buff, size);
   char *head = tmp;
   while (*head)
   {
