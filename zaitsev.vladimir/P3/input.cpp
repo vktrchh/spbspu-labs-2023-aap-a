@@ -15,21 +15,22 @@ char* zaitsev::readStr()
   try
   {
     str = new char[capacity];
+    str[0] = '\0';
     std::cin.get(x);
     while (std::cin)
     {
-      if (size == capacity)
+      if (size + 1 == capacity)
       {
         resizeStr(std::addressof(str), capacity, capacity * 2);
         capacity *= 2;
       }
       if (x == '\n')
       {
-        str[size] = '\0';
         break;
       }
       str[size] = x;
       ++size;
+      str[size] = '\0';
       std::cin.get(x);
     }
   }
