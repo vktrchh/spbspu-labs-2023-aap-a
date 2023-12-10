@@ -10,7 +10,7 @@ namespace agarkov
     void operator()(int current);
     size_t operator()() const;
   private:
-    size_t pythtriples_;
+    size_t triples_;
     int p_;
     int p_t_;
     bool isPythTriple(int current);
