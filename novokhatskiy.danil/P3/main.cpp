@@ -10,6 +10,12 @@ int main()
   try
   {
     buffer = inputString(std::cin);
+    if (buffer[0] == '\0')
+    {
+      std::cerr << "Wrong input\n";
+      delete[] buffer;
+      return 1;
+    }
     if (!buffer)
     {
       std::cerr << "Can't read the string\n";
