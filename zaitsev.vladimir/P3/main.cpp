@@ -24,7 +24,7 @@ int main()
 
   if (res)
   {
-    std::cout << res << "\n";
+    std::cout << res;
   }
   else
   {
