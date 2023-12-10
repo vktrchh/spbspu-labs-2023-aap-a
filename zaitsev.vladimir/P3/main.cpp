@@ -6,7 +6,7 @@
 int main()
 {
   char* string1 = nullptr;
-  const char* string2 = "abc_ef";
+  const char* string2 = "";
   char* res = nullptr;
   using namespace zaitsev;
   try
