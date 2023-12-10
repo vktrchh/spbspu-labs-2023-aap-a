@@ -12,8 +12,8 @@ agarkov::NumberOfSequence::NumberOfSequence():
 void agarkov::NumberOfSequence::operator()(int number)
 {
   size_t max_size = std::numeric_limits< size_t >::max();
-  number_ = number;
-  if ((last_number_ != 0) && (last_number % number_ == 0))
+  first_number_ = number;
+  if ((last_number_ != 0) && (last_number % first_number_ == 0))
   {
     if (number_ == max_size)
     {
@@ -21,7 +21,7 @@ void agarkov::NumberOfSequence::operator()(int number)
     }
     ++number_;
   }
-  last_number_ = number;
+  last_number_ = first_number_;
 }
 size_t agarkov::NumberOfSequence::operator()() const
 

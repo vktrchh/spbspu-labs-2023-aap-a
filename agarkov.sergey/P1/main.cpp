@@ -4,26 +4,26 @@
 
 int main()
 {
-  int number = 1;
+  int first_number = 1;
 
   using namespace agarkov;
   NumberOfSequence counter;
 
   do
   {
-    std::cin >> number;
+    std::cin >> first_number;
 
     if (!std::cin)
     {
       std::cerr << "Is not a sequence\n";
       return 1;
     }
-    else if (number != 0)
+    else if (first_number != 0)
     {
 
       try
       {
-        counter(number);
+        counter(first_number);
       }
       catch (const std::exception & e)
       {
@@ -32,6 +32,6 @@ int main()
       }
     }
   }
-  while (number != 0);
+  while (first_number != 0);
   std::cout << "Answer: " << counter() << "\n";
 }
