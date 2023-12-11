@@ -32,7 +32,7 @@ char* marishin::inputString(std::istream& input)
         delete[] buffer;
         throw ba;
       }
-      for (int i = 0; i < currentIndex; ++i)
+      for (size_t i = 0; i < currentIndex; ++i)
       {
         newBuffer[i] = buffer[i];
       }
