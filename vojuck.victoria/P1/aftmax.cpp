@@ -1,4 +1,4 @@
-#include "aftMax.hpp"
+#include "aftmax.hpp"
 #include <stdexcept>
 
 vojuck::counterAftMax::counterAftMax():
