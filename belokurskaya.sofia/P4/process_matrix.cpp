@@ -1,5 +1,7 @@
 #include "process_matrix.hpp"
 
+#include <iostream>
+
 namespace belokurskaya
 {
   size_t findMaxSequence(int * matrix, size_t rows, size_t cols)
@@ -36,7 +38,11 @@ namespace belokurskaya
     {
       for (size_t col = 0; col < cols; ++col)
       {
-        input >> matrix[row * cols + col];
+        if(!(input >> matrix[row * cols + col]))
+        {
+          std::cerr << "Error reading matrix elements\n";
+          exit(2);
+        }
       }
     }
   }

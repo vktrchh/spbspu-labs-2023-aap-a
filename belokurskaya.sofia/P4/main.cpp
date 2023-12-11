@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
 
 const int max_static_matrix_size = 10000;
 
@@ -46,7 +47,12 @@ int main(int argc, char * argv[])
   }
 
   size_t rows = 0, cols = 0;
-  input_file >> rows >> cols;
+
+  if (!(input_file >> rows >> cols))
+  {
+    std::cerr << "Error reading rows and cols from file\n";
+    return 2;
+  }
 
   size_t row_max_sequence = 0;
 
