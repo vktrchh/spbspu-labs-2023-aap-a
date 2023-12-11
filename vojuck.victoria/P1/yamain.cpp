@@ -1,12 +1,12 @@
-#include "AftMax.hpp"
+#include "SameMin.hpp"
 
 int main()
 {
   using namespace vojuck;
   SequenceCounter counter;
   int number = 0;
-  int min_int = std::numeric_limits< int >::max();
-  int minElement = min_int;
+  int max_int = std::numeric_limits< int >::max();
+  int minElement = max_int;
   do
   {
     std::cin >> number;
