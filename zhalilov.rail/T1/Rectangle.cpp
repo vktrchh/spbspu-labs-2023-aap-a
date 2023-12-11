@@ -31,5 +31,9 @@ void zhalilov::Rectangle::move(const double dx, const double dy)
 
 void zhalilov::Rectangle::scale(const double ratio)
 {
+  if (ratio <= 0.0)
+  {
+    throw std::invalid_argument("scaling ratio should be more than zero");
+  }
   m_frameRect.width *= ratio;
 }
