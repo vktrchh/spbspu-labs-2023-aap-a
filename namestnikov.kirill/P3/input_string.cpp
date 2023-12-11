@@ -19,7 +19,7 @@ char * namestnikov::getLongerString(char * string, size_t oldSize, size_t newSiz
   return newString;
 }
 
-char * namestnikov::inputString(std::istream & in)
+char * namestnikov::inputString(std::istream & in, size_t & result)
 {
   size_t strSize = 20;
   size_t strIndex = 0;
@@ -34,6 +34,7 @@ char * namestnikov::inputString(std::istream & in)
   while ((sym != '\n') && (in >> sym))
   {
     string[strIndex] = sym;
+    ++result;
     if (strIndex + 1 == strSize)
     {
       try
@@ -58,11 +59,10 @@ size_t namestnikov::getSizeOfString(const char * string)
 {
   size_t count = 0;
   char sym = '0';
-  do
+  while (sym != '\n')
   {
     sym = string[count];
     ++count;
   }
-  while (sym != '\n');
-  return count;
+  return count - 1;
 }

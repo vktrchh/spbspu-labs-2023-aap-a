@@ -4,10 +4,10 @@ void namestnikov::getUniqueSymArray(char * result, const char * str1, const char
 {
   for (size_t i = 0; i < num1; ++i)
   {
-     if ((std::find(str1, str1 + num1, str1[i]) != str1 + num1) && (std::find(str2, str2 + num2, str1[i]) == str2 + num2))
-     {
-       *result++ = str1[i];
-     }
+    if ((std::find(str1, str1 + num1, str1[i]) != str1 + num1) && (std::find(str2, str2 + num2, str1[i]) == str2 + num2))
+    {
+      *result++ = str1[i];
+    }
   }
   for (size_t i = 0; i < num2; ++i)
   {
@@ -17,3 +17,13 @@ void namestnikov::getUniqueSymArray(char * result, const char * str1, const char
     }
   }
 }
+
+void namestnikov::sortUniqueSymArray(char * result, size_t size)
+{
+  for (int i = 0; result[i] != '\0'; ++i)
+  {
+    ++size;
+  }
+  std::sort(result , result + size);
+}
+

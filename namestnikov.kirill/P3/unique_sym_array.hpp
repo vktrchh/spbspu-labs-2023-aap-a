@@ -5,6 +5,7 @@
 namespace namestnikov
 {
   void getUniqueSymArray(char * result, const char * str1, const char * str2, size_t num1, size_t num2);
+  void sortUniqueSymArray(char * result, size_t size);
 }
 
 #endif
