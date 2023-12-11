@@ -5,11 +5,7 @@
 
 char *zhalilov::comnstSymbs(char *result, const char *string)
 {
-  size_t alphabet[26];
-  for (int i = 0; i < 26; i++)
-  {
-    alphabet[i] = 0;
-  }
+  size_t alphabet[26] = {};
   while (*string)
   {
     if (isalpha(*string))
@@ -20,16 +16,12 @@ char *zhalilov::comnstSymbs(char *result, const char *string)
     string++;
   }
 
-  int mostCommonSymbs[26];
-  for (int i = 0; i < 26; i++)
-  {
-    mostCommonSymbs[i] = 0;
-  }
+  size_t mostCommonSymbs[26] = {};
   size_t max = 0;
-  int maxIndex = 0;
-  for (int i = 0; i < 3; i++)
+  size_t maxIndex = 0;
+  for (size_t i = 0; i < 3; i++)
   {
-    for (int j = 0; j < 26; j++)
+    for (size_t j = 0; j < 26; j++)
     {
       if (alphabet[j] > max)
       {
@@ -43,8 +35,8 @@ char *zhalilov::comnstSymbs(char *result, const char *string)
     max = 0;
   }
 
-  int resultIndex = 0;
-  for (int i = 0; i < 26; i++)
+  unsigned int resultIndex = 0;
+  for (size_t i = 0; i < 26; i++)
   {
     if (mostCommonSymbs[i] == 1)
     {
