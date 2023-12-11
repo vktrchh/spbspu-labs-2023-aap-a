@@ -1,16 +1,13 @@
-#ifndef "PROCESS_MATRIX_HPP"
-#define "PROCESS_MATRIX_HPP"
+#ifndef PROCESS_MATRIX_HPP
+#define PROCESS_MATRIX_HPP
 
 #include <cstddef>
+#include <istream>
 
 namespace belokurskaya
 {
-  void freeMatrix(int ** m, size_t rows)
+  size_t findMaxSequence(int * matrix, size_t rows, size_t cols);
 
-  int ** createMatrix(size_t rows, size_t cols)
-
-  size_t findMaxRow(int * matrix, size_t rows, size_t cols)
-
-  void processMatrix(int ** matrix, size_t rows, size_t cols, const char * number)
+  void readMatrix(std::istream &input, int * matrix, size_t rows, size_t cols);
 }
 #endif

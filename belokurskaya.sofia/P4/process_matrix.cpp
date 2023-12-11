@@ -1,69 +1,43 @@
-#include <iostream>
-#include <fstream>
-
 #include "process_matrix.hpp"
 
 namespace belokurskaya
 {
-  void freeMatrix(int ** m, size_t rows)
+  size_t findMaxSequence(int * matrix, size_t rows, size_t cols)
   {
-    for (size_t i = 0; i < rows; ++i)
-    {
-      delete[] m[i];
-    }
-      delete[] m;
-  }
+    size_t max_sequence = 0;
+    size_t row_max_sequence = 0;
 
-  int ** createMatrix(size_t rows, size_t cols)
-  {
-    int ** rowsptrs = new int *[rows];
-    for (size_t i = 0; i < rows; ++i)
+    for (size_t row = 0; row < rows; ++row)
     {
-      rowsptrs[i] = new int[cols];
-    }
-    return rowsptrs;
-  }
-
-  size_t findMaxRow(int * matrix, size_t rows, size_t cols)
-  {
-    size_t maxRow = 0;
-    size_t max = 0;
-
-    for (size_t i = 0; i < rows; ++i)
-    {
-      size_t localCount = 1;
-      for (size_t j = 0; j < cols - 1; ++j)
+      size_t current_sequence = 1;
+      for (size_t col = 0; col < cols - 1; ++col)
       {
-        if (matrix[i * cols + j] == matrix[i * cols + j + 1])
+        if (matrix[row * cols + col] == matrix[row * cols + col + 1])
         {
-          ++localCount;
-          if (localCount > max)
+          ++current_sequence;
+          if (current_sequence > max_sequence)
           {
-            max = localCount;
-            maxRow = i + 1;
+            max_sequence = current_sequence;
+            row_max_sequence = row;
           }
         }
         else
         {
-          localCount = 1;
+          current_sequence = 1;
         }
       }
     }
-    return maxRow;
+    return row_max_sequence;
   }
 
-  void processMatrix(int ** matrix, size_t rows, size_t cols, const char * number)
+  void readMatrix(std::istream &input, int * matrix, size_t rows, size_t cols)
   {
-    size_t maxRow = findMaxRow(&matrix[0][0], rows, cols);
-
-    std::ofstream output(number);
-
-    if (!output)
+    for (size_t row = 0; row < rows; ++row)
     {
-      std::cerr << " Error opening output file\n";
-      freeMatrix(matrix, rows);
-      exit(2);
+      for (size_t col = 0; col < cols; ++col)
+      {
+        input >> matrix[row * cols + col];
+      }
     }
-    output << maxRow;
   }
 }
