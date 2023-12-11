@@ -39,8 +39,7 @@ int main()
     return 1;
   }
   comnstSymbs(result, string);
-  unsigned int diffSymbs = 0;
-  diffSymbs = countDiffSymbs(string);
+  unsigned int diffSymbs = countDiffSymbs(string);
   std::cout << result << "\n";
   std::cout << diffSymbs << "\n";
   delete[] string;
