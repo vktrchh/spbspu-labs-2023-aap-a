@@ -8,10 +8,9 @@ int main()
 {
   using namespace namestnikov;
   char * firstString = nullptr;
-  size_t first = 0;
   try
   {
-    firstString = inputString(std::cin, first);
+    firstString = inputString(std::cin);
   }
   catch (...)
   {
