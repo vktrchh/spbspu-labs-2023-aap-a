@@ -1,7 +1,9 @@
-#include <process_matrix.hpp>
+#include "process_matrix.hpp"
 
 #include <iostream>
 #include <fstream>
+
+conct int max_static_matrix_size = 10000;
 
 int main(int argc, char * argv[])
 {
@@ -12,10 +14,11 @@ int main(int argc, char * argv[])
     return 1;
   }
 
-  int num = 0;
+  int task_number = 0;
+
   try
   {
-    num = std::atoi(argv[1]);
+    task_number = std::stoi(argv[1]);
   }
   catch (const std::out_of_range &)
   {
@@ -28,26 +31,28 @@ int main(int argc, char * argv[])
     return  1;
   }
 
-  if (num != 1 && num != 2)
+  if (task_number != 1 && task_number != 2)
   {
     std::cerr << "Number of the task is wrong\n";
     return 1;
   }
 
-  size_t rows = 0, cols = 0;
-  std::ifstream input(argv[2]);
+  std::ifstream input_file(argv[2]);
 
-  input >> rows >> cols;
-
-  if (!input)
+  if (!input_file)
   {
     std::cerr << "Cannot read a number\n";
     return 2;
   }
 
-  if (num == 1)
+  size_t rows = 0; cols = 0;
+  input_file >> rows >> cols;
+
+  size_t row_max_sequence = 0;
+
+  if (task_number == 1)
   {
-    if (rows * cols > 10000)
+    if (rows * cols > max_static_matrix_size)
     {
       std::cerr << "Size of the matrix exceeds the limit for a static array\n";
       return 1;
