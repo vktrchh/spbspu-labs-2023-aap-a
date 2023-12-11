@@ -46,7 +46,7 @@ int main()
     std::cerr << "Error: " << e.what();
     return 1;
   }
-  uniqueSymArray(result, input1, input2, i1, i2);
+  getUniqueSymArray(result, input1, input2, i1, i2);
   size_t length = 0;
   for (int i = 0; result[i] != '\0'; ++i)
   {
