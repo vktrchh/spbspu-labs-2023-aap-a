@@ -2,59 +2,48 @@
 #include <iomanip>
 #include <algorithm>
 #include "unique_sym_array.hpp"
+#include "input_string.hpp"
 
 int main()
 {
   using namespace namestnikov;
-  char * input1 = new char[20];
-  char c1 = 0;
-  size_t i1 = 0;
-  std::cin >> std::noskipws;
-  while ((std::cin >> c1) && (i1 < 19))
+  char * firstString = nullptr;
+  try
   {
-    input1[i1++] = c1;
-    if (c1 == '\n')
-    {
-      input1[i1 - 1] = 0;
-      break;
-    }
+    firstString = inputString(std::cin);
   }
-  std::cin >> std::skipws;
-  std::cin >> std::noskipws;
-  char * input2 = new char[20];
-  char c2 = 0;
-  size_t i2 = 0;
-  while ((std::cin >> c2) && (i2 < 19))
+  catch (...)
   {
-    input2[i2++] = c2;
-    if (c2 == '\n')
-    {
-      input2[i2 - 1] = 0;
-      break;
-    }
+    delete [] firstString;
+    std::cerr << "Not enough memory\n";
+    return 2;
   }
-  std::cin >> std::skipws;
+  const size_t firstSize = getSizeOfString(firstString);
+  const char * secondString = "abc_ef";
+  const size_t secondSize = 6;
   char * result = nullptr;
   try
   {
-     result = new char[100];
+     result = new char[5];
   }
   catch (const std::bad_alloc & e)
   {
-    delete[] input1;
-    delete[] input2;
-    std::cerr << "Error: " << e.what();
-    return 1;
+    delete [] firstString;
+    std::cerr << "Not enough memory\n";
+    return 2;
   }
-  getUniqueSymArray(result, input1, input2, i1, i2);
+  getUniqueSymArray(result, firstString, secondString, firstSize, secondSize);
   size_t length = 0;
   for (int i = 0; result[i] != '\0'; ++i)
   {
     ++length;
   }
   std::sort(result, result + length);
+  std::cout << firstString;
+  std::cout << firstSize << "\n";
+  std::cout << secondString << "\n";
+  std::cout << secondSize;
   std::cout << result << "\n";
-  delete[] input1;
-  delete[] input2;
-  delete[] result;
+  delete [] firstString;
+  delete [] result;
 }
