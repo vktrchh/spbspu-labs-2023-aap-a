@@ -1,4 +1,5 @@
 #include "countChars.hpp"
+#include <cctype>
 #include "sort.hpp"
 
 char* chistyakov::countChars(char* array, size_t size)
@@ -9,29 +10,28 @@ char* chistyakov::countChars(char* array, size_t size)
 
   try
   {
-    dictChar = new char[128] {};
-    dictNumsOfChar = new size_t[128]{};
+    dictChar = new char[52] {};
+    dictNumsOfChar = new size_t[52]{};
 
     for (size_t i = 0; i < size; ++i)
     {
-      nowChar = array[i];
-      if (nowChar == 0)
+      if (isalpha(array[i]))
       {
-        break;
-      }
+        nowChar = array[i];
 
-      for (int j = 0; j < 128; ++j)
-      {
-        if (dictChar[j] == 0)
+        for (int j = 0; j < 52; ++j)
         {
-          dictChar[j] = nowChar;
-          dictNumsOfChar[j] += 1;
-          break;
-        }
-        else if (dictChar[j] == nowChar)
-        {
-          dictNumsOfChar[j] += 1;
-          break;
+          if (dictChar[j] == 0)
+          {
+            dictChar[j] = nowChar;
+            dictNumsOfChar[j] += 1;
+            break;
+          }
+          else if (dictChar[j] == nowChar)
+          {
+            dictNumsOfChar[j] += 1;
+            break;
+          }
         }
       }
     }
@@ -50,7 +50,7 @@ char* chistyakov::countChars(char* array, size_t size)
   size_t max1 = 0;
   size_t max2 = 0;
 
-  for (int d = 0; d < 128; ++d)
+  for (int d = 0; d < 52; ++d)
   {
     if (dictNumsOfChar[d] > max) {
       result[2] = result[1];
