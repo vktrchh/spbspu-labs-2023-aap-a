@@ -1,6 +1,6 @@
 #include "inputstring.hpp"
 
-char* marishin::inputString(std::istream& input)
+char* marishin::inputString()
 {
   const size_t initialBufferSize = 10;
   char* buffer = nullptr;
