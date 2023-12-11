@@ -1,12 +1,16 @@
-#include "AftMax.hpp"
+#include "aftmax.hpp"
+#include "samemin.hpp"
 
 int main()
 {
   using namespace vojuck;
-  SequenceCounter counter;
+  counterAftMax aftMaxCounter;
+  counterSameMin sameMinCounter;
   int number = 0;
-  int min_int = std::numeric_limits< int >::max();
-  int minElement = min_int;
+  int min_int = std::numeric_limits< int >::min();
+  int maxElement = min_int;
+  int max_int = std::numeric_limits< int >::max();
+  int minElement = max_int;
   do
   {
     std::cin >> number;
@@ -19,7 +23,8 @@ int main()
     {
       try
       {
-        counter(number, minElement);
+        aftMaxCounter(number, maxElement);
+        sameMinCounter(number, minElement);
       }
       catch (const std::exception & e)
       {
@@ -28,5 +33,5 @@ int main()
       }
     }
   } while (number != 0);
-  std::cout << counter();
+  std::cout << "AftMax counter: " << aftMaxCounter() << " SameMin counter: " << sameMinCounter() << "\n";
 }
