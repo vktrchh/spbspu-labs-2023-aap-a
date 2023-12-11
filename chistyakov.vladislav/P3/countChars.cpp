@@ -45,6 +45,11 @@ char* chistyakov::countChars(char* array, size_t size)
     return nullptr;
   }
 
+  if (dictNumsOfChar[0] == 0)
+  {
+    std::cerr << "There are not enough characters in the sequence\n";
+  }
+
   char* result = new char[3] {};
   size_t max = 0;
   size_t max1 = 0;
