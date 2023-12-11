@@ -9,7 +9,7 @@
 
 int main()
 {
-  size_t alphabetWeight = 26;
+  const size_t alphabetWeight = 26;
 
   size_t arrSize = 0;
   char * inputString = nullptr;
@@ -30,6 +30,22 @@ int main()
 
   size_t answerTaskOne = arakelyanTaskOne::countOfdifferentLetters(inputString);
   char * answerTaskTwo = nullptr;
+  try
+  {
+    answerTaskTwo = new char[alphabetWeight];
+  }
+  catch (...)
+  {
+
+  }
+  for (size_t i = 0; i < alphabetWeight; i++)
+  {
+    answerTaskTwo[i] = 0;
+  }
+  answerTaskTwo[alphabetWeight] = '\0';
+
+  arakelyanTaskTwo::identicalLetters(inputString, defoltStringForTaskTwo, answerTaskTwo, alphabetWeight, arrSize);
+  
   // if (!answerTaskTwo)
   // {
   //   std::cerr << "Cannot create array for second task\n";
@@ -37,10 +53,10 @@ int main()
   //   return 1;
   // }
 
-  std::cout << "\nAnswer on task 1: " << answerTaskOne << "\n";
+  std::cout << "Answer on task 1: " << answerTaskOne << "\n";
   std::cout << "Answer on task 2: " << answerTaskTwo << "\n";
 
-  delete [] answerTaskTwo;
+  // delete [] answerTaskTwo;
   delete [] inputString;
   return 0;
 }
