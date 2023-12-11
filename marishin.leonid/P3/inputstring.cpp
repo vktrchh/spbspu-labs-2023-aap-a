@@ -15,7 +15,6 @@ char* marishin::inputString(std::istream& input)
   }
   size_t bufferSize = initialBufferSize;
   size_t currentIndex = 0;
-  std::cout << "Vvedite stroky: ";
   char currentChar = 0;
   while ((input >> currentChar) && (currentChar != '\n'))
   {

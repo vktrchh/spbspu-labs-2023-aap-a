@@ -21,7 +21,6 @@ int main()
     return 1;
   }
   std::cin >> std::skipws;
-  std::cout << "with replacing: ";
   std::cin >> targetChar >> replacementChar;
   try
   {
@@ -32,7 +31,7 @@ int main()
     std::cerr << "Error: " << ba.what() << '\n';
     return 1;
   }
-  std::cout << "result: " << result;
+  std::cout << result;
   delete[] buffer;
   delete[] result;
 }
