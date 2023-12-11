@@ -3,11 +3,11 @@
 #include <iostream>
 #include <fstream>
 
-conct int max_static_matrix_size = 10000;
+const int max_static_matrix_size = 10000;
 
 int main(int argc, char * argv[])
 {
-  using namespase belokurskaya;
+  using namespace belokurskaya;
   if (argc != 4)
   {
     std::cerr << "Error in command line arguments\n";
@@ -45,7 +45,7 @@ int main(int argc, char * argv[])
     return 2;
   }
 
-  size_t rows = 0; cols = 0;
+  size_t rows = 0, cols = 0;
   input_file >> rows >> cols;
 
   size_t row_max_sequence = 0;
@@ -72,5 +72,16 @@ int main(int argc, char * argv[])
 
     delete[] matrix;
   }
+
+  std::ofstream output_file(argv[3]);
+
+  if(!output_file)
+  {
+    std::cerr << "Error opening output file\n";
+    return 2;
+  }
+
+  output_file << row_max_sequence + 1 << "\n";
+
   return 0;
 }
