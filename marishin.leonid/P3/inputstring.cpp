@@ -1,6 +1,6 @@
 #include "inputstring.hpp"
 
-char* marishin::inputString()
+char* marishin::inputString(std::istream& input)
 {
   const size_t initialBufferSize = 10;
   char* buffer = nullptr;
@@ -17,7 +17,7 @@ char* marishin::inputString()
   size_t currentIndex = 0;
   std::cout << "Vvedite stroky: ";
   char currentChar = 0;
-  while ((std::cin >> currentChar) && (currentChar != '\n'))
+  while ((input >> currentChar) && (currentChar != '\n'))
   {
     if (currentIndex == (bufferSize - 1))
     {

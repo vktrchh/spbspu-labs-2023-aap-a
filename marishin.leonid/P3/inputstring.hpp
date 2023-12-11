@@ -5,6 +5,6 @@
 
 namespace marishin
 {
-  char* inputString();
+  char* inputString(std::istream& input);
 }
 #endif
