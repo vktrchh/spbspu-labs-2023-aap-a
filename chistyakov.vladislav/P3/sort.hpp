@@ -3,7 +3,7 @@
 
 #include <cstddef>
 
-namespace chistyakov 
+namespace chistyakov
 {
   char* sort(char* array, size_t lenght);
 }

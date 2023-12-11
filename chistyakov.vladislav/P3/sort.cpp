@@ -1,7 +1,6 @@
 #include "sort.hpp"
 #include <cstddef>
 
-
 char* chistyakov::sort(char* array, size_t lenght)
 {
   for (size_t i = 1; i < lenght; ++i)
@@ -26,4 +25,3 @@ char* chistyakov::sort(char* array, size_t lenght)
 
   return array;
 }
-
