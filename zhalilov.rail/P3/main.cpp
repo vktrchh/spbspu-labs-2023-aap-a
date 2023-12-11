@@ -2,6 +2,7 @@
 
 #include "inputString.hpp"
 #include "commonestSymbs.hpp"
+#include "countDiffSymbs.hpp"
 
 int main()
 {
@@ -25,6 +26,11 @@ int main()
   try
   {
     result = new char[4];
+    for (int i = 0; i < 3; i++)
+    {
+      result[i] = 0;
+    }
+    result[3] = '\0';
   }
   catch (const std::bad_alloc &e)
   {
@@ -32,13 +38,11 @@ int main()
     std::cerr << "Error: " << e.what();
     return 1;
   }
-  for (int i = 0; i < 3; i++)
-  {
-    result[i] = 0;
-  }
-  result[3] = '\0';
   comnstSymbs(result, string);
+  unsigned int diffSymbs = 0;
+  diffSymbs = countDiffSymbs(string);
   std::cout << result << "\n";
+  std::cout << diffSymbs << "\n";
   delete[] string;
   delete[] result;
 }
