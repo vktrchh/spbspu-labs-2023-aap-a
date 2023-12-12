@@ -1,7 +1,7 @@
 #ifndef MODIFIED_STRING
 #define MODIFIED_STRING
 
-#include <new>
+#include <iostream>
 
 namespace marishin
 {

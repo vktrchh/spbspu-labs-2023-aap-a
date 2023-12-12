@@ -1,5 +1,4 @@
 #include <iostream>
-#include <new>
 #include "inputstring.hpp"
 #include "modifiedstring.hpp"
 
