@@ -13,7 +13,7 @@ bool overflow(size_t number)
 int main()
 {
   using namespace chistyakov;
-  size_t size = 10;
+  size_t size = 1;
   char * array = new char[size]{};
 
   char input = 0;
@@ -51,7 +51,7 @@ int main()
       }
       while (array == nullptr);
 
-      size += 10;
+      size += 1;
     }
   }
 
