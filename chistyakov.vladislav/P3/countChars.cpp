@@ -38,16 +38,18 @@ char* chistyakov::countChars(char* array, size_t size)
   }
   catch (std::logic_error& e)
   {
-    std::cerr << e.what() << "\n";
     delete[] dictChar;
     delete[] dictNumsOfChar;
 
-    return nullptr;
+    throw e.what();
   }
 
   if (dictNumsOfChar[0] == 0)
   {
-    std::cerr << "There are not enough characters in the sequence\n";
+    delete[] dictChar;
+    delete[] dictNumsOfChar;
+
+    throw std::logic_error("There are not enough characters in the sequence");
   }
 
   char* result = new char[3] {};

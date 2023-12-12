@@ -59,11 +59,15 @@ int main()
 
   char * result = nullptr;
 
-  do
+  try
   {
     result = countChars(array, size);
   }
-  while(result == nullptr);
+  catch(const std::exception & e)
+  {
+    std::cerr << "Error: " << e.what() << "\n";
+    return 2;
+  }
 
   for (int i = 0; i < 3; ++i)
   {
