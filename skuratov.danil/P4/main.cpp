@@ -9,13 +9,13 @@
 #include "writeResult.h"
 #include "countSaddlePoints.h"
 #include "findMinSumAlongSecondaryDiagonal.h"
+#include "findLongestSeriesRow.h"
 
 int main(int argc, char* argv[])
 {
   const size_t MAX_SIZE = 10000;
   size_t rows = 0;
   size_t cols = 0;
-
   if (argc < 4)
   {
     std::cerr << "Not enough parameters" << '\n';
@@ -26,14 +26,11 @@ int main(int argc, char* argv[])
     std::cerr << "Too many arguments" << '\n';
     return 1;
   }
-
   const char* inputFileName = argv[2];
   const char* outputFileName = argv[3];
   int taskNumber = std::atoi(argv[1]);
-
   std::ifstream in(inputFileName);
   std::ofstream out(outputFileName);
-
   try
   {
     readSize(in, rows, cols);
@@ -42,7 +39,6 @@ int main(int argc, char* argv[])
     {
       int* dynamicArray = new int[sizeOfArray];
       int staticArray[MAX_SIZE] = {};
-
       if (taskNumber == 1)
       {
         try
@@ -72,6 +68,25 @@ int main(int argc, char* argv[])
           }
           readArray(in, dynamicArray, rows, cols);
           int res = findMinSumAlongSecondaryDiagonal(dynamicArray, rows, cols);
+          writeResult(out, res);
+        }
+        catch (const std::runtime_error& error)
+        {
+          std::cerr << error.what() << '\n';
+          delete[] dynamicArray;
+          return 1;
+        }
+      }
+      else if (taskNumber == 3)
+      {
+        try
+        {
+          if (sizeOfArray == 0)
+          {
+            throw std::runtime_error("Not enough data for task 2");
+          }
+          readArray(in, dynamicArray, rows, cols);
+          int res = findLongestSeriesRow(dynamicArray, rows, cols);
           writeResult(out, res);
         }
         catch (const std::runtime_error& error)
