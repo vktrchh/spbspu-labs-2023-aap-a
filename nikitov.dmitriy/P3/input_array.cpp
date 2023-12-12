@@ -13,8 +13,14 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
   size_t i = 0;
   bool status = true;
 
-  actualArray = new (std::nothrow) char[bufferSize]{};
-  if (actualArray == nullptr)
+  char* buffer = nullptr;
+  char* tempArray = nullptr;
+
+  try
+  {
+    actualArray = new char[bufferSize]{};
+  }
+  catch(const std::bad_alloc&)
   {
     throw "Error: Memory out";
   }
@@ -22,8 +28,11 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
   std::cin >> std::noskipws;
   do
   {
-    char* buffer = new (std::nothrow) char[bufferSize]{};
-    if (buffer == nullptr)
+    try
+    {
+      buffer = new char[bufferSize]{};
+    }
+    catch(const std::bad_alloc&)
     {
       delete [] actualArray;
       throw "Error: Memory out";
@@ -68,8 +77,11 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
       return std::pair< char*, size_t >(actualArray, arraySize);
     }
 
-    char* tempArray = new (std::nothrow) char[arraySize]{};
-    if (tempArray == nullptr)
+    try
+    {
+      tempArray = new char[arraySize]{};
+    }
+    catch(const std::bad_alloc&)
     {
       delete [] actualArray;
       throw "Error: Memory out";
@@ -80,9 +92,11 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
     }
     delete [] actualArray;
 
-
-    actualArray = new (std::nothrow) char[arraySize + bufferSize]{};
-    if (actualArray == nullptr)
+    try
+    {
+      actualArray = new char[arraySize + bufferSize]{};
+    }
+    catch(const std::bad_alloc&)
     {
       delete [] actualArray;
       delete [] tempArray;
