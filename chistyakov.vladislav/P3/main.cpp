@@ -45,6 +45,9 @@ int main()
 
     if (i == size)
     {
+      char* lastArray = array;
+      array = nullptr;
+
       try
       {
         array = enlargeArray(array, size);
@@ -52,10 +55,11 @@ int main()
       catch(const std::exception & e)
       {
         std::cerr << "Error: " << e.what() << "\n";
-        delete[] array;
+        delete[] lastArray;
         return 2;
       }
 
+      delete[] lastArray;
       size += 1;
     }
   }

@@ -13,7 +13,6 @@ char* chistyakov::enlargeArray(char* array, size_t size)
     {
       newArray[i] = array[i];
     }
-    delete[] array;
     return newArray;
   }
   catch (std::logic_error& e)
