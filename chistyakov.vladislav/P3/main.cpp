@@ -36,7 +36,7 @@ int main()
 
     if (overflow(i) || overflow(size))
     {
-      delete [] array;
+      delete[] array;
       std::cerr << "Sequecne is too long\n";
       return 2;
     }
@@ -45,11 +45,16 @@ int main()
 
     if (i == size)
     {
-      do
+      try
       {
         array = enlargeArray(array, size);
       }
-      while (array == nullptr);
+      catch(const std::exception & e)
+      {
+        std::cerr << "Error: " << e.what() << "\n";
+        delete[] array;
+        return 2;
+      }
 
       size += 1;
     }

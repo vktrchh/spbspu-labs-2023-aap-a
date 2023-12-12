@@ -18,8 +18,7 @@ char* chistyakov::enlargeArray(char* array, size_t size)
   }
   catch (std::logic_error& e)
   {
-    std::cerr << e.what() << "\n";
     delete[] newArray;
-    return nullptr;
+    throw e.what();
   }
 }
