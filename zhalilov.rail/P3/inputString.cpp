@@ -29,18 +29,7 @@ char *zhalilov::inputString(std::istream &input)
   size_t strSize = 100;
   size_t dataIndex = 0;
   char *string = nullptr;
-  try
-  {
-    string = new char[strSize];
-  }
-  catch (const std::bad_alloc &e)
-  {
-    throw e;
-  }
-  for (size_t i = 0; i < strSize; i++)
-  {
-    string[i] = 0;
-  }
+  string = new char[strSize]{};
   input >> std::noskipws;
   char temp = 0;
   while (input >> temp)
@@ -63,7 +52,7 @@ char *zhalilov::inputString(std::istream &input)
       catch (const std::bad_alloc &e)
       {
         delete[] string;
-        throw e;
+        throw;
       }
     }
     dataIndex++;
