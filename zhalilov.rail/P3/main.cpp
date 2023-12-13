@@ -25,7 +25,7 @@ int main()
   char *result = nullptr;
   try
   {
-    result = new char[]{};
+    result = new char[4]{};
   }
   catch (const std::bad_alloc &e)
   {
