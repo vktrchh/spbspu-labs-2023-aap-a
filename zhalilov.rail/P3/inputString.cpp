@@ -1,26 +1,17 @@
 #include "inputString.hpp"
 
-char *zhalilov::resizeString(char string[], size_t &strSize)
+char *zhalilov::increaseStrLen(char string[], const size_t size, const size_t dLength)
 {
-  char *temp = nullptr;
-  try
-  {
-    temp = new char[strSize * 2];
-  }
-  catch (const std::bad_alloc &e)
-  {
-    throw e;
-  }
-  for (size_t i = 0; i < strSize; i++)
+  char *temp = new char[size + dLength];
+  for (size_t i = 0; i < size; i++)
   {
     temp[i] = string[i];
   }
   delete[] string;
-  for (size_t i = strSize; i < strSize * 2; i++)
+  for (size_t i = size; i < size + dLength - 1; i++)
   {
     temp[i] = 0;
   }
-  strSize *= 2;
   return temp;
 }
 
@@ -47,7 +38,8 @@ char *zhalilov::inputString(std::istream &input)
     {
       try
       {
-        string = resizeString(string, strSize);
+        string = increaseStrLen(string, strSize, 40);
+        strSize += 40;
       }
       catch (const std::bad_alloc &e)
       {
