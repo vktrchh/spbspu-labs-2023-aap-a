@@ -15,7 +15,7 @@ int main()
   }
   catch (...)
   {
-    std::cerr << "Failed work" << "\n";
+    std::cerr << "Failed work " << "\n";
     delete[] currentArray;
     return 1;
   }
