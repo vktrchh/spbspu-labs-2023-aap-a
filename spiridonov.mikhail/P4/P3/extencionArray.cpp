@@ -1,7 +1,5 @@
 #include <iostream>
-#include "inputArray.hpp"
-
-using namespace spiridonov;
+#include "extencionArray.hpp"
 
 char * spiridonov::extencionArray(const char* currentArray, const size_t strOld, size_t strNew)
 {
