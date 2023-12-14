@@ -1,8 +1,7 @@
 #include "seqsym.hpp"
+#include <cstring>
 
-using namespace spiridonov;
-
-int spiridonov::hasConsecutiveDuplicates(const char* str)
+int spiridonov::hasConsecutiveDuplicates(const char * str)
 {
   int length = strlen(str);
   for (int i = 1; i < length; i++)

@@ -1,9 +1,6 @@
 #include "seqsym.hpp"
 #include "inputArray.hpp"
 #include <iostream>
-#include <stdexcept>
-
-using namespace spiridonov;
 
 int main()
 {
@@ -12,13 +9,13 @@ int main()
 
   try
   {
-    currentArray = inputArray(std::cin, size);
-    int result = hasConsecutiveDuplicates(currentArray);
+    currentArray = spiridonov::inputArray(std::cin, size);
+    int result = spiridonov::hasConsecutiveDuplicates(currentArray);
     std::cout << result << '\n';
   }
-  catch (const std::exception& e)
+  catch (...)
   {
-    std::cerr << "Failed work: " << e.what() << "\n";
+    std::cerr << "Failed work" << "\n";
     delete[] currentArray;
     return 1;
   }

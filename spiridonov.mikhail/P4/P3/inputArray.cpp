@@ -1,9 +1,7 @@
 #include <iostream>
 #include "inputArray.hpp"
 
-using namespace spiridonov;
-
-char * spiridonov::inputArray(std::istream& input, size_t& sizeOfStr)
+char * spiridonov::inputArray(std::istream& input, size_t sizeOfStr)
 {
   char * currentArray = new char[sizeOfStr];
   char character = 0;
@@ -30,7 +28,8 @@ char * spiridonov::inputArray(std::istream& input, size_t& sizeOfStr)
       catch (...)
       {
         delete[] currentArray;
-        throw;
+        std::cerr << "Failed allocate memory" << "\n";
+        return nullptr;
       }
     }
   }
