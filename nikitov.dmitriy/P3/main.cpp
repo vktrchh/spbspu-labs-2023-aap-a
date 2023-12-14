@@ -12,9 +12,14 @@ int main()
   {
     firstPair = inputArray(firstArray);
   }
-  catch(const char* errorMessage)
+  catch(const std::bad_alloc&)
   {
-    std::cerr << errorMessage << '\n';
+    std::cerr << "Error: Memory out\n";
+    return 1;
+  }
+  catch(const std::out_of_range&)
+  {
+    std::cerr << "Error: Array out of range\n";
     return 1;
   }
 
