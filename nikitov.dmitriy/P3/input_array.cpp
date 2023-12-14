@@ -46,7 +46,7 @@ std::pair< char*, size_t > nikitov::inputArray(std:: istream &input, char* actua
         break;
       }
     }
-    if (!std::cin)
+    if (!input)
     {
       status = false;
     }
