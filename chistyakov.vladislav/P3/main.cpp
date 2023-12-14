@@ -70,14 +70,14 @@ int main()
   if (result[0] == 0)
   {
     std::cerr << "Seq too short\n";
+    delete[] array;
     return 1;
   }
 
   for (int i = 0; i < 3; ++i)
   {
-    std::cout << result[i] << "_";
+    std::cout << result[i];
   }
-
   std::cout << "\n";
 
   delete[] array;

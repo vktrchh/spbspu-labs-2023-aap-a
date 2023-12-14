@@ -31,16 +31,7 @@ char* chistyakov::countChars(char* array, size_t size)
     }
   }
 
-  size_t sizeWithoutO = 52;
-  for (int i = 0; i < 52; ++i)
-  {
-    if (dictChar[i] == 0)
-    {
-      sizeWithoutO = i;
-    }
-  }
-
-  char* result = sortingByQuantity(dictChar, dictNumsOfChar, sizeWithoutO);
+  char* result = sortingByQuantity(dictChar, dictNumsOfChar, 52);
 
   return result;
 }
