@@ -60,9 +60,9 @@ int main()
       size += 10;
     }
   }
-  
+
   std::cin >> std::skipws;
- 
+
   char* result = 0;
   result = countChars(array, size);
   result = sort(result, 3);
@@ -77,7 +77,7 @@ int main()
   {
     std::cout << result[i] << "_";
   }
-  
+
   std::cout << "\n";
 
   delete[] array;
