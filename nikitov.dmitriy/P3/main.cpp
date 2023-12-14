@@ -10,7 +10,7 @@ int main()
   std::pair <char*, size_t> firstPair{};
   try
   {
-    firstPair = inputArray(firstArray);
+    firstPair = inputArray(std::cin, firstArray);
   }
   catch(const std::bad_alloc&)
   {

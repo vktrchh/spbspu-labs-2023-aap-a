@@ -3,7 +3,7 @@
 #include <limits>
 #include <stdexcept>
 
-std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
+std::pair< char*, size_t > nikitov::inputArray(std:: istream &input, char* actualArray)
 {
   const size_t bufferSize = 25;
   size_t arraySize = 0;
@@ -25,7 +25,7 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
     throw;
   }
 
-  std::cin >> std::noskipws;
+  input >> std::noskipws;
   do
   {
     try
@@ -37,7 +37,7 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
       delete [] actualArray;
       throw;
     }
-    while ((i != bufferSize) && (std::cin >> symb))
+    while ((i != bufferSize) && (input >> symb))
     {
       buffer[i++] = symb;
       if (symb == '\n')
@@ -73,7 +73,7 @@ std::pair< char*, size_t > nikitov::inputArray(char* actualArray)
     if (!status)
     {
       actualArray[i + arraySize - bufferSize] = '\0';
-      std::cin >> std::skipws;
+      input  >> std::skipws;
       return std::pair< char*, size_t >(actualArray, arraySize);
     }
 
