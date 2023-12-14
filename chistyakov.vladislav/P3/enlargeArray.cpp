@@ -7,15 +7,17 @@ char* chistyakov::enlargeArray(char* array, size_t size)
 
   try
   {
-    char* newArray = new char[size + 1] {};
+    char* newArray = new char[size + 10] {};
 
     for (size_t i = 0; i < size; ++i)
     {
       newArray[i] = array[i];
     }
+
+    delete[] array;
     return newArray;
   }
-  catch (std::logic_error& e)
+  catch (std::bad_alloc & e)
   {
     delete[] newArray;
     throw e.what();

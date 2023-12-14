@@ -3,6 +3,7 @@
 #include <stdexcept>
 #include "enlargeArray.hpp"
 #include "countChars.hpp"
+#include "sort.hpp"
 
 bool overflow(size_t number)
 {
@@ -13,7 +14,7 @@ bool overflow(size_t number)
 int main()
 {
   using namespace chistyakov;
-  size_t size = 1;
+  size_t size = 10;
   char * array = new char[size]{};
 
   char input = 0;
@@ -45,9 +46,6 @@ int main()
 
     if (i == size)
     {
-      char* lastArray = array;
-      array = nullptr;
-
       try
       {
         array = enlargeArray(array, size);
@@ -55,36 +53,33 @@ int main()
       catch(const std::exception & e)
       {
         std::cerr << "Error: " << e.what() << "\n";
-        delete[] lastArray;
+        delete[] array;
         return 2;
       }
 
-      delete[] lastArray;
-      size += 1;
+      size += 10;
     }
   }
-
+  
   std::cin >> std::skipws;
+ 
+  char* result = 0;
+  result = countChars(array, size);
+  result = sort(result, 3);
 
-  char * result = nullptr;
-
-  try
+  if (result[0] == 0)
   {
-    result = countChars(array, size);
-  }
-  catch(const std::exception & e)
-  {
-    std::cerr << "Error: " << e.what() << "\n";
-    return 2;
+    std::cerr << "Seq too short\n";
+    return 1;
   }
 
   for (int i = 0; i < 3; ++i)
   {
-    std::cout << result[i];
+    std::cout << result[i] << "_";
   }
+  
   std::cout << "\n";
 
-  delete [] result;
-
+  delete[] array;
   return 0;
 }
