@@ -58,7 +58,7 @@ size_t namestnikov::getSizeOfString(char * string)
 {
   size_t count = 0;
   char sym = '0';
-  while (sym != '\n')
+  while (sym != '\0')
   {
     sym = string[count];
     ++count;
