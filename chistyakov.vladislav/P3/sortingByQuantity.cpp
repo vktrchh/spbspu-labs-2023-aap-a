@@ -1,6 +1,6 @@
 #include "sortingByQuantity.hpp"
 #include <cstddef>
-#include <iostream>
+
 char* chistyakov::sortingByQuantity(char* chars, size_t* nums, size_t lenght)
 {
   for (size_t i = 1; i < lenght; ++i)
@@ -25,11 +25,11 @@ char* chistyakov::sortingByQuantity(char* chars, size_t* nums, size_t lenght)
     }
     if (isSort)
     {
-        break;
+      break;
     }
   }
-  std::cout << chars[0] << chars[1] << chars[2] << "\n";
-  char arr[3] = {chars[0], chars[1], chars[2]};
+
+  char arr[3] = { chars[0], chars[1], chars[2] };
   char* result = arr;
 
   return result;

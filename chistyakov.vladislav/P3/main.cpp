@@ -78,6 +78,7 @@ int main()
   {
     std::cout << result[i];
   }
+
   std::cout << "\n";
 
   delete[] array;
