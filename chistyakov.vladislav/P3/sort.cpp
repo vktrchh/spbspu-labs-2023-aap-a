@@ -6,6 +6,10 @@ char* chistyakov::sort(char* array, size_t lenght)
   char newArray[lenght]{};
   for (size_t idx = 0; idx < lenght; ++idx)
   {
+    if (array[idx] == 0)
+    {
+      return 1;
+    }
     newArray[idx] = array[idx];
   }
   array = newArray;

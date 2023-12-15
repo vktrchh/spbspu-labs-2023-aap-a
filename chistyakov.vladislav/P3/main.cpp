@@ -67,7 +67,7 @@ int main()
   result = countChars(array, size);
   result = sort(result, 3);
 
-  if (result[0] == 0)
+  if (result == 1)
   {
     std::cerr << "Seq too short\n";
     delete[] array;
