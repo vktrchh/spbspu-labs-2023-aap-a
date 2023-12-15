@@ -35,7 +35,6 @@ int main()
   getUniqueSymArray(result, firstString, secondString, firstSize, secondSize);
   size_t length = 0;
   sortUniqueSymArray(result, length);
-  std::cout << firstSize;
   std::cout << result << "\n";
   delete [] firstString;
   delete [] result;
