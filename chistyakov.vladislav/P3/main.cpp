@@ -5,12 +5,6 @@
 #include "countChars.hpp"
 #include "sort.hpp"
 
-bool overflow(size_t number)
-{
-  size_t max_size = std::numeric_limits< size_t >::max();
-  return number == max_size;
-}
-
 int main()
 {
   using namespace chistyakov;
@@ -19,6 +13,7 @@ int main()
 
   char input = 0;
   size_t i = 0;
+  size_t max_size = std::numeric_limits< size_t >::max();
   std::cin >> std::noskipws;
 
   while ((std::cin >> input) && (i < size))
@@ -35,7 +30,7 @@ int main()
       return 1;
     }
 
-    if (overflow(i) || overflow(size))
+    if (i == max_size || size == max_size)
     {
       delete[] array;
       std::cerr << "Sequecne is too long\n";
