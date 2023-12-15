@@ -24,7 +24,7 @@ int main()
   char * result = nullptr;
   try
   {
-     result = new char[5];
+     result = new char[std::max(firstSize, secondSize)];
   }
   catch (const std::bad_alloc & e)
   {
@@ -33,8 +33,8 @@ int main()
     return 2;
   }
   getUniqueSymArray(result, firstString, secondString, firstSize, secondSize);
-  size_t length = 0;
-  sortUniqueSymArray(result, length);
+  size_t length = getSizeOfString(result);
+  std::sort(result, result + length);
   std::cout << result << "\n";
   delete [] firstString;
   delete [] result;
