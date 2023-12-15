@@ -31,6 +31,6 @@ char* chistyakov::sortingByQuantity(char* chars, size_t* nums, size_t lenght)
   std::cout << chars[0] << chars[1] << chars[2] << "\n";
   char arr[3] = {chars[0], chars[1], chars[2]};
   char* result = arr;
-  
+
   return result;
 }
