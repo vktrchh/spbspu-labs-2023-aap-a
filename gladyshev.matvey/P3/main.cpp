@@ -12,7 +12,6 @@ int main()
   size_t length = 11;
   size_t counter = 0;
   char * baseArray = nullptr;
-  char * finalArray = nullptr;
   baseArray = new char[length];
   std::cin >> std::noskipws;
   while (std::cin >> currsym)
@@ -54,6 +53,7 @@ int main()
     delete[] baseArray;
     return 1;
   }
+  char * finalArray = nullptr;
   try
   {
     finalArray = new char[counter];
@@ -62,7 +62,7 @@ int main()
   {
     std::cerr << "Error in data\n";
     delete[] baseArray;
-    return 2;
+    return 1;
   }
   finalArray = createFinalArray(baseArray, finalArray, counter, vowarr);
   std::cout << finalArray << "\n";
