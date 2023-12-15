@@ -1,43 +1,54 @@
 #include "stringInput.hpp"
 #include <cstddef>
 
-char * rebdev::inputStr(std::istream & input, char * str)
+char * rebdev::acceptStr(std::istream & input)
 {
-  input >> std::noskipws;
-
   char sym = 0;
   size_t sizeOfStr = 0;
+  
+  char * str = nullptr;
   char * str2 = nullptr;
+
+  input >> std::noskipws;
 
   while (sym != '\n')
   {
     input >> sym;
-
     if(!input)
     {
+      delete[] str;
       input >> std::skipws;
-      return nullptr;
+      throw std::logic_error("Bad read!");
     }
 
     try
     {
       str2 = new char[sizeOfStr + 1];
+
       for (size_t i = 0; i < sizeOfStr; ++i)
       {
         str2[i] = str[i];
       }
-
-      delete[] str;
-      str = str2;
-      str2 = nullptr;
     }
     catch (const std::logic_error & e)
     {
+      input >> std::skipws;
+      delete[] str;
       delete[] str2;
       throw e;
     }
-
-    str[sizeOfStr] = sym;
+    
+    delete[] str;
+    str = str2;
+    str2 = nullptr;
+    if (sym != '\n')
+    {
+      str[sizeOfStr] = sym;
+    }
+    else
+    {
+      str[sizeOfStr] = '\0';
+    }
     sizeOfStr += 1;
   }
 

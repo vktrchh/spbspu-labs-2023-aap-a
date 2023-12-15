@@ -1,36 +1,36 @@
 #include "twoStrings.hpp"
 #include <cctype>
 #include <cstring>
-#include <cstddef>
 
-char * rebdev::stringConversion(char * firstString, char * secondString)
+char * rebdev::convertString(char * firstString, size_t firstSize, char * secondString, size_t secondSize)
 {
   size_t numOfDig = 0;
-  for (size_t i = 0; i < std::strlen(secondString); ++i)
+  for (size_t i = 0; i < secondSize; ++i)
   {
     if (std::isdigit(secondString[i]))
     {
-      numOfDig+=1;
+      numOfDig += 1;
     }
   }
 
-  char * newStr = new char[std::strlen(firstString) + numOfDig];
+  char * newStr = new char[firstSize + numOfDig + 1];
+  
+  size_t num = firstSize;
 
-  for (size_t i = 0; i < std::strlen(firstString) - 1; ++i)
+  for (size_t i = 0; i < num; ++i)
   {
     newStr[i] = firstString[i];
   }
 
-  size_t num = std::strlen(firstString) - 1;
-
-  for (size_t i = 0; i < std::strlen(secondString); ++i)
+  for (size_t i = 0; i < secondSize; ++i)
   {
     if (std::isdigit(secondString[i]))
     {
       newStr[num] = secondString[i];
-      num+=1;
+      num += 1;
     }
   }
-
+  newStr[firstSize + numOfDig] = '\0';
+  
   return newStr;
 }

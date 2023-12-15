@@ -4,7 +4,7 @@
 #include <iostream>
 namespace rebdev
 {
-  char * inputStr(std::istream & input, char * str);
+  char * acceptStr(std::istream & input);
 }
 
 #endif
