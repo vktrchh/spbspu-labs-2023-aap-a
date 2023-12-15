@@ -1,6 +1,7 @@
 #include "matrix_operation.h"
+#include <istream>
 
-void zakozhurnikova::fillMatrix(int *matrix, size_t rows, size_t cols)
+void zakozhurnikova::fillMatrix(int* matrix, size_t rows, size_t cols)
 {
   size_t k = 1;
   size_t i = 0;
@@ -40,7 +41,7 @@ void zakozhurnikova::fillMatrix(int *matrix, size_t rows, size_t cols)
   return;
 }
 
-void zakozhurnikova::substractMatrix(int *original,const int *substract, size_t rows, size_t cols)
+void zakozhurnikova::substractMatrix(int* original,const int* substract, size_t rows, size_t cols)
 {
   for (size_t i = 0; i < rows; i++)
   {
@@ -50,4 +51,3 @@ void zakozhurnikova::substractMatrix(int *original,const int *substract, size_t 
     }
   }
 }
-

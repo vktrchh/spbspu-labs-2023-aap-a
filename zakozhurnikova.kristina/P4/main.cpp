@@ -2,15 +2,13 @@
 #include "matrix_operation.h"
 #include <iostream>
 #include <fstream>
-#include <cstdlib>
-#include <string>
 
 int main(int argc, const char * argv[])
 {
   int option = 0;
   try
   {
-    zakozhurnikova::rightArguments(argc, argv);
+    option = zakozhurnikova::checkArguments(argc, argv);
   }
   catch (const std::invalid_argument& e)
   {
@@ -28,76 +26,81 @@ int main(int argc, const char * argv[])
   }
   catch (const std::exception& e)
   {
-    std::cerr << "Can not open file\n";
+    std::cerr << "Can not open file";
     return 2;
   }
   input >> rows >> cols;
   if (!input)
   {
-    std::cerr << "Can not read a number\n";
+    std::cerr << "Can not read a number";
     return 2;
   }
-  if (rows == 0 && cols == 0)
-  {
-    output << "0 0";
-    return 0;
-  }
+
   const size_t s = rows * cols;
   int *matrix = nullptr;
   int *original = nullptr;
-  int **matrixPtr = &matrix;
-  int **originalPtr = &original;
+  int data[10000] = {};
+
+  try
+  {
+    original = new int[s];
+  }
+  catch (const std::bad_alloc &e)
+  {
+    std::cerr << e.what() << '\n';
+    return 1;
+  }
   if (option == 1)
   {
-    int matrix[s];
-    int original[s];
-    for (size_t i = 0; i < s; i++)
-    {
-      matrix[i] = 0;
-      original[i] = 0;
-    }
-    *matrixPtr = static_cast<int *>(matrix);
-    *originalPtr = static_cast<int *>(original);
+    matrix = data;
   }
-  else
+  if (option == 2)
   {
     try
     {
-      *matrixPtr = new int [rows * cols]{0};
-      *originalPtr = new int [rows * cols]{0};
+      matrix = new int[s]{};
     }
-    catch (const std::exception &e)
+    catch (const std::bad_alloc &e)
     {
-      delete[] *matrixPtr;
-      delete[] *originalPtr;
-      matrixPtr = nullptr;
-      originalPtr = nullptr;
+      delete[] original;
       std::cerr << e.what() << '\n';
       return 1;
     }
   }
-  zakozhurnikova::fillMatrix(matrix, rows, cols);
-  for (size_t i = 0; i < rows; i++)
+
+  try
   {
-    for (size_t j = 0; j < cols; j++)
-    {
-      input >> original[i * cols + j];
-      if (!input)
-      {
-        std::cerr << "Incorrect input!\n";
-        delete[] matrix;
-        delete[] original;
-        matrixPtr = nullptr;
-        originalPtr = nullptr;
-        return 1;
-      }
-    }
+    zakozhurnikova::writeToMatrix(input, matrix, rows, cols);
   }
-  zakozhurnikova::substractMatrix(original, matrix, rows, cols);
-  zakozhurnikova::writeToFile(output, original, rows, cols);
-  delete[] matrix;
+  catch (const std::runtime_error &e)
+  {
+    std::cerr << e.what() << '\n';
+    delete[] original;
+    if (option == 2)
+    {
+      delete[] matrix;
+    }
+    return 1;
+  }
+  zakozhurnikova::fillMatrix(original, rows, cols);
+  zakozhurnikova::substractMatrix(matrix, original, rows, cols);
+  try
+  {
+    zakozhurnikova::writeToDest(output, matrix, rows, cols);
+  }
+  catch (const std::invalid_argument &e)
+  {
+    if (option == 2)
+    {
+      delete[] matrix;
+    }
+    delete[] original;
+    return 0;
+  }
+  if (option == 2)
+  {
+    delete[] matrix;
+  }
   delete[] original;
-  matrixPtr = nullptr;
-  originalPtr = nullptr;
   return 0;
 }
