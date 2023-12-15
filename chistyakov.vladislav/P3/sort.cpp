@@ -8,7 +8,7 @@ char* chistyakov::sort(char* array, size_t lenght)
   {
     if (array[idx] == 0)
     {
-      return 1;
+      return 0;
     }
     newArray[idx] = array[idx];
   }
