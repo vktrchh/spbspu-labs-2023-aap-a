@@ -14,7 +14,7 @@ char * rebdev::convertString(char * firstString, size_t firstSize, char * second
   }
 
   char * newStr = new char[firstSize + numOfDig + 1];
-  
+
   size_t num = firstSize;
 
   for (size_t i = 0; i < num; ++i)
