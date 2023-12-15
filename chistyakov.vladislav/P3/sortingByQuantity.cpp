@@ -29,8 +29,5 @@ char* chistyakov::sortingByQuantity(char* chars, size_t* nums, size_t lenght)
     }
   }
 
-  char arr[3] = { chars[0], chars[1], chars[2] };
-  char* result = arr;
-
-  return result;
+  return chars;
 }
