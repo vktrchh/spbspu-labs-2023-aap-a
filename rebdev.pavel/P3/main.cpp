@@ -10,7 +10,7 @@ int main()
 {
   char * firstStr = nullptr;
   char secondStr[] = {"12 ok 35 z 3 pv21"};
-  
+
   try
   {
     firstStr = rebdev::acceptStr(std::cin);
@@ -24,9 +24,9 @@ int main()
   {
     return 1;
   }
-  
+
   char * rez = rebdev::convertString(firstStr, strlen(firstStr), secondStr, strlen(secondStr));
-  
+
   std::cout << rez << '\n';
   delete[] rez;
   delete[] firstStr;

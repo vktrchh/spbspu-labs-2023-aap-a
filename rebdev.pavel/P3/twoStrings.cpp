@@ -31,6 +31,6 @@ char * rebdev::convertString(char * firstString, size_t firstSize, char * second
     }
   }
   newStr[firstSize + numOfDig] = '\0';
-  
+
   return newStr;
 }

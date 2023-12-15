@@ -5,7 +5,7 @@ char * rebdev::acceptStr(std::istream & input)
 {
   char sym = 0;
   size_t sizeOfStr = 0;
-  
+
   char * str = nullptr;
   char * str2 = nullptr;
 
@@ -37,7 +37,7 @@ char * rebdev::acceptStr(std::istream & input)
       delete[] str2;
       throw e;
     }
-    
+
     delete[] str;
     str = str2;
     str2 = nullptr;
