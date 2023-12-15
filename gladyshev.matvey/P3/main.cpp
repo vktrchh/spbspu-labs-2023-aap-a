@@ -24,7 +24,7 @@ int main()
     }
     catch (const std::bad_alloc & e)
     {
-      std::cerr << "Error input\n";
+      std::cerr << "Error in input\n";
       delete[] baseArray;
       return 1;
     }
