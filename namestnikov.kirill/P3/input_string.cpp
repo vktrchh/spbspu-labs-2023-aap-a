@@ -33,29 +33,24 @@ char * namestnikov::inputString(std::istream & in)
   in >> std::noskipws;
   while ((sym != '\n') && (in >> sym))
   {
-    string[strIndex] = sym;
     if (strIndex + 1 == strSize)
     {
       try
       {
         string = getLongerString(string, strSize, strSize + 20);
+        strSize += 20;
       }
       catch (...)
       {
         delete [] string;
         throw;
       }
-      strSize += 20;
     }
+    string[strIndex] = sym;
     ++strIndex;
   }
   string[strIndex - 1] = '\0';
   in >> std::skipws;
-  if (strIndex == 0)
-  {
-    delete [] string;
-    return nullptr;
-  }
   return string;
 }
 

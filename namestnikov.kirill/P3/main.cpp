@@ -15,13 +15,14 @@ int main()
   catch (...)
   {
     std::cerr << "Not enough memory\n";
-    return 2;
+    return 1;
   }
   size_t firstSize = getSizeOfString(firstString);
-  if ((!firstString) || (firstSize == 0))
+  if ((firstString[0] == '\0') || (!firstString))
   {
     std::cerr << "No string input\n";
-    return 2;
+    delete [] firstString;
+    return 1;
   }
   const char * secondString = "abc_ef";
   size_t secondSize = 6;
@@ -35,7 +36,7 @@ int main()
   {
     delete [] firstString;
     std::cerr << "Not enough memory\n";
-    return 2;
+    return 1;
   }
   size_t length = getSizeOfString(result);
   std::sort(result, result + length);
