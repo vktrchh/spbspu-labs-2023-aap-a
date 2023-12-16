@@ -14,17 +14,22 @@ int main()
   }
   catch (...)
   {
-    delete [] firstString;
     std::cerr << "Not enough memory\n";
     return 2;
   }
   size_t firstSize = getSizeOfString(firstString);
-  const char * secondString = "abc_ef";
-  const size_t secondSize = 6;
+  if ((!firstString) || (firstSize == 0))
+  {
+    std::cerr << "No string input\n";
+    return 2;
+  }
+  const char * secondString = "bc_fu";
+  size_t secondSize = 5;
   char * result = nullptr;
   try
   {
-     result = new char[std::max(firstSize, secondSize)];
+    result = new char[std::min(firstSize, secondSize)];
+    getUniqueSymArray(result, firstString, secondString, firstSize, secondSize);
   }
   catch (const std::bad_alloc & e)
   {
@@ -32,7 +37,6 @@ int main()
     std::cerr << "Not enough memory\n";
     return 2;
   }
-  getUniqueSymArray(result, firstString, secondString, firstSize, secondSize);
   size_t length = getSizeOfString(result);
   std::sort(result, result + length);
   std::cout << result << "\n";

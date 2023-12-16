@@ -51,6 +51,11 @@ char * namestnikov::inputString(std::istream & in)
   }
   string[strIndex - 1] = '\0';
   in >> std::skipws;
+  if (strIndex == 0)
+  {
+    delete [] string;
+    return nullptr;
+  }
   return string;
 }
 

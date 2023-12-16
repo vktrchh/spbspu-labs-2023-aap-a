@@ -25,4 +25,3 @@ void namestnikov::getUniqueSymArray(char * result, const char * str1, const char
 }
 
 
-
