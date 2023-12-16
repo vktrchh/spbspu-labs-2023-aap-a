@@ -23,8 +23,7 @@ char * namestnikov::inputString(std::istream & in)
 {
   size_t strSize = 20;
   size_t strIndex = 0;
-  char * string = nullptr;
-  string = new char [strSize];
+  char * string = new char [strSize];
   char sym = '0';
   for (size_t i = 0; i < strSize; ++i)
   {
@@ -59,16 +58,4 @@ char * namestnikov::inputString(std::istream & in)
   }
   in >> std::skipws;
   return string;
-}
-
-size_t namestnikov::getSizeOfString(const char * string)
-{
-  const char * temp = string;
-  size_t count = 0;
-  while (*temp)
-  {
-    ++count;
-    ++temp;
-  }
-  return count;
 }
