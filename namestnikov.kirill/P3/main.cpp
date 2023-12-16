@@ -23,8 +23,8 @@ int main()
     std::cerr << "No string input\n";
     return 2;
   }
-  const char * secondString = "bc_fu";
-  size_t secondSize = 5;
+  const char * secondString = "abc_ef";
+  size_t secondSize = 6;
   char * result = nullptr;
   try
   {
