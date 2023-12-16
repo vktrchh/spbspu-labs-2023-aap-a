@@ -63,11 +63,12 @@ char * namestnikov::inputString(std::istream & in)
 
 size_t namestnikov::getSizeOfString(const char * string)
 {
+  const char * temp = string;
   size_t count = 0;
-  while (*string)
+  while (*temp)
   {
     ++count;
-    ++string;
+    ++temp;
   }
   return count;
 }

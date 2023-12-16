@@ -4,24 +4,30 @@ void namestnikov::getUniqueSymArray(char * result, const char * str1, const char
 {
   for (size_t i = 0; i < num1; ++i)
   {
-    if ((str1[i] != '\0') && (str1[i] != '\n') && (str1[i] != ' '))
+    if (!(isSymbolInString(str2, str1[i])) && !(isSymbolInString(result, str1[i])))
     {
-      if ((std::find(str1, str1 + num1, str1[i]) != str1 + num1) && (std::find(str2, str2 + num2, str1[i]) == str2 + num2))
-      {
-        *result++ = str1[i];
-      }
+      *result++ = str1[i];
     }
   }
   for (size_t i = 0; i < num2; ++i)
   {
-    if ((str2[i] != '\0') && (str2[i] != '\n') && (str2[i] != ' '))
+    if (!(isSymbolInString(str1, str2[i])) && !(isSymbolInString(result, str2[i])))
     {
-      if ((std::find(str1, str1 + num1, str2[i]) == str1 + num1) && (std::find(str2, str2 + num2, str2[i]) != str2 + num2))
-      {
-        *result++ = str2[i];
-      }
+      *result++ = str2[i];
     }
   }
 }
 
-
+int namestnikov::isSymbolInString(const char * string, char sym)
+{
+  const char * temp = string;
+  while (*temp)
+  {
+    if (*temp == sym)
+    {
+      return 1;
+    }
+    ++temp;
+  }
+  return 0;
+}
