@@ -31,8 +31,17 @@ char * namestnikov::inputString(std::istream & in)
     string[i] = '0';
   }
   in >> std::noskipws;
-  while ((sym != '\n') && (in >> sym))
+  while (in >> sym)
   {
+    if (sym == '\n')
+    {
+      string[strIndex] = '\0';
+      break;
+    }
+    else
+    {
+      string[strIndex] = sym;
+    }
     if (strIndex + 1 == strSize)
     {
       try
@@ -46,10 +55,8 @@ char * namestnikov::inputString(std::istream & in)
         throw;
       }
     }
-    string[strIndex] = sym;
     ++strIndex;
   }
-  string[strIndex - 1] = '\0';
   in >> std::skipws;
   return string;
 }
