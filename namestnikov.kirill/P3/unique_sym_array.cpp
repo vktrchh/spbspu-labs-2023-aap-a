@@ -2,12 +2,12 @@
 #include "input_string.hpp"
 #include <algorithm>
 
-void namestnikov::getUniqueSymArray(const char * firstString, const char * secondString, char * result, size_t & resultSize, size_t & resultIndex)
+void namestnikov::getUniqueSymArray(const char * str1, const char * str2, char * result, size_t & resultSize, size_t & resultIndex)
 {
-  const char * temp = firstString;
+  const char * temp = str1;
   while (*temp)
   {
-    if (!(isSymbolInString(secondString, *temp)) && !(isSymbolInString(result, *temp)))
+    if (!(isSymbolInString(str2, *temp)) && !(isSymbolInString(result, *temp)))
     {
       if (resultIndex + 1 == resultSize)
       {

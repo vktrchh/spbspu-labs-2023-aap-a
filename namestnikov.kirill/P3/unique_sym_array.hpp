@@ -4,7 +4,7 @@
 
 namespace namestnikov
 {
-  void getUniqueSymArray(const char * firstString, const char * secondString, char * result, size_t & resultSize, size_t & resultIndex);
+  void getUniqueSymArray(const char * str1, const char * str2, char * result, size_t & resultSize, size_t & resultIndex);
   int isSymbolInString(const char * string, char sym);
 }
 
