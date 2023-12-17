@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cstddef>
 
 #include "inputString.hpp"
 #include "findCommonestSymbs.hpp"
@@ -9,25 +8,19 @@ int main()
 {
   using namespace zhalilov;
   char *string = nullptr;
-  size_t size = 0;
   try
   {
-    string = new char[100];
-    size = 100;
+    string = inputString(std::cin);
   }
   catch (const std::bad_alloc &e)
   {
     std::cerr << "Error: " << e.what();
     return 1;
   }
-
-  size_t endOfParse = 0;
-  try
+  if (!string)
   {
-    while (string[endOfParse] != '\0')
-    {
-      
-    }
+    std::cerr << "Invalid input\n";
+    return 1;
   }
   char *result = nullptr;
   try

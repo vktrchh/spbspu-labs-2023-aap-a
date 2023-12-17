@@ -2,12 +2,11 @@
 #define INPUTSTRING_HPP
 
 #include <iostream>
-#include <cstddef>
 
 namespace zhalilov
 {
-  std::istream &inputString(char string[], size_t size, size_t &endOfParse, std::istream &in);
-  char *increaseStrLen(char string[], size_t size, size_t dLength);
+  char *inputString(std::istream &in);
+  char *increaseStrLen(char string[], const size_t size, const size_t dLength);
 }
 
 #endif
