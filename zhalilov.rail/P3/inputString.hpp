@@ -5,8 +5,8 @@
 
 namespace zhalilov
 {
-  char *inputString(std::istream &in);
-  char *increaseStrLen(char string[], const size_t size, const size_t dLength);
+  char *inputString(size_t &lastDataIndex, size_t &size, std::istream &in);
+  char *resizeString(char string[], size_t oldSize, size_t newSize);
 }
 
 #endif
