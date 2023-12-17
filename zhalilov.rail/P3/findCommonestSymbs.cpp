@@ -5,7 +5,11 @@
 
 char *zhalilov::findCmnstSymbs(char *result, const char *string)
 {
-  size_t alphabet[26] = {};
+  size_t alphabet[26];
+  for (int i = 0; i < 26; i++)
+  {
+    alphabet[i] = 0;
+  }
   while (*string)
   {
     if (isalpha((*string)))
@@ -16,12 +20,16 @@ char *zhalilov::findCmnstSymbs(char *result, const char *string)
     string++;
   }
 
-  size_t mostCommonSymbs[26] = {};
-  size_t max = 0;
-  size_t maxIndex = 0;
-  for (size_t i = 0; i < 3; i++)
+  int mostCommonSymbs[26];
+  for (int i = 0; i < 26; i++)
   {
-    for (size_t j = 0; j < 26; j++)
+    mostCommonSymbs[i] = 0;
+  }
+  size_t max = 0;
+  int maxIndex = 0;
+  for (int i = 0; i < 3; i++)
+  {
+    for (int j = 0; j < 26; j++)
     {
       if (alphabet[j] > max)
       {
@@ -35,8 +43,8 @@ char *zhalilov::findCmnstSymbs(char *result, const char *string)
     max = 0;
   }
 
-  unsigned int resultIndex = 0;
-  for (size_t i = 0; i < 26; i++)
+  int resultIndex = 0;
+  for (int i = 0; i < 26; i++)
   {
     if (mostCommonSymbs[i] == 1)
     {
