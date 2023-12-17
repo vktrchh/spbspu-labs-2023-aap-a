@@ -7,7 +7,7 @@ void namestnikov::fillUniqueSymArray(const char * str1, const char * str2, char 
   const char * temp = str1;
   while (*temp)
   {
-    if (!(isSymbolInString(str2, *temp)) && !(isSymbolInString(result, *temp)))
+    if (!(isSymbolInString(str2, *temp)) && !(isSymbolInString(result, *temp)) && (*temp != '\0'))
     {
       result[resultIndex] = *temp;
       ++resultIndex;
@@ -46,7 +46,6 @@ char * namestnikov::getUniqueSymArray(const char * str1, const char * str2, size
     result = new char[defaultSize]{};
     fillUniqueSymArray(str1, str2, result, resultIndex);
     fillUniqueSymArray(str2, str1, result, resultIndex);
-    result[resultIndex] = '\0';
   }
   catch (const std::bad_alloc & e)
   {
