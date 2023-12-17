@@ -19,16 +19,13 @@ char * namestnikov::getLongerString(char * string, size_t oldSize, size_t newSiz
   return newString;
 }
 
-char * namestnikov::inputString(std::istream & in)
+char * namestnikov::inputString(std::istream & in, size_t & strIndex)
 {
-  size_t strSize = 20;
-  size_t strIndex = 0;
-  char * string = new char [strSize];
+  size_t strSize = 0;
+  constexpr size_t defaultSize = 20;
+  strSize = defaultSize;
+  char * string = new char [defaultSize]{};
   char sym = '0';
-  for (size_t i = 0; i < strSize; ++i)
-  {
-    string[i] = '0';
-  }
   in >> std::noskipws;
   while (in >> sym)
   {

@@ -1,18 +1,21 @@
 #include "unique_sym_array.hpp"
 #include "input_string.hpp"
+#include <algorithm>
 
-void namestnikov::getUniqueSymArray(const char * str1, const char * str2, char * result, size_t & resultSize, size_t & resultIndex)
+void namestnikov::getUniqueSymArray(const char * firstString, const char * secondString, char * result, size_t & resultSize, size_t & resultIndex)
 {
-  const char * temp = str1;
+  const char * temp = firstString;
   while (*temp)
   {
-    if (!(isSymbolInString(str2, *temp)) && !(isSymbolInString(result, *temp)))
+    if (!(isSymbolInString(secondString, *temp)) && !(isSymbolInString(result, *temp)))
     {
       if (resultIndex + 1 == resultSize)
       {
         try
         {
-          getLongerString(result, resultSize, resultSize + 20);
+          char * newResult = result;
+          getLongerString(newResult, resultSize, resultSize + 20);
+          result = newResult;
           resultSize += 20;
         }
         catch (...)

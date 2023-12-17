@@ -5,7 +5,7 @@
 
 namespace namestnikov
 {
-  char * inputString(std::istream & in);
+  char * inputString(std::istream & in, size_t & strIndex);
   char * getLongerString(char * string, size_t oldSize, size_t newSize);
 }
 

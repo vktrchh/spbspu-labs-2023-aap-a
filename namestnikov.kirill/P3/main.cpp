@@ -8,9 +8,10 @@ int main()
 {
   using namespace namestnikov;
   char * firstString = nullptr;
+  size_t strIndex = 0;
   try
   {
-    firstString = inputString(std::cin);
+    firstString = inputString(std::cin, strIndex);
   }
   catch (...)
   {
@@ -27,10 +28,12 @@ int main()
   char * result = nullptr;
   size_t resultIndex = 0;
   size_t resultSize = 0;
+  const size_t firstSize = strIndex;
+  const size_t secondSize = 6;
   try
   {
-    constexpr size_t defaultSize = 20;
-    result = new char[defaultSize];
+    size_t defaultSize = std::max(firstSize, secondSize);
+    result = new char[defaultSize]{};
     result[0] = '\0';
     resultSize = defaultSize;
     getUniqueSymArray(firstString, secondString, result, resultSize, resultIndex);
