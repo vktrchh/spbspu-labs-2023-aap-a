@@ -15,15 +15,12 @@ char *zhalilov::increaseStrLen(char string[], const size_t size, const size_t dL
   return temp;
 }
 
-char *zhalilov::inputString(std::istream &input)
+std::istream &zhalilov::inputString(char string[], size_t size, size_t &endOfParse, std::istream &input)
 {
-  size_t strSize = 100;
   size_t dataIndex = 0;
-  char *string = nullptr;
-  string = new char[strSize]{};
-  input >> std::noskipws;
   char temp = 0;
-  while (input >> temp)
+  input >> std::noskipws;
+  while ((input >> temp) && (dataIndex < size))
   {
     if (temp == '\n')
     {
@@ -34,26 +31,9 @@ char *zhalilov::inputString(std::istream &input)
     {
       string[dataIndex] = temp;
     }
-    if (dataIndex + 1 == strSize)
-    {
-      try
-      {
-        string = increaseStrLen(string, strSize, 40);
-        strSize += 40;
-      }
-      catch (const std::bad_alloc &e)
-      {
-        delete[] string;
-        throw;
-      }
-    }
     dataIndex++;
   }
   input >> std::skipws;
-  if (dataIndex == 0)
-  {
-    delete[] string;
-    return nullptr;
-  }
-  return string;
+  endOfParse = dataIndex;
+  return input;
 }
