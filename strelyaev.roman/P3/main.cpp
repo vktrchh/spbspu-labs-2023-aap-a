@@ -19,13 +19,14 @@ int main()
     std::cerr << "Unable to allocate memory\n";
     return 1;
   }
-  string = extendString(string, size);
+  string = strelyaev::extendString(string, size, std::cin);
   if (string == nullptr)
   {
     std::cerr << "Unable to create a string\n";
     return 1;
   }
-  std::cout << checkRepDgt(string) << "\n";
+  std::cout << strelyaev::checkRepDgt(string) << "\n";
   delete [] string;
+  std::cin >> std::skipws;
   return 0;
 }

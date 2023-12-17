@@ -2,8 +2,10 @@
 #define EXTENDSTRING_H
 #include <cstddef>
 #include <cctype>
-
-char * extendString(char *, size_t);
-int checkRepDgt(char *);
-
+#include <iostream>
+namespace strelyaev
+{
+  char * extendString(char *, size_t, std::istream &);
+  int checkRepDgt(char *);
+}
 #endif

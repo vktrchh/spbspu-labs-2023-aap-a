@@ -1,14 +1,13 @@
 #include "extendstring.h"
-#include <iostream>
 
-char * extendString(char * string, size_t size)
+char * strelyaev::extendString(char * string, size_t size, std::istream & in)
 {
     size_t buffer_size = size;
     char c = 0;
     size_t i = 0;
-    while ((std::cin >> c) && (c!= '\n'))
+    while ((in >> c) && (c != '\n'))
     {
-      if (!std::cin)
+      if (!in)
       {
         return nullptr;
       }
@@ -17,15 +16,7 @@ char * extendString(char * string, size_t size)
       {
         buffer_size += 10;
         char * buffer = nullptr;
-        try
-        {
-          buffer = new char [buffer_size];
-        }
-        catch (...)
-        {
-          delete [] buffer;
-          return nullptr;
-        }
+        buffer = new char [buffer_size];
         for (size_t j = 0; j < i; j++)
         {
           buffer[j] = string[j];
@@ -44,36 +35,21 @@ char * extendString(char * string, size_t size)
     return string;
 }
 
-int checkRepDgt(char * string)
+int strelyaev::checkRepDgt(char * const string)
 {
-  char * digits = nullptr;
-  try
-  {
-    digits = new char [11];
-  }
-  catch (...)
-  {
-    delete [] digits;
-    return 0;
-  }
-  digits[10] = '\0';
-
-  size_t position = 0;
   size_t i = 0;
   for (i = 0; string[i] != '\0'; i++)
   {
     if (std::isdigit(string[i]))
     {
-      for (size_t j = 0; j < position; j++)
+      for (size_t j = 0; string[j] != '\0'; j++)
       {
-        if (digits[j] == string[i])
+        if ((string[i] == string[j]) && (i != j))
         {
           return 1;
         }
       }
-      digits[position++] = string[i];
     }
   }
-  delete [] digits;
   return 0;
 }
