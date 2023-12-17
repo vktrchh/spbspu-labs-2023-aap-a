@@ -25,19 +25,12 @@ int main()
     return 1;
   }
   const char * secondString = "abc_ef";
-  char * result = nullptr;
-  size_t resultIndex = 0;
-  size_t resultSize = 0;
   const size_t firstSize = strIndex;
   const size_t secondSize = 6;
+  char * result = nullptr;
   try
   {
-    size_t defaultSize = std::max(firstSize, secondSize);
-    result = new char[defaultSize]{};
-    result[0] = '\0';
-    resultSize = defaultSize;
-    getUniqueSymArray(firstString, secondString, result, resultSize, resultIndex);
-    getUniqueSymArray(secondString, firstString, result, resultSize, resultIndex);
+    result = getUniqueSymArray(firstString, secondString, firstSize, secondSize);
   }
   catch (const std::bad_alloc & e)
   {
@@ -46,7 +39,6 @@ int main()
     std::cerr << "Not enough memory\n";
     return 1;
   }
-  std::sort(result, result + resultIndex);
   std::cout << result << "\n";
   delete [] firstString;
   delete [] result;

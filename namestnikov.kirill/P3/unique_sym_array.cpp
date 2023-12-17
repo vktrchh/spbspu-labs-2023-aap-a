@@ -2,27 +2,13 @@
 #include "input_string.hpp"
 #include <algorithm>
 
-void namestnikov::getUniqueSymArray(const char * str1, const char * str2, char * result, size_t & resultSize, size_t & resultIndex)
+void namestnikov::fillUniqueSymArray(const char * str1, const char * str2, char * result, size_t & resultIndex)
 {
   const char * temp = str1;
   while (*temp)
   {
     if (!(isSymbolInString(str2, *temp)) && !(isSymbolInString(result, *temp)))
     {
-      if (resultIndex + 1 == resultSize)
-      {
-        try
-        {
-          char * newResult = result;
-          getLongerString(newResult, resultSize, resultSize + 20);
-          result = newResult;
-          resultSize += 20;
-        }
-        catch (...)
-        {
-          throw;
-        }
-      }
       result[resultIndex] = *temp;
       result[resultIndex + 1] = '\0';
       ++resultIndex;
@@ -49,4 +35,25 @@ int namestnikov::isSymbolInString(const char * string, char sym)
     }
     return 0;
   }
+}
+
+char * namestnikov::getUniqueSymArray(const char * str1, const char * str2, size_t firstSize, size_t secondSize)
+{
+  char * result = nullptr;
+  size_t resultIndex = 0;
+  try
+  {
+    size_t defaultSize = std::max(firstSize, secondSize);
+    result = new char[defaultSize]{};
+    result[0] = '\0';
+    fillUniqueSymArray(str1, str2, result, resultIndex);
+    fillUniqueSymArray(str2, str1, result, resultIndex);
+  }
+  catch (const std::bad_alloc & e)
+  {
+    delete [] result;
+    return nullptr;
+  }
+  std::sort(result, result + resultIndex);
+  return result;
 }
