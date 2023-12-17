@@ -33,14 +33,20 @@ void namestnikov::getUniqueSymArray(const char * str1, const char * str2, char *
 
 int namestnikov::isSymbolInString(const char * string, char sym)
 {
-  const char * temp = string;
-  while (*temp)
+  if (!string)
   {
-    if (*temp == sym)
-    {
-      return 1;
-    }
-    ++temp;
+    return 0;
   }
-  return 0;
+  else
+  {
+    while (*string)
+    {
+      if (*string == sym)
+      {
+        return 1;
+      }
+      ++string;
+    }
+    return 0;
+  }
 }

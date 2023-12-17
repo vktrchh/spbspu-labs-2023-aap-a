@@ -42,6 +42,7 @@ int main()
   catch (const std::bad_alloc & e)
   {
     delete [] firstString;
+    delete [] result;
     std::cerr << "Not enough memory\n";
     return 1;
   }
