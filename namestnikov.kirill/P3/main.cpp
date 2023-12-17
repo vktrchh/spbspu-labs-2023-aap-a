@@ -32,7 +32,7 @@ int main()
   {
     result = getUniqueSymArray(firstString, secondString, firstSize, secondSize);
   }
-  catch (const std::bad_alloc & e)
+  catch (...)
   {
     delete [] firstString;
     delete [] result;

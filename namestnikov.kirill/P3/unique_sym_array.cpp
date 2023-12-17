@@ -16,43 +16,28 @@ void namestnikov::fillUniqueSymArray(const char * str1, const char * str2, char 
   }
 }
 
-int namestnikov::isSymbolInString(const char * string, char sym)
+bool namestnikov::isSymbolInString(const char * string, char sym)
 {
-  if (!string)
+  while (*string != '\0')
   {
-    return 0;
-  }
-  else
-  {
-    while (*string != '\0')
+    if (*string == sym)
     {
-      if (*string == sym)
-      {
-        return 1;
-      }
-      ++string;
+      return true;
     }
-    return 0;
+    ++string;
   }
+  return false;
 }
 
 char * namestnikov::getUniqueSymArray(const char * str1, const char * str2, size_t firstSize, size_t secondSize)
 {
   char * result = nullptr;
   size_t resultIndex = 0;
-  try
-  {
-    size_t defaultSize = std::max(firstSize, secondSize);
-    result = new char[defaultSize]{};
-    fillUniqueSymArray(str1, str2, result, resultIndex);
-    fillUniqueSymArray(str2, str1, result, resultIndex);
-    result[resultIndex] = '\0';
-  }
-  catch (const std::bad_alloc & e)
-  {
-    delete [] result;
-    return nullptr;
-  }
+  size_t defaultSize = std::max(firstSize, secondSize);
+  result = new char[defaultSize]{};
+  fillUniqueSymArray(str1, str2, result, resultIndex);
+  fillUniqueSymArray(str2, str1, result, resultIndex);
+  result[resultIndex] = '\0';
   std::sort(result, result + resultIndex);
   return result;
 }
