@@ -37,7 +37,7 @@ char* zaitsev::readStr()
   catch (const std::bad_alloc& e)
   {
     delete[] str;
-    throw e;
+    throw;
   }
 
   if (!size && !std::cin)
