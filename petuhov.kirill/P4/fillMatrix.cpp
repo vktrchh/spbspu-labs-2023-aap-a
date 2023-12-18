@@ -1,5 +1,5 @@
 #include "fillMatrix.hpp"
-#include "stdexcept"
+#include <stdexcept>
 
 void petuhov::fillMatrix(int * matrix, size_t rows, size_t cols, std::ifstream & input)
 {
@@ -7,9 +7,8 @@ void petuhov::fillMatrix(int * matrix, size_t rows, size_t cols, std::ifstream &
   {
     for (size_t j = 0; j < cols; ++j)
     {
-      if (!(input >> matrix[i*cols+j]))
+      if (!(input >> matrix[i * cols + j]))
       {
-        input.close();
         throw std::runtime_error("Error reading matrix");
       }
     }

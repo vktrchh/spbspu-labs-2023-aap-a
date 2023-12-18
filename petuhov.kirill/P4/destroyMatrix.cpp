@@ -2,8 +2,5 @@
 
 void petuhov::destroyMatrix(int * matrix)
 {
-  if (matrix != nullptr)
-  {
-    delete[] matrix;
-  }
+  delete[] matrix;
 }

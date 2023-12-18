@@ -16,16 +16,23 @@ int main(int argc, char ** argv)
   int arr_type = 0;
   try
   {
-    arr_type = std::stoll(argv[1]);
-    if (arr_type > 2 || arr_type < 1)
+    if (argc != 2)
     {
-      throw std::out_of_range("First parameter is out of range");
+      throw std::invalid_argument("Invalid argument count. Please provide one integer argument.");
+    }
+    arr_type = std::stoi(argv[1]);
+
+    if (arr_type != 1 && arr_type != 2)
+    {
+      throw std::out_of_range("Argument is out of range. Argument must be 1 or 2.");
     }
   }
-  catch (const std::out_of_range & e)
+  catch (const std::exception & e)
   {
     std::cerr << e.what() << "\n";
+    return 1;
   }
+
   size_t rows = 0, cols = 0;
   std::ifstream inputFile(argv[2]);
   inputFile >> rows >> cols;
