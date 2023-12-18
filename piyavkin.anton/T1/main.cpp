@@ -33,11 +33,21 @@ class Rectangle: public Shape
     }
     virtual rectangle_t getFrameRect()
     {
-      
+      return {std::abs(p1_.x - p2_.x), std::abs(p1_.y - p2_.y), {(p1_.x + p2_.x) / 2, (p1_.y + p2_.y) / 2,}};
+    }
+    virtual point_t move(point_t smesh)
+    {
+      pos.x += smesh.x;
+      pos.y += smesh.y;
+      return pos;
+    }
+    virtual void scale(double k)
+    {
     }
   private:
     point_t p1_;
     point_t p2_;
+    point_t pos = {(p1_.x + p2_.x) / 2, (p1_.y + p2_.y) / 2};
 };
 
 int main()
