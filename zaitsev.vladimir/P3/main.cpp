@@ -11,7 +11,7 @@ int main()
   using namespace zaitsev;
   try
   {
-    string1 = readStr();
+    string1 = readStr(std::cin);
     if (!string1)
     {
       std::cerr << "Failed to read string" << '\n';

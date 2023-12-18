@@ -1,11 +1,11 @@
 #include "input.h"
-#include <iostream>
+#include <istream>
 #include <cstddef>
 #include <cstring>
 #include <stdexcept>
 #include <limits>
 
-char* zaitsev::readStr()
+char* zaitsev::readStr(std::istream& input)
 {
   size_t capacity = 20;
   size_t size = 0;
@@ -16,8 +16,8 @@ char* zaitsev::readStr()
   {
     str = new char[capacity];
     str[0] = '\0';
-    std::cin.get(x);
-    while (std::cin)
+    input.get(x);
+    while (input)
     {
       if (size + 1 == capacity)
       {
@@ -31,7 +31,7 @@ char* zaitsev::readStr()
       str[size] = x;
       ++size;
       str[size] = '\0';
-      std::cin.get(x);
+      input.get(x);
     }
   }
   catch (const std::bad_alloc& e)
@@ -40,7 +40,7 @@ char* zaitsev::readStr()
     throw;
   }
 
-  if (!size && !std::cin)
+  if (!size && !input)
   {
     delete[] str;
     return nullptr;
