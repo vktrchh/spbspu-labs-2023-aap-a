@@ -37,6 +37,7 @@ int main()
   {
     std::cerr << "Cannot create a dynamic array for answerTaskTwo!";
     delete [] inputString;
+    delete [] answerTaskTwo;
     return 1;
   }
 
@@ -51,6 +52,8 @@ int main()
   if (answerTaskOne == 0)
   {
     std::cerr << "Empty input!\n";
+    delete [] inputString;
+    delete [] answerTaskTwo;
     return 1;
   }
   std::cout << answerTaskOne << "\n";

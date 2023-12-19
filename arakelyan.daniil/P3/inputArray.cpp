@@ -1,4 +1,5 @@
 #include "inputArray.hpp"
+#include <new>
 
 char * ara::inputArray(size_t & arrSize)
 {
