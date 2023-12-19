@@ -54,6 +54,4 @@ int main(int argc, char * argv[])
   {
     std::cerr << "Number must be 1 or 2\n";
   }
-  std::ofstream outputFile(argv[3]);
-  outputFile << matrix;
 }
