@@ -47,6 +47,7 @@ char * isaychev::inputString(std::istream & input, size_t & length1, size_t & ca
   }
   if (length1 == 0)
   {
+    delete [] str;
     throw std::logic_error("Not enough characters in string");
   }
   return str;
