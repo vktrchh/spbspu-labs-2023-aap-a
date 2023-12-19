@@ -114,7 +114,7 @@ zhalilov::ShapeSource *zhalilov::inputShapesSource(ShapeSource *shapeSource, std
     }
     try
     {
-      shapeSource->at(shapeIndex) = inputFunc(string);
+      shapeSource->add(inputFunc(string));
     }
     catch (const std::invalid_argument &e)
     {

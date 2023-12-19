@@ -5,7 +5,7 @@
 
 zhalilov::ShapeSource::ShapeSource() :
   m_shapesSize(10),
-  m_sourceLen(0),
+  m_sourceLen(10),
   scalePoint{0.0, 0.0},
   scaleRatio(1.0),
   wasBadShapes(false)
@@ -14,8 +14,8 @@ zhalilov::ShapeSource::ShapeSource() :
 }
 
 zhalilov::ShapeSource::ShapeSource(size_t size) :
-  m_shapesSize(0),
-  m_sourceLen(0),
+  m_shapesSize(size),
+  m_sourceLen(size),
   scalePoint{0.0, 0.0},
   scaleRatio(1.0),
   wasBadShapes(false)
@@ -25,7 +25,7 @@ zhalilov::ShapeSource::ShapeSource(size_t size) :
 
 zhalilov::ShapeSource::~ShapeSource()
 {
-  for (size_t i = 0; i < m_shapesSize; i++)
+  for (size_t i = 0; i < m_sourceLen; i++)
   {
     delete m_shapes[i];
   }
@@ -56,6 +56,16 @@ void zhalilov::ShapeSource::resize(size_t newSize)
   m_sourceLen = std::min(newSize, m_sourceLen);
   m_shapesSize = newSize;
   m_shapes = newShape;
+}
+
+void zhalilov::ShapeSource::add(Shape *shape)
+{
+  if (m_sourceLen == m_shapesSize)
+  {
+    resize(m_shapesSize + 5);
+  }
+  m_shapes[m_sourceLen] = shape;
+  m_sourceLen++;
 }
 
 size_t zhalilov::ShapeSource::getLength()
