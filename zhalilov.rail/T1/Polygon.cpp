@@ -2,7 +2,6 @@
 
 #include <stdexcept>
 #include <algorithm>
-#include <iostream>
 
 zhalilov::Polygon::Polygon(point_t *points, const size_t size)
 {
