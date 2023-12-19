@@ -2,6 +2,7 @@
 #include "input_output_string.hpp"
 #include "string.hpp"
 #include "strunit.hpp"
+#include "replace.hpp"
 
 int main()
 {
@@ -47,6 +48,8 @@ int main()
     return 1;
   }
   outputString(std::cout, strunit(first, second));
+  std::cout << "\n";
+  outputString(std::cout, replace(first_copy, old, change));
   std::cout << "\n";
   delete[] first;
   delete[] first_copy;
