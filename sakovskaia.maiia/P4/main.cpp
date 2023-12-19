@@ -42,12 +42,17 @@ int main(int argc, char * argv[])
 
   std::ofstream output(argv[3]);
 
+  int * inputmatrix = nullptr;
+  int * counterclockwisematrix = nullptr;
+  int newinputmatrix[rows * columns] = {};
+  int newcounterclockwisematrix[rows * columns] = {};
+
   if (num == 1)
   {
     try
     {
-      int inputmatrix[rows * columns] = {};
-      int counterclockwisematrix[rows * columns] = {};
+      inputmatrix = newinputmatrix;
+      counterclockwisematrix = newcounterclockwisematrix;
     }
     catch (const std::logic_error & e)
     {
@@ -61,8 +66,8 @@ int main(int argc, char * argv[])
   {
     try
     {
-      int * inputmatrix = new int[rows * columns];
-      int * counterclockwisematrix = new int[rows * columns];
+      inputmatrix = new int[rows * columns];
+      counterclockwisematrix = new int[rows * columns];
     }
     catch (const std::logic_error & e)
     {
