@@ -1,5 +1,4 @@
 #include "unique_sym_array.hpp"
-#include "input_string.hpp"
 #include <algorithm>
 
 void namestnikov::fillUniqueSymArray(const char * str1, const char * str2, char * result, size_t & resultIndex)
@@ -31,10 +30,9 @@ bool namestnikov::isSymbolInString(const char * string, char sym)
 
 char * namestnikov::getUniqueSymArray(const char * str1, const char * str2, size_t firstSize, size_t secondSize)
 {
-  char * result = nullptr;
   size_t resultIndex = 0;
   size_t defaultSize = std::max(firstSize, secondSize);
-  result = new char[defaultSize]{};
+  char * result = new char[defaultSize]{};
   fillUniqueSymArray(str1, str2, result, resultIndex);
   fillUniqueSymArray(str2, str1, result, resultIndex);
   result[resultIndex] = '\0';
