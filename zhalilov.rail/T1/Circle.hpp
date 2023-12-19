@@ -16,7 +16,7 @@ namespace zhalilov
     virtual void scale(const double ratio);
   private:
     rectangle_t m_frameRect;
-  }
+  };
 }
 
 #endif

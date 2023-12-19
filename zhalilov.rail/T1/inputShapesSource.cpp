@@ -5,6 +5,7 @@
 #include <cctype>
 
 #include "Rectangle.hpp"
+#include "Circle.hpp"
 #include "inputString.hpp"
 
 zhalilov::Shape *zhalilov::inputRectangle(const char string[])
@@ -27,7 +28,7 @@ zhalilov::Shape *zhalilov::inputRectangle(const char string[])
   return new Rectangle(leftCorner, rightCorner);
 }
 
-zhalilov::Shape *zhalilov::inputRectangle(const char string[])
+zhalilov::Shape *zhalilov::inputCircle(const char string[])
 {
   double nums[3] = {};
   size_t delta = 0;
@@ -42,8 +43,8 @@ zhalilov::Shape *zhalilov::inputRectangle(const char string[])
   {
     throw std::invalid_argument("Too many args in circle source");
   }
-  point_t center = {coords[0], coords[1]};
-  return new Circle(center, coords[2]);
+  point_t center = {nums[0], nums[1]};
+  return new Circle(center, nums[2]);
 }
 
 shapeInputFunc zhalilov::identifyShape(const char string[])
