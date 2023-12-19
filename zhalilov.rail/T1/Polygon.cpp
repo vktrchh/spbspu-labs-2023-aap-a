@@ -151,4 +151,5 @@ void zhalilov::Polygon::scale(const double ratio)
   double dx = (m_pos.x - basePos.x) * ratio;
   double dy = (m_pos.x - basePos.x) * ratio;
   move(-dx, -dy);
+  m_square *= (ratio * ratio);
 }
