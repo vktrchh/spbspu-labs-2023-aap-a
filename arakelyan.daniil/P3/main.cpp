@@ -45,7 +45,7 @@ int main()
   answerTaskTwo[alphabetWeight] = '\0';
 
   arakelyanTaskTwo::identicalLetters(inputString, defoltStringForTaskTwo, answerTaskTwo, alphabetWeight, arrSize);
-  
+
   std::cout << "Answer on task 1: " << answerTaskOne << "\n";
   std::cout << "Answer on task 2: " << answerTaskTwo << "\n";
 

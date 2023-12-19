@@ -1,7 +1,8 @@
 #include "taskTwo.hpp"
 #include <iostream>
 
-char * arakelyanTaskTwo::identicalLetters(const char *inputArr, const char *defoltArray, char *answer, size_t alphabetWeight, size_t arrSize)
+char * arakelyanTaskTwo::identicalLetters(const char *inputArr, const char *defoltArray, char *answer, size_t alphabetWeight,
+      size_t arrSize)
 {
   char alphabetArrayOne[alphabetWeight];
   char alphabetArrayTwo[alphabetWeight];
