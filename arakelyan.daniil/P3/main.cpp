@@ -25,8 +25,10 @@ int main()
     return 1;
   }
 
-  size_t answerTaskOne = arakelyanTaskOne::countOfdifferentLetters(inputString);
+  size_t answerTaskOne = 0;
+  answerTaskOne = arakelyanTaskOne::countOfdifferentLetters(inputString);
   char * answerTaskTwo = nullptr;
+
   try
   {
     answerTaskTwo = new char[alphabetWeight];
@@ -46,6 +48,11 @@ int main()
 
   arakelyanTaskTwo::identicalLetters(inputString, defoltStringForTaskTwo, answerTaskTwo, alphabetWeight);
 
+  if (answerTaskOne == 0)
+  {
+    std::cerr << "Empty input!\n";
+    return 1;
+  }
   std::cout << answerTaskOne << "\n";
 
   delete [] answerTaskTwo;
