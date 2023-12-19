@@ -1,5 +1,3 @@
-#include <_ctype.h>
-#include <ios>
 #include <iostream>
 #include <cctype>
 #include <stdexcept>
@@ -14,8 +12,8 @@ int main()
   size_t arrSize = 0;
   char * inputString = nullptr;
 
-  size_t inCodeArrSize = 9;
-  const char *defoltStringForTaskTwo = "def ghk";
+  size_t inCodeArrSize = 8;
+  char defoltStringForTaskTwo[8] = "def ghk";
 
   try
   {
@@ -34,9 +32,11 @@ int main()
   {
     answerTaskTwo = new char[alphabetWeight];
   }
-  catch (...)
+  catch (const std::bad_alloc & e)
   {
-
+    std::cerr << "Cannot create a dynamic array for answerTaskTwo!";
+    delete [] inputString;
+    return 1;
   }
   for (size_t i = 0; i < alphabetWeight; i++)
   {
@@ -46,17 +46,10 @@ int main()
 
   arakelyanTaskTwo::identicalLetters(inputString, defoltStringForTaskTwo, answerTaskTwo, alphabetWeight, arrSize);
   
-  // if (!answerTaskTwo)
-  // {
-  //   std::cerr << "Cannot create array for second task\n";
-  //   delete [] inputString;
-  //   return 1;
-  // }
-
   std::cout << "Answer on task 1: " << answerTaskOne << "\n";
   std::cout << "Answer on task 2: " << answerTaskTwo << "\n";
 
-  // delete [] answerTaskTwo;
+  delete [] answerTaskTwo;
   delete [] inputString;
   return 0;
 }
