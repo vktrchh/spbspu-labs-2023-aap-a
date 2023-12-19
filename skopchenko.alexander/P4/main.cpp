@@ -1,3 +1,4 @@
+#include "input.h"
 #include <fstream>
 #include <iostream>
 
@@ -53,4 +54,26 @@ int main(int argc, char * argv[])
     std::cerr << "Invalid Matrix dimensions\n";
     return 2;
   }
+
+  int * matrix = nullptr;
+
+  if (arrType == 1)
+  {
+    int fixedArray[10000] = {};
+    matrix = fixedArray;
+  }
+  else
+  {
+    try
+    {
+      matrix = new int[cols * rows];
+    }
+    catch (const std::bad_alloc & e)
+    {
+      std::cerr << "Error while allocating dynamic array\n";
+      delete [] matrix;
+      return 2;
+    }
+  }
+
 }
