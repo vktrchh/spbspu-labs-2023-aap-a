@@ -1,29 +1,27 @@
 #include "mergeTwoLines.hpp"
+
 #include <cstddef>
+#include <cstring>
 
 const char* mergeTwoLines(const char* line1, const char* line2)
 {
-    const char* result = nullptr;
-    size_t r = 0;
+    size_t size1 = strlen(line1);
+    size_t size2 = strlen(line2);
+    size_t size = size1 + size2;
+
+    char* result = new char[size + 1];
+
     size_t i = 0;
-    while (r < line1.length() && r < line2.length())
-    {
-        
+    for (size_t r = 0; r < size1; ++r) {
         result[i] = line1[r];
-        
-        result += line2[r];
-        ++r;
         ++i;
     }
-    while (r < line1.length())
-    {
-        result += line1[r];
-        ++r;
+    for (size_t r = 0; r < size2; ++r) {
+        result[i] = line2[r];
+        ++i;
     }
-    while (r < line2.length())
-    {
-        result += line2[r];
-        ++r;
-    }
+    delete[] result;
+    result[i] = '\0';
+
     return result;
 }
