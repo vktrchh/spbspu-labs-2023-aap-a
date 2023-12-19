@@ -6,6 +6,7 @@
 
 #include "Rectangle.hpp"
 #include "Circle.hpp"
+#include "Polygon.hpp"
 #include "inputString.hpp"
 
 zhalilov::Shape *zhalilov::inputRectangle(const char string[])
@@ -17,7 +18,7 @@ zhalilov::Shape *zhalilov::inputRectangle(const char string[])
   for (size_t i = 0; i < 4; i++)
   {
     coords[i] = std::stod(newStr, &delta);
-    newStr = newStr + delta;
+    newStr += delta;
   }
   if (*newStr != '\0')
   {
@@ -37,7 +38,7 @@ zhalilov::Shape *zhalilov::inputCircle(const char string[])
   for (size_t i = 0; i < 3; i++)
   {
     nums[i] = std::stod(newStr, &delta);
-    newStr = newStr + delta;
+    newStr += delta;
   }
   if (*newStr != '\0')
   {
@@ -46,13 +47,62 @@ zhalilov::Shape *zhalilov::inputCircle(const char string[])
   return new Circle({nums[0], nums[1]}, nums[2]);
 }
 
+zhalilov::Shape *zhalilov::inputPolygon(const char string[])
+{
+  size_t size = 10;
+  size_t length = 0;
+  double *coords = new double[10];
+  size_t nameLen = 7;
+  const char *newStr = string + nameLen;
+  size_t i = 0;
+  size_t delta = 0;
+  while (*newStr != '\0')
+  {
+    coords[i] = std::stod(newStr, &delta);
+    newStr += delta;
+    if (i + 1 == size)
+    {
+      double *newCoords = nullptr;
+      try
+      {
+        newCoords = new double[size + 4]{};
+        for (size_t j = 0; j < size; j++)
+        {
+          newCoords[j] = coords[j];
+        }
+        delete[] coords;
+        coords = newCoords;
+        size += 4;
+      }
+      catch (const std::bad_alloc &e)
+      {
+        delete[] coords;
+        throw;
+      }
+    }
+    i++;
+  }
+  length = i;
+  if (length % 2 != 0)
+  {
+    throw std::invalid_argument("Incorrect numf of args for polygon");
+  }
+  point_t *points = new point_t[length / 2];
+  for (size_t j = 0; j < length; j += 2)
+  {
+    points[j / 2] = {coords[j], coords[j + 1]};
+  }
+  return new Polygon(points, length / 2);
+}
+
 shapeInputFunc zhalilov::identifyShape(const char string[])
 {
-  char *names[] = {"RECTANGLE", "CIRCLE"};
-  shapeInputFunc functions[2];
+  char *names[] = {"RECTANGLE", "CIRCLE", "POLYGON"};
+  shapeInputFunc functions[3];
   functions[0] = inputRectangle;
   functions[1] = inputCircle;
-  size_t namesSize = 2;
+  functions[2] = inputPolygon;
+  size_t namesSize = 3;
   for (size_t i = 0; i < namesSize; i++)
   {
     size_t nameLen = strlen(names[i]);
@@ -107,10 +157,10 @@ zhalilov::Shape **zhalilov::increaseLength(Shape **shapes, size_t size, size_t d
   return newShapes;
 }
 
-zhalilov::Shape **zhalilov::inputShapesSource(point_t &point, double &ratio, size_t &length, std::istream &input)
+zhalilov::Shape **zhalilov::inputShapesSource(point_t &point, double &ratio, size_t &length, size_t &size, std::istream &input)
 {
   size_t shapeIndex = 0;
-  size_t size = 10;
+  size = 10;
   Shape **shapes = new Shape*[10]{nullptr};
   char *string = nullptr;
   while (true)
@@ -170,6 +220,16 @@ zhalilov::Shape **zhalilov::inputShapesSource(point_t &point, double &ratio, siz
       shapes[shapeIndex] = nullptr;
       delete[] string;
       continue;
+    }
+    catch (const std::bad_alloc &e)
+    {
+      for (size_t i = 0; i < size; i++)
+      {
+        delete shapes[i];
+      }
+      delete[] shapes;
+      delete[] string;
+      throw;
     }
     delete[] string;
     shapeIndex++;

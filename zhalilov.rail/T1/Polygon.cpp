@@ -2,6 +2,7 @@
 
 #include <stdexcept>
 #include <algorithm>
+#include <iostream>
 
 zhalilov::Polygon::Polygon(point_t *points, const size_t size)
 {
@@ -11,17 +12,15 @@ zhalilov::Polygon::Polygon(point_t *points, const size_t size)
   }
   for (size_t i = 0; i < size; i++)
   {
-    point_t tempPoint = points[i];
     for (size_t j = i + 1; j < size; j++)
     {
-      if ((tempPoint.x == points[j].x)
-        && (tempPoint.y == points[j].y))
+      if ((points[i].x == points[j].x)
+        && (points[i].y == points[j].y))
       {
         throw std::invalid_argument("some points are equal");
       }
     }
   }
-
   point_t maxY = points[0], minY = points[0];
   point_t maxX = points[0], minX = points[0];
   for (size_t i = 1; i < size; i++)
@@ -101,6 +100,7 @@ zhalilov::Polygon::Polygon(point_t *points, const size_t size)
       tempPoint = points[iterator];
     }
   }
+  delete[] points;
 }
 
 zhalilov::point_t *zhalilov::Polygon::sortByX(point_t *points, size_t size)
