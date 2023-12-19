@@ -1,5 +1,7 @@
 #include <iostream>
-#include <iomanip>
+#include <string>
+
+#include "mergeTwoLines.hpp"
 
 int main()
 {
@@ -8,7 +10,6 @@ int main()
   size_t i = 0;
 
   char c = 0;
-  std::cin >> std::noskipws;
   while (std::cin >> c)
   {
     if (c == '\n')
@@ -30,8 +31,17 @@ int main()
       input = symb;
     }
   }
-  std::cin >> std::skipws;
   std::cout << input << "\n";
   delete[] input;
+
+  std::string line1, line2;
+  std::cout << "Enter the first line: ";
+  std::getline(std::cin, line1);
+
+  std::cout << "Enter the second line: ";
+  std::getline(std::cin, line2);
+
+  std::string merged = mergeTwoLines(line1, line2);
+  std::cout << "Merged line: " << merged << '\n';
   return 0;
 }
