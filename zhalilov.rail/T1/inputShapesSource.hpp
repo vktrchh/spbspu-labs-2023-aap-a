@@ -5,7 +5,6 @@
 #include <istream>
 
 #include "Shape.hpp"
-#include "ShapeSource.hpp"
 
 using shapeInputFunc = zhalilov::Shape *(*)(const char string[]);
 namespace zhalilov
