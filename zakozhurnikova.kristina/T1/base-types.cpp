@@ -44,4 +44,11 @@ point_t point_t::operator/(double k) const
   return point_t(x_ / k, y_ / k);
 }
 
-
+void rectangle_t::showCoordinates() const
+{
+  point_t downLeft(width_ - 2 * pos_.getX(),
+    height_ - 2 * pos_.getY());
+  point_t upRight(width_, height_);
+  std::cout << downLeft.getX() << ' ' << downLeft.getY() <<
+    ' ' << upRight.getX() << ' ' << upRight.getY() << '\n';
+}
