@@ -1,11 +1,16 @@
 #include "Rectangle.hpp"
 
-zhalilov::Rectangle::Rectangle(const point_t &leftAngle, const point_t &rightAngle)
+zhalilov::Rectangle::Rectangle(const point_t &leftCorner, const point_t &rightCorner)
 {
-  m_frameRect.width = rightAngle.x - leftAngle.x;
-  m_frameRect.height = rightAngle.y - leftAngle.y;
-  double posX = leftAngle.x + m_frameRect.width / 2;
-  double posY = leftAngle.y + m_frameRect.height / 2;
+  if ((leftCorner.x >= rightCorner.x)
+    || (leftCorner.y >= rightCorner.y))
+  {
+    throw std::invalid_argument("invalid rectangle source");
+  }
+  m_frameRect.width = rightCorner.x - leftCorner.x;
+  m_frameRect.height = rightCorner.y - leftCorner.y;
+  double posX = leftCorner.x + m_frameRect.width / 2;
+  double posY = leftCorner.y + m_frameRect.height / 2;
   m_frameRect.pos = {posX, posY};
 }
 
