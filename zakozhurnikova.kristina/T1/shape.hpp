@@ -1,16 +1,15 @@
-#ifndef RECTANGLE_HPP
-#define RECTANGLE_HPP
+#ifndef SHAPE_HPP
+#define SHAPE_HPP
+#include "base-types.hpp"
 
-class Rectangle : public Shape
+class Shape
 {
 public:
-  double getArea() const;
-  rectangle_t getFrameRect() const;
-  void move(const point_t& p);
-  void move(double dx, double dy);
-  void scale(double k);
-private:
-  point_t downLeft_;
-  point_t upRight_;
+  virtual double getArea() const = 0;
+  virtual rectangle_t getFrameRect() const = 0;
+  virtual void move(const point_t& p) = 0;
+  virtual void move(double dx, double dy) = 0;
+  virtual void scale(double k) = 0;
 };
+
 #endif
