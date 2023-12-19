@@ -1,46 +1,40 @@
-#include "inputString.hpp"
+#include <iostream>
+#include <stdexcept>
+#include <cstddef>
 
-char* novokhatskiy::inputString(std::istream &input)
+int inArray(int arr[3][3], const size_t rows, const size_t cols)
 {
-  size_t sizeString = 20;
-  size_t cycleIndex = 0;
-  char* string = nullptr;
-  try
+  for (size_t i = 0; i < rows; ++i)
   {
-    string = new char[sizeString];
-  }
-  catch (const std::bad_alloc& err)
-  {
-    delete[] string;
-    throw;
-  }
-  char symbol = 0;
-  input >> std::noskipws;
-  while ((input >> symbol) && (symbol != '\n'))
-  {
-    if (cycleIndex + 1 >= sizeString)
+    for (size_t j = 0; j < cols; ++j)
     {
-      try
+      std::cin >> arr[i][j];
+      if (!std::cin)
       {
-        char* newString = new char[sizeString + 15];
-        for (size_t i = 0; i < sizeString; ++i)
-        {
-          newString[i] = string[i];
-        }
-        delete[] string;
-        string = newString;
-        sizeString += 15;
-      }
-      catch (...)
-      {
-        delete[] string;
-        throw;
+        std::cerr << "Incorrect input\n";
+        return 1;
       }
     }
-    string[cycleIndex] = symbol;
-    cycleIndex++;
   }
-  string[cycleIndex] = '\0';
-  input >> std::skipws;
-  return string;
+  return 0;
+}
+
+void outArray(int arr[3][3], const size_t rows, const size_t cols)
+{
+  for (size_t i = 0; i < rows; ++i)
+  {
+    for (size_t j = 0; j < cols; ++j)
+    {
+      std::cout << arr[i][j] << "\n";
+    }
+  }
+}
+
+int main()
+{
+  const size_t rows = 3;
+  const size_t cols = 3;
+  int arr[rows][cols];
+  inArray(arr, 3, 3);
+  outArray(arr, 3, 3);
 }
