@@ -23,7 +23,6 @@ namespace zhalilov
     ShapeSource(size_t size);
     ~ShapeSource();
     Shape *&at(size_t index);
-    void add(Shape *shape);
     void resize(size_t newSize);
     size_t getLength();
     size_t getSize();
