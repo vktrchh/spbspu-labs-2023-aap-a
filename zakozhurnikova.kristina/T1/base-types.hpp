@@ -25,8 +25,38 @@ struct point_t
   {
     return y_;
   }
+  double getDistance(const point_t& p) const;
+  void operator+=(const point_t& p);
+  void operator-=(const point_t& p);
+  point_t operator+(const point_t& p) const;
+  point_t operator*(double k) const;
+  point_t operator/(double k) const;
+  point_t operator-(const point_t& p) const;
 
   private:
     double x_;
     double y_;
 };
+
+struct rectangle_t
+{
+  rectangle_t() = delete;
+  rectangle_t(double width, double height, const point_t& pos) :
+    width_(width),
+    height_(height),
+    pos_(pos)
+  {}
+  rectangle_t(const rectangle_t& rec):
+    width_(rec.width_),
+    height_(rec.height_),
+    pos_(rec.pos_)
+  {}
+  ~rectangle_t()
+  {}
+  void showCoordinates() const;
+private:
+  double width_;
+  double height_;
+  point_t pos_;
+};
+#endif
