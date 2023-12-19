@@ -94,6 +94,11 @@ int main(int argc, char * argv[])
   catch (const std::logic_error & e)
   {
     std::cerr << e.what() << "\n";
+    if (num == 2)
+    {
+      delete [] inputmatrix;
+      delete [] counterclockwisematrix;
+    }
     input.close();
     output.close();
     return 2;
