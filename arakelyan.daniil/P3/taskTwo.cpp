@@ -30,8 +30,6 @@ char * arakelyanTaskTwo::identicalLetters(const char *inputArr, const char *defo
       alphabetArrayTwo[index] = symb;
     }
   }
-  std::cout << "alphabet 1 " << alphabetArrayOne << "\n";
-  std::cout << "alphabet 2 " << alphabetArrayTwo << "\n";
 
   for (size_t i = 0; i < alphabetWeight; i++)
   {

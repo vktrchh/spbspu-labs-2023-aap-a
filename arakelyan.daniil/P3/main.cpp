@@ -37,6 +37,7 @@ int main()
     delete [] inputString;
     return 1;
   }
+
   for (size_t i = 0; i < alphabetWeight; i++)
   {
     answerTaskTwo[i] = 0;
@@ -45,8 +46,7 @@ int main()
 
   arakelyanTaskTwo::identicalLetters(inputString, defoltStringForTaskTwo, answerTaskTwo, alphabetWeight);
 
-  std::cout << "Answer on task 1: " << answerTaskOne << "\n";
-  std::cout << "Answer on task 2: " << answerTaskTwo << "\n";
+  std::cout << answerTaskOne << "\n";
 
   delete [] answerTaskTwo;
   delete [] inputString;
