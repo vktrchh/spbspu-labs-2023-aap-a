@@ -44,9 +44,10 @@ int main(int argc, char * argv[])
       int inputmatrix[rows * columns] = {};
       int counterclockwisematrix[rows * columns] = {};
       staticMatrix(input, inputmatrix, rows * columns);
+      int staticc = * staticMatrix;
       matrixcounter(counterclockwisematrix, rows, columns);
-      answercounter(inputmatrix, counterclockwisematrix, rows * columns);
-      sakovskaia::printAnswer(output, counterclockwisematrix, rows * columns);
+      answercounter(staticc, counterclockwisematrix, rows * columns);
+      printAnswer(output, counterclockwisematrix, rows * columns);
     }
     catch (const std::logic_error & e)
     {
@@ -63,8 +64,9 @@ int main(int argc, char * argv[])
       int * inputmatrix = new int[rows * columns];
       int * counterclockwisematrix = new int[rows * columns];
       dynamicMatrix(input, inputmatrix, rows * columns);
+      int dynamic = * dynamicMatrix;
       matrixcounter(counterclockwisematrix, rows, columns);
-      answercounter(inputmatrix, counterclockwisematrix, rows * columns);
+      answercounter(dynamic, counterclockwisematrix, rows * columns);
       printAnswer(output, counterclockwisematrix, rows * columns);
       delete [] inputmatrix;
       delete [] counterclockwisematrix;
