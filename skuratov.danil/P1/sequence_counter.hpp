@@ -2,16 +2,17 @@
 #define SEQUENCE_COUNTER_HPP
 
 #include <cstddef>
-namespace sakovskaia
+namespace skuratov
 {
-  struct SequenceSignsCounter
+  struct MaxCounter
   {
-    SequenceSignsCounter();
+    MaxCounter();
     void operator()(int);
     size_t operator()() const;
   private:
-    int last_number_;
+    int max_number_;
     size_t count_;
   };
 }
+
 #endif
