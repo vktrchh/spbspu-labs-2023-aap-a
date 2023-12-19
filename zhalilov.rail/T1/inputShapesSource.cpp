@@ -27,6 +27,25 @@ zhalilov::Shape *zhalilov::inputRectangle(const char string[])
   return new Rectangle(leftCorner, rightCorner);
 }
 
+zhalilov::Shape *zhalilov::inputRectangle(const char string[])
+{
+  double nums[3] = {};
+  size_t delta = 0;
+  size_t nameLen = 6;
+  const char *newStr = string + nameLen;
+  for (size_t i = 0; i < 3; i++)
+  {
+    nums[i] = std::stod(newStr, &delta);
+    newStr = newStr + delta;
+  }
+  if (*newStr != '\0')
+  {
+    throw std::invalid_argument("Too many args in circle source");
+  }
+  point_t center = {coords[0], coords[1]};
+  return new Circle(center, coords[2]);
+}
+
 shapeInputFunc zhalilov::identifyShape(const char string[])
 {
   char *names[] = {"RECTANGLE"};

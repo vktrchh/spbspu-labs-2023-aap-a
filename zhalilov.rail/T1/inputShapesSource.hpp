@@ -14,6 +14,7 @@ namespace zhalilov
   shapeInputFunc identifyShape(const char string[]);
   bool inputScale(point_t &point, double &ratio, const char string[]);
   Shape *inputRectangle(const char string[]);
+  Shape *inputCircle(const char string[]);
 }
 
 #endif
