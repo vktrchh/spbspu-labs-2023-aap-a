@@ -1,5 +1,13 @@
 #include "base-types.hpp"
+#include <cmath>
+#include <iostream>
 
+double point_t::getDistance(const point_t& p) const
+{
+  double distance = std::sqrt((x_ - p.x_) * (x_ - p.x_) +
+    (y_ - p.y_) * (y_ - p.y_));
+  return distance;
+}
 void point_t::operator+=(const point_t& p)
 {
   x_ += p.x_;
