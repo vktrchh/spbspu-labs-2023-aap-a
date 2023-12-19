@@ -2,7 +2,7 @@
 #define INPUTARRAY_HPP
 #include <cstddef>
 #include <iostream>
-namespace ara
+namespace arakelyan
 {
   char * inputArray(size_t & arrSize);
 }

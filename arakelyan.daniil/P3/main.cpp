@@ -16,7 +16,7 @@ int main()
 
   try
   {
-    inputString = ara::inputArray(arrSize);
+    inputString = arakelyan::inputArray(arrSize);
   }
   catch (const std::exception & e)
   {
@@ -41,12 +41,6 @@ int main()
     return 1;
   }
 
-  // for (size_t i = 0; i < alphabetWeight; i++)
-  // {
-  //   answerTaskTwo[i] = 0;
-  // }
-  // answerTaskTwo[alphabetWeight] = '\0';
-
   arakelyanTaskTwo::identicalLetters(inputString, defoltStringForTaskTwo, answerTaskTwo, alphabetWeight);
 
   if (answerTaskOne == 0)
@@ -57,6 +51,7 @@ int main()
     return 1;
   }
   std::cout << answerTaskOne << "\n";
+  std::cout << answerTaskTwo << "\n";
 
   delete [] answerTaskTwo;
   delete [] inputString;

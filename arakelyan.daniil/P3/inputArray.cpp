@@ -1,7 +1,7 @@
 #include "inputArray.hpp"
 #include <new>
 
-char * ara::inputArray(size_t & arrSize)
+char * arakelyan::inputArray(size_t & arrSize)
 {
   const size_t defBufferSize = 10;
   arrSize = defBufferSize;
