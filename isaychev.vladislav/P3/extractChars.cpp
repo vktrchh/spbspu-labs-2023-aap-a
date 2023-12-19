@@ -1,13 +1,13 @@
 #include "extractChars.hpp"
 
-void isaychev::extractChars(const char * str_base, const char * str_sec, char * wk_str, ulli_t lgth1, ulli_t lgth2)
+void isaychev::extractChars(const char * str_base, const char * str_sec, char * wk_str, size_t lgth1, size_t lgth2)
 {
-  ulli_t i = 0;
-  ulli_t j = 0;
+  size_t i = 0;
+  size_t j = 0;
   while (i < lgth1)
   {
-    ulli_t check = 0;
-    for (ulli_t k = 0; k < lgth2; ++k)
+    size_t check = 0;
+    for (size_t k = 0; k < lgth2; ++k)
     {
       if (str_base[i] == str_sec[k])
       {
