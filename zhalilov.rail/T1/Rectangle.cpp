@@ -43,4 +43,5 @@ void zhalilov::Rectangle::scale(const double ratio)
     throw std::invalid_argument("scaling ratio should be more than zero");
   }
   m_frameRect.width *= ratio;
+  m_frameRect.height *= ratio;
 }

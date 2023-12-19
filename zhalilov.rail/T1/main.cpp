@@ -2,6 +2,7 @@
 
 #include "inputShapesSource.hpp"
 #include "outputShapesSource.hpp"
+#include "isoScale.hpp"
 
 int main()
 {
@@ -21,7 +22,7 @@ int main()
   }
   catch (const std::bad_alloc &e)
   {
-    std::cout << "An error has occured: can't allocate memory for shapes\n";
+    std::cout << "An error has occured: " << e.what();
     return 1;
   }
 
@@ -30,7 +31,15 @@ int main()
     if (!shapes[i])
     {
       std::cerr << "Error: some shapes have incorrect source\n";
+      break;
     }
+  }
+
+  outputShapesSource(shapes, size, std::cout);
+
+  for (size_t i = 0; i < size; i++)
+  {
+    isoScale(shapes[i], point, ratio);
   }
 
   outputShapesSource(shapes, size, std::cout);

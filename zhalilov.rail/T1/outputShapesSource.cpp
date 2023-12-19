@@ -34,5 +34,6 @@ std::ostream &zhalilov::outputShapesSource(Shape **shapes, size_t size, std::ost
              << " " << rightCorner.x << " " << rightCorner.y;
     }
   }
+  output << "\n";
   return output;
 }

@@ -58,19 +58,19 @@ bool zhalilov::inputScale(point_t &point, double &ratio, const char string[])
     newStr += delta;
     double y = std::stod(newStr, &delta);
     newStr += delta;
-    double ratio = std::stod(newStr, &delta);
+    double inputedRatio = std::stod(newStr, &delta);
 
     if (*(newStr + delta) != '\0')
     {
       throw std::invalid_argument("Invalid scaling source");
     }
-    if (ratio <= 0.0)
+    if (inputedRatio <= 0.0)
     {
       throw std::invalid_argument("Scaling ration should be greater than zero");
     }
 
     point = {x, y};
-    ratio = ratio;
+    ratio = inputedRatio;
     return true;
   }
   return false;
