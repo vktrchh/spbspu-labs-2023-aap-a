@@ -1,5 +1,7 @@
 #ifndef MERGE_TWO_LINE_HPP
 #define MERGE_TWO_LINE_HPP
 
-std::string mergeTwoLines(const std::string& line1, const std::string& line2);
+#include <cstring>
+
+const char* mergeTwoLines(const char* line1, const char* line2);
 #endif
