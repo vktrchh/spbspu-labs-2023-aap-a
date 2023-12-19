@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "CreateMatrix.hpp"
+#include "NumRowsWithoutRepeat.hpp"
 
 int main(int argc, char * argv[])
 {
@@ -32,11 +34,11 @@ int main(int argc, char * argv[])
   int *matrix = nullptr;
   if (num == 1)
   {
-      if (!inputFile)
-      {
-        std::cerr << "Not a matrix\n";
-      }
-      matrix = staticMatrix;
+    if (!inputFile)
+    {
+      std::cerr << "Not a matrix\n";
+    }
+    matrix = staticMatrix;
   }
   else if (num == 2)
   {
@@ -54,4 +56,12 @@ int main(int argc, char * argv[])
   {
     std::cerr << "Number must be 1 or 2\n";
   }
+  std::ofstream outputFile(argv[3]);
+  vyzhanov::createMatrix(rows, cols, matrix, inputFile);
+  std::cout << vyzhanov::NumRowsWithoutRepeat(matrix, rows, cols) << "\n";
+  for (int i = 0; i , rows * cols; i++)
+  {
+    outputFile << matrix[i];
+  }
 }
+

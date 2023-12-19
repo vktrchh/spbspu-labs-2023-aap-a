@@ -1,12 +1,12 @@
 #include "CreateMatrix.hpp"
 
-std::istream &vyzhanov::createMatrix(size_t rows, size_t cols, int matrix[], std::istream &inputFile)
+std::istream  &vyzhanov::createMatrix(size_t rows, size_t cols, int matrix[], std::istream &inputFile)
 {
   for (size_t i = 0; i < rows * cols; i++)
   {
-    if(!(inputFile >> matrix[i]))
+    if (!(inputFile >> matrix[i]))
     {
-      throw std::logic_error("Can't create matrix!");
+      return inputFile;
     }
   }
   return inputFile;

@@ -3,6 +3,8 @@
 
 size_t vyzhanov::NumRowsWithoutRepeat(const int matrix[], size_t rows, size_t cols)
 {
+  size_t countNum = 0;
+  size_t countWithoutRep = 0;
   for (size_t i = 0; i < rows * cols; i += rows)
   {
     for (size_t j = 1; j < cols - 1; j++)
@@ -11,18 +13,19 @@ size_t vyzhanov::NumRowsWithoutRepeat(const int matrix[], size_t rows, size_t co
       {
         if (matrix[i+j] != matrix[i+j+k])
         {
-          count_num_++;
+          countNum++;
         }
         else
         {
-          count_num_ = 0;
+          countNum = 0;
         }
       }
     }
-    if (count_num_ == cols)
+    if (countNum == cols)
     {
-      count_rows_++
+      countWithoutRep++;
     }
   }
+  return countWithoutRep;
 }
 
