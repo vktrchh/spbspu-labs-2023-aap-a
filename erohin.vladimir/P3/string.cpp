@@ -28,3 +28,22 @@ size_t erohin::length(const char* str)
   while (str[i++] != '\0');
   return (i - 1);
 }
+
+char* erohin::copy(char* str)
+{
+  char* result = nullptr;
+  try
+  {
+    result = new char[length(str) + 1];
+  }
+  catch(const std::bad_alloc& e)
+  {
+    throw e;
+  }
+  for (size_t i = 0; str[i] != '\0'; ++i)
+  {
+    result[i] = str[i];
+  }
+  result[length(str)] = '\0';
+  return result;
+}
