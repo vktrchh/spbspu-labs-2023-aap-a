@@ -7,7 +7,7 @@ zhalilov::ShapeSource::ShapeSource() :
   m_shapesSize(10),
   m_sourceLen(0),
   scalePoint{0.0, 0.0},
-  scale(1.0),
+  scaleRatio(1.0),
   wasBadShapes(false)
 {
   m_shapes = new Shape*[10]{nullptr};
@@ -17,7 +17,7 @@ zhalilov::ShapeSource::ShapeSource(size_t size) :
   m_shapesSize(0),
   m_sourceLen(0),
   scalePoint{0.0, 0.0},
-  scale(1.0),
+  scaleRatio(1.0),
   wasBadShapes(false)
 {
   m_shapes = new Shape*[size]{nullptr};

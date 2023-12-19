@@ -16,7 +16,7 @@ namespace zhalilov
     size_t m_sourceLen;
   public:
     point_t scalePoint;
-    double scale;
+    double scaleRatio;
     bool wasBadShapes;
 
     ShapeSource();
