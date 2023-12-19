@@ -1,3 +1,5 @@
+#include <iostream>
+
 struct point_t
 {
   double x;
@@ -33,25 +35,27 @@ class Rectangle: public Shape
     }
     virtual rectangle_t getFrameRect()
     {
-      return {std::abs(p1_.x - p2_.x), std::abs(p1_.y - p2_.y), {(p1_.x + p2_.x) / 2, (p1_.y + p2_.y) / 2,}};
+      return {std::abs(p1_.x - p2_.x), std::abs(p1_.y - p2_.y), pos_};
     }
     virtual point_t move(point_t smesh)
     {
-      pos.x += smesh.x;
-      pos.y += smesh.y;
+      pos_.x += smesh.x;
+      pos_.y += smesh.y;
       return pos;
     }
     virtual void scale(double k)
     {
+      p1_.x = k * (std::abs(pos_.x) - p1_.x);
+      p2_.x = k * (std::abs(pos_.x) - p2_.x);
+      p1_.y = k * (std::abs(pos_.y) - p1_.y);
+      p2_.y = k * (std::abs(pos_.y) - p2_.y);
     }
   private:
     point_t p1_;
     point_t p2_;
-    point_t pos = {(p1_.x + p2_.x) / 2, (p1_.y + p2_.y) / 2};
+    point_t pos_ = {(p1_.x + p2_.x) / 2, (p1_.y + p2_.y) / 2};
 };
 
 int main()
 {
-  Rectangle rectangle1;
-  std::cout << rectangle1.getArea(5, 5);
 }
