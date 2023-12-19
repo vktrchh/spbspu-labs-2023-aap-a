@@ -58,7 +58,7 @@ int main(int argc, char ** argv)
   {
     ishmuratov::matrixInput(input, matrix, rows, cols);
   }
-  catch (const std::runtime_error & e)
+  catch (const std::invalid_argument & e)
   {
     std::cerr << "Error: " << e.what() << "\n";
     if (num == 2)
