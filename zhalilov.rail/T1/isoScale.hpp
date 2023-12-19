@@ -1,8 +1,9 @@
 #ifndef ISOSCALE_HPP
 #define ISOSCALE_HPP
 
-class Shape;
-struct point_t;
+#include "Shape.hpp"
+#include "base-types.hpp"
+
 namespace zhalilov
 {
   void isoScale(Shape *shape, const point_t &point, const double ratio);

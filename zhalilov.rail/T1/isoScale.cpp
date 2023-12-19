@@ -1,8 +1,5 @@
 #include "isoScale.hpp"
 
-#include "Shape.hpp"
-#include "base-types.hpp"
-
 void zhalilov::isoScale(Shape *shape, const point_t &point, const double ratio)
 {
   point_t basePos = shape->getFrameRect().pos;

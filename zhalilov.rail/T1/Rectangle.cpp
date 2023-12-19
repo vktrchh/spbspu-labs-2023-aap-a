@@ -1,5 +1,7 @@
 #include "Rectangle.hpp"
 
+#include <stdexcept>
+
 zhalilov::Rectangle::Rectangle(const point_t &leftCorner, const point_t &rightCorner)
 {
   if ((leftCorner.x >= rightCorner.x)
