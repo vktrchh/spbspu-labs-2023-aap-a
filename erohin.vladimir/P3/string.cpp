@@ -1,7 +1,7 @@
 #include "string.hpp"
 #include <stdexcept>
 
-char* resize(char* str, size_t size, size_t shift)
+char* erohin::resize(char* str, size_t size, size_t shift)
 {
   char* resized = nullptr;
   try
@@ -22,7 +22,7 @@ char* resize(char* str, size_t size, size_t shift)
   return str;
 }
 
-size_t length(const char* str)
+size_t erohin::length(const char* str)
 {
   size_t i = 0;
   while (str[i++] != '\0');

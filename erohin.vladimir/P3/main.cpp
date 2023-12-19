@@ -1,5 +1,6 @@
 #include <iostream>
 #include "input_output_string.hpp"
+#include "strunit.hpp"
 
 int main()
 {
@@ -28,9 +29,8 @@ int main()
     std::cerr << "Cannot allocate memory\n";
     return 2;
   }
-  outputString(std::cout, first);
+  outputString(std::cout, strunit(first, second));
   std::cout << "\n";
-  outputString(std::cout, second);
   delete[] first;
   delete[] second;
   return 0;

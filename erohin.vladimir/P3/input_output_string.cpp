@@ -1,4 +1,5 @@
 #include "input_output_string.hpp"
+#include "string.hpp"
 #include <iostream>
 #include <stdexcept>
 
