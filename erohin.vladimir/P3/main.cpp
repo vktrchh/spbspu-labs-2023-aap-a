@@ -1,5 +1,6 @@
 #include <iostream>
 #include "input_output_string.hpp"
+#include "string.hpp"
 #include "strunit.hpp"
 
 int main()
@@ -33,6 +34,17 @@ int main()
     delete[] second;
     std::cerr << "Cannot allocate memory\n";
     return 2;
+  }
+  char old = 0;
+  char change = 0;
+  std::cin >> std::skipws >> old >> change >> std::noskipws;
+  if (!std::cin)
+  {
+    std::cerr << "Wrong symbols input\n";
+    delete[] first;
+    delete[] first_copy;
+    delete[] second;
+    return 1;
   }
   outputString(std::cout, strunit(first, second));
   std::cout << "\n";
