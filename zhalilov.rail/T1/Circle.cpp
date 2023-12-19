@@ -18,22 +18,22 @@ double zhalilov::Circle::getArea() const
   return 3.14 * m_frameRect.width / 4.0;
 }
 
-zhalilov::rectangle_t zhalilov::Rectangle::getFrameRect() const
+zhalilov::rectangle_t zhalilov::Circle::getFrameRect() const
+{
+  return m_frameRect;
+}
+
+void zhalilov::Circle::move(const point_t &point)
 {
   m_frameRect.pos = point;
 }
 
-void zhalilov::Rectangle::move(const point_t &point)
-{
-  m_frameRect.pos = point;
-}
-
-void zhalilov::Rectangle::move(const double dx, const double dy)
+void zhalilov::Circle::move(const double dx, const double dy)
 {
   m_frameRect.pos = {m_frameRect.pos.x + dx, m_frameRect.pos.y + dy};
 }
 
-void zhalilov::Rectangle::scale(const double ratio)
+void zhalilov::Circle::scale(const double ratio)
 {
   if (ratio <= 0.0)
   {
