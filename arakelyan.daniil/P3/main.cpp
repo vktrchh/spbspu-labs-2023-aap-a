@@ -41,11 +41,11 @@ int main()
     return 1;
   }
 
-  for (size_t i = 0; i < alphabetWeight; i++)
-  {
-    answerTaskTwo[i] = 0;
-  }
-  answerTaskTwo[alphabetWeight] = '\0';
+  // for (size_t i = 0; i < alphabetWeight; i++)
+  // {
+  //   answerTaskTwo[i] = 0;
+  // }
+  // answerTaskTwo[alphabetWeight] = '\0';
 
   arakelyanTaskTwo::identicalLetters(inputString, defoltStringForTaskTwo, answerTaskTwo, alphabetWeight);
 
