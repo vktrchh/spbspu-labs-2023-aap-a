@@ -14,8 +14,12 @@ void sakovskaia::inputMatrix(std::ifstream & input, int * a, int b)
 
 std::ofstream & sakovskaia::printAnswer(std::ofstream & output, int * a, int b)
 {
-  for (int i = 0; i < b; i++)
+  if (b > 0)
   {
-    output << a[i];
+    output << a[0];
+    for (int i = 0; i < b; i++)
+    {
+      output << " " << a[i];
+    }
   }
 }
