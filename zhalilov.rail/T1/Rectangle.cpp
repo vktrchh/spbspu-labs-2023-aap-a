@@ -21,7 +21,7 @@ double zhalilov::Rectangle::getArea() const
   return m_frameRect.width * m_frameRect.height;
 }
 
-rectangle_t zhalilov::Rectangle::getFrameRect() const
+zhalilov::rectangle_t zhalilov::Rectangle::getFrameRect() const
 {
   return m_frameRect;
 }
