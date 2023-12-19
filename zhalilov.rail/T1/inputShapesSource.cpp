@@ -45,7 +45,7 @@ shapeInputFunc zhalilov::identifyShape(const char string[])
   return nullptr;
 }
 
-bool zhalilov::inputScale(ShapeSource *shapeSource, const char string[])
+bool zhalilov::inputScale(point_t &point, double &ratio, const char string[])
 {
   char name[] = "SCALE";
   size_t nameLen = 5;
@@ -69,71 +69,89 @@ bool zhalilov::inputScale(ShapeSource *shapeSource, const char string[])
       throw std::invalid_argument("Scaling ration should be greater than zero");
     }
 
-    shapeSource->scalePoint = {x, y};
-    shapeSource->scaleRatio = ratio;
+    point = {x, y};
+    ratio = ratio;
     return true;
   }
   return false;
 }
 
-zhalilov::ShapeSource *zhalilov::inputShapesSource(ShapeSource *shapeSource, std::istream &input)
+zhalilov::Shape **zhalilov::increaseLength(Shape **shapes, size_t size, size_t delta)
+{
+  Shape **newShapes = new Shape*[size + delta]{nullptr};
+  for (size_t i = 0; i < size; i++)
+  {
+    newShapes[i] = shapes[i];
+  }
+  delete[] shapes;
+  return newShapes;
+}
+
+zhalilov::Shape **zhalilov::inputShapesSource(point_t &point, double &ratio, size_t &length, std::istream &input)
 {
   size_t shapeIndex = 0;
+  size_t size = 10;
+  Shape **shapes = new Shape*[10]{nullptr};
   char *string = nullptr;
   while (true)
   {
+    string = inputString(input);
     try
     {
-      string = inputString(input);
-    }
-    catch (const std::bad_alloc &e)
-    {
-      shapeSource->wasBadShapes = true;
-      continue;
-    }
-
-    try
-    {
-      if (inputScale(shapeSource, string))
+      if (inputScale(point, ratio, string))
       {
         delete[] string;
-        shapeSource->setLength(shapeIndex);
-        return shapeSource;
+        length = shapeIndex;
+        return shapes;
       }
     }
     catch (const std::invalid_argument &e)
     {
       delete[] string;
+      for (size_t i = 0; i < size; i++)
+      {
+        delete shapes[i];
+      }
+      delete[] shapes;
       throw;
     }
+
     shapeInputFunc inputFunc = identifyShape(string);
     if (!inputFunc)
     {
       delete[] string;
       continue;
     }
+
+    if (shapeIndex + 1 == size)
+    {
+      try
+      {
+        shapes = increaseLength(shapes, size, 10);
+        size += 10;
+      }
+      catch (const std::bad_alloc &e)
+      {
+        delete[] string;
+        for (size_t i = 0; i < size; i++)
+        {
+          delete shapes[i];
+        }
+        delete[] shapes;
+        throw;
+      }
+    }
     try
     {
-      if (shapeIndex + 1 == shapeSource->getSize())
-      {
-        shapeSource->resize(shapeIndex + 5);
-      }
-      shapeSource->at(shapeIndex) = inputFunc(string);
+      shapes[shapeIndex] = inputFunc(string);
     }
     catch (const std::invalid_argument &e)
     {
-      shapeSource->wasBadShapes = true;
+      shapes[shapeIndex] = nullptr;
       delete[] string;
       continue;
     }
-    catch (const std::bad_alloc &e)
-    {
-      delete[] string;
-      string = nullptr;
-      throw;
-    }
     delete[] string;
-    string = nullptr;
     shapeIndex++;
   }
 }

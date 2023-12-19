@@ -10,9 +10,10 @@
 using shapeInputFunc = zhalilov::Shape *(*)(const char string[]);
 namespace zhalilov
 {
-  ShapeSource *inputShapesSource(ShapeSource *shapeSource, std::istream &input);
+  Shape **inputShapesSource(point_t &point, double &ratio, size_t &length, std::istream &input);
+  Shape **increaseLength(Shape **shapes, size_t size, size_t delta);
   shapeInputFunc identifyShape(const char string[]);
-  bool inputScale(ShapeSource *shapeSource, const char string[]);
+  bool inputScale(point_t &point, double &ratio, const char string[]);
   Shape *inputRectangle(const char string[]);
 }
 

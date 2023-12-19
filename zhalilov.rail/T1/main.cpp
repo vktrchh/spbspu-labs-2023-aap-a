@@ -1,15 +1,17 @@
 #include <iostream>
 
-#include "ShapeSource.hpp"
 #include "inputShapesSource.hpp"
 
 int main()
 {
   using namespace zhalilov;
-  ShapeSource shapeSource;
+  Shape **shapes = nullptr;
+  point_t point = {0.0, 0.0};
+  double ratio = 0.0;
+  size_t length = 0;
   try
   {
-    inputShapesSource(&shapeSource, std::cin);
+    shapes = inputShapesSource(point, ratio, length, std::cin);
   }
   catch (const std::invalid_argument &e)
   {
@@ -21,12 +23,9 @@ int main()
     std::cout << "An error has occured: can't allocate memory for shapes\n";
     return 1;
   }
-  for (size_t i = 0; i < shapeSource.getLength(); i++)
+  for (size_t i = 0; i < length; i++)
   {
-    std::cout << shapeSource.at(i)->getFrameRect().width;
-  }
-  if (shapeSource.wasBadShapes)
-  {
-    std::cerr << "An error occured: some shapes are invalid";
+    std::cout << length << '\n';
+    std::cout << shapes[i]->getFrameRect().width << "\n";
   }
 }
