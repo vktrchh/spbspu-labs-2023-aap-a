@@ -24,8 +24,7 @@ zhalilov::Shape *zhalilov::inputRectangle(const char string[])
   }
   point_t leftCorner = {coords[0], coords[1]};
   point_t rightCorner = {coords[2], coords[3]};
-  Shape * rect = new Rectangle(leftCorner, rightCorner);
-  return rect;
+  return new Rectangle(leftCorner, rightCorner);
 }
 
 shapeInputFunc zhalilov::identifyShape(const char string[])
@@ -98,6 +97,7 @@ zhalilov::ShapeSource *zhalilov::inputShapesSource(ShapeSource *shapeSource, std
       if (inputScale(shapeSource, string))
       {
         delete[] string;
+        shapeSource->setLength(shapeIndex);
         return shapeSource;
       }
     }
@@ -114,7 +114,7 @@ zhalilov::ShapeSource *zhalilov::inputShapesSource(ShapeSource *shapeSource, std
     }
     try
     {
-      if (shapeIndex + 1 == shapeSource->getLength())
+      if (shapeIndex + 1 == shapeSource->getSize())
       {
         shapeSource->resize(shapeIndex + 5);
       }
@@ -126,7 +126,14 @@ zhalilov::ShapeSource *zhalilov::inputShapesSource(ShapeSource *shapeSource, std
       delete[] string;
       continue;
     }
+    catch (const std::bad_alloc &e)
+    {
+      delete[] string;
+      string = nullptr;
+      throw;
+    }
     delete[] string;
+    string = nullptr;
     shapeIndex++;
   }
 }

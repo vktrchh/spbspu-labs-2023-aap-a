@@ -25,6 +25,7 @@ namespace zhalilov
     Shape *&at(size_t index);
     void resize(size_t newSize);
     size_t getLength();
+    void setLength(size_t length);
     size_t getSize();
   };
 }
