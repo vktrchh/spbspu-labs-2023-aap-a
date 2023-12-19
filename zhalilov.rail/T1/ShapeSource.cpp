@@ -32,7 +32,7 @@ zhalilov::ShapeSource::~ShapeSource()
   delete[] m_shapes;
 }
 
-zhalilov::Shape *zhalilov::ShapeSource::operator[](size_t index)
+zhalilov::Shape *zhalilov::ShapeSource::at(size_t index)
 {
   if (index <= 0 || index >= m_shapesSize)
   {
