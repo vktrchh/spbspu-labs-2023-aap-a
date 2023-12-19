@@ -11,8 +11,8 @@ zhalilov::Shape *zhalilov::inputRectangle(const char string[])
 {
   double coords[4] = {};
   size_t delta = 0;
-  size_t rectangleNameLen = 9;
-  const char *newStr = string + rectangleNameLen;
+  size_t nameLen = 9;
+  const char *newStr = string + nameLen;
   for (size_t i = 0; i < 4; i++)
   {
     coords[i] = std::stod(newStr, &delta);
@@ -24,7 +24,8 @@ zhalilov::Shape *zhalilov::inputRectangle(const char string[])
   }
   point_t leftCorner = {coords[0], coords[1]};
   point_t rightCorner = {coords[2], coords[3]};
-  return new Rectangle(leftCorner, rightCorner);
+  Shape * rect = new Rectangle(leftCorner, rightCorner);
+  return rect;
 }
 
 shapeInputFunc zhalilov::identifyShape(const char string[])
@@ -45,67 +46,83 @@ shapeInputFunc zhalilov::identifyShape(const char string[])
   return nullptr;
 }
 
-bool zhalilov::isScaleInputed(const char string[])
+bool zhalilov::inputScale(ShapeSource *shapeSource, const char string[])
 {
   char name[] = "SCALE";
   size_t nameLen = 5;
   if ((strncmp(name, string, nameLen) == 0)
     && (isspace(string[nameLen])))
   {
+    const char *newStr = string + nameLen;
+    size_t delta = 0;
+    double x = std::stod(newStr, &delta);
+    newStr += delta;
+    double y = std::stod(newStr, &delta);
+    newStr += delta;
+    double ratio = std::stod(newStr, &delta);
+
+    if (*(newStr + delta) != '\0')
+    {
+      throw std::invalid_argument("Invalid scaling source");
+    }
+    if (ratio <= 0.0)
+    {
+      throw std::invalid_argument("Scaling ration should be greater than zero");
+    }
+
+    shapeSource->scalePoint = {x, y};
+    shapeSource->scaleRatio = ratio;
     return true;
   }
   return false;
 }
 
-zhalilov::Shape **zhalilov::inputShapesSource(size_t &inputedShapes, size_t &processedShapes, double &ratio, std::istream &input)
+zhalilov::ShapeSource *zhalilov::inputShapesSource(ShapeSource *shapeSource, std::istream &input)
 {
-  inputedShapes = 0;
-  processedShapes = 0;
-  char ratioLit[] = {"RATIO"};
+  size_t shapeIndex = 0;
   char *string = nullptr;
-  Shape **shapes = nullptr;
-  try
-  {
-    shapes = new Shape *[10];
-  }
-  catch (const std::bad_alloc &e)
-  {
-    return nullptr;
-  }
   while (true)
   {
-    size_t lastDataIndex = 0;
-    size_t size = 0;
-    string = inputString(lastDataIndex, size, input);
-    if (lastDataIndex == 0)
+    try
     {
-      continue;
+      string = inputString(input);
     }
-    else if (string[lastDataIndex] != '\0')
+    catch (const std::bad_alloc &e)
     {
-      inputedShapes++;
+      shapeSource->wasBadShapes = true;
       continue;
     }
 
-    if (isScaleInputed(string))
+    try
     {
-      return shapes;
+      if (inputScale(shapeSource, string))
+      {
+        delete[] string;
+        return shapeSource;
+      }
+    }
+    catch (const std::invalid_argument &e)
+    {
+      delete[] string;
+      throw;
     }
     shapeInputFunc inputFunc = identifyShape(string);
     if (!inputFunc)
     {
+      delete[] string;
       continue;
     }
     try
     {
-      shapes[processedShapes] = inputFunc(string);
+      shapeSource->at(shapeIndex) = inputFunc(string);
     }
     catch (const std::invalid_argument &e)
     {
-      inputedShapes++;
+      shapeSource->wasBadShapes = true;
+      delete[] string;
       continue;
     }
-    inputedShapes++;
-    processedShapes++;
+    delete[] string;
+    shapeIndex++;
   }
 }
