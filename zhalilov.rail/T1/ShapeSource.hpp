@@ -17,8 +17,10 @@ namespace zhalilov
   public:
     point_t scalePoint;
     double scale;
+    bool wasBadShapes;
 
     ShapeSource();
+    ShapeSource(size_t size);
     ~ShapeSource();
     Shape *operator[](size_t index);
     void resize(size_t newSize);

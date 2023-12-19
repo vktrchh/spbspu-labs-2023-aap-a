@@ -4,12 +4,24 @@
 #include <stdexcept>
 
 zhalilov::ShapeSource::ShapeSource() :
-  m_shapes(new Shapes *[10]{nullptr}),
   m_shapesSize(10),
   m_sourceLen(0),
   scalePoint{0.0, 0.0},
-  scale(1.0)
-{}
+  scale(1.0),
+  wasBadShapes(false)
+{
+  m_shapes = new Shape*[10]{nullptr};
+}
+
+zhalilov::ShapeSource::ShapeSource(size_t size) :
+  m_shapesSize(0),
+  m_sourceLen(0),
+  scalePoint{0.0, 0.0},
+  scale(1.0),
+  wasBadShapes(false)
+{
+  m_shapes = new Shape*[size]{nullptr};
+}
 
 zhalilov::ShapeSource::~ShapeSource()
 {
@@ -24,12 +36,12 @@ zhalilov::Shape *zhalilov::ShapeSource::operator[](size_t index)
 {
   if (index <= 0 || index >= m_shapesSize)
   {
-    throw std::out_of_range;
+    throw std::out_of_range("invalid index");
   }
   return m_shapes[index];
 }
 
-void zhalilov::resize(size_t newSize)
+void zhalilov::ShapeSource::resize(size_t newSize)
 {
   Shape **newShape = new Shape*[newSize];
   for (size_t i = 0; i < std::min(newSize, m_sourceLen); i++)
