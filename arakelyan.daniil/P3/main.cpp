@@ -42,6 +42,13 @@ int main()
   }
 
   arakelyanTaskTwo::identicalLetters(inputString, defoltStringForTaskTwo, answerTaskTwo, alphabetWeight);
+  for (size_t i = 0; i < alphabetWeight; i++)
+  {
+    if (answerTaskTwo[i] < 'a' || answerTaskTwo[i] > 'z')
+    {
+      answerTaskTwo[i] = 0;
+    }
+  }
 
   if (answerTaskOne == 0)
   {
@@ -51,7 +58,10 @@ int main()
     return 1;
   }
   std::cout << answerTaskOne << "\n";
-  std::cout << answerTaskTwo << "\n";
+  for (size_t i = 0; i < alphabetWeight; i++)
+  {
+    std::cout << answerTaskTwo[i];
+  }
 
   delete [] answerTaskTwo;
   delete [] inputString;
