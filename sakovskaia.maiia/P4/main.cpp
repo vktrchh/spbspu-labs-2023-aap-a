@@ -25,6 +25,11 @@ int main(int argc, char * argv[])
     std::cerr << "Cannot read first argument\n";
     return 1;
   }
+  if ((num > 2) || (num < 1))
+  {
+    std::cerr << "First parameter is out of range\n";
+    return 1;
+  }
 
   std::ifstream input(argv[2]);
   int rows = 0, columns = 0;
@@ -43,19 +48,14 @@ int main(int argc, char * argv[])
     {
       int inputmatrix[rows * columns] = {};
       int counterclockwisematrix[rows * columns] = {};
-      staticMatrix(input, inputmatrix, rows * columns);
-      int staticc = * staticMatrix;
-      matrixcounter(counterclockwisematrix, rows, columns);
-      answercounter(staticc, counterclockwisematrix, rows * columns);
-      printAnswer(output, counterclockwisematrix, rows * columns);
     }
     catch (const std::logic_error & e)
     {
       std::cerr << e.what() << "\n";
+      input.close();
+      output.close();
       return 2;
     }
-    input.close();
-    output.close();
   }
   else if (num == 2)
   {
@@ -63,25 +63,36 @@ int main(int argc, char * argv[])
     {
       int * inputmatrix = new int[rows * columns];
       int * counterclockwisematrix = new int[rows * columns];
-      dynamicMatrix(input, inputmatrix, rows * columns);
-      int dynamic = * dynamicMatrix;
-      matrixcounter(counterclockwisematrix, rows, columns);
-      answercounter(dynamic, counterclockwisematrix, rows * columns);
-      printAnswer(output, counterclockwisematrix, rows * columns);
-      delete [] inputmatrix;
-      delete [] counterclockwisematrix;
     }
     catch (const std::logic_error & e)
     {
       std::cerr << e.what() << "\n";
+      delete [] inputmatrix;
+      delete [] counterclockwisematrix;
+      input.close();
+      output.close();
       return 2;
     }
+  }
+  try
+  {
+    inputMatrix(input, inputmatrix, rows * columns);
+    matrixcounter(counterclockwisematrix, rows, columns);
+    answercounter(inputmatrix, counterclockwisematrix, rows * columns);
+    printAnswer(output, counterclockwisematrix, rows * columns);
+    if (num == 2)
+    {
+      delete [] inputmatrix;
+      delete [] counterclockwisematrix;
+    }
+  }
+  catch (const std::logic_error & e)
+  {
+    std::cerr << e.what() << "\n";
     input.close();
     output.close();
+    return 2;
   }
-  else if ((num > 2) || (num < 1))
-  {
-    std::cerr << "First parameter is out of range\n";
-    return 1;
-  }
+  input.close();
+  output.close();
 }

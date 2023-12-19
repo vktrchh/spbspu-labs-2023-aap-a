@@ -5,8 +5,7 @@
 
 namespace sakovskaia
 {
-  void staticMatrix(std::ifstream & input, int * a, int b);
-  void dynamicMatrix(std::ifstream & input, int * a, int b);
+  void inputMatrix(std::ifstream & input, int * a, int b);
   struct counterclockWiseMatrixCounter
   {
     counterclockWiseMatrixCounter();
