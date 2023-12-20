@@ -69,6 +69,7 @@ zhalilov::Polygon::Polygon(point_t *points, const size_t size)
     m_square += points[i].y * points[i + 1].x;
   }
   m_square += points[size - 1].y * points[0].x;
+  m_square *= 0.5;
 }
 
 zhalilov::Polygon::~Polygon()
