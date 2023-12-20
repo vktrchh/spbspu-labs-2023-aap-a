@@ -15,7 +15,11 @@ int main(int argc, char * argv[])
   int num = 0;
   try
   {
-    num = std::stoi(argv[1]);
+    if (isdigit(*argv[1]))
+    {
+      throw std::logic_error("First arg must be int");
+    }
+    num = std::stoll(argv[1]);
     if (num != 1 && num != 2)
     {
       throw std::logic_error("First arg must be 1 or 2");
@@ -33,7 +37,7 @@ int main(int argc, char * argv[])
   }
   catch(const std::exception &e)
   {
-    std::cerr << "First arg must be 1 or 2\n";
+    std::cerr << "Error: " << e.what() << "\n";
     return 3;
   }
   std::cout << num << "\n";
@@ -77,6 +81,10 @@ int main(int argc, char * argv[])
     {
       delete[] matrix;
     }
+  }
+  if (num == 2)
+  {
+    delete[] matrix;
   }
 }
 
