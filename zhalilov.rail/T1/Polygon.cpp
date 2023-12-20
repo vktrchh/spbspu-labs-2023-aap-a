@@ -102,6 +102,10 @@ zhalilov::Polygon::Polygon(point_t *points, const size_t size)
   delete[] points;
 }
 
+zhalilov::Polygon::~Polygon()
+{
+}
+
 zhalilov::point_t *zhalilov::Polygon::sortByX(point_t *points, size_t size)
 {
   for (size_t i = 0; i < size; i++)

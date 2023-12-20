@@ -9,6 +9,7 @@ namespace zhalilov
   {
   public:
     Circle(const point_t &center, const double radius);
+    virtual ~Circle();
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t &point);

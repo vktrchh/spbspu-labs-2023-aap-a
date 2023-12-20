@@ -16,6 +16,10 @@ zhalilov::Rectangle::Rectangle(const point_t &leftCorner, const point_t &rightCo
   m_frameRect.pos = {posX, posY};
 }
 
+zhalilov::Rectangle::~Rectangle()
+{
+}
+
 double zhalilov::Rectangle::getArea() const
 {
   return m_frameRect.width * m_frameRect.height;

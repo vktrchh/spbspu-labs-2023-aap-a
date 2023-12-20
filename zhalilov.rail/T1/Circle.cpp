@@ -13,6 +13,10 @@ zhalilov::Circle::Circle(const point_t &center, const double radius)
   m_frameRect.height = radius * 2;
 }
 
+zhalilov::Circle::~Circle()
+{
+}
+
 double zhalilov::Circle::getArea() const
 {
   return 3.14 * m_frameRect.width / 4.0;

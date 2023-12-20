@@ -11,6 +11,7 @@ namespace zhalilov
   {
   public:
     Polygon(point_t *points, const size_t size);
+    virtual ~Polygon();
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t &point);
