@@ -47,7 +47,7 @@ int main(int argc, char * argv[])
     {
       std::cerr << "Not a matrix\n";
     }
-    for (int i = 0; i < rows* cols; i++ )
+    for (size_t i = 0; i < rows * cols; i++ )
     {
       matrix[i] = 0;
     }
@@ -58,10 +58,6 @@ int main(int argc, char * argv[])
   }
   std::ofstream outputFile(argv[3]);
   vyzhanov::createMatrix(rows, cols, matrix, inputFile);
-  std::cout << vyzhanov::NumRowsWithoutRepeat(matrix, rows, cols) << "\n";
-  for (int i = 0; i , rows * cols; i++)
-  {
-    outputFile << matrix[i];
-  }
+  outputFile << vyzhanov::NumRowsWithoutRepeat(matrix, rows, cols) << "\n";
 }
 
