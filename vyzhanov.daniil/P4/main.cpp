@@ -21,11 +21,6 @@ int main(int argc, char * argv[])
       throw std::logic_error("First arg must be 1 or 2");
     }
   }
-  catch(const std::out_of_range &)
-  {
-    std::cerr << "first argument is too large!\n";
-    return 1;
-  }
   catch (const std::exception & e)
   {
     std::cerr << "Error: " << e.what() << "\n";
@@ -74,6 +69,7 @@ int main(int argc, char * argv[])
     {
       delete[] matrix;
     }
+    return 2;
   }
 }
 
