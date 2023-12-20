@@ -26,7 +26,7 @@ int main()
     delete[] first_copy;
     delete[] second;
     std::cerr << "Wrong string input\n";
-    return 1;
+    return 2;
   }
   catch (const std::bad_alloc&)
   {
@@ -34,7 +34,7 @@ int main()
     delete[] first_copy;
     delete[] second;
     std::cerr << "Cannot allocate memory\n";
-    return 2;
+    return 1;
   }
   char old = 0;
   char change = 0;
@@ -45,7 +45,7 @@ int main()
     delete[] first;
     delete[] first_copy;
     delete[] second;
-    return 1;
+    return 3;
   }
   outputString(std::cout, strunit(first, second));
   std::cout << "\n";
