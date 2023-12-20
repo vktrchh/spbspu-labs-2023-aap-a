@@ -10,6 +10,6 @@ namespace belokurskaya
 
   void readMatrix(std::istream &input, int * matrix, size_t rows, size_t cols);
 
-  void processMatrix(std::istream &input, int * matrix, size_t rows, size_t cols, size_t &row_max_sequence);
+  int processMatrix(std::istream &input, int * matrix, size_t rows, size_t cols, size_t &row_max_sequence);
 }
 #endif
