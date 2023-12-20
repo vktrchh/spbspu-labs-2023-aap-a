@@ -23,7 +23,7 @@ int main()
   {
     return 1;
   }
-  
+
   const char * secondStr = "1 2ok 3 5z 3pv21";
   char * rez = rebdev::convertString(firstStr, strlen(firstStr), secondStr, strlen(secondStr));
 
