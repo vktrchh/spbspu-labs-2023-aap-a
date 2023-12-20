@@ -7,17 +7,17 @@ int main()
   char* firstArray = nullptr;
 
   using namespace nikitov;
-  std::pair <char*, size_t> firstPair{};
+  std::pair < char*, size_t > firstPair{};
   try
   {
     firstPair = inputArray(std::cin, firstArray);
   }
-  catch(const std::bad_alloc&)
+  catch (const std::bad_alloc&)
   {
     std::cerr << "Error: Memory out\n";
     return 1;
   }
-  catch(const std::out_of_range&)
+  catch (const std::out_of_range&)
   {
     std::cerr << "Error: Array out of range\n";
     return 1;

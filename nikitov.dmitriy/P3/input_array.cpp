@@ -3,7 +3,7 @@
 #include <limits>
 #include <stdexcept>
 
-std::pair< char*, size_t > nikitov::inputArray(std:: istream &input, char* actualArray)
+std::pair< char*, size_t > nikitov::inputArray(std:: istream& input, char* actualArray)
 {
   const size_t bufferSize = 25;
   size_t arraySize = 0;
@@ -20,7 +20,7 @@ std::pair< char*, size_t > nikitov::inputArray(std:: istream &input, char* actua
   {
     actualArray = new char[bufferSize]{};
   }
-  catch(const std::bad_alloc&)
+  catch (const std::bad_alloc&)
   {
     throw;
   }
@@ -32,7 +32,7 @@ std::pair< char*, size_t > nikitov::inputArray(std:: istream &input, char* actua
     {
       buffer = new char[bufferSize]{};
     }
-    catch(const std::bad_alloc&)
+    catch (const std::bad_alloc&)
     {
       delete [] actualArray;
       throw;
@@ -81,7 +81,7 @@ std::pair< char*, size_t > nikitov::inputArray(std:: istream &input, char* actua
     {
       tempArray = new char[arraySize]{};
     }
-    catch(const std::bad_alloc&)
+    catch (const std::bad_alloc&)
     {
       delete [] actualArray;
       throw;
@@ -96,7 +96,7 @@ std::pair< char*, size_t > nikitov::inputArray(std:: istream &input, char* actua
     {
       actualArray = new char[arraySize + bufferSize]{};
     }
-    catch(const std::bad_alloc&)
+    catch (const std::bad_alloc&)
     {
       delete [] actualArray;
       delete [] tempArray;
