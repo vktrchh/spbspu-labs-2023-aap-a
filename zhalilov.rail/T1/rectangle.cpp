@@ -2,11 +2,12 @@
 
 #include <stdexcept>
 
-zhalilov::Rectangle::Rectangle(double width, double height, const point_t &center):
-  m_frameRect{ width, height, center }
+zhalilov::Rectangle::Rectangle(const point_t &leftCorner, const point_t &rightCorner):
+  m_leftCorner(leftCorner),
+  m_rightCorner(rightCorner)
 {
-  if (m_frameRect.width <= 0.0
-    || m_frameRect.height <= 0.0)
+  if (m_leftCorner.x >= m_rightCorner.x
+    || m_leftCorner.y >= m_rightCorner.y)
   {
     throw std::invalid_argument("invalid rectangle source");
   }
@@ -18,22 +19,30 @@ zhalilov::Rectangle::~Rectangle()
 
 double zhalilov::Rectangle::getArea() const
 {
-  return m_frameRect.width * m_frameRect.height;
+  rectangle_t rect = getFrameRect();
+  return rect.width * rect.height;
 }
 
 zhalilov::rectangle_t zhalilov::Rectangle::getFrameRect() const
 {
-  return m_frameRect;
+  double width = m_rightCorner.x - m_leftCorner.x;
+  double height = m_rightCorner.y - m_leftCorner.y;
+  point_t pos = { m_leftCorner.x + width / 2.0, m_leftCorner.y + height / 2.0 };
+  return { width, height, pos };
 }
 
 void zhalilov::Rectangle::move(const point_t &point)
 {
-  m_frameRect.pos = point;
+  rectangle_t rect = getFrameRect();
+  move(point.x - rect.pos.x, point.y - rect.pos.y);
 }
 
 void zhalilov::Rectangle::move(const double dx, const double dy)
 {
-  m_frameRect.pos = {m_frameRect.pos.x + dx, m_frameRect.pos.y + dy};
+  m_leftCorner.x += dx;
+  m_leftCorner.y += dy;
+  m_rightCorner.x += dx;
+  m_rightCorner.y += dy;
 }
 
 void zhalilov::Rectangle::scale(const double ratio)
@@ -42,6 +51,10 @@ void zhalilov::Rectangle::scale(const double ratio)
   {
     throw std::invalid_argument("scaling ratio should be more than zero");
   }
-  m_frameRect.width *= ratio;
-  m_frameRect.height *= ratio;
+
+  rectangle_t rect = getFrameRect();
+  m_leftCorner.x = rect.pos.x - (rect.pos.x - m_leftCorner.x) * ratio;
+  m_leftCorner.y = rect.pos.y - (rect.pos.y - m_leftCorner.y) * ratio;
+  m_rightCorner.x = rect.pos.x + (m_rightCorner.x - rect.pos.x) * ratio;
+  m_rightCorner.y = rect.pos.y + (m_rightCorner.y - rect.pos.y) * ratio;
 }

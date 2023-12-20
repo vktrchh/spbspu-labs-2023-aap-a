@@ -3,14 +3,11 @@
 #include <stdexcept>
 #include <algorithm>
 
-zhalilov::Polygon::Polygon(const point_t *points, const size_t size):
+zhalilov::Polygon::Polygon(point_t *points, const size_t size):
   m_points(points),
-  m_size(size),
-  m_square(0.0),
-  m_pos{ 0.0, 0.0 },
-  m_frameRect{ 0.0, 0.0, { 0.0, 0.0 } }
+  m_size(size)
 {
-  if (size < 3)
+  if (m_size < 3)
   {
     delete[] m_points;
     throw std::invalid_argument("not enough points to describe polygon");
@@ -27,9 +24,37 @@ zhalilov::Polygon::Polygon(const point_t *points, const size_t size):
       }
     }
   }
+}
+
+zhalilov::Polygon::~Polygon()
+{
+  delete[] m_points;
+}
+
+double zhalilov::Polygon::getArea() const
+{
+  double square = 0.0;
+  for (size_t i = 0; i < m_size - 1; i++)
+  {
+    square -= m_points[i].x * m_points[i + 1].y;
+  }
+  square -= m_points[m_size - 1].x * m_points[0].y;
+  for (size_t i = 0; i < m_size - 1; i++)
+  {
+    square += m_points[i].y * m_points[i + 1].x;
+  }
+  square += m_points[m_size - 1].y * m_points[0].x;
+  square *= 0.5;
+  return square;
+}
+
+zhalilov::rectangle_t zhalilov::Polygon::getFrameRect() const
+{
+  rectangle_t frameRect = { 0.0, 0.0, { 0.0, 0.0 }};
   point_t maxY = m_points[0], minY = m_points[0];
   point_t maxX = m_points[0], minX = m_points[0];
-  for (size_t i = 1; i < size; i++)
+
+  for (size_t i = 1; i < m_size; i++)
   {
     if (m_points[i].x > maxX.x)
     {
@@ -48,65 +73,41 @@ zhalilov::Polygon::Polygon(const point_t *points, const size_t size):
       minY = m_points[i];
     }
   }
-  m_frameRect.width = maxX.x - minX.x;
-  m_frameRect.height = maxY.y - minY.y;
-  double width = m_frameRect.width;
-  double height = m_frameRect.height;
-  m_frameRect.pos = { minX.x + width / 2.0, minY.y + height / 2.0 };
 
-  double deltaX = 0.0;
-  double deltaY = 0.0;
-  for (size_t i = 0; i < size; i++)
-  {
-    deltaX += m_points[i].x;
-    deltaY += m_points[i].y;
-  }
-  deltaX = deltaX / size;
-  deltaY = deltaY / size;
-  m_pos = { deltaX, deltaY };
-
-  m_square = 0.0;
-  for (size_t i = 0; i < size - 1; i++)
-  {
-    m_square -= m_points[i].x * m_points[i + 1].y;
-  }
-  m_square -= m_points[size - 1].x * m_points[0].y;
-  for (size_t i = 0; i < size - 1; i++)
-  {
-    m_square += m_points[i].y * m_points[i + 1].x;
-  }
-  m_square += m_points[size - 1].y * m_points[0].x;
-  m_square *= 0.5;
-}
-
-zhalilov::Polygon::~Polygon()
-{
-  delete[] m_points;
-}
-
-double zhalilov::Polygon::getArea() const
-{
-  return m_square;
-}
-
-zhalilov::rectangle_t zhalilov::Polygon::getFrameRect() const
-{
-  return m_frameRect;
+  frameRect.width = maxX.x - minX.x;
+  frameRect.height = maxY.y - minY.y;
+  double width = frameRect.width;
+  double height = frameRect.height;
+  frameRect.pos = { minX.x + width / 2.0, minY.y + height / 2.0 };
+  return frameRect;
 }
 
 void zhalilov::Polygon::move(const point_t &point)
 {
-  point_t deltaPos = { m_pos.x - m_frameRect.pos.x, m_pos.y - m_frameRect.pos.y };
-  m_pos = point;
-  m_frameRect.pos = { m_pos.x - deltaPos.x, m_pos.y - deltaPos.y };
+  double posX = 0.0;
+  double posY = 0.0;
+  for (size_t i = 0; i < m_size; i++)
+  {
+    posX += m_points[i].x;
+    posY += m_points[i].y;
+  }
+  posX = posX / m_size;
+  posY = posY / m_size;
+
+  for (size_t i = 0; i < m_size; i++)
+  {
+    m_points[i].x += point.x - posX;
+    m_points[i].y += point.y - posY;
+  }
 }
 
 void zhalilov::Polygon::move(const double dx, const double dy)
 {
-  m_pos.x += dx;
-  m_pos.y += dy;
-  m_frameRect.pos.x += dx;
-  m_frameRect.pos.y += dy;
+  for (size_t i = 0; i < m_size; i++)
+  {
+    m_points[i].x += dx;
+    m_points[i].y += dy;
+  }
 }
 
 void zhalilov::Polygon::scale(const double ratio)
@@ -115,10 +116,24 @@ void zhalilov::Polygon::scale(const double ratio)
   {
     throw std::invalid_argument("ratio should be greater than zero");
   }
-  m_frameRect.width *= ratio;
-  m_frameRect.height *= ratio;
-  double dx = (m_pos.x - m_frameRect.pos.x) * ratio;
-  double dy = (m_pos.y - m_frameRect.pos.y) * ratio;
-  m_frameRect.pos = { m_pos.x - dx, m_pos.y - dy };
-  m_square *= (ratio * ratio);
+
+  double posX = 0.0;
+  double posY = 0.0;
+  for (size_t i = 0; i < m_size; i++)
+  {
+    posX += m_points[i].x;
+    posY += m_points[i].y;
+  }
+  posX = posX / m_size;
+  posY = posY / m_size;
+
+  double deltaX = 0.0;
+  double deltaY = 0.0;
+  for (size_t i = 0; i < m_size; i++)
+  {
+    deltaX = m_points[i].x - posX;
+    deltaY = m_points[i].y - posY;
+    m_points[i].x = posX + deltaX * ratio;
+    m_points[i].y = posY + deltaY * ratio;
+  }
 }

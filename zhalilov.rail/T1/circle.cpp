@@ -2,37 +2,38 @@
 
 #include <stdexcept>
 
-zhalilov::Circle::Circle(double radius, const point_t &center):
-  m_frameRect{ radius * 2, radius * 2, center }
+zhalilov::Circle::Circle(const point_t &center, double radius):
+  m_center(center),
+  m_radius(radius)
 {
-  if (m_frameRect.width <= 0.0)
+  if (m_radius <= 0.0)
   {
     throw std::invalid_argument("circle radius should be more than zero");
   }
 }
 
 zhalilov::Circle::~Circle()
-{
-}
+{}
 
 double zhalilov::Circle::getArea() const
 {
-  return 3.14 * m_frameRect.width * m_frameRect.width / 4.0;
+  return 3.14 * m_radius * m_radius / 4.0;
 }
 
 zhalilov::rectangle_t zhalilov::Circle::getFrameRect() const
 {
-  return m_frameRect;
+  return { m_radius * 2, m_radius * 2, m_center };
 }
 
 void zhalilov::Circle::move(const point_t &point)
 {
-  m_frameRect.pos = point;
+  m_center = point;
 }
 
 void zhalilov::Circle::move(const double dx, const double dy)
 {
-  m_frameRect.pos = {m_frameRect.pos.x + dx, m_frameRect.pos.y + dy};
+  m_center.x += dx;
+  m_center.y += dy;
 }
 
 void zhalilov::Circle::scale(const double ratio)
@@ -41,6 +42,5 @@ void zhalilov::Circle::scale(const double ratio)
   {
     throw std::invalid_argument("scaling ratio should be more than zero");
   }
-  m_frameRect.width *= ratio;
-  m_frameRect.height *= ratio;
+  m_radius *= ratio;
 }

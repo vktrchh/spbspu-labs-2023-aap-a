@@ -8,7 +8,7 @@ namespace zhalilov
   class Circle : public Shape
   {
   public:
-    Circle(double radius, const point_t &center);
+    Circle(const point_t &center, double radius);
     virtual ~Circle();
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
@@ -16,7 +16,8 @@ namespace zhalilov
     virtual void move(const double dx, const double dy);
     virtual void scale(const double ratio);
   private:
-    rectangle_t m_frameRect;
+    point_t m_center;
+    double m_radius;
   };
 }
 
