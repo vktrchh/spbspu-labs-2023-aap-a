@@ -130,15 +130,6 @@ bool zhalilov::inputScale(point_t &point, double &ratio, const char string[])
     newStr += delta;
     double inputedRatio = std::stod(newStr, &delta);
 
-    if (*(newStr + delta) != '\0')
-    {
-      throw std::invalid_argument("Invalid scaling source");
-    }
-    if (inputedRatio <= 0.0)
-    {
-      throw std::invalid_argument("Scaling ration should be greater than zero");
-    }
-
     point = {x, y};
     ratio = inputedRatio;
     return true;
@@ -166,24 +157,11 @@ zhalilov::Shape **zhalilov::inputShapesSource(point_t &point, double &ratio, siz
   while (true)
   {
     string = inputString(input);
-    try
-    {
-      if (inputScale(point, ratio, string))
-      {
-        delete[] string;
-        length = shapeIndex;
-        return shapes;
-      }
-    }
-    catch (const std::invalid_argument &e)
+    if (inputScale(point, ratio, string))
     {
       delete[] string;
-      for (size_t i = 0; i < size; i++)
-      {
-        delete shapes[i];
-      }
-      delete[] shapes;
-      throw;
+      length = shapeIndex;
+      return shapes;
     }
 
     shapeInputFunc inputFunc = identifyShape(string);

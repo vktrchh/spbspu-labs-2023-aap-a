@@ -44,6 +44,10 @@ char *zhalilov::inputString(std::istream &input)
     }
     dataIndex++;
   }
+  if (!input)
+  {
+    throw std::invalid_argument("someone has interrupted input");
+  }
   input >> std::skipws;
   return string;
 }
