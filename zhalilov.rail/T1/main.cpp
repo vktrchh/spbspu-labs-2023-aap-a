@@ -18,12 +18,12 @@ int main()
   }
   catch (const std::invalid_argument &e)
   {
-    std::cout << "An error has occured: " << e.what();
+    std::cerr << "An error has occured: " << e.what();
     return 1;
   }
   catch (const std::bad_alloc &e)
   {
-    std::cout << "An error has occured: " << e.what();
+    std::cerr << "An error has occured: " << e.what();
     return 1;
   }
 
@@ -38,15 +38,27 @@ int main()
 
   outputShapesSource(shapes, length, std::cout);
 
-  for (size_t i = 0; i < length; i++)
+  try
   {
-    if (shapes[i])
+    for (size_t i = 0; i < length; i++)
     {
-      isoScale(shapes[i], point, ratio);
+      if (shapes[i])
+      {
+        isoScale(shapes[i], point, ratio);
+      }
     }
+    outputShapesSource(shapes, length, std::cout);
   }
-
-  outputShapesSource(shapes, length, std::cout);
+  catch (const std::invalid_argument &e)
+  {
+    std::cerr << "An error has occured: " << e.what();
+    for (size_t i = 0; i < size; i++)
+    {
+      delete shapes[i];
+    }
+    delete[] shapes;
+    return 1;
+  }
 
   for (size_t i = 0; i < size; i++)
   {

@@ -11,7 +11,7 @@ std::ostream &zhalilov::outputShapesSource(Shape **shapes, size_t size, std::ost
   {
     if (shapes[i])
     {
-      square += shapes[i]->getFrameRect().width * shapes[i]->getFrameRect().height;
+      square += shapes[i]->getArea();
     }
   }
 
