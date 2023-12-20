@@ -24,9 +24,10 @@ zhalilov::Shape *zhalilov::inputRectangle(const char string[])
   {
     throw std::invalid_argument("too many args to describe rectangle");
   }
-  point_t leftCorner = { coords[0], coords[1] };
-  point_t rightCorner = { coords[2], coords[3] };
-  return new Rectangle(leftCorner, rightCorner);
+  double width = coords[2] - coords[0];
+  double height = coords[3] - coords[1];
+  point_t center = { coords[0] + width / 2.0, coords[1] + height / 2.0 };
+  return new Rectangle(width, height, center);
 }
 
 zhalilov::Shape *zhalilov::inputCircle(const char string[])
@@ -44,7 +45,9 @@ zhalilov::Shape *zhalilov::inputCircle(const char string[])
   {
     throw std::invalid_argument("too many args to describe circle");
   }
-  return new Circle({ nums[0], nums[1] }, nums[2]);
+  point_t center = { nums[0], nums[1] };
+  double radius = nums[2];
+  return new Circle(radius, center);
 }
 
 zhalilov::Shape *zhalilov::inputPolygon(const char string[])

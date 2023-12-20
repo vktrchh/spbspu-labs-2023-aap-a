@@ -2,15 +2,13 @@
 
 #include <stdexcept>
 
-zhalilov::Circle::Circle(const point_t &center, const double radius)
+zhalilov::Circle::Circle(double radius, const point_t &center):
+  m_frameRect{ radius * 2, radius * 2, center }
 {
-  if (radius <= 0.0)
+  if (m_frameRect.width <= 0.0)
   {
     throw std::invalid_argument("circle radius should be more than zero");
   }
-  m_frameRect.pos = center;
-  m_frameRect.width = radius * 2;
-  m_frameRect.height = radius * 2;
 }
 
 zhalilov::Circle::~Circle()

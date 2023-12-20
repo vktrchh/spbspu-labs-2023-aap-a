@@ -8,7 +8,7 @@ namespace zhalilov
   class Circle : public Shape
   {
   public:
-    Circle(const point_t &center, const double radius);
+    Circle(double radius, const point_t &center);
     virtual ~Circle();
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;

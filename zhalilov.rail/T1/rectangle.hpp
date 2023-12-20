@@ -8,7 +8,7 @@ namespace zhalilov
   class Rectangle : public Shape
   {
   public:
-    Rectangle(const point_t &leftCorner, const point_t &rightCorner);
+    Rectangle(double width, double height, const point_t &center);
     virtual ~Rectangle();
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;

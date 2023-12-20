@@ -2,18 +2,14 @@
 
 #include <stdexcept>
 
-zhalilov::Rectangle::Rectangle(const point_t &leftCorner, const point_t &rightCorner)
+zhalilov::Rectangle::Rectangle(double width, double height, const point_t &center):
+  m_frameRect{ width, height, center }
 {
-  if ((leftCorner.x >= rightCorner.x)
-    || (leftCorner.y >= rightCorner.y))
+  if (m_frameRect.width <= 0.0
+    || m_frameRect.height <= 0.0)
   {
     throw std::invalid_argument("invalid rectangle source");
   }
-  m_frameRect.width = rightCorner.x - leftCorner.x;
-  m_frameRect.height = rightCorner.y - leftCorner.y;
-  double posX = leftCorner.x + m_frameRect.width / 2;
-  double posY = leftCorner.y + m_frameRect.height / 2;
-  m_frameRect.pos = {posX, posY};
 }
 
 zhalilov::Rectangle::~Rectangle()

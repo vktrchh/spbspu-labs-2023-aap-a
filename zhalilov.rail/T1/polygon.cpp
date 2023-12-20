@@ -3,44 +3,49 @@
 #include <stdexcept>
 #include <algorithm>
 
-zhalilov::Polygon::Polygon(point_t *points, const size_t size)
+zhalilov::Polygon::Polygon(const point_t *points, const size_t size):
+  m_points(points),
+  m_size(size),
+  m_square(0.0),
+  m_pos{ 0.0, 0.0 },
+  m_frameRect{ 0.0, 0.0, { 0.0, 0.0 } }
 {
   if (size < 3)
   {
-    delete[] points;
+    delete[] m_points;
     throw std::invalid_argument("not enough points to describe polygon");
   }
   for (size_t i = 0; i < size; i++)
   {
     for (size_t j = i + 1; j < size; j++)
     {
-      if ((points[i].x == points[j].x)
-        && (points[i].y == points[j].y))
+      if ((m_points[i].x == m_points[j].x)
+        && (m_points[i].y == m_points[j].y))
       {
-        delete[] points;
+        delete[] m_points;
         throw std::invalid_argument("some points are equal");
       }
     }
   }
-  point_t maxY = points[0], minY = points[0];
-  point_t maxX = points[0], minX = points[0];
+  point_t maxY = m_points[0], minY = m_points[0];
+  point_t maxX = m_points[0], minX = m_points[0];
   for (size_t i = 1; i < size; i++)
   {
-    if (points[i].x > maxX.x)
+    if (m_points[i].x > maxX.x)
     {
-      maxX = points[i];
+      maxX = m_points[i];
     }
-    if (points[i].x < minX.x)
+    if (m_points[i].x < minX.x)
     {
-      minX = points[i];
+      minX = m_points[i];
     }
-    if (points[i].y > maxY.y)
+    if (m_points[i].y > maxY.y)
     {
-      maxY = points[i];
+      maxY = m_points[i];
     }
-    if (points[i].y < minY.y)
+    if (m_points[i].y < minY.y)
     {
-      minY = points[i];
+      minY = m_points[i];
     }
   }
   m_frameRect.width = maxX.x - minX.x;
@@ -53,8 +58,8 @@ zhalilov::Polygon::Polygon(point_t *points, const size_t size)
   double deltaY = 0.0;
   for (size_t i = 0; i < size; i++)
   {
-    deltaX += points[i].x;
-    deltaY += points[i].y;
+    deltaX += m_points[i].x;
+    deltaY += m_points[i].y;
   }
   deltaX = deltaX / size;
   deltaY = deltaY / size;
@@ -63,20 +68,20 @@ zhalilov::Polygon::Polygon(point_t *points, const size_t size)
   m_square = 0.0;
   for (size_t i = 0; i < size - 1; i++)
   {
-    m_square -= points[i].x * points[i + 1].y;
+    m_square -= m_points[i].x * m_points[i + 1].y;
   }
-  m_square -= points[size - 1].x * points[0].y;
+  m_square -= m_points[size - 1].x * m_points[0].y;
   for (size_t i = 0; i < size - 1; i++)
   {
-    m_square += points[i].y * points[i + 1].x;
+    m_square += m_points[i].y * m_points[i + 1].x;
   }
-  m_square += points[size - 1].y * points[0].x;
+  m_square += m_points[size - 1].y * m_points[0].x;
   m_square *= 0.5;
-  delete[] points;
 }
 
 zhalilov::Polygon::~Polygon()
 {
+  delete[] m_points;
 }
 
 double zhalilov::Polygon::getArea() const
