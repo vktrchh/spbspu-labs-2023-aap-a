@@ -16,7 +16,7 @@ int main(int argc, char * argv[])
   try
   {
     num = std::stoll(argv[1]);
-    if (num != 1 && num != 2 || argv[1][1] != 0)
+    if ((num != 1 && num != 2) || (argv[1][1] != 0))
     {
       throw std::logic_error("First arg must be 1 or 2");
     }
@@ -26,12 +26,11 @@ int main(int argc, char * argv[])
     std::cerr << "first argument is too large!\n";
     return 1;
   }
-  catch (const std::logic_error &)
+  catch (const std::exception & e)
   {
     std::cerr << "Error: " << e.what() << "\n";
     return 1;
   }
-  std::cout << num << "\n";
   size_t rows = 0;
   size_t cols = 0;
   std::ifstream inputFile(argv[2]);
