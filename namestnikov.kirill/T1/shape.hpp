@@ -8,6 +8,8 @@ namespace namestnikov
   class Shape
   {
   public:
+    Shape();
+    ~Shape() = default;
     virtual double getArea() const;
     virtual rectangle_t getFrameRect();
     virtual void move(const point_t & p);
