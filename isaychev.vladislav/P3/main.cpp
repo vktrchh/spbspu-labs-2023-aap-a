@@ -26,7 +26,6 @@ int main()
     delete [] str;
     return 2;
   }
-//  std::cout << str<< " " << length1 << " " << capacity << "\n";
   const char * str2 = "AFD12hd";
   size_t length2 = 0;
   while (str2[length2] != '\0')
