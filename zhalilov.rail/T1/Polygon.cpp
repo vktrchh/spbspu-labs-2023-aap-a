@@ -71,7 +71,6 @@ zhalilov::Polygon::Polygon(point_t *points, const size_t size)
     }
     iterator++;
   }
-
   while (tempPoint.x != maxX.x)
   {
     if (points[iterator].y >= maxX.y)
@@ -133,13 +132,17 @@ zhalilov::rectangle_t zhalilov::Polygon::getFrameRect() const
 
 void zhalilov::Polygon::move(const point_t &point)
 {
+  point_t deltaPos = {m_pos.x - m_frameRect.pos.x, m_pos.y - m_frameRect.pos.y};
   m_pos = point;
+  m_frameRect.pos = {m_pos.x - deltaPos.x, m_pos.y - deltaPos.y};
 }
 
 void zhalilov::Polygon::move(const double dx, const double dy)
 {
   m_pos.x += dx;
   m_pos.y += dy;
+  m_frameRect.pos.x += dx;
+  m_frameRect.pos.y += dy;
 }
 
 void zhalilov::Polygon::scale(const double ratio)
@@ -148,12 +151,10 @@ void zhalilov::Polygon::scale(const double ratio)
   {
     throw std::invalid_argument("ratio should be greater than zero");
   }
-  point_t basePos = m_frameRect.pos;
-  move(m_pos);
   m_frameRect.width *= ratio;
   m_frameRect.height *= ratio;
-  double dx = (m_pos.x - basePos.x) * ratio;
-  double dy = (m_pos.x - basePos.x) * ratio;
-  move(-dx, -dy);
+  double dx = (m_pos.x - m_frameRect.pos.x) * ratio;
+  double dy = (m_pos.y - m_frameRect.pos.y) * ratio;
+  m_frameRect.pos = {m_pos.x - dx, m_pos.y - dy};
   m_square *= (ratio * ratio);
 }
