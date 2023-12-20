@@ -75,5 +75,18 @@ int main(int argc, char * argv[])
       return 2;
     }
   }
+  try
+  {
+    skopchenko::input(iFile , matrix , rows , cols);
+  }
+  catch (std::runtime_error & e)
+  {
+    std::cerr << "Couldn't input matrix";
+    if (arrType == 2)
+    {
+      delete [] matrix;
+    }
+    return 2;
+  }
 
 }
