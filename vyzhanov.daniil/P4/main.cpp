@@ -42,6 +42,7 @@ int main(int argc, char * argv[])
     if (!inputFile)
     {
       std::cerr << "Not a matrix\n";
+      return 2;
     }
     matrix = staticMatrix;
   }
@@ -51,6 +52,7 @@ int main(int argc, char * argv[])
     if (!inputFile)
     {
       std::cerr << "Not a matrix\n";
+      return 2;
     }
     for (size_t i = 0; i < rows * cols; i++ )
     {
