@@ -9,13 +9,17 @@ int main(int argc, char * argv[])
 {
   if (argc != 4)
   {
-    std::cerr << "Not enough arguments! \n";
+    std::cerr << "Count of args must be 4! \n";
     return 1;
   }
   int num = 0;
   try
   {
-    num = std::stoll(argv[1]);
+    num = std::stoi(argv[1]);
+    if (num != 1 && num != 2)
+    {
+      throw std::logic_error("First arg must be 1 or 2");
+    }
   }
   catch(const std::out_of_range &)
   {
@@ -25,6 +29,11 @@ int main(int argc, char * argv[])
   catch(const std::invalid_argument &)
   {
     std::cerr << "Cannot parse a value!\n";
+    return 3;
+  }
+  catch(const std::exception &e)
+  {
+    std::cerr << "First arg must be 1 or 2\n";
     return 3;
   }
   size_t rows = 0;
@@ -53,12 +62,7 @@ int main(int argc, char * argv[])
       matrix[i] = 0;
     }
   }
-  else
-  {
-    std::cerr << "Number must be 1 or 2\n";
-  }
   vyzhanov::createMatrix(rows, cols, matrix, inputFile);
-
   std::ofstream outputFile(argv[3]);
   outputFile << vyzhanov::NumRowsWithoutRepeat(matrix, rows, cols) << "\n";
   outputFile << vyzhanov::LowerTriangleCheck(matrix, rows, cols) << "\n";

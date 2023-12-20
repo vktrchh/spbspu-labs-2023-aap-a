@@ -23,7 +23,6 @@ const char* vyzhanov::LowerTriangleCheck(int matrix[], size_t rows, size_t cols)
       if (matrix[i+k] == 0)
       {
         zeroCount++;
-        std::cout << zeroCount << "\n";
       }
     }
     if (zeroCount == j)
