@@ -2,30 +2,40 @@
 #include <fstream>
 #include <stdexcept>
 #include <cstddef>
+#include <cstring>
 #include "inputMatrix.hpp"
 #include "countIn.hpp"
 
 int main(int argc, char ** argv)
 {
   using namespace grechishnikov;
-  if (argc != 4)
-  {
-    std::cerr << "Wrong number of elements in command line arguments\n";
-    return 1;
-  }
   int num = 0;
   try
   {
-    num = std::stoll(argv[1]);
+    if (argc != 4)
+    {
+      throw std::logic_error("Wrong number of elements in command line argument");
+    }
+    if (argv[1][1] != '\0')
+    {
+      throw std::logic_error("Wrong numder of task input");
+    }
+    try
+    {
+      num = std::stoll(argv[1]);
+    }
+    catch (...)
+    {
+      throw std::logic_error("Cannot parse a value");
+    }
+    if (num != 1 && num != 2)
+    {
+      throw std::logic_error("Wrong task number");
+    }
   }
-  catch (...)
+  catch (const std::logic_error &e)
   {
-    std::cerr << "Cannot parse a value\n";
-    return 1;
-  }
-  if (num != 1 && num != 2)
-  {
-    std::cerr << "Wrong task number\n";
+    std::cerr << e.what() << "\n";
     return 1;
   }
 
@@ -38,61 +48,58 @@ int main(int argc, char ** argv)
     return 2;
   }
 
-  size_t maxNumCol = 0;
-  if (num == 1)
+  size_t maxSize = rows * cols;
+  int * pMatr = nullptr;
+  int matr[10000] = {0};
+  try
   {
-    size_t maxSize = rows * cols;
-    if (maxSize > 10000)
+    if (num == 1)
     {
-      std::cerr << "Matrix is too big\n0";
-      return 2;
-    }
-    int matr[10000] = {0};
-    try
-    {
-      inputMatrix(input, matr, maxSize);
-    }
-    catch (const std::logic_error &e)
-    {
-      std::cerr << e.what() << "\n";
-      return 2;
-    }
-    maxNumCol = countInMatr(matr, rows, cols);
-  }
-  if (num == 2)
-  {
-    size_t maxSize = rows * cols;
-    int * matr = nullptr;
-    try
-    {
-      matr = new int [maxSize];
-      for (size_t i = 0; i < maxSize; ++i)
+      if (maxSize > 10000)
       {
-        matr[i] = 0;
+        throw std::logic_error("Matrix is to big");
       }
-      inputMatrix(input, matr, maxSize);
+      pMatr = matr;
     }
-    catch (const std::bad_alloc &e)
+    if (num == 2)
     {
-      delete [] matr;
-      std::cerr << "Cannot allocate memory for matrix\n";
-      return 2;
+      pMatr = new int [maxSize];
     }
-    catch (const std::logic_error &e)
+    for (size_t i = 0; i < maxSize; ++i)
     {
-      delete [] matr;
-      std::cerr << e.what() << "\n";
-      return 2;
+      pMatr[i] = 0;
     }
-    maxNumCol = countInMatr(matr, rows, cols);
-    delete [] matr;
+  }
+  catch (const std::bad_alloc &e)
+  {
+    std::cerr << "Cannot allocate memory for matrix\n";
+    return 2;
+  }
+  catch (const std::logic_error &e)
+  {
+    std::cerr << e.what() << "\n";
+    return 2;
   }
 
-  std::ofstream output(argv[3]);
-  if (rows == 0 || cols == 0)
+  try
   {
-    output << 0 << "\n";
-    return 0;
+    inputMatrix(input, pMatr, maxSize);
   }
-  output << maxNumCol << "\n";
+  catch (const std::logic_error &e)
+  {
+    if (num == 2)
+    {
+      delete [] pMatr;
+    }
+    std::cerr << e.what() << "\n";
+    return 2;
+  }
+  int maxMatrCol = countInMatr(pMatr, rows, cols);
+  std::ofstream output(argv[3]);
+  output << maxMatrCol << "\n";
+
+  if (num == 2)
+  {
+    delete [] pMatr;
+  }
 }
