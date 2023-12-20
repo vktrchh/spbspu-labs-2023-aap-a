@@ -17,7 +17,7 @@ zhalilov::Circle::~Circle()
 
 double zhalilov::Circle::getArea() const
 {
-  return 3.14 * m_radius * m_radius / 4.0;
+  return 3.14 * m_radius * m_radius;
 }
 
 zhalilov::rectangle_t zhalilov::Circle::getFrameRect() const
