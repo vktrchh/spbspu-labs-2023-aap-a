@@ -1,7 +1,10 @@
 #include "extendstring.h"
 
-char * strelyaev::extendString(char * string, size_t size, std::istream & in)
+char * strelyaev::extendString(std::istream & in)
 {
+    size_t size = 10;
+    char * string = new char [size];
+
     size_t buffer_size = size;
     char c = 0;
     size_t i = 0;
