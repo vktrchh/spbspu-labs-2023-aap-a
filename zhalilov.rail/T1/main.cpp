@@ -27,6 +27,13 @@ int main()
     return 1;
   }
 
+  if (length == 0)
+  {
+    std::cerr << "An error has occured: nothing to scale\n";
+    delete[] shapes;
+    return 1;
+  }
+
   for (size_t i = 0; i < length; i++)
   {
     if (!shapes[i])
