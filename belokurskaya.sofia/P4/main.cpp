@@ -17,7 +17,13 @@ int main(int argc, char * argv[])
 
   try
   {
-    task_number = std::stoi(argv[1]);
+    size_t next_char_index;
+    task_number = std::stoi(argv[1], & next_char_index);
+
+    if (next_char_index < strlen(argv[1]))
+    {
+      throw std::invalid_argument("Invalid characters in the first command line argument");
+    }
   }
   catch (const std::out_of_range &)
   {
