@@ -3,6 +3,7 @@
 #include <string>
 #include "CreateMatrix.hpp"
 #include "NumRowsWithoutRepeat.hpp"
+#include "LowerTriangleCheck.hpp"
 
 int main(int argc, char * argv[])
 {
@@ -56,8 +57,14 @@ int main(int argc, char * argv[])
   {
     std::cerr << "Number must be 1 or 2\n";
   }
-  std::ofstream outputFile(argv[3]);
   vyzhanov::createMatrix(rows, cols, matrix, inputFile);
+
+  std::ofstream outputFile(argv[3]);
   outputFile << vyzhanov::NumRowsWithoutRepeat(matrix, rows, cols) << "\n";
+  outputFile << vyzhanov::LowerTriangleCheck(matrix, rows, cols) << "\n";
+  if (num == 2)
+  {
+    delete[] matrix;
+  }
 }
 
