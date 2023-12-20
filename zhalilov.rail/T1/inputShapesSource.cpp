@@ -97,7 +97,7 @@ zhalilov::Shape *zhalilov::inputPolygon(const char string[])
 
 shapeInputFunc zhalilov::identifyShape(const char string[])
 {
-  char *names[] = {"RECTANGLE", "CIRCLE", "POLYGON"};
+  const char *names[] = {"RECTANGLE", "CIRCLE", "POLYGON"};
   shapeInputFunc functions[3];
   functions[0] = inputRectangle;
   functions[1] = inputCircle;
