@@ -36,17 +36,8 @@ int main()
     std::cerr << "Cannot allocate memory\n";
     return 1;
   }
-  char old = 0;
-  char change = 0;
-  std::cin >> std::skipws >> old >> change >> std::noskipws;
-  if (!std::cin)
-  {
-    std::cerr << "Wrong symbols input\n";
-    delete[] first;
-    delete[] first_copy;
-    delete[] second;
-    return 3;
-  }
+  char old = 'c';
+  char change = 'b';
   outputString(std::cout, strunit(first, second));
   std::cout << "\n";
   outputString(std::cout, replace(first_copy, old, change));
