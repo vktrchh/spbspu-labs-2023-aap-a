@@ -111,11 +111,14 @@ zhalilov::Shape *zhalilov::inputPolygon(const char string[])
   try
   {
     Shape *shape = new Polygon(points, length / 2);
+    delete[] points;
+    delete[] coords;
     return shape;
   }
   catch (const std::invalid_argument &e)
   {
     delete[] coords;
+    delete[] points;
     return nullptr;
   }
 }

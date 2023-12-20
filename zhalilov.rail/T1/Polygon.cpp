@@ -58,66 +58,20 @@ zhalilov::Polygon::Polygon(point_t *points, const size_t size)
   deltaY = deltaY / size;
   m_pos = {deltaX, deltaY};
 
-  points = sortByX(points, size);
-  point_t tempPoint = minX;
-  size_t iterator = 1;
-  m_square = 0.0;
-  while (tempPoint.x != maxY.x)
+  for (size_t i = 0; i < size - 1; i++)
   {
-    if (points[iterator].y >= tempPoint.y)
-    {
-      m_square += (points[iterator].x - tempPoint.x) * (points[iterator].y + tempPoint.y) / 2.0;
-      tempPoint = points[iterator];
-    }
-    iterator++;
+    m_square -= points[i].x * points[i + 1].y;
   }
-  while (tempPoint.x != maxX.x)
+  m_square -= points[size - 1].x * points[0].y;
+  for (size_t i = 0; i < size - 1; i++)
   {
-    if (points[iterator].y >= maxX.y)
-    {
-      m_square += (points[iterator].x - tempPoint.x) * (tempPoint.y + points[iterator].y) / 2.0;
-      tempPoint = points[iterator];
-    }
-    iterator++;
+    m_square += points[i].y * points[i + 1].x;
   }
-  iterator = size - 1;
-  while (tempPoint.x != minY.x)
-  {
-    if (points[iterator].y <= tempPoint.y)
-    {
-      m_square -= (tempPoint.x - points[iterator].x) * (points[iterator].y + tempPoint.y) / 2.0;
-      tempPoint = points[iterator];
-    }
-    iterator--;
-  }
-  while (tempPoint.x != minX.x)
-  {
-    if (points[iterator].y >= tempPoint.y)
-    {
-      m_square -= (tempPoint.x - points[iterator].x) * (points[iterator].y + tempPoint.y) / 2.0;
-      tempPoint = points[iterator];
-    }
-  }
-  delete[] points;
+  m_square += points[size - 1].y * points[0].x;
 }
 
 zhalilov::Polygon::~Polygon()
 {
-}
-
-zhalilov::point_t *zhalilov::Polygon::sortByX(point_t *points, size_t size)
-{
-  for (size_t i = 0; i < size; i++)
-  {
-    for (size_t j = 0; j < size; j++)
-    {
-      if (points[i].x > points[i + 1].x)
-      {
-        std::swap(points[i], points[i + 1]);
-      }
-    }
-  }
-  return points;
 }
 
 double zhalilov::Polygon::getArea() const

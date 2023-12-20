@@ -21,7 +21,6 @@ namespace zhalilov
     double m_square;
     point_t m_pos;
     rectangle_t m_frameRect;
-    point_t *sortByX(point_t *points, size_t size);
   };
 }
 
