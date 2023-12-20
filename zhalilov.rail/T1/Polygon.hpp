@@ -3,7 +3,7 @@
 
 #include <cstddef>
 
-#include "Shape.hpp"
+#include "shape.hpp"
 
 namespace zhalilov
 {

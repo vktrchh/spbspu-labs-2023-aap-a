@@ -37,7 +37,7 @@ char *zhalilov::inputString(std::istream &input)
     {
       string[dataIndex] = temp;
     }
-    if (dataIndex + 1 == strSize)
+    if (dataIndex + 2 == strSize)
     {
       try
       {

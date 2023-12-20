@@ -131,8 +131,7 @@ shapeInputFunc zhalilov::identifyShape(const char string[])
   for (size_t i = 0; i < namesSize; i++)
   {
     size_t nameLen = strlen(names[i]);
-    if ((strncmp(names[i], string, nameLen) == 0)
-      && (isspace(string[nameLen])))
+    if (strncmp(names[i], string, nameLen) == 0)
     {
       return functions[i];
     }
@@ -189,8 +188,19 @@ zhalilov::Shape **zhalilov::inputShapesSource(point_t &point, double &ratio, siz
         shapes = increaseLength(shapes, size, 10);
         size += 10;
       }
+      if (inputScale(point, ratio, string))
+      {
+        delete[] string;
+        length = shapeIndex;
+        return shapes;
+      }
       shapeInputFunc inputFunc = identifyShape(string);
-      shapes[shapeIndex] = inputFunc(string);
+      if (inputFunc)
+      {
+        shapes[shapeIndex] = inputFunc(string);
+        shapeIndex++;
+      }
+      delete[] string;
     }
     catch (const std::invalid_argument &e)
     {
@@ -212,15 +222,5 @@ zhalilov::Shape **zhalilov::inputShapesSource(point_t &point, double &ratio, siz
       delete[] string;
       throw;
     }
-
-    if (inputScale(point, ratio, string))
-    {
-      delete[] string;
-      length = shapeIndex;
-      return shapes;
-    }
-
-    delete[] string;
-    shapeIndex++;
   }
 }

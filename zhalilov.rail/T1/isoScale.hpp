@@ -1,7 +1,7 @@
 #ifndef ISOSCALE_HPP
 #define ISOSCALE_HPP
 
-#include "Shape.hpp"
+#include "shape.hpp"
 #include "base-types.hpp"
 
 namespace zhalilov

@@ -2,7 +2,6 @@
 
 #include <cmath>
 
-#include "Shape.hpp"
 #include "base-types.hpp"
 
 std::ostream &zhalilov::outputShapesSource(Shape **shapes, size_t size, std::ostream &output)
