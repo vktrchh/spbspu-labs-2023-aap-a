@@ -7,7 +7,6 @@
 
 std::ostream &zhalilov::outputShapesSource(Shape **shapes, size_t size, std::ostream &output)
 {
-  bool wasInvalidShapes = false;
   double square = 0.0;
   for (size_t i = 0; i < size; i++)
   {
