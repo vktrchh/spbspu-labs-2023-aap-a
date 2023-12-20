@@ -4,9 +4,9 @@
 #include <string>
 #include <cctype>
 
-#include "Rectangle.hpp"
-#include "Circle.hpp"
-#include "Polygon.hpp"
+#include "rectangle.hpp"
+#include "circle.hpp"
+#include "polygon.hpp"
 #include "inputString.hpp"
 
 zhalilov::Shape *zhalilov::inputRectangle(const char string[])
