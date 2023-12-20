@@ -67,16 +67,13 @@ int main(int argc, char * argv[])
   {
     int matrix[max_matrix_size];
 
-    readMatrix(input_file, matrix, rows, cols);
-    row_max_sequence = findMaxSequence(matrix, rows, cols);
+    processMatrix(input_file, matrix, rows, cols, row_max_sequence);
   }
   else
   {
     int * matrix = new int[rows * cols];
 
-    readMatrix(input_file, matrix, rows, cols);
-    row_max_sequence = findMaxSequence(matrix, rows, cols);
-
+    processMatrix(input_file, matrix, rows, cols, row_max_sequence);
     delete[] matrix;
   }
 
@@ -89,6 +86,5 @@ int main(int argc, char * argv[])
   }
 
   output_file << row_max_sequence + 1 << "\n";
-
   return 0;
 }

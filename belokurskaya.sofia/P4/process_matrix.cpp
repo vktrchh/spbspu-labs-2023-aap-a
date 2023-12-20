@@ -44,3 +44,9 @@ void belokurskaya::readMatrix(std::istream &input, int * matrix, size_t rows, si
     }
   }
 }
+
+void belokurskaya::processMatrix(std::istream &input, int * matrix, size_t rows, size_t cols, size_t &row_max_sequence)
+{
+  readMatrix(input, matrix, rows, cols);
+  row_max_sequence = findMaxSequence(matrix, rows, cols);
+}
