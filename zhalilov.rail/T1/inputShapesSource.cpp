@@ -22,19 +22,11 @@ zhalilov::Shape *zhalilov::inputRectangle(const char string[])
   }
   if (*newStr != '\0')
   {
-    return nullptr;
+    throw std::invalid_argument("too many args to describe rectangle");
   }
-  point_t leftCorner = {coords[0], coords[1]};
-  point_t rightCorner = {coords[2], coords[3]};
-  try
-  {
-    Shape *shape = new Rectangle(leftCorner, rightCorner);
-    return shape;
-  }
-  catch (const std::invalid_argument &e)
-  {
-    return nullptr;
-  }
+  point_t leftCorner = { coords[0], coords[1] };
+  point_t rightCorner = { coords[2], coords[3] };
+  return new Rectangle(leftCorner, rightCorner);
 }
 
 zhalilov::Shape *zhalilov::inputCircle(const char string[])
@@ -50,17 +42,9 @@ zhalilov::Shape *zhalilov::inputCircle(const char string[])
   }
   if (*newStr != '\0')
   {
-    return nullptr;
+    throw std::invalid_argument("too many args to describe circle");
   }
-  try
-  {
-    Shape *shape = new Circle({nums[0], nums[1]}, nums[2]);
-    return shape;
-  }
-  catch (const std::invalid_argument &e)
-  {
-    return nullptr;
-  }
+  return new Circle({ nums[0], nums[1] }, nums[2]);
 }
 
 zhalilov::Shape *zhalilov::inputPolygon(const char string[])
@@ -101,26 +85,16 @@ zhalilov::Shape *zhalilov::inputPolygon(const char string[])
   length = i;
   if (length % 2 != 0)
   {
-    return nullptr;
+    delete[] coords;
+    throw std::invalid_argument("incorrect num of args to describe polygon");
   }
   point_t *points = new point_t[length / 2];
   for (size_t j = 0; j < length; j += 2)
   {
-    points[j / 2] = {coords[j], coords[j + 1]};
+    points[j / 2] = { coords[j], coords[j + 1] };
   }
-  try
-  {
-    Shape *shape = new Polygon(points, length / 2);
-    delete[] points;
-    delete[] coords;
-    return shape;
-  }
-  catch (const std::invalid_argument &e)
-  {
-    delete[] coords;
-    delete[] points;
-    return nullptr;
-  }
+  delete[] coords;
+  return new Polygon(points, length / 2);
 }
 
 shapeInputFunc zhalilov::identifyShape(const char string[])
@@ -157,7 +131,7 @@ bool zhalilov::inputScale(point_t &point, double &ratio, const char string[])
     newStr += delta;
     double inputedRatio = std::stod(newStr, &delta);
 
-    point = {x, y};
+    point = { x, y };
     ratio = inputedRatio;
     return true;
   }
@@ -166,7 +140,7 @@ bool zhalilov::inputScale(point_t &point, double &ratio, const char string[])
 
 zhalilov::Shape **zhalilov::increaseLength(Shape **shapes, size_t size, size_t delta)
 {
-  Shape **newShapes = new Shape*[size + delta]{nullptr};
+  Shape **newShapes = new Shape*[size + delta]{ nullptr };
   for (size_t i = 0; i < size; i++)
   {
     newShapes[i] = shapes[i];
@@ -175,56 +149,65 @@ zhalilov::Shape **zhalilov::increaseLength(Shape **shapes, size_t size, size_t d
   return newShapes;
 }
 
+void zhalilov::freeMemory(Shape **shapes, size_t size, const char string[])
+{
+  for (size_t i = 0; i < size; i++)
+  {
+    delete shapes[i];
+  }
+  delete[] shapes;
+  delete[] string;
+}
+
 zhalilov::Shape **zhalilov::inputShapesSource(point_t &point, double &ratio, size_t &length, size_t &size, std::istream &input)
 {
   size_t shapeIndex = 0;
   size = 10;
-  Shape **shapes = new Shape*[10]{nullptr};
+  Shape **shapes = new Shape*[10]{ nullptr };
   char *string = nullptr;
   while (true)
   {
     try
     {
       string = inputString(input);
-      if (shapeIndex + 1 == size)
-      {
-        shapes = increaseLength(shapes, size, 10);
-        size += 10;
-      }
-      if (inputScale(point, ratio, string))
-      {
-        delete[] string;
-        length = shapeIndex;
-        return shapes;
-      }
-      shapeInputFunc inputFunc = identifyShape(string);
-      if (inputFunc)
-      {
-        shapes[shapeIndex] = inputFunc(string);
-        shapeIndex++;
-      }
-      delete[] string;
-      string = nullptr;
-    }
-    catch (const std::invalid_argument &e)
-    {
-      for (size_t i = 0; i < size; i++)
-      {
-        delete shapes[i];
-      }
-      delete[] shapes;
-      delete[] string;
-      throw;
     }
     catch (const std::bad_alloc &e)
     {
-      for (size_t i = 0; i < size; i++)
-      {
-        delete shapes[i];
-      }
-      delete[] shapes;
-      delete[] string;
+      freeMemory(shapes, size, string);
       throw;
     }
+    catch (const std::invalid_argument &e)
+    {
+      freeMemory(shapes, size, string);
+      throw;
+    }
+
+    try
+    {
+      shapeInputFunc inputFunc = identifyShape(string);
+      if (inputFunc)
+      {
+        shapes[shapeIndex] = { inputFunc(string) };
+      }
+      shapeIndex++;
+    }
+    catch (const std::invalid_argument &e)
+    {
+      shapes[shapeIndex] = nullptr;
+    }
+    catch (const std::bad_alloc &e)
+    {
+      freeMemory(shapes, size, string);
+      throw;
+    }
+
+    if (inputScale(point, ratio, string))
+    {
+      delete[] string;
+      length = shapeIndex + 1;
+      return shapes;
+    }
+    delete[] string;
+    string = nullptr;
   }
 }

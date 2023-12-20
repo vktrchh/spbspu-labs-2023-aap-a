@@ -8,7 +8,7 @@ int main()
 {
   using namespace zhalilov;
   Shape **shapes = nullptr;
-  point_t point = {0.0, 0.0};
+  point_t point = { 0.0, 0.0 };
   double ratio = 0.0;
   size_t length = 0;
   size_t size = 0;
@@ -43,10 +43,9 @@ int main()
     }
   }
 
-  outputShapesSource(shapes, length, std::cout);
-
   try
   {
+    outputShapesSource(shapes, length, std::cout);
     for (size_t i = 0; i < length; i++)
     {
       if (shapes[i])
@@ -59,17 +58,9 @@ int main()
   catch (const std::invalid_argument &e)
   {
     std::cerr << "An error has occured: " << e.what();
-    for (size_t i = 0; i < size; i++)
-    {
-      delete shapes[i];
-    }
-    delete[] shapes;
+    freeMemory(shapes, size, nullptr);
     return 1;
   }
 
-  for (size_t i = 0; i < size; i++)
-  {
-    delete shapes[i];
-  }
-  delete[] shapes;
+  freeMemory(shapes, size, nullptr);
 }
