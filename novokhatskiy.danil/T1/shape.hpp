@@ -4,14 +4,17 @@
 
 namespace novokhatskiy
 {
-	class shape
+	class Shape
 	{
 	public :
 		virtual double getArea() const = 0;
 		virtual rectangle_t getFrameRect() const = 0;
 		virtual void move(const point_t& p) = 0;
-		virtual void move(const double x, const double y) = 0;
-		virtual void scale(const double scale) = 0;
+		virtual void move(double x, double y) = 0;
+		virtual void scale(double ratio) = 0;
+		~Shape() = default;
+	protected:
+		rectangle_t frameRect_;
 	};
 }
 #endif 

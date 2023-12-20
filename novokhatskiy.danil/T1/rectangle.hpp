@@ -4,7 +4,7 @@
 
 namespace novokhatskiy
 {
-	class Rectangle : public shape
+	class Rectangle : public Shape
 	{
 
 	public:
@@ -12,10 +12,12 @@ namespace novokhatskiy
 		virtual double getArea() const;
 		virtual rectangle_t getFrameRect() const;
 		virtual void move(const point_t& p);
-		virtual void move(const double x, const double y);
-		virtual void scale(const double scale);
+		virtual void move(double x, double y);
+		virtual void scale(const point_t& t, double ratio);
+		~Rectangle() = default;
 	private:
-		rectangle_t frameRect;
+		point_t leftAngle_;
+		point_t rightAngle_;
 	};
 }
 
