@@ -52,6 +52,7 @@ int main(int argc, char * argv[])
     if (!inputFile)
     {
       std::cerr << "Not a matrix\n";
+      delete[] matrix;
       return 2;
     }
     for (size_t i = 0; i < rows * cols; i++ )
@@ -59,10 +60,10 @@ int main(int argc, char * argv[])
       matrix[i] = 0;
     }
   }
-  vyzhanov::createMatrix(rows, cols, matrix, inputFile);
   std::ofstream outputFile(argv[3]);
   try
   {
+    vyzhanov::createMatrix(rows, cols, matrix, inputFile);
     outputFile << vyzhanov::NumRowsWithoutRepeat(matrix, rows, cols) << "\n";
     outputFile << vyzhanov::LowerTriangleCheck(matrix, rows, cols) << "\n";
   }
@@ -73,10 +74,6 @@ int main(int argc, char * argv[])
     {
       delete[] matrix;
     }
-  }
-  if (num == 2)
-  {
-    delete[] matrix;
   }
 }
 
