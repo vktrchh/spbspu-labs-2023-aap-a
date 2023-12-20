@@ -205,7 +205,7 @@ zhalilov::Shape **zhalilov::inputShapesSource(point_t &point, double &ratio, siz
     if (inputScale(point, ratio, string))
     {
       delete[] string;
-      length = shapeIndex + 1;
+      length = shapeIndex;
       return shapes;
     }
     delete[] string;
