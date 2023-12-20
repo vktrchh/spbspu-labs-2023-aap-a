@@ -39,13 +39,24 @@ char *zhalilov::inputString(std::istream &input)
     }
     if (dataIndex + 1 == strSize)
     {
-      string = resizeString(string, strSize, strSize + 40);
-      strSize += 40;
+      try
+      {
+        string = resizeString(string, strSize, strSize + 40);
+        strSize += 40;
+      }
+      catch (const std::bad_alloc &e)
+      {
+        delete[] string;
+        input >> std::skipws;
+        throw;
+      }
     }
     dataIndex++;
   }
   if (!input)
   {
+    delete[] string;
+    input >> std::skipws;
     throw std::invalid_argument("someone has interrupted input");
   }
   input >> std::skipws;

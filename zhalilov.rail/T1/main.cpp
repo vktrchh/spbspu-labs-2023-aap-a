@@ -44,4 +44,10 @@ int main()
   }
 
   outputShapesSource(shapes, length, std::cout);
+
+  for (size_t i = 0; i < size; i++)
+  {
+    delete shapes[i];
+  }
+  delete[] shapes;
 }
