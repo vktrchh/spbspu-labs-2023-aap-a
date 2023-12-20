@@ -188,12 +188,13 @@ zhalilov::Shape **zhalilov::inputShapesSource(point_t &point, double &ratio, siz
       if (inputFunc)
       {
         shapes[shapeIndex] = { inputFunc(string) };
+        shapeIndex++;
       }
-      shapeIndex++;
     }
     catch (const std::invalid_argument &e)
     {
       shapes[shapeIndex] = nullptr;
+      shapeIndex++;
     }
     catch (const std::bad_alloc &e)
     {
