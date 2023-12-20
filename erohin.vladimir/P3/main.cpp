@@ -7,7 +7,7 @@
 int main()
 {
   using namespace erohin;
-  const size_t iter_size = 10;
+  size_t iter_size = 10;
   char* first = nullptr;
   char* first_copy = nullptr;
   char* second = nullptr;
@@ -15,6 +15,12 @@ int main()
   {
     first = new char[iter_size + 1]{};
     first = inputString(std::cin, first, iter_size);
+    if (!length(first))
+    {
+      delete[] first;
+      std::cerr << "String is null\n";
+      return 2;
+    }
     first_copy = copy(first);
     second = new char[iter_size + 1]{};
     second = inputString(std::cin, second, iter_size);

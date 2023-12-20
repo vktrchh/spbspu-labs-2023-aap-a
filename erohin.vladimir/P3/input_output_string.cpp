@@ -3,7 +3,7 @@
 #include <iostream>
 #include <stdexcept>
 
-char* erohin::inputString(std::istream & input, char* str, const size_t iter_size)
+char* erohin::inputString(std::istream & input, char* str, size_t iter_size)
 {
   size_t size = iter_size;
   char elem = 0;
