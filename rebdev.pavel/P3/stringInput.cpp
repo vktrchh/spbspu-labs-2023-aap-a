@@ -17,7 +17,7 @@ char * rebdev::acceptStr(std::istream & input)
     if(!input)
     {
       delete[] str;
-      input >> std::skipws;
+      //input >> std::skipws;
       throw std::logic_error("Bad read!");
     }
 
