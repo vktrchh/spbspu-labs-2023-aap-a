@@ -57,7 +57,7 @@ char *zhalilov::inputString(std::istream &input)
   {
     delete[] string;
     input >> std::skipws;
-    throw std::invalid_argument("someone has interrupted input");
+    throw std::invalid_argument("interrupted input");
   }
   input >> std::skipws;
   return string;

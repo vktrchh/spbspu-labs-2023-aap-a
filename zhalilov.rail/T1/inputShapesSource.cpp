@@ -204,6 +204,7 @@ zhalilov::Shape **zhalilov::inputShapesSource(point_t &point, double &ratio, siz
         shapeIndex++;
       }
       delete[] string;
+      string = nullptr;
     }
     catch (const std::invalid_argument &e)
     {
