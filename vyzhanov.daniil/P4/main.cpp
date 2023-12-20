@@ -15,12 +15,8 @@ int main(int argc, char * argv[])
   int num = 0;
   try
   {
-    if (isdigit(*argv[1]))
-    {
-      throw std::logic_error("First arg must be int");
-    }
     num = std::stoll(argv[1]);
-    if (num != 1 && num != 2)
+    if (num != 1 && num != 2 || argv[1][1] != 0)
     {
       throw std::logic_error("First arg must be 1 or 2");
     }
@@ -28,17 +24,12 @@ int main(int argc, char * argv[])
   catch(const std::out_of_range &)
   {
     std::cerr << "first argument is too large!\n";
-    return 3;
+    return 1;
   }
-  catch(const std::invalid_argument &)
-  {
-    std::cerr << "Cannot parse a value!\n";
-    return 3;
-  }
-  catch(const std::exception &e)
+  catch (const std::logic_error &)
   {
     std::cerr << "Error: " << e.what() << "\n";
-    return 3;
+    return 1;
   }
   std::cout << num << "\n";
   size_t rows = 0;
