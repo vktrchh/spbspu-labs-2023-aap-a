@@ -40,7 +40,10 @@ int main()
 
   for (size_t i = 0; i < length; i++)
   {
-    isoScale(shapes[i], point, ratio);
+    if (shapes[i])
+    {
+      isoScale(shapes[i], point, ratio);
+    }
   }
 
   outputShapesSource(shapes, length, std::cout);
