@@ -30,7 +30,7 @@ size_t belokurskaya::findMaxSequence(const int * matrix, size_t rows, size_t col
   return row_max_sequence;
 }
 
-void belokurskaya::readMatrix(std::istream &input, const int * matrix, size_t rows, size_t cols)
+void belokurskaya::readMatrix(std::istream &input, int * matrix, size_t rows, size_t cols)
 {
   for (size_t row = 0; row < rows; ++row)
   {
