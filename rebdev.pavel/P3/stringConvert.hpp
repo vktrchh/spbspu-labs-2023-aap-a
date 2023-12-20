@@ -3,6 +3,6 @@
 #include <cstddef>
 namespace rebdev
 {
-  char * convertString(char * firstString, size_t firstSize, char * secondString, size_t secondSize);
+  char * convertString(char * firstString, size_t firstSize, const char * secondString, size_t secondSize);
 }
 #endif
