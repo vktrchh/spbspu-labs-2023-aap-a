@@ -4,26 +4,24 @@
 
 int main()
 {
-  char* firstArray = nullptr;
-
   using namespace nikitov;
   std::pair < char*, size_t > firstPair{};
   try
   {
-    firstPair = inputArray(std::cin, firstArray);
+    firstPair = inputArray(std::cin);
   }
   catch (const std::bad_alloc&)
   {
     std::cerr << "Error: Memory out\n";
     return 1;
   }
-  catch (const std::out_of_range&)
+  catch (const std::out_of_range& e)
   {
-    std::cerr << "Error: Array out of range\n";
+    std::cerr << e.what() << '\n';
     return 1;
   }
 
-  firstArray = firstPair.first;
+  const char* firstArray = firstPair.first;
   size_t firstSize = firstPair.second;
 
   if (firstArray[0] == '\0')

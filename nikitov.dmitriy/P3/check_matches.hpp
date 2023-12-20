@@ -5,6 +5,6 @@
 
 namespace nikitov
 {
-  int checkMatches(char* firstArray, const char* secondArray, size_t firstSize, size_t secondSize);
+  int checkMatches(const char* firstArray, const char* secondArray, size_t firstSize, size_t secondSize);
 }
 #endif
