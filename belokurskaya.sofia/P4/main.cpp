@@ -4,8 +4,6 @@
 #include <fstream>
 #include <cstdlib>
 
-const int max_static_matrix_size = 10000;
-
 int main(int argc, char * argv[])
 {
   using namespace belokurskaya;
@@ -56,15 +54,11 @@ int main(int argc, char * argv[])
 
   size_t row_max_sequence = 0;
 
+  const int max_matrix_size = 10000;
+
   if (task_number == 1)
   {
-    if (rows * cols > max_static_matrix_size)
-    {
-      std::cerr << "Size of the matrix exceeds the limit for a static array\n";
-      return 1;
-    }
-
-    int matrix[max_static_matrix_size];
+    int matrix[max_matrix_size];
 
     readMatrix(input_file, matrix, rows, cols);
     row_max_sequence = findMaxSequence(matrix, rows, cols);
@@ -81,7 +75,7 @@ int main(int argc, char * argv[])
 
   std::ofstream output_file(argv[3]);
 
-  if(!output_file)
+  if (!output_file)
   {
     std::cerr << "Error opening output file\n";
     return 2;
