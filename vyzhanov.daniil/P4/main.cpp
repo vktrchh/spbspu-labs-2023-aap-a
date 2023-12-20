@@ -71,5 +71,9 @@ int main(int argc, char * argv[])
     }
     return 2;
   }
+  if (num == 2)
+  {
+    delete[] matrix;
+  }
 }
 
