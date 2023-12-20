@@ -36,6 +36,7 @@ int main(int argc, char * argv[])
     std::cerr << "First arg must be 1 or 2\n";
     return 3;
   }
+  std::cout << num << "\n";
   size_t rows = 0;
   size_t cols = 0;
   std::ifstream inputFile(argv[2]);
@@ -64,11 +65,18 @@ int main(int argc, char * argv[])
   }
   vyzhanov::createMatrix(rows, cols, matrix, inputFile);
   std::ofstream outputFile(argv[3]);
-  outputFile << vyzhanov::NumRowsWithoutRepeat(matrix, rows, cols) << "\n";
-  outputFile << vyzhanov::LowerTriangleCheck(matrix, rows, cols) << "\n";
-  if (num == 2)
+  try
   {
-    delete[] matrix;
+    outputFile << vyzhanov::NumRowsWithoutRepeat(matrix, rows, cols) << "\n";
+    outputFile << vyzhanov::LowerTriangleCheck(matrix, rows, cols) << "\n";
+  }
+  catch(const std::exception & e)
+  {
+    std::cerr << "Error: " << e.what() << "\n";
+    if (num == 2)
+    {
+      delete[] matrix;
+    }
   }
 }
 
