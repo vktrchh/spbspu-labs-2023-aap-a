@@ -4,7 +4,6 @@
 #include <cstddef>
 namespace erohin
 {
-  bool isOutSum(const long long & sum, const long long & a);
-  long long maxMainDiagonal(int * matrix, const size_t & rows, const size_t & cols);
+  long long findMaxMainDiagonal(const int * matrix, size_t rows, size_t cols);
 }
 #endif
