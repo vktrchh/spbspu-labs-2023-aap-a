@@ -58,6 +58,7 @@ zhalilov::Polygon::Polygon(point_t *points, const size_t size)
   deltaY = deltaY / size;
   m_pos = {deltaX, deltaY};
 
+  m_square = 0.0;
   for (size_t i = 0; i < size - 1; i++)
   {
     m_square -= points[i].x * points[i + 1].y;
