@@ -7,7 +7,7 @@
 
 int main()
 {
-  const size_t alphabetWeight = 26;
+  // const size_t alphabetWeight = 26;
 
   char * inputString = nullptr;
   // const char * defoltStringForTaskTwo = "def ghk";
@@ -34,25 +34,25 @@ int main()
   }
 
   size_t answerTaskOne = arakelyanTaskOne::countOfdifferentLetters(inputString);
-  char * answerTaskTwo = nullptr;
-
-  try
-  {
-    answerTaskTwo = new char[26];
-  }
-  catch (const std::bad_alloc & e)
-  {
-    std::cerr << "Cannot create a dynamic array for answerTaskTwo!";
-    delete [] inputString;
-    return 1;
-  }
+  // char * answerTaskTwo = nullptr;
+  //
+  // try
+  // {
+  //   answerTaskTwo = new char[26];
+  // }
+  // catch (const std::bad_alloc & e)
+  // {
+  //   std::cerr << "Cannot create a dynamic array for answerTaskTwo!";
+  //   delete [] inputString;
+  //   return 1;
+  // }
 
   // arakelyanTaskTwo::identicalLetters(inputString, defoltStringForTaskTwo, answerTaskTwo, alphabetWeight);
 
   std::cout << answerTaskOne << "\n";
   // std::cout << answerTaskTwo << "\n";
 
-  delete [] answerTaskTwo;
+  // delete [] answerTaskTwo;
   delete [] inputString;
   return 0;
 }
