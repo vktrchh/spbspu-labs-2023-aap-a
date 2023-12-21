@@ -7,6 +7,7 @@
 
 int main(int argc, char ** argv)
 {
+  using namespace ishmuratov;
   if (argc != 4)
   {
     std::cerr << "Error in command line arguments\n";
