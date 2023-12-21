@@ -6,13 +6,15 @@ int main()
 {
   using namespace nikitov;
   std::pair < char*, size_t > firstPair{};
+  char* firstArray = nullptr;
   try
   {
-    firstPair = inputArray(std::cin);
+    firstPair = inputArray(std::cin, firstArray);
   }
   catch (const std::bad_alloc&)
   {
     std::cerr << "Error: Memory out\n";
+    delete[] firstArray;
     return 1;
   }
   catch (const std::out_of_range& e)
@@ -21,20 +23,20 @@ int main()
     return 1;
   }
 
-  const char* firstArray = firstPair.first;
+  firstArray = firstPair.first;
   size_t firstSize = firstPair.second;
 
   if (firstArray[0] == '\0')
   {
     std::cerr << "Error: Empty input\n";
-    delete [] firstArray;
+    delete[] firstArray;
     return 1;
   }
   const char* secondArray = "abc";
   size_t secondSize = 3;
 
   std::cout << checkMatches(firstArray, secondArray, firstSize, secondSize) << '\n';
-  delete [] firstArray;
+  delete[] firstArray;
 
   return 0;
 }

@@ -2,16 +2,16 @@
 #include "functions.hpp"
 #include <limits>
 
-std::pair< char*, size_t > nikitov::inputArray(std::istream& input)
+std::pair< char*, size_t > nikitov::inputArray(std::istream& input, char* actualArray)
 {
   const size_t bufferSize = 25;
   size_t arraySize = 0;
   bool status = true;
 
-  char* actualArray = new char[bufferSize];
+  actualArray = new char[bufferSize] {};
   do
   {
-    char buffer[bufferSize]{};
+    char buffer[bufferSize] = {0};
     size_t i = 0;
     input >> std::noskipws;
     status = enterIntoTheBuffer(buffer, input, i, bufferSize);
@@ -35,11 +35,10 @@ std::pair< char*, size_t > nikitov::inputArray(std::istream& input)
     char* tempArray = nullptr;
     try
     {
-      increaseArray(actualArray, tempArray, arraySize, bufferSize);
+      actualArray = increaseArray(actualArray, tempArray, arraySize, bufferSize);
     }
     catch (const std::bad_alloc&)
     {
-      delete[] actualArray;
       delete[] tempArray;
       throw;
     }
