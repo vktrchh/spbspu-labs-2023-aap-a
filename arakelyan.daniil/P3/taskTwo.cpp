@@ -1,15 +1,11 @@
 #include "taskTwo.hpp"
 #include <iostream>
+#include <cctype>
 
-char * arakelyanTaskTwo::identicalLetters(const char *inputArr, const char *defoltArray, char *answer, size_t alphabetWeight)
+void arakelyanTaskTwo::identicalLetters(const char *inputArr, const char *defoltArray, char *answer, const size_t alphabetWeight)
 {
-  char alphabetArrayOne[alphabetWeight];
-  char alphabetArrayTwo[alphabetWeight];
-  for (size_t i = 0; i < alphabetWeight; i++)
-  {
-    alphabetArrayOne[i] = 1;
-    alphabetArrayTwo[i] = 1;
-  }
+  char alphabetArrayOne[26] = {1};
+  char alphabetArrayTwo[26] = {1};
 
   for (size_t i = 0; inputArr[i] != '\0'; i++)
   {
@@ -51,5 +47,4 @@ char * arakelyanTaskTwo::identicalLetters(const char *inputArr, const char *defo
     }
   }
 
-  return answer;
 }

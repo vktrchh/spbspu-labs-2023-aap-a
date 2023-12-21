@@ -1,7 +1,6 @@
 #include "taskOne.hpp"
-#include <iostream>
 
-size_t arakelyanTaskOne::countOfdifferentLetters(char *myArray)
+size_t arakelyanTaskOne::countOfdifferentLetters(const char *myArray)
 {
   size_t countOfDifferentLet = 0;
   int alphabet[26] = {0};
@@ -17,7 +16,7 @@ size_t arakelyanTaskOne::countOfdifferentLetters(char *myArray)
 
   for (size_t i = 0; i < 26; i++)
   {
-    if (alphabet[i] > 0)
+    if (alphabet[i] == 1)
     {
       ++countOfDifferentLet;
     }

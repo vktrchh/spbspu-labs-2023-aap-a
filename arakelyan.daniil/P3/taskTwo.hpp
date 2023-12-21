@@ -4,6 +4,6 @@
 #include <cctype>
 namespace arakelyanTaskTwo
 {
-  char * identicalLetters(const char * inputArr, const char *defoltArray, char * answer, size_t alphabetWeight);
+  void identicalLetters(const char * inputArr, const char *defoltArray, char * answer, const size_t alphabetWeight);
 }
 #endif

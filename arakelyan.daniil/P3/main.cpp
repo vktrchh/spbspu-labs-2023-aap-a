@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cctype>
+#include <new>
 #include <stdexcept>
 #include "inputArray.hpp"
 #include "taskOne.hpp"
@@ -9,59 +10,42 @@ int main()
 {
   const size_t alphabetWeight = 26;
 
-  size_t arrSize = 0;
   char * inputString = nullptr;
-
-  char defoltStringForTaskTwo[8] = "def ghk";
+  const char * defoltStringForTaskTwo = "def ghk";
 
   try
   {
-    inputString = arakelyan::inputArray(arrSize);
+    inputString = arakelyan::inputArray(std::cin);
   }
-  catch (const std::exception & e)
+  catch (const std::logic_error & e)
   {
     std::cerr << "Error: " << e.what() << "\n";
-    delete [] inputString;
+    return 1;
+  }
+  catch (const std::bad_alloc & e)
+  {
+    std::cerr << "Memory cannot be allocated!\n";
     return 1;
   }
 
-  size_t answerTaskOne = 0;
-  answerTaskOne = arakelyanTaskOne::countOfdifferentLetters(inputString);
+  size_t answerTaskOne = arakelyanTaskOne::countOfdifferentLetters(inputString);
   char * answerTaskTwo = nullptr;
 
   try
   {
-    answerTaskTwo = new char[alphabetWeight];
+    answerTaskTwo = new char[26];
   }
   catch (const std::bad_alloc & e)
   {
     std::cerr << "Cannot create a dynamic array for answerTaskTwo!";
     delete [] inputString;
-    delete [] answerTaskTwo;
     return 1;
   }
 
   arakelyanTaskTwo::identicalLetters(inputString, defoltStringForTaskTwo, answerTaskTwo, alphabetWeight);
-  for (size_t i = 0; i < alphabetWeight; i++)
-  {
-    if (answerTaskTwo[i] < 'a' || answerTaskTwo[i] > 'z')
-    {
-      answerTaskTwo[i] = 0;
-    }
-  }
 
-  if (answerTaskOne == 0)
-  {
-    std::cerr << "Empty input!\n";
-    delete [] inputString;
-    delete [] answerTaskTwo;
-    return 1;
-  }
   std::cout << answerTaskOne << "\n";
-  for (size_t i = 0; i < alphabetWeight; i++)
-  {
-    std::cout << answerTaskTwo[i];
-  }
+  std::cout << answerTaskTwo << "\n";
 
   delete [] answerTaskTwo;
   delete [] inputString;

@@ -4,6 +4,6 @@
 #include <iostream>
 namespace arakelyan
 {
-  char * inputArray(size_t & arrSize);
+  char * inputArray(std::istream & input);
 }
 #endif

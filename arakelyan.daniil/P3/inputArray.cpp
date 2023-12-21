@@ -1,30 +1,39 @@
 #include "inputArray.hpp"
-#include <new>
 
-char * arakelyan::inputArray(size_t & arrSize)
+char * arakelyan::inputArray(std::istream & input)
 {
-  const size_t defBufferSize = 10;
-  arrSize = defBufferSize;
+  size_t arrSize = 10;
 
   size_t i = 0;
   char sym = 0;
 
-  char * mainBuffer = new char[arrSize];
-  if (!mainBuffer)
+  char * mainBuffer = nullptr;
+  try 
   {
-    throw std::logic_error("Can't create mainBuffer");
+    mainBuffer = new char[arrSize];
   }
-  std::cin >> std::noskipws;
-  while ((std::cin >> sym) && (sym != '\n'))
+  catch (const std::bad_alloc & e)
+  {
+    throw;
+  }
+
+  input >> std::noskipws;
+  while ((input >> sym) && (sym != '\n'))
   {
     if (i == arrSize - 1)
     {
       arrSize *= 2;
 
-      char * tempBuffer = new char[arrSize];
-      if (!tempBuffer)
+      char * tempBuffer = nullptr;
+
+      try
       {
-        throw std::logic_error("Cant't create tempBuffer");
+      tempBuffer = new char[arrSize];
+      }
+      catch (const std::bad_alloc & e)
+      {
+        delete [] mainBuffer;
+        throw;
       }
 
       for (size_t j = 0; j < i; j++)
@@ -37,6 +46,10 @@ char * arakelyan::inputArray(size_t & arrSize)
       mainBuffer = tempBuffer;
     }
     mainBuffer[i++] = sym;
+  }
+  if (mainBuffer[0] == '\0')
+  {
+    throw std::logic_error("Empty input!");
   }
   mainBuffer[i] = '\0';
   return mainBuffer;

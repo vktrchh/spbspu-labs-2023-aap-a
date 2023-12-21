@@ -4,6 +4,6 @@
 #include <cctype>
 namespace arakelyanTaskOne
 {
-  size_t countOfdifferentLetters(char * myArray);
+  size_t countOfdifferentLetters(const char * myArray);
 }
 #endif
