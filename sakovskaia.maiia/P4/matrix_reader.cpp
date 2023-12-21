@@ -22,4 +22,5 @@ std::ofstream & sakovskaia::printAnswer(std::ofstream & output, int * a, int b)
       output << " " << a[i];
     }
   }
+  return output;
 }
