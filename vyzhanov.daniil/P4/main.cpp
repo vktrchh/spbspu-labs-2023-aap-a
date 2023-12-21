@@ -2,8 +2,8 @@
 #include <fstream>
 #include <string>
 #include "CreateMatrix.hpp"
-#include "NumRowsWithoutRepeat.hpp"
-#include "LowerTriangleCheck.hpp"
+#include "CountRowsWithoutRepeat.hpp"
+#include "CheckLowerTriangle.hpp"
 
 int main(int argc, char * argv[])
 {
@@ -26,6 +26,7 @@ int main(int argc, char * argv[])
     std::cerr << "Error: " << e.what() << "\n";
     return 1;
   }
+
   size_t rows = 0;
   size_t cols = 0;
   std::ifstream inputFile(argv[2]);
@@ -59,8 +60,8 @@ int main(int argc, char * argv[])
   try
   {
     vyzhanov::createMatrix(rows, cols, matrix, inputFile);
-    outputFile << vyzhanov::NumRowsWithoutRepeat(matrix, rows, cols) << "\n";
-    outputFile << vyzhanov::LowerTriangleCheck(matrix, rows, cols) << "\n";
+    outputFile << vyzhanov::CountRowsWithoutRepeat(matrix, rows, cols) << "\n";
+    outputFile << vyzhanov::CheckLowerTriangle(matrix, rows, cols) << "\n";
   }
   catch(const std::exception & e)
   {

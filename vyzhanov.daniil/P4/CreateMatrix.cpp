@@ -1,6 +1,4 @@
 #include "CreateMatrix.hpp"
-#include <limits>
-#include <stdexcept>
 
 void vyzhanov::createMatrix(size_t rows, size_t cols, int * matrix, std::istream &inputFile)
 {
