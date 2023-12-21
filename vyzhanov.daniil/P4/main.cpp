@@ -69,6 +69,10 @@ int main(int argc, char * argv[])
     {
       delete[] matrix;
     }
+    if (cols != rows)
+    {
+      outputFile << "cols is not equal to rows\n";
+    }
     return 2;
   }
   if (num == 2)

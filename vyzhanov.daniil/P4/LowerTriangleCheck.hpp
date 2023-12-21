@@ -5,7 +5,7 @@
 
 namespace vyzhanov
 {
-  const char* LowerTriangleCheck(int matrix[], size_t rows, size_t cols);
+  const char* LowerTriangleCheck(const int * matrix, size_t rows, size_t cols);
 }
 
 #endif

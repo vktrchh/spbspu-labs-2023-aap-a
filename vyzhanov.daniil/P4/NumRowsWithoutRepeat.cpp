@@ -1,7 +1,7 @@
 #include "NumRowsWithoutRepeat.hpp"
 #include <iostream>
 
-size_t vyzhanov::NumRowsWithoutRepeat(int matrix[], size_t rows, size_t cols)
+const size_t vyzhanov::NumRowsWithoutRepeat(const int * matrix, size_t rows, size_t cols)
 {
   size_t countNum = 1;
   size_t countWithoutRep = 0;
@@ -15,13 +15,10 @@ size_t vyzhanov::NumRowsWithoutRepeat(int matrix[], size_t rows, size_t cols)
     countNum = 1;
     for (size_t j = 1; j <= cols - 1; j++)
     {
+      check = 0;
       for (size_t k = cols - j; k > 0; k -= 1)
       {
-        if (matrix[i+j-1] != matrix[i+j+k-1])
-        {
-          check = 0;
-        }
-        else if (matrix[i+j-1] == matrix[i+j+k-1])
+        if (matrix[i+j-1] == matrix[i+j+k-1])
         {
           check++;
         }
