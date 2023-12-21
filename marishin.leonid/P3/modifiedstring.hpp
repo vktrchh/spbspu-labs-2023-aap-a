@@ -5,6 +5,6 @@
 
 namespace marishin
 {
-  char* modifieldstring(const char* stroka, char targetChar, char replacementChar);
+  char* modifyString(const char* stroka, char targetChar, char replacementChar);
 }
 #endif

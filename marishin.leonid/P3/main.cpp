@@ -23,7 +23,7 @@ int main()
   std::cin >> targetChar >> replacementChar;
   try
   {
-    result = modifieldstring(buffer, targetChar, replacementChar);
+    result = modifyString(buffer, targetChar, replacementChar);
   }
   catch (const std::exception& ba)
   {
