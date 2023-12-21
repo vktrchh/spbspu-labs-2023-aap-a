@@ -28,7 +28,7 @@ int main()
   }
   if (inputString[0] == '\n')
   {
-    std::cerr << "Empty inpit!\n";
+    std::cerr << "Empty input!\n";
     delete [] inputString;
     return 1;
   }
@@ -47,7 +47,7 @@ int main()
     return 1;
   }
 
-  arakelyanTaskTwo::identicalLetters(inputString, defoltStringForTaskTwo, answerTaskTwo, alphabetWeight);
+  // arakelyanTaskTwo::identicalLetters(inputString, defoltStringForTaskTwo, answerTaskTwo, alphabetWeight);
 
   std::cout << answerTaskOne << "\n";
   // std::cout << answerTaskTwo << "\n";

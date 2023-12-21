@@ -52,7 +52,8 @@ char * arakelyan::inputArray(std::istream & input)
     i++;
   }
   while (sym != '\n');
-  mainBuffer[i++] = '\0';
+
+  mainBuffer[i] = '\0';
   input >> std::skipws;
   return mainBuffer;
 }
