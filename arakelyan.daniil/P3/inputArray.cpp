@@ -53,5 +53,6 @@ char * arakelyan::inputArray(std::istream & input)
     throw std::logic_error("Empty input!");
   }
   mainBuffer[i] = '\0';
+  input >> std::skipws;
   return mainBuffer;
 }
