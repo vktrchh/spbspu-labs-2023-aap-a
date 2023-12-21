@@ -44,8 +44,8 @@ int main(int argc, char * argv[])
 
   int * inputmatrix = nullptr;
   int * counterclockwisematrix = nullptr;
-  int newinputmatrix[rows * columns] = {};
-  int newcounterclockwisematrix[rows * columns] = {};
+  int newinputmatrix[10000] = {};
+  int newcounterclockwisematrix[10000] = {};
 
   if (num == 1)
   {
