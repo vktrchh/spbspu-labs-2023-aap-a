@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
+#include <cstddef>
 
 int main(int argc, char* argv[])
 {
@@ -31,6 +32,44 @@ int main(int argc, char* argv[])
   if (*endOfParsing != '\0')
   {
     std::cerr << "Wrong first argument\n";
+    return 1;
+  }
+
+  using namespace stepanov;
+
+  size_t rows = 0, cols = 0;
+  size_t count = 0, strnum = 0;
+
+  std::ifstream input(argv[2]);
+  input >> rows >> cols;
+  if (!input)
+  {
+    std::cerr << "Cannot read a number\n";
+    return 2;
+  }
+
+  int array[10000] = {};
+  int* matrix = nullptr;
+
+  if (typeMatrix == 1)
+  {
+    matrix = array;
+  }
+  else if (typeMatrix == 2)
+  {
+    try
+    {
+      matrix = new int [rows * cols];
+    }
+    catch (const std::bad_alloc&)
+    {
+      std::cerr << "Not enough memory\n";
+      return 3;
+    }
+  }
+  else
+  {
+    std::cerr << "The first number is neither 1 nor 2\n";
     return 1;
   }
 }
