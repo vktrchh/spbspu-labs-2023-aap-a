@@ -24,7 +24,6 @@ int main()
   const char* firstArray = firstPair.first;
   const size_t firstSize = firstPair.second;
 
-
   if (firstArray[0] == '\0')
   {
     std::cerr << "Error: Empty input\n";
