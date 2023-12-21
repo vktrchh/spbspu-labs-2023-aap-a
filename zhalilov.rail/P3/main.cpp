@@ -23,21 +23,10 @@ int main()
     delete[] string;
     return 1;
   }
-  char *result = nullptr;
-  try
-  {
-    result = new char[4]{};
-  }
-  catch (const std::bad_alloc &e)
-  {
-    delete[] string;
-    std::cerr << "Error: " << e.what();
-    return 1;
-  }
+  char result[4] = "aaa";
   findCmnstSymbs(result, string);
   unsigned int diffSymbs = countDiffSymbs(string);
   std::cout << result << "\n";
   std::cout << diffSymbs << "\n";
   delete[] string;
-  delete[] result;
 }

@@ -2,16 +2,15 @@
 
 #include <cctype>
 #include <cstddef>
-#include <iostream>
 
 unsigned int zhalilov::countDiffSymbs(const char *string)
 {
   bool doesLetterOccur[26] = {};
   while (*string)
   {
-    if (isalpha(*string))
+    if (std::isalpha(*string))
     {
-      int symIndex = tolower(*string) - 97;
+      int symIndex = tolower(*string) - 'a';
       doesLetterOccur[symIndex] = true;
     }
     string++;
