@@ -26,12 +26,6 @@ int main()
     std::cerr << "Memory cannot be allocated!\n";
     return 1;
   }
-  if (inputString[0] == '\n')
-  {
-    std::cerr << "Empty input!\n";
-    delete [] inputString;
-    return 1;
-  }
 
   size_t answerTaskOne = arakelyanTaskOne::countOfdifferentLetters(inputString);
   // char * answerTaskTwo = nullptr;

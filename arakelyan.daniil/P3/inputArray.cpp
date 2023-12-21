@@ -20,10 +20,15 @@ char * arakelyan::inputArray(std::istream & input)
   }
 
   input >> std::noskipws;
-  do
+  while ((input >> sym) && (sym != '\n'))
   {
-    input >> sym;
-    if (i == arrSize - 1)
+    if (!input)
+    {
+      delete [] mainBuffer;
+      throw std::logic_error("Input error!");
+    }
+
+    if (i == (arrSize - 1))
     {
       arrSize *= 2;
 
@@ -51,9 +56,14 @@ char * arakelyan::inputArray(std::istream & input)
     mainBuffer[i] = sym;
     i++;
   }
-  while (sym != '\n');
-
   mainBuffer[i] = '\0';
+
+  if (mainBuffer[0] == '\0')
+  {
+    delete [] mainBuffer;
+    throw std::logic_error("Empty input!");
+  }
+
   input >> std::skipws;
   return mainBuffer;
 }
