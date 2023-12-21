@@ -2,32 +2,35 @@
 #include <iostream>
 #include <cstddef>
 
-const char* transformInputString(char* input, char* symb, size_t& size)
+char* transformInputString(char* input, size_t size)
 {
-  size_t i = 0;
-  size_t sizeOfsymb = 0;
   char c = 0;
+  size_t i = 0;
+  std::cin >> std::noskipws;
   while (std::cin >> c)
   {
-    if (c == '\n')
+    if (i == 0 && c == '\n')
     {
-      input[i] = '\0';
-      break;
+        std::cerr << "Error input";
+        return nullptr;
     }
-    input[i++] = c;
-
-    if (i >= size)
+    if (i == size - 1)
     {
       size *= 2;
-      char* symb = new char[size];
-      for (int g = 0; g < i; ++g)
+      char* newinput = new char[size];
+      for (size_t g = 0; g < i; g++)
       {
-        ++sizeOfsymb;
-        symb[g] = input[g];
+        newinput[g] = input[g];
       }
       delete[] input;
-      delete[] symb;
-      input = symb;
+      input = newinput;
+    }
+    input[i++] = c;
+    if (c == '\n')
+    {
+        input[i - 1] = '\0';
+        break;
     }
   }
+  return input;
 }

@@ -1,27 +1,25 @@
 #include "mergeTwoLines.hpp"
 #include "transformInputString.hpp"
+#include "removeDuplicate.hpp"
 #include <cstddef>
 #include <iostream>
 #include <cstring>
 
 int main()
 {
-    char input[100];
-    char line1[50];
-    char line2[50];
-
-    int size = 10;
+    size_t size = 10;
     char* input = new char[size];
+    input = transformInputString(input, size);
+    if (input == nullptr) 
+    {
+        delete[] input;
+        return 1;
+    }
+    std::cout << input;
 
-    std::cout << "Enter the first line: ";
-    std::cin.getline(line1, 50);
-
-    std::cout << "Enter the second line: ";
-    std::cin.getline(line2, 50);
-
-    std::strcpy(input, mergeTwoLines(line1, line2));
-
-    std::cout << "Merged line: " << input << '\n';
-    delete[] input;
-    return 0;
+    char* line1 = new char[size];
+    char* line2 = new char[size];
+    char* line3 = new char[size];
+    line3 = mergeTwoLines(line1, line2);
+    std::cout << line3;
 }
