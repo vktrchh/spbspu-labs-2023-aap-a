@@ -1,6 +1,6 @@
-#include "modifiedstring.hpp"
+#include "modifystring.hpp"
 
-char* marishin::modifyString(const char* stroka, char targetChar, char replacementChar)
+char* marishin::modifyString(const char* stroka, const char targetChar, const char replacementChar)
 {
   int inputLength = 0;
   while (stroka[inputLength] != '\0')

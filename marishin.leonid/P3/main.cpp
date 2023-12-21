@@ -1,6 +1,6 @@
 #include <iostream>
 #include "inputstring.hpp"
-#include "modifiedstring.hpp"
+#include "modifystring.hpp"
 
 int main()
 {
