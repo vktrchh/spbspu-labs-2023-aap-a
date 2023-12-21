@@ -1,20 +1,19 @@
 #include <iostream>
+#include <utility>
 #include "input_array.hpp"
 #include "check_matches.hpp"
 
 int main()
 {
   using namespace nikitov;
-  std::pair < char*, size_t > firstPair{};
-  char* firstArray = nullptr;
-  try
+  std::pair < char*, size_t > firstPair = { nullptr, 0 };
+  try 
   {
-    firstPair = inputArray(std::cin, firstArray);
+    firstPair = inputArray(std::cin);
   }
   catch (const std::bad_alloc&)
   {
     std::cerr << "Error: Memory out\n";
-    delete[] firstArray;
     return 1;
   }
   catch (const std::out_of_range& e)
@@ -22,9 +21,9 @@ int main()
     std::cerr << e.what() << '\n';
     return 1;
   }
+  const char* firstArray = firstPair.first;
+  const size_t firstSize = firstPair.second;
 
-  firstArray = firstPair.first;
-  size_t firstSize = firstPair.second;
 
   if (firstArray[0] == '\0')
   {
@@ -33,7 +32,7 @@ int main()
     return 1;
   }
   const char* secondArray = "abc";
-  size_t secondSize = 3;
+  const size_t secondSize = 3;
 
   std::cout << checkMatches(firstArray, secondArray, firstSize, secondSize) << '\n';
   delete[] firstArray;
