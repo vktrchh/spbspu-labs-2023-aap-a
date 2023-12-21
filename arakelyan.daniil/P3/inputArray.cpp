@@ -1,4 +1,6 @@
 #include "inputArray.hpp"
+#include <cstddef>
+#include <stdexcept>
 
 char * arakelyan::inputArray(std::istream & input)
 {
@@ -45,7 +47,8 @@ char * arakelyan::inputArray(std::istream & input)
 
       mainBuffer = tempBuffer;
     }
-    mainBuffer[i++] = sym;
+    mainBuffer[i] = sym;
+    i++;
   }
   if (mainBuffer[0] == '\0')
   {
