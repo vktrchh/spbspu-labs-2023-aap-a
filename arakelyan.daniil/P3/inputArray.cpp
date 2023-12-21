@@ -50,11 +50,11 @@ char * arakelyan::inputArray(std::istream & input)
     mainBuffer[i] = sym;
     i++;
   }
-  if (mainBuffer[0] == '\0')
-  {
-    delete [] mainBuffer;
-    throw std::logic_error("Empty input!");
-  }
+  // if (mainBuffer[0] == '\0')
+  // {
+  //   delete [] mainBuffer;
+  //   throw std::logic_error("Empty input!");
+  // }
   mainBuffer[i] = '\0';
   input >> std::skipws;
   return mainBuffer;
