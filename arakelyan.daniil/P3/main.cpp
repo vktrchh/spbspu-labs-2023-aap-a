@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cctype>
-#include <new>
 #include <stdexcept>
 #include "inputArray.hpp"
 #include "taskOne.hpp"
@@ -27,6 +26,13 @@ int main()
     std::cerr << "Memory cannot be allocated!\n";
     return 1;
   }
+  if (inputString[0] == '\n')
+  {
+    std::cerr << "Empty inpit!\n";
+    delete [] inputString;
+    return 1;
+  }
+  std::cout << inputString;
 
   size_t answerTaskOne = arakelyanTaskOne::countOfdifferentLetters(inputString);
   char * answerTaskTwo = nullptr;
