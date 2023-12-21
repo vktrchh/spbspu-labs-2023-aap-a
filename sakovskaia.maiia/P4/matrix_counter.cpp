@@ -15,7 +15,7 @@ void sakovskaia::counterclockWiseMatrixCounter::operator()(int * a, int rows, in
   cntcolumns = columns;
   for (circle = 1; circle <= (ceil((std::min(rows, columns)) / 2)); ++circle)
   {
-    for (index = cnt; index <= (rows * columns - columns * circle + cnt); columns)
+    for (index = cnt; index <= (rows * columns - columns * circle + cnt); index = index + rows)
     {
       a[index] = ++n;
     }
@@ -23,7 +23,7 @@ void sakovskaia::counterclockWiseMatrixCounter::operator()(int * a, int rows, in
     {
       a[index] = ++n;
     }
-    for (index = (rows * columns - columns - circle); index <= (circle * (columns - 1)); index = index - columns)
+    for (index = (rows * columns - columns - circle); index <= (circle * (columns - 1)); index = index - rows)
     {
       a[index] = ++n;
     }
