@@ -8,7 +8,7 @@ char * arakelyan::inputArray(std::istream & input)
   char sym = 0;
 
   char * mainBuffer = nullptr;
-  try 
+  try
   {
     mainBuffer = new char[arrSize];
   }
