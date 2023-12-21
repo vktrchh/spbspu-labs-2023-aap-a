@@ -1,7 +1,7 @@
-#include "changeString.hpp"
-#include "inputString.hpp"
 #include <iostream>
 #include <stdexcept>
+#include "deleteLatinLetters.hpp"
+#include "inputString.hpp"
 
 int main()
 {
@@ -23,7 +23,7 @@ int main()
     }
     else
     {
-      buffer = changeString(buffer, buffer);
+      buffer = deleteLatinLetters(buffer, buffer);
       std::cout << buffer << "\n";
       delete[] buffer;
     }

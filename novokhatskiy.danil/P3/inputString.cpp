@@ -4,16 +4,7 @@ char* novokhatskiy::inputString(std::istream &input)
 {
   size_t sizeString = 20;
   size_t cycleIndex = 0;
-  char* string = nullptr;
-  try
-  {
-    string = new char[sizeString];
-  }
-  catch (const std::bad_alloc& err)
-  {
-    delete[] string;
-    throw;
-  }
+  char* string = new char[sizeString];
   char symbol = 0;
   input >> std::noskipws;
   while ((input >> symbol) && (symbol != '\n'))
