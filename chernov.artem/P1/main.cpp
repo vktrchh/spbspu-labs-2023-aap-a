@@ -1,5 +1,5 @@
 #include "piftriples_counter.hpp"
-#include "pocht_max.hpp"
+#include "almost_max.hpp"
 #include <iostream>
 #include <stdexcept>
 
@@ -7,8 +7,8 @@ int main()
 {
   int number = 0;
   using namespace chernov;
-  PifTriplesCounter piftCounter;
-  AlmostMax checkPremaxim;
+  PifTriplesCounter findPifTriples;
+  AlmostMax findSubMax;
   do
   {
     std::cin >> number;
@@ -21,8 +21,8 @@ int main()
     {
       try
       {
-        checkPremaxim(number);
-        piftCounter(number);
+        findSubMax(number);
+        findPifTriples(number);
       }
       catch (const std::exception & e)
       {
@@ -32,14 +32,14 @@ int main()
     }
   }
   while (number != 0);
-  std::cout << piftCounter() << "\n";
-  if (checkPremaxim() == 0)
+  std::cout << findPifTriples() << "\n";
+  if (findSubMax() == 0)
   {
     std::cerr << "Not enough numbers entered\n";
   }
   else
   {
-    std::cout << checkPremaxim() << "\n";
+    std::cout << findSubMax() << "\n";
   }
   return 0;
 }
