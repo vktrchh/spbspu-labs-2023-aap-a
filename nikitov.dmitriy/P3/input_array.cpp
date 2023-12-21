@@ -9,7 +9,7 @@ std::pair< char*, size_t > nikitov::inputArray(std::istream& input)
   size_t actualSize = 0;
   bool status = true;
 
-  char* actualArray = new char[bufferSize] {};
+  char* actualArray = new char[bufferSize]{};
   try
   {
     do

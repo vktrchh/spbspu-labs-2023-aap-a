@@ -35,14 +35,14 @@ void nikitov::moveBuffer(char buffer[], char* actualArray, size_t arraySize, siz
 
 char* nikitov::increaseArray(char* actualArray, char* tempArray, size_t arraySize, size_t bufferSize)
 {
-  tempArray = new char[arraySize] {};
+  tempArray = new char[arraySize]{};
   for (size_t j = 0; j != arraySize; ++j)
   {
     tempArray[j] = actualArray[j];
   }
   delete[] actualArray;
 
-  actualArray = new char[arraySize + bufferSize] {};
+  actualArray = new char[arraySize + bufferSize]{};
   for (size_t j = 0; j != arraySize; ++j)
   {
     actualArray[j] = tempArray[j];
