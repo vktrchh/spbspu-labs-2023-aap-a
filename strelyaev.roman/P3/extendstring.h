@@ -5,7 +5,7 @@
 #include <iostream>
 namespace strelyaev
 {
-  char * extendString(std::istream &);
-  int checkRepDgt(char *);
+  char * inputString(std::istream &);
+  int checkRepDgt(const char *);
 }
 #endif

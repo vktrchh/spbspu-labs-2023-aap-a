@@ -6,10 +6,13 @@ int main()
 {
   char * string = nullptr;
   std::cin >> std::noskipws;
-  string = strelyaev::extendString(std::cin);
-  if (string == nullptr)
+  try
   {
-    std::cerr << "Unable to create a string\n";
+    string = strelyaev::inputString(std::cin);
+  }
+  catch (const std::logic_error & e)
+  {
+    std::cerr << e.what() << "\n";
     return 1;
   }
   std::cout << strelyaev::checkRepDgt(string) << "\n";

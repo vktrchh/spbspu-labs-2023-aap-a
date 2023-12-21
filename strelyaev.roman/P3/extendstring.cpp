@@ -1,25 +1,24 @@
 #include "extendstring.h"
+#include <exception>
 
-char * strelyaev::extendString(std::istream & in)
+char * strelyaev::inputString(std::istream & in)
 {
     size_t size = 10;
     char * string = new char [size];
-
-    size_t buffer_size = size;
     char c = 0;
     size_t i = 0;
     while ((in >> c) && (c != '\n'))
     {
       if (!in)
       {
-        return nullptr;
+        delete [] string;
+        throw std::logic_error("There is no input");
       }
       string[i++] = c;
       if (i == (size - 1))
       {
-        buffer_size += 10;
-        char * buffer = nullptr;
-        buffer = new char [buffer_size];
+        size_t buffer_size = size + 10;
+        char * buffer = new char [buffer_size];
         for (size_t j = 0; j < i; j++)
         {
           buffer[j] = string[j];
@@ -33,15 +32,14 @@ char * strelyaev::extendString(std::istream & in)
     if ((string[0] == '\n') || (string[0] == '\0'))
     {
       delete [] string;
-      return nullptr;
+      throw std::logic_error("Unable to create string");
     }
     return string;
 }
 
-int strelyaev::checkRepDgt(char * const string)
+int strelyaev::checkRepDgt(const char * const string)
 {
-  size_t i = 0;
-  for (i = 0; string[i] != '\0'; i++)
+  for (size_t i = 0; string[i] != '\0'; i++)
   {
     if (std::isdigit(string[i]))
     {
