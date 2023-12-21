@@ -32,7 +32,6 @@ int main()
     delete [] inputString;
     return 1;
   }
-  std::cout << inputString;
 
   size_t answerTaskOne = arakelyanTaskOne::countOfdifferentLetters(inputString);
   char * answerTaskTwo = nullptr;
@@ -51,7 +50,7 @@ int main()
   arakelyanTaskTwo::identicalLetters(inputString, defoltStringForTaskTwo, answerTaskTwo, alphabetWeight);
 
   std::cout << answerTaskOne << "\n";
-  std::cout << answerTaskTwo << "\n";
+  // std::cout << answerTaskTwo << "\n";
 
   delete [] answerTaskTwo;
   delete [] inputString;
