@@ -7,7 +7,7 @@ int main()
 {
   using namespace nikitov;
   std::pair < char*, size_t > firstPair = { nullptr, 0 };
-  try 
+  try
   {
     firstPair = inputArray(std::cin);
   }
