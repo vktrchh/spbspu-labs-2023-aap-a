@@ -96,7 +96,16 @@ zhalilov::Shape *zhalilov::inputPolygon(const char string[])
     points[j / 2] = { coords[j], coords[j + 1] };
   }
   delete[] coords;
-  return new Polygon(points, length / 2);
+  try
+  {
+    Shape *shape = new Polygon(points, length / 2);
+    return shape;
+  }
+  catch (const std::invalid_argument &e)
+  {
+    delete[] points;
+    throw;
+  }
 }
 
 shapeInputFunc zhalilov::identifyShape(const char string[])

@@ -9,7 +9,6 @@ zhalilov::Polygon::Polygon(point_t *points, const size_t size):
 {
   if (m_size < 3)
   {
-    delete[] m_points;
     throw std::invalid_argument("not enough points to describe polygon");
   }
   for (size_t i = 0; i < size; i++)
@@ -19,7 +18,6 @@ zhalilov::Polygon::Polygon(point_t *points, const size_t size):
       if ((m_points[i].x == m_points[j].x)
         && (m_points[i].y == m_points[j].y))
       {
-        delete[] m_points;
         throw std::invalid_argument("some points are equal");
       }
     }

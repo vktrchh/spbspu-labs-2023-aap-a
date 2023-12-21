@@ -9,7 +9,6 @@ char *zhalilov::resizeString(char string[], const size_t oldSize, const size_t n
     temp[dataIndex] = string[dataIndex];
     dataIndex++;
   }
-  delete[] string;
   for (size_t i = oldSize; i < newSize - 1; i++)
   {
     temp[i] = 0;
@@ -41,7 +40,9 @@ char *zhalilov::inputString(std::istream &input)
     {
       try
       {
-        string = resizeString(string, strSize, strSize + 40);
+        char *newStr = resizeString(string, strSize, strSize + 40);
+        delete[] string;
+        string = newStr;
         strSize += 40;
       }
       catch (const std::bad_alloc &e)
