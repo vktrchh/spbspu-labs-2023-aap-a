@@ -15,7 +15,7 @@ char *zhalilov::findCmnstSymbs(char *result, const char *string)
   result[2] = 'a';
 
   const char *tempString = string;
-  for (size_t i = 0; i < 26; i++)
+  for (int i = 0; i < 26; i++)
   {
     while (*tempString)
     {
