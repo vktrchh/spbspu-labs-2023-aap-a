@@ -29,7 +29,7 @@ size_t erohin::length(const char* str)
   return (i - 1);
 }
 
-char* erohin::copy(char* str)
+char* erohin::copy(const char* str)
 {
   char* result = nullptr;
   try

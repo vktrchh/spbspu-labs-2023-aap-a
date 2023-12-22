@@ -13,7 +13,14 @@ char* erohin::inputString(std::istream & input, char* str, size_t iter_size)
   {
     if (size == i)
     {
-      str = resize(str, size, iter_size);
+      try
+      {
+        str = resize(str, size, iter_size);
+      }
+      catch (const std::bad_alloc& e)
+      {
+        throw e;
+      }
       size += iter_size;
     }
     str[i++] = elem;
