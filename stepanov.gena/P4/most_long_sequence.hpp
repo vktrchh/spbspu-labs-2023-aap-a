@@ -4,6 +4,6 @@
 #include <cstddef>
 namespace stepanov
 {
-  size_t mostLongSequence(const int matrix[], size_t rows, size_t cols);
+  size_t findMostLongSequence(const int matrix[], size_t rows, size_t cols);
 }
 #endif

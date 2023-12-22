@@ -86,7 +86,7 @@ int main(int argc, char* argv[])
   }
 
   count = countLocalMin(matrix, rows, cols);
-  strnum = mostLongSequence(matrix, rows, cols);
+  strnum = findMostLongSequence(matrix, rows, cols);
 
   if (typeMatrix == 2)
   {

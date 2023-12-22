@@ -1,8 +1,8 @@
 #include "most_long_sequence.hpp"
 
-size_t stepanov::mostLongSequence(const int matrix[], size_t rows, size_t cols)
+size_t stepanov::findMostLongSequence(const int matrix[], size_t rows, size_t cols)
 {
-  size_t maxRow = -1;
+  size_t maxRow = 0;
   size_t maxLength = 0;
   if (rows != 0 && cols != 0)
   {
