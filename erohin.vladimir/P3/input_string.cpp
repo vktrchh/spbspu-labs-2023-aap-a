@@ -7,7 +7,7 @@ char* erohin::inputString(std::istream& input)
 {
   const size_t iter_size = 20;
   size_t size = iter_size;
-  char* str = new char[iter_size];
+  char* str = new char[iter_size + 1];
   char elem = 0;
   size_t i = 0;
   char* temp = nullptr;

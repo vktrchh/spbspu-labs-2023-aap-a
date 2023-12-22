@@ -6,13 +6,21 @@
 char* erohin::uniteString(const char* str1, const char* str2)
 {
   const size_t iter_size = 20;
-  size_t size = 0;
+  size_t size = iter_size;
   char* result = nullptr;
-  char* temp = nullptr;
-  if (*str1 == '\0')
+  try
+  {
+    result = new char[iter_size + 1];
+  }
+  catch (const std::bad_alloc&)
   {
     return nullptr;
   }
+  if (str1[0] == '\0')
+  {
+    return nullptr;
+  }
+  char* temp = nullptr;
   size_t i = 0;
   size_t j = 0;
   while (str1[i] != '\0' || str2[j] != '\0')
@@ -23,14 +31,14 @@ char* erohin::uniteString(const char* str1, const char* str2)
       {
         temp = lengthenString(result, size, iter_size);
         size += iter_size;
+        delete[] result;
+        result = temp;
       }
       catch (const std::bad_alloc&)
       {
         delete[] result;
         return nullptr;
       }
-      delete[] result;
-      result = temp;
     }
     if (str1[i] != '\0')
     {
