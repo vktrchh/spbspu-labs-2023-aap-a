@@ -10,7 +10,7 @@ int main()
   try
   {
     buffer = inputString(std::cin);
-    if (!buffer) 
+    if (!buffer)
     {
       std::cerr << "Can't read the string\n";
       return 1;
@@ -20,7 +20,7 @@ int main()
       std::cerr << "Wrong input\n";
       delete[] buffer;
       return 1;
-    }    
+    }
     buffer = deleteLatinLetters(buffer, buffer);
     std::cout << buffer << "\n";
     delete[] buffer;
@@ -28,7 +28,7 @@ int main()
   catch (...)
   {
     std::cerr << "Out of memory\n";
-    return 1; 
+    return 1;
   }
   return 0;
 }
