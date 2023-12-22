@@ -5,7 +5,6 @@
 namespace erohin
 {
   char* inputString(std::istream& input, char* str, size_t iter_size);
-  void outputString(std::ostream& output, char* str);
 }
 
 #endif

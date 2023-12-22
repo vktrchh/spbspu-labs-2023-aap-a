@@ -44,10 +44,8 @@ int main()
   }
   char old = 'c';
   char change = 'b';
-  outputString(std::cout, strunit(first, second));
-  std::cout << "\n";
-  outputString(std::cout, replace(first_copy, old, change));
-  std::cout << "\n";
+  std::cout << strunit(first, second) << "\n";
+  std::cout << replace(first_copy, old, change) << "\n";
   delete[] first;
   delete[] first_copy;
   delete[] second;

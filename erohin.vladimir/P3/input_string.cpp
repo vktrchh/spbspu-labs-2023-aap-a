@@ -38,11 +38,4 @@ char* erohin::inputString(std::istream & input, char* str, size_t iter_size)
   return str;
 }
 
-void erohin::outputString(std::ostream& output, char* str)
-{
-  size_t i = 0;
-  while (str[i] != '\0')
-  {
-    output << str[i++];
-  }
 }
