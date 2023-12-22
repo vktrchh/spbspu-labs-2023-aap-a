@@ -1,7 +1,8 @@
 #include "localMax.hpp"
 
-int localMaxCounter(int* m, size_t rows, size_t cols, int count, int numOfTask)
+size_t localMaxCounter(int* m, size_t rows, size_t cols, int numOfTask)
 {
+ size_t count = 0;
   for (size_t i = 0; i < cols * rows - 1; i++)
   {
     if ((i > cols) && (i < rows * cols - cols) && ((i % cols) != 0 && (i % rows) != 0))
@@ -11,10 +12,6 @@ int localMaxCounter(int* m, size_t rows, size_t cols, int count, int numOfTask)
         count++;
       }
     }
-  }
-  if (numOfTask == 2)
-  {
-    delete[] m;
   }
   return count;
 }
