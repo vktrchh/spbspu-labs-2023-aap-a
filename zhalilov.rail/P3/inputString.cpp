@@ -55,7 +55,7 @@ char *zhalilov::inputString(std::istream &input)
     }
     dataIndex++;
   }
-  if (!input)
+  if (dataIndex == 0)
   {
     delete[] string;
     input >> std::skipws;
