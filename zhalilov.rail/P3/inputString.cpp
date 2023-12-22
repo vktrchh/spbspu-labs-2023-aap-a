@@ -17,21 +17,11 @@ char *zhalilov::resizeString(char string[], const size_t oldSize, const size_t n
   return temp;
 }
 
-char *zhalilov::inputString(size_t &lastDataIndex, size_t &size, std::istream &input)
+char *zhalilov::inputString(std::istream &input)
 {
   size_t strSize = 100;
   size_t dataIndex = 0;
-  char *string = nullptr;
-  try
-  {
-    string = new char[strSize]{};
-  }
-  catch (const std::bad_alloc &e)
-  {
-    lastDataIndex = 0;
-    size = 0;
-    return new char[0];
-  }
+  char *string = new char[strSize]{};
   input >> std::noskipws;
   char temp = 0;
   while (input >> temp)
@@ -56,13 +46,12 @@ char *zhalilov::inputString(size_t &lastDataIndex, size_t &size, std::istream &i
       }
       catch (const std::bad_alloc &e)
       {
-        break;
+        delete[] string;
+        throw;
       }
     }
     dataIndex++;
   }
   input >> std::skipws;
-  lastDataIndex = dataIndex;
-  size = strSize;
   return string;
 }

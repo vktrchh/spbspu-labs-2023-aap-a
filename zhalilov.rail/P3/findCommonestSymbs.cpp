@@ -14,12 +14,12 @@ char *zhalilov::findCmnstSymbs(char *result, const char *string)
   result[1] = 'a';
   result[2] = 'a';
 
-  for (int i = 0; i < 26; i++)
+  for (int symb = 'a'; symb <= 'z'; symb++)
   {
     const char *tempString = string;
     while (*tempString)
     {
-      if (std::tolower(*tempString) == i + 'a')
+      if (std::tolower(*tempString) == symb)
       {
         currFrq++;
       }
@@ -29,7 +29,7 @@ char *zhalilov::findCmnstSymbs(char *result, const char *string)
     {
       result[2] = result[1];
       result[1] = result[0];
-      result[0] = i + 'a';
+      result[0] = symb;
       thirdMax = secondMax;
       secondMax = firstMax;
       firstMax = currFrq;
@@ -37,13 +37,13 @@ char *zhalilov::findCmnstSymbs(char *result, const char *string)
     else if (currFrq >= secondMax)
     {
       result[2] = result[1];
-      result[1] = i + 'a';
+      result[1] = symb;
       thirdMax = secondMax;
       secondMax = currFrq;
     }
     else if (currFrq >= thirdMax)
     {
-      result[1] = i + 'a';
+      result[1] = symb;
       thirdMax = currFrq;
     }
     currFrq = 0;

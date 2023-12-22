@@ -6,12 +6,12 @@
 unsigned int zhalilov::countDiffSymbs(const char *string)
 {
   unsigned char diffSymbs = 0;
-  for (int i = 0; i < 26; i++)
+  for (int symb = 'a'; symb <= 'z'; symb++)
   {
     const char *tempString = string;
     while (*tempString)
     {
-      if (std::tolower(*tempString) == i + 'a')
+      if (std::tolower(*tempString) == symb)
       {
         diffSymbs++;
         break;

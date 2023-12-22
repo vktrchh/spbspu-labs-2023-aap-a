@@ -8,22 +8,15 @@ int main()
 {
   using namespace zhalilov;
   char *string = nullptr;
-  size_t lastIndex = 0;
-  size_t size = 0;
-  string = inputString(lastIndex, size, std::cin);
-  if (lastIndex == 0)
+  try
   {
-    std::cerr << "Invalid input\n";
-    delete[] string;
-    return 1;
+    string = inputString(std::cin);
   }
-  else if (string[lastIndex] != '\0')
+  catch (const std::bad_alloc &e)
   {
-    std::cerr << "Can't allocate memory for input\n";
-    delete[] string;
-    return 1;
+    std::cout << "Error: " << e.what();
   }
-  char result[4] = "aaa";
+  char result[] = "aaa";
   findCmnstSymbs(result, string);
   unsigned int diffSymbs = countDiffSymbs(string);
   std::cout << result << "\n";
