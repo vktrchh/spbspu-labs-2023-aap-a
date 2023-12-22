@@ -2,7 +2,7 @@
 #define BASE_TYPES_HPP
 
 namespace zhalilov
-  {
+{
   struct point_t
   {
     double x;
