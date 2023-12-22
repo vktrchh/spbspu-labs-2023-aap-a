@@ -47,6 +47,6 @@ char* erohin::uniteString(const char* str1, const char* str2)
       ++j;
     }
   }
-  result[i + j + 1] = '\0';
+  result[i + j] = '\0';
   return result;
 }
