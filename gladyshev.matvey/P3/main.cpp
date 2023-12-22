@@ -24,7 +24,6 @@ int main()
     delete[] endArray;
     return 1;
   }
-  endArray = createFinalArray(endArray);
   std::cout << endArray << "\n";
   delete[] endArray;
   return 0;
