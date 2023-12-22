@@ -5,23 +5,17 @@
 
 unsigned int zhalilov::countDiffSymbs(const char *string)
 {
-  bool doesLetterOccur[26] = {};
-  while (*string)
-  {
-    if (std::isalpha(*string))
-    {
-      int symIndex = std::tolower(*string) - 'a';
-      doesLetterOccur[symIndex] = true;
-    }
-    string++;
-  }
-
   unsigned char diffSymbs = 0;
-  for (size_t i = 0; i < 26; i++)
+  for (int i = 0; i < 26; i++)
   {
-    if (doesLetterOccur[i])
+    const char *tempString = string;
+    while (*tempString)
     {
-      diffSymbs++;
+      if (std::tolower(*tempString) == i + 'a')
+      {
+        diffSymbs++;
+        break;
+      }
     }
   }
   return diffSymbs;
