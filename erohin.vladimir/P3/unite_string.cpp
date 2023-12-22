@@ -9,6 +9,10 @@ char* erohin::uniteString(const char* str1, const char* str2)
   size_t size = 0;
   char* result = nullptr;
   char* temp = nullptr;
+  if (str1[0] == '\0')
+  {
+    return nullptr;
+  }
   size_t i = 0;
   size_t j = 0;
   while (str1[i] != '\0' || str2[j] != '\0')
