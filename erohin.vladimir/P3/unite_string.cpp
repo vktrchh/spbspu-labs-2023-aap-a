@@ -1,6 +1,6 @@
 #include "unite_string.hpp"
 #include <cstddef>
-#include <algorithm>
+#include <stdexcept>
 #include "lengthen_string.hpp"
 
 char* erohin::uniteString(const char* str1, const char* str2)

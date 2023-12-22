@@ -1,5 +1,4 @@
 #include "lengthen_string.hpp"
-#include <stdexcept>
 
 char* erohin::lengthenString(const char* str, size_t size, size_t shift)
 {
