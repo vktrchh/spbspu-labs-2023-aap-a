@@ -10,13 +10,9 @@ char* erohin::uniteString(const char* str1, const char* str2)
   char* result = nullptr;
   try
   {
-    result = new char[iter_size + 1];
+    result = new char[iter_size + 1]{};
   }
   catch (const std::bad_alloc&)
-  {
-    return nullptr;
-  }
-  if (str1[0] == '\0')
   {
     return nullptr;
   }

@@ -28,18 +28,15 @@ int main()
     return 2;
   }
   char* united = uniteString(first, second);
-  if (united)
+  if (!united || first[0] == '\0')
   {
-    std::cout << united << "\n";
-  }
-  else
-  {
-    std::cerr << "United string is null\n";
+    std::cerr << "String is null\n";
     delete[] first;
     return 3;
   }
+  std::cout << united << "\n";
   std::cout << replaceSymbol(first, old, change) << "\n";
-  delete[] united;
   delete[] first;
+  delete[] united;
   return 0;
 }
