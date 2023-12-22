@@ -15,6 +15,12 @@ int main()
   catch (const std::bad_alloc &e)
   {
     std::cout << "Error: " << e.what();
+    return 1;
+  }
+  catch (const std::invalid_argument &e)
+  {
+    std::cout << "Error: " << e.what();
+    return 1;
   }
   char result[] = "aaa";
   findCmnstSymbs(result, string);

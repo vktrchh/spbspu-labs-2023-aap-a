@@ -1,5 +1,7 @@
 #include "inputString.hpp"
 
+#include <stdexcept>
+
 char *zhalilov::resizeString(char string[], const size_t oldSize, const size_t newSize)
 {
   char *temp = new char[newSize];
@@ -47,10 +49,17 @@ char *zhalilov::inputString(std::istream &input)
       catch (const std::bad_alloc &e)
       {
         delete[] string;
+        input >> std::skipws;
         throw;
       }
     }
     dataIndex++;
+  }
+  if (!input)
+  {
+    delete[] string;
+    input >> std::skipws;
+    throw std::invalid_argument("bad input");
   }
   input >> std::skipws;
   return string;
