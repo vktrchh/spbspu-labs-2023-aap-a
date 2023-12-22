@@ -16,16 +16,16 @@ int main()
   {
     first = inputString(std::cin);
   }
-  catch (const std::logic_error&)
+  catch (const std::logic_error& e)
   {
     delete[] first;
-    std::cerr << "Wrong string input\n";
+    std::cerr << e.what() << "\n";
     return 2;
   }
-  catch (const std::bad_alloc&)
+  catch (const std::bad_alloc& e)
   {
     delete[] first;
-    std::cerr << "Cannot allocate memory\n";
+    std::cerr << "Cannot allocate memory: " << e.what() << "\n";
     return 1;
   }
   std::cout << uniteString(first, second) << "\n";

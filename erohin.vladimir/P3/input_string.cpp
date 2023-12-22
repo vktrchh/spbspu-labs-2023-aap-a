@@ -25,7 +25,7 @@ char* erohin::inputString(std::istream & input)
       catch (const std::bad_alloc& e)
       {
         delete[] str;
-        throw std::bad_alloc("Memory allocation fault");
+        throw e;
       }
       size += iter_size;
     }
