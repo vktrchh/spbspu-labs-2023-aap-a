@@ -59,7 +59,7 @@ int main(int argc, char * argv[])
   {
     return 0;
   }
-  if (input.peek() == EOF)
+  if (input.eof())
   {
     std::cerr << "empty file!\n";
     return 2;
