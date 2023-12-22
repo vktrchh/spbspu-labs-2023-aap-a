@@ -1,7 +1,7 @@
 #include "matrix.hpp"
 #include <iostream>
 
-void fillMatrix(std::istream& input, int* m, size_t size)
+void sivkov::fillMatrix(std::istream& input, int* m, size_t size)
 {
   for (size_t i = 0; i < size; i++)
   {

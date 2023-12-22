@@ -41,7 +41,7 @@ int main(int argc, char * argv[])
     std::cerr << "Error number of task";
     return 1;
   }
-
+  using namespace sivkov;
   size_t rows = 1, cols = 1;
   std::ifstream input(argv[2]);
   if (!input.is_open())
