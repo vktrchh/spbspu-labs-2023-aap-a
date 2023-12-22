@@ -10,7 +10,7 @@ unsigned int zhalilov::countDiffSymbs(const char *string)
   {
     if (std::isalpha(*string))
     {
-      int symIndex = tolower(*string) - 'a';
+      int symIndex = std::tolower(*string) - 'a';
       doesLetterOccur[symIndex] = true;
     }
     string++;

@@ -2,54 +2,61 @@
 
 #include <cstddef>
 #include <cctype>
+#include <algorithm>
 
 char *zhalilov::findCmnstSymbs(char *result, const char *string)
 {
-  size_t alphabet[26];
-  for (int i = 0; i < 26; i++)
-  {
-    alphabet[i] = 0;
-  }
-  while (*string)
-  {
-    if (isalpha((*string)))
-    {
-      int symIndex = tolower(*string) - 'a';
-      alphabet[symIndex]++;
-    }
-    string++;
-  }
+  size_t firstMax = 0;
+  size_t secondMax = 0;
+  size_t thirdMax = 0;
+  size_t currFrq = 0;
+  result[0] = 'a';
+  result[1] = 'a';
+  result[2] = 'a';
 
-  int mostCommonSymbs[26];
-  for (int i = 0; i < 26; i++)
+  const char *tempString = string;
+  for (size_t i = 0; i < 26; i++)
   {
-    mostCommonSymbs[i] = 0;
-  }
-  size_t max = 0;
-  int maxIndex = 0;
-  for (int i = 0; i < 3; i++)
-  {
-    for (int j = 0; j < 26; j++)
+    while (*tempString)
     {
-      if (alphabet[j] > max)
+      if (std::tolower(*tempString) == i + 'a')
       {
-        maxIndex = j;
-        max = alphabet[j];
+        currFrq++;
       }
+      tempString++;
     }
-    mostCommonSymbs[maxIndex] = 1;
-    alphabet[maxIndex] = 0;
-    maxIndex = 0;
-    max = 0;
+    if (currFrq >= firstMax)
+    {
+      result[2] = result[1];
+      result[1] = result[0];
+      result[0] = i + 'a';
+      thirdMax = secondMax;
+      secondMax = firstMax;
+      firstMax = currFrq;
+    }
+    else if (currFrq >= secondMax)
+    {
+      result[2] = result[1];
+      result[1] = i + 'a';
+      thirdMax = secondMax;
+      secondMax = currFrq;
+    }
+    else if (currFrq >= thirdMax)
+    {
+      result[1] = i + 'a';
+      thirdMax = currFrq;
+    }
+    currFrq = 0;
   }
 
-  int resultIndex = 0;
-  for (int i = 0; i < 26; i++)
+  for (size_t i = 0; i < 3; i++)
   {
-    if (mostCommonSymbs[i] == 1)
+    for (size_t j = 0; j < 2; j++)
     {
-      result[resultIndex] = 'a' + i;
-      resultIndex++;
+      if (result[j] > result[j + 1]);
+      {
+        std::swap(result[j], result[j + 1]);
+      }
     }
   }
   return result;
