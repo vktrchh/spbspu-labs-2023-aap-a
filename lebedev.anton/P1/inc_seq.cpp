@@ -7,7 +7,7 @@ lebedev::IncSeqCounter::IncSeqCounter():
   prev_num_(0)
 {}
 
-void lebedev::IncSeqCounter::count(int curr_num)
+void lebedev::IncSeqCounter::operator()(int curr_num)
 {
   size_t max_size = std::numeric_limits< size_t >::max();
   if ((curr_num > prev_num_) && (prev_num_ != 0))
@@ -21,7 +21,7 @@ void lebedev::IncSeqCounter::count(int curr_num)
   prev_num_ = curr_num;
 }
 
-size_t lebedev::IncSeqCounter::get_result() const
+size_t lebedev::IncSeqCounter::operator()() const
 {
   return count_;
 }

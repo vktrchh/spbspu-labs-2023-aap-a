@@ -21,8 +21,8 @@ int main()
     {
       try
       {
-        inc_seq_counter.count(number);
-        sub_max_value.compare(number);
+        inc_seq_counter(number);
+        sub_max_value(number);
       }
       catch (const std::exception& e)
       {
@@ -32,10 +32,10 @@ int main()
     }
   }
   while (number != 0);
-  std::cout << inc_seq_counter.get_result() << "\n";
+  std::cout << inc_seq_counter() << "\n";
   try
   {
-    std::cout << sub_max_value.get_result() << "\n";
+    std::cout << sub_max_value() << "\n";
   }
   catch (const std::exception& e)
   {

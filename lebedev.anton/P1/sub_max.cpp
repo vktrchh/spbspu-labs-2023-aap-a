@@ -1,5 +1,4 @@
 #include "sub_max.hpp"
-#include <limits>
 #include <stdexcept>
 
 lebedev::SubMaxValue::SubMaxValue():
@@ -7,7 +6,7 @@ lebedev::SubMaxValue::SubMaxValue():
   sub_max_(0)
 {}
 
-void lebedev::SubMaxValue::compare(int curr_num)
+void lebedev::SubMaxValue::operator()(int curr_num)
 {
   if (max_ == 0)
   {
@@ -32,7 +31,7 @@ void lebedev::SubMaxValue::compare(int curr_num)
   }
 }
 
-int lebedev::SubMaxValue::get_result() const
+int lebedev::SubMaxValue::operator()() const
 {
   if (sub_max_ == 0 || max_ == 0)
   {
