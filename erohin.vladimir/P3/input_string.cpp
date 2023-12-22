@@ -1,7 +1,7 @@
-#include "input_output_string.hpp"
-#include "string.hpp"
+#include "input_string.hpp"
 #include <iostream>
 #include <stdexcept>
+#include "string.hpp"
 
 char* erohin::inputString(std::istream & input, char* str, size_t iter_size)
 {
@@ -36,6 +36,4 @@ char* erohin::inputString(std::istream & input, char* str, size_t iter_size)
   }
   input >> std::skipws;
   return str;
-}
-
 }

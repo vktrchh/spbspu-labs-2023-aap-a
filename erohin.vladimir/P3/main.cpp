@@ -1,7 +1,7 @@
 #include <iostream>
-#include "input_output_string.hpp"
+#include "input_string.hpp"
 #include "string.hpp"
-#include "strunit.hpp"
+#include "unite_string.hpp"
 #include "replace.hpp"
 
 int main()
@@ -44,7 +44,7 @@ int main()
   }
   char old = 'c';
   char change = 'b';
-  std::cout << strunit(first, second) << "\n";
+  std::cout << uniteString(first, second) << "\n";
   std::cout << replace(first_copy, old, change) << "\n";
   delete[] first;
   delete[] first_copy;
