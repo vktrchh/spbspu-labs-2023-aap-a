@@ -11,7 +11,6 @@ namespace lebedev
   private:
     int max_;
     int sub_max_;
-    int counter_;
   };
 }
 #endif
