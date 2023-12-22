@@ -1,5 +1,6 @@
 #ifndef LENGTHEN_STRING_HPP
 #define LENGTHEN_STRING_HPP
+
 #include <cstddef>
 
 namespace erohin

@@ -32,6 +32,7 @@ int main()
   {
     std::cerr << "String is null\n";
     delete[] first;
+    delete[] united;
     return 3;
   }
   std::cout << united << "\n";
