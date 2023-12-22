@@ -1,11 +1,4 @@
-#ifndef CHECKVOWEL_H
-#define CHECKVOWEL_H
-
-#include <cstddef>
-
-namespace gladyshev
-{
-  bool isntVowel(char a, const char * vowarr);
-}
+#ifndef INPUTARRAY_H
+#define INPUTARRAY_H
 
 #endif
