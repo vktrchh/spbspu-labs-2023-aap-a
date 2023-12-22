@@ -17,7 +17,7 @@ char * gladyshev::createFinalArray(char * start)
 {
   size_t nummain = 0;
   size_t numsup = 0;
-  while (start[nummain] != '\0')
+  while (start[nummain] == '\0')
   {
     if (checkVowel(start[nummain]))
     {

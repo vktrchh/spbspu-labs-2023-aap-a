@@ -15,15 +15,14 @@ int main()
   catch (const std::bad_alloc& e)
   {
     std::cerr << "Cannot allocate memory" << "\n";
-    delete[] endArray;
     return 1;
   }
   catch (const std::runtime_error& e)
   {
     std::cerr << "Error: " << e.what() << "\n";
-    delete[] endArray;
     return 1;
   }
+  endArray = createFinalArray(endArray);
   std::cout << endArray << "\n";
   delete[] endArray;
   return 0;
