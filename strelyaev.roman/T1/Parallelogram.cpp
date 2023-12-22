@@ -51,7 +51,7 @@ void Parallelogram::move(double k)
   p3_.y_ += k;
 }
 
-void Parallelogram::scale(double)
+void Parallelogram::scale(double k)
 {
   p1_.x_ = center_.x_ + (p1_.x_ - center_.x_) * k;
   p1_.y_ = center_.y_ + (p1_.y_ - center_.y_) * k;

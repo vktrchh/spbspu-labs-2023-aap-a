@@ -1,6 +1,9 @@
 #include "rectangle.hpp"
 #include <cmath>
 
+#include "rectangle.hpp"
+#include <cmath>
+
 Rectangle::Rectangle(point_t p1, point_t p2):
   p1_(p1),
   p2_(p2),
