@@ -1,8 +1,6 @@
 #include "inputarray.h"
 #include "allocatememory.h"
 
-#include<iostream>
-
 char * gladyshev::inputArray(std::istream& input)
 {
   char currsym = 0;

@@ -1,5 +1,4 @@
 #include <iomanip>
-#include <iostream>
 
 #include "inputarray.h"
 #include "allocatememory.h"
