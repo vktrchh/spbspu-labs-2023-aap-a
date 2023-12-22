@@ -1,5 +1,5 @@
 #include "localMax.hpp"
-
+#include <cstddef>
 size_t findLocalMax(int* m, size_t rows, size_t cols)
 {
   size_t count = 0;

@@ -1,4 +1,5 @@
 #include "matrix.hpp"
+#include <iostream>
 
 void fillMatrix(std::istream& input, int* m, size_t size)
 {
