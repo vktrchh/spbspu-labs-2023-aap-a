@@ -6,10 +6,10 @@
 char* erohin::inputString(std::istream& input)
 {
   const size_t iter_size = 20;
-  size_t size = 0;
+  size_t size = iter_size;
+  char* str = new char[iter_size];
   char elem = 0;
   size_t i = 0;
-  char* str = nullptr;
   char* temp = nullptr;
   input >> std::noskipws;
   while (input >> elem)
@@ -19,6 +19,7 @@ char* erohin::inputString(std::istream& input)
       try
       {
         temp = lengthenString(str, size, iter_size);
+        size += iter_size;
         delete[] str;
         str = temp;
       }
@@ -27,7 +28,6 @@ char* erohin::inputString(std::istream& input)
         delete[] str;
         throw e;
       }
-      size += iter_size;
     }
     str[i++] = elem;
     if (elem == '\n')
