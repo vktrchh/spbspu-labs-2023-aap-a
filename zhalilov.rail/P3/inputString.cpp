@@ -2,21 +2,24 @@
 
 #include <stdexcept>
 
-char *zhalilov::resizeString(char string[], const size_t oldSize, const size_t newSize)
+namespace zhalilov
 {
-  char *temp = new char[newSize];
-  size_t dataIndex = 0;
-  while (dataIndex < oldSize && dataIndex < newSize)
+  char *resizeString(char string[], const size_t oldSize, const size_t newSize)
   {
-    temp[dataIndex] = string[dataIndex];
-    dataIndex++;
+    char *temp = new char[newSize];
+    size_t dataIndex = 0;
+    while (dataIndex < oldSize && dataIndex < newSize)
+    {
+      temp[dataIndex] = string[dataIndex];
+      dataIndex++;
+    }
+    for (size_t i = oldSize; i < newSize - 1; i++)
+    {
+      temp[i] = 0;
+    }
+    temp[newSize - 1] = '\0';
+    return temp;
   }
-  for (size_t i = oldSize; i < newSize - 1; i++)
-  {
-    temp[i] = 0;
-  }
-  temp[newSize - 1] = '\0';
-  return temp;
 }
 
 char *zhalilov::inputString(std::istream &input)
