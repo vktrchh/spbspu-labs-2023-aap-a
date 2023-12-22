@@ -1,6 +1,6 @@
 #include <iostream>
 #include "input_string.hpp"
-#include "string.hpp"
+#include "lengthen_string.hpp"
 #include "unite_string.hpp"
 #include "replace.hpp"
 
@@ -24,7 +24,6 @@ int main()
     first_copy = copy(first);
     second = new char[iter_size + 1]{};
     second = inputString(std::cin, second, iter_size);
-    first = resize(first, length(first), length(second));
   }
   catch (const std::logic_error&)
   {
