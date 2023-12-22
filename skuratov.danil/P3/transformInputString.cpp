@@ -1,6 +1,7 @@
 #include "transformInputString.hpp"
 #include <iostream>
 #include <cstddef>
+#include <iomanip>
 
 char* transformInputString(char* input, size_t size)
 {
@@ -11,8 +12,8 @@ char* transformInputString(char* input, size_t size)
   {
     if (i == 0 && c == '\n')
     {
-        std::cerr << "Error input";
-        return nullptr;
+      std::cerr << "Error input";
+      return nullptr;
     }
     if (i == size - 1)
     {
@@ -28,8 +29,8 @@ char* transformInputString(char* input, size_t size)
     input[i++] = c;
     if (c == '\n')
     {
-        input[i - 1] = '\0';
-        break;
+      input[i - 1] = '\0';
+      break;
     }
   }
   return input;
