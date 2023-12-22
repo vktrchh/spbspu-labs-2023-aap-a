@@ -53,7 +53,7 @@ char *zhalilov::findCmnstSymbs(char *result, const char *string)
   {
     for (size_t j = 0; j < 2; j++)
     {
-      if (result[j] > result[j + 1]);
+      if (result[j] > result[j + 1])
       {
         std::swap(result[j], result[j + 1]);
       }
