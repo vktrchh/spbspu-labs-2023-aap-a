@@ -11,16 +11,18 @@ char* erohin::uniteString(const char* str1, const char* str2)
   char* temp = nullptr;
   size_t i = 0;
   size_t j = 0;
-  while (str1[i] != 0 || str2[j] != 0)
+  while (str1[i] != '\0' || str2[j] != '\0')
   {
     if (i + j == size)
     {
       try
       {
         temp = lengthenString(result, size, iter_size);
+        size += iter_size;
       }
       catch (const std::bad_alloc&)
       {
+        delete[] result;
         return nullptr;
       }
       delete[] result;

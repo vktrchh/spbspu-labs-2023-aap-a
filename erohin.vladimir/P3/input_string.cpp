@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include "lengthen_string.hpp"
 
-char* erohin::inputString(std::istream & input)
+char* erohin::inputString(std::istream& input)
 {
   const size_t iter_size = 20;
   size_t size = 0;
