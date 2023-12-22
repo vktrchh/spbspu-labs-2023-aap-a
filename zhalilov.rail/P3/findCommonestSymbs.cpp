@@ -14,9 +14,9 @@ char *zhalilov::findCmnstSymbs(char *result, const char *string)
   result[1] = 'a';
   result[2] = 'a';
 
-  const char *tempString = string;
   for (int i = 0; i < 26; i++)
   {
+    const char *tempString = string;
     while (*tempString)
     {
       if (std::tolower(*tempString) == i + 'a')
