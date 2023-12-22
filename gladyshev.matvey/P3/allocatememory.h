@@ -1,7 +1,7 @@
 #ifndef ALLOCATEMEMORY_H
 #define ALLOCATEMEMORY_H
 
-#include <iostream>
+#include <cstddef>
 
 namespace gladyshev
 {

@@ -1,19 +1,31 @@
 #include "createarray.h"
-#include "checkvowel.h"
 
-char * gladyshev::createFinalArray(const char * start, char * finish, size_t len, const char * vowarr)
+bool gladyshev::checkVowel(char arrayelem)
+{
+  const char vowarr[11] = "AEIOUaeiou";
+  for (size_t i = 0; i < 10; ++i)
+  {
+    if (arrayelem == vowarr[i])
+    {
+      return false;
+    }
+  }
+  return true;
+}
+
+char * gladyshev::createFinalArray(char * start)
 {
   size_t nummain = 0;
   size_t numsup = 0;
-  while (nummain < len)
+  while (start[nummain] != '\0')
   {
-    if (gladyshev::isntVowel(start[nummain], vowarr))
+    if (checkVowel(start[nummain]))
     {
-      finish[numsup] = start[nummain];
+      start[numsup] = start[nummain];
       ++numsup;
     }
     ++nummain;
   }
-  finish[numsup] = '\0';
-  return finish;
+  start[numsup] = '\0';
+  return start;
 }

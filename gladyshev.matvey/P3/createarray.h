@@ -5,7 +5,8 @@
 
 namespace gladyshev
 {
-  char * createFinalArray(const char * start, char * finish, size_t len, const char * vowarr);
+  char * createFinalArray(char * start);
+  bool checkVowel(char a);
 }
 
 #endif
