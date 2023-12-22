@@ -1,5 +1,4 @@
 #ifndef MATRIX_HPP
 #define MATRIX_HPP
-#include <cstddef>
-int* fillMatrix(int* m, char* arg, int numOfTask);
+void fillMatrix(std::istream& input, int* m, size_t size);
 #endif

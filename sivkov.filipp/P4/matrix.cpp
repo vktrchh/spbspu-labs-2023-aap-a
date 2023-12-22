@@ -1,44 +1,12 @@
-#include <cstdlib>
-#include <fstream>
-#include <iostream>
 #include "matrix.hpp"
 
-
-int* fillMatrix(int* m, char* arg, int numOfTask)
+void fillMatrix(std::istream& input, int* m, size_t size)
 {
-  std::ifstream input(arg);
-  size_t rows = 0, cols = 0;
-  input >> rows >> cols;
-  size_t size = rows * cols;
-  if (!input.is_open())
+  for (size_t i = 0; i < size; i++)
   {
-    std::cerr << "Error opening file";
-    if (numOfTask == 2)
+    if (!(input >> m[i]))
     {
-      delete[] m;
+      throw std::logic_error("Cannot read numbers\n");
     }
-    throw;
-  }
-
-  try
-  {
-    for (size_t i = 0; i < size; i++)
-    {
-      if (!(input >> m[i]))
-      {
-        std::cerr << "size of elements != rows * cols!\n";
-        std::exit(EXIT_FAILURE);
-      }
-    }
-    return m;
-  }
-  catch (const std::bad_alloc&)
-  {
-    std::cerr << "Error with array\n";
-    if (numOfTask == 2)
-    {
-      delete[] m;
-    }
-    throw;
   }
 }
