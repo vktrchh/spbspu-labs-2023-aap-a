@@ -58,16 +58,17 @@ int main()
 
   std::cin >> std::skipws;
 
-  char* result = 0;
+  char* result = nullptr;
   result = countChars(array, size);
-  result = sort(result, 3);
 
-  if (result == 0)
+  if (result == nullptr)
   {
-    std::cerr << "Seq too short\n";
+    std::cerr << "There are less than 3 letters in the sequence!\n";
     delete[] array;
     return 1;
   }
+
+  result = sort(result, 3);
 
   for (int i = 0; i < 3; ++i)
   {
