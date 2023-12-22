@@ -9,6 +9,5 @@ char * gladyshev::newMemory(const char * basicar, size_t len)
   {
     newarr[i] = basicar[i];
   }
-  newarr[len + 10] = '\0';
   return newarr;
 }

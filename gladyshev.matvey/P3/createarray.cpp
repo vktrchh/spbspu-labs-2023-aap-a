@@ -26,6 +26,5 @@ char * gladyshev::createFinalArray(char * start)
     }
     ++nummain;
   }
-  start[numsup] = '\0';
   return start;
 }
