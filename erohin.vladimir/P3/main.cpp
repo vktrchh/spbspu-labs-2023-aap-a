@@ -7,7 +7,6 @@
 int main()
 {
   using namespace erohin;
-  size_t iter_size = 20;
   char* first = nullptr;
   const char* second = "abcdabcdabcdabcd";
   char old = 'c';
