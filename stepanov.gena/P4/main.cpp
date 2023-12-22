@@ -72,4 +72,26 @@ int main(int argc, char* argv[])
     std::cerr << "The first number is neither 1 nor 2\n";
     return 1;
   }
+  size_t check = inputArray(input, matrix, rows, cols);
+  if (check != rows * cols)
+  {
+    std::cerr << "Wrong element" << "\n";
+    if (typeMatrix == 2)
+    {
+      delete[] matrix;
+    }
+    return 2;
+  }
+
+  count = countLocalMin(matrix, rows, cols);
+
+  if (typeMatrix == 2)
+  {
+    delete[] matrix;
+  }
+
+  std::ofstream output(argv[3]);
+  output << count << "\n";
+
+  return 0;
 }
