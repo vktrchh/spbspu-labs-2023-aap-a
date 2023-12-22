@@ -11,12 +11,12 @@ char * gladyshev::inputArray(std::istream& input)
   input >> std::noskipws;
   while (input >> currsym)
   {
-    baseArray[counter] = currsym;
     if (currsym == '\n')
     {
       baseArray[counter] = '\0';
       break;
     }
+    baseArray[counter] = currsym;
     if ((counter + 1) == len)
     {
       try
@@ -39,6 +39,6 @@ char * gladyshev::inputArray(std::istream& input)
     delete[] baseArray;
     throw std::runtime_error("Lack of data");
   }
-  std::cin >> std::skipws;
+  input >> std::skipws;
   return baseArray;
 }
