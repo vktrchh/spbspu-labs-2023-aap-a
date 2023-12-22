@@ -4,7 +4,7 @@
 #include <istream>
 namespace erohin
 {
-  char* inputString(std::istream& input, char* str, size_t iter_size);
+  char* inputString(std::istream& input);
 }
 
 #endif

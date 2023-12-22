@@ -4,7 +4,7 @@
 
 namespace erohin
 {
-  char* lengthenString(char* str, size_t size, size_t shift);
+  char* lengthenString(const char* str, size_t size, size_t shift);
 }
 
 #endif

@@ -6,8 +6,8 @@
 char* erohin::uniteString(const char* str1, const char* str2)
 {
   const size_t iter_size = 20;
-  size_t size = iter_size;
-  char* result = new char[size + 1];
+  size_t size = 0;
+  char* result = nullptr;
   char* temp = nullptr;
   size_t i = 0;
   size_t j = 0;
@@ -15,7 +15,14 @@ char* erohin::uniteString(const char* str1, const char* str2)
   {
     if (i + j == size)
     {
-      char* temp = resize(result, size, iter_size);
+      try
+      {
+        char* temp = lengthenString(result, size, iter_size);
+      }
+      catch (const std::bad_alloc&)
+      {
+        return nullptr;
+      }
       delete[] result;
       result = temp;
     }
