@@ -16,6 +16,7 @@ unsigned int zhalilov::countDiffSymbs(const char *string)
         diffSymbs++;
         break;
       }
+      tempString++;
     }
   }
   return diffSymbs;
