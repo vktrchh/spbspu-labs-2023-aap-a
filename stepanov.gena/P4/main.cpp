@@ -1,7 +1,9 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
-#include <cstddef>
+#include "input_array.hpp"
+#include "count_local_min.hpp"
+#include "most_long_sequence.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -84,6 +86,7 @@ int main(int argc, char* argv[])
   }
 
   count = countLocalMin(matrix, rows, cols);
+  strnum = mostLongSequence(matrix, rows, cols);
 
   if (typeMatrix == 2)
   {
@@ -91,7 +94,8 @@ int main(int argc, char* argv[])
   }
 
   std::ofstream output(argv[3]);
-  output << count << "\n";
+  output << "[CNT-LOC-MIN]" << count << "\n";
+  output << "[NUM-ROW-LSR]" << strnum << "\n";
 
   return 0;
 }

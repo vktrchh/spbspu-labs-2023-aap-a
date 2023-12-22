@@ -24,5 +24,4 @@ size_t stepanov::countLocalMin(int const matrix[], size_t rows, size_t cols)
   }
 
   return count;
-
 }
