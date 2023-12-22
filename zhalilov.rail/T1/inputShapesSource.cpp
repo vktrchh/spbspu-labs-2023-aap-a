@@ -151,12 +151,11 @@ bool zhalilov::inputScale(point_t &point, double &ratio, const char string[])
 
 zhalilov::Shape **zhalilov::increaseLength(Shape **shapes, size_t size, size_t delta)
 {
-  Shape **newShapes = new Shape*[size + delta]{ nullptr };
+  Shape **newShapes = new Shape*[size + delta]{};
   for (size_t i = 0; i < size; i++)
   {
     newShapes[i] = shapes[i];
   }
-  delete[] shapes;
   return newShapes;
 }
 
@@ -174,7 +173,7 @@ zhalilov::Shape **zhalilov::inputShapesSource(point_t &point, double &ratio, siz
 {
   size_t shapeIndex = 0;
   size = 10;
-  Shape **shapes = new Shape*[10]{ nullptr };
+  Shape **shapes = new Shape*[10]{};
   char *string = nullptr;
   while (true)
   {
@@ -198,7 +197,13 @@ zhalilov::Shape **zhalilov::inputShapesSource(point_t &point, double &ratio, siz
       shapeInputFunc inputFunc = identifyShape(string);
       if (inputFunc)
       {
-        shapes[shapeIndex] = { inputFunc(string) };
+        if (shapeIndex == size)
+        {
+          Shape **newShapes = increaseLength(shapes, size, 5);
+          delete[] shapes;
+          shapes = newShapes;
+        }
+        shapes[shapeIndex] = inputFunc(string);
         shapeIndex++;
       }
     }
