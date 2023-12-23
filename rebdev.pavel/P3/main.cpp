@@ -40,11 +40,12 @@ int main()
   char * rez = nullptr;
   try
   {
-    rez = new char[firstSize + numOfDig];
+    rez = new char[firstSize + numOfDig + 1];
     for (size_t i = 0; i < (firstSize + numOfDig); ++i)
     {
       rez[i] = '0';
     }
+    rez[firstSize + numOfDig] = '\0';
   }
   catch (const std::exception & e)
   {

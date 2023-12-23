@@ -3,7 +3,7 @@
 char * rebdev::acceptStr(std::istream & input, size_t & sizeOfStr)
 {
   char sym = 0;
-  sizeOfStr = 0;
+  sizeOfStr = 1;
 
   char * str = new char[1]{'\0'};
   char * str2 = nullptr;
