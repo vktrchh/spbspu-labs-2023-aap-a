@@ -50,12 +50,20 @@ int main(int argc, char * argv[])
     return 2;
   }
 
-  int rows = 0, cols = 0;
+  size_t rows = 0, cols = 0;
 
-  if (!(input_file >> rows >> cols) || rows < 0 || cols < 0)
+  if (!(input_file >> rows >> cols))
   {
     std::cerr << "Error reading rows and cols from file\n";
     return 2;
+  }
+
+  std::ofstream output_file(argv[3]);
+
+  if (cols == 0 || rows == 0)
+  {
+    output_file << "0\n";
+    return 0;
   }
 
   int max_matrix_size[10000] = {0};
@@ -98,8 +106,6 @@ int main(int argc, char * argv[])
   {
     delete[] matrix;
   }
-
-  std::ofstream output_file(argv[3]);
 
   if (!output_file)
   {
