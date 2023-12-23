@@ -8,42 +8,18 @@ int main()
 {
   using namespace grechishnikov;
 
-  size_t len = 10;
-  char * curStr = nullptr;
+  char* str = nullptr;
+  size_t size = 0;
   try
   {
-    curStr = new char[len];
+    str = inputStr(std::cin, size);
   }
-  catch (const std::bad_alloc &e)
+  catch (const std::logic_error &e)
   {
-    std::cerr << "Cannot allocate memory\n";
+    std::cerr << e.what() << "\n";
     return 1;
   }
 
-  char chInput = '0';
-  size_t curPos = 0;
-  std::cin >> std::noskipws;
-  while (chInput != '\n' && std::cin >> chInput)
-  {
-    curStr[curPos] = chInput;
-    curPos++;
-    if (curPos % len == 0 && curStr[curPos] != '\n')
-    {
-      try
-      {
-        curStr = reallocate(curStr, len, len + 10);
-      }
-      catch (const std::bad_alloc &e)
-      {
-        std::cerr << "Cannot reallocate string\n";
-        delete[] curStr;
-        return 1;
-      }
-      len += 10;
-    }
-  }
-  std::cin >> std::skipws;
-
-  std::cout << countUnic(curStr, curPos) << "\n";
-  delete[] curStr;
+  std::cout << countUnic(str, size) << "\n";
+  delete[] str;
 }
