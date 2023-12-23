@@ -17,9 +17,17 @@ char * piyavkin::inputLine(std::istream & in, size_t & length)
   char* new_line = nullptr;
   while (in >> sym)
   {
+    if (!in)
+    {
+      delete new_line;
+      throw std::bad_alloc("Line can not read\n");
+    }
     old_line = new_line;
     new_line = new char [length + 1] {};
-    piyavkin::copyLine(old_line, new_line, length);
+    for (size_t i = 0; i < length; ++i)
+    {
+      new_line[i] = old_line[i];
+    }
     delete[] old_line;
     new_line[length++] = tolower(sym);
     if (sym == '\n')
