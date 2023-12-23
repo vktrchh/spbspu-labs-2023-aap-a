@@ -1,5 +1,4 @@
 #include <iostream>
-#include <stdexcept>
 #include <cstddef>
 #include <cstring>
 #include "stringInput.hpp"
@@ -14,7 +13,7 @@ int main()
   {
     firstStr = rebdev::acceptStr(std::cin);
   }
-  catch (std::logic_error & e)
+  catch (const std::exception & e)
   {
     delete[] firstStr;
     return 1;
@@ -24,8 +23,32 @@ int main()
     return 1;
   }
 
-  const char * secondStr = "1 2ok 3 5z 3pv21";
-  char * rez = rebdev::convertString(firstStr, strlen(firstStr), secondStr, strlen(secondStr));
+  char const * const secondStr = "1 2ok 3 5z 3pv21";
+
+  size_t numOfDig = 0;
+  for (size_t i = 0; i < strlen(secondStr); ++i)
+  {
+    if (std::isdigit(secondStr[i]))
+    {
+      numOfDig += 1;
+    }
+  }
+
+  char * rez = nullptr;
+  try
+  {
+    rez = new char[strlen(firstStr) + numOfDig];
+    for (size_t i = 0; i < (strlen(firstStr) + numOfDig); ++i)
+    {
+      rez[i] = '0';
+    }
+  }
+  catch (const std::exception & e)
+  {
+    return 2;
+  }
+
+  rebdev::convertString(firstStr, secondStr, rez);
 
   std::cout << rez << '\n';
   delete[] rez;

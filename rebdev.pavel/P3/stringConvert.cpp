@@ -1,36 +1,23 @@
 #include "stringConvert.hpp"
+#include <cstddef>
 #include <cctype>
-#include <cstring>
 
-char * rebdev::convertString(char * firstString, size_t firstSize, const char * secondString, size_t secondSize)
+void rebdev::convertString(char const * const firstString, char const * const secondString, char * endString)
 {
-  size_t numOfDig = 0;
-  for (size_t i = 0; i < secondSize; ++i)
+  size_t i = 0;
+  while (firstString[i] != '\0')
   {
-    if (std::isdigit(secondString[i]))
+    endString[i] = firstString[i];
+    i += 1;
+  }
+  size_t j = 0;
+  while (secondString[j] != '\0')
+  {
+    if (std::isdigit(secondString[j]))
     {
-      numOfDig += 1;
+      endString[i] = secondString[j];
+      i += 1; 
     }
+    j += 1;
   }
-
-  char * newStr = new char[firstSize + numOfDig + 1];
-
-  size_t num = firstSize;
-
-  for (size_t i = 0; i < num; ++i)
-  {
-    newStr[i] = firstString[i];
-  }
-
-  for (size_t i = 0; i < secondSize; ++i)
-  {
-    if (std::isdigit(secondString[i]))
-    {
-      newStr[num] = secondString[i];
-      num += 1;
-    }
-  }
-  newStr[firstSize + numOfDig] = '\0';
-
-  return newStr;
 }

@@ -30,12 +30,12 @@ char * rebdev::acceptStr(std::istream & input)
         str2[i] = str[i];
       }
     }
-    catch (const std::logic_error & e)
+    catch (const std::exception & e)
     {
       input >> std::skipws;
       delete[] str;
       delete[] str2;
-      throw e;
+      throw;
     }
 
     delete[] str;
