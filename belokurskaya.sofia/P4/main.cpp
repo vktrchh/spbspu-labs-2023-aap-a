@@ -7,7 +7,6 @@
 
 int main(int argc, char * argv[])
 {
-  using namespace belokurskaya;
   if (argc != 4)
   {
     std::cerr << "Error in command line arguments\n";
@@ -85,8 +84,16 @@ int main(int argc, char * argv[])
     return 2;
   }
 
+  if (task_number == 2 && matrix == nullptr)
+  {
+    std::cerr << "Dynamic array is empty\n";
+    delete[] matrix;
+    return 2;
+  }
+
   int result = 0;
   result = belokurskaya::findMaxSequence(matrix, rows, cols);
+
   if (task_number == 2)
   {
     delete[] matrix;
