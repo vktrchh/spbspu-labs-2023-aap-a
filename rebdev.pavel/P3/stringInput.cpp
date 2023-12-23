@@ -11,9 +11,8 @@ char * rebdev::acceptStr(std::istream & input)
 
   input >> std::noskipws;
 
-  while (sym != '\n')
+  while (input >> sym)
   {
-    input >> sym;
     if(!input)
     {
       delete[] str;
