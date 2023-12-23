@@ -50,9 +50,9 @@ int main(int argc, char * argv[])
     return 2;
   }
 
-  size_t rows = 0, cols = 0;
+  int rows = 0, cols = 0;
 
-  if (!(input_file >> rows >> cols) || rows <= 0 || cols <= 0)
+  if (!(input_file >> rows >> cols) || rows < 0 || cols < 0)
   {
     std::cerr << "Error reading rows and cols from file\n";
     return 2;
