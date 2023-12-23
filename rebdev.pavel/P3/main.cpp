@@ -11,7 +11,7 @@ int main()
   size_t firstSize = 0;
   try
   {
-    firstSize = rebdev::acceptStr(std::cin, firstStr);
+    firstStr = rebdev::acceptStr(std::cin, firstSize);
   }
   catch (const std::exception & e)
   {
@@ -19,8 +19,9 @@ int main()
     std::cerr << e.what();
     return 1;
   }
-  if (firstStr == nullptr)
+  if ((firstStr == nullptr) || (firstStr[0] == '\0'))
   {
+    delete[] firstStr;
     std::cerr << "String is empty";
     return 1;
   }

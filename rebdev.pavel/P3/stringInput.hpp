@@ -5,7 +5,7 @@
 #include <cstddef>
 namespace rebdev
 {
-  size_t acceptStr(std::istream & input, char * str);
+  char * acceptStr(std::istream & input, size_t & sizeOfStr);
 }
 
 #endif
