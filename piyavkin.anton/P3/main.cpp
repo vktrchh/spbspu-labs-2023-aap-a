@@ -28,11 +28,7 @@ int main()
     delete [] new_line;
     return 1;
   }
-  if (new_line != nullptr)
-  {
-    new_line[length-1] = '\0';
-  }
-  else
+  if (new_line == nullptr)
   {
     std::cerr << "Line not read\n";
     delete [] new_alphabet;

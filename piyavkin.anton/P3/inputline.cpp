@@ -9,11 +9,6 @@ char * piyavkin::inputLine(std::istream & in, size_t & length)
   char * new_line = nullptr;
   while (in >> sym)
   {
-    if (!in)
-    {
-      delete new_line;
-      throw std::logic_error("Line can not read");
-    }
     old_line = new_line;
     new_line = new char [length + 1] {};
     for (size_t i = 0; i < length; ++i)
