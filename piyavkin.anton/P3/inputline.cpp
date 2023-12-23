@@ -2,14 +2,6 @@
 #include <iostream>
 #include "inputline.hpp"
 
-void piyavkin::copyLine(char * old_line, char * new_line, size_t length)
-{
-  for (size_t i = 0; i < length; ++i)
-  {
-    new_line[i] = old_line[i];
-  }
-}
-
 char * piyavkin::inputLine(std::istream & in, size_t & length)
 {
   char sym = 0;
