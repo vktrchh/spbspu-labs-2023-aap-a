@@ -5,7 +5,7 @@
 
 namespace chistyakov
 {
-  char* sort(char* array, size_t lenght);
+  char* sort(char* array, char* result, size_t lenght);
 }
 
 #endif

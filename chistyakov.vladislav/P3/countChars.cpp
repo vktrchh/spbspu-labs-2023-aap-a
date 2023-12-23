@@ -2,13 +2,14 @@
 #include <cctype>
 #include "sortingByQuantity.hpp"
 
-char* chistyakov::countChars(char* array, size_t size)
+char* chistyakov::countChars(char* array)
 {
   char dictChar[52]{};
   size_t dictNumsOfChar[52]{};
   char nowChar = 0;
+  size_t i = 0;
 
-  for (size_t i = 0; i < size; ++i)
+  while (array[i] != 0)
   {
     if (isalpha(array[i]))
     {
@@ -29,32 +30,35 @@ char* chistyakov::countChars(char* array, size_t size)
         }
       }
     }
+
+    i++;
   }
 
-  int resultSize = 52;
-  for (int idx = 0; idx < 52; ++idx)
+  size_t resultLen = 52;
+  for (size_t i = 0; i < 52; ++i)
   {
-    if (dictNumsOfChar[idx] == 0)
+    if (dictNumsOfChar[i] == 0)
     {
-      resultSize = idx;
+      resultLen = i;
       break;
     }
   }
 
-  if (resultSize < 3)
+  if (resultLen < 3)
   {
     return nullptr;
   }
-  char resDictChar[resultSize]{};
-  size_t resDictNumsOfChar[resultSize]{};
 
-  for (int idx = 0; idx < resultSize; ++idx)
+  char resDictChar[resultLen]{};
+  size_t resDictNumsOfChar[resultLen]{};
+
+  for (size_t idx = 0; idx < resultLen; ++idx)
   {
     resDictChar[idx] = dictChar[idx];
     resDictNumsOfChar[idx] = dictNumsOfChar[idx];
   }
 
-  char* result = sortingByQuantity(resDictChar, resDictNumsOfChar, resultSize);
+  char* result = sortingByQuantity(resDictChar, resDictNumsOfChar, resultLen);
 
   return result;
 }

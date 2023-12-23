@@ -1,80 +1,46 @@
 #include <iostream>
-#include <limits>
 #include <stdexcept>
-#include "enlargeArray.hpp"
+
 #include "countChars.hpp"
 #include "sort.hpp"
+#include "inputArray.hpp"
 
 int main()
 {
   using namespace chistyakov;
-  size_t size = 10;
-  char * array = new char[size]{};
+  char* array = nullptr;
 
-  char input = 0;
-  size_t i = 0;
-  size_t max_size = std::numeric_limits< size_t >::max();
-  std::cin >> std::noskipws;
-
-  while ((std::cin >> input) && (i < size))
+  try
   {
-    if (input == '\n')
-    {
-      break;
-    }
-
-    if (!std::cin)
-    {
-      std::cerr << "Bad input!\n";
-      delete [] array;
-      return 1;
-    }
-
-    if (i == max_size || size == max_size)
-    {
-      delete[] array;
-      std::cerr << "Sequecne is too long\n";
-      return 2;
-    }
-
-    array[i++] = input;
-
-    if (i == size)
-    {
-      try
-      {
-        array = enlargeArray(array, size);
-      }
-      catch(const std::exception & e)
-      {
-        std::cerr << "Error: " << e.what() << "\n";
-        delete[] array;
-        return 2;
-      }
-
-      size += 10;
-    }
+    array = inputArray(std::cin);
+  }
+  catch(const std::bad_alloc & e)
+  {
+    std::cout << "Error: " << e.what();
+    return 1;
+  }
+  catch(const std::invalid_argument & e)
+  {
+    std::cout << "Error: " << e.what();
+    return 2;
   }
 
-  std::cin >> std::skipws;
-
-  char* result = nullptr;
-  result = countChars(array, size);
-
-  if (result == nullptr)
+  char* chars = countChars(array);
+  if (chars == nullptr)
   {
     std::cerr << "There are less than 3 letters in the sequence!\n";
     delete[] array;
     return 1;
   }
 
-  result = sort(result, 3);
 
-  for (int i = 0; i < 3; ++i)
+  char result[3]{};
+  sort(chars, result, 3);
+
+  for (size_t i = 0; i < 3; ++i)
   {
     std::cout << result[i];
   }
-
   std::cout << "\n";
 
   delete[] array;

@@ -5,7 +5,7 @@
 
 namespace chistyakov
 {
-  char* countChars(char* array, size_t size);
+  char* countChars(char* array);
 }
 
 #endif
