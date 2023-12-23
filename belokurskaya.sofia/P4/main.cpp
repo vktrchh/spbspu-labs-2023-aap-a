@@ -59,21 +59,36 @@ int main(int argc, char * argv[])
     return 2;
   }
 
-  size_t row_max_sequence = 0;
-
-  const int max_matrix_size = 10000;
+  int max_matrix_size[10000] = {0};
+  int * matrix = nullptr;
 
   if (task_number == 1)
   {
-    int matrix[max_matrix_size];
-
-    processMatrix(input_file, matrix, rows, cols, row_max_sequence);
+    matrix = max_matrix_size;
   }
   else
   {
-    int * matrix = new int[rows * cols];
+    matrix = new int[rows * cols]{0};
+  }
 
-    processMatrix(input_file, matrix, rows, cols, row_max_sequence);
+  try
+  {
+    belokurskaya::readMatrix(input_file, matrix, rows, cols);
+  }
+  catch (const std::exception & e)
+  {
+    std::cerr << "Error" << e.what() << "\n";
+    if (task_number == 2)
+    {
+      delete[] matrix;
+    }
+    return 2;
+  }
+
+  int result = 0;
+  result = belokurskaya::findMaxSequence(matrix, rows, cols);
+  if (task_number == 2)
+  {
     delete[] matrix;
   }
 
@@ -85,6 +100,6 @@ int main(int argc, char * argv[])
     return 2;
   }
 
-  output_file << row_max_sequence + 1 << "\n";
+  output_file << result + 1 << "\n";
   return 0;
 }

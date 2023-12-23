@@ -1,6 +1,7 @@
 #include "process_matrix.hpp"
 
 #include <iostream>
+#include <stdexcept>
 
 size_t belokurskaya::findMaxSequence(const int * matrix, size_t rows, size_t cols)
 {
@@ -30,7 +31,7 @@ size_t belokurskaya::findMaxSequence(const int * matrix, size_t rows, size_t col
   return row_max_sequence;
 }
 
-void belokurskaya::readMatrix(std::istream &input, int * matrix, size_t rows, size_t cols)
+void belokurskaya::readMatrix(std::istream & input, int * matrix, size_t rows, size_t cols)
 {
   for (size_t row = 0; row < rows; ++row)
   {
@@ -41,20 +42,5 @@ void belokurskaya::readMatrix(std::istream &input, int * matrix, size_t rows, si
         throw std::runtime_error("Error reading matrix elements");
       }
     }
-  }
-}
-
-int belokurskaya::processMatrix(std::istream &input, int * matrix, size_t rows, size_t cols, size_t &row_max_sequence)
-{
-  try
-  {
-    readMatrix(input, matrix, rows, cols);
-    row_max_sequence = findMaxSequence(matrix, rows, cols);
-    return 0;
-  }
-  catch (const std::exception & e)
-  {
-    std::cerr << "Error:" << e.what() << "\n";
-    return 1;
   }
 }
