@@ -34,7 +34,7 @@ char * rebdev::acceptStr(std::istream & input, size_t & sizeOfStr)
     {
       str2[i] = str[i];
     }
-  
+
     delete[] str;
     str = str2;
     str2 = nullptr;
