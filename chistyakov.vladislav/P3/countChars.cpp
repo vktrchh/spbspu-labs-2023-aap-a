@@ -1,7 +1,6 @@
 #include "countChars.hpp"
 #include <cctype>
 #include "sortingByQuantity.hpp"
-#include <iostream>
 
 char* chistyakov::countChars(char* array, size_t size)
 {
@@ -46,7 +45,6 @@ char* chistyakov::countChars(char* array, size_t size)
   {
     return nullptr;
   }
-
   char resDictChar[resultSize]{};
   size_t resDictNumsOfChar[resultSize]{};
 
@@ -54,7 +52,6 @@ char* chistyakov::countChars(char* array, size_t size)
   {
     resDictChar[idx] = dictChar[idx];
     resDictNumsOfChar[idx] = dictNumsOfChar[idx];
-    //std::cout << resDictChar[idx] << ": " << resDictNumsOfChar[idx] << "\n";
   }
 
   char* result = sortingByQuantity(resDictChar, resDictNumsOfChar, resultSize);

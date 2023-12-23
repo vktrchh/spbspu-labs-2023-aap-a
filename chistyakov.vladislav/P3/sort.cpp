@@ -3,6 +3,13 @@
 
 char* chistyakov::sort(char* array, size_t lenght)
 {
+  char resArray[lenght]{};
+  for (size_t idx = 0; idx < lenght; ++idx)
+  {
+    resArray[idx] = array[idx];
+  }
+  array = resArray;
+
   for (size_t i = 1; i < lenght; ++i)
   {
     char timeValue = 0;
