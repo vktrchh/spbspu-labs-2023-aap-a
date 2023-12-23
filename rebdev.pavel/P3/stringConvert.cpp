@@ -16,7 +16,7 @@ void rebdev::convertString(char const * const firstString, char const * const se
     if (std::isdigit(secondString[j]))
     {
       endString[i] = secondString[j];
-      i += 1; 
+      i += 1;
     }
     j += 1;
   }
