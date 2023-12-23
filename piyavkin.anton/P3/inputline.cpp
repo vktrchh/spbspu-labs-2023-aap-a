@@ -1,7 +1,16 @@
 #include <istream>
 #include <iostream>
-#include "cpline.hpp"
-char * inputLine(std::istream & in, size_t & length)
+#include "inputline.hpp"
+
+void piyavkin::copyLine(char * old_line, char * new_line, size_t length)
+{
+  for (size_t i = 0; i < length; ++i)
+  {
+    new_line[i] = old_line[i];
+  }
+}
+
+char * piyavkin::inputLine(std::istream & in, size_t & length)
 {
   char sym = 0;
   char* old_line = nullptr;
@@ -10,7 +19,7 @@ char * inputLine(std::istream & in, size_t & length)
   {
     old_line = new_line;
     new_line = new char [length + 1] {};
-    piyavkin::cpLine(old_line, new_line, length);
+    piyavkin::copyLine(old_line, new_line, length);
     delete[] old_line;
     new_line[length++] = tolower(sym);
     if (sym == '\n')
@@ -21,3 +30,4 @@ char * inputLine(std::istream & in, size_t & length)
   }
   return new_line;
 }
+

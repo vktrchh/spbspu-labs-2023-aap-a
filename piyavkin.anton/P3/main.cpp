@@ -1,9 +1,8 @@
-#include "cpline.hpp"
 #include <istream>
+#include <iostream>
 #include "createalphabet.hpp"
 #include "createline.hpp"
 #include "inputline.hpp"
-#include <iostream>
 
 int main()
 {
@@ -17,7 +16,7 @@ int main()
   }
   catch (const std::bad_alloc & e)
   {
-    std::cerr << e.what();
+    std::cerr << e.what() << '\n';
     return 1;
   }
   std::cin >> std::skipws;
