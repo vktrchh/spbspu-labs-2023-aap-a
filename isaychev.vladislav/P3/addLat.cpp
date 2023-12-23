@@ -1,73 +1,51 @@
 #include "addLat.hpp"
 #include <cctype>
 #include <utility>
-#include <iostream>
-#include <cstdlib>
 
-void isaychev::addLat(const char * str1, const char * str2, char * str3, size_t lgth1, size_t lgth2)
+void isaychev::fillInUniqueChars(const char * str_base, char * str_final, size_t & counter)
 {
-size_t num = 0;
-size_t checkTwoStrs = 0, checkFinStr = 0;
-char curr_char = 0;
-
-for (size_t i = 0; i < lgth1; ++i)
-{
-  if (std::isalpha(str1[i]))
+  size_t i = 0, j = 0, checkForSameChar = 0;
+  while (str_base[j] != '\0')
   {
-    curr_char = str1[i];
-    for (size_t j = 0; j < lgth2; ++j)
+    if (std::isalpha(str_base[j]))
     {
-      if (str2[j] == curr_char)
+      while (str_final[i] != '\0')
       {
-        checkTwoStrs++;
+        if (str_final[i] == std::tolower(str_base[j]))
+        {
+          checkForSameChar++;
+        }
+        i++;
       }
-      if (j < num && j != 0 && str3[j] == curr_char)
+      i = 0;
+      if (checkForSameChar == 0)
       {
-        checkFinStr++;
+        str_final[counter++] = std::tolower(str_base[j]);
       }
+      checkForSameChar = 0;
     }
-    if (checkTwoStrs == 0 && checkFinStr == 0)
-    {
-      str3[num++] = str1[i];
-    }
-    checkTwoStrs = 0;
-    checkFinStr = 0;
+    j++;
   }
 }
 
-for(size_t i = 0; i < lgth2; ++i)
+void isaychev::addLat(const char * str1, const char * str2, char * str3)
 {
-  if(std::isalpha(str2[i]))
-  {
-    str3[num++] = str2[i];
-  }
-}
+  size_t num = 0;
+  size_t checkTwoStrs = 0, checkFinStr = 0;
+  size_t & linkToCounter = num;
+  fillInUniqueChars(str1, str3, linkToCounter);
+  fillInUniqueChars(str2, str3, linkToCounter);
 
-for (size_t i = 0; i < num - 1; ++i)
-{
-  for (size_t k = 0; k < num - i - 1; ++k)
+  for (size_t i = 0; i < num - 1; ++i)
   {
-    if (str3[k] > str3[k + 1])
+    for (size_t k = 0; k < num - i - 1; ++k)
     {
-      std::swap(str3[k], str3[k + 1]);
-    }
-  }
-}
-
-for (size_t i = 0; i < num; ++i)
-{
-  for (size_t j = i + 1; j < num; ++j)
-  {
-    if (str3[i] == str3[j])
-    {
-      for (size_t k = j; k < num - 1; ++k)
+      if (str3[k] > str3[k + 1])
       {
         std::swap(str3[k], str3[k + 1]);
       }
-      num--;
     }
   }
+  str3[num] = '\0';
 }
 
-str3[num] = '\0';
-}

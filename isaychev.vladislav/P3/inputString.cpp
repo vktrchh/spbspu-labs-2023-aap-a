@@ -1,17 +1,15 @@
 #include "inputString.hpp"
 #include <iomanip>
 #include <iostream>
+#include <stdexcept>
 
 char * isaychev::inputString(std::istream & input, size_t & length1, size_t & capacity)
 {
   char * str = nullptr;
-  try
+  str = new char[capacity]{};
+  if (str == nullptr)
   {
-    str = new char[capacity]{};
-  }
-  catch (const std::bad_alloc & e)
-  {
-    throw e;
+    throw "can't allocate memory for string";
   }
   char curr_char = 0;
   input >> std::noskipws;
@@ -21,19 +19,13 @@ char * isaychev::inputString(std::istream & input, size_t & length1, size_t & ca
     {
       capacity += 10;
       char * bigger_str = nullptr;
-      try
-      {
-        bigger_str = new char[capacity]{};
-      }
-      catch (const std::bad_alloc & e)
+      bigger_str = new char[capacity]{};
+      if (bigger_str == nullptr)
       {
         delete [] str;
-        throw e;
+        throw "can't allocate memory for string";
       }
-      for (size_t j = 0; j < length1; ++j)
-      {
-        bigger_str[j] = str[j];
-      }
+      copyString(str, bigger_str, length1);
       delete [] str;
       str = bigger_str;
     }
@@ -52,4 +44,12 @@ char * isaychev::inputString(std::istream & input, size_t & length1, size_t & ca
   }
   input >> std::skipws;
   return str;
+}
+
+void isaychev::copyString(const char * str, char * str2, size_t len)
+{
+  for (size_t j = 0; j < len; ++j)
+  {
+    str2[j] = str[j];
+  }
 }
