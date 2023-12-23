@@ -16,12 +16,6 @@ int main()
     new_line = inputLine(std::cin, length);
     new_alphabet = createLine(new_line, length, count);
   }
-  catch (const std::logic_error & e)
-  {
-    std::cerr << e.what() << '\n';
-    delete [] new_line;
-    return 1;
-  }
   catch (const std::bad_alloc & e)
   {
     std::cerr << e.what() << '\n';
