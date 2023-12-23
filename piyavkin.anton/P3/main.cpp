@@ -1,47 +1,26 @@
 #include "cpline.hpp"
+#include <istream>
 #include "createalphabet.hpp"
 #include "createline.hpp"
+#include "inputline.hpp"
 #include <iostream>
 
 int main()
 {
   using namespace piyavkin;
   size_t length = 0;
-  char sym = 0;
   char * new_line = nullptr;
-  char * old_line = nullptr;
   std::cin >> std::noskipws;
-  while (std::cin >> sym)
+  try
   {
-    old_line = new_line;
-    try
-    {
-      new_line = new char [length + 1]{};
-    }
-    catch (std::bad_alloc&)
-    {
-      std::cerr << "Dynamic memory overflow\n";
-      delete [] old_line;
-      return 1;
-    }
-    cpLine(old_line, new_line, length);
-    new_line[length] = tolower(sym);
-    ++length;
-    if (sym == '\n')
-    {
-      break;
-    }
+    new_line = inputLine(std::cin, length);
   }
-  std::cin >> std::skipws;
-  if (new_line != nullptr)
+  catch (const std::bad_alloc & e)
   {
-    new_line[length-1] = '\0';
-  }
-  else
-  {
-    std::cerr << "Line not read\n";
+    std::cerr << e.what();
     return 1;
   }
+  std::cin >> std::skipws;
   bool alphabet [26] = {};
   size_t count = createAlphabet(alphabet, new_line, length);
   delete [] new_line;

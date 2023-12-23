@@ -6,5 +6,4 @@ void piyavkin::cpLine(char * old_line, char * new_line, size_t length)
   {
     new_line[i] = old_line[i];
   }
-  delete [] old_line;
 }
