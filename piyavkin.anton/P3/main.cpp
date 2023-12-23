@@ -28,6 +28,15 @@ int main()
     delete [] new_line;
     return 1;
   }
+  if (new_line != nullptr)
+  {
+    new_line[length-1] = '\0';
+  }
+  else
+  {
+    std::cerr << "Line not read\n";
+    return 1;
+  }
   std::cin >> std::skipws;
   for (size_t i = 0; i < count+1; ++i)
   {

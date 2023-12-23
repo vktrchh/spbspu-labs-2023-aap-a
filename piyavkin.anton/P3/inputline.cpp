@@ -5,8 +5,8 @@
 char * piyavkin::inputLine(std::istream & in, size_t & length)
 {
   char sym = 0;
-  char* old_line = nullptr;
-  char* new_line = nullptr;
+  char * old_line = nullptr;
+  char * new_line = nullptr;
   while (in >> sym)
   {
     if (!in)
