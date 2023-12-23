@@ -2,9 +2,10 @@
 #define STRINGINPUT_HPP
 
 #include <iostream>
+#include <cstddef>
 namespace rebdev
 {
-  char * acceptStr(std::istream & input);
+  size_t acceptStr(std::istream & input, char * str);
 }
 
 #endif

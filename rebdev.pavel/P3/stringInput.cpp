@@ -1,12 +1,11 @@
 #include "stringInput.hpp"
-#include <cstddef>
 
-char * rebdev::acceptStr(std::istream & input)
+size_t rebdev::acceptStr(std::istream & input, char * str)
 {
   char sym = 0;
   size_t sizeOfStr = 0;
 
-  char * str = nullptr;
+  str = new char[1]{'\0'};
   char * str2 = nullptr;
 
   input >> std::noskipws;
@@ -40,18 +39,11 @@ char * rebdev::acceptStr(std::istream & input)
     delete[] str;
     str = str2;
     str2 = nullptr;
-    if (sym != '\n')
-    {
-      str[sizeOfStr] = sym;
-    }
-    else
-    {
-      str[sizeOfStr] = '\0';
-    }
+    str[sizeOfStr] = sym;
     sizeOfStr += 1;
   }
 
   input >> std::skipws;
   delete[] str2;
-  return str;
+  return sizeOfStr;
 }

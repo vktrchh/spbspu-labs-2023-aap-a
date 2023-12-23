@@ -8,10 +8,10 @@
 int main()
 {
   char * firstStr = nullptr;
-
+  size_t firstSize = 0;
   try
   {
-    firstStr = rebdev::acceptStr(std::cin);
+    firstSize = rebdev::acceptStr(std::cin, firstStr);
   }
   catch (const std::exception & e)
   {
@@ -39,8 +39,8 @@ int main()
   char * rez = nullptr;
   try
   {
-    rez = new char[strlen(firstStr) + numOfDig];
-    for (size_t i = 0; i < (strlen(firstStr) + numOfDig); ++i)
+    rez = new char[firstSize + numOfDig];
+    for (size_t i = 0; i < (firstSize + numOfDig); ++i)
     {
       rez[i] = '0';
     }
