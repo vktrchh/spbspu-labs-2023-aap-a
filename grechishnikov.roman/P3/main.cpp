@@ -23,9 +23,8 @@ int main()
   char chInput = '0';
   size_t curPos = 0;
   std::cin >> std::noskipws;
-  do
+  while (chInput != '\n' && std::cin >> chInput)
   {
-    std::cin >> chInput;
     curStr[curPos] = chInput;
     curPos++;
     if (curPos % len == 0 && curStr[curPos] != '\n')
@@ -43,7 +42,6 @@ int main()
       len += 10;
     }
   }
-  while (chInput != '\n');
   std::cin >> std::skipws;
 
   std::cout << countUnic(curStr, curPos) << "\n";
