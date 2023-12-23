@@ -40,6 +40,7 @@ char* grechishnikov::inputStr(std::istream& in, size_t& size)
   }
   if (curPos == 0)
   {
+    delete[] curStr;
     throw std::logic_error("String is empty");
   }
   in >> std::skipws;
