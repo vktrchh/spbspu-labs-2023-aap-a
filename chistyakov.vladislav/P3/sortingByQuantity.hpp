@@ -5,7 +5,7 @@
 
 namespace chistyakov
 {
-  char* sortingByQuantity(char* chars, size_t* nums, size_t lenght);
+  void sortingByQuantity(char* chars, size_t* nums);
 }
 
 #endif

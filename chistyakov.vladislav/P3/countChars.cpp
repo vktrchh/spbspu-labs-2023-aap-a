@@ -2,10 +2,8 @@
 #include <cctype>
 #include "sortingByQuantity.hpp"
 
-char* chistyakov::countChars(char* array)
+void chistyakov::countChars(char* array, char* dictChar, size_t* dictNumsOfChar)
 {
-  char dictChar[52]{};
-  size_t dictNumsOfChar[52]{};
   char nowChar = 0;
   size_t i = 0;
 
@@ -33,32 +31,4 @@ char* chistyakov::countChars(char* array)
 
     i++;
   }
-
-  size_t resultLen = 52;
-  for (size_t i = 0; i < 52; ++i)
-  {
-    if (dictNumsOfChar[i] == 0)
-    {
-      resultLen = i;
-      break;
-    }
-  }
-
-  if (resultLen < 3)
-  {
-    return nullptr;
-  }
-
-  char resDictChar[resultLen]{};
-  size_t resDictNumsOfChar[resultLen]{};
-
-  for (size_t idx = 0; idx < resultLen; ++idx)
-  {
-    resDictChar[idx] = dictChar[idx];
-    resDictNumsOfChar[idx] = dictNumsOfChar[idx];
-  }
-
-  char* result = sortingByQuantity(resDictChar, resDictNumsOfChar, resultLen);
-
-  return result;
 }

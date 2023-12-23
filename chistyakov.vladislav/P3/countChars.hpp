@@ -5,7 +5,7 @@
 
 namespace chistyakov
 {
-  char* countChars(char* array);
+  void countChars(char* array, char* dictChar, size_t* dictNumsOfChar);
 }
 
 #endif
