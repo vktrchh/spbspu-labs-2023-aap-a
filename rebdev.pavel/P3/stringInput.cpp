@@ -5,7 +5,7 @@ char * rebdev::acceptStr(std::istream & input, size_t & sizeOfStr)
   char sym = 0;
   sizeOfStr = 1;
 
-  char * str = new char[1]{'\0'};
+  char * str = nullptr;
   char * str2 = nullptr;
 
   input >> std::noskipws;
@@ -22,11 +22,6 @@ char * rebdev::acceptStr(std::istream & input, size_t & sizeOfStr)
     try
     {
       str2 = new char[sizeOfStr + 1];
-
-      for (size_t i = 0; i < sizeOfStr; ++i)
-      {
-        str2[i] = str[i];
-      }
     }
     catch (const std::exception & e)
     {
@@ -35,11 +30,18 @@ char * rebdev::acceptStr(std::istream & input, size_t & sizeOfStr)
       delete[] str2;
       throw;
     }
-
+    for (size_t i = 0; i < (sizeOfStr * (str != nullptr)); ++i)
+    {
+      str2[i] = str[i];
+    }
+  
     delete[] str;
     str = str2;
     str2 = nullptr;
-    str[sizeOfStr] = sym;
+
+    str[sizeOfStr - 1] = sym;
+    str[sizeOfStr] = '\0';
+
     sizeOfStr += 1;
   }
 
