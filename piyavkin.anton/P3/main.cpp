@@ -35,6 +35,8 @@ int main()
   else
   {
     std::cerr << "Line not read\n";
+    delete [] new_alphabet;
+    delete [] new_line;
     return 1;
   }
   std::cin >> std::skipws;

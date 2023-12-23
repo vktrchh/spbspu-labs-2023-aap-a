@@ -2,7 +2,7 @@
 
 char * piyavkin::createLine(char * line, size_t length, size_t & count)
 {
-  bool alphabet[count] = {};
+  bool alphabet[26] = {};
   char letter = 0;
   size_t size = 0;
   for (size_t i = 0; i < length; ++i)
