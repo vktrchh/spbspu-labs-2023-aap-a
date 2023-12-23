@@ -12,7 +12,7 @@ char * piyavkin::inputLine(std::istream & in, size_t & length)
     if (!in)
     {
       delete new_line;
-      throw std::bad_alloc("Line can not read\n");
+      throw std::logic_error("Line can not read");
     }
     old_line = new_line;
     new_line = new char [length + 1] {};
