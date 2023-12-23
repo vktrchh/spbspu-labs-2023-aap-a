@@ -16,6 +16,7 @@ int main()
   }
   catch (const std::logic_error &e)
   {
+    delete[] str;
     std::cerr << e.what() << "\n";
     return 1;
   }

@@ -24,7 +24,7 @@ char* grechishnikov::inputStr(std::istream& in, size_t& size)
     {
       try
       {
-        curStr= reallocate(curStr, size, size + 10);
+        curStr = reallocate(curStr, size, size + 10);
       }
       catch (const std::bad_alloc &e)
       {
