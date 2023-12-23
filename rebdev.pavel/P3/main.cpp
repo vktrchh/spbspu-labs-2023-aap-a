@@ -16,10 +16,12 @@ int main()
   catch (const std::exception & e)
   {
     delete[] firstStr;
+    std::cerr << e.what();
     return 1;
   }
   if (firstStr == nullptr)
   {
+    std::cerr << "String is empty";
     return 1;
   }
 
