@@ -1,5 +1,5 @@
-#ifndef REALLOCATE_HPP
-#define REALLOCATE_HPP
+#ifndef INPUT_STR_HPP
+#define INPUT_STR_HPP
 #include <cstddef>
 #include <iostream>
 

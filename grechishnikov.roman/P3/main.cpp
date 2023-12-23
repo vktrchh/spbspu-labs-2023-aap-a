@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstddef>
 #include <exception>
-#include "reallocate.hpp"
+#include "inputStr.hpp"
 #include "countUnic.hpp"
 
 int main()
@@ -20,7 +20,6 @@ int main()
     std::cerr << e.what() << "\n";
     return 1;
   }
-
   std::cout << countUnic(str, size) << "\n";
   delete[] str;
 }

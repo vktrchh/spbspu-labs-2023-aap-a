@@ -1,12 +1,12 @@
-#include "reallocate.hpp"
+#include "inputStr.hpp"
 
 char* grechishnikov::inputStr(std::istream& in, size_t& size)
 {
-  size = 10;
+  size_t len = 10;
   char * curStr = nullptr;
   try
   {
-    curStr = new char[size];
+    curStr = new char[len];
   }
   catch (const std::bad_alloc &e)
   {
@@ -16,28 +16,34 @@ char* grechishnikov::inputStr(std::istream& in, size_t& size)
   char chInput = '0';
   size_t curPos = 0;
   in >> std::noskipws;
-  while (chInput != '\n' && in >> chInput)
+  while (in >> chInput)
   {
+    if (chInput == '\n')
+    {
+      curStr[curPos] = '\0';
+      break;
+    }
     curStr[curPos] = chInput;
     curPos++;
-    if (curPos % size == 0 && curStr[curPos] != '\n')
+    if (curPos % len == 0)
     {
       try
       {
-        curStr = reallocate(curStr, size, size + 10);
+        curStr = reallocate(curStr, len, len + 10);
       }
       catch (const std::bad_alloc &e)
       {
         throw std::logic_error("Cannot allocate mamory");
       }
-      size += 10;
+      len += 10;
     }
   }
-  if (curPos == 1)
+  if (curPos == 0)
   {
     throw std::logic_error("String is empty");
   }
   in >> std::skipws;
+  size = curPos;
   return curStr;
 }
 
@@ -55,4 +61,4 @@ char* grechishnikov::reallocate(char* str, size_t lenF, size_t lenS)
   }
   delete[] str;
   return newStr;
-}
+ }
