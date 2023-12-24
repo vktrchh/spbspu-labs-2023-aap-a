@@ -3,7 +3,7 @@
 
 namespace erohin
 {
-  char* replaceSymbol(char* str, char old, char change);
+  char* replaceSymbol(const char* str, char old, char change);
 }
 
 #endif
