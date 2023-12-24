@@ -22,5 +22,4 @@ namespace erohin
   };
 }
 
-
 #endif

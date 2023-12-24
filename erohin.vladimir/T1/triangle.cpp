@@ -83,7 +83,6 @@ erohin::rectangle_t erohin::Triangle::getFrameRect() const
     {
       right.y = vertex_[i].y;
     }
-    //std::cout << "Corners: " << right.x << " " << right.y << " " << left.x << " " << left.y << "\n";
   }
   return Rectangle(left, right).getFrameRect();
 }
@@ -117,10 +116,6 @@ void erohin::Triangle::scale(double ratio)
     vertex_[i].x = center_.x + (vertex_[i].x - center_.x) * ratio;
     vertex_[i].y = center_.y + (vertex_[i].y - center_.y) * ratio;
   }
-  //std::cout << center_.x << " " << center_.y << " ";
-  //std::cout << vertex_[0].x << " " << vertex_[0].y << " ";
-  //std::cout << vertex_[1].x << " " << vertex_[1].y << " ";
-  //std::cout << vertex_[2].x << " " << vertex_[2].y << "\n";
 }
 
 double* erohin::Triangle::getSide() const
