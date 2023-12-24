@@ -6,7 +6,7 @@
 
 namespace erohin
 {
-	void outputShape(std::ostream& output, const erohin::Shape* shape);
+  void outputShape(std::ostream& output, const erohin::Shape* shape);
 }
 
 #endif
