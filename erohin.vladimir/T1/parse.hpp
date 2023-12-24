@@ -1,6 +1,7 @@
 #ifndef PARSE_HPP
 #define PARSE_HPP
 
+#include <cstddef>
 #include "shape.hpp"
 
 namespace erohin
