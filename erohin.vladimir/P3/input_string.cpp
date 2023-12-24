@@ -35,11 +35,6 @@ char* erohin::inputString(std::istream& input)
       str[i - 1] = '\0';
       break;
     }
-    if (!input)
-    {
-      delete[] str;
-      throw std::runtime_error("Wrong string input");
-    }
   }
   input >> std::skipws;
   return str;
