@@ -21,15 +21,21 @@ int main()
     std::cerr << "Cannot allocate memory: " << e.what() << "\n";
     return 1;
   }
-  char* united = uniteString(first, second);
-  char* replaced = replaceSymbol(first, old, change);
-  if (!united || !replaced || first[0] == '\0')
+  if (first[0] == '\0')
   {
     std::cerr << "String is null\n";
     delete[] first;
+    return 2;
+  }
+  char* united = uniteString(first, second);
+  char* replaced = replaceSymbol(first, old, change);
+  if (!united || !replaced)
+  {
+    std::cerr << "Invalid string creation\n";
+    delete[] first;
     delete[] united;
     delete[] replaced;
-    return 2;
+    return 3;
   }
   std::cout << united << "\n";
   std::cout << replaced << "\n";
