@@ -37,7 +37,8 @@ char* erohin::inputString(std::istream& input)
     }
     if (!input)
     {
-      throw std::logic_error("Wrong string input");
+      delete[] str;
+      throw std::runtime_error("Wrong string input");
     }
   }
   input >> std::skipws;

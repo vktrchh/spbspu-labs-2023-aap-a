@@ -21,7 +21,7 @@ int main()
     std::cerr << "Cannot allocate memory: " << e.what() << "\n";
     return 1;
   }
-  catch (const std::logic_error& e)
+  catch (const std::runtime_error& e)
   {
     delete[] first;
     std::cerr << e.what() << "\n";
