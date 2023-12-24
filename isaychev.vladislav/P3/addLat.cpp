@@ -47,4 +47,3 @@ void isaychev::addLat(const char * str1, const char * str2, char * str3)
   }
   str3[num] = '\0';
 }
-
