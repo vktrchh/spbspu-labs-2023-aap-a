@@ -47,4 +47,21 @@ int main(int argc, char * argv[])
     return 1;
   }
 
+  size_t rows = 0;
+  size_t cols = 0;
+  std::ifstream input(argv[2]);
+  if (!input)
+  {
+    std::cerr << "file not found\n";
+    return 2;
+  }
+
+  input >> rows >> cols;
+  if (!input)
+  {
+    std::cerr << "row or/and column number is invalid\n";
+    return 2;
+  }
+
+  input.close();
 }
