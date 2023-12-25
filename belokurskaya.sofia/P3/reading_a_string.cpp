@@ -1,49 +1,43 @@
 #include "reading_a_string.hpp"
 
-char * resizeStringBuffer(const char * my_string, const size_t size, const size_t new_memory)
+#include <cstring>
+#include <algorithm>
+
+char* resizeStringBuffer(const char* my_string, const size_t size, const size_t new_memory)
 {
   try
   {
-    char * result = new char[new_memory] {};
+    char* result = new char[new_memory + 1] {};
 
     std::copy(my_string, my_string + size, result);
+    result[size] = '\0';
 
     return result;
   }
-  catch (const std::bad_alloc & e)
+  catch (const std::bad_alloc& e)
   {
-    throw e;
+    std::cerr << "Error: " << e.what() << "\n";
+    throw;
   }
 }
 
-char * inputString(std::istream& input)
+std::string inputString(std::istream& input)
 {
   const size_t size_of_memory = 20;
-  size_t string_size = size_of_memory;
-  char * string = new char[size_of_memory] {};
+  std::string input_str;
   char c;
-  size_t i = 0;
 
   input >> std::noskipws;
 
   while ((input >> c) && c != '\n')
   {
-    if (i > string_size)
+    input_str += c;
+    if (input_str.size() >= size_of_memory)
     {
-      try
-      {
-        string = resizeStringBuffer(string, string_size, string_size + size_of_memory);
-      }
-      catch (const std::bad_alloc& e)
-      {
-        delete[] string;
-        throw e;
-      }
-      string_size += size_of_memory;
+      input_str.resize(input_str.size() + size_of_memory);
     }
-    string[i++] = c;
   }
-
   input >> std::skipws;
-  return string;
+
+  return input_str;
 }
