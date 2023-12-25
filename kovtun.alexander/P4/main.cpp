@@ -72,7 +72,7 @@ int main(int argc, char * argv[])
     return 0;
   }
 
-  int * matrix = new int[size];
+  int * matrix = new int[size]();
   size_t hasRead = readToArray(input, matrix, size, size);
   // size = 0 case
   if (hasRead < size)
@@ -81,6 +81,8 @@ int main(int argc, char * argv[])
     return 2;
   }
   output << matrix[size - 1] << "\n";
+
+  delete [] matrix;
 
   input.close();
   output.close();
