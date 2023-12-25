@@ -47,8 +47,6 @@ int main(int argc, char * argv[])
     return 1;
   }
 
-  size_t rows = 0;
-  size_t cols = 0;
   std::ifstream input(argv[2]);
   if (!input)
   {
@@ -56,12 +54,26 @@ int main(int argc, char * argv[])
     return 2;
   }
 
+  size_t rows = 0;
+  size_t cols = 0;
   input >> rows >> cols;
   if (!input)
   {
     std::cerr << "row or/and column number is invalid\n";
     return 2;
   }
+
+  // overflow
+  size_t size = rows * cols;
+  int * matrix = new int[size];
+  size_t hasRead = readToArray(input, matrix, size, size);
+  // size = 0 case
+  if (hasRead < size)
+  {
+    std::cerr << "the matrix is invalid\n";
+    return 2;
+  }
+  std::cout << matrix[size - 1] << "\n";
 
   input.close();
 }
