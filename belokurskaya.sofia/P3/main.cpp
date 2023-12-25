@@ -1,12 +1,12 @@
 #include <iostream>
-#include <iomanip>
 #include <cstring>
 #include <cctype>
+#include <stdexcept>
 
-void transformString(void transformString(const char* input, char* result, char* not_input_chars)
+void transformString(void transformString(const char * input, char * result, char * not_input_chars)
 {
   const int the_size_of_the_latin_alphabet = 26;
-  int is_letter_present[the_size_of_the_latin_alphabet] = { 0 };
+  int is_letter_present[the_size_of_the_latin_alphabet] = {0};
 
   for (size_t i = 0; i < std::strlen(input); ++i)
   {
@@ -27,7 +27,7 @@ void transformString(void transformString(const char* input, char* result, char*
     {
       if (j < the_size_of_the_latin_alphabet)
       {
-        not_input_chars[j++] = static_cast<char>('a' + i);
+        not_input_chars[j++] = static_cast< char >('a' + i);
       }
     }
   }
@@ -38,25 +38,31 @@ void transformString(void transformString(const char* input, char* result, char*
   }
 }
 
+void toLowerCase(char * input)
+{
+  for (size_t i = 0; i < std::strlen(input); ++i)
+  {
+    if (std::isalpha(input[i]) && std::isupper(input[i]))
+    {
+      input[i] = std::tolower(input[i]);
+    }
+  }
+}
 
 int main()
 {
   try
   {
-    std::cin >> std::noskipws;
+    transformString(input_str, nullptr, not_input_chars);
+    std::cout << not_input_chars << '\n';
 
-    std::string inputSkipws;
-    std::cin >> std::skipws >> inputSkipws;
-
-    char * result = transformString(inputSkipws.c_str());
-    std::cout << result << "\n";
-    delete [] result;
-    return 0;
+    delete[] not_input_chars;
+    delete[] original_input_str;
   }
-
   catch (const std::bad_alloc& e)
   {
-    std::cerr << "Memory allocation faild\n";
+    std::cerr << "Error: " << e.what() << '\n';
     return 1;
   }
+  return 0;
 }
