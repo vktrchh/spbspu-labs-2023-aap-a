@@ -22,8 +22,8 @@ void arakelyanTaskTwo::identicalLetters(const char *inputArr, const char *defolt
     answer[i] = 1;
   }
   arakelyanTaskTwo::findSymb(inputArr, answer);
-  std::cout << answer << "\n";
   arakelyanTaskTwo::findSymb(defoltArray, answer);
+  size_t lenght = 0;
   for (size_t i = 0; i < alphabetWeight; i++)
   {
     if (answer[i] == 1)
@@ -31,6 +31,8 @@ void arakelyanTaskTwo::identicalLetters(const char *inputArr, const char *defolt
       unsigned int temp = answer[i];
       answer[i] = answer[i+1];
       answer[i+1] = temp;
+      lenght++;
     }
   }
+  answer[lenght] = '\0';
 }
