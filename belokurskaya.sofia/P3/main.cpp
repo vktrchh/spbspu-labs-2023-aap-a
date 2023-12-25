@@ -51,17 +51,24 @@ void toLowerCase(char * input)
 
 char * resizeStringBuffer(const char * my_string, const size_t size, const size_t new_memory)
 {
-  char * result = new char[new_memory] {};
+  try
+  {
+    char * result = new char[new_memory] {};
 
-  std::copy(my_string, my_string + size, result);
+    std::copy(my_string, my_string + size, result);
 
-  return result;
+    return result;
+  }
+  catch (const std::bad_alloc & e)
+  {
+    throw e;
+  }
 }
 
 char * inputString(std::istream& input)
 {
   const size_t size_of_memory = 0;
-  size_t string_size = 0;
+  size_t string_size = size_of_memory;
   char * string = new char[size_of_memory] {};
   char c;
   size_t i = 0;
