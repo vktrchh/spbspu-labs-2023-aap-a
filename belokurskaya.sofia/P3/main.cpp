@@ -3,36 +3,39 @@
 #include <cstring>
 #include <cctype>
 
-
-char * transformString(const char * input)
+void transformString(void transformString(const char* input, char* result, char* not_input_chars)
 {
-  char * result = new char[128];
+  const int the_size_of_the_latin_alphabet = 26;
+  int is_letter_present[the_size_of_the_latin_alphabet] = { 0 };
 
-  for (int i = 0; i < 128; ++i)
+  for (size_t i = 0; i < std::strlen(input); ++i)
   {
-    char c = i;
-    result[i] = c;
-
-    for (size_t j = 0; j < std::strlen(input); ++j)
+    char c = std::tolower(input[i]);
+    if (std::isalpha(c))
     {
-      if (input[j] == c)
+      if (c - 'a' >= 0 && c - 'a' < the_size_of_the_latin_alphabet)
       {
-        result[i] = '\0';
-        break;
+        is_letter_present[c - 'a'] = 1;
       }
     }
   }
 
-  for (size_t i = 0; i < std::strlen(result); ++i)
+  size_t j = 0;
+  for (int i = 0; i < the_size_of_the_latin_alphabet; ++i)
   {
-    if (std::isupper(result[i]))
+    if (!is_letter_present[i])
     {
-      result[i] = std::tolower(result[i]);
+      if (j < the_size_of_the_latin_alphabet)
+      {
+        not_input_chars[j++] = static_cast<char>('a' + i);
+      }
     }
   }
 
-return result;
-
+  if (j < the_size_of_the_latin_alphabet)
+  {
+    not_input_chars[j] = '\0';
+  }
 }
 
 
