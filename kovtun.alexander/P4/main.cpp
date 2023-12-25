@@ -63,8 +63,15 @@ int main(int argc, char * argv[])
     return 2;
   }
 
+  std::ofstream output(argv[3]);
   // overflow
   size_t size = rows * cols;
+  if (size == 0)
+  {
+    output << 0 << "\n";
+    return 0;
+  }
+
   int * matrix = new int[size];
   size_t hasRead = readToArray(input, matrix, size, size);
   // size = 0 case
@@ -73,7 +80,8 @@ int main(int argc, char * argv[])
     std::cerr << "the matrix is invalid\n";
     return 2;
   }
-  std::cout << matrix[size - 1] << "\n";
+  output << matrix[size - 1] << "\n";
 
   input.close();
+  output.close();
 }
