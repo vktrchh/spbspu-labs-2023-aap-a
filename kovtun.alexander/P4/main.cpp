@@ -73,9 +73,9 @@ int main(int argc, char * argv[])
   }
 
   int * matrix = nullptr;
+  int arr[10000] = {0};
   if (num == 1)
   {
-      int arr[10000] = {0};
       matrix = arr;
   }
   else
