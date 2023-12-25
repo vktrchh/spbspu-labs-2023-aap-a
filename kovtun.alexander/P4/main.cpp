@@ -72,9 +72,18 @@ int main(int argc, char * argv[])
     return 0;
   }
 
-  int * matrix = new int[size]();
+  int * matrix = nullptr;
+  if (num == 1)
+  {
+      int arr[10000] = {0};
+      matrix = arr;
+  }
+  else
+  {
+    matrix = new int[size]();
+  }
+
   size_t hasRead = readToArray(input, matrix, size, size);
-  // size = 0 case
   if (hasRead < size)
   {
     std::cerr << "the matrix is invalid\n";
@@ -82,7 +91,10 @@ int main(int argc, char * argv[])
   }
   output << matrix[size - 1] << "\n";
 
-  delete [] matrix;
+  if (num == 2)
+  {
+    delete [] matrix;
+  }
 
   input.close();
   output.close();
