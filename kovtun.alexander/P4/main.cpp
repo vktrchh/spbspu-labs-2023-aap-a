@@ -1,4 +1,5 @@
 #include "read_to_array.h"
+#include "transform_matrix.h"
 
 #include <iostream>
 #include <fstream>
@@ -80,7 +81,12 @@ int main(int argc, char * argv[])
     return 2;
   }
 
-  output << matrix[size - 1] << "\n";
+  kovtun::transformMatrix(matrix, rows, cols);
+  output << rows << " " << cols << " ";
+  for (size_t i = 0; i < size; i++)
+  {
+    output << matrix[i] << " ";
+  }
 
   if (num == 2)
   {
