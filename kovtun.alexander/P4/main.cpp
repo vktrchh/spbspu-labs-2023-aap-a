@@ -1,5 +1,6 @@
 #include "read_to_array.h"
 #include "transform_matrix.h"
+#include "equal_nums_counter.h"
 
 #include <iostream>
 #include <fstream>
@@ -81,6 +82,8 @@ int main(int argc, char * argv[])
     return 2;
   }
 
+  output << kovtun::countEqualInColumns(matrix, rows, cols) << "\n";
+
   kovtun::transformMatrix(matrix, rows, cols);
   output << rows << " " << cols << " ";
   for (size_t i = 0; i < size; i++)
@@ -95,4 +98,6 @@ int main(int argc, char * argv[])
 
   input.close();
   output.close();
+
+  return 0;
 }
