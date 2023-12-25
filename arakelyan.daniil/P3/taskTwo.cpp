@@ -30,7 +30,7 @@ void arakelyanTaskTwo::identicalLetters(const char *inputArr, const char *defolt
     {
       unsigned int temp = answer[i];
       answer[i] = answer[i+1];
-      answer[i+1] = answer[i];
+      answer[i+1] = temp;
     }
   }
 }
