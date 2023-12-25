@@ -2,8 +2,8 @@
 #include <iostream>
 #include <cctype>
 
-void arakelyanTaskTwo::identicalLetters(const char *inputArr, const char *defoltArray, char *answer, const size_t alphabetWeight)
-{
+// void arakelyanTaskTwo::identicalLetters(const char *inputArr, const char *defoltArray, char *answer, const size_t alphabetWeight)
+// {
   // char alphabetArrayOne[26] = {1};
   // char alphabetArrayTwo[26] = {1};
   // size_t index = 0;
@@ -48,4 +48,4 @@ void arakelyanTaskTwo::identicalLetters(const char *inputArr, const char *defolt
   //   }
   // }
  // char tempArra[]
-}
+// }

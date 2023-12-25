@@ -10,7 +10,7 @@ int main()
   const size_t alphabetWeight = 26;
 
   char * inputString = nullptr;
-  const char * defoltStringForTaskTwo = "def ghk";
+  // const char * defoltStringForTaskTwo = "def ghk";
 
   try
   {
