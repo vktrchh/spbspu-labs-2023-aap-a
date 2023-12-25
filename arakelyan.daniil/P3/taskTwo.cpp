@@ -26,13 +26,11 @@ void arakelyanTaskTwo::identicalLetters(const char *inputArr, const char *defolt
   size_t lenght = 0;
   for (size_t i = 0; i < alphabetWeight; i++)
   {
-    if (answer[i] == 1)
+    if (answer[i] == 1 && (i + 1 < alphabetWeight))
     {
       int temp = answer[i];
       answer[i] = answer[i+1];
       answer[i+1] = temp;
-      lenght++;
     }
   }
-  answer[lenght] = '\0';
 }
