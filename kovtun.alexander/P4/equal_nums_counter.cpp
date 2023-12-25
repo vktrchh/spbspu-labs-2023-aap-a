@@ -12,7 +12,7 @@ size_t kovtun::countEqualInColumns(int * matrix, size_t rows, size_t cols)
 
   for (size_t i = 0; i < cols; i++)
   {
-    size_t previous = matrix[i];
+    int previous = matrix[i];
     for (size_t j = 1; j < rows; j++)
     {
       if (matrix[j * cols + i] == previous)
