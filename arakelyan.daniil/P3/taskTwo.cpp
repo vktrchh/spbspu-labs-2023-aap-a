@@ -28,7 +28,7 @@ void arakelyanTaskTwo::identicalLetters(const char *inputArr, const char *defolt
   {
     if (answer[i] == 1)
     {
-      unsigned int temp = answer[i];
+      int temp = answer[i];
       answer[i] = answer[i+1];
       answer[i+1] = temp;
       lenght++;
