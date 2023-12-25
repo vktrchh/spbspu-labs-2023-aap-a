@@ -7,10 +7,10 @@
 
 int main()
 {
-  // const size_t alphabetWeight = 26;
+  const size_t alphabetWeight = 26;
 
   char * inputString = nullptr;
-  // const char * defoltStringForTaskTwo = "def ghk";
+  const char * defoltStringForTaskTwo = "def ghk";
 
   try
   {
@@ -27,6 +27,7 @@ int main()
     return 1;
   }
 
+  using namespace arakelyanTaskOne;
   size_t answerTaskOne = arakelyanTaskOne::countOfdifferentLetters(inputString);
   // char * answerTaskTwo = nullptr;
   //
