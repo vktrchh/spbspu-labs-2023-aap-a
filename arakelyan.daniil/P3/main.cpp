@@ -44,8 +44,7 @@ int main()
 
   arakelyanTaskTwo::identicalLetters(inputString, defoltStringForTaskTwo, answerTaskTwo, alphabetWeight);
 
-  std::cout << answerTaskOne << "\n";
-  std::cout << answerTaskTwo << "\n";
+  std::cout << answerTaskOne << " " << answerTaskTwo << "\n";
 
 
   delete [] answerTaskTwo;
