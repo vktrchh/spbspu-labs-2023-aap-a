@@ -5,7 +5,7 @@
 void arakelyanTaskTwo::identicalLetters(const char *inputArr, const char *defoltArray, char *answer, const size_t alphabetWeight)
 {
   // char alphabetArrayOne[26] = {1};
-  // /* char alphabetArrayTwo[26] = {1}; */
+  // char alphabetArrayTwo[26] = {1};
   // size_t index = 0;
   //
   // for (size_t i = 0; inputArr[i] != '\0'; i++)
@@ -47,5 +47,5 @@ void arakelyanTaskTwo::identicalLetters(const char *inputArr, const char *defolt
   //     answer[i] = ' ';
   //   }
   // }
- // char tempArra[] 
+ // char tempArra[]
 }
