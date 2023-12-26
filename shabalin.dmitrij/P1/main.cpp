@@ -1,21 +1,24 @@
+#include "loc_max.hpp"
 #include <iostream>
 #include <stdexcept>
-#include "counter_of_numbers_equal_to_the_maximum.hpp"
 
 int main()
 {
-  int number = 0;
-  using namespace belokurskaya;
-  CounterOfNumbersEqualToTheMaximum counter;
+  long long number = 0;
+
+  using namespace shabalin;
+
+  LocMax counter;
+
   do
   {
     std::cin >> number;
     if (!std::cin)
     {
-      std::cerr << " Is not a sequence\n";
+      std::cerr << "is not sequence" << "\n";
       return 1;
     }
-    else if (number != 0)
+    if (number != 0)
     {
       try
       {

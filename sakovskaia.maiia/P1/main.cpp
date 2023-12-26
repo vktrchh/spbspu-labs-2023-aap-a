@@ -1,18 +1,18 @@
 #include <iostream>
 #include <stdexcept>
-#include "counter_of_numbers_equal_to_the_maximum.hpp"
+#include "sequence_counter.hpp"
 
 int main()
 {
   int number = 0;
-  using namespace belokurskaya;
-  CounterOfNumbersEqualToTheMaximum counter;
+  using namespace sakovskaia;
+  SequenceSignsCounter counter;
   do
   {
     std::cin >> number;
     if (!std::cin)
     {
-      std::cerr << " Is not a sequence\n";
+      std::cerr << "Is not a sequence\n";
       return 1;
     }
     else if (number != 0)
