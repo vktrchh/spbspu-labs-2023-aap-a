@@ -6,7 +6,7 @@
 namespace skopchenko
 {
 
-  void topClock(int * matrix , size_t dimension , size_t rows);
+  void topClock(int * matrix , size_t cols , size_t rows);
 
 }
 
