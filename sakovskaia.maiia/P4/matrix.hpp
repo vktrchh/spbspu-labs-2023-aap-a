@@ -6,15 +6,6 @@
 namespace sakovskaia
 {
   void inputMatrix(std::ifstream & input, int * a, int b);
-  struct counterclockWiseMatrixCounter
-  {
-    counterclockWiseMatrixCounter();
-    void operator()(int *, int, int);
-    int n;
-    int cnt;
-    int cntcolumns;
-    int circle;
-    int index;
-  };
+  void counterclockWiseMatrixCounter(int * a, int rows, int columns);
 }
 #endif

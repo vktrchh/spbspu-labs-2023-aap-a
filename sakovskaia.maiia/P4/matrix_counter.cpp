@@ -2,17 +2,13 @@
 #include "matrix_input_res.hpp"
 #include <math.h>
 
-sakovskaia::counterclockWiseMatrixCounter::counterclockWiseMatrixCounter():
-  n(0),
-  cnt(0),
-  cntcolumns(0),
-  circle(0),
-  index(0)
-{}
-
-void sakovskaia::counterclockWiseMatrixCounter::operator()(int * a, int rows, int columns)
+void sakovskaia::counterclockWiseMatrixCounter(int * a, int rows, int columns)
 {
-  cntcolumns = columns;
+  int n = 0;
+  int cnt = 0;
+  int circle = 0;
+  int index = 0;
+  int cntcolumns = columns;
   for (circle = 1; circle <= (ceil((std::min(rows, columns)) / 2)); ++circle)
   {
     for (index = cnt; index <= (rows * columns - columns * circle + cnt); index = index + rows)

@@ -7,7 +7,6 @@
 int main(int argc, char * argv[])
 {
   using namespace sakovskaia;
-  counterclockWiseMatrixCounter matrixcounter;
   answerCounter answercounter;
   if (argc != 4)
   {
@@ -44,6 +43,8 @@ int main(int argc, char * argv[])
 
   int * inputmatrix = nullptr;
   int * counterclockwisematrix = nullptr;
+  int * newdynamicmatrix = nullptr;
+  int * newdynamiccounterclockwisematrix = nullptr;
   int newinputmatrix[10000] = {};
   int newcounterclockwisematrix[10000] = {};
 
@@ -68,6 +69,8 @@ int main(int argc, char * argv[])
     {
       inputmatrix = new int[rows * columns];
       counterclockwisematrix = new int[rows * columns];
+      newdynamicmatrix = inputmatrix;
+      newdynamiccounterclockwisematrix = counterclockwisematrix;
     }
     catch (const std::logic_error & e)
     {
@@ -82,13 +85,13 @@ int main(int argc, char * argv[])
   try
   {
     inputMatrix(input, inputmatrix, rows * columns);
-    matrixcounter(counterclockwisematrix, rows, columns);
+    counterclockWiseMatrixCounter(counterclockwisematrix, rows, columns);
     answercounter(inputmatrix, counterclockwisematrix, rows * columns);
     printAnswer(output, counterclockwisematrix, rows * columns);
     if (num == 2)
     {
-      delete [] inputmatrix;
-      delete [] counterclockwisematrix;
+      delete [] newdynamicmatrix;
+      delete [] newdynamiccounterclockwisematrix;
     }
   }
   catch (const std::logic_error & e)
@@ -96,8 +99,8 @@ int main(int argc, char * argv[])
     std::cerr << e.what() << "\n";
     if (num == 2)
     {
-      delete [] inputmatrix;
-      delete [] counterclockwisematrix;
+      delete [] newdynamicmatrix;
+      delete [] newdynamiccounterclockwisematrix;
     }
     input.close();
     output.close();
