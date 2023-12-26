@@ -78,6 +78,10 @@ int main(int argc, char * argv[])
   size_t hasRead = kovtun::readToArray(input, matrix, size, size);
   if (hasRead < size)
   {
+    if (num == 2)
+    {
+      delete [] matrix;
+    }
     std::cerr << "the matrix is invalid\n";
     return 2;
   }
