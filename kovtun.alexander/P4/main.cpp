@@ -100,8 +100,5 @@ int main(int argc, char * argv[])
     delete [] matrix;
   }
 
-  input.close();
-  output.close();
-
   return 0;
 }
