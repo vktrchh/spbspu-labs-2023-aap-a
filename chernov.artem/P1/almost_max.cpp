@@ -12,6 +12,10 @@ void chernov::AlmostMax::operator()(int number)
   if (max_ == 0)
   {
     max_ = number;
+    if (number == 0)
+    {
+      throw std::invalid_argument("Mot enough values!\n");
+    }
   }
   else if (max_ > 0)
   {

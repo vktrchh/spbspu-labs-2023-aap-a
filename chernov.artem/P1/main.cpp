@@ -17,29 +17,19 @@ int main()
       std::cerr << "Is not a sequence\n";
       return 1;
     }
-    else if (number != 0)
+    try
     {
-      try
-      {
-        findSubMax(number);
-        findPifTriples(number);
-      }
-      catch (const std::exception & e)
-      {
-        std::cerr << "Error: " << e.what() << "\n";
-        return 2;
-      }
+      findSubMax(number);
+      findPifTriples(number);
+    }
+    catch (const std::exception & e)
+    {
+      std::cerr << "Error: " << e.what() << "\n";
+      return 2;
     }
   }
   while (number != 0);
+  std::cout << findSubMax() << "\n";
   std::cout << findPifTriples() << "\n";
-  if (findSubMax() == 0)
-  {
-    std::cerr << "Not enough numbers entered\n";
-  }
-  else
-  {
-    std::cout << findSubMax() << "\n";
-  }
   return 0;
 }
