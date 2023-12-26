@@ -5,7 +5,6 @@
 
 int main(int argc, char * argv[])
 {
-
   if (argc != 4)
   {
     std::cerr << "Invalid amount of arguments\n";
@@ -50,50 +49,69 @@ int main(int argc, char * argv[])
     std::cout << "Matrix dimensions: 0;0\n";
     return 0;
   }
-  else if (rows * cols == 0 || cols != rows)
+  if (rows * cols == 0 || cols != rows)
   {
     std::cerr << "Invalid Matrix dimensions\n";
     return 2;
   }
-
-  int * matrix = nullptr;
-
-  if (arrType == 1)
+  else if (rows == 0 && cols == 0)
   {
-    int fixedArray[10000] = {};
-    matrix = fixedArray;
+    std::cout << "Matrix dimensions: 0;0\n";
+    return 0;
   }
   else
   {
+    int *matrix = nullptr;
+
+    if (arrType == 1)
+    {
+      int fixedArray[10000] = {};
+      matrix = fixedArray;
+    } else
+    {
+      try
+      {
+        matrix = new int[cols * rows];
+      }
+      catch (const std::bad_alloc &e)
+      {
+        std::cerr << "Error while allocating dynamic array\n";
+        delete[] matrix;
+        return 2;
+      }
+    }
     try
     {
-      matrix = new int[cols * rows];
+      skopchenko::input(iFile, matrix, rows, cols);
     }
-    catch (const std::bad_alloc & e)
+    catch (std::runtime_error &e)
     {
-      std::cerr << "Error while allocating dynamic array\n";
-      delete [] matrix;
+      std::cerr << "Couldn't input matrix\n";
+      if (arrType == 2)
+      {
+        delete[] matrix;
+      }
       return 2;
     }
-  }
-  try
-  {
-    skopchenko::input(iFile , matrix , rows , cols);
-  }
-  catch (std::runtime_error & e)
-  {
-    std::cerr << "Couldn't input matrix\n";
-    if (arrType == 2)
+
+
+
+    try
     {
-      delete [] matrix;
+      skopchenko::topClock(matrix, rows, cols);
     }
-    return 2;
+    catch (std::logic_error &e)
+    {
+      std::cerr << "Error while executing first func";
+      if (arrType == 2)
+      {
+        delete[] matrix;
+      }
+      return 1;
+    }
+    for (int i = 0; i < rows * cols; i++)
+    {
+      std::cout << matrix[i] << " ";
+    }
   }
-
-  skopchenko::topClock(matrix , cols , rows);
-  for (int i = 0; i < rows * cols ; i++)
-  {
-    std::cout << matrix[i];
-  }
-
 }
