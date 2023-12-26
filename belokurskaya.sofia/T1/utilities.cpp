@@ -1,18 +1,28 @@
 #include "utilities.hpp"
 
-Rectangle readRectangle()
+Shape* readShape()
 {
-  float x1, y1, x2, y2;
-  std::cin >> x1 >> y1;
-  std::cin >> x2 >> y2;
+  std::string type;
+  std::cin >> type;
 
-  float width = x2 - x1;
-  float height = y2 - y1;
+  if (type == "RECTANGLE")
+  {
+    float x1, y1, x2, y2;
+    std::cin >> x1 >> y1 >> x2 >> y2;
 
-  float centerX = x1 + width / 2;
-  float centerY = y1 + height / 2;
+    float width = x2 - x1;
+    float height = y2 - y1;
 
-  return Rectangle({centerX, centerY}, width, height);
+    float center_x = x1 + width / 2;
+    float center_y = y1 + width / 2;
+
+    return new Rectangle({center_x, center_y}, width, height);
+  }
+  else
+  {
+    std::cerr << "Invalid type of shape\n";
+    return nullptr;
+  }
 }
 
 void printShapeInfo(const Shape & shape)

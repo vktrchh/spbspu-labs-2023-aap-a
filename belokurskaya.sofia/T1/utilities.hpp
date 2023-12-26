@@ -5,7 +5,7 @@
 
 #include "rectangle.hpp"
 
-Rectangle readRectangle();
+Shape* readShape();
 
 void printShapeInfo(const Shape & shape);
 
