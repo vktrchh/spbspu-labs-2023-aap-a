@@ -5,7 +5,7 @@
 
 namespace sakovskaia
 {
-  void inputMatrix(std::ifstream & input, int * a, int b);
-  void counterclockWiseMatrixCounter(int * a, int rows, int columns);
+  void inputMatrix(std::ifstream & input, int * a, size_t b);
+  void counterclockWiseMatrixCounter(int * a, size_t rows, size_t columns);
 }
 #endif

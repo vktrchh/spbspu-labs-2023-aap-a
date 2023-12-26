@@ -1,9 +1,9 @@
 #include "matrix.hpp"
 #include "matrix_input_res.hpp"
 
-void sakovskaia::inputMatrix(std::ifstream & input, int * a, int b)
+void sakovskaia::inputMatrix(std::ifstream & input, int * a, size_t b)
 {
-  for (int i = 0; i < b; i++)
+  for (size_t i = 0; i < b; i++)
   {
     if (!(input >> a[i]))
     {

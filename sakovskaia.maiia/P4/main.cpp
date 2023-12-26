@@ -31,7 +31,7 @@ int main(int argc, char * argv[])
   }
 
   std::ifstream input(argv[2]);
-  int rows = 0, columns = 0;
+  size_t rows = 0, columns = 0;
   input >> rows >> columns;
   if (!input)
   {
