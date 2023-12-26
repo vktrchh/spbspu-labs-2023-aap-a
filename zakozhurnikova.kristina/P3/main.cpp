@@ -18,7 +18,8 @@ int main()
     return 1;
   }
 
-  while (std::cin.get(c))
+  std::cin >> std::noskipws;
+  while (std::cin >> c)
   {
     if (counter == size - 1)
     {
@@ -83,7 +84,7 @@ int main()
     delete[] buff;
     return 1;
   }
-  zakozhurnikova::removeSpaces(tmp, buff, size);
+  zakozhurnikova::removeSpaces(tmp, buff);
   char *head = tmp;
   while (*head)
   {
