@@ -5,12 +5,12 @@
 
 namespace sakovskaia
 {
-  std::ofstream & printAnswer(std::ofstream & output, int * a, int b);
+  std::ofstream & printAnswer(std::ofstream & output, int * a, size_t b);
   struct answerCounter
   {
     answerCounter();
-    void operator()(int *, int *, int);
-    int index;
+    void operator()(int *, int *, size_t);
+    size_t index;
   };
 }
 #endif

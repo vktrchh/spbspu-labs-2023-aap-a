@@ -36,7 +36,7 @@ sakovskaia::answerCounter::answerCounter():
   index(0)
 {}
 
-void sakovskaia::answerCounter::operator()(int * inputmatrix, int * counterclockwisematrix, int size)
+void sakovskaia::answerCounter::operator()(int * inputmatrix, int * counterclockwisematrix, size_t size)
 {
   for (index = 0; index < size; ++index)
   {
