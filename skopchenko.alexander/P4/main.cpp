@@ -1,3 +1,4 @@
+#include "topclock.h"
 #include "input.h"
 #include <fstream>
 #include <iostream>
@@ -81,12 +82,18 @@ int main(int argc, char * argv[])
   }
   catch (std::runtime_error & e)
   {
-    std::cerr << "Couldn't input matrix";
+    std::cerr << "Couldn't input matrix\n";
     if (arrType == 2)
     {
       delete [] matrix;
     }
     return 2;
+  }
+
+  skopchenko::topClock(matrix , cols , rows);
+  for (int i = 0; i < rows * cols ; i++)
+  {
+    std::cout << matrix[i];
   }
 
 }
