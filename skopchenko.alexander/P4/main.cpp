@@ -44,11 +44,6 @@ int main(int argc, char * argv[])
     std::cerr << "Couldn't read file\n";
     return 2;
   }
-  if (rows == 0 && cols == 0)
-  {
-    std::cout << "Matrix dimensions: 0;0\n";
-    return 0;
-  }
   if (rows * cols == 0 || cols != rows)
   {
     std::cerr << "Invalid Matrix dimensions\n";
@@ -56,7 +51,8 @@ int main(int argc, char * argv[])
   }
   else if (rows == 0 && cols == 0)
   {
-    std::cout << "Matrix dimensions: 0;0\n";
+    //std::cout << "Matrix dimensions: 0;0\n";
+    //ADD TO OFSTREAM
     return 0;
   }
   else
@@ -110,7 +106,7 @@ int main(int argc, char * argv[])
       }
       return 1;
     }
-    for (int i = 0; i < rows * cols; i++)
+    for (size_t i = 0; i < rows * cols; i++)
     {
       std::cout << matrix[i] << " ";
     }

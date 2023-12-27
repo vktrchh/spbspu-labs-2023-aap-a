@@ -1,25 +1,25 @@
 #include "topclock.h"
 
-void skopchenko::topClock(int *matrix, size_t rows, size_t cols, size_t value, int top, size_t bottom, int left, size_t right)
+void skopchenko::topClock(int *matrix, size_t rows, size_t cols, size_t value, size_t top, size_t bottom, size_t left, size_t right)
 {
   if (top > bottom || left > right) {
     return;
   }
 
-  for (int i = left; i <= right; ++i) {
+  for (size_t i = left; i <= right; ++i) {
     matrix[top * cols + i] -= value;
     value++;
   }
   top++;
 
-  for (int i = top; i <= bottom; ++i) {
+  for (size_t i = top; i <= bottom; ++i) {
     matrix[i * cols + right] -= value;
     value++;
   }
   right--;
 
   if (top <= bottom) {
-    for (int i = right; i >= left; --i) {
+    for (size_t i = right; i >= left; --i) {
       matrix[bottom * cols + i] -= value;
       value++;
     }
@@ -27,7 +27,7 @@ void skopchenko::topClock(int *matrix, size_t rows, size_t cols, size_t value, i
   }
 
   if (left <= right) {
-    for (int i = bottom; i >= top; --i) {
+    for (size_t i = bottom; i + 1 >= top + 1; --i) {
       matrix[i * cols + left] -= value;
       value++;
     }
