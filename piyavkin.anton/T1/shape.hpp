@@ -9,7 +9,7 @@ public:
   virtual rectangle_t getFrameRect() = 0;
   virtual void move(point_t bias) = 0;
   virtual void move(const double dx, const double dy) = 0;
-  virtual void scale(double coefficient) = 0;
+  virtual void scale(double k) = 0;
 };
 
 #endif

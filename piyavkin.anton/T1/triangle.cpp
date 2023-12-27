@@ -10,7 +10,7 @@ Triangle::Triangle(point_t p1, point_t p2, point_t p3) :
   double ab = std::sqrt((a_.x - b_.x) * (a_.x - b_.x) + (a_.y - b_.y) * (a_.y - b_.y));
   double ac = std::sqrt((a_.x - c_.x) * (a_.x - c_.x) + (a_.y - c_.y) * (a_.y - c_.y));
   double bc = std::sqrt((b_.x - c_.x) * (b_.x - c_.x) + (b_.y - c_.y) * (b_.y - c_.y));
-  if (ab <= ac + bc || bc <= ab + ac || ac <= ab + bc)
+  if (ab > ac + bc || bc > ab + ac || ac > ab + bc)
   {
     throw std::logic_error("It is not triangle");
   }
@@ -27,7 +27,8 @@ rectangle_t Triangle::getFrameRect()
 {
   double heigth = (std::max(std::max(a_.y, b_.y), c_.y) - std::min(std::min(a_.y, b_.y), c_.y));
   double width = (std::max(std::max(a_.x, b_.x), c_.x) - std::min(std::min(a_.x, b_.x), c_.x));
-  return { width, heigth, pos_ };
+  point_t pos = { std::min(std::min(a_.x, b_.x), c_.x) + width_ / 2, std::min(std::min(a_.y, b_.y), c_.y) + heigth_ / 2 };
+  return { width, heigth, pos };
 }
 void Triangle::move(point_t bias)
 {
@@ -46,10 +47,10 @@ void Triangle::move(double dx, double dy)
 }
 void Triangle::scale(double k)
 {
-  a_.x = k * (pos_.x - a_.x);
-  a_.y = k * (pos_.y - a_.y);
-  b_.x = k * (pos_.x - b_.x);
-  b_.y = k * (pos_.y - b_.y);
-  c_.x = k * (pos_.x - c_.x);
-  c_.y = k * (pos_.y - c_.y);
+  a_.x = k * (a_.x - pos_.x) + pos_.x;
+  a_.y = k * (a_.y - pos_.y) + pos_.y;
+  b_.x = k * (b_.x - pos_.x) + pos_.x;
+  b_.y = k * (b_.y - pos_.y) + pos_.y;
+  c_.x = k * (c_.x - pos_.x) + pos_.x;
+  c_.y = k * (c_.y - pos_.y) + pos_.y;
 }
