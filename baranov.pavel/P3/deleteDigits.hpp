@@ -4,7 +4,7 @@
 
 namespace baranov
 {
-  void deleteDigits(const char * string, const size_t size, char * result);
+  void deleteDigits(const char * string, char * result);
 }
 
 #endif

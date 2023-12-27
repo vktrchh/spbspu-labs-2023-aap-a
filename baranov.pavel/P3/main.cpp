@@ -32,7 +32,7 @@ int main()
     std::cerr << "Error: " << e.what() << '\n';
     return 1;
   }
-  baranov::deleteDigits(string, size, result);
+  baranov::deleteDigits(string, result);
   std::cout << result << '\n';
 
   delete[] string;
