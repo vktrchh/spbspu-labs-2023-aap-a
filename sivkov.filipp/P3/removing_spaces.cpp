@@ -10,7 +10,7 @@ char* sivkov::deleteSpace(char* string)
   char* arrayWithOutSpace = new char[k+1];
   int isSpace = 0;
   int indexArr = 0;
-  for (int j = 0; j < k; j++)
+  for (size_t j = 0; j < k; j++)
   {
     if (std::isspace(string[j]))
     {
@@ -28,7 +28,7 @@ char* sivkov::deleteSpace(char* string)
   }
   if (indexArr > 0 && arrayWithOutSpace[0] == ' ')
   {
-    for (int j = 0; j < indexArr - 1; j++)
+    for (size_t j = 0; j < indexArr - 1; j++)
     {
       arrayWithOutSpace[j] = arrayWithOutSpace[j + 1];
     }
