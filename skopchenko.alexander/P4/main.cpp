@@ -94,11 +94,12 @@ int main(int argc, char * argv[])
       return 2;
     }
 
-
-
     try
     {
-      skopchenko::topClock(matrix, rows, cols);
+      size_t counter = 1;
+      int top = 0;
+      int left = 0;
+      skopchenko::topClock(matrix, rows , cols , counter , top , rows - 1 , left , cols - 1);
     }
     catch (std::logic_error &e)
     {
@@ -113,5 +114,6 @@ int main(int argc, char * argv[])
     {
       std::cout << matrix[i] << " ";
     }
+    std::cout << "\n";
   }
 }
