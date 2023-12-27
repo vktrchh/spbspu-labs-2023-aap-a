@@ -3,10 +3,13 @@
 char * baranov::expandString(const char * string, const size_t newSize)
 {
   char * result = new char[newSize]{0};
-  for (size_t i = 0; string[i] != 0; ++i)
+  size_t i = 0;
+  while (string[i] != '\0')
   {
     result[i] = string[i];
+    ++i;
   }
+  result[i] = '\0';
   return result;
 }
 
