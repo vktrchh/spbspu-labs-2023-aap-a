@@ -5,6 +5,7 @@
 
 int main()
 {
+  using namespace sivkov;
   size_t size = 20;
   char* string = addString(size);
   if (!string || string == nullptr)

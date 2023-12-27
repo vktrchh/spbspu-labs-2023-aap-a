@@ -1,6 +1,6 @@
 #include "removing_spaces.hpp"
 #include <iostream>
-char* deleteSpace(char* string)
+char* sivkov::deleteSpace(char* string)
 {
   size_t k = 0;
   for (size_t i = 0; string[i] != '\0'; i++)

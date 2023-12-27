@@ -1,5 +1,7 @@
 #ifndef COPYNUM_HPP
 #define COPYNUM_HPP
-#include <cstddef>
-char* copyNum(char* string1, char* string2);
+namespace sivkov
+{
+  char* copyNum(char* string1, char* string2);
+}
 #endif

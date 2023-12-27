@@ -1,7 +1,7 @@
-#include "copyNum.hpp"
+#include "inputString.hpp"
 #include <iostream>
 
-char* addString(size_t& size)
+char* sivkov::addString(size_t& size)
 {
   char c = 0;
   size_t k = 0;
