@@ -6,7 +6,15 @@ Triangle::Triangle(point_t p1, point_t p2, point_t p3) :
   a_(p1),
   b_(p2),
   c_(p3)
-{}
+{
+  double ab = std::sqrt((a_.x - b_.x) * (a_.x - b_.x) + (a_.y - b_.y) * (a_.y - b_.y));
+  double ac = std::sqrt((a_.x - c_.x) * (a_.x - c_.x) + (a_.y - c_.y) * (a_.y - c_.y));
+  double bc = std::sqrt((b_.x - c_.x) * (b_.x - c_.x) + (b_.y - c_.y) * (b_.y - c_.y));
+  if (ab <= ac + bc || bc <= ab + ac || ac <= ab + bc)
+  {
+    throw std::logic_error("It is not triangle");
+  }
+}
 double Triangle::getArea()
 {
   double ab = std::sqrt((a_.x - b_.x) * (a_.x - b_.x) + (a_.y - b_.y) * (a_.y - b_.y));

@@ -4,7 +4,12 @@
 Rectangle::Rectangle(point_t p1, point_t p2):
   p1_(p1),
   p2_(p2)
-{}
+{
+  if (p1_.x == p2_.x && p1_.y == p2_.y)
+  {
+    throw std::logic_error("It is not rectangle");
+  }
+}
 double Rectangle::getArea()
 {
   return std::abs((p1_.x - p2_.x) * (p1_.y - p2_.y));
