@@ -33,7 +33,7 @@ int main()
 
   try
   {
-    answerTaskTwo = new char[26];
+    answerTaskTwo = new char[alphabetWeight];
   }
   catch (const std::bad_alloc & e)
   {
@@ -42,7 +42,8 @@ int main()
     return 1;
   }
 
-  arakelyanTaskTwo::identicalLetters(inputString, defoltStringForTaskTwo, answerTaskTwo, alphabetWeight);
+  using namespace arakelyanTaskTwo;
+  identicalLetters(inputString, defoltStringForTaskTwo, answerTaskTwo, alphabetWeight);
 
   std::cout << answerTaskOne << " " << answerTaskTwo << "\n";
 
