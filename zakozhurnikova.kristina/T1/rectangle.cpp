@@ -1,0 +1,42 @@
+#include "rectangle.hpp"
+#include <stdexcept>
+
+double Rectangle::getArea() const
+{
+  double width = upRight_.getX() - downLeft_.getX();
+  double height = upRight_.getY() - downLeft_.getY();
+  return width * height;
+}
+
+rectangle_t Rectangle::getFrameRect() const
+{
+  double width = upRight_.getX() - downLeft_.getX();
+  double height = upRight_.getY() - downLeft_.getY();
+  point_t pos(width / 2, height / 2);
+  return rectangle_t(width, height, pos);
+}
+
+void Rectangle::move(const point_t& p)
+{
+  point_t shift((-(downLeft_ + upRight_) - p) / 2.0);
+  downLeft_ += shift;
+  upRight_ += shift;
+}
+
+void Rectangle::move(double dx, double dy)
+{
+  point_t shift(dx, dy);
+  downLeft_ += shift;
+  upRight_ += shift;
+}
+
+void Rectangle::scale(double k)
+{
+  if (k <= 0)
+  {
+    throw std::invalid_argument("Scale coefficient should be a positive real number.");
+  }
+  point_t pos = point_t(getFrameRect().getCenter());
+  downLeft_ = downLeft_.scaleShift(k, pos);
+  upRight_ = upRight_.scaleShift(k, pos);
+}
