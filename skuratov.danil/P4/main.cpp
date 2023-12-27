@@ -48,21 +48,21 @@ int main(int argc, char* argv[])
       readArray(in, staticArray, rows, cols);
       int res = countSaddlePoints(staticArray, rows, cols);
       out << res << '\n';
-      if (!out << res)
+      if (!(out << res))
       {
         std::cerr << "Error output file" << '\n';
         return 2;
       }
       res = findMinSumAlongSecondaryDiagonal(staticArray, rows, cols);
       out << res << '\n';
-      if (!out << res)
+      if (!(out << res))
       {
         std::cerr << "Error output file" << '\n';
         return 2;
       }
       res = findLongestSeriesRow(staticArray, rows, cols);
       out << res << '\n';
-      if (!out << res)
+      if (!(out << res))
       {
         std::cerr << "Error output file" << '\n';
         return 2;
@@ -75,7 +75,7 @@ int main(int argc, char* argv[])
     readArray(in, dynamicArray, rows, cols);
     int res = countSaddlePoints(dynamicArray, rows, cols);
     out << res << '\n';
-    if (!out << res)
+    if (!(out << res))
     {
       std::cerr << "Error output file" << '\n';
       delete[] dynamicArray;
@@ -83,7 +83,7 @@ int main(int argc, char* argv[])
     }
     res = findMinSumAlongSecondaryDiagonal(dynamicArray, rows, cols);
     out << res << '\n';
-    if (!out << res)
+    if (!(out << res))
     {
       std::cerr << "Error output file" << '\n';
       delete[] dynamicArray;
@@ -91,7 +91,7 @@ int main(int argc, char* argv[])
     }
     res = findLongestSeriesRow(dynamicArray, rows, cols);
     out << res << '\n';
-    if (!out << res)
+    if (!(out << res))
     {
       std::cerr << "Error output file" << '\n';
       delete[] dynamicArray;
