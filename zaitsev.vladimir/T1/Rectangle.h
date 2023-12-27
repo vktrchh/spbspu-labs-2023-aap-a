@@ -9,7 +9,6 @@ namespace zaitsev
   {
   public:
     Rectangle(const point_t& left_ñorner, const point_t& right_ñorner);
-    Rectangle(const Rectangle& rect);
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t& dest_pos);

@@ -1,5 +1,5 @@
 #ifndef BASE_TYPES_H
-#define BASE_TYPE_H
+#define BASE_TYPES_H
 
 namespace zaitsev
 {
