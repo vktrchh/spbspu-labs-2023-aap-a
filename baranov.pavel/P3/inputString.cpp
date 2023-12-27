@@ -1,17 +1,15 @@
 #include "inputString.hpp"
 
-char * baranov::expandString(const char * string, const size_t size, const size_t newSize)
+char * baranov::expandString(const char * string, const size_t newSize)
 {
   char * result = new char[newSize];
-  for (size_t i = 0; i < size; ++i)
+  size_t i = 0;
+  while (string[i])
   {
     result[i] = string[i];
+    ++i;
   }
-  for (size_t i = size; i < newSize; ++i)
-  {
-    result[i] = 0;
-  }
-  delete[] string;
+  result[i] = 0;
   return result;
 }
 
@@ -29,7 +27,9 @@ char * baranov::inputString(std::istream & input, size_t & stringSize)
     {
       try
       {
-        string = expandString(string, stringSize, stringSize + bufferSize);
+        char * expandedString = expandString(string, stringSize + bufferSize);
+        delete[] string;
+        string = expandedString;
       }
       catch (const std::bad_alloc & e)
       {
