@@ -8,8 +8,8 @@ char* sivkov::deleteSpace(char* string)
     k++;
   }
   char* arrayWithOutSpace = new char[k+1];
-  int isSpace = 0;
-  int indexArr = 0;
+  size_t isSpace = 0;
+  size_t indexArr = 0;
   for (size_t j = 0; j < k; j++)
   {
     if (std::isspace(string[j]))
