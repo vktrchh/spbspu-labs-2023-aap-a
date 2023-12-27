@@ -4,12 +4,12 @@ char * baranov::expandString(const char * string, const size_t newSize)
 {
   char * result = new char[newSize];
   size_t i = 0;
-  while (string[i])
+  while (string[i] != '\0')
   {
     result[i] = string[i];
     ++i;
   }
-  result[i] = 0;
+  result[i] = '\0';
   return result;
 }
 
@@ -18,7 +18,7 @@ char * baranov::inputString(std::istream & input, size_t & stringSize)
   const size_t bufferSize = 20;
   stringSize = bufferSize;
   char * string = new char[bufferSize]{0};
-  char c;
+  char c = 0;
   size_t i = 0;
   input >> std::noskipws;
   while ((input >> c))
