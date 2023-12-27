@@ -15,6 +15,7 @@ struct point_t
     x_(p.x_),
     y_(p.y_)
   {}
+  point_t(point_t&& p) = default;
   ~point_t()
   {}
   double getX() const
@@ -32,6 +33,7 @@ struct point_t
   point_t operator*(double k) const;
   point_t operator/(double k) const;
   point_t operator-(const point_t& p) const;
+  point_t operator-();
 
   private:
     double x_;
@@ -51,12 +53,15 @@ struct rectangle_t
     height_(rec.height_),
     pos_(rec.pos_)
   {}
+  rectangle_t(rectangle_t&& rec) = default;
   ~rectangle_t()
   {}
   void showCoordinates() const;
+  point_t getCenter() const;
 private:
   double width_;
   double height_;
   point_t pos_;
 };
+
 #endif

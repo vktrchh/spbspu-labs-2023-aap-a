@@ -44,6 +44,21 @@ point_t point_t::operator/(double k) const
   return point_t(x_ / k, y_ / k);
 }
 
+point_t point_t::scaleShift(double k, const point_t p)
+{
+  double shiftX = p.getX() + k * (getX() - p.getX());
+  double shiftY = p.getY() + k * (getY() - p.getY());
+  return point_t(shiftX, shiftY);
+}
+
+point_t& point_t::operator-()
+{
+  x_ *= -1;
+  y_ *= -1;
+  return *this;
+}
+
+
 void rectangle_t::showCoordinates() const
 {
   point_t downLeft(width_ - 2 * pos_.getX(),
@@ -51,4 +66,9 @@ void rectangle_t::showCoordinates() const
   point_t upRight(width_, height_);
   std::cout << downLeft.getX() << ' ' << downLeft.getY() <<
     ' ' << upRight.getX() << ' ' << upRight.getY() << '\n';
+}
+
+point_t rectangle_t::getCenter() const
+{
+  return pos_;
 }
