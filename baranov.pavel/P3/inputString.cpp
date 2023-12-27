@@ -4,7 +4,7 @@ char * baranov::expandString(const char * string, const size_t newSize)
 {
   char * result = new char[newSize]{0};
   size_t i = 0;
-  while (string[i] != 0)
+  while (i < newSize && string[i])
   {
     result[i] = string[i];
     ++i;
@@ -16,14 +16,13 @@ char * baranov::expandString(const char * string, const size_t newSize)
 char * baranov::inputString(std::istream & input, size_t & stringSize)
 {
   const size_t bufferSize = 20;
-  stringSize = bufferSize;
   char * string = new char[bufferSize]{0};
   char c = 0;
   size_t i = 0;
   input >> std::noskipws;
   while ((input >> c))
   {
-    if (i >= stringSize)
+    if (i == stringSize)
     {
       try
       {
@@ -34,18 +33,13 @@ char * baranov::inputString(std::istream & input, size_t & stringSize)
       catch (const std::bad_alloc & e)
       {
         delete[] string;
-        throw e;
+        throw;
       }
       stringSize += bufferSize;
     }
     string[i++] = c;
     if (c == '\n')
     {
-      if (i == 1)
-      {
-        delete[] string;
-        throw std::logic_error("Too short string");
-      }
       string[i - 1] = 0;
       break;
     }
@@ -53,7 +47,7 @@ char * baranov::inputString(std::istream & input, size_t & stringSize)
   if (string[0] == 0)
   {
     delete[] string;
-    throw std::logic_error("Can not read string\n");
+    throw std::logic_error("Can not read string");
   }
   input >> std::skipws;
   return string;

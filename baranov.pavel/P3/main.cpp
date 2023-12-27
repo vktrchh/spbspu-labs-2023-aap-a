@@ -5,7 +5,7 @@
 int main()
 {
   char * string = nullptr;
-  size_t size = 0;
+  size_t size = 20;
   try
   {
     string = baranov::inputString(std::cin, size);
