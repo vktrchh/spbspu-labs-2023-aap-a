@@ -19,7 +19,7 @@ void skopchenko::topClock(int *matrix, size_t rows, size_t cols, size_t value, s
   right--;
 
   if (top <= bottom) {
-    for (size_t i = right; i >= left; --i) {
+    for (size_t i = right; i + 1 >= left + 1; --i) {
       matrix[bottom * cols + i] -= value;
       value++;
     }

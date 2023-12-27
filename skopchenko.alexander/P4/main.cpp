@@ -109,6 +109,10 @@ int main(int argc, char * argv[])
     for (size_t i = 0; i < rows * cols; i++)
     {
       std::cout << matrix[i] << " ";
+      if (i > 0 && (i + 1) % 5 == 0)
+      {
+        std::cout << "\n";
+      }
     }
     std::cout << "\n";
   }
