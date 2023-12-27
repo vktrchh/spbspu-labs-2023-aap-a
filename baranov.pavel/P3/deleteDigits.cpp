@@ -5,7 +5,7 @@ void baranov::deleteDigits(const char * string, char * result)
 {
   size_t i = 0;
   size_t j = 0;
-  while(string[i] != '0')
+  while(string[i])
   {
     if (!std::isdigit(string[i]))
     {
