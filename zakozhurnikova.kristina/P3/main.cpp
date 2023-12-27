@@ -1,101 +1,56 @@
 #include <iostream>
 #include "removeSpaces.h"
+#include "stringOperations.h"
 
 int main()
 {
-  size_t size = 20;
   char *buff = nullptr;
-  char *string = nullptr;
-  char c = '\0';
-  size_t counter = 0;
+  char *dest = nullptr;
   try
   {
+    size_t size = 20;
     buff = new char[size]{'\0'};
-  }
-  catch (const std::exception &e)
-  {
-    std::cerr << e.what() << '\n';
-    return 1;
-  }
-
-  std::cin >> std::noskipws;
-  while (std::cin >> c)
-  {
-    if (counter == size - 1)
+    size_t counter = 0;
+    char c = '\0';
+    std::cin >> std::noskipws;
+    while (std::cin >> c)
     {
-      try
+      if (counter == size - 1)
       {
-        string = new char[size]{'\0'};
+        size *= 2;
+        char *string = new char[size]{'\0'};
+        buff = zakozhurnikova::getExtendedString(string, buff);
       }
-      catch (const std::exception &e)
-      {
-        std::cerr << e.what() << '\n';
-        delete[] buff;
-        buff = nullptr;
-        return 1;
-      }
-      for (size_t i = 0; i < size; i++)
-      {
-        string[i] = buff[i];
-      }
+      buff[counter] = c;
+      ++counter;
 
-      size *= 2;
+      if (c == '\n')
+      {
+        break;
+      }
+    }
+    if (buff[0] == '\n' || buff[0] == '\0')
+    {
+      std::cerr << "Empty string\n";
       delete[] buff;
-      buff = nullptr;
-      try
-      {
-        buff = new char[size]{'\0'};
-      }
-      catch (const std::exception &e)
-      {
-        std::cerr << e.what() << '\n';
-        delete[] string;
-        string = nullptr;
-      }
-      for (size_t i = 0; i < size / 2; i++)
-      {
-        buff[i] = string[i];
-      }
-      delete[] string;
-      string = nullptr;
+      return 1;
     }
-    buff[counter] = c;
-    counter++;
-    if (c == '\n')
-    {
-      break;
-    }
+
+    dest = new char[size]{'\0'};
+
+
+    zakozhurnikova::removeSpaces(dest, buff);
+    std::cout << dest;
+    std::cout << '\n';
   }
-  if (buff[0] == '\n' || !buff[0])
-  {
-    std::cerr << "Empty string\n";
-    delete[] buff;
-    return 1;
-  }
-  char *tmp = nullptr;
-  try
-  {
-    tmp = new char[size]{'\0'};
-  }
-  catch (const std::exception &e)
+  catch (const std::bad_alloc &e)
   {
     std::cerr << e.what() << '\n';
-    delete[] string;
+    delete[] dest;
     delete[] buff;
     return 1;
   }
-  zakozhurnikova::removeSpaces(tmp, buff);
-  char *head = tmp;
-  while (*head)
-  {
-    std::cout << *head;
-    head++;
-  }
-  std::cout << '\n';
-  head = nullptr;
-  delete[] tmp;
+  delete[] dest;
   delete[] buff;
-  buff = nullptr;
-  tmp = nullptr;
   return 0;
 }
