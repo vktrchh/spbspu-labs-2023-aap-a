@@ -2,9 +2,9 @@
 
 char * baranov::expandString(const char * string, const size_t newSize)
 {
-  char * result = new char[newSize];
+  char * result = new char[newSize]{0};
   size_t i = 0;
-  while (*string && string[i] != 0)
+  while (string[i] != 0)
   {
     result[i] = string[i];
     ++i;
