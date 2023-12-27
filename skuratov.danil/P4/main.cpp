@@ -106,6 +106,7 @@ int main(int argc, char* argv[])
       delete[] dynamicArray;
       return 2;
     }
+    delete[] dynamicArray;
   }
   return 0;
 }
