@@ -28,8 +28,8 @@ void Rectangle::move(double dx, double dy)
 }
 void Rectangle::scale(double k)
 {
-  p1_.x = k * (std::abs(pos_.x) - p1_.x);
-  p2_.x = k * (std::abs(pos_.x) - p2_.x);
-  p1_.y = k * (std::abs(pos_.y) - p1_.y);
-  p2_.y = k * (std::abs(pos_.y) - p2_.y);
+  p1_.x = k * (pos_.x - p1_.x);
+  p2_.x = k * (pos_.x - p2_.x);
+  p1_.y = k * (pos_.y - p1_.y);
+  p2_.y = k * (pos_.y - p2_.y);
 }
