@@ -13,8 +13,8 @@ int main(int argc, char* argv[])
 {
   using namespace skuratov;
   const size_t MAX_SIZE = 10000;
-  size_t rows = 0;
-  size_t cols = 0;
+  size_t rows = 1;
+  size_t cols = 1;
   if (argc < 4)
   {
     std::cerr << "Not enough parameters" << '\n';
@@ -40,6 +40,15 @@ int main(int argc, char* argv[])
   }
   in >> rows >> cols;
   size_t sizeOfArray = rows * cols;
+  if (rows == 0 && cols == 0)
+  {
+    return 0;
+  }
+  if (in.eof())
+  {
+    std::cerr << "Error data!" << '\n';
+    return 2;
+  }
   if ((sizeOfArray < MAX_SIZE) && (rows != 0 || cols != 0))
   {
     if (taskNumber == 1)
