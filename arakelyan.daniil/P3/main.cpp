@@ -7,10 +7,10 @@
 
 int main()
 {
-  const size_t alphabetWeight = 26;
+  const size_t alphabetWeight = 27;
 
   char * inputString = nullptr;
-  const char * defoltStringForTaskTwo = "def ghk";
+  const char * defaultStringForTaskTwo = "def ghk";
 
   try
   {
@@ -43,7 +43,7 @@ int main()
   }
 
   using namespace arakelyanTaskTwo;
-  identicalLetters(inputString, defoltStringForTaskTwo, answerTaskTwo, alphabetWeight);
+  identicalLetters(inputString, defaultStringForTaskTwo, answerTaskTwo, alphabetWeight);
 
   std::cout << answerTaskOne << " " << answerTaskTwo << "\n";
 
