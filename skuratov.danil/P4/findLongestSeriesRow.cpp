@@ -1,6 +1,6 @@
 #include "findLongestSeriesRow.h"
 
-int findLongestSeriesRow(int* array, size_t rows, size_t cols)
+int skuratov::findLongestSeriesRow(int* array, size_t rows, size_t cols)
 {
   int maxSeriesLength = 1;
   int currentSeriesLength = 1;

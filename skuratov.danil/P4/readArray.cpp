@@ -2,7 +2,7 @@
 #include <fstream>
 #include <stdexcept>
 
-int* readArray(std::ifstream& in, int array[], const size_t& rows, const size_t& cols)
+int* skuratov::readArray(std::ifstream& in, int array[], const size_t& rows, const size_t& cols)
 {
   for (size_t i = 0; i < rows; ++i)
   {

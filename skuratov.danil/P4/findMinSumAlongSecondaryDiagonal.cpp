@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <stdexcept>
 
-int findMinSumAlongSecondaryDiagonal(int* array, size_t rows, size_t cols)
+int skuratov::findMinSumAlongSecondaryDiagonal(int* array, size_t rows, size_t cols)
 {
   if (rows != cols)
   {

@@ -3,6 +3,8 @@
 
 #include <cstddef>
 
-int findLongestSeriesRow(int* array, size_t rows, size_t cols);
-
+namespace skuratov
+{
+  int findLongestSeriesRow(int* array, size_t rows, size_t cols);
+}
 #endif

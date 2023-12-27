@@ -5,14 +5,13 @@
 #include <stdexcept>
 
 #include "readArray.h"
-#include "readSize.h"
-#include "writeResult.h"
 #include "countSaddlePoints.h"
 #include "findMinSumAlongSecondaryDiagonal.h"
 #include "findLongestSeriesRow.h"
 
 int main(int argc, char* argv[])
 {
+  using namespace skuratov;
   const size_t MAX_SIZE = 10000;
   size_t rows = 0;
   size_t cols = 0;
@@ -26,89 +25,78 @@ int main(int argc, char* argv[])
     std::cerr << "Too many arguments" << '\n';
     return 1;
   }
-  const char* inputFileName = argv[2];
-  const char* outputFileName = argv[3];
   int taskNumber = std::atoi(argv[1]);
-  std::ifstream in(inputFileName);
-  std::ofstream out(outputFileName);
-  try
+  std::ifstream in(argv[2]);
+  std::ofstream out(argv[3]);
+  if (!in.is_open())
   {
-    readSize(in, rows, cols);
-    size_t sizeOfArray = rows * cols;
-    if ((sizeOfArray < MAX_SIZE) && (rows != 0 || cols != 0))
+    std::cerr << "Cannot open file!\n";
+    return 2;
+  }
+  if (!in)
+  {
+    std::cerr << "Cannot read numbers!\n";
+    return 2;
+  }
+  in >> rows >> cols;
+  size_t sizeOfArray = rows * cols;
+  if ((sizeOfArray < MAX_SIZE) && (rows != 0 || cols != 0))
+  {
+    if (taskNumber == 1)
     {
-      int* dynamicArray = new int[sizeOfArray];
       int staticArray[MAX_SIZE] = {};
-      if (taskNumber == 1)
+      readArray(in, staticArray, rows, cols);
+      int res = countSaddlePoints(staticArray, rows, cols);
+      out << res << '\n';
+      if (!out << res)
       {
-        try
-        {
-          if (rows * cols == 0)
-          {
-            throw std::runtime_error("Not enough data for task 1");
-          }
-          readArray(in, staticArray, rows, cols);
-          int res = countSaddlePoints(staticArray, rows, cols);
-          writeResult(out, res);
-        }
-        catch (const std::runtime_error& error)
-        {
-          std::cerr << error.what() << '\n';
-          delete[] dynamicArray;
-          return 1;
-        }
+        std::cerr << "Error output file" << '\n';
+        return 2;
       }
-      else if (taskNumber == 2)
+      res = findMinSumAlongSecondaryDiagonal(staticArray, rows, cols);
+      out << res << '\n';
+      if (!out << res)
       {
-        try
-        {
-          if (sizeOfArray == 0)
-          {
-            throw std::runtime_error("Not enough data for task 2");
-          }
-          readArray(in, dynamicArray, rows, cols);
-          int res = findMinSumAlongSecondaryDiagonal(dynamicArray, rows, cols);
-          writeResult(out, res);
-        }
-        catch (const std::runtime_error& error)
-        {
-          std::cerr << error.what() << '\n';
-          delete[] dynamicArray;
-          return 1;
-        }
+        std::cerr << "Error output file" << '\n';
+        return 2;
       }
-      else if (taskNumber == 3)
+      res = findLongestSeriesRow(staticArray, rows, cols);
+      out << res << '\n';
+      if (!out << res)
       {
-        try
-        {
-          if (sizeOfArray == 0)
-          {
-            throw std::runtime_error("Not enough data for task 2");
-          }
-          readArray(in, dynamicArray, rows, cols);
-          int res = findLongestSeriesRow(dynamicArray, rows, cols);
-          writeResult(out, res);
-        }
-        catch (const std::runtime_error& error)
-        {
-          std::cerr << error.what() << '\n';
-          delete[] dynamicArray;
-          return 1;
-        }
+        std::cerr << "Error output file" << '\n';
+        return 2;
       }
-      else
-      {
-        std::cerr << "Invalid first parameter" << '\n';
-        delete[] dynamicArray;
-        return 1;
-      }
-      delete[] dynamicArray;
     }
   }
-  catch (const std::runtime_error& error)
+  if (taskNumber == 2)
   {
-    std::cerr << error.what() << '\n';
-    return 2;
+    int* dynamicArray = new int[sizeOfArray];
+    readArray(in, dynamicArray, rows, cols);
+    int res = countSaddlePoints(dynamicArray, rows, cols);
+    out << res << '\n';
+    if (!out << res)
+    {
+      std::cerr << "Error output file" << '\n';
+      delete[] dynamicArray;
+      return 2;
+    }
+    res = findMinSumAlongSecondaryDiagonal(dynamicArray, rows, cols);
+    out << res << '\n';
+    if (!out << res)
+    {
+      std::cerr << "Error output file" << '\n';
+      delete[] dynamicArray;
+      return 2;
+    }
+    res = findLongestSeriesRow(dynamicArray, rows, cols);
+    out << res << '\n';
+    if (!out << res)
+    {
+      std::cerr << "Error output file" << '\n';
+      delete[] dynamicArray;
+      return 2;
+    }
   }
   return 0;
 }

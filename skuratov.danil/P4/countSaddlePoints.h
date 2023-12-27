@@ -3,5 +3,8 @@
 
 #include <cstddef>
 
-int countSaddlePoints(int* array, size_t rows, size_t cols);
+namespace skuratov
+{
+  int countSaddlePoints(int* array, size_t rows, size_t cols);
+}
 #endif
