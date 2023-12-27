@@ -11,12 +11,10 @@ int main()
   if (!string || string == nullptr)
   {
     std::cerr << "Error with array\n";
+    delete[] string;
     return 1;
   }
-  if (string == nullptr)
-  {
-    return 1;
-  }
+
   string = deleteSpace(string);
   std::cout << string << "\n";
   delete[] string;
@@ -25,18 +23,24 @@ int main()
   if (!string1 || string1 == nullptr)
   {
     std::cerr << "Error with array\n";
+    delete[] string1;
     return 1;
   }
   char* string2 = addString(size);
   if (!string2 || string2 == nullptr)
   {
     std::cerr << "Error with array\n";
+    delete[] string1;
+    delete[] string2;
     return 1;
   }
   string = copyNum(string1, string2);
   if (string == nullptr)
   {
     std::cerr << "Error with array\n";
+    delete[] string;
+    delete[] string1;
+    delete[] string2;
     return 1;
   }
   std::cout << string << "\n";
