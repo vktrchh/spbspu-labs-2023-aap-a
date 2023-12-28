@@ -4,14 +4,13 @@
 #include "triangle.hpp"
 #include "parallelogram.hpp"
 
-Shape** inputShape(std::istream& in)
+Shape ** inputShape(std::istream& in, size_t & shapeCount)
 {
   std::string name = "";
   double* parameters = nullptr;
   std::string shapeNames[3] = { "RECTANGLE", "TRIANGLE", "PARALLELOGRAM" };
   size_t shapeParametersCount[3] = {4, 6, 6};
   Shape** shapeArray = nullptr;
-  size_t shapeCount = 0;
   Shape** oldShapeArray = nullptr;
   char symbol = 0;
   while (in >> name)
@@ -55,6 +54,7 @@ Shape** inputShape(std::istream& in)
           shapeArray[shapeCount] = new Parallelogram({ parameters[0], parameters[1] }, { parameters[2], parameters[3] }, { parameters[4], parameters[5] });
         }
         delete[] parameters;
+        ++shapeCount;
       }
     }
     if (name == "SCALE")
@@ -72,7 +72,6 @@ Shape** inputShape(std::istream& in)
   {
     throw std::logic_error("It is not shape");
   }
-  delete[] parameters;
   return shapeArray;
 }
 
