@@ -7,7 +7,7 @@
 
 int main()
 {
-  const size_t alphabetWeight = 27;
+  const size_t alphabetWeight = 26;
 
   char * inputString = nullptr;
   const char * defaultStringForTaskTwo = "def ghk";
@@ -33,7 +33,7 @@ int main()
 
   try
   {
-    answerTaskTwo = new char[alphabetWeight];
+    answerTaskTwo = new char[alphabetWeight+1];
   }
   catch (const std::bad_alloc & e)
   {
@@ -45,7 +45,7 @@ int main()
   using namespace arakelyanTaskTwo;
   identicalLetters(inputString, defaultStringForTaskTwo, answerTaskTwo, alphabetWeight);
 
-  std::cout << answerTaskOne << " " << answerTaskTwo << "\n";
+  std::cout << answerTaskOne << "\n" << answerTaskTwo << "\n";
 
 
   delete [] answerTaskTwo;
