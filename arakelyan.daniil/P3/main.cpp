@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cctype>
 #include <stdexcept>
 #include "inputArray.hpp"
 #include "taskOne.hpp"

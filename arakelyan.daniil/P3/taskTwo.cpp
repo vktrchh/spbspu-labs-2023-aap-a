@@ -1,7 +1,7 @@
 #include "taskTwo.hpp"
 #include <cctype>
 
-void arakelyanTaskTwo::findSymb(const char *array, char *answer, size_t &pos, const size_t alphabetWeight)
+void arakelyanTaskTwo::findSymb(const char * array, char * answer, size_t & pos, const size_t alphabetWeight)
 {
   size_t flag = 0;
   for (size_t i = 0; array[i] != '\0'; i++)
@@ -25,7 +25,7 @@ void arakelyanTaskTwo::findSymb(const char *array, char *answer, size_t &pos, co
   }
 }
 
-void arakelyanTaskTwo::identicalLetters(const char *inputArr, const char *defaultArray, char *answer, const size_t alphabetWeight)
+void arakelyanTaskTwo::identicalLetters(const char * inputArr, const char * defaultArray, char * answer, const size_t alphabetWeight)
 {
   for (size_t i = 0; i < alphabetWeight; i++)
   {

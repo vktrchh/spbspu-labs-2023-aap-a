@@ -1,7 +1,7 @@
 #include "taskOne.hpp"
 #include <cctype>
 
-size_t arakelyanTaskOne::countOfdifferentLetters(const char *myArray)
+size_t arakelyanTaskOne::countOfdifferentLetters(const char * myArray)
 {
   size_t countOfDifferentLetters = 0;
   for (size_t i = 'a'; i <= 'z'; i++)
