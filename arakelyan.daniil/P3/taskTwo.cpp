@@ -5,12 +5,12 @@
 void arakelyanTaskTwo::findSymb(const char *array, char *answer, size_t &pos)
 {
   size_t flag = 0;
-  for (size_t i = 0; array[i] != '\0'; ++i)
+  for (size_t i = 0; array[i] != '\0'; i++)
   {
     if (std::isalpha(array[i]))
     {
       char symb = std::tolower(array[i]);
-      for (size_t j = 0; answer[j] != '\0'; ++j)
+      for (size_t j = 0; answer[j] != '\0'; j++)
       {
         if (answer[j] == symb)
         {
@@ -28,13 +28,17 @@ void arakelyanTaskTwo::findSymb(const char *array, char *answer, size_t &pos)
 
 void arakelyanTaskTwo::identicalLetters(const char *inputArr, const char *defaultArray, char *answer, const size_t alphabetWeight)
 {
+  for (size_t i = 0; i < alphabetWeight; i++)
+  {
+    answer[i] = 1;
+  }
   size_t a = 0;
   size_t & index = a;
   arakelyanTaskTwo::findSymb(inputArr, answer, index);
   arakelyanTaskTwo::findSymb(defaultArray, answer, index);
-  for (size_t i = 0; i < alphabetWeight - 1; ++i)
+  for (size_t i = 0; i < alphabetWeight - 1; i++)
   {
-    for (size_t j = 0; j < alphabetWeight - i - 1; ++j)
+    for (size_t j = 0; j < alphabetWeight - i - 1; j++)
     {
       if (std::isalpha(answer[j]) && std::isalpha(answer[j+1]))
       {
