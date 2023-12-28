@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cctype>
 
-void arakelyanTaskTwo::findSymb(const char *array, char *answer, size_t &pos, const size_t alphabetWeight)
+void arakelyanTaskTwo::findSymb(const char *array, char *answer, size_t &pos,const size_t alphabetWeight)
 {
   size_t flag = 0;
   for (size_t i = 0; array[i] != '\0'; i++)
@@ -10,7 +10,7 @@ void arakelyanTaskTwo::findSymb(const char *array, char *answer, size_t &pos, co
     if (std::isalpha(array[i]))
     {
       char symb = std::tolower(array[i]);
-      for (size_t j = 0; i < alphabetWeight; j++)
+      for (size_t j = 0; j < alphabetWeight; j++)
       {
         if (answer[j] == symb)
         {
