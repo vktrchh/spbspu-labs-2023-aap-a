@@ -3,7 +3,7 @@
 
 size_t arakelyanTaskOne::countOfdifferentLetters(const char *myArray)
 {
-  size_t count = 0;
+  size_t countOfDifferentLetters = 0;
   for (size_t i = 'a'; i <= 'z'; i++)
   {
     for (size_t j = 0; myArray[j] != '\0'; j++)
@@ -11,11 +11,11 @@ size_t arakelyanTaskOne::countOfdifferentLetters(const char *myArray)
       unsigned char symb = std::tolower(myArray[j]);
       if (std::isalpha(symb) && (symb == i))
       {
-        count++;
+        countOfDifferentLetters++;
         break;
       }
     }
   }
 
-  return count;
+  return countOfDifferentLetters;
 }

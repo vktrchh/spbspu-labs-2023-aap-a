@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cctype>
 
-void arakelyanTaskTwo::findSymb(const char *array, char *answer, size_t &pos,const size_t alphabetWeight)
+void arakelyanTaskTwo::findSymb(const char *array, char *answer, size_t &pos, const size_t alphabetWeight)
 {
   size_t flag = 0;
   for (size_t i = 0; array[i] != '\0'; i++)
@@ -10,7 +10,7 @@ void arakelyanTaskTwo::findSymb(const char *array, char *answer, size_t &pos,con
     if (std::isalpha(array[i]))
     {
       char symb = std::tolower(array[i]);
-      for (size_t j = 0; j < alphabetWeight; j++)
+      for (size_t j = 0; j <= alphabetWeight; j++)
       {
         if (answer[j] == symb)
         {
@@ -32,13 +32,12 @@ void arakelyanTaskTwo::identicalLetters(const char *inputArr, const char *defaul
   {
     answer[i] = 1;
   }
-  size_t a = 0;
-  size_t & index = a;
-  arakelyanTaskTwo::findSymb(inputArr, answer, index, alphabetWeight);
-  arakelyanTaskTwo::findSymb(defaultArray, answer, index, alphabetWeight);
-  for (size_t i = 0; i < alphabetWeight - 1; i++)
+  size_t indexOfUsedCells = 0;
+  arakelyanTaskTwo::findSymb(inputArr, answer, indexOfUsedCells, alphabetWeight);
+  arakelyanTaskTwo::findSymb(defaultArray, answer, indexOfUsedCells, alphabetWeight);
+  for (size_t i = 0; i < alphabetWeight; i++)
   {
-    for (size_t j = 0; j < alphabetWeight - i - 1; j++)
+    for (size_t j = 0; j < alphabetWeight - i; j++)
     {
       if (std::isalpha(answer[j]) && std::isalpha(answer[j+1]))
       {
@@ -51,5 +50,5 @@ void arakelyanTaskTwo::identicalLetters(const char *inputArr, const char *defaul
       }
     }
   }
-  answer[a+1] = '\0';
+  answer[indexOfUsedCells+1] = '\0';
 }

@@ -29,15 +29,15 @@ int main()
 
   using namespace arakelyanTaskOne;
   size_t answerTaskOne = arakelyanTaskOne::countOfdifferentLetters(inputString);
-  char * answerTaskTwo = nullptr;
 
+  char * answerTaskTwo = nullptr;
   try
   {
-    answerTaskTwo = new char[alphabetWeight];
+    answerTaskTwo = new char[alphabetWeight + 1];
   }
   catch (const std::bad_alloc & e)
   {
-    std::cerr << "Cannot create a dynamic array for answerTaskTwo!";
+    std::cerr << "Cannot create a dynamic array for answerTaskTwo!\n";
     delete [] inputString;
     return 1;
   }
@@ -46,7 +46,6 @@ int main()
   identicalLetters(inputString, defaultStringForTaskTwo, answerTaskTwo, alphabetWeight);
 
   std::cout << answerTaskOne << "\n" << answerTaskTwo << "\n";
-
 
   delete [] answerTaskTwo;
   delete [] inputString;
