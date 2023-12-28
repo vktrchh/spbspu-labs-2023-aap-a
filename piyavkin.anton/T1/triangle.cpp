@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include "triangle.hpp"
 
 Triangle::Triangle(point_t p1, point_t p2, point_t p3) :
