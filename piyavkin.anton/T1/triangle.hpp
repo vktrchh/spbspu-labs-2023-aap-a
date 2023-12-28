@@ -17,9 +17,6 @@ private:
   point_t a_;
   point_t b_;
   point_t c_;
-  double heigth_ = (std::max(std::max(a_.y, b_.y), c_.y) - std::min(std::min(a_.y, b_.y), c_.y));
-  double width_ = (std::max(std::max(a_.x, b_.x), c_.x) - std::min(std::min(a_.x, b_.x), c_.x));
-  point_t pos_ = { (a_.x + b_.x + c_.x) / 3, (a_.y + b_.y + c_.y) / 3 };
 };
 
 #endif
