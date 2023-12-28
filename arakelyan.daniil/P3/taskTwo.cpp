@@ -24,7 +24,6 @@ void arakelyanTaskTwo::findSymb(const char *array, char *answer, size_t &pos)
       flag = 0;
     }
   }
-  std::cout << answer << "\n";
 }
 
 void arakelyanTaskTwo::identicalLetters(const char *inputArr, const char *defaultArray, char *answer, const size_t alphabetWeight)
