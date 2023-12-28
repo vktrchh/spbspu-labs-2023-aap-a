@@ -33,7 +33,7 @@ int main()
 
   try
   {
-    answerTaskTwo = new char[alphabetWeight+1];
+    answerTaskTwo = new char[alphabetWeight];
   }
   catch (const std::bad_alloc & e)
   {
