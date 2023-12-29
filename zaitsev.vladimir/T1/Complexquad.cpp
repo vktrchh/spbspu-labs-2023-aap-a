@@ -29,7 +29,7 @@ zaitsev::rectangle_t zaitsev::Complexquad::getFrameRect() const
   double upper = std::numeric_limits< double >::min();
   double left = std::numeric_limits< double >::max();
   double right = std::numeric_limits< double >::min();
-  
+
   for (size_t i = 0; i < 4; ++i)
   {
     low = std::min(low, vertices_[i].y);
