@@ -33,7 +33,7 @@ int main(int argc, char * argv[])
   catch (const std::invalid_argument &)
   {
     std::cerr << "The first argument is not a number\n";
-    return  1;
+    return 1;
   }
 
   if (task_number != 1 && task_number != 2)
