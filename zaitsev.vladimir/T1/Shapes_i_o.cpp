@@ -6,6 +6,9 @@
 #include <stdexcept>
 #include <cstddef>
 #include "Shape.h"
+#include "Rectangle.h"
+#include "Complexquad.h"
+#include "Parallelogram.h"
 #include "Geom_functions.h"
 
 double zaitsev::readNextValue(char* param)
@@ -53,6 +56,27 @@ zaitsev::Shape* zaitsev::readComplexquad(char* param)
       vertices[i].y = readNextValue(nullptr);
     }
     res = new Complexquad(vertices);
+  }
+  catch (std::invalid_argument&)
+  {
+    return nullptr;
+  }
+
+  return res;
+}
+
+zaitsev::Shape* zaitsev::readParallelogram(char* param)
+{
+  point_t vertices[3] = {};
+  Shape* res = nullptr;
+  try
+  {
+    for (size_t i = 0; i < 3; ++i)
+    {
+      vertices[i].x = readNextValue(i == 0 ? param : nullptr);
+      vertices[i].y = readNextValue(nullptr);
+    }
+    res = new Parallelogram(vertices);
   }
   catch (std::invalid_argument&)
   {

@@ -25,22 +25,22 @@ double zaitsev::Complexquad::getArea() const
 
 zaitsev::rectangle_t zaitsev::Complexquad::getFrameRect() const
 {
-  double low = std::numeric_limits< double >::max();
+  double lower = std::numeric_limits< double >::max();
   double upper = std::numeric_limits< double >::min();
   double left = std::numeric_limits< double >::max();
   double right = std::numeric_limits< double >::min();
 
   for (size_t i = 0; i < 4; ++i)
   {
-    low = std::min(low, vertices_[i].y);
+    lower = std::min(lower, vertices_[i].y);
     upper = std::max(upper, vertices_[i].y);
     left = std::min(left, vertices_[i].x);
     right = std::max(right, vertices_[i].x);
   }
 
   double width = right - left;
-  double height = upper - low;
-  point_t pos = { (low + upper) / 2, (left + right) / 2 };
+  double height = upper - lower;
+  point_t pos = { (lower + upper) / 2, (left + right) / 2 };
   return { width, height, pos };
 }
 

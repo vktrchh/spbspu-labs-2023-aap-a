@@ -57,6 +57,20 @@ int main()
           wrong_args = true;
         }
       }
+      else if (shape_type == "PARALLELOGRAM")
+      {
+        shape_param_copy = new char[shape_param.size() + 1];
+        memcpy(shape_param_copy, shape_param.c_str(), shape_param.size() + 1);
+        Shape* res = readParallelogram(shape_param_copy);
+        if (res)
+        {
+          addShape(std::addressof(shapes), size, capacity, res);
+        }
+        else
+        {
+          wrong_args = true;
+        }
+      }
       else if (shape_type == "SCALE")
       {
         shape_param_copy = new char[shape_param.size() + 1];
@@ -105,6 +119,8 @@ int main()
         delete[] shapes;
         return 0;
       }
+      delete[] shape_param_copy;
+      shape_param_copy = nullptr;
     }
   }
   catch (std::bad_alloc&)
