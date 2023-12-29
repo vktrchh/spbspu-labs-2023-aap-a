@@ -9,6 +9,7 @@ class Parallelogram: public Shape
    virtual rectangle_t getFrameRect();
    virtual void move(point_t);
    virtual void move(double);
+   virtual void move(double, double);
    virtual void scale(double);
   private:
    point_t p1_;

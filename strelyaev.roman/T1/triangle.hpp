@@ -9,6 +9,7 @@ class Triangle: public Shape
    virtual rectangle_t getFrameRect();
    virtual void move(point_t);
    virtual void move(double);
+   virtual void move(double, double);
    virtual void scale(double);
   private:
    double getDistance(point_t, point_t) const;

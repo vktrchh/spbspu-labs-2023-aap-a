@@ -68,6 +68,19 @@ void Triangle::move(double k)
   p3_.y_ += k;
 }
 
+void Triangle::move(double dx, double dy)
+{
+  center_.x_ += dx;
+  center_.y_ += dy;
+  p1_.x_ += dx;
+  p1_.y_ += dy;
+  p2_.x_ += dx;
+  p2_.y_ += dy;
+  p3_.x_ += dx;
+  p3_.y_ += dy;
+
+}
+
 void Triangle::scale(double k)
 {
   p1_.x_ = center_.x_ + (p1_.x_ - center_.x_) * k;

@@ -45,6 +45,17 @@ void Rectangle::move(double k)
   p2_.x_ += k;
   p2_.y_ += k;
 }
+
+void Rectangle::move(double dx, double dy)
+{
+  center_.x_ += dx;
+  center_.y_ += dy;
+  p1_.x_ += dx;
+  p1_.y_ += dy;
+  p2_.x_ += dx;
+  p2_.y_ += dy;
+}
+
 void Rectangle::scale(double k)
 {
   double width = std::abs(p1_.x_ - p2_.x_);
