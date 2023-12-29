@@ -1,7 +1,7 @@
 #include "ring.hpp"
 #include <stdexcept>
-
-const double PI = 3.1415;
+#define _USE_MATH_DEFINES
+#include <math.h>
 
 novokhatskiy::Ring::Ring(const point_t& center, double radius1, double radius2)
 {
@@ -9,35 +9,30 @@ novokhatskiy::Ring::Ring(const point_t& center, double radius1, double radius2)
 	{
 		throw std::invalid_argument("Ring radiuses are wrong\n");
 	}
-	frameRect_.pos = center;
+	center_ = center;
 	if (radius1 > radius2)
 	{
-		frameRect_.height = radius1 * 2;
-		frameRect_.width = radius1 * 2;
+		std::swap(radius1, radius2);
 	}
-	else
-	{
-		frameRect_.height = radius2 * 2;
-		frameRect_.width = radius2 * 2;
-	}
+	radius1_ = radius1;
+	radius2_ = radius2;
 
 }
 double novokhatskiy::Ring::getArea() const
 {
-	return PI * frameRect_.width * frameRect_.height;
+	return (M_PI * radius2_ * radius2_) - (M_PI * radius1_ * radius1_);
 }
 rectangle_t novokhatskiy::Ring::getFrameRect() const
 {
-	return frameRect_;
+	return {2 * radius2_, 2 * radius2_, center_};
 }
 void novokhatskiy::Ring::move(const point_t& point)
 {
-	frameRect_.pos = point;
 	center_ = point;
 }
 void novokhatskiy::Ring::move(double x, double y) 
 {
-	frameRect_.pos = { frameRect_.pos.x + x, frameRect_.pos.y + y };
+	center_ = {center_.x + x, center_.y + y };
 }
 void novokhatskiy::Ring::scale(const point_t& t, double ratio)
 {
@@ -45,9 +40,9 @@ void novokhatskiy::Ring::scale(const point_t& t, double ratio)
 	{
 		std::invalid_argument("The ratio can't be negative\n");
 	}
-	frameRect_.height *= ratio;
-	frameRect_.width *= ratio;
+	point_t centerOld = center_;
+	center_ = t;
 	radius1_ *= ratio;
 	radius2_ *= ratio;
-
+	center_ = {center_.x + (centerOld.x - t.x) * ratio, center_.y + (centerOld.y - t.y) * ratio};
 }

@@ -1,7 +1,7 @@
 #include "ellipse.hpp"
 #include <stdexcept>
-
-const double PI = 3.1415;
+#define _USE_MATH_DEFINES
+#include <math.h>
 
 novokhatskiy::Ellipse::Ellipse(const point_t& center, double vert, double horizon)
 {																			
@@ -9,8 +9,6 @@ novokhatskiy::Ellipse::Ellipse(const point_t& center, double vert, double horizo
 	{
 		throw std::invalid_argument("Ellipse radiuses are wrong\n");
 	}
-	frameRect_.height = vert * 2;
-	frameRect_.width = horizon * 2;
 	center_ = center;
 	vert_ = vert;
 	horizon_ = horizon;
@@ -18,23 +16,22 @@ novokhatskiy::Ellipse::Ellipse(const point_t& center, double vert, double horizo
 
 double novokhatskiy::Ellipse::getArea() const
 {
-	return PI * frameRect_.height * frameRect_.width;
+	return M_PI * vert_ * horizon_;
 }
 
 rectangle_t novokhatskiy::Ellipse::getFrameRect() const
 {
-	return frameRect_;
+	return {2 * horizon_, 2 * vert_, center_};
 }
 
 void novokhatskiy::Ellipse::move(const point_t& point)
 {
-	frameRect_.pos = point;
 	center_ = point;
 }
 
 void novokhatskiy::Ellipse::move(double x, double y)
 {
-	frameRect_.pos = { frameRect_.pos.x + x, frameRect_.pos.y + y };
+	center_ = {center_.x + x, center_.y + y };
 }
 
 void novokhatskiy::Ellipse::scale(const point_t& t , double ratio)
@@ -43,8 +40,9 @@ void novokhatskiy::Ellipse::scale(const point_t& t , double ratio)
 	{
 		throw std::invalid_argument("The ratio can't be negative\n");
 	}
-	frameRect_.height *= ratio;
-	frameRect_.width *= ratio;
-	vert_ *= ratio;
+	point_t centerOld = center_;
+	center_ = t;
+	vert_ *= ratio; 
 	horizon_ *= ratio;
+	center_ = {center_.x + (centerOld.x - t.x) * ratio, center_.y + (centerOld.y - t.y) * ratio};
 }
