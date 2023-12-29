@@ -4,8 +4,8 @@
 
 
 zaitsev::Rectangle::Rectangle(const point_t& left_ñorner, const point_t& right_ñorner) :
-  left_ñorner_(left_ñorner),
-  right_ñorner_(right_ñorner)
+  left_corner_(left_ñorner),
+  right_corner_(right_ñorner)
 {
   if (left_ñorner.x > right_ñorner.x || left_ñorner.y > right_ñorner.y)
   {
@@ -15,14 +15,14 @@ zaitsev::Rectangle::Rectangle(const point_t& left_ñorner, const point_t& right_ñ
 
 double zaitsev::Rectangle::getArea() const
 {
-  return (right_ñorner_.x - left_ñorner_.x) * (right_ñorner_.y - left_ñorner_.y);
+  return (right_corner_.x - left_corner_.x) * (right_corner_.y - left_corner_.y);
 }
 
 zaitsev::rectangle_t zaitsev::Rectangle::getFrameRect() const
 {
-  double width = right_ñorner_.x - left_ñorner_.x;
-  double height = right_ñorner_.y - left_ñorner_.y;
-  point_t pos = { left_ñorner_.x + width / 2, left_ñorner_.y + height / 2 };
+  double width = right_corner_.x - left_corner_.x;
+  double height = right_corner_.y - left_corner_.y;
+  point_t pos = { left_corner_.x + width / 2, left_corner_.y + height / 2 };
   return { width, height, pos };
 }
 
@@ -30,25 +30,25 @@ void zaitsev::Rectangle::move(const point_t& dest_pos)
 {
   point_t center = getCenter();
   point_t diff = { dest_pos.x - center.x, dest_pos.y - center.y };
-  left_ñorner_.x += diff.x;
-  left_ñorner_.y += diff.y;
-  right_ñorner_.x += diff.x;
-  right_ñorner_.y += diff.y;
+  left_corner_.x += diff.x;
+  left_corner_.y += diff.y;
+  right_corner_.x += diff.x;
+  right_corner_.y += diff.y;
 }
 
 void zaitsev::Rectangle::move(double x_shift, double y_shift)
 {
-  left_ñorner_.x += x_shift;
-  left_ñorner_.y += y_shift;
-  right_ñorner_.x += x_shift;
-  right_ñorner_.y += y_shift;
+  left_corner_.x += x_shift;
+  left_corner_.y += y_shift;
+  right_corner_.x += x_shift;
+  right_corner_.y += y_shift;
 }
 
 zaitsev::point_t zaitsev::Rectangle::getCenter() const
 {
-  double width = right_ñorner_.x - left_ñorner_.x;
-  double height = right_ñorner_.y - left_ñorner_.y;
-  return { left_ñorner_.x + width / 2, left_ñorner_.y + height / 2 };
+  double width = right_corner_.x - left_corner_.x;
+  double height = right_corner_.y - left_corner_.y;
+  return { left_corner_.x + width / 2, left_corner_.y + height / 2 };
 }
 
 void zaitsev::Rectangle::scale(double factor)
@@ -58,8 +58,8 @@ void zaitsev::Rectangle::scale(double factor)
     throw std::invalid_argument("Scale factor must be positive");
   }
   point_t center = getCenter();
-  left_ñorner_.x = center.x + (left_ñorner_.x - center.x) * factor;
-  right_ñorner_.x = center.x + (right_ñorner_.x - center.x) * factor;
-  left_ñorner_.y = center.y + (left_ñorner_.y - center.y) * factor;
-  right_ñorner_.y = center.y + (right_ñorner_.y - center.y) * factor;
+  left_corner_.x = center.x + (left_corner_.x - center.x) * factor;
+  right_corner_.x = center.x + (right_corner_.x - center.x) * factor;
+  left_corner_.y = center.y + (left_corner_.y - center.y) * factor;
+  right_corner_.y = center.y + (right_corner_.y - center.y) * factor;
 }
