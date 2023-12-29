@@ -73,8 +73,8 @@ zaitsev::Shape* zaitsev::readParallelogram(char* param)
   {
     for (size_t i = 0; i < 3; ++i)
     {
-      vertices[i].x = readNextValue(i == 0 ? param : nullptr);
-      vertices[i].y = readNextValue(nullptr);
+      vertices[i].y = readNextValue(i == 0 ? param : nullptr);
+      vertices[i].x = readNextValue(nullptr);
     }
     res = new Parallelogram(vertices);
   }

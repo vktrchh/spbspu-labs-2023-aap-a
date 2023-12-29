@@ -80,7 +80,7 @@ void zaitsev::Parallelogram::scale(double factor)
     throw std::invalid_argument("Scale factor must be positive");
   }
   point_t center = getCenter();
-  for (size_t i = 0; i < 4; ++i)
+  for (size_t i = 0; i < 3; ++i)
   {
     def_vertices_[i].x = center.x + (def_vertices_[i].x - center.x) * factor;
     def_vertices_[i].y = center.y + (def_vertices_[i].y - center.y) * factor;
