@@ -1,9 +1,9 @@
 #include "process_matrix.hpp"
 
-#include <cstring>
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include <stdexcept>
 
 int main(int argc, char * argv[])
 {
@@ -17,10 +17,10 @@ int main(int argc, char * argv[])
 
   try
   {
-    size_t next_char_index;
+    size_t next_char_index = 0;
     task_number = std::stoi(argv[1], & next_char_index);
 
-    if (next_char_index < strlen(argv[1]))
+    if (argv[1][next_char_index] != '\0')
     {
       throw std::invalid_argument("Invalid characters in the first command line argument");
     }
@@ -92,15 +92,7 @@ int main(int argc, char * argv[])
     return 2;
   }
 
-  if (task_number == 2 && matrix == nullptr)
-  {
-    std::cerr << "Dynamic array is empty\n";
-    delete[] matrix;
-    return 2;
-  }
-
-  int result = 0;
-  result = belokurskaya::findMaxSequence(matrix, rows, cols);
+  int result = belokurskaya::findMaxSequence(matrix, rows, cols);
 
   if (task_number == 2)
   {
