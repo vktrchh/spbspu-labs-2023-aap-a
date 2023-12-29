@@ -9,11 +9,11 @@
 
 namespace zaitsev
 {
-  double readNextValue();
+  double readNextValue(char* param);
   Shape* readRectangle(char* param);
   Shape* readComplexquad(char* param);
   void readScale(char* param, point_t& center, double& factor);
-  Shape* shapesInput(const std::string& input_str);
-  std::ostream& shapesOutput(std::ostream& output, Shape** shapes, size_t size);
+  std::ostream& shapesOutput(std::ostream& output, const Shape* const* shapes, size_t size);
+  void addShape(Shape*** shapes, size_t &size, size_t &capacity, Shape* new_shape);
 }
 #endif

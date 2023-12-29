@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "Shapes_i_o.h"
 #include <string>
 #include <cstdlib>
@@ -6,35 +7,9 @@
 #include "Shape.h"
 #include "Geom_functions.h"
 
-zaitsev::Shape* zaitsev::shapesInput(const std::string& input_str)
+double zaitsev::readNextValue(char* param)
 {
-  Shape* res = nullptr;
-  char* input_str_copy = new char[input_str.size() + 1];
-  memcpy(input_str_copy, input_str.c_str(), input_str.size() + 1);
-  const char* pos = strtok(input_str_copy, " ");
-  if (strcmp(pos, "RECTANGLE"))
-  {
-    Shape* res = readRectangle(input_str_copy);
-  }
-  else if (strcmp(pos, "COMPLEXQUAD"))
-  {
-    Shape* res = readRectangle(input_str_copy);
-
-
-  }
-  else if (strcmp(pos, "SCALE"))
-  {
-
-
-
-  }
-  delete[] input_str_copy;
-
-}
-
-double zaitsev::readNextValue()
-{
-  char* pos = strtok(nullptr, " ");
+  char* pos = strtok(param, " ");
   char* ptr = nullptr;
   double val = std::strtod(pos, std::addressof(ptr));
   if (val == 0 && ptr == pos)
@@ -46,47 +21,64 @@ double zaitsev::readNextValue()
 
 zaitsev::Shape* zaitsev::readRectangle(char* param)
 {
-  strtok(param, " ");
-
   point_t left = { 0,0 };
   point_t right = { 0,0 };
-  left.x = readNextValue();
-  left.y = readNextValue();
-  right.x = readNextValue();
-  right.y = readNextValue();
+  Shape* res = nullptr;
+  try
+  {
+    left.x = readNextValue(param);
+    left.y = readNextValue(nullptr);
+    right.x = readNextValue(nullptr);
+    right.y = readNextValue(nullptr);
+    res = new Rectangle(left, right);
+  }
+  catch (std::invalid_argument&)
+  {
+    return nullptr;
+  }
 
-  return new Rectangle(left, right);
+  return res;
 }
 
 zaitsev::Shape* zaitsev::readComplexquad(char* param)
 {
-  strtok(param, " ");
-
   point_t vertices[4] = {};
-  for (size_t i = 0; i < 4; ++i)
+  Shape* res = nullptr;
+  try
   {
-    vertices[i].x = readNextValue();
-    vertices[i].y = readNextValue();
+    for (size_t i = 0; i < 4; ++i)
+    {
+      vertices[i].x = readNextValue(i == 0 ? param : nullptr);
+      vertices[i].y = readNextValue(nullptr);
+    }
+    res = new Complexquad(vertices);
+  }
+  catch (std::invalid_argument&)
+  {
+    return nullptr;
   }
 
-  return new Complexquad(vertices);
+  return res;
 }
 
 void zaitsev::readScale(char* param, point_t& center, double& factor)
 {
-  strtok(param, " ");
-
-  double read_factor = readNextValue();
-  double x = readNextValue();
-  double y = readNextValue();
+  double x = readNextValue(param);
+  double y = readNextValue(nullptr);
+  double read_factor = readNextValue(nullptr);
 
   factor = read_factor;
   center.x = x;
   center.y = y;
 }
 
-std::ostream& zaitsev::shapesOutput(std::ostream& output, Shape** shapes, size_t size)
+std::ostream& zaitsev::shapesOutput(std::ostream& output, const Shape* const* shapes, size_t size)
 {
+  std::ios format_holder(nullptr);
+  format_holder.copyfmt(output);
+  output.precision(1);
+  output.setf(std::ios::fixed);
+
   double area = 0;
   for (size_t i = 0; i < size; ++i)
   {
@@ -102,6 +94,22 @@ std::ostream& zaitsev::shapesOutput(std::ostream& output, Shape** shapes, size_t
     output << frame.pos.x + frame.width / 2 << " " << frame.pos.y + frame.height / 2 << " ";
   }
   output << "\n";
-
+  output.copyfmt(format_holder);
   return output;
+}
+
+void zaitsev::addShape(Shape*** shapes, size_t &size, size_t &capacity, Shape* new_shape)
+{
+  if (capacity == 0 || size >= capacity - 1)
+  {
+    Shape** resized = new Shape * [capacity + 10];
+    memcpy(resized, *shapes, size * sizeof(Shape*));
+    delete[] * shapes;
+    *shapes = resized;
+    capacity += 10;
+  }
+
+  (*shapes)[size] = new_shape;
+  ++size;
+  return;
 }

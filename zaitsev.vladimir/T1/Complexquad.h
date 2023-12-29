@@ -16,7 +16,7 @@ namespace zaitsev
     virtual void scale(double factor);
     point_t getCenter() const;
   private:
-    point_t vertices[4];
+    point_t vertices_[4];
   };
 }
 #endif

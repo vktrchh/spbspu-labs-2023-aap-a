@@ -14,13 +14,13 @@ zaitsev::Complexquad::Complexquad(const point_t* sections)
  {
    throw std::invalid_argument("Lines are parallel");
  }
-  std::memcpy(vertices, sections, sizeof(point_t));
+ std::memcpy(vertices_, sections, 4 * sizeof(point_t));
 }
 
 double zaitsev::Complexquad::getArea() const
 {
   point_t center = getCenter();
-  return getAreaOfTriangle(center, vertices[0], vertices[3]) + getAreaOfTriangle(center, vertices[0], vertices[3]);
+  return getAreaOfTriangle(center, vertices_[0], vertices_[3]) + getAreaOfTriangle(center, vertices_[0], vertices_[3]);
 }
 
 zaitsev::rectangle_t zaitsev::Complexquad::getFrameRect() const
@@ -32,10 +32,10 @@ zaitsev::rectangle_t zaitsev::Complexquad::getFrameRect() const
   
   for (size_t i = 0; i < 4; ++i)
   {
-    low = std::min(low, vertices[i].y);
-    upper = std::max(low, vertices[i].y);
-    left = std::min(low, vertices[i].x);
-    right = std::max(low, vertices[i].x);
+    low = std::min(low, vertices_[i].y);
+    upper = std::max(upper, vertices_[i].y);
+    left = std::min(left, vertices_[i].x);
+    right = std::max(right, vertices_[i].x);
   }
 
   double width = right - left;
@@ -46,20 +46,22 @@ zaitsev::rectangle_t zaitsev::Complexquad::getFrameRect() const
 
 void zaitsev::Complexquad::move(const point_t& dest_pos)
 {
+  point_t pos = getCenter();
+  this->move(dest_pos.x - pos.x, dest_pos.y - pos.y);
 }
 
 void zaitsev::Complexquad::move(double x_shift, double y_shift)
 {
   for (size_t i = 0; i < 4; ++i)
   {
-    vertices[i].x += x_shift;
-    vertices[i].y += y_shift;
+    vertices_[i].x += x_shift;
+    vertices_[i].y += y_shift;
   }
 }
 
 zaitsev::point_t zaitsev::Complexquad::getCenter() const
 {
-  return findIntersection(vertices);
+  return findIntersection(vertices_);
 }
 
 void zaitsev::Complexquad::scale(double factor)
@@ -71,8 +73,8 @@ void zaitsev::Complexquad::scale(double factor)
   point_t center = getCenter();
   for (size_t i = 0; i < 4; ++i)
   {
-    vertices[i].x = center.x + (vertices[i].x - center.x) * factor;
-    vertices[i].y = center.y + (vertices[i].y - center.y) * factor;
+    vertices_[i].x = center.x + (vertices_[i].x - center.x) * factor;
+    vertices_[i].y = center.y + (vertices_[i].y - center.y) * factor;
   }
   return;
 }
