@@ -9,11 +9,6 @@ double zaitsev::skewProduct(const point_t& vector1, const point_t& vector2)
   return vector1.x * vector2.y - vector1.y * vector2.x;
 }
 
-double zaitsev::dotProduct(const point_t& vector1, const point_t& vector2)
-{
-  return vector1.x * vector2.y + vector1.y * vector2.x;
-}
-
 bool zaitsev::checkIntersection(const point_t* sections)
 {
   point_t vec0 = { sections[1].x - sections[0].x,sections[1].y - sections[0].y };
@@ -35,7 +30,7 @@ bool zaitsev::checkIntersection(const point_t* sections)
   if (abs(skewProduct(vec0, vec1)) == 0 && abs(skewProduct(vec0, vec2)) == 0)
   {
     return false;
-  } 
+  }
 
   return true;
 }
