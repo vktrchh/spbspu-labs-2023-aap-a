@@ -8,6 +8,8 @@ namespace piyavkin
     {
       sum += shapes[i]->getArea();
     }
+    out << std::fixed;
+    out.precision(1);
     out << sum << " ";
     for (size_t i = 0; i < shapeCount; ++i)
     {

@@ -41,17 +41,34 @@ piyavkin::Shape ** piyavkin::inputShape(std::istream& in, size_t & shapeCount)
           }
         }
         delete[] oldShapeArray;
-        if (name == "RECTANGLE")
+        try
         {
-          shapeArray[shapeCount] = new Rectangle({ parameters[0], parameters[1] }, { parameters[2], parameters[3] });
+          if (name == "RECTANGLE")
+          {
+            shapeArray[shapeCount] = new Rectangle({ parameters[0], parameters[1] }, { parameters[2], parameters[3] });
+          }
+          else if (name == "TRIANGLE")
+          {
+            shapeArray[shapeCount] = new Triangle({ parameters[0], parameters[1] }, { parameters[2], parameters[3] }, { parameters[4], parameters[5] });
+          }
+          else if (name == "PARALLELOGRAM")
+          {
+            shapeArray[shapeCount] = new Parallelogram({ parameters[0], parameters[1] }, { parameters[2], parameters[3] }, { parameters[4], parameters[5] });
+          }
         }
-        else if (name == "TRIANGLE")
+        catch (const std::logic_error& e)
         {
-          shapeArray[shapeCount] = new Triangle({ parameters[0], parameters[1] }, { parameters[2], parameters[3] }, { parameters[4], parameters[5] });
+          std::cerr << e.what() << "\n";
+          continue;
         }
-        else
+        catch (const std::bad_alloc& e)
         {
-          shapeArray[shapeCount] = new Parallelogram({ parameters[0], parameters[1] }, { parameters[2], parameters[3] }, { parameters[4], parameters[5] });
+          delete[] parameters;
+          for (size_t i = 0; i < shapeCount; ++i)
+          {
+            delete[] shapeArray[i];
+          }
+          throw std::logic_error("Memory not allocated");
         }
         delete[] parameters;
         ++shapeCount;
