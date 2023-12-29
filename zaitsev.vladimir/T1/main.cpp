@@ -27,6 +27,11 @@ int main()
       std::getline(std::cin, shape_param);
       if (!std::cin)
       {
+        for (size_t i = 0; i < size; ++i)
+        {
+          delete shapes[i];
+        }
+        delete[] shapes;
         return 1;
       }
       if (shape_type == "RECTANGLE")
