@@ -2,6 +2,7 @@
 #include "Shapes_i_o.h"
 #include <string>
 #include <cstdlib>
+#include <cstring>
 #include <stdexcept>
 #include <cstddef>
 #include "Shape.h"
