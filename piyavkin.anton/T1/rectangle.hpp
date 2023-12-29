@@ -4,7 +4,7 @@
 #include "shape.hpp"
 namespace piyavkin
 {
-  class Rectangle : public Shape
+  class Rectangle: public Shape
   {
   public:
     Rectangle(point_t p1, point_t p2);

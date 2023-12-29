@@ -4,6 +4,6 @@
 #include "shape.hpp"
 namespace piyavkin
 {
-  Shape ** inputShape(std::istream& in, size_t & shapeCount);
+  Shape** inputShape(std::istream& in, size_t& shapeCount);
 }
 #endif

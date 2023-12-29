@@ -5,7 +5,7 @@
 #include "base-types.hpp"
 namespace piyavkin
 {
-  class Triangle : public Shape
+  class Triangle: public Shape
   {
   public:
     Triangle(point_t p1, point_t p2, point_t p3);

@@ -1,9 +1,9 @@
-#include <iostream>
 #include "rectangle.hpp"
+#include <iostream>
 
 namespace piyavkin
 {
-  Rectangle::Rectangle(point_t p1, point_t p2) :
+  Rectangle::Rectangle(point_t p1, point_t p2):
     p1_(p1),
     p2_(p2)
   {

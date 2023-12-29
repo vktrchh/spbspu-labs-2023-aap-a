@@ -1,10 +1,10 @@
-#include <string>
 #include "inputshape.hpp"
+#include <string>
 #include "rectangle.hpp"
 #include "triangle.hpp"
 #include "parallelogram.hpp"
 
-piyavkin::Shape ** piyavkin::inputShape(std::istream& in, size_t & shapeCount)
+piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
 {
   std::string name = "";
   double* parameters = nullptr;
@@ -53,7 +53,8 @@ piyavkin::Shape ** piyavkin::inputShape(std::istream& in, size_t & shapeCount)
           }
           else if (name == "PARALLELOGRAM")
           {
-            shapeArray[shapeCount] = new Parallelogram({ parameters[0], parameters[1] }, { parameters[2], parameters[3] }, { parameters[4], parameters[5] });
+            shapeArray[shapeCount] = new Parallelogram({ parameters[0], parameters[1] }, { parameters[2], parameters[3] },\
+                { parameters[4], parameters[5] });
           }
         }
         catch (const std::logic_error& e)

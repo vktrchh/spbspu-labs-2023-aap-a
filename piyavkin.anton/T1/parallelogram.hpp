@@ -6,7 +6,7 @@
 #include "base-types.hpp"
 namespace piyavkin
 {
-  class Parallelogram : public Shape
+  class Parallelogram: public Shape
   {
   public:
     Parallelogram(point_t p1, point_t p2, point_t p3);

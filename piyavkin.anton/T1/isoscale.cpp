@@ -1,9 +1,9 @@
-#include <iostream>
 #include "isoscale.hpp"
+#include <iostream>
 
 namespace piyavkin
 {
-  void isoScale(Shape * shape, point_t center, double k)
+  void isoScale(Shape* shape, point_t center, double k)
   {
     if (k < 0)
     {
