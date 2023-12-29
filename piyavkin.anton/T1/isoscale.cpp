@@ -1,14 +1,17 @@
 #include <iostream>
 #include "isoscale.hpp"
 
-void isoScale(Shape * shape, point_t center, double k)
+namespace piyavkin
 {
-  if (k < 0)
+  void isoScale(Shape * shape, point_t center, double k)
   {
-    throw std::logic_error("Сoefficient less than 0");
+    if (k < 0)
+    {
+      throw std::logic_error("Сoefficient less than 0");
+    }
+    point_t pos = shape->getFrameRect().pos;
+    shape->move(center);
+    shape->scale(k);
+    shape->move(k * (pos.x - shape->getFrameRect().pos.x), k * (pos.y - shape->getFrameRect().pos.y));
   }
-  point_t pos = shape->getFrameRect().pos;
-  shape->move(center);
-  shape->scale(k);
-  shape->move(k * (pos.x - shape->getFrameRect().pos.x), k * (pos.y - shape->getFrameRect().pos.y));
 }

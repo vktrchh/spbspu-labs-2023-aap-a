@@ -4,7 +4,7 @@
 #include "triangle.hpp"
 #include "parallelogram.hpp"
 
-Shape ** inputShape(std::istream& in, size_t & shapeCount)
+piyavkin::Shape ** piyavkin::inputShape(std::istream& in, size_t & shapeCount)
 {
   std::string name = "";
   double* parameters = nullptr;
