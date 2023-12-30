@@ -40,6 +40,10 @@ void baranov::Rectangle::move(const double dx, const double dy)
 
 void baranov::Rectangle::scale(const double ratio)
 {
+  if (ratio < 0)
+  {
+    throw std::invalid_argument("Invalid scale ratio");
+  }
   rectangle_t frameRect = getFrameRect();
   ruCorner_.x = frameRect.pos.x + ratio * (ruCorner_.x - frameRect.pos.x);
   ruCorner_.y = frameRect.pos.y + ratio * (ruCorner_.y - frameRect.pos.y);

@@ -38,7 +38,7 @@ char * baranov::inputString(std::istream & input, size_t & stringSize)
       stringSize += bufferSize;
     }
     string[i++] = c;
-    if (c == '\n' || c == ' ')
+    if (c == '\n')
     {
       string[i - 1] = 0;
       break;
