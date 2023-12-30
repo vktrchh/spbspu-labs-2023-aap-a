@@ -20,7 +20,7 @@ char * baranov::inputString(std::istream & input, size_t & stringSize)
   char c = 0;
   size_t i = 0;
   input >> std::noskipws;
-  while ((input >> c))
+  while (input >> c)
   {
     if (i == stringSize - 1)
     {
@@ -38,7 +38,7 @@ char * baranov::inputString(std::istream & input, size_t & stringSize)
       stringSize += bufferSize;
     }
     string[i++] = c;
-    if (c == '\n')
+    if (c == '\n' || c == ' ')
     {
       string[i - 1] = 0;
       break;
