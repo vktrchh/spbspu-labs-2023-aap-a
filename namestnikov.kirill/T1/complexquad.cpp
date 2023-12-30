@@ -21,7 +21,6 @@ namestnikov::Complexquad::Complexquad(point_t * points, size_t size):
         }
       }
     }
-    
   }
 }
 
