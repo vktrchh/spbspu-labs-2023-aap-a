@@ -39,5 +39,25 @@ point_t namestnikov::getIntersectionOfTwoLines(point_t * points)
   }
 }
 
-
+void namestnikov::fillLineCoefficients(const point_t p1, const point_t p2, double & a, double & b, double & c)
+{
+  if (p1.x == p2.x)
+  {
+    a = 1;
+    b = 0;
+    c = -p2.x;
+  }
+  else if (p1.y == p2.y)
+  {
+    a = 0;
+    b = 1;
+    c = -p2.y;
+  }
+  else
+  {
+    a = 1;
+    b = (p2.x - p1.x) / (p1.y - p2.y);
+    c = -p1.x * a - p1.y * b;
+  }
+}
 
