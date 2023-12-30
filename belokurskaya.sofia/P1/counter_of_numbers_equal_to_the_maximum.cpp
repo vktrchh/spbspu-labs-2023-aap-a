@@ -1,5 +1,4 @@
 #include "counter_of_numbers_equal_to_the_maximum.hpp"
-
 #include <limits>
 #include <stdexcept>
 
