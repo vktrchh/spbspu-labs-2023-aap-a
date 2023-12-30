@@ -116,7 +116,7 @@ std::ostream& zaitsev::shapesOutput(std::ostream& output, const Shape* const* sh
   {
     rectangle_t frame = shapes[i]->getFrameRect();
     output << " " << frame.pos.x - frame.width / 2 << " " << frame.pos.y - frame.height / 2;
-    output << " " << frame.pos.x + frame.width / 2 << " " << frame.pos.y + frame.height / 2 << " ";
+    output << " " << frame.pos.x + frame.width / 2 << " " << frame.pos.y + frame.height / 2;
   }
   output << "\n";
   output.copyfmt(format_holder);
