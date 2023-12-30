@@ -38,7 +38,7 @@ void baranov::Ring::move(const double dx, const double dy)
 
 void baranov::Ring::scale(const double ratio)
 {
-  if (scale < 0)
+  if (ratio < 0)
   {
     throw std::invalid_argument("Invalid scale ratio");
   }
