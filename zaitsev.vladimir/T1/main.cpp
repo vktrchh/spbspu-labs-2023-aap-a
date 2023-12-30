@@ -27,6 +27,7 @@ int main()
       std::getline(std::cin, shape_param);
       if (!std::cin)
       {
+        std::cerr << "No scale command entered\n";
         for (size_t i = 0; i < size; ++i)
         {
           delete shapes[i];

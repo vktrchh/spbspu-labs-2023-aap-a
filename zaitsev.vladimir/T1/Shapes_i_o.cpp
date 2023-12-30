@@ -110,13 +110,13 @@ std::ostream& zaitsev::shapesOutput(std::ostream& output, const Shape* const* sh
     area+=shapes[i]->getArea();
   }
 
-  output << area << " ";
+  output << area;
 
   for (size_t i = 0; i < size; ++i)
   {
     rectangle_t frame = shapes[i]->getFrameRect();
-    output << frame.pos.x - frame.width / 2 << " " << frame.pos.y - frame.height / 2 << " ";
-    output << frame.pos.x + frame.width / 2 << " " << frame.pos.y + frame.height / 2 << " ";
+    output << " " << frame.pos.x - frame.width / 2 << " " << frame.pos.y - frame.height / 2;
+    output << " " << frame.pos.x + frame.width / 2 << " " << frame.pos.y + frame.height / 2 << " ";
   }
   output << "\n";
   output.copyfmt(format_holder);
@@ -129,7 +129,7 @@ void zaitsev::addShape(Shape*** shapes, size_t &size, size_t &capacity, Shape* n
   {
     Shape** resized = new Shape * [capacity + 10];
     memcpy(resized, *shapes, size * sizeof(Shape*));
-    delete[] * shapes;
+    delete[] *shapes;
     *shapes = resized;
     capacity += 10;
   }
