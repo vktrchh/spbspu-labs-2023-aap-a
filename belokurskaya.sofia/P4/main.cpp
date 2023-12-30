@@ -18,7 +18,7 @@ int main(int argc, char * argv[])
   try
   {
     size_t next_char_index = 0;
-    task_number = std::stoi(argv[1], & next_char_index);
+    task_number = std::stoi(argv[1], std::addressof (next_char_index));
 
     if (argv[1][next_char_index] != '\0')
     {
