@@ -3,7 +3,6 @@
 
 namespace baranov
 {
-
   struct point_t
   {
     double x;
@@ -16,7 +15,6 @@ namespace baranov
     double height;
     point_t pos;
   };
-
 }
 
 #endif
