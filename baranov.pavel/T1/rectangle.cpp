@@ -38,3 +38,12 @@ void baranov::Rectangle::move(const double dx, const double dy)
   ldCorner_.y += dy;
 }
 
+void baranov::Rectangle::scale(const double ratio)
+{
+  rectangle_t frameRect = getFrameRect();
+  ruCorner_.x = frameRect.pos.x + ratio * (ruCorner_.x - frameRect.pos.x);
+  ruCorner_.y = frameRect.pos.y + ratio * (ruCorner_.y - frameRect.pos.y);
+  ldCorner_.x = frameRect.pos.x + ratio * (frameRect.pos.x - ldCorner_.x);
+  ldCorner_.y = frameRect.pos.y + ratio * (frameRect.pos.y - ldCorner_.y);
+}
+
