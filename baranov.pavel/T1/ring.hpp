@@ -1,13 +1,13 @@
-#ifndef CIRCLE_HPP
-#define CIRCLE_HPP
+#ifndef RING_HPP
+#define RING_HPP
 #include "shape.hpp"
 
 namespace baranov
 {
-  class Circle : public Shape
+  class Ring : public Shape
   {
     public:
-      Circle(const point_t & center, double radius);
+      Ring(const point_t & center, double outRadius, double inRadius);
       virtual double getArea() const;
       virtual rectangle_t getFrameRect() const;
       virtual void move(const point_t & point);
@@ -15,7 +15,8 @@ namespace baranov
       virtual void scale(double ratio);
     private:
       point_t center_;
-      double radius_;
+      double outRadius_;
+      double inRadius_;
   };
 }
 
