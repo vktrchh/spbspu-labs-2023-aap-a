@@ -102,7 +102,7 @@ int main()
           shapesOutput(std::cout, shapes, size);
           if (wrong_args)
           {
-            std::cout << "Warning: Some shapes were set incorrectly\n";
+            std::cerr << "Warning: Some shapes were set incorrectly\n";
           }
         }
         catch (std::invalid_argument& e)
