@@ -1,4 +1,5 @@
 #include "complexquad.hpp"
+#include "geometric_functions.hpp"
 #include <stdexcept>
 
 namestnikov::Complexquad::Complexquad(point_t * points, size_t size):
@@ -26,5 +27,10 @@ namestnikov::Complexquad::Complexquad(point_t * points, size_t size):
 
 double namestnikov::Complexquad::getArea() const
 {
-  
+  point_t centerPoint = getIntersectionOftwoLines(complexquadPoints_);
+  double square = 0;
+  square += getAreaOfTriangle(complexquadPoints_[0], complexquadPoints_[3], centerPoint);
+  square += getAreaOfTriangle(complexquadPoints_[1], complexquadPoints_[2], centerPoint);
+  return square;
 }
+
