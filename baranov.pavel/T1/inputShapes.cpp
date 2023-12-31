@@ -129,7 +129,7 @@ void baranov::freeShapes(baranov::Shape ** shapes, size_t size)
   delete[] shapes;
 }
 
-baranov::Shape ** inputShapes(std::istream & input, size_t & count, baranov::point_t & scalePoint, size_t & scaleRatio)
+baranov::Shape ** baranov::inputShapes(std::istream & input, size_t & count, baranov::point_t & scalePoint, size_t & scaleRatio)
 {
   baranov::Shape ** result = nullptr;
   baranov::Shape ** temp = nullptr;
