@@ -5,7 +5,7 @@
 namespace baranov
 {
   char * expandString(const char * string, size_t newSize);
-  char * inputString(std::istream & input, size_t & stringSize);
+  char * inputString(std::istream & input);
 }
 
 #endif

@@ -72,6 +72,24 @@ baranov::Shape * baranov::parseEllipse(const char * string)
   return new baranov::Ellipse(center, ellipseParameters[2], ellipseParameters[3]);
 }
 
+void baranov::parseScale(const char * string, baranov::point_t & scalePoint, size_t & scaleRatio)
+{
+  double scaleParameters[3]{};
+  size_t pos = 0;
+  string += 5;
+  for (size_t i = 0; i < 4; ++i)
+  {
+    scaleParameters[i] = std::stod(string, & pos);
+    string += pos;
+  }
+  if (*string != '\0' || scaleParameters[2] < 0)
+  {
+    throw std::invalid_argument("Invalid scale parameters");
+  }
+  scalePoint = { scaleParameters[0], scaleParameters[1] };
+  scaleRatio = scaleParameters[2];
+}
+
 baranov::Shape * baranov::parseShape(char * string)
 {
   const size_t shapeCount = 3;
@@ -102,12 +120,49 @@ baranov::Shape * baranov::parseShape(char * string)
   throw std::logic_error("Invalid shape name");
 }
 
-void freeShapes(baranov::Shape ** shapes, size_t size)
+void baranov::freeShapes(baranov::Shape ** shapes, size_t size)
 {
   for (size_t i = 0; i < size; ++i)
   {
     delete[] shapes[i];
   }
   delete[] shapes;
+}
+
+baranov::Shape ** inputShapes(std::istream & input, size_t & count, baranov::point_t & scalePoint, size_t & scaleRatio)
+{
+  baranov::Shape ** result = nullptr;
+  baranov::Shape ** temp = nullptr;
+  size_t size = 10;
+  char * string = nullptr;
+  try
+  {
+    result = new baranov::Shape*[10];
+    while (true)
+    {
+      string = baranov::inputString(input);
+      if (strncmp(string, "SCALE", 5) == 0)
+      {
+        baranov::parseScale(string, scalePoint, scaleRatio);
+        delete[] string;
+        return result;
+      }
+    }
+    if (count == size - 1)
+    {
+      temp = baranov::expandShapes(result, size, size + 10);
+      baranov::freeShapes(result, size);
+      result = temp;
+      size += 10;
+    }
+    result[count] = baranov::parseShape(string);
+    ++count;
+  }
+  catch (const std::exception &)
+  {
+    delete[] string;
+    baranov::freeShapes(result, size);
+    throw;
+  }
 }
 

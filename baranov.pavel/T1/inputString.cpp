@@ -13,8 +13,9 @@ char * baranov::expandString(const char * string, const size_t newSize)
   return result;
 }
 
-char * baranov::inputString(std::istream & input, size_t & stringSize)
+char * baranov::inputString(std::istream & input)
 {
+  size_t stringSize = 20;
   const size_t bufferSize = 20;
   char * string = new char[bufferSize]{};
   char c = 0;
