@@ -4,7 +4,7 @@
 #include "rectangle.hpp"
 #include "ring.hpp"
 #include "ellipse.hpp"
-#include <string>
+#include <cstring>
 #include <stdexcept>
 
 baranov::Shape ** baranov::expandShapes(baranov::Shape ** shapes, const size_t size, const size_t newSize)
@@ -70,4 +70,34 @@ baranov::Shape * baranov::parseEllipse(const char * string)
   }
   baranov::point_t center = { ellipseParameters[0], ellipseParameters[1] };
   return new baranov::Ellipse(center, ellipseParameters[2], ellipseParameters[3]);
+}
+
+baranov::Shape * baranov::parseShape(char * string)
+{
+  const size_t shapeCount = 3;
+  const char * shapeNames[] = { "RECTANGLE", "RING", "ELLIPSE" };
+  for (size_t i = 0; i < shapeCount; ++i)
+  {
+    size_t nameSize = strlen(shapeNames[i]);
+    if (std::strlen(string) <= nameSize)
+    {
+      continue;
+    }
+    if (strncmp(shapeNames[i], string, nameSize) == 0)
+    {
+      if (i == 0)
+      {
+        return baranov::parseRectangle(string);
+      }
+      else if (i == 1)
+      {
+        return baranov::parseRing(string);
+      }
+      else if (i == 2)
+      {
+        return baranov::parseEllipse(string);
+      }
+    }
+  }
+  throw std::logic_error("Invalid shape name");
 }

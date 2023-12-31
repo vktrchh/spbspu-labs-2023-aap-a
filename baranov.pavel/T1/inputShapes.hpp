@@ -10,6 +10,7 @@ namespace baranov
   baranov::Shape * parseRing(const char * string);
   baranov::Shape * parseEllipse(const char * string);
   baranov::Shape ** inputShapes(std::istream & input, size_t & size);
+  baranov::Shape * parseShape(char * string);
 }
 
 #endif
