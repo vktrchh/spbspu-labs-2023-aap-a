@@ -77,7 +77,7 @@ void baranov::parseScale(const char * string, baranov::point_t & scalePoint, siz
   double scaleParameters[3]{};
   size_t pos = 0;
   string += 5;
-  for (size_t i = 0; i < 4; ++i)
+  for (size_t i = 0; i < 3; ++i)
   {
     scaleParameters[i] = std::stod(string, & pos);
     string += pos;
