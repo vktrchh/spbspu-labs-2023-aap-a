@@ -2,23 +2,19 @@
 #include <stdexcept>
 #include <numbers>
 
-namestnikov::Circle::Circle(const point_t & center, const double radius)
+namestnikov::Circle::Circle(const point_t & center, const double radius):
+  circleCenter_(center),
+  circleRadius_(radius)
 {
-  if (radius <= 0.0)
+  if (circleRadius_ <= 0.0)
   {
     throw std::invalid_argument("Circle's radius must be greater than zero\n";
-  }
-  else
-  {
-    frameRect_.pos = center;
-    frameRect_.width = 2 * radius;
-    frameRect_.height = 2 * radius;
   }
 }
 
 double namestnikov::Circle::getArea() const
 {
-  return std::numbers::pi_v<double> * (frameRect_.height / 2) * (frameRect_.width / 2);
+  return std::numbers::pi_v<double> * circleRadius_ * circleRadius_;
 }
 
 namestnikov::rectangle_t namestnikov::Circle::getFrameRect() const

@@ -34,3 +34,22 @@ double namestnikov::Complexquad::getArea() const
   return square;
 }
 
+namestnikov::rectangle_t namestnikov::Complexquad::getFrameRect() const
+{
+}
+
+
+void namestnikov::Complexquad::move(const point_t & p)
+{
+  
+}
+
+void namestnikov::Complexquad::move(const double dx, const double dy)
+{
+
+}
+
+void namestnikov::Complexquad::scale(const double coefficient)
+{
+
+}
