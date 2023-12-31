@@ -147,16 +147,16 @@ baranov::Shape ** baranov::inputShapes(std::istream & input, size_t & count, bar
         delete[] string;
         return result;
       }
+      if (count == size - 1)
+      {
+        temp = baranov::expandShapes(result, size, size + 10);
+        baranov::freeShapes(result, size);
+        result = temp;
+        size += 10;
+      }
+      result[count] = baranov::parseShape(string);
+      ++count;
     }
-    if (count == size - 1)
-    {
-      temp = baranov::expandShapes(result, size, size + 10);
-      baranov::freeShapes(result, size);
-      result = temp;
-      size += 10;
-    }
-    result[count] = baranov::parseShape(string);
-    ++count;
   }
   catch (const std::exception &)
   {
