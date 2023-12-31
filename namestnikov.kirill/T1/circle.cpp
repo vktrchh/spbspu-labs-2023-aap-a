@@ -19,18 +19,18 @@ double namestnikov::Circle::getArea() const
 
 namestnikov::rectangle_t namestnikov::Circle::getFrameRect() const
 {
-  return frameRect_;
+  return {2 * circleRadius_, 2 * circleRadius_, circleCenter_};
 }
 
 void namestnikov::Circle::move(const point_t & p)
 {
-  frameRect_.pos = p;
+  circleCenter_ = p;
 }
 
 void namestnikov::Circle::move(const double dx, const double dy)
 {
-  frameRect_.pos.x += dx;
-  frameRect_.pos.y += dy;
+  circleCenter_.x += dx;
+  circleCenter_.y += dy;
 }
 
 void namestnikov::Circle::scale(const double coefficient)
@@ -41,7 +41,6 @@ void namestnikov::Circle::scale(const double coefficient)
   }
   else
   {
-    frameRect_.width *= coefficient;
-    frameRect_.height *= coefficient;
+    circleRadius_ *= coefficient;
   }
 }
