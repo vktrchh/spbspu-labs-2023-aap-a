@@ -87,6 +87,7 @@ int main(int argc, char * argv[])
     inputMatrix(input, inputmatrix, rows * columns);
     counterclockWiseMatrixCounter(counterclockwisematrix, rows, columns);
     answercounter(inputmatrix, counterclockwisematrix, rows * columns);
+    output << rows << " " << columns;
     printAnswer(output, counterclockwisematrix, rows * columns);
     if (num == 2)
     {

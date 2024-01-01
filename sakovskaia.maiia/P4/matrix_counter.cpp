@@ -6,7 +6,7 @@ void sakovskaia::counterclockWiseMatrixCounter(int * a, size_t rows, size_t colu
 {
   int n = 0;
   size_t cnt = 0;
-  size_t circle = 0;
+  size_t circle = 1;
   size_t index = 0;
   size_t cntcolumns = columns;
   for (circle = 1; circle <= (ceil((std::min(rows, columns)) / 2)); ++circle)
@@ -19,7 +19,7 @@ void sakovskaia::counterclockWiseMatrixCounter(int * a, size_t rows, size_t colu
     {
       a[index] = ++n;
     }
-    for (index = (rows * columns - columns - circle); index <= (circle * (columns - 1)); index = index - rows)
+    for (index = (rows * columns - columns * circle - circle); index <= (circle * (columns - 1)); index = index - rows)
     {
       a[index] = ++n;
     }
@@ -38,7 +38,7 @@ sakovskaia::answerCounter::answerCounter():
 
 void sakovskaia::answerCounter::operator()(int * inputmatrix, int * counterclockwisematrix, size_t size)
 {
-  for (index = 0; index < size; ++index)
+  for (index = 0; index <= size; ++index)
   {
     inputmatrix[index] += counterclockwisematrix[index];
   }
