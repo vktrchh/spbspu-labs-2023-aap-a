@@ -8,7 +8,7 @@ int checkString(const char * string, const char * strForCheck)
 {
   size_t i = 0;
   int checkFlag = 1;
-  while (strForCheck[i] != '\0')// || string[i] != '\0')
+  while (strForCheck[i] != '\0')
   {
     if (strForCheck[i] != string[i])
     {
@@ -39,16 +39,11 @@ size_t determineShape(const char * str)
 
   //double * parseFigureDesc
 
-/*Shape * createFigure(const char * str)
+isaychev::Shape * createFigure(const char * str)
 {
-  numOfCurrFigure = determineShape(str);
-  Shape * currFigure = nullptr;
-  if (numOfCurrFigure == 0)
-  {
-    std::cout << "null\n";
-    return currFigure;
-  }
-  else if (numOfCurrFigure == 1)
+  size_t numOfCurrFigure = determineShape(str);
+  isaychev::Shape * currFigure = nullptr;
+  if (numOfCurrFigure == 1)
   {
 //    currFigure = createRectangle();
     std::cout << "rec\n";
@@ -56,15 +51,17 @@ size_t determineShape(const char * str)
   }
   else if (numOfCurrFigure == 2)
   {
-    currFigure = createCircle();
+  //  currFigure = createCircle();
+    std::cout << "kirkl\n";
     return currFigure;
   }
-  else if (numOfCurrFigure == 3)
+  /*else if (numOfCurrFigure == 3)
   {
     currFigure = createRegular();
     return currFigure;
-  }
-}*/
+  }*/
+  return currFigure;
+}
 
 int main()
 {
@@ -89,7 +86,7 @@ int main()
     {
       break;
     }
-    std::cout << determineShape(currDesc) << "\n";
+    Figures[i] = createFigure(currDesc);
     delete [] currDesc;
   }
   delete [] currDesc;
