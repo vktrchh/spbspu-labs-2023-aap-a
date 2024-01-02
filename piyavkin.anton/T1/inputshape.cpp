@@ -26,8 +26,11 @@ piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
         }
         if (!in)
         {
+          for (size_t i = 0; i < shapeCount; ++i)
+          {
+            delete shapeArray[i];
+          }
           delete[] shapeArray;
-          delete[] oldShapeArray;
           delete[] parameters;
           throw std::logic_error("Invalid arguments");
         }
@@ -60,6 +63,7 @@ piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
         catch (const std::logic_error& e)
         {
           std::cerr << e.what() << "\n";
+          delete[] parameters;
           continue;
         }
         catch (const std::bad_alloc& e)
@@ -67,8 +71,9 @@ piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
           delete[] parameters;
           for (size_t i = 0; i < shapeCount; ++i)
           {
-            delete[] shapeArray[i];
+            delete shapeArray[i];
           }
+          delete[] shapeArray;
           throw std::logic_error("Memory not allocated");
         }
         delete[] parameters;

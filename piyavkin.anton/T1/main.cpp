@@ -27,6 +27,7 @@ int main()
     {
       delete[] shapes[i];
     }
+    delete[] shapes;
   }
   catch (const std::logic_error& e)
   {
