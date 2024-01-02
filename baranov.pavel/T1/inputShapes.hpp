@@ -12,7 +12,7 @@ namespace baranov
   void parseScale(const char * string, baranov::point_t & scalePoint, size_t & scaleRatio);
   baranov::Shape * parseShape(char * string);
   void freeShapes(baranov::Shape ** shapes, size_t size);
-  baranov::Shape ** inputShapes(std::istream & input, size_t & size, baranov::point_t & scalePoint, size_t & scaleRatio);
+  baranov::Shape ** inputShapes(std::istream & input, size_t & size, baranov::point_t & scalePoint, size_t & scaleRatio, bool isErrors);
 }
 
 #endif

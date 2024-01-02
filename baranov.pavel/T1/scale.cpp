@@ -1,4 +1,5 @@
 #include "scale.hpp"
+#include <iostream>
 
 void baranov::scale(baranov::Shape * shape, const baranov::point_t scalePoint, const size_t scaleRatio)
 {
