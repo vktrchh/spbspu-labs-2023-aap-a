@@ -12,10 +12,9 @@ int main()
   size_t count = 0;
   point_t scalePoint = { 0,0 };
   size_t scaleRatio = 0;
-  bool isErrors = 0;
   try
   {
-    shapes = inputShapes(std::cin, count, scalePoint, scaleRatio, isErrors);
+    shapes = inputShapes(std::cin, count, scalePoint, scaleRatio);
   }
   catch (const std::exception & e)
   {
@@ -32,11 +31,5 @@ int main()
   }
 
   outputShapes(std::cout, shapes, count);
-
-  if (isErrors)
-  {
-    std::cerr << "Got some invalid shapes\n";
-    return 1;
-  }
 }
 
