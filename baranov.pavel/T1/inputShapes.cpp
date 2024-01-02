@@ -7,7 +7,7 @@
 #include <cstring>
 #include <stdexcept>
 
-baranov::Shape ** baranov::expandShapes(baranov::Shape ** shapes, const size_t size, const size_t newSize)
+baranov::Shape ** baranov::expandShapes(Shape ** shapes, const size_t size, const size_t newSize)
 {
   baranov::Shape ** result = new baranov::Shape*[newSize];
   for (size_t i = 0; i < size; ++i)
@@ -72,7 +72,7 @@ baranov::Shape * baranov::parseEllipse(const char * string)
   return new baranov::Ellipse(center, ellipseParameters[2], ellipseParameters[3]);
 }
 
-void baranov::parseScale(const char * string, baranov::point_t & scalePoint, size_t & scaleRatio)
+void baranov::parseScale(const char * string, point_t & scalePoint, size_t & scaleRatio)
 {
   double scaleParameters[3]{};
   size_t pos = 0;
@@ -129,7 +129,7 @@ void baranov::freeShapes(baranov::Shape ** shapes, size_t size)
   delete[] shapes;
 }
 
-baranov::Shape ** baranov::inputShapes(std::istream & input, size_t & count, baranov::point_t & scalePoint, size_t & scaleRatio, bool isErrors)
+baranov::Shape ** baranov::inputShapes(std::istream & input, size_t & count, point_t & scalePoint, size_t & scaleRatio, bool & isErrors)
 {
   baranov::Shape ** result = nullptr;
   baranov::Shape ** temp = nullptr;
