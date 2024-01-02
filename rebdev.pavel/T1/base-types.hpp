@@ -1,5 +1,5 @@
-#ifndef BASE_TYPE_HPP
-#define BASE_TYPE_HPP
+#ifndef BASE_TYPES_HPP
+#define BASE_TYPES_HPP
 namespace rebdev
 {
   struct point_t

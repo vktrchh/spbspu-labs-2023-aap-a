@@ -6,11 +6,11 @@ namespace rebdev
   class Shape
   {
     public:
-    virtual double getArea() const;
-    virtual rectangle_t getFrameRect();
-    virtual void move(const rectangle_t &);
-    virtual void move(const double x, const double y);
-    virtual void scale(const double k);
+    virtual double getArea() const = 0;
+    virtual rectangle_t getFrameRect() = 0;
+    virtual void move(const rectangle_t &) = 0;
+    virtual void move(const double x, const double y) = 0;
+    virtual void scale(const double k) = 0;
   };
 }
 #endif
