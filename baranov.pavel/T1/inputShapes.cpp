@@ -84,7 +84,7 @@ void baranov::parseScale(const char * string, point_t & scalePoint, size_t & sca
   }
   if (*string != '\0' || scaleParameters[2] < 0)
   {
-    throw std::logic_error("Invalid scale parameters");
+    throw std::range_error("Invalid scale parameters");
   }
   scalePoint = { scaleParameters[0], scaleParameters[1] };
   scaleRatio = scaleParameters[2];
@@ -117,7 +117,7 @@ baranov::Shape * baranov::parseShape(char * string)
       }
     }
   }
-  throw std::out_of_range("Invalid shape name");
+  throw std::invalid_argument("Invalid shape name");
 }
 
 void baranov::freeShapes(baranov::Shape ** shapes, size_t size)
