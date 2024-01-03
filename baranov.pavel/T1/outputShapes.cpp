@@ -31,3 +31,4 @@ void baranov::outputShapes(std::ostream & output, Shape ** shapes, const size_t 
   }
   output << '\n';
 }
+
