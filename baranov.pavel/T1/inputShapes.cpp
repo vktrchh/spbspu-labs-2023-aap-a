@@ -124,7 +124,7 @@ void baranov::freeShapes(baranov::Shape ** shapes, size_t size)
 {
   for (size_t i = 0; i < size; ++i)
   {
-    delete[] shapes[i];
+    delete shapes[i];
   }
   delete[] shapes;
 }
@@ -133,9 +133,9 @@ baranov::Shape ** baranov::inputShapes(std::istream & input, size_t & count, poi
 {
   baranov::Shape ** result = nullptr;
   baranov::Shape ** temp = nullptr;
-  size_t size = 10;
+  size_t size = 20;
   char * string = nullptr;
-  result = new baranov::Shape*[20];
+  result = new baranov::Shape*[20]{};
   while (true)
   {
     try
@@ -156,10 +156,12 @@ baranov::Shape ** baranov::inputShapes(std::istream & input, size_t & count, poi
       }
       result[count] = baranov::parseShape(string);
       ++count;
+      delete[] string;
     }
-    catch (const std::invalid_argument &)
+    catch (const std::invalid_argument & e)
     {
-      std::cerr << "Got some invalid shapes\n";;
+      std::cerr << e.what() << '\n';
+      delete[] string;
     }
     catch (const std::exception &)
     {

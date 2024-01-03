@@ -19,7 +19,6 @@ int main()
   catch (const std::exception & e)
   {
     std::cerr << "Error: " << e.what() << '\n';
-    freeShapes(shapes, count);
     return 1;
   }
 
@@ -31,5 +30,7 @@ int main()
   }
 
   outputShapes(std::cout, shapes, count);
+
+  freeShapes(shapes, count);
 }
 
