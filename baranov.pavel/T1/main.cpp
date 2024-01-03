@@ -22,6 +22,13 @@ int main()
     return 1;
   }
 
+  if (count == 0)
+  {
+    freeShapes(shapes, count);
+    std::cerr << "Nothing to scale\n";
+    return 2;
+  }
+
   outputShapes(std::cout, shapes, count);
 
   for (size_t i = 0; i < count; ++i)

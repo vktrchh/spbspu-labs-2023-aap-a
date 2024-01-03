@@ -24,6 +24,10 @@ void baranov::outputShapes(std::ostream & output, Shape ** shapes, const size_t 
     size_t height = frameRect.height;
     output << pos.x - width / 2 << ' ' << pos.y - height / 2  << ' ';
     output << pos.x + width / 2 << ' ' << pos.y + height / 2;
+    if (i != count - 1)
+    {
+      output << ' ';
+    }
   }
   output << '\n';
 }
