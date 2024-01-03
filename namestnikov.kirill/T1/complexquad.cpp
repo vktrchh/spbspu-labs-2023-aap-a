@@ -1,6 +1,7 @@
 #include "complexquad.hpp"
 #include "geometric_functions.hpp"
 #include <stdexcept>
+#include <algorithm>
 
 namestnikov::Complexquad::Complexquad(point_t * points, size_t size):
   complexquadPoints_(points),
@@ -36,20 +37,53 @@ double namestnikov::Complexquad::getArea() const
 
 namestnikov::rectangle_t namestnikov::Complexquad::getFrameRect() const
 {
+  double mostLowPoint = complexquadPoints_[0].y;
+  double mostHighPoint = complexquadPoints_[0].y;
+  double mostLeftPoint = complexquadPoints_[0].x;
+  double mostRightPoint = complexquadPoints_[0].x;
+  for (size_t i = 1; i < complexquadSize_; ++i)
+  {
+    mostLowPoint = std::min(complexquadPoints_[i].y, mostLowPoint);
+    mostHighPoint = std::max(complexquadPoints_[i].y, mostHighPoint);
+    mostLeftPoint = std::min(complexquadPoints_[i].x, mostLeftPoint);
+    mostRightPoint = std::max(complexquadPoints_[i].x, mostRightPoint);
+  }
+  double width = std::abs(mostRightPoint - mostLeftPoint);
+  double height = std::abs(mostHighPoint - mostLowPoint);
+  point_t position = {mostLeftPoint + (width / 2), mostLowPoint + (height / 2)};
+  return {width, height, position};
 }
 
 
 void namestnikov::Complexquad::move(const point_t & p)
 {
-  
+  point_t centerPoint = getIntersectionOftwoLines(complexquadPoints_);
+  const double dx = p.x - centerPoint.x;
+  const double dy = p.y - centerPoint.y;
+  for (size_t i = 0; i < complexquadSize_; ++i)
+  {
+    complexquadPoints_[i].x += dx;
+    complexquadPoints_[i].y += dy;
+  }
 }
 
 void namestnikov::Complexquad::move(const double dx, const double dy)
 {
-
+  for (size_t i = 0; i < complexquadSize_; ++i)
+  {
+    complexquadPoints_[i].x += dx;
+    complexquadPoints_[i].y += dy;
+  }
 }
 
 void namestnikov::Complexquad::scale(const double coefficient)
 {
-
+  if (coefficient <= 0.0)
+  {
+    throw std::invalid_argument("Scaling coefficient must be greater than zero\n");
+  }
+  else
+  {
+    
+  }
 }
