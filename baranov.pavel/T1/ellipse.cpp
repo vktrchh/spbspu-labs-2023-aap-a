@@ -1,5 +1,9 @@
 #include "ellipse.hpp"
+
 #include <stdexcept>
+
+#define _USE_MATH_DEFINES
+#include <cmath>
 
 baranov::Ellipse::Ellipse(const point_t & center, const double yRadius, const double xRadius):
   center_(center),
@@ -14,7 +18,7 @@ baranov::Ellipse::Ellipse(const point_t & center, const double yRadius, const do
 
 double baranov::Ellipse::getArea() const
 {
-  return 3.14 * xRadius_ * yRadius_;
+  return M_PI * xRadius_ * yRadius_;
 }
 
 baranov::rectangle_t baranov::Ellipse::getFrameRect() const

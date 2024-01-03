@@ -22,6 +22,8 @@ int main()
     return 1;
   }
 
+  std::cout << count << '\n';
+
   outputShapes(std::cout, shapes, count);
 
   for (size_t i = 0; i < count; ++i)
