@@ -11,7 +11,7 @@ char * arakelyanInput::inputData(std::istream & input)
   mainBuffer = new char[arrSize];
   if (mainBuffer == nullptr)
   {
-    throw std::logic_error("Empty input!\n"); 
+    throw std::logic_error("Empty input!\n");
   }
 
   std::cin >> std::noskipws;
