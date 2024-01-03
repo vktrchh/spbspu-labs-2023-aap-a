@@ -7,7 +7,10 @@ Rectangle::Rectangle(point_t fp, point_t sp):
   pointLeftDown_(sp),
   midpoint_{((pointRightUp_.x_ + pointLeftDown_.x_) / 2), ((pointRightUp_.y_ + pointLeftDown_.y_) / 2)}
 {
-  //добавить проверку на координаты, их положение относительно углов
+  if (pointLeftDown_.y_ > pointRightUp_.y_ || pointLeftDown_.x_ > pointRightUp_.x_)
+  {
+    throw std::logic_error("Invalid arguments!");
+  }
 };
 
 Rectangle::~Rectangle()
@@ -22,8 +25,8 @@ double Rectangle::getArea() const
 
 rectangle_t Rectangle::getFrameRect()
 {
-  double width = pointRightUp_.x_ - pointLeftDown_.x_;
-  double height = pointRightUp_.y_ - pointLeftDown_.y_;
+  double width = std::abs(pointRightUp_.x_ - pointLeftDown_.x_);
+  double height = std::abs(pointRightUp_.y_ - pointLeftDown_.y_);
   rectangle_t data = {width, height, midpoint_};
   return data;
 };
@@ -40,8 +43,8 @@ void Rectangle::move(double delX, double delY)
 
 void Rectangle::move(point_t point)
 {
-  double width = pointRightUp_.x_ - pointLeftDown_.x_;
-  double height = pointRightUp_.y_ - pointLeftDown_.y_;
+  double width = std::abs(pointRightUp_.x_ - pointLeftDown_.x_);
+  double height = std::abs(pointRightUp_.y_ - pointLeftDown_.y_);
   pointRightUp_.x_ = point.x_ + width;
   pointRightUp_.y_ = point.y_ + height;
   pointLeftDown_.x_ = point.x_ + width;
@@ -56,8 +59,8 @@ void Rectangle::scale(double k)
   {
     throw std::logic_error("the coefficient cannot be less than zero!");
   }
-  double width = pointRightUp_.x_ - pointLeftDown_.x_;
-  double height = pointRightUp_.y_ - pointLeftDown_.y_;
+  double width = std::abs(pointRightUp_.x_ - pointLeftDown_.x_);
+  double height = std::abs(pointRightUp_.y_ - pointLeftDown_.y_);
   double widthWithScale = width * k;
   double heightWithScale = height * k;
   double widthHalf = widthWithScale / 2;

@@ -14,8 +14,8 @@ char * arakelyanInput::inputData(std::istream & input)
     throw std::logic_error("Empty input!\n");
   }
 
-  std::cin >> std::noskipws;
-  while ((std::cin >> sym) && (sym != '\n'))
+  input >> std::noskipws;
+  while ((input >> sym) && (sym != '\n'))
   {
     if (!std::cin)
     {
@@ -55,7 +55,7 @@ char * arakelyanInput::inputData(std::istream & input)
     delete [] mainBuffer;
     throw std::logic_error("Empty input!\n");
   }
-  std::cin >> std::skipws;
+  input >> std::skipws;
 
   return mainBuffer;
 }
