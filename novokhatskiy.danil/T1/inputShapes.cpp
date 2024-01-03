@@ -27,11 +27,21 @@ novokhatskiy::Shape **novokhatskiy::inputShapes(std::istream &input, size_t &sha
 				}
 				if (!input)
 				{
-					delete[] currentParameters; // delete only this argument
+					delete[] currentParameters;
 					delete[] currentShapes;
 					delete[] oldShapes;
-					std::invalid_argument("Wrong argiments\n");
+					throw std::invalid_argument("Wrong argiments\n");
 				}
+				oldShapes = currentShapes;
+				currentShapes = new Shape *[shapeCounter + 1];
+				if (oldShapes)
+				{
+					for (size_t i = 0; i < shapeCounter + 1; i++)
+					{
+						currentShapes[i] = oldShapes[i];
+					}
+				}
+				delete[] oldShapes;
 				try
 				{
 					if (currentName == "RECTANGLE")
@@ -51,8 +61,17 @@ novokhatskiy::Shape **novokhatskiy::inputShapes(std::istream &input, size_t &sha
 				{
 					std::cerr << e.what() << '\n';
 				}
+				catch (const std::bad_alloc &)
+				{
+					delete[] currentParameters;
+					for (size_t i = 0; i < shapeCounter; i++)
+					{
+						delete currentShapes[i];
+					}
+					delete[] currentShapes;
+					throw std::logic_error("Error\n");
+				}
 			}
 		}
-		// skip line
 	}
 }
