@@ -1,6 +1,7 @@
 #include "rectangle.hpp"
 #include "base-types.hpp"
 #include <stdexcept>
+#include <iostream> 
 
 Rectangle::Rectangle(point_t fp, point_t sp):
   pointRightUp_(fp),
@@ -49,8 +50,8 @@ void Rectangle::move(point_t point)
   pointRightUp_.y_ = point.y_ + height;
   pointLeftDown_.x_ = point.x_ + width;
   pointLeftDown_.y_ = point.y_ + height;
-  midpoint_.x_ = (pointRightUp_.x_ + pointLeftDown_.x_) / 2;
-  midpoint_.y_ = (pointRightUp_.y_ + pointLeftDown_.y_) / 2;
+  midpoint_.x_ = point.x_;
+  midpoint_.y_ = point.y_;
 }
 
 void Rectangle::scale(double k)
@@ -69,4 +70,13 @@ void Rectangle::scale(double k)
   pointLeftDown_.y_ = midpoint_.y_ - heightHalf;
   pointRightUp_.x_ = midpoint_.x_ + widthHalf;
   pointRightUp_.y_ = midpoint_.y_ + heightHalf;
+}
+
+void Rectangle::getData() const
+{
+  std::cout << "get data start....\n";
+  std::cout << "point right up: x = " << pointRightUp_.x_ << "; y = " << pointRightUp_.y_ << "\n";
+  std::cout << "point left down: x = " << pointLeftDown_.x_ << "; y = " << pointLeftDown_.y_ << "\n";
+  std::cout << "mid point : x = " << midpoint_.x_ << "; y = " << midpoint_.y_ << "\n";
+  std::cout << "get data end...\n";
 }
