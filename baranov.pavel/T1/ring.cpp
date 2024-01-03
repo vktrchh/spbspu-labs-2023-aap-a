@@ -10,7 +10,7 @@ baranov::Ring::Ring(const point_t & center, const double outRadius, const double
   outRadius_(outRadius),
   inRadius_(inRadius)
 {
-  if (outRadius < 0 || inRadius < 0)
+  if (outRadius <= 0 || inRadius <= 0 || inRadius >= outRadius)
   {
     throw std::invalid_argument("Invalid ring parameters");
   }
