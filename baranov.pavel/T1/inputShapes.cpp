@@ -79,7 +79,14 @@ void baranov::parseScale(const char * string, point_t & scalePoint, size_t & sca
   string += 5;
   for (size_t i = 0; i < 3; ++i)
   {
-    scaleParameters[i] = std::stod(string, & pos);
+    try
+    {
+      scaleParameters[i] = std::stod(string, & pos);
+    }
+    catch (const std::exception &)
+    {
+      throw std::range_error("Invalid scale parameters");
+    }
     string += pos;
   }
   if (*string != '\0' || scaleParameters[2] < 0)
