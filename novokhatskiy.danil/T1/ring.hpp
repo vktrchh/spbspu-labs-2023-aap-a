@@ -7,13 +7,13 @@ namespace novokhatskiy
 	class Ring : public Shape
 	{
 	public:
-		Ring(const point_t& center, double radius1, double radius2);
+		Ring(const point_t &center, double radius1, double radius2);
 		virtual double getArea() const;
 		virtual rectangle_t getFrameRect() const;
-		virtual void move(const point_t& point);
+		virtual void move(const point_t &point);
 		virtual void move(double x, double y);
-		virtual void scale(const point_t& t, double ratio);
-		~Ring() = default;
+		virtual void scale(double ratio);
+
 	private:
 		point_t center_;
 		double radius1_;

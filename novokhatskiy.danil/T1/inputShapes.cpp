@@ -9,7 +9,7 @@ novokhatskiy::Shape **novokhatskiy::inputShapes(std::istream &input, size_t &sha
 {
 	std::string shapesNames[3] = {"RECTANGLE", "RING", "ELLIPSE"};
 	size_t rightShapesParametersCount[3] = {4, 4, 4};
-	std::string currentName = ""; // dinamic
+	std::string currentName = "";
 	double *currentParameters = nullptr;
 	novokhatskiy::Shape **currentShapes = nullptr;
 	novokhatskiy::Shape **oldShapes = nullptr;
@@ -20,7 +20,7 @@ novokhatskiy::Shape **novokhatskiy::inputShapes(std::istream &input, size_t &sha
 		{
 			if (currentName == shapesNames[i])
 			{
-				currentParameters = new double[currentParameters[i]];
+				currentParameters = new double[rightShapesParametersCount[i]];
 				for (size_t i = 0; i < rightShapesParametersCount[i]; i++)
 				{
 					input >> currentParameters[i];
@@ -57,10 +57,6 @@ novokhatskiy::Shape **novokhatskiy::inputShapes(std::istream &input, size_t &sha
 						currentShapes[shapeCounter] = new Ellipse({currentParameters[0], currentParameters[1]}, currentParameters[2], currentParameters[3]);
 					}
 				}
-				catch (const std::exception &e)
-				{
-					std::cerr << e.what() << '\n';
-				}
 				catch (const std::bad_alloc &)
 				{
 					delete[] currentParameters;
@@ -69,9 +65,30 @@ novokhatskiy::Shape **novokhatskiy::inputShapes(std::istream &input, size_t &sha
 						delete currentShapes[i];
 					}
 					delete[] currentShapes;
-					throw std::logic_error("Error\n");
+					throw;
 				}
+				catch (const std::exception &e)
+				{
+					std::cerr << e.what() << '\n';
+				}
+				delete[] currentParameters;
+				++shapeCounter;
 			}
 		}
+		if (currentName == "")
+		{
+			std::cerr << "Wrong input\n";
+		}
+		if (currentName == "SCALE")
+		{
+			break;
+		}
+		input >> std::noskipws;
+		while (symbol != '\n')
+		{
+			input >> symbol;
+		}
+		input >> std::skipws;
 	}
+	return currentShapes;
 }

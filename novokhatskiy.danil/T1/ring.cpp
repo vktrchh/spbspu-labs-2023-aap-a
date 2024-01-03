@@ -3,7 +3,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-novokhatskiy::Ring::Ring(const point_t& center, double radius1, double radius2)
+novokhatskiy::Ring::Ring(const point_t &center, double radius1, double radius2)
 {
 	if ((radius1 < 0.0) && (radius2 < 0.0))
 	{
@@ -16,7 +16,6 @@ novokhatskiy::Ring::Ring(const point_t& center, double radius1, double radius2)
 	}
 	radius1_ = radius1;
 	radius2_ = radius2;
-
 }
 double novokhatskiy::Ring::getArea() const
 {
@@ -26,23 +25,20 @@ rectangle_t novokhatskiy::Ring::getFrameRect() const
 {
 	return {2 * radius2_, 2 * radius2_, center_};
 }
-void novokhatskiy::Ring::move(const point_t& point)
+void novokhatskiy::Ring::move(const point_t &point)
 {
 	center_ = point;
 }
-void novokhatskiy::Ring::move(double x, double y) 
+void novokhatskiy::Ring::move(double x, double y)
 {
-	center_ = {center_.x + x, center_.y + y };
+	center_ = {center_.x + x, center_.y + y};
 }
-void novokhatskiy::Ring::scale(const point_t& t, double ratio)
+void novokhatskiy::Ring::scale(double ratio)
 {
 	if (ratio < 0.0)
 	{
 		std::invalid_argument("The ratio can't be negative\n");
 	}
-	point_t centerOld = center_;
-	center_ = t;
 	radius1_ *= ratio;
 	radius2_ *= ratio;
-	center_ = {center_.x + (centerOld.x - t.x) * ratio, center_.y + (centerOld.y - t.y) * ratio};
 }

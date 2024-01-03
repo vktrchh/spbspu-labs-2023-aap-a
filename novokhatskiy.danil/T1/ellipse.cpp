@@ -3,8 +3,8 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-novokhatskiy::Ellipse::Ellipse(const point_t& center, double vert, double horizon)
-{																			
+novokhatskiy::Ellipse::Ellipse(const point_t &center, double vert, double horizon)
+{
 	if ((vert < 0.0) && (horizon < 0.0))
 	{
 		throw std::invalid_argument("Ellipse radiuses are wrong\n");
@@ -24,25 +24,22 @@ rectangle_t novokhatskiy::Ellipse::getFrameRect() const
 	return {2 * horizon_, 2 * vert_, center_};
 }
 
-void novokhatskiy::Ellipse::move(const point_t& point)
+void novokhatskiy::Ellipse::move(const point_t &point)
 {
 	center_ = point;
 }
 
 void novokhatskiy::Ellipse::move(double x, double y)
 {
-	center_ = {center_.x + x, center_.y + y };
+	center_ = {center_.x + x, center_.y + y};
 }
 
-void novokhatskiy::Ellipse::scale(const point_t& t , double ratio)
+void novokhatskiy::Ellipse::scale(double ratio)
 {
 	if (ratio < 0.0)
 	{
 		throw std::invalid_argument("The ratio can't be negative\n");
 	}
-	point_t centerOld = center_;
-	center_ = t;
-	vert_ *= ratio; 
+	vert_ *= ratio;
 	horizon_ *= ratio;
-	center_ = {center_.x + (centerOld.x - t.x) * ratio, center_.y + (centerOld.y - t.y) * ratio};
 }
