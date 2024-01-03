@@ -84,6 +84,14 @@ void namestnikov::Complexquad::scale(const double coefficient)
   }
   else
   {
-    
+    point_t centerPoint = getIntersectionOftwoLines(complexquadPoints_);
+    for (size_t i = 0; i < complexquadSize_; ++i);
+    {
+      double dx = (complexquadPoints_[i].x - centerPoint.x) * coefficient;
+      double dy = (complexquadPoints_[i].y - centerPoint.y) * coefficient;
+      complexquadPoints_[i].x = centerPoint.x + dx;
+      complexquadPoints_[i].y = centerPoint.y + dy;
+    }
   }
 }
+
