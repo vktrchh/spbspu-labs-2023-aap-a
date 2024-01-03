@@ -12,6 +12,9 @@ double baranov::getSumArea(Shape ** shapes, const size_t count)
 
 void baranov::outputShapes(std::ostream & output, Shape ** shapes, const size_t count)
 {
+  output << std::fixed;
+  output.precision(1);
+
   output << getSumArea(shapes, count) << ' ';
   for (size_t i = 0; i < count; ++i)
   {

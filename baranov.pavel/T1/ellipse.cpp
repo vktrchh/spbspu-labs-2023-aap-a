@@ -1,12 +1,12 @@
 #include "ellipse.hpp"
 #include <stdexcept>
 
-baranov::Ellipse::Ellipse(const point_t & center, const double xRadius, const double yRadius):
+baranov::Ellipse::Ellipse(const point_t & center, const double yRadius, const double xRadius):
   center_(center),
-  xRadius_(xRadius),
-  yRadius_(yRadius)
+  yRadius_(yRadius),
+  xRadius_(xRadius)
 {
-  if (xRadius < 0 || yRadius < 0)
+  if (xRadius <= 0 || yRadius <= 0)
   {
     throw std::invalid_argument("Invalid ellipse parameters");
   }

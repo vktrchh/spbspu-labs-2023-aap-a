@@ -15,8 +15,8 @@ namespace baranov
       virtual void scale(double ratio);
     private:
       point_t center_;
-      double xRadius_;
       double yRadius_;
+      double xRadius_;
   };
 }
 
