@@ -7,7 +7,7 @@ namespace piyavkin
   {
     if (k < 0)
     {
-      throw std::logic_error("Сoefficient less than 0");
+      throw std::invalid_argument("Сoefficient less than 0");
     }
     point_t pos = shape->getFrameRect().pos;
     shape->move(center);
