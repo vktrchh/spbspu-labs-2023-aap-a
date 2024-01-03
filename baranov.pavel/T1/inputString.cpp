@@ -41,13 +41,17 @@ char * baranov::inputString(std::istream & input)
     string[i++] = c;
     if (c == '\n')
     {
+      if (i == 1)
+      {
+        throw std::logic_error("Empty string");
+      }
       string[i - 1] = 0;
       break;
     }
   }
   if (string[0] == 0)
   {
-    throw std::logic_error("Can not read string");
+    throw std::range_error("Can not read string");
   }
   input >> std::skipws;
   return string;
