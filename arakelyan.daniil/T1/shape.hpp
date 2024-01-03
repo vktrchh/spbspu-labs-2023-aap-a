@@ -10,6 +10,7 @@ struct Shape
   virtual void move(double) = 0;
   virtual void move(double, double) = 0;
   virtual void scale(double) = 0;
+  virtual ~Shape() = default;
 };
 
 #endif
