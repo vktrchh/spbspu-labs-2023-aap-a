@@ -12,7 +12,7 @@ namespace rebdev
   {
     double width_;
     double height_;
-    double pos_;
+    point_t pos_;
   };
 }
 #endif
