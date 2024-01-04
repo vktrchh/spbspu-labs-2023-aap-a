@@ -61,3 +61,20 @@ void namestnikov::fillLineCoefficients(const point_t p1, const point_t p2, doubl
   }
 }
 
+void namestnikov::isoScale(Shape * shape, const point_t & point, double coefficient)
+{
+  if (coefficient <= 0.0)
+  {
+    throw std::invalid_argument("Scaling coefficient must be greater than zero\n";
+  }
+  else
+  {
+    point_t oldCenterPoint = shape->getFrameRect().pos;
+    shape->move(point);
+    shape->scale(coefficient);
+    point_t newCenterPoint = shape->getFrameRect().pos;
+    double dx = (oldCenterPoint.x - newCenterPoint.x) * coefficient;
+    double dy = (oldCenterPoint.y - newCenterPoint.y) * coefficient;
+    shape->move(dx, dy);
+  }
+}
