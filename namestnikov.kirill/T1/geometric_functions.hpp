@@ -3,6 +3,7 @@
 
 #include "base-types.hpp"
 #include "shape.hpp"
+#include <cstddef>
 
 namespace namestnikov
 {
@@ -11,6 +12,7 @@ namespace namestnikov
   point_t getIntersectionOfTwoLines(point_t * points);
   void fillLineCoefficients(const point_t p1, const point_t p2, double & a, double & b, double & c);
   void isoScale(Shape * shape, const point_t & point, double coefficient);
+  void deleteShapes(Shape ** shapes, size_t size);
 }
 
 #endif

@@ -78,3 +78,12 @@ void namestnikov::isoScale(Shape * shape, const point_t & point, double coeffici
     shape->move(dx, dy);
   }
 }
+
+void namestnikov::deleteShapes(Shape ** shapes, size_t size)
+{
+  for (size_t i = 0; i < size; ++i)
+  {
+    delete shapes[i];
+  }
+  delete [] shapes;
+}
