@@ -10,17 +10,13 @@ rebdev::Concave::Concave(const point_t vertexs[]):
   vertexs_{
     vertexs[0], vertexs[1], vertexs[2], vertexs[3]
   }
-{
-  //protect
-};
+{};
 rebdev::Concave::Concave(const point_t firstVertex, const point_t secondVertex,
   const point_t thirdVertex, const point_t fourthVertex):
   vertexs_{
     firstVertex, secondVertex, thirdVertex, fourthVertex
   }
-{
-  //protect
-};
+{};
 
 double rebdev::Concave::getArea() const
 {
@@ -35,7 +31,7 @@ double rebdev::Concave::getArea() const
 
 rebdev::rectangle_t rebdev::Concave::getFrameRect()
 {
-  double xMin = std::numeric_limits< double>::min(), xMax = std::numeric_limits< double >::max();
+  double xMin = std::numeric_limits< double >::min(), xMax = std::numeric_limits< double >::max();
   double yMin = xMin, yMax = xMax;
   for (int i = 0; i < 4; ++i)
   {
