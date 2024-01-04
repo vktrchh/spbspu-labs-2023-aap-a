@@ -2,13 +2,13 @@
 #include <cmath>
 #include <stdexcept>
 
-double namestnikov::getSizeOfLine(point_t p1, point_t p2)
+double namestnikov::getSizeOfLine(const point_t & p1, const point_t & p2)
 {
   return std::sqrt((std::abs(p1.x - p2.x) * std::abs(p1.x - p2.x) + (std::abs(p1.y - p2.y) * std::abs(p1.y - p2.y));
 }
 
 
-double namestnikov::getAreaOfTriangle(const point_t p1, const point_t p2, const point_t p3)
+double namestnikov::getAreaOfTriangle(const point_t & p1, const point_t & p2, const point_t & p3)
 {
   double a = getSizeOfline(p1, p2);
   double b = getSizeOfLine(p1, p3);
@@ -39,7 +39,7 @@ point_t namestnikov::getIntersectionOfTwoLines(point_t * points)
   }
 }
 
-void namestnikov::fillLineCoefficients(const point_t p1, const point_t p2, double & a, double & b, double & c)
+void namestnikov::fillLineCoefficients(const point_t & p1, const point_t & p2, double & a, double & b, double & c)
 {
   if (p1.x == p2.x)
   {
