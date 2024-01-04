@@ -1,24 +1,30 @@
 #include "rectangle.hpp"
+#include <stdexcept>
 
 nikitov::Rectangle::Rectangle(point_t& leftCorner, point_t& rightCorner):
   leftCorner_(leftCorner),
   rightCorner_(rightCorner)
-{}
+{
+  if (leftCorner_.x >= rightCorner_.x || leftCorner_.y >= rightCorner_.x)
+  {
+    throw std::invalid_argument("Error: invalid rectangle arguments");
+  }
+}
 
-virtual double nikitov::Rectangle::getArea()
+double nikitov::Rectangle::getArea()
 {
   return (rightCorner_.x - leftCorner_.x) * (rightCorner_.y - leftCorner_.y);
 }
 
-virtual nikitov::rectangle_t nikitov::Rectangle::getFrameRect()
+nikitov::rectangle_t nikitov::Rectangle::getFrameRect()
 {
   double width = rightCorner_.x - leftCorner_.x;
   double height = rightCorner_.y - leftCorner_.y;
-  point_t center = { leftCorner_.x + width / 2; leftCorner_.y + height / 2 };
-  return { width, height, center }
+  point_t center = { leftCorner_.x + width / 2, leftCorner_.y + height / 2 };
+  return { width, height, center };
 }
 
-virtual void nikitov::Rectangle::move(const point_t& point)
+void nikitov::Rectangle::move(const point_t& point)
 {
   point_t center = getFrameRect().pos;
   double dx = point.x - center.x;
@@ -26,7 +32,7 @@ virtual void nikitov::Rectangle::move(const point_t& point)
   move(dx, dy);
 }
 
-virtual void nikitov::Rectangle::move(double dx, double dy)
+void nikitov::Rectangle::move(double dx, double dy)
 {
   leftCorner_.x += dx;
   leftCorner_.y += dy;
@@ -34,7 +40,7 @@ virtual void nikitov::Rectangle::move(double dx, double dy)
   rightCorner_.y += dy;
 }
 
-virtual void nikitov::Rectangle::scale(double ratio)
+void nikitov::Rectangle::scale(double ratio)
 {
   point_t center = getFrameRect().pos;
   leftCorner_.x = center.x - (center.x - leftCorner_.x) * ratio;

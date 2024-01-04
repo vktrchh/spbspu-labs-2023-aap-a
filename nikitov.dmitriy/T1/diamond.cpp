@@ -1,19 +1,28 @@
 #include "diamond.hpp"
 #include <cmath>
+#include <stdexcept>
 
 nikitov::Diamond::Diamond(point_t& firstPoint, point_t& secondPoint, point_t& thirdPoint):
   firstPoint_(firstPoint),
   secondPoint_(secondPoint),
   thirdPoint_(thirdPoint)
-{}
+{
+  bool status = (firstPoint_.x - secondPoint_.x == 0 || firstPoint_.y - secondPoint_.y == 0);
+  status = (firstPoint_.x - thirdPoint_.x == 0 || firstPoint_.y - thirdPoint_.y == 0) && status;
+  status = (secondPoint_.x - thirdPoint_.x == 0 || secondPoint_.y - thirdPoint_.y == 0) && status;
+  if (!status)
+  {
+    throw std::invalid_argument("Error: invalid diamond arguments");
+  }
+}
 
-virtual double nikitov::Diamond::getArea()
+double nikitov::Diamond::getArea()
 {
   rectangle_t frame = getFrameRect();
   return frame.width * frame.height / 2;
 }
 
-virtual nikitov::rectangle_t nikitov::Diamond::getFrameRect()
+nikitov::rectangle_t nikitov::Diamond::getFrameRect()
 {
   double width = 0;
   double height = 0;
@@ -60,15 +69,15 @@ virtual nikitov::rectangle_t nikitov::Diamond::getFrameRect()
   return { height, width, center };
 }
 
-virtual void nikitov::Diamond::move(const point_t& point)
+void nikitov::Diamond::move(const point_t& point)
 {
-  center = getFrameRect().pos;
+  point_t center = getFrameRect().pos;
   double dx = point.x - center.x;
   double dy = point.y - center.y;
   move(dx, dy);
 }
 
-virtual void nikitov::Diamond::move(double dx, double dy)
+void nikitov::Diamond::move(double dx, double dy)
 {
   firstPoint_.x += dx;
   firstPoint_.y += dy;
@@ -78,28 +87,28 @@ virtual void nikitov::Diamond::move(double dx, double dy)
   thirdPoint_.y += dy;
 }
 
-virtual void nikitov::Diamond::scale(double ratio)
+void nikitov::Diamond::scale(double ratio)
 {
-  center = getFrameRect().pos;
+  point_t center = getFrameRect().pos;
   if (firstPoint_.x == center.x && firstPoint_.y == center.y)
   {
-    secondPoint_.x = center.x - (center.x - secondPoint_.x) * scale;
-    secondPoint_.y = center.y - (center.y - secondPoint_.y) * scale;
-    thirdPoint_.x = center.x - (center.x - thirdPoint_.x) * scale;
-    thirdPoint_.y = center.y - (center.y - thirdPoint_.y) * scale;
+    secondPoint_.x = center.x - (center.x - secondPoint_.x) * ratio;
+    secondPoint_.y = center.y - (center.y - secondPoint_.y) * ratio;
+    thirdPoint_.x = center.x - (center.x - thirdPoint_.x) * ratio;
+    thirdPoint_.y = center.y - (center.y - thirdPoint_.y) * ratio;
   }
   else if (secondPoint_.x == center.x && secondPoint_.y == center.y)
   {
-    firstPoint_.x = center.x - (center.x - firstPoint_.x) * scale;
-    firstPoint_.y = center.y - (center.y - firstPoint_.y) * scale;
-    thirdPoint_.x = center.x - (center.x - thirdPoint_.x) * scale;
-    thirdPoint_.y = center.y - (center.y - thirdPoint_.y) * scale;
+    firstPoint_.x = center.x - (center.x - firstPoint_.x) * ratio;
+    firstPoint_.y = center.y - (center.y - firstPoint_.y) * ratio;
+    thirdPoint_.x = center.x - (center.x - thirdPoint_.x) * ratio;
+    thirdPoint_.y = center.y - (center.y - thirdPoint_.y) * ratio;
   }
   else if (thirdPoint_.x == center.x && thirdPoint_.y == center.y)
   {
-    secondPoint_.x = center.x - (center.x - secondPoint_.x) * scale;
-    secondPoint_.y = center.y - (center.y - secondPoint_.y) * scale;
-    firstPoint_.x = center.x - (center.x - firstPoint_.x) * scale;
-    firstPoint_.y = center.y - (center.y - firstPoint_.y) * scale;
+    secondPoint_.x = center.x - (center.x - secondPoint_.x) * ratio;
+    secondPoint_.y = center.y - (center.y - secondPoint_.y) * ratio;
+    firstPoint_.x = center.x - (center.x - firstPoint_.x) * ratio;
+    firstPoint_.y = center.y - (center.y - firstPoint_.y) * ratio;
   }
 }

@@ -17,7 +17,7 @@ namespace nikitov
   private:
     point_t firstPoint_;
     point_t secondPoint_;
-    point_t thirdPoint_
-  }
+    point_t thirdPoint_;
+  };
 }
 #endif

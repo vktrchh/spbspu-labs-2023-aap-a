@@ -1,7 +1,7 @@
 #ifndef RECTANGLE_HPP
 #define RECTANGLE_HPP
 
-#include "Shape.hpp"
+#include "shape.hpp"
 
 namespace nikitov
 {
@@ -17,6 +17,6 @@ namespace nikitov
   private:
     point_t leftCorner_;
     point_t rightCorner_;
-  }
+  };
 }
 #endif
