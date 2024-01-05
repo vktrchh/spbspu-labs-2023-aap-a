@@ -9,5 +9,6 @@ struct Shape
   virtual void move(const point_t) = 0;
   virtual void move(const double, const double) = 0;
   virtual void scale(const double) = 0;
+  virtual ~Shape() = default;
 };
 #endif

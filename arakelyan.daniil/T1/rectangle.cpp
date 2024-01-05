@@ -42,21 +42,20 @@ void Rectangle::move(const double delX, const double delY)
 
 void Rectangle::move(const point_t point)
 {
-  double width = std::abs(pointRightUp_.x_ - pointLeftDown_.x_);
-  double height = std::abs(pointRightUp_.y_ - pointLeftDown_.y_);
-  pointRightUp_.x_ = point.x_ + width;
-  pointRightUp_.y_ = point.y_ + height;
-  pointLeftDown_.x_ = point.x_ + width;
-  pointLeftDown_.y_ = point.y_ + height;
-  midpoint_.x_ = point.x_;
-  midpoint_.y_ = point.y_;
+  double dx = std::abs(point.x_ - midpoint_.x_);
+  double dy = std::abs(point.y_ - midpoint_.y_);
+  pointRightUp_.x_ = dx;
+  pointRightUp_.y_ = dy;
+  pointLeftDown_.x_ = dx;
+  pointLeftDown_.y_ = dy;
+  midpoint_ = point;
 }
 
 void Rectangle::scale(const double k)
 {
   if (k < 0.0)
   {
-    throw std::logic_error("the coefficient cannot be less than zero!");
+    throw std::logic_error("The coefficient cannot be less than zero! (Rectangle)");
   }
   double width = std::abs(pointRightUp_.x_ - pointLeftDown_.x_);
   double height = std::abs(pointRightUp_.y_ - pointLeftDown_.y_);
