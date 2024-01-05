@@ -116,11 +116,54 @@ int main(int argc, char ** argv)
   //------------------------------------
   }
 
-
-
-
   // динамический массив ; free store; num = 2
-  //if (num == 2)
+  if (num == 2)
+  {
+    int * matrix = new int[rows * cols];
+    size_t result =  inputArray(input, matrix, rows * cols, rows * cols);
+    //---for test---
+    std::cout << "Result inputArray: " <<  result << '\n';
+    std::cout << "Matrix: ";
+    for (int i = 0; i < rows * cols; ++i)
+    {
+      std::cout << matrix[i] << ' ';
+    }
+    std::cout << '\n';
+    //--------------
+    if (result != rows * cols)
+    {
+      std::cerr << "Invalid input array\n";
+      delete[] matrix;
+      return 2;
+    }
+  //работа с матрицей (нижняя треугольная матрица => квадратная матрица)
+    if (rows != cols || rows == 0 && cols == 0)
+    {
+      std::cout << "false\n";
+      delete[] matrix;
+      return 0;
+    }
+    for (int i = 0; i < rows; ++i)
+    {
+      for (int j = 0; j < cols; ++j)
+      {
+        if (i < j)
+        {
+          if (matrix[i * rows + j] != 0)
+          {
+            std::cout << "false\n";
+            delete[] matrix;
+            return 0;
+          }
+        }
+      }
+    }
+    std::cout << "true\n";
+    delete[] matrix;
+    return 0;
+  //------------------------------------
+  }
+
   //------------------------
 
 
