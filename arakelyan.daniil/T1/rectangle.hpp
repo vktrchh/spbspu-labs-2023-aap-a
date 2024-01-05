@@ -11,7 +11,6 @@ public:
   virtual void move(const point_t point);
   virtual void move(const double delX, const double delY);
   virtual void scale(const double k);
-  // void getData() const;
   virtual ~Rectangle();
 private:
   point_t pointRightUp_;
