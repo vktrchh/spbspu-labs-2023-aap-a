@@ -18,20 +18,20 @@ int main()
     rectangle_t data0 = rec.getFrameRect();
     std::cout << "area = " << rec.getArea() << "\n";
     std::cout << "get frame rect -> pos: x = " << data0.pos_.x_ << " y = " << data0.pos_.y_ << "; width = " << data0.width_ << "; height = " << data0.height_ << "\n";
-    rec.getData();
+    // rec.getData();
 
     std::cout << "scale = 2\n";
     rec.scale(2);
     rectangle_t data = rec.getFrameRect();
     std::cout << "area = " << rec.getArea() << "\n";
     std::cout << "get frame rect -> pos: x = " << data.pos_.x_ << " y = " << data.pos_.y_ << "; width = " << data.width_ << "; height_ = " << data.height_ << "\n";
-    rec.getData();
+    // rec.getData();
 
     std::cout << "move 2,4 \n";
     rec.move(2,4);
     rectangle_t data2 = rec.getFrameRect();
     std::cout << "get frame rect -> after move: pos: x = " << data2.pos_.x_ << " y = " << data2.pos_.y_ << "; width = " << data2.width_ << "; height_ = " << data2.height_ << "\n";
-    rec.getData();
+    // rec.getData();
   }
   catch (const std::exception & e)
   {
