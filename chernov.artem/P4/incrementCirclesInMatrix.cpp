@@ -1,4 +1,4 @@
-#include "incrementCirclesInMatrix.h"
+#include "incrementCirclesInMatrix.hpp"
 
 #include <algorithm>
 #include <cstddef>

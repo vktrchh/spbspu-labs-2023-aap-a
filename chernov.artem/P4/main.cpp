@@ -1,7 +1,7 @@
-#include "countNonZeroDiagonals.h"
-#include "incrementCirclesInMatrix.h"
-#include "readMatrix.h"
-#include "writeMatrix.h"
+#include "countNonZeroDiagonals.hpp"
+#include "incrementCirclesInMatrix.hpp"
+#include "readMatrix.hpp"
+#include "writeMatrix.hpp"
 
 #include <cstddef>
 #include <cstring>
