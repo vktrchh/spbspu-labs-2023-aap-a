@@ -1,7 +1,7 @@
 #include "ellipse.hpp"
+#include <math.h>
 #include <stdexcept>
 #define _USE_MATH_DEFINES
-#include <math.h>
 
 novokhatskiy::Ellipse::Ellipse(const point_t &center, double vert, double horizon)
 {

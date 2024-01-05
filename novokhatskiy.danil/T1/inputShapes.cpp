@@ -1,9 +1,9 @@
-#include <iostream>
-#include <string>
 #include "inputShapes.hpp"
 #include "rectangle.hpp"
 #include "ring.hpp"
 #include "ellipse.hpp"
+#include <iostream>
+#include <string>
 
 novokhatskiy::Shape **novokhatskiy::inputShapes(std::istream &input, size_t &shapeCounter)
 {
@@ -21,9 +21,9 @@ novokhatskiy::Shape **novokhatskiy::inputShapes(std::istream &input, size_t &sha
       if (currentName == shapesNames[i])
       {
         currentParameters = new double[rightShapesParametersCount[i]];
-        for (size_t i = 0; i < rightShapesParametersCount[i]; i++)
+        for (size_t j = 0; j < rightShapesParametersCount[i]; j++)
         {
-          input >> currentParameters[i];
+          input >> currentParameters[j];
         }
         if (!input)
         {

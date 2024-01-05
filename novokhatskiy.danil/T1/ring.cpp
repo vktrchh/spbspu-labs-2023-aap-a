@@ -2,6 +2,7 @@
 #include <stdexcept>
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include <algorithm>
 
 novokhatskiy::Ring::Ring(const point_t &center, double radius1, double radius2)
 {

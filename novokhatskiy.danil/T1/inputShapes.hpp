@@ -2,6 +2,7 @@
 #define INPUT_SHAPES_HPP
 #include "shape.hpp"
 #include <istream>
+#include <cstddef>
 
 namespace novokhatskiy
 {
