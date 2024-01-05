@@ -1,9 +1,10 @@
 #include <iostream>
 #include <string>
+#include <utility>
 #include "shape.hpp"
-//#include "rectangle.hpp"
-//#include "base-types.hpp"
+#include "rectangle.hpp"
 #include "inputString.hpp"
+
 int checkString(const char * string, const char * strForCheck)
 {
   size_t i = 0;
@@ -35,31 +36,90 @@ size_t determineShape(const char * str)
   return 0;
 }
 
-//  size_t countWSpaces(const char * str) {}
+size_t countWSpaces(const char * str)
+{
+  size_t counter = 0, i = 0;
+  while (str[i] != '\0')
+  {
+    if (str[i] == ' ')
+    {
+      counter++;
+    }
+    i++;
+  }
+  return counter;
+}
 
-  //double * parseFigureDesc
+void skipParameter(char * str)
+{
+  size_t i = 0;
+  while (str[i] != ' ')
+  {
+    i++;
+  }
+  for (size_t j = 0; j < i + 1; j++)
+  {
+    size_t k = 0;
+    while (str[k + 1] != '\0')
+    {
+      std::swap(str[k], str[k + 1]);
+      k++;
+    }
+    str[k] = '\0';
+  }
+}
 
-isaychev::Shape * createFigure(const char * str)
+double * parseFigureParams(char * str, size_t numOfParameters)
+{
+  double * figureParameters = nullptr;
+  figureParameters = new double[numOfParameters]{};
+  if (figureParameters == nullptr)
+  {
+    return figureParameters;
+  }
+  skipParameter(str);
+  for(size_t j = 0; j < numOfParameters; ++j)
+  {
+    figureParameters[j] = std::stod(str, nullptr);//getFirstParam(str);
+    skipParameter(str);
+  }
+  return figureParameters;
+}
+
+isaychev::Rectangle * createRectangle(double * params)
+{
+  if (params[0] >= params[2] || params[1] >= params[3])
+  {
+    throw std::logic_error("Incorrect rectangle parameters");
+  }
+  isaychev::point_t bot = {params[0], params[1]};
+  isaychev::point_t top = {params[2], params[3]};
+  isaychev::Rectangle * rec = nullptr;
+  rec = new isaychev::Rectangle(bot, top);
+  return rec;
+}
+
+isaychev::Shape * createFigure(char * str)
 {
   size_t numOfCurrFigure = determineShape(str);
+  size_t numOfParameters = countWSpaces(str);
+  double * parameters = parseFigureParams(str, numOfParameters);
   isaychev::Shape * currFigure = nullptr;
   if (numOfCurrFigure == 1)
   {
-//    currFigure = createRectangle();
-    std::cout << "rec\n";
+    currFigure = createRectangle(parameters);
     return currFigure;
   }
   else if (numOfCurrFigure == 2)
   {
-  //  currFigure = createCircle();
-    std::cout << "kirkl\n";
+//    currFigure = createCircle(parameters);
     return currFigure;
   }
-  /*else if (numOfCurrFigure == 3)
+  else if (numOfCurrFigure == 3)
   {
-    currFigure = createRegular();
+  //  currFigure = createRegular(parameters);
     return currFigure;
-  }*/
+  }
   return currFigure;
 }
 
@@ -81,12 +141,11 @@ int main()
       std::cerr << errMessage << "\n";
       return 1;
     }
-    std::cout << currDesc << "\n";
     if (checkString(currDesc, scaleStr) == 1)
     {
       break;
     }
-    Figures[i] = createFigure(currDesc);
+//    Figures[i] = createFigure(currDesc);
     delete [] currDesc;
   }
   delete [] currDesc;
