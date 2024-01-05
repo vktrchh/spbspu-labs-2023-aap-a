@@ -8,10 +8,10 @@ public:
   Rectangle(point_t fp,point_t sp);
   virtual double getArea() const;
   virtual rectangle_t getFrameRect();
-  virtual void move(point_t point);
-  virtual void move(double delX, double delY);
-  virtual void scale(double);
-  void getData() const;
+  virtual void move(const point_t point);
+  virtual void move(const double delX, const double delY);
+  virtual void scale(const double k);
+  // void getData() const;
   virtual ~Rectangle();
 private:
   point_t pointRightUp_;

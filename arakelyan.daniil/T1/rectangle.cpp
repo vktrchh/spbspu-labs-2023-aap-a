@@ -32,7 +32,7 @@ rectangle_t Rectangle::getFrameRect()
   return data;
 };
 
-void Rectangle::move(double delX, double delY)
+void Rectangle::move(const double delX, const double delY)
 {
   pointLeftDown_.x_ += delX;
   pointLeftDown_.y_ += delY;
@@ -42,7 +42,7 @@ void Rectangle::move(double delX, double delY)
   midpoint_.y_ += delY;
 }
 
-void Rectangle::move(point_t point)
+void Rectangle::move(const point_t point)
 {
   double width = std::abs(pointRightUp_.x_ - pointLeftDown_.x_);
   double height = std::abs(pointRightUp_.y_ - pointLeftDown_.y_);
@@ -54,7 +54,7 @@ void Rectangle::move(point_t point)
   midpoint_.y_ = point.y_;
 }
 
-void Rectangle::scale(double k)
+void Rectangle::scale(const double k)
 {
   if (k < 0.0)
   {
@@ -72,11 +72,11 @@ void Rectangle::scale(double k)
   pointRightUp_.y_ = midpoint_.y_ + heightHalf;
 }
 
-void Rectangle::getData() const
-{
-  std::cout << "get data start....\n";
-  std::cout << "point right up: x = " << pointRightUp_.x_ << "; y = " << pointRightUp_.y_ << "\n";
-  std::cout << "point left down: x = " << pointLeftDown_.x_ << "; y = " << pointLeftDown_.y_ << "\n";
-  std::cout << "mid point : x = " << midpoint_.x_ << "; y = " << midpoint_.y_ << "\n";
-  std::cout << "get data end...\n";
-}
+// void Rectangle::getData() const
+// {
+//   std::cout << "get data start....\n";
+//   std::cout << "point right up: x = " << pointRightUp_.x_ << "; y = " << pointRightUp_.y_ << "\n";
+//   std::cout << "point left down: x = " << pointLeftDown_.x_ << "; y = " << pointLeftDown_.y_ << "\n";
+//   std::cout << "mid point : x = " << midpoint_.x_ << "; y = " << midpoint_.y_ << "\n";
+//   std::cout << "get data end...\n";
+// }
