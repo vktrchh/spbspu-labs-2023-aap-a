@@ -89,5 +89,28 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
 
 std::ostream & namestnikov::outputShapes(std::ostream & out, size_t count, Shape ** shapes)
 {
-
+  double square = 0.0;
+  for (size_t i = 0; i < count; ++i)
+  {
+    if (shapes[i])
+    {
+      square += shapes[i]->getArea();
+    }
+  }
+  output << square << " ";
+  for (size_t i = 0; i < count; ++i)
+  {
+    if (shapes[i])
+    {
+      double width = shapes[i]->getFrameRect().width;
+      double height = shapes[i]->getFrameRect().height;
+      point_t position = shapes[i]->getFrameRect().pos;
+      double positionX = position.x;
+      double positionY = position.y;
+      output << positionX - (width / 2.0) << " " << positionY - (height / 2.0) << " "
+           << positionX + (width / 2.0) << " " << positionY + (height / 2.0);
+    }
+  }
+  output << "\n";
+  return output;
 }
