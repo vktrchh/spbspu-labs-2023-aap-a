@@ -9,6 +9,7 @@
 
 namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count)
 {
+  using namespace namestnikov;
   std::map<std::string, size_t> possibleShapes;
   possibleShapes["RECTANGLE"] = 4;
   possibleShapes["CIRCLE"] = 3;
