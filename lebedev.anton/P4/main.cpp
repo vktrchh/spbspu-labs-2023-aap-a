@@ -36,14 +36,12 @@ int main(int argc, char * argv[])
 
   size_t rows = 0;
   size_t cols = 0;
+  std::ifstream input(argv[2]);
+  input >> rows >> cols;
+  if (!input)
   {
-    std::ifstream input(argv[2]);
-    input >> rows >> cols;
-    if (!input)
-    {
-      std::cerr << "Error: Cannot read a number of rows or cols\n";
-      return 2;
-    }
+    std::cerr << "Error: Cannot read a number of rows or cols\n";
+    return 2;
   }
 
   size_t nzr_dig_counter = 0;
@@ -65,6 +63,16 @@ int main(int argc, char * argv[])
       std::cerr << "Error: Cannot allocate memory\n";
       return 3;
     }
+  }
+  size_t input_status = inputArray(input, array, rows, cols);
+  if (input_status != rows * cols)
+  {
+    std::cerr << "Error: Wrong matrix\n";
+    if (num == 2)
+    {
+      delete[] array;
+    }
+    return 2;
   }
 
   return 0;
