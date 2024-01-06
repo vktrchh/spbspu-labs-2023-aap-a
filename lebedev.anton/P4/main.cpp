@@ -68,7 +68,7 @@ int main(int argc, char * argv[])
   size_t input_status = inputArray(input, array, rows, cols);
   if (input_status != rows * cols)
   {
-    std::cerr << "Error: Wrong matrix\n";
+    std::cerr << "Error: Wrong matrix filling\n";
     if (num == 2)
     {
       delete[] array;
