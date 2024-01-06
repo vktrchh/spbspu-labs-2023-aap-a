@@ -19,7 +19,6 @@ namespace namestnikov
     virtual void scale(const double coefficient);
   private:
     point_t complexquadPoints_;
-    size_t complexquadSize_;
   };
 }
 

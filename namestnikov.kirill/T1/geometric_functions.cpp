@@ -1,4 +1,6 @@
 #include "geometric_functions.hpp"
+#include "base-types.hpp"
+#include "shape.hpp"
 #include <cmath>
 #include <stdexcept>
 
@@ -10,7 +12,7 @@ double namestnikov::getSizeOfLine(const point_t & p1, const point_t & p2)
 
 double namestnikov::getAreaOfTriangle(const point_t & p1, const point_t & p2, const point_t & p3)
 {
-  double a = getSizeOfline(p1, p2);
+  double a = getSizeOfLine(p1, p2);
   double b = getSizeOfLine(p1, p3);
   double c = getSizeOfLine(p2, p3);
   double halfPerimetr = (a + b + c) / 2;
@@ -65,7 +67,7 @@ void namestnikov::isoScale(Shape * shape, const point_t & point, double coeffici
 {
   if (coefficient <= 0.0)
   {
-    throw std::invalid_argument("Scaling coefficient must be greater than zero\n";
+    throw std::invalid_argument("Scaling coefficient must be greater than zero\n");
   }
   else
   {
