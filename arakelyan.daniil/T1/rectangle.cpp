@@ -42,8 +42,8 @@ void Rectangle::move(const double delX, const double delY)
 
 void Rectangle::move(const point_t point)
 {
-  double dx = (point.x_ - midpoint_.x_);
-  double dy = (point.y_ - midpoint_.y_);
+  double dx = point.x_ - midpoint_.x_;
+  double dy = point.y_ - midpoint_.y_;
   pointRightUp_.x_ += dx;
   pointRightUp_.y_ += dy;
   pointLeftDown_.x_ += dx;
@@ -59,10 +59,10 @@ void Rectangle::scale(const double k)
   }
   double width = std::abs(pointRightUp_.x_ - pointLeftDown_.x_);
   double height = std::abs(pointRightUp_.y_ - pointLeftDown_.y_);
-  double widthWithScale = width * k; // 12
-  double heightWithScale = height * k; // 8
-  double widthHalf = widthWithScale / 2.0; // 6
-  double heightHalf = heightWithScale / 2.0; // 4
+  double widthWithScale = width * k;
+  double heightWithScale = height * k;
+  double widthHalf = widthWithScale / 2.0;
+  double heightHalf = heightWithScale / 2.0;
   pointLeftDown_.x_ -= widthHalf;
   pointLeftDown_.y_ -= heightHalf;
   pointRightUp_.x_ += widthHalf;

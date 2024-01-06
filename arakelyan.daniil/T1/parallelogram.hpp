@@ -13,6 +13,7 @@ public:
   virtual void move(const double delX, const double delY);
   virtual void scale(const double k);
   virtual ~Parallelogram();
+  void getData() const;
 private:
   point_t p1_;
   point_t p2_;
