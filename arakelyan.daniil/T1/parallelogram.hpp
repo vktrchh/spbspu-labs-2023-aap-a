@@ -6,7 +6,7 @@
 
 namespace arakelyanParallelogram
 {
-  class Parallelogram: public Shape
+  class Parallelogram: public arakelyanShape::Shape
   {
   public:
     Parallelogram(const point_t fp, const point_t sp, const point_t tp);
