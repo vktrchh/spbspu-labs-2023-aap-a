@@ -1,4 +1,4 @@
-#ifndef INPUT_ARRAY-HPP
+#ifndef INPUT_ARRAY_HPP
 #define INPUT_ARRAY_HPP
 
 #include <iostream>
