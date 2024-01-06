@@ -1,10 +1,7 @@
 #include "parallelogram.hpp"
-#include "base-types.hpp"
-#include "rectangle.hpp"
 #include <stdexcept>
-#include <iostream>
 
-Parallelogram::Parallelogram(point_t fp, point_t sp, point_t tp):
+arakelyanParallelogram::Parallelogram::Parallelogram(point_t fp, point_t sp, point_t tp):
   p1_(fp),
   p2_(sp),
   p3_(tp),
@@ -17,12 +14,12 @@ Parallelogram::Parallelogram(point_t fp, point_t sp, point_t tp):
   }
 };
 
-double Parallelogram::getArea() const
+double arakelyanParallelogram::Parallelogram::getArea() const
 {
   return std::abs((p2_.x_ - p1_.x_) * (p1_.y_ - p3_.y_));
 }
 
-rectangle_t Parallelogram::getFrameRect()
+rectangle_t arakelyanParallelogram::Parallelogram::getFrameRect()
 {
   double width = std::abs(p3_.x_ - p1_.x_);
   double height = std::abs(p1_.y_ - p3_.y_);
@@ -31,7 +28,7 @@ rectangle_t Parallelogram::getFrameRect()
   return data;
 }
 
-void Parallelogram::move(const point_t point)
+void arakelyanParallelogram::Parallelogram::move(const point_t point)
 {
   double dx = point.x_ - midpoint_.x_;
   double dy = point.y_ - midpoint_.y_;
@@ -44,7 +41,7 @@ void Parallelogram::move(const point_t point)
   midpoint_ = point;
 }
 
-void Parallelogram::move(const double delX, const double delY)
+void arakelyanParallelogram::Parallelogram::move(const double delX, const double delY)
 {
   p1_.x_ += delX;
   p1_.y_ += delY;
@@ -58,7 +55,7 @@ void Parallelogram::move(const double delX, const double delY)
   midpoint_.y_ += delY;
 }
 
-void Parallelogram::scale(const double k)
+void arakelyanParallelogram::Parallelogram::scale(const double k)
 {
   if (k < 0.0)
   {
@@ -77,5 +74,5 @@ void Parallelogram::scale(const double k)
   p4_.y_ = midpoint_.y_ + (heightWithScale / 2.0);
 }
 
-Parallelogram::~Parallelogram()
+arakelyanParallelogram::Parallelogram::~Parallelogram()
 {};
