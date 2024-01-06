@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include "input_array.hpp"
+#include "cnt_nzr_dig.hpp"
 
 int main(int argc, char * argv[])
 {
@@ -74,6 +75,12 @@ int main(int argc, char * argv[])
     }
     return 2;
   }
-
+  nzr_dig_counter = countNotZeroDiags(array, rows, cols);
+  std::ofstream output(argv[3]);
+  output << nzr_dig_counter << "\n";
+  if (num == 2)
+  {
+    delete[] array;
+  }
   return 0;
 }
