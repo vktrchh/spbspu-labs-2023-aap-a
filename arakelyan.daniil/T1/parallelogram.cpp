@@ -11,17 +11,10 @@ Parallelogram::Parallelogram(point_t fp, point_t sp, point_t tp):
   p4_{(p1_.x_ + (p3_.x_ - p2_.x_)),(p3_.y_)},
   midpoint_{(p1_.x_ + ((p3_.x_ - p1_.x_) / 2.0)),(p3_.y_ - ((p3_.y_ - p2_.y_) / 2.0))}
 {
-  // if (1)
-  // {
-  //   p4_.x_ = p1_.x_ + (p3_.x_ - p2_.x_);
-  //   p4_.y_ = p1_.y_ + (p2_.x_ - p1_.x_);
-  //   midpoint_.x_ = (p1_.x_ + p3_.x_) / 2.0;
-  //   midpoint_.y_ = (p1_.y_ + p3_.y_) / 2.0;
-  // }
-  // else
-  // {
-  //   throw std::logic_error("The provided points do not form a parallelogram!");
-  // }
+  if (p2_.x_ - p1_.x_ != p3_.x_ - p4_.x_)
+  {
+    throw std::logic_error("The provided points do not form a parallelogram!");
+  }
 };
 
 double Parallelogram::getArea() const
@@ -86,14 +79,3 @@ void Parallelogram::scale(const double k)
 
 Parallelogram::~Parallelogram()
 {};
-
-void Parallelogram::getData() const
-{
-  std::cout << "data start....\n";
-  std::cout << "p1: x = " << p1_.x_ << "; y = " << p1_.y_ << "\n";
-  std::cout << "p2: x = " << p2_.x_ << "; y = " << p2_.y_ << "\n";
-  std::cout << "p3: x = " << p3_.x_ << "; y = " << p3_.y_ << "\n";
-  std::cout << "p4: x = " << p4_.x_ << "; y = " << p4_.y_ << "\n";
-  std::cout << "midpoint: x = " << midpoint_.x_ << "; y = " << midpoint_.y_ << "\n";
-  std::cout << "data end....\n";
-}
