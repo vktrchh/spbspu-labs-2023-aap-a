@@ -20,3 +20,9 @@ double Ring::getArea()
 {
   return ((M_PI * pow(radius2_, 2)) - (M_PI * pow(radius1_, 2)));
 }
+
+rectangle_t Ring::getFrameRect()
+{
+  point_t pos = center_;
+  return { pos, radius2_ * 2, radius2_ * 2 };
+}
