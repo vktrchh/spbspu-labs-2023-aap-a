@@ -34,6 +34,55 @@ int isLowerTriMatrix(int * matrix, size_t rows, size_t cols)
   return 1;
 }
 
+size_t numDiagWithoutZero(int * matrix, size_t rows, size_t cols)
+{
+  if (rows != cols || rows == 0)
+  {
+    return 0;
+  }
+  size_t counter = 0;
+  for (int i = 0; i < rows; ++i)
+  {
+    if (i == 0)
+    {
+      for (int j = 0; j < cols; ++j)
+      {
+        if (i != j)
+        {
+          counter += 1;
+          int n1 = i, n2 = j;
+          for (int k = 0; k < cols - j; ++k)
+          {
+            if (matrix[n1 * rows + n2] == 0)
+            {
+              counter -= 1;
+              break;
+            }
+            n1 += 1;
+            n2 += 1;
+          }
+        }
+      }
+    }
+    else if (i > 0)
+    {
+      counter += 1;
+      int n1 = i;
+      for (int k = 0; k < rows - i; ++k)
+      {
+        if (matrix[n1 * rows + k] == 0)
+        {
+          counter -= 1;
+          break;
+        }
+        n1 += 1;
+      }
+    }
+  }
+  return counter;
+}
+
+
 int main(int argc, char ** argv)
 {
   //----for test----
@@ -112,10 +161,14 @@ int main(int argc, char ** argv)
     }
     //работа с матрицей (нижняя треугольная матрица => квадратная матрица)
     int res = isLowerTriMatrix(matrix, rows, cols);
-    std::cout << res << '\n';
-    return 0;
+    std::cout << "isLowerTriMatrix: " << res << '\n';
+    //return 0;
 
   //------------------------------------
+    size_t res2 = numDiagWithoutZero(matrix, rows, cols);
+    std::cout << "numDiag: " << res2 << '\n';
+    return 0;
+
   }
 
   // динамический массив ; free store; num = 2
@@ -139,28 +192,8 @@ int main(int argc, char ** argv)
       return 2;
     }
   //работа с матрицей (нижняя треугольная матрица => квадратная матрица)
-    if (rows != cols || rows == 0 || rows == 1)
-    {
-      std::cout << "false\n";
-      delete[] matrix;
-      return 0;
-    }
-    for (int i = 0; i < rows; ++i)
-    {
-      for (int j = 0; j < cols; ++j)
-      {
-        if (i < j)
-        {
-          if (matrix[i * rows + j] != 0)
-          {
-            std::cout << "false\n";
-            delete[] matrix;
-            return 0;
-          }
-        }
-      }
-    }
-    std::cout << "true\n";
+    int res = isLowerTriMatrix(matrix, rows, cols);
+    std::cout << "isLowerTriMatrix: " << res << '\n';
     delete[] matrix;
     return 0;
   //------------------------------------
