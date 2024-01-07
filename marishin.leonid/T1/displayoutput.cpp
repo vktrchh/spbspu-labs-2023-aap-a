@@ -13,6 +13,16 @@ namespace marishin
 
     out << "Total Area: " << totalArea << " ";
 
+    for (size_t i = 0; i < shapeCount; ++i)
+    {
+      const auto& frameRect = shapes[i]->getFrameRect();
+      double width = frameRect.width;
+      double height = frameRect.height;
+      point_t point = frameRect.pos;
+
+
 
   }
+
+  out << "\n";
 }
