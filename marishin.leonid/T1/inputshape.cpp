@@ -20,5 +20,12 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
     }
 
     bool isValidShape = false;
+    for (size_t i = 0; i < NUM_SHAPES; ++i)
+    {
+      if (name == shapeNames[i])
+      {
+
+      }
+    }
   }
 }
