@@ -110,4 +110,10 @@ Shape* createShape(const std::string& name, double* parameters)
   throw std::logic_error("Unsupported shape type");
 }
 
-
+void skipLine(std::istream& in)
+{
+  char symbol;
+  in >> std::noskipws;
+ // while (in >> symbol && symbol != '\n');
+ // in >> std::skipws;
+}
