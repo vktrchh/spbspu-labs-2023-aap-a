@@ -1,19 +1,28 @@
 #include "readArray.h"
 #include <fstream>
+#include <iostream>
 #include <stdexcept>
 
 int* skuratov::readArray(std::ifstream& in, int array[], const size_t& rows, const size_t& cols)
 {
-  for (size_t i = 0; i < rows; ++i)
-  {
-    for (size_t j = 0; j < cols; ++j)
+    size_t count = 0;
+
+    for (size_t i = 0; i < rows * cols; ++i)
     {
-      in >> array[i * cols + j];
-      if (!in)
-      {
-        throw std::runtime_error("Invalid input array from file");
-      }
+        if (!(in >> array[i]))
+        {
+            std::cerr << "Error reading element at index\n";
+            return nullptr;
+        }
+
+        count++;
     }
-  }
-  return array;
+
+    if (count != rows * cols)
+    {
+        std::cerr << "Error\n";
+        return nullptr;
+    }
+
+    return array;
 }

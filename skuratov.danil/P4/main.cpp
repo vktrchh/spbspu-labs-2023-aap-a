@@ -25,6 +25,7 @@ int main(int argc, char* argv[])
     std::cerr << "Too many arguments" << '\n';
     return 1;
   }
+  
   int taskNumber = std::atoi(argv[1]);
   std::ifstream in(argv[2]);
   std::ofstream out(argv[3]);
@@ -54,7 +55,10 @@ int main(int argc, char* argv[])
     if (taskNumber == 1)
     {
       int staticArray[MAX_SIZE] = {};
-      readArray(in, staticArray, rows, cols);
+      if (!readArray(in, staticArray, rows, cols))
+      {
+          return 1;
+      }
       int res = countSaddlePoints(staticArray, rows, cols);
       out << res << '\n';
       if (!(out << res))
@@ -81,7 +85,14 @@ int main(int argc, char* argv[])
   if (taskNumber == 2)
   {
     int* dynamicArray = new int[sizeOfArray];
-    readArray(in, dynamicArray, rows, cols);
+    if (!readArray(in, dynamicArray, rows, cols))
+    {
+        return 1;
+    }
+    if (dynamicArray == nullptr)
+    {
+        return 1;
+    }
     int res = countSaddlePoints(dynamicArray, rows, cols);
     out << res << '\n';
     if (!(out << res))
