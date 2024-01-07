@@ -26,3 +26,9 @@ rectangle_t Ring::getFrameRect()
   point_t pos = center_;
   return { pos, radius2_ * 2, radius2_ * 2 };
 }
+
+void Ring::move(const point_t newPos)
+{
+  center_ = newPos;
+}
+
