@@ -114,6 +114,6 @@ void skipLine(std::istream& in)
 {
   char symbol;
   in >> std::noskipws;
- // while (in >> symbol && symbol != '\n');
- // in >> std::skipws;
+  while (in >> symbol && symbol != '\n');
+  in >> std::skipws;
 }
