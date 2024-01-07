@@ -23,6 +23,14 @@ namespace marishin
     return (std::abs((lowerLeftCorner_.x - topRightCorner_.x) * (lowerLeftCorner_.y - topRightCorner_.y)));
   }
 
+  rectangle_t Rectangle::getFrameRect()
+  {
+    point_t pos = { ((lowerLeftCorner_.x + topRightCorner_.x) / 2), ((lowerLeftCorner_.y + topRightCorner_.y) / 2) };
+    double width_t = std::abs(lowerLeftCorner_.x - topRightCorner_.x);
+    double height_t = std::abs(lowerLeftCorner_.y - topRightCorner_.y);
+    return { pos, width_t, height_t };
+  }
+
   
 }
 
