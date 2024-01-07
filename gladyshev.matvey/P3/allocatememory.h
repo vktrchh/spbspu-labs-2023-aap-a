@@ -5,7 +5,7 @@
 
 namespace gladyshev
 {
-  char * newMemory(const char * basicar, size_t len);
+  char * newMemory(const char * basicar, const size_t len);
 }
 
 #endif

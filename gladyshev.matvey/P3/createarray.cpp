@@ -1,6 +1,6 @@
 #include "createarray.h"
 
-bool gladyshev::checkVowel(char arrayelem)
+bool gladyshev::checkVowel(const char arrayelem)
 {
   const char vowarr[11] = "AEIOUaeiou";
   for (size_t i = 0; i < 10; ++i)
