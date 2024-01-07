@@ -31,6 +31,12 @@ namespace marishin
     return { pos, width_t, height_t };
   }
 
+  void Rectangle::move(const point_t newPos)
+  {
+    point_t pos = { ((lowerLeftCorner_.x + topRightCorner_.x) / 2), ((lowerLeftCorner_.y + topRightCorner_.y) / 2) };
+    move(newPos.x - pos.x, newPos.y - pos.y);
+  }
+
   
 }
 
