@@ -6,8 +6,6 @@
 
 int main()
 {
-  const size_t alphabetWeight = 26;
-
   char * inputString = nullptr;
   const char * defaultStringForTaskTwo = "def ghk";
 
