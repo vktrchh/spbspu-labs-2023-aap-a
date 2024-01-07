@@ -63,8 +63,24 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
           continue;
         }
 
-        
+        delete[] parameters;
+        ++shapeCount;
       }
     }
+
+    if (!isValidShape)
+    {
+      skipLine(in);
+      throw std::logic_error("It is not a valid shape");
+    }
   }
+
+  if (shapeCount = 0)
+  {
+    throw std::logic_error("No shapes provided");
+  }
+
+  return shapeArray;
 }
+
+
