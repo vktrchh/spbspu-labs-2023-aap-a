@@ -9,6 +9,6 @@ namespace nikitov
 
   void moveBuffer(char buffer[], char* actualArray, size_t arraySize, size_t bufferSize);
 
-  char* increaseArray(char* actualArray, char* tempArray, size_t arraySize, size_t bufferSize);
+  char* increaseArray(char* actualArray, size_t arraySize, size_t bufferSize);
 }
 #endif

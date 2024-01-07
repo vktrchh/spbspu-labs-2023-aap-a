@@ -33,16 +33,7 @@ std::pair< char*, size_t > nikitov::inputArray(std::istream& input)
         return { actualArray, actualSize };
       }
 
-      char* tempArray = nullptr;
-      try
-      {
-        actualArray = increaseArray(actualArray, tempArray, actualSize, bufferSize);
-      }
-      catch (const std::bad_alloc&)
-      {
-        delete[] tempArray;
-        throw;
-      }
+      actualArray = increaseArray(actualArray, actualSize, bufferSize);
     }
     while (true);
   }
