@@ -4,6 +4,7 @@
 #include "shape.hpp"
 #include <stdexcept>
 #include <cmath>
+#include <math.h>
 #define _USE_MATH_DEFINES
 
 namespace marishin

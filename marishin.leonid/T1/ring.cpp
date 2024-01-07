@@ -1,5 +1,4 @@
 #include "ring.hpp"
-#include <math.h>
 
 Ring::Ring(point_t center, const double radius1, const double radius2):
   radius1_(radius1),
