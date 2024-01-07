@@ -1,22 +1,18 @@
-#include "functions.hpp"
+#include "input_components.hpp"
 
-bool nikitov::enterBuffer(char buffer[], std::istream& input, size_t& i, size_t bufferSize)
+size_t nikitov::enterBuffer(char buffer[], std::istream& input, size_t bufferSize)
 {
   char symb = 0;
+  size_t i = 0;
   while ((i != bufferSize) && (input >> symb))
   {
     buffer[i++] = symb;
     if (symb == '\n')
     {
-      return false;
-      break;
+      return i;
     }
   }
-  if (!input)
-  {
-    return false;
-  }
-  return true;
+  return bufferSize;
 }
 
 void nikitov::moveBuffer(char buffer[], char* actualArray, size_t arraySize, size_t bufferSize)
