@@ -18,7 +18,7 @@ marishin::Triangle::~Triangle()
 
 double marishin::Triangle::getArea()
 {
-  double area = marishin::calculateTriangleArea(firstPoint_, secondPoint_, thirdPoint_);
+  double area = calculateTriangleArea(firstPoint_, secondPoint_, thirdPoint_);
   return area;
 }
 
@@ -33,7 +33,7 @@ rectangle_t marishin::Triangle::getFrameRect()
 void marishin::Triangle::move(const point_t newPos)
 {
   point_t pos = { (firstPoint_.x + secondPoint_.x + thirdPoint_.x) / 3.0, (firstPoint_.y + secondPoint_.y + thirdPoint_.y) / 3.0 };
-  marishin::move(newPos.x - pos.x, newPos.y - pos.y);
+  move(newPos.x - pos.x, newPos.y - pos.y);
 }
 
 void marishin::Triangle::move(const double dx, const double dy)
