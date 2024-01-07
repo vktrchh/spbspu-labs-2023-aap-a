@@ -10,6 +10,7 @@ int main()
   double scalingFactor = 0;
   try
   {
-
+    myShapes = inputShape(std::cin, numberOfShapes);
+    std::cin >> center.x >> center.y >> scalingFactor;
   }
 }
