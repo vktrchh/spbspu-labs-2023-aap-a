@@ -1,3 +1,4 @@
+#include <iostream>
 #include "createFigure.hpp"
 #include <utility>
 #include <stdexcept>
@@ -87,8 +88,7 @@ isaychev::Rectangle * isaychev::createRectangle(double * params)
   }
   isaychev::point_t bot = {params[0], params[1]};
   isaychev::point_t top = {params[2], params[3]};
-  isaychev::Rectangle * rec = nullptr;
-  rec = new isaychev::Rectangle(bot, top);
+  isaychev::Rectangle * rec = new isaychev::Rectangle(bot, top);
   return rec;
 }
 
@@ -102,7 +102,7 @@ isaychev::Shape * isaychev::createFigure(char * str)
   {
     double parameters[4] = {};
     parseFigureParams(str, numOfParameters, parameters);
-//    currFigure = createRectangle(parameters);
+    currFigure = createRectangle(parameters);
   }
   else if (numOfCurrFigure == 2)
   {

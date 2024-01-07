@@ -41,6 +41,11 @@ int main()
     }
     delete [] currDesc;
   }
+  for (size_t j = 0; j < figuresCount; j++)
+  {
+    std::cout << Figures[j]->getArea() << " " << Figures[j]->getFrameRect() << "\n";
+    
+  }
   deleteFigures(Figures, figuresCount);
   delete [] currDesc;
 }
