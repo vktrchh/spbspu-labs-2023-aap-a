@@ -10,5 +10,6 @@ void scale(Shape* shape, point_t& center, double scaleCoefficient)
   point_t initialPosition = shape->getFrameRect().pos;
   shape->move(center);
   shape->scale(scaleCoefficient);
-  
+  shape->move(scaleCoefficient * (initialPosition.x - shape->getFrameRect().pos.x),
+  scaleCoefficient * (initialPosition.y - shape->getFrameRect().pos.y));
 }
