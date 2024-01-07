@@ -58,7 +58,10 @@ int main(int argc, char* argv[])
     {
       readMatrix(input, matrix, rows, cols);
       int result = countNonZeroDiagonals(matrix, rows, cols);
-      output << result;
+      incrementCirclesInMatrix(matrix, rows, cols);
+      std::ofstream output(argv[3]);
+      writeMatrix(output, matrix, rows, cols);
+      output << '\n' << result;
       if (!output)
       {
         throw std::invalid_argument("Error of output result");
@@ -81,6 +84,8 @@ int main(int argc, char* argv[])
       incrementCirclesInMatrix(matrix, rows, cols);
       std::ofstream output(argv[3]);
       writeMatrix(output, matrix, rows, cols);
+      int result = countNonZeroDiagonals(matrix, rows, cols);
+      output << '\n' << result;
     }
     catch (const std::exception& e)
     {
