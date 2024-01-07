@@ -12,6 +12,10 @@ size_t nikitov::enterBuffer(char buffer[], std::istream& input, size_t bufferSiz
       return i;
     }
   }
+  if (!input)
+  {
+    return i;
+  }
   return bufferSize;
 }
 
