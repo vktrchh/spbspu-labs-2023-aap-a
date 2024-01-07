@@ -14,8 +14,8 @@ public:
   virtual void move(const double dx, const double dy);
   virtual void scale(const double factor);
 private:
-  double width;
-  double height;
+  point_t lowerLeftCorner_;
+  point_t topRightCorner_;
 };
 
 #endif
