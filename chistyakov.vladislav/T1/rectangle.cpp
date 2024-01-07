@@ -22,9 +22,9 @@ double chistyakov::Rectangle::getArea() const
 
 rectangle_t chistyakov::Rectangle::getFrameRect() const
 {
-  double width = rightCorner.x - leftCorner.x;
-  double height = rightCorner.y - leftCorner.y;
-  point_t pos = { width/2.0 + leftCorner.x, height/2.0 + leftCorner.y};
+  double width = rightCorner_.x - leftCorner_.x;
+  double height = rightCorner_.y - leftCorner_.y;
+  point_t pos = { width/2.0 + leftCorner_.x, height/2.0 + leftCorner_.y};
   return {width, height, pos};
 }
 
