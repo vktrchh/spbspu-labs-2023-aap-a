@@ -12,5 +12,11 @@ int main()
   {
     myShapes = inputShape(std::cin, numberOfShapes);
     std::cin >> center.x >> center.y >> scalingFactor;
+
+    outputShapesInfo(std::cout, numberOfShapes, myShapes);
+    for (size_t i = 0; i < numberOfShapes; ++i)
+    {
+      scale(myShapes[i], center, scalingFactor);
+    }
   }
 }
