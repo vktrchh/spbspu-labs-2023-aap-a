@@ -83,4 +83,12 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
   return shapeArray;
 }
 
+void cleanupShapes(Shape** shapes, size_t count)
+{
+  for (size_t i = 0; i < count; ++i)
+  {
+    delete shapes[i];
+  }
+  delete[] shapes;
+}
 
