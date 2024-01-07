@@ -4,6 +4,7 @@
 
 int main()
 {
+  using namespace marishin;
   Shape** myShapes = nullptr;
   size_t numberOfShapes = 0;
   point_t center = { 0, 0 };
@@ -28,6 +29,8 @@ int main()
   }
   catch (const std::exception& ex)
   {
+    std::cerr << ex.what() << "\n";
+    
     return 1;
   }
 }
