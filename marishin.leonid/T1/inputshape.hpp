@@ -8,9 +8,12 @@
 #include <string>
 #include <iostream>
 
-Shape** inputShape(std::istream& in, size_t& shapeCount);
-void cleanupShapes(Shape** shapes, size_t count);
-Shape* createShape(const std::string& name, double* parameters);
-void skipLine(std::istream& in);
+namespace marishin
+{
+  Shape** inputShape(std::istream& in, size_t& shapeCount);
+  void cleanupShapes(Shape** shapes, size_t count);
+  Shape* createShape(const std::string& name, double* parameters);
+  void skipLine(std::istream& in);
+}
 
 #endif
