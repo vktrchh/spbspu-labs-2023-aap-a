@@ -1,13 +1,12 @@
 #include "input_array.hpp"
-#include "functions.hpp"
 #include <limits>
 #include <stdexcept>
+#include "input_components.hpp"
 
 std::pair< char*, size_t > nikitov::inputArray(std::istream& input)
 {
-  const size_t bufferSize = 25;
+  constexpr size_t bufferSize = 25;
   size_t actualSize = 0;
-  bool status = true;
 
   char* actualArray = new char[bufferSize]{};
   try
@@ -15,10 +14,8 @@ std::pair< char*, size_t > nikitov::inputArray(std::istream& input)
     do
     {
       char buffer[bufferSize] = { 0 };
-      size_t i = 0;
       input >> std::noskipws;
-      status = enterBuffer(buffer, input, i, bufferSize);
-      input >> std::skipws;
+      size_t i = enterBuffer(buffer, input, bufferSize);
 
       moveBuffer(buffer, actualArray, actualSize, bufferSize);
 
@@ -29,9 +26,10 @@ std::pair< char*, size_t > nikitov::inputArray(std::istream& input)
       }
       actualSize += bufferSize;
 
-      if (!status)
+      if (i != bufferSize)
       {
         actualArray[i + actualSize - bufferSize] = '\0';
+        input >> std::skipws;
         return { actualArray, actualSize };
       }
 
@@ -45,10 +43,12 @@ std::pair< char*, size_t > nikitov::inputArray(std::istream& input)
         delete[] tempArray;
         throw;
       }
-    } while (status);
+    }
+    while (true);
   }
   catch (...)
   {
+    input >> std::skipws;
     delete[] actualArray;
     throw;
   }
