@@ -37,3 +37,9 @@ void Ring::move(const double dx, const double dy)
   center_.x += dx;
   center_.y += dy;
 }
+
+void Ring::scale(const double factor)
+{
+  radius1_ *= factor;
+  radius2_ *= factor;
+}
