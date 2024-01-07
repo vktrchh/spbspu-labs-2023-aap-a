@@ -3,6 +3,7 @@
 #include <string>
 #include "input_array.hpp"
 #include "cnt_nzr_dig.hpp"
+#include "min_sum_sdg.hpp"
 
 int main(int argc, char * argv[])
 {
@@ -45,8 +46,8 @@ int main(int argc, char * argv[])
     return 2;
   }
 
-  size_t nzr_dig_counter = 0;
-  //long long min_sum_sdg = std::numeric_limits< long long >::max();
+  size_t cnt_nzr_dig = 0;
+  long long min_sum_sdg = 0;
   int static_array[10000] = {};
   int * array = nullptr;
   if (num == 1)
@@ -75,9 +76,11 @@ int main(int argc, char * argv[])
     }
     return 2;
   }
-  nzr_dig_counter = countNotZeroDiags(array, rows, cols);
+  cnt_nzr_dig = countNotZeroDiags(array, rows, cols);
+  min_sum_sdg = findMinSumSubdiags(array, rows, cols);
   std::ofstream output(argv[3]);
-  output << nzr_dig_counter << "\n";
+  output << "Not zero diags: " << cnt_nzr_dig << "\n";
+  output << "Min sum subdiags: " << min_sum_sdg << "\n";;
   if (num == 2)
   {
     delete[] array;
