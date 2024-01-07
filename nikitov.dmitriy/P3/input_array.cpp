@@ -11,7 +11,7 @@ std::pair< char*, size_t > nikitov::inputArray(std::istream& input)
   char* actualArray = new char[bufferSize]{};
   try
   {
-    do
+    for (;;)
     {
       char buffer[bufferSize] = { 0 };
       input >> std::noskipws;
@@ -35,7 +35,6 @@ std::pair< char*, size_t > nikitov::inputArray(std::istream& input)
 
       actualArray = increaseArray(actualArray, actualSize, bufferSize);
     }
-    while (true);
   }
   catch (...)
   {
