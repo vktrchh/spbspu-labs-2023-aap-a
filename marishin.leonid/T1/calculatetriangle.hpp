@@ -1,0 +1,5 @@
+#ifndef CALCULATETRIANGLE_HPP
+#define CALCULATETRIANGLE_HPP
+
+
+#endif
