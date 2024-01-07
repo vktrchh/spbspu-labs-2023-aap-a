@@ -40,6 +40,9 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
           throw std::logic_error("Invalid arguments");
         }
 
+        Shape** oldShapeArray = ShapeArray;
+        shapeArray = new Shape* [shapeCount + 1];
+
         
       }
     }
