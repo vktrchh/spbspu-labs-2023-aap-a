@@ -2,9 +2,7 @@
 
 isaychev::Rectangle::Rectangle(const point_t & p1, const point_t & p2):
   botL_(p1),
-//  botL_.y_(p1.y_),
   topR_(p2)
-//  topR_.y_(p2.y_)
 {}
 
 double isaychev::Rectangle::getArea() const
