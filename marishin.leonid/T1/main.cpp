@@ -19,5 +19,15 @@ int main()
       scale(myShapes[i], center, scalingFactor);
     }
     outputShapesInfo(std::cout, numberOfShapes, myShapes);
+
+    for (size_t i = 0; i < numberOfShapes; ++i)
+    {
+      delete myShapes[i];
+    }
+    delete[] myShapes;
+  }
+  catch (const std::exception& ex)
+  {
+    return 1;
   }
 }
