@@ -3,7 +3,6 @@
 #include <limits>
 #include <algorithm>
 
-
 long long lebedev::findMinSumSubdiags(const int matrix[], size_t rows, size_t cols)
 {
   long long ll_max = std::numeric_limits< long long >::max();
