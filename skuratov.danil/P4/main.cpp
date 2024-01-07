@@ -25,7 +25,6 @@ int main(int argc, char* argv[])
     std::cerr << "Too many arguments" << '\n';
     return 1;
   }
-  
   int taskNumber = std::atoi(argv[1]);
   std::ifstream in(argv[2]);
   std::ofstream out(argv[3]);
