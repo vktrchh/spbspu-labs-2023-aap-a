@@ -10,13 +10,10 @@ char * arakelyan::inputArray(std::istream & input)
   char sym = 0;
 
   char * mainBuffer = nullptr;
-  try
+  mainBuffer = new char[arrSize];
+  if (mainBuffer == nullptr)
   {
-    mainBuffer = new char[arrSize];
-  }
-  catch (const std::bad_alloc & e)
-  {
-    throw;
+    throw std::bad_alloc();
   }
 
   input >> std::noskipws;
@@ -34,14 +31,11 @@ char * arakelyan::inputArray(std::istream & input)
 
       char * tempBuffer = nullptr;
 
-      try
-      {
-        tempBuffer = new char[arrSize];
-      }
-      catch (const std::bad_alloc & e)
+      tempBuffer = new char[arrSize];
+      if (tempBuffer == nullptr)
       {
         delete [] mainBuffer;
-        throw;
+        throw std::bad_alloc();
       }
 
       for (size_t j = 0; j < i; j++)

@@ -1,8 +1,8 @@
 #include <iostream>
 #include <stdexcept>
 #include "inputArray.hpp"
-#include "taskOne.hpp"
-#include "taskTwo.hpp"
+#include "difLetters.hpp"
+#include "difLettersInTwoStrings.hpp"
 
 int main()
 {
@@ -22,27 +22,26 @@ int main()
   }
   catch (const std::bad_alloc & e)
   {
-    std::cerr << "Memory cannot be allocated!\n";
+    std::cerr << "Memory cannot be allocated in input process!\n";
     return 1;
   }
 
-  using namespace arakelyanTaskOne;
-  size_t answerTaskOne = arakelyanTaskOne::countOfdifferentLetters(inputString);
+  using namespace arakelyan;
+  size_t answerTaskOne = countOfdifferentLetters(inputString);
 
   char * answerTaskTwo = nullptr;
   try
   {
-    answerTaskTwo = new char[alphabetWeight + 1];
+    answerTaskTwo = new char[26 + 1];
   }
   catch (const std::bad_alloc & e)
   {
-    std::cerr << "Cannot create a dynamic array for answerTaskTwo!\n";
+    std::cerr << "Cannot create a dynamic array for answer of second task!\n";
     delete [] inputString;
     return 1;
   }
 
-  using namespace arakelyanTaskTwo;
-  identicalLetters(inputString, defaultStringForTaskTwo, answerTaskTwo, alphabetWeight);
+  differentLetters(inputString, defaultStringForTaskTwo, answerTaskTwo);
 
   std::cout << answerTaskOne << "\n" << answerTaskTwo << "\n";
 
