@@ -92,3 +92,19 @@ void cleanupShapes(Shape** shapes, size_t count)
   delete[] shapes;
 }
 
+Shape* createShape(const std::string& name, double* parameters)
+{
+  if (name == "RECTANGLE")
+  {
+    return new Rectangle({ parameters[0], parameters[1] }, { parameters[2], parameters[3] });
+  }
+  else if (name == "TRIANGLE")
+  {
+    return new Triangle({ parameters[0], parameters[1] }, { parameters[2], parameters[3] }, { parameters[4], parameters[5] });
+  }
+  else if (name == "RING")
+  {
+    return new Ring({ parameters[0], parameters[1] }, parameters[2], parameters[3] );
+  }
+
+}
