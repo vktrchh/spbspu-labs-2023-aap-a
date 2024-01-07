@@ -57,7 +57,7 @@ int main(int argc, char* argv[])
       int staticArray[MAX_SIZE] = {};
       if (!readArray(in, staticArray, rows, cols))
       {
-          return 1;
+        return 1;
       }
       int res = countSaddlePoints(staticArray, rows, cols);
       out << res << '\n';
@@ -87,11 +87,11 @@ int main(int argc, char* argv[])
     int* dynamicArray = new int[sizeOfArray];
     if (!readArray(in, dynamicArray, rows, cols))
     {
-        return 1;
+      return 1;
     }
     if (dynamicArray == nullptr)
     {
-        return 1;
+      return 1;
     }
     int res = countSaddlePoints(dynamicArray, rows, cols);
     out << res << '\n';
