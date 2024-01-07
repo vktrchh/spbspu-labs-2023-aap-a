@@ -14,7 +14,15 @@ namespace marishin
     }
   }
 
-  
+  Rectangle::~Rectangle()
+  {
+  }
 
+  double Rectangle::getArea()
+  {
+    return (std::abs((lowerLeftCorner_.x - topRightCorner_.x) * (lowerLeftCorner_.y - topRightCorner_.y)));
+  }
+
+  
 }
 
