@@ -1,56 +1,54 @@
 #include "rectangle.hpp"
 #include <stdexcept>
 
-namespace marishin
+
+marishin::Rectangle::Rectangle(const point_t lowerLeftCorner, const point_t topRightCorner):
+  lowerLeftCorner_(lowerLeftCorner),
+  topRightCorner_(topRightCorner)
 {
-  Rectangle::Rectangle(const point_t lowerLeftCorner, const point_t topRightCorner):
-    lowerLeftCorner_(lowerLeftCorner),
-    topRightCorner_(topRightCorner)
+  if (!(((lowerLeftCorner_.x < topRightCorner_.x) && (lowerLeftCorner_.y < topRightCorner_.y))
+    || ((lowerLeftCorner_.x > topRightCorner_.x) && (lowerLeftCorner_.y > topRightCorner_.y))))
   {
-    if (!(((lowerLeftCorner_.x < topRightCorner_.x) && (lowerLeftCorner_.y < topRightCorner_.y))
-      || ((lowerLeftCorner_.x > topRightCorner_.x) && (lowerLeftCorner_.y > topRightCorner_.y))))
-    {
-      throw std::logic_error("Invalid rectangle");
-    }
+    throw std::logic_error("Invalid rectangle");
   }
+}
 
-  Rectangle::~Rectangle()
-  {
-  }
+marishin::Rectangle::~Rectangle()
+{
+}
 
-  double Rectangle::getArea()
-  {
-    return (std::abs((lowerLeftCorner_.x - topRightCorner_.x) * (lowerLeftCorner_.y - topRightCorner_.y)));
-  }
+double marishin::Rectangle::getArea()
+{
+  return (std::abs((lowerLeftCorner_.x - topRightCorner_.x) * (lowerLeftCorner_.y - topRightCorner_.y)));
+}
 
-  rectangle_t Rectangle::getFrameRect()
-  {
-    point_t pos = { ((lowerLeftCorner_.x + topRightCorner_.x) / 2), ((lowerLeftCorner_.y + topRightCorner_.y) / 2) };
-    double width_t = std::abs(lowerLeftCorner_.x - topRightCorner_.x);
-    double height_t = std::abs(lowerLeftCorner_.y - topRightCorner_.y);
-    return { pos, width_t, height_t };
-  }
+rectangle_t marishin::Rectangle::getFrameRect()
+{
+  point_t pos = { ((lowerLeftCorner_.x + topRightCorner_.x) / 2), ((lowerLeftCorner_.y + topRightCorner_.y) / 2) };
+  double width_t = std::abs(lowerLeftCorner_.x - topRightCorner_.x);
+  double height_t = std::abs(lowerLeftCorner_.y - topRightCorner_.y);
+  return { pos, width_t, height_t };
+}
 
-  void Rectangle::move(const point_t newPos)
-  {
-    point_t pos = { ((lowerLeftCorner_.x + topRightCorner_.x) / 2), ((lowerLeftCorner_.y + topRightCorner_.y) / 2) };
-    move(newPos.x - pos.x, newPos.y - pos.y);
-  }
+void marishin::Rectangle::move(const point_t newPos)
+{
+  point_t pos = { ((lowerLeftCorner_.x + topRightCorner_.x) / 2), ((lowerLeftCorner_.y + topRightCorner_.y) / 2) };
+  move(newPos.x - pos.x, newPos.y - pos.y);
+}
 
-  void Rectangle::move(const double dx, const double dy)
-  {
-    lowerLeftCorner_.x += dx;
-    lowerLeftCorner_.y += dy;
-    topRightCorner_.x += dx;
-    topRightCorner_.y += dy;
-  }
+void marishin::Rectangle::move(const double dx, const double dy)
+{
+  lowerLeftCorner_.x += dx;
+  lowerLeftCorner_.y += dy;
+  topRightCorner_.x += dx;
+  topRightCorner_.y += dy;
+}
 
-  void Rectangle::scale(const double factor)
-  {
-    point_t pos = { ((lowerLeftCorner_.x + topRightCorner_.x) / 2), ((lowerLeftCorner_.y + topRightCorner_.y) / 2) };
-    lowerLeftCorner_.x = topRightCorner_.x - (topRightCorner_.x - lowerLeftCorner_.x) * factor;
-    lowerLeftCorner_.y = topRightCorner_.y - (topRightCorner_.y - lowerLeftCorner_.y) * factor;
-    topRightCorner_.x = lowerLeftCorner_.x + (topRightCorner_.x - lowerLeftCorner_.x) * factor;
-    topRightCorner_.y = lowerLeftCorner_.y + (topRightCorner_.y - lowerLeftCorner_.y) * factor;
-  }
+void marishin::Rectangle::scale(const double factor)
+{
+  point_t pos = { ((lowerLeftCorner_.x + topRightCorner_.x) / 2), ((lowerLeftCorner_.y + topRightCorner_.y) / 2) };
+  lowerLeftCorner_.x = topRightCorner_.x - (topRightCorner_.x - lowerLeftCorner_.x) * factor;
+  lowerLeftCorner_.y = topRightCorner_.y - (topRightCorner_.y - lowerLeftCorner_.y) * factor;
+  topRightCorner_.x = lowerLeftCorner_.x + (topRightCorner_.x - lowerLeftCorner_.x) * factor;
+  topRightCorner_.y = lowerLeftCorner_.y + (topRightCorner_.y - lowerLeftCorner_.y) * factor;
 }
