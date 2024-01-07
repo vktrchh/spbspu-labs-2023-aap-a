@@ -14,6 +14,10 @@ public:
   virtual void move(const point_t newPos);
   virtual void move(const double dx, const double dy);
   virtual void scale(const double factor);
+private:
+  point_t firstPoint_;
+  point_t secondPoint_;
+  point_t thirdPoint_;
 }
 
 #endif
