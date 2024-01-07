@@ -43,6 +43,15 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
         Shape** oldShapeArray = ShapeArray;
         shapeArray = new Shape* [shapeCount + 1];
 
+        if (oldShapeArray)
+        {
+          for (size_t k = 0; k < shapeCount; ++k)
+          {
+            shapeArray[k] = oldShapeArray[k];
+          }
+          delete[] oldShapeArray;
+        }
+
         
       }
     }
