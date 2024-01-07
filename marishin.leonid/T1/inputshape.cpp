@@ -24,7 +24,20 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
     {
       if (name == shapeNames[i])
       {
+        isValidShape = true;
 
+        double* parameters = new double[shapeParametersCount[i]];
+
+        for (size_t j = 0; j < shapeParametersCount[i]; ++j)
+        {
+          in >> parameters[j];
+        }
+
+        if (!in)
+        {
+          cleanupShapes(shapeArray, shapeCount);
+          delete[] parameters;
+        }
       }
     }
   }
