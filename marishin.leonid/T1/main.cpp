@@ -30,7 +30,11 @@ int main()
   catch (const std::exception& ex)
   {
     std::cerr << ex.what() << "\n";
-    
+    for (size_t i = 0; i < numberOfShapes; ++i)
+    {
+      delete myShapes[i];
+    }
+    delete[] myShapes;
     return 1;
   }
 }
