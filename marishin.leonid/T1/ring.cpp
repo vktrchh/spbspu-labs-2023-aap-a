@@ -16,3 +16,7 @@ Ring::~Ring()
 {
 }
 
+double Ring::getArea()
+{
+  return ((M_PI * pow(radius2_, 2)) - (M_PI * pow(radius1_, 2)));
+}
