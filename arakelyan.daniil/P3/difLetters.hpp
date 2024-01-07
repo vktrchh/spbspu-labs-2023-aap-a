@@ -3,6 +3,6 @@
 #include <cstddef>
 namespace arakelyan
 {
-  size_t countOfdifferentLetters(const char * myArray);
+  size_t countOfdifferentLetters(const char *myArray);
 }
 #endif

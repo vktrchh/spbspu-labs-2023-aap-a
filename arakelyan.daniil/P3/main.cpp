@@ -6,8 +6,8 @@
 
 int main()
 {
-  char * inputString = nullptr;
-  const char * defaultStringForTaskTwo = "def ghk";
+  char *inputString = nullptr;
+  const char *defaultStringForTaskTwo = "def ghk";
 
   try
   {
@@ -27,7 +27,7 @@ int main()
   using namespace arakelyan;
   size_t answerTaskOne = countOfdifferentLetters(inputString);
 
-  char * answerTaskTwo = nullptr;
+  char *answerTaskTwo = nullptr;
   try
   {
     answerTaskTwo = new char[26 + 1];

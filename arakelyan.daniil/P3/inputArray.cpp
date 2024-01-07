@@ -2,7 +2,7 @@
 #include <cstddef>
 #include <stdexcept>
 
-char * arakelyan::inputArray(std::istream & input)
+char * arakelyan::inputArray(std::istream &input)
 {
   size_t arrSize = 10;
 
