@@ -7,7 +7,7 @@
 
 namespace marishin
 {
-
+  void scale(Shape* shape, point_t& center, double scaleCoefficient);
 }
 
 #endif
