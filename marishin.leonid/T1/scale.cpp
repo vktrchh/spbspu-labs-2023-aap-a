@@ -7,5 +7,8 @@ void scale(Shape* shape, point_t& center, double scaleCoefficient)
     throw std::invalid_argument("Invalid scale coefficient. Must be non-negative.");
   }
 
+  point_t initialPosition = shape->getFrameRect().pos;
+  shape->move(center);
+  shape->scale(scaleCoefficient);
   
 }
