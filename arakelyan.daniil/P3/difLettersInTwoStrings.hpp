@@ -4,6 +4,6 @@
 namespace arakelyan
 {
   void differentLetters(const char * inputArr, const char * defaultArray, char * answer);
-  void findAndPasteDiffSymb(const char * array, char * answer, size_t & pos);
+  void findAndPasteDiffSymb(const char * array, char * answer, size_t & freePos);
 }
 #endif

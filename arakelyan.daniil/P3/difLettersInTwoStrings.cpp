@@ -1,7 +1,7 @@
 #include "difLettersInTwoStrings.hpp"
 #include <cctype>
 
-void arakelyan::findAndPasteDiffSymb(const char * array, char * answer, size_t & pos)
+void arakelyan::findAndPasteDiffSymb(const char * array, char * answer, size_t & freePos)
 {
   size_t flag = 0;
   for (size_t i = 0; array[i] != '\0'; i++)
@@ -18,7 +18,7 @@ void arakelyan::findAndPasteDiffSymb(const char * array, char * answer, size_t &
       }
       if (flag == 0)
       {
-        answer[pos++] = symb;
+        answer[freePos++] = symb;
       }
       flag = 0;
     }
@@ -27,16 +27,16 @@ void arakelyan::findAndPasteDiffSymb(const char * array, char * answer, size_t &
 
 void arakelyan::differentLetters(const char * inputArr, const char * defaultArray, char * answer)
 {
-  for (size_t i = 0; i < 26; i++)
+  for (size_t i = 0; i < 27; i++)
   {
     answer[i] = 1;
   }
   size_t indexOfUsedCells = 0;
   arakelyan::findAndPasteDiffSymb(inputArr, answer, indexOfUsedCells);
   arakelyan::findAndPasteDiffSymb(defaultArray, answer, indexOfUsedCells);
-  for (size_t i = 0; i < 26; i++)
+  for (size_t i = 0; i < 27; i++)
   {
-    for (size_t j = 0; j < 26 - i; j++)
+    for (size_t j = 0; j < 27 - i; j++)
     {
       if (std::isalpha(answer[j]) && std::isalpha(answer[j+1]))
       {
