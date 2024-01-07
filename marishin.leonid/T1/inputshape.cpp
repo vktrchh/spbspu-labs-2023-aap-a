@@ -11,6 +11,14 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
 
   while (true)
   {
+    std::string name;
+    in >> name;
 
+    if (name == "SCALE")
+    {
+      break;
+    }
+
+    bool isValidShape = false;
   }
 }
