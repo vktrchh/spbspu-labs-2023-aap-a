@@ -15,6 +15,25 @@ size_t inputArray(std::istream & in, int * matrix, size_t amount, size_t toread)
   return std::min(toread, amount);
 }
 
+int isLowerTriMatrix(int * matrix, size_t rows, size_t cols)
+{
+  if (rows != cols || rows == 0 || rows == 1)
+  {
+    return 0;
+  }
+  for (int i = 0; i < rows; ++i)
+  {
+    for (int j = 0; j < cols; ++j)
+    {
+      if (i < j && matrix[i * rows + j] != 0)
+      {
+        return 0;
+      }
+    }
+  }
+  return 1;
+}
+
 int main(int argc, char ** argv)
 {
   //----for test----
@@ -63,7 +82,7 @@ int main(int argc, char ** argv)
   size_t rows = 0, cols = 0;
 
   std::ifstream input(argv[2]);
-  input >> rows >> cols;;
+  input >> rows >> cols;
   if (!input)
   {
     std::cerr << "Cannot read rows or cols\n";
@@ -92,27 +111,10 @@ int main(int argc, char ** argv)
       return 2;
     }
     //работа с матрицей (нижняя треугольная матрица => квадратная матрица)
-    if (rows != cols || rows == 0 && cols == 0)
-    {
-      std::cout << "false\n";
-      return 0;
-    }
-    for (int i = 0; i < rows; ++i)
-    {
-      for (int j = 0; j < cols; ++j)
-      {
-        if (i < j)
-        {
-          if (matrix[i * rows + j] != 0)
-          {
-            std::cout << "false\n";
-            return 0;
-          }
-        }
-      }
-    }
-    std::cout << "true\n";
+    int res = isLowerTriMatrix(matrix, rows, cols);
+    std::cout << res << '\n';
     return 0;
+
   //------------------------------------
   }
 
@@ -137,7 +139,7 @@ int main(int argc, char ** argv)
       return 2;
     }
   //работа с матрицей (нижняя треугольная матрица => квадратная матрица)
-    if (rows != cols || rows == 0 && cols == 0)
+    if (rows != cols || rows == 0 || rows == 1)
     {
       std::cout << "false\n";
       delete[] matrix;
