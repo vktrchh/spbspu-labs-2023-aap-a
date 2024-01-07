@@ -14,3 +14,7 @@ bool isTriangleExist(const point_t& p1, const point_t& p2, const point_t& p3)
   return (a + b > c) && (b + c > a) && (c + a > b);
 }
 
+double calculateTriangleArea(const point_t& p1, const point_t& p2, const point_t& p3)
+{
+  return 0.5 * abs((p1.x * (p2.y - p3.y) + p2.x * (p3.y - p1.y) + p3.x * (p1.y - p2.y)));
+}
