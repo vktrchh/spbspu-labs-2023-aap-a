@@ -37,6 +37,14 @@ namespace marishin
     move(newPos.x - pos.x, newPos.y - pos.y);
   }
 
+  void Rectangle::move(const double dx, const double dy)
+  {
+    lowerLeftCorner_.x += dx;
+    lowerLeftCorner_.y += dy;
+    topRightCorner_.x += dx;
+    topRightCorner_.y += dy;
+  }
+
   
 }
 
