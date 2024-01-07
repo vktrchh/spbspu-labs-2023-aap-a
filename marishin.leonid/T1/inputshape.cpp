@@ -52,6 +52,17 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
           delete[] oldShapeArray;
         }
 
+        try
+        {
+          shapeArray[shapeCount] = createShape(name, parameters);
+        }
+        catch (const std::exception& ex)
+        {
+          std::cerr << ex.what() << "\n";
+          delete[] parameters;
+          continue;
+        }
+
         
       }
     }
