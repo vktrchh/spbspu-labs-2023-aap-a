@@ -11,3 +11,8 @@ Ring::Ring(point_t center, const double radius1, const double radius2):
     throw std::logic_error("Invalid ring");
   }
 }
+
+Ring::~Ring()
+{
+}
+
