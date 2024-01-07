@@ -35,7 +35,7 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
 
         if (!in)
         {
-          cleanupShapes(shapeArray, shapeCount);
+          marishin::cleanupShapes(shapeArray, shapeCount);
           delete[] parameters;
           throw std::logic_error("Invalid arguments");
         }
@@ -54,7 +54,7 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
 
         try
         {
-          shapeArray[shapeCount] = createShape(name, parameters);
+          shapeArray[shapeCount] = marishin::createShape(name, parameters);
         }
         catch (const std::exception& ex)
         {
@@ -70,7 +70,7 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
 
     if (!isValidShape)
     {
-      skipLine(in);
+      marishin::skipLine(in);
       throw std::logic_error("It is not a valid shape");
     }
   }
@@ -83,7 +83,7 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
   return shapeArray;
 }
 
-void cleanupShapes(Shape** shapes, size_t count)
+void marishin::cleanupShapes(Shape** shapes, size_t count)
 {
   for (size_t i = 0; i < count; ++i)
   {
@@ -92,7 +92,7 @@ void cleanupShapes(Shape** shapes, size_t count)
   delete[] shapes;
 }
 
-Shape* createShape(const std::string& name, double* parameters)
+marishin::Shape* marishin::createShape(const std::string& name, double* parameters)
 {
   if (name == "RECTANGLE")
   {
@@ -110,7 +110,7 @@ Shape* createShape(const std::string& name, double* parameters)
   throw std::logic_error("Unsupported shape type");
 }
 
-void skipLine(std::istream& in)
+void marishin::skipLine(std::istream& in)
 {
   char symbol;
   in >> std::noskipws;
