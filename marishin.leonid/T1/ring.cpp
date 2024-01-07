@@ -32,3 +32,8 @@ void Ring::move(const point_t newPos)
   center_ = newPos;
 }
 
+void Ring::move(const double dx, const double dy)
+{
+  center_.x += dx;
+  center_.y += dy;
+}
