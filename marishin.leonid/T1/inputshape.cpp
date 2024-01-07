@@ -107,4 +107,7 @@ Shape* createShape(const std::string& name, double* parameters)
     return new Ring({ parameters[0], parameters[1] }, parameters[2], parameters[3] );
   }
 
+  throw std::logic_error("Unsupported shape type");
 }
+
+
