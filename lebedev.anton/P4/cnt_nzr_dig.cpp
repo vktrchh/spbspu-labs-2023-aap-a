@@ -5,7 +5,7 @@
 size_t lebedev::countNotZeroDiags(const int matrix[], size_t rows, size_t cols)
 {
   size_t counter = 0;
-  if (rows <= 1 && cols <= 1)
+  if (rows == 0 || cols == 0)
   {
     return 0;
   }

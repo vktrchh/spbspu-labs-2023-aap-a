@@ -80,7 +80,7 @@ int main(int argc, char * argv[])
   min_sum_sdg = findMinSumSubdiags(array, rows, cols);
   std::ofstream output(argv[3]);
   output << "Not zero diags: " << cnt_nzr_dig << "\n";
-  output << "Min sum subdiags: " << min_sum_sdg << "\n";;
+  output << "Min sum subdiags: " << min_sum_sdg << "\n";
   if (num == 2)
   {
     delete[] array;

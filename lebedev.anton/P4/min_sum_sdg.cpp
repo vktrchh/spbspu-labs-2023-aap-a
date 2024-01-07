@@ -1,21 +1,35 @@
 #include "min_sum_sdg.hpp"
 
-#include <limits>
 #include <algorithm>
 
 long long lebedev::findMinSumSubdiags(const int matrix[], size_t rows, size_t cols)
 {
-  long long ll_max = std::numeric_limits< long long >::max();
-  long long min_sum = ll_max;
-  if (rows <= 1 && cols <= 1)
+  if (rows == 0 || cols == 0)
   {
     return 0;
   }
-  if (matrix[0] <= min_sum)
+  if (rows == 1 && cols == 1)
+  {
+    return 0;
+  }
+  long long min_sum = 0;
+  if (rows == 1)
+  {
+    min_sum = matrix[1];
+    for (size_t i = 1; i < cols; ++i)
+    {
+      if (matrix[i] <= min_sum)
+      {
+        min_sum = matrix[i];
+      }
+    }
+    return min_sum;
+  }
+  else if (rows != 1)
   {
     min_sum = matrix[0];
   }
-  for (size_t i = rows - 2; i > 0; --i)
+  for (size_t i = 1; i < rows - 1; ++i)
   {
     long long sum = 0;
     size_t k = i;
@@ -24,12 +38,12 @@ long long lebedev::findMinSumSubdiags(const int matrix[], size_t rows, size_t co
       if (k > 0)
       {
         sum += matrix[k * cols + j];
+        if (k == 1 && j < cols - 1)
+        {
+          sum += matrix[j + 1];
+        }
+        --k;
       }
-      if (k == 1 && j < (cols - 1))
-      {
-        sum += matrix[j + 1];
-      }
-      --k;
     }
     if (sum <= min_sum)
     {
@@ -40,17 +54,17 @@ long long lebedev::findMinSumSubdiags(const int matrix[], size_t rows, size_t co
   {
     long long sum = 0;
     size_t k = j;
-    for (size_t i = rows - 1; i > (rows - std::min(rows, cols)); --i)
+    for (size_t i = rows - 1; i > rows - std::min(rows, cols); --i)
     {
       if (k < cols)
       {
         sum += matrix[i * cols + k];
-        if (i == 1 && k < (cols - 1))
+        if (i == 1 && k < cols - 1)
         {
           sum += matrix[k + 1];
         }
+        ++k;
       }
-      ++k;
     }
     if (sum <= min_sum)
     {
