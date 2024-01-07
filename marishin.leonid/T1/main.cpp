@@ -1,4 +1,6 @@
-#include <iostream>
+#include "inputshape.hpp"
+#include "displayoutput.hpp"
+#include "scale.hpp"
 
 int main()
 {
