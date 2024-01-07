@@ -18,5 +18,6 @@ int main()
     {
       scale(myShapes[i], center, scalingFactor);
     }
+    outputShapesInfo(std::cout, numberOfShapes, myShapes);
   }
 }
