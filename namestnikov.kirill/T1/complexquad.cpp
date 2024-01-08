@@ -4,12 +4,12 @@
 #include <stdexcept>
 #include <algorithm>
 
-namestnikov::Complexquad::Complexquad(point_t * points, size_t size):
+namestnikov::Complexquad::Complexquad(point_t * points):
   complexquadPoints_(points)
 {
-  for (size_t i = 0; i < size; ++i)
+  for (size_t i = 0; i < 4; ++i)
   {
-    for (size_t j = i + 1; j < size; ++j)
+    for (size_t j = i + 1; j < 4; ++j)
     {
       if ((complexquadPoints_[i].x == complexquadPoints_[j].x) && (complexquadPoints_[i].y == complexquadPoints_[j].y))
       {
@@ -21,7 +21,7 @@ namestnikov::Complexquad::Complexquad(point_t * points, size_t size):
 
 double namestnikov::Complexquad::getArea() const
 {
-  point_t centerPoint = getIntersectionOftwoLines(complexquadPoints_);
+  point_t centerPoint = getIntersectionOfTwoLines(complexquadPoints_);
   double square = 0;
   square += getAreaOfTriangle(complexquadPoints_[0], complexquadPoints_[3], centerPoint);
   square += getAreaOfTriangle(complexquadPoints_[1], complexquadPoints_[2], centerPoint);
@@ -50,7 +50,7 @@ namestnikov::rectangle_t namestnikov::Complexquad::getFrameRect() const
 
 void namestnikov::Complexquad::move(const point_t & p)
 {
-  point_t centerPoint = getIntersectionOftwoLines(complexquadPoints_);
+  point_t centerPoint = getIntersectionOfTwoLines(complexquadPoints_);
   const double dx = p.x - centerPoint.x;
   const double dy = p.y - centerPoint.y;
   for (size_t i = 0; i < 4; ++i)
@@ -77,8 +77,8 @@ void namestnikov::Complexquad::scale(const double coefficient)
   }
   else
   {
-    point_t centerPoint = getIntersectionOftwoLines(complexquadPoints_);
-    for (size_t i = 0; i < 4; ++i);
+    point_t centerPoint = getIntersectionOfTwoLines(complexquadPoints_);
+    for (size_t i = 0; i < 4; ++i)
     {
       double dx = (complexquadPoints_[i].x - centerPoint.x) * coefficient;
       double dy = (complexquadPoints_[i].y - centerPoint.y) * coefficient;

@@ -14,7 +14,7 @@ namestnikov::Circle::Circle(const point_t & center, const double radius):
 
 double namestnikov::Circle::getArea() const
 {
-  return std::numbers::pi_v<double> * circleRadius_ * circleRadius_;
+  return 3.14 * circleRadius_ * circleRadius_;
 }
 
 namestnikov::rectangle_t namestnikov::Circle::getFrameRect() const

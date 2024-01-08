@@ -2,6 +2,7 @@
 #include <map>
 #include "input_output_shapes.hpp"
 #include "rectangle.hpp"
+#include "base-types.hpp"
 #include "circle.hpp"
 #include "complexquad.hpp"
 #include "geometric_functions.hpp"
@@ -20,7 +21,7 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
   namestnikov::Shape ** oldShapes = nullptr;
   while (in >> currentShapeName)
   {
-    if (currentName == "SCALE")
+    if (currentShapeName == "SCALE")
     {
       break;
     }
@@ -65,7 +66,12 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
             }
             else if (currentShapeName == "COMPLEXQUAD")
             {
-              currentShapes[count - 1] = new Complexquad({currentParameters[0], currentParameters[1]}, {currentParameters[2], currentParameters[3]}, {currentParameters[4], currentParameters[5]}, {currentParameters[6], currentParameters[7]});
+              point_t * points = new point_t[4];
+              for (size_t j = 0; j < 8; j += 2)
+              {
+                points[j / 2] = {currentParameters[j], currentParameters[j + 1]};
+              }
+              currentShapes[count - 1] = new Complexquad(points);
             }
           }
           catch (...)
@@ -98,7 +104,7 @@ std::ostream & namestnikov::outputShapes(std::ostream & out, size_t count, Shape
       square += shapes[i]->getArea();
     }
   }
-  output << square << " ";
+  out << square << " ";
   for (size_t i = 0; i < count; ++i)
   {
     if (shapes[i])
@@ -108,10 +114,10 @@ std::ostream & namestnikov::outputShapes(std::ostream & out, size_t count, Shape
       point_t position = shapes[i]->getFrameRect().pos;
       double positionX = position.x;
       double positionY = position.y;
-      output << positionX - (width / 2.0) << " " << positionY - (height / 2.0) << " "
+      out << positionX - (width / 2.0) << " " << positionY - (height / 2.0) << " "
            << positionX + (width / 2.0) << " " << positionY + (height / 2.0);
     }
   }
-  output << "\n";
-  return output;
+  out << "\n";
+  return out;
 }

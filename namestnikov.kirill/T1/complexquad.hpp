@@ -2,6 +2,7 @@
 #define COMPLEXQUAD_H
 
 #include "shape.hpp"
+#include "base-types.hpp"
 #include <stdexcept>
 #include <cmath>
 #include <cstddef>
@@ -11,14 +12,14 @@ namespace namestnikov
   class Complexquad : public Shape
   {
   public:
-    Complexquad(point_t * points, size_t size);
+    Complexquad(point_t * points);
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t & p);
     virtual void move(const double dx, const double dy);
     virtual void scale(const double coefficient);
   private:
-    point_t complexquadPoints_;
+    point_t * complexquadPoints_;
   };
 }
 
