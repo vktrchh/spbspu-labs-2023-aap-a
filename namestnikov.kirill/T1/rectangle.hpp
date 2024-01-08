@@ -15,7 +15,8 @@ namespace namestnikov
     virtual void move(const double dx, const double dy);
     virtual void scale(const double coefficient);
   private:
-    rectangle_t frameRect_;
+    point_t leftAnglePoint_;
+    point_t rightAnglePoint_;
   };
 }
 
