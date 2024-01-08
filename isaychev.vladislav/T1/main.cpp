@@ -41,11 +41,31 @@ int main()
     }
     delete [] currDesc;
   }
+  size_t sumOfAreas = 0;
   for (size_t j = 0; j < figuresCount; j++)
   {
-    std::cout << Figures[j]->getArea() << " " << Figures[j]->getFrameRect() << "\n";
-    
+    sumOfAreas += Figures[j]->getArea();
+    rectangle_t rect = Figures[j]->getFrameRect();
+    std::cout << rect.pos.x_ - (rect.width / 2) << " ";
+    std::cout << rect.pos.y_ - (rect.height / 2) << " ";
+    std::cout << rect.pos.x_ + (rect.width / 2) << " ";
+    std::cout << rect.pos.y_ + (rect.height / 2) << " ";
   }
+  std::cout << sumOfAreas << "\n";
+  sumOfAreas = 0;
+  Figures[0]->move({2.5, 1.5});
+  Figures[0]->scale(2.0);
+  Figures[1]->move(-1.5, -1.5);
+  for (size_t j = 0; j < figuresCount; j++)
+  {
+    sumOfAreas += Figures[j]->getArea();
+    rectangle_t rect = Figures[j]->getFrameRect();
+    std::cout << rect.pos.x_ - (rect.width / 2) << " ";
+    std::cout << rect.pos.y_ - (rect.height / 2) << " ";
+    std::cout << rect.pos.x_ + (rect.width / 2) << " ";
+    std::cout << rect.pos.y_ + (rect.height / 2) << " ";
+  }
+  std::cout << sumOfAreas << "\n";
   deleteFigures(Figures, figuresCount);
   delete [] currDesc;
 }

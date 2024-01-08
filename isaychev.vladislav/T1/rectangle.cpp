@@ -13,10 +13,13 @@ double isaychev::Rectangle::getArea() const
 isaychev::rectangle_t isaychev::Rectangle::getFrameRect() const
 {
   isaychev::rectangle_t rec = {0, 0, {0, 0}};
-  rec.width = topR_.x_ - botL_.x_;
+  /*rec.width = topR_.x_ - botL_.x_;
   rec.height = topR_.y_ - botL_.y_;
-  rec.pos = {(topR_.x_ - botL_.x_) / 2, (topR_.y_ - botL_.y_) / 2};
-  return rec;
+  rec.pos = {(topR_.x_ - botL_.x_) / 2, (topR_.y_ - botL_.y_) / 2};*/
+  double wdth = topR_.x_ - botL_.x_;
+  double hght = topR_.y_ - botL_.y_;
+  point_t ps = {(topR_.x_ + botL_.x_) / 2, (topR_.y_ + botL_.y_) / 2};
+  return {wdth, hght, ps};
 }
 
 void isaychev::Rectangle::move(const point_t & newPos)
