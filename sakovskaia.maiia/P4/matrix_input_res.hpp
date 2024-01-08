@@ -6,9 +6,9 @@
 namespace sakovskaia
 {
   std::ofstream & printAnswer(std::ofstream & output, int * a, size_t b);
-  struct answerCounter
+  struct AnswerCounter
   {
-    answerCounter();
+    AnswerCounter();
     void operator()(int *, int *, size_t);
     size_t index;
   };
