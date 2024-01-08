@@ -1,6 +1,6 @@
 #include "circle.hpp"
 #include <stdexcept>
-#include <numbers>
+#define M_PI 3.14159265358979323846
 
 namestnikov::Circle::Circle(const point_t & center, const double radius):
   circleCenter_(center),
@@ -14,7 +14,7 @@ namestnikov::Circle::Circle(const point_t & center, const double radius):
 
 double namestnikov::Circle::getArea() const
 {
-  return 3.14 * circleRadius_ * circleRadius_;
+  return M_PI * circleRadius_ * circleRadius_;
 }
 
 namestnikov::rectangle_t namestnikov::Circle::getFrameRect() const
