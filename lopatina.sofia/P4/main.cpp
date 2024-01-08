@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <string>
 
+//input_arrey.cpp
 size_t inputArray(std::istream & in, int * matrix, size_t amount, size_t toread)
 {
   for (size_t i = 0; i < std::min(toread, amount); ++i)
@@ -15,6 +16,7 @@ size_t inputArray(std::istream & in, int * matrix, size_t amount, size_t toread)
   return std::min(toread, amount);
 }
 
+//is_lower_tri_matrix.cpp
 int isLowerTriMatrix(int * matrix, size_t rows, size_t cols)
 {
   if (rows != cols || rows == 0 || rows == 1)
@@ -34,6 +36,7 @@ int isLowerTriMatrix(int * matrix, size_t rows, size_t cols)
   return 1;
 }
 
+//num_diag_without_zero.cpp
 size_t numDiagWithoutZero(int * matrix, size_t rows, size_t cols)
 {
   if (rows != cols || rows == 0)
@@ -82,7 +85,7 @@ size_t numDiagWithoutZero(int * matrix, size_t rows, size_t cols)
   return counter;
 }
 
-
+//main.cpp
 int main(int argc, char ** argv)
 {
   //----for test----
@@ -141,6 +144,8 @@ int main(int argc, char ** argv)
 
   //------------------------
   // массив фиксированного размера; на стеке; кол-во элементов не превышает 10 000; num =  1
+  int res1 = 0;
+  size_t res2 = 0;
   if (num == 1)
   {
     int matrix[10000] = {};
@@ -159,19 +164,12 @@ int main(int argc, char ** argv)
       std::cerr << "Invalid input array\n";
       return 2;
     }
-    //работа с матрицей (нижняя треугольная матрица => квадратная матрица)
-    int res = isLowerTriMatrix(matrix, rows, cols);
-    std::cout << "isLowerTriMatrix: " << res << '\n';
-    //return 0;
 
-  //------------------------------------
-    size_t res2 = numDiagWithoutZero(matrix, rows, cols);
+    res1 = isLowerTriMatrix(matrix, rows, cols);
+    std::cout << "isLowerTriMatrix: " << res1 << '\n';
+    res2 = numDiagWithoutZero(matrix, rows, cols);
     std::cout << "numDiag: " << res2 << '\n';
-    return 0;
-
   }
-
-  // динамический массив ; free store; num = 2
   if (num == 2)
   {
     int * matrix = new int[rows * cols];
@@ -191,18 +189,23 @@ int main(int argc, char ** argv)
       delete[] matrix;
       return 2;
     }
-  //работа с матрицей (нижняя треугольная матрица => квадратная матрица)
-    int res = isLowerTriMatrix(matrix, rows, cols);
-    std::cout << "isLowerTriMatrix: " << res << '\n';
+    //работа с матрицей (нижняя треугольная матрица => квадратная матрица)
+    res1 = isLowerTriMatrix(matrix, rows, cols);
+    std::cout << "isLowerTriMatrix: " << res1 << '\n';
+    res2 = numDiagWithoutZero(matrix, rows, cols);
+    std::cout << "numDiag: " << res2 << '\n';
     delete[] matrix;
-    return 0;
-  //------------------------------------
+    //return 0;
   }
-
-  //------------------------
-
-
   //argv[3] - имя файла для результата
- // std::ofstream output(argv[3]);
- // output << i << '\n';
+  std::ofstream output(argv[3]);
+  if (res1 == 0)
+  {
+    output << "LWR-TRI-MTRX: " << "false\n" << "CNT-NZR-DIG: " << res2 << '\n';
+  }
+  if (res1 == 1)
+  {
+     output << "LWR-TRI-MTRX: " << "true\n" << "CNT-NZR-DIG: " << res2 << '\n';
+  }
+  return 0;
 }
