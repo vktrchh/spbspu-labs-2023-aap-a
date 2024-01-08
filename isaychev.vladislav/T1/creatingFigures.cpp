@@ -42,6 +42,18 @@ isaychev::Rectangle * isaychev::createRectangle(double * params)
   return rec;
 }
 
+isaychev::Circle * isaychev::createCircle(double * params)
+{
+  if (params[2] < 0.0)
+  {
+    throw std::logic_error("Incorrect circle parameters");
+  }
+  double rad = params[2];
+  point_t cent = {params[0], params[1]};
+  isaychev::Circle * circle = new isaychev::Circle(cent, rad);
+  return circle;
+}
+
 isaychev::Shape * isaychev::createFigure(char * str)
 {
   size_t numOfCurrFigure = determineShape(str);
@@ -57,7 +69,7 @@ isaychev::Shape * isaychev::createFigure(char * str)
   {
     double parameters[3] = {};
     parseFigureParams(str, numOfParameters, parameters);
-    //currFigure = createCircle(parameters);
+    currFigure = createCircle(parameters);
   }
   else if (numOfCurrFigure == 3)
   {

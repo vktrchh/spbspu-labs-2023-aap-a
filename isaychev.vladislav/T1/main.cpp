@@ -55,8 +55,8 @@ int main()
   std::cout << sumOfAreas << "\n";
   sumOfAreas = 0;
   Figures[0]->move({2.5, 1.5});
-  Figures[0]->scale(2.0);
-  Figures[1]->move(-1.5, -1.5);
+  Figures[1]->scale(2.0);
+  Figures[1]->move(-2, -1);
   for (size_t j = 0; j < figuresCount; j++)
   {
     sumOfAreas += Figures[j]->getArea();
