@@ -29,7 +29,7 @@ int main()
   char const * const secondStr = "1 2ok 3 5z 3pv21";
 
   size_t numOfDig = 0;
-  for (size_t i = 0; i < strlen(secondStr); ++i)
+  for (size_t i = 0; secondStr[i] != '\0'; ++i)
   {
     if (std::isdigit(secondStr[i]))
     {
@@ -37,25 +37,25 @@ int main()
     }
   }
 
-  char * rez = nullptr;
+  char * finishStr = nullptr;
   try
   {
-    rez = new char[firstSize + numOfDig + 1];
+    finishStr = new char[firstSize + numOfDig + 1];
     for (size_t i = 0; i < (firstSize + numOfDig); ++i)
     {
-      rez[i] = '0';
+      finishStr[i] = '0';
     }
-    rez[firstSize + numOfDig] = '\0';
+    finishStr[firstSize + numOfDig] = '\0';
   }
   catch (const std::exception & e)
   {
     return 2;
   }
 
-  rebdev::convertString(firstStr, secondStr, rez);
+  rebdev::creatingStringFromTwoStrings(firstStr, secondStr, finishStr);
 
-  std::cout << rez << '\n';
-  delete[] rez;
+  std::cout << finishStr << '\n';
+  delete[] finishStr;
   delete[] firstStr;
 
   return 0;

@@ -3,7 +3,8 @@
 char * rebdev::acceptStr(std::istream & input, size_t & sizeOfStr)
 {
   char sym = 0;
-  sizeOfStr = 1;
+  sizeOfStr = 0;
+  size_t sizeOfBuffer = 0;
 
   char * str = nullptr;
   char * str2 = nullptr;
@@ -12,36 +13,43 @@ char * rebdev::acceptStr(std::istream & input, size_t & sizeOfStr)
 
   while (input >> sym)
   {
-    if(!input)
+    if (!input)
     {
       delete[] str;
       input >> std::skipws;
       throw std::logic_error("Bad read!");
     }
 
-    try
+    if (sizeOfStr == sizeOfBuffer)
     {
-      str2 = new char[sizeOfStr + 1];
-    }
-    catch (const std::exception & e)
-    {
-      input >> std::skipws;
+      sizeOfBuffer += 10;
+      try
+      {
+        str2 = new char[sizeOfBuffer];
+      }
+      catch (const std::exception & e)
+      {
+        input >> std::skipws;
+        delete[] str;
+        delete[] str2;
+        throw;
+      }
+
+      for (size_t i = 0; i < sizeOfStr; ++i)
+      {
+        str2[i] = str[i];
+      }
+      for (size_t i = sizeOfStr; i < (sizeOfBuffer * (str != nullptr)); ++i)
+      {
+        str2[i] = '\0';
+      }
+
       delete[] str;
-      delete[] str2;
-      throw;
-    }
-    for (size_t i = 0; i < (sizeOfStr * (str != nullptr)); ++i)
-    {
-      str2[i] = str[i];
+      str = str2;
+      str2 = nullptr;
     }
 
-    delete[] str;
-    str = str2;
-    str2 = nullptr;
-
-    str[sizeOfStr - 1] = sym;
-    str[sizeOfStr] = '\0';
-
+    str[sizeOfStr] = sym;
     sizeOfStr += 1;
   }
 

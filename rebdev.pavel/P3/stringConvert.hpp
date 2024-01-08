@@ -2,6 +2,6 @@
 #define TWOSTRINGS_HPP
 namespace rebdev
 {
-  void convertString(char const * const firstString, char const * const secondString, char * endString);
+  void creatingStringFromTwoStrings(const char * firstString, const char * secondString, char * endString);
 }
 #endif
