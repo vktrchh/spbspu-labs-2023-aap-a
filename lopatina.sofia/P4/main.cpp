@@ -23,9 +23,9 @@ int isLowerTriMatrix(int * matrix, size_t rows, size_t cols)
   {
     return 0;
   }
-  for (int i = 0; i < rows; ++i)
+  for (size_t i = 0; i < rows; ++i)
   {
-    for (int j = 0; j < cols; ++j)
+    for (size_t j = 0; j < cols; ++j)
     {
       if (i < j && matrix[i * rows + j] != 0)
       {
@@ -44,17 +44,17 @@ size_t countDiagWithoutZero(int * matrix, size_t rows, size_t cols)
     return 0;
   }
   size_t counter = 0;
-  for (int i = 0; i < rows; ++i)
+  for (size_t i = 0; i < rows; ++i)
   {
     if (i == 0)
     {
-      for (int j = 0; j < cols; ++j)
+      for (size_t j = 0; j < cols; ++j)
       {
         if (i != j)
         {
           counter += 1;
-          int n1 = i, n2 = j;
-          for (int k = 0; k < cols - j; ++k)
+          size_t n1 = i, n2 = j;
+          for (size_t k = 0; k < cols - j; ++k)
           {
             if (matrix[n1 * rows + n2] == 0)
             {
@@ -70,8 +70,8 @@ size_t countDiagWithoutZero(int * matrix, size_t rows, size_t cols)
     else if (i > 0)
     {
       counter += 1;
-      int n1 = i;
-      for (int k = 0; k < rows - i; ++k)
+      size_t n1 = i;
+      for (size_t k = 0; k < rows - i; ++k)
       {
         if (matrix[n1 * rows + k] == 0)
         {
