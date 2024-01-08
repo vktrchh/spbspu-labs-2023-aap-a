@@ -175,7 +175,6 @@ baranov::Shape ** baranov::inputShapes(std::istream & input, size_t & count, poi
     }
     catch (const std::exception &)
     {
-      delete[] string;
       baranov::freeShapes(result, size);
       throw;
     }

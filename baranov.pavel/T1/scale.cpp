@@ -9,3 +9,4 @@ void baranov::scale(baranov::Shape * shape, const baranov::point_t scalePoint, c
   shape->scale(scaleRatio);
   shape->move((startPoint.x - scalePoint.x) * scaleRatio, (startPoint.y - scalePoint.y) * scaleRatio);
 }
+
