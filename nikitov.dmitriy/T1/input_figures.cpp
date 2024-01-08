@@ -1,95 +1,46 @@
 #include "input_figures.hpp"
-#include <limits>
-#include <stdexcept>
+#include <iostream>
 #include <string>
+#include <limits>
+#include "shape.hpp"
+#include "input_components.hpp"
 
-std::string* nikitov::inputFigures(std::istream& input)
+nikitov::Shape** nikitov::inputFigures()
 {
-  size_t size = 1;
-  bool status = true;
-  std::string* figures = new std::string[size]{};
+  size_t nFigures = 0;
+  Shape** figures = new Shape*[1];
   try
   {
-    do
+    for(;;)
     {
       std::string line;
-      input >> std::noskipws;
-      status = enterLine(line, input);
-      input >> std::skipws;
-      figures[size - 1] = line;
-
-      if (!status)
+      std::getline(std::cin, line);
+      if (line[0] != '\n')
       {
-        return figures;
+        if (line.find("SCALE") == std::string::npos)
+        {
+          figures[nFigures] = recognizeFigure(line);
+        }
+        else
+        {
+          return figures;
+        }
       }
 
       size_t maxLim = std::numeric_limits< size_t >::max();
-      if (size > maxLim - 1)
+      if (nFigures > maxLim - 1)
       {
         throw std::out_of_range("Error: Array size out of range");
       }
-      size += 1;
+      ++nFigures;
 
-      std::string* tempFigures = nullptr;
-      try
-      {
-        figures = increaseArray(figures, tempFigures, size);
-      }
-      catch (const std::bad_alloc&)
-      {
-        delete[] tempFigures;
-        throw;
-      }
-
-    } while (status);
-  }
-  catch (...)
-  {
-    delete[] figures;
-    throw;
-  }
-  return figures;
-}
-
-bool nikitov::enterLine(std::string line, std::istream& input)
-{
-  char symb = 0;
-  while (input >> symb)
-  {
-    if (symb == '\n')
-    {
-      line.push_back('\0');
-      if (line.find("SCALE") != std::string::npos)
-      {
-        return false;
-      }
-      else
-      {
-        return true;
-      }
+      figures = increaseArray(figures, nFigures);
     }
   }
-  if (!input)
+  catch(...)
   {
-    return false;
   }
-  return true;
-}
-
-std::string* nikitov::increaseArray(std::string* figures, std::string* tempFigures, size_t size)
-{
-  tempFigures = new std::string[size - 1]{};
-  for (size_t j = 0; j != size; ++j)
-  {
-    tempFigures[j] = figures[j];
-  }
-  delete[] figures;
-
-  figures = new std::string[size]{};
-  for (size_t j = 0; j != size; ++j)
-  {
-    figures[j] = tempFigures[j];
-  }
-  delete[] tempFigures;
   return figures;
 }
+
+
