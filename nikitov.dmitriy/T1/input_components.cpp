@@ -9,43 +9,30 @@ nikitov::Shape* nikitov::recognizeFigure(std::string line)
 {
   if (line.find("RECTANGLE") != std::string::npos)
   {
-    point_t p1;
-    p1.x = 0.0;
-    p1.y = 0.0;
-    point_t p2;
-    p2.x = 0.0;
-    p2.y = 0.0;
+    point_t p1 = { 0.0, 0.0 };
+    point_t p2 = { 1.0, 1.0 };
     return new Rectangle(p1, p2);
   }
   else if (line.find("DIAMOND") != std::string::npos)
   {
-    point_t p1;
-    p1.x = 0.0;
-    p1.y = 0.0;
-    point_t p2;
-    p2.x = 1.0;
-    p2.y = 1.0;
-    point_t p3;
-    p1.x = 0.0;
-    p1.y = 1.0;
+    point_t p1 = { 0.0, 0.0 };
+    point_t p2 = { 1.0, 1.0 };
+    point_t p3 = { 0.0, 1.0 };
     return new Diamond(p1, p2, p3);
   }
   else if (line.find("REGULAR") != std::string::npos)
   {
-    point_t p1;
-    p1.x = 0.0;
-    p1.y = 0.0;
-    point_t p2;
-    p2.x = 1.0;
-    p2.y = 1.0;
-    point_t p3;
-    p1.x = 0.0;
-    p1.y = 1.0;
+    point_t p1 = { 0.0, 0.0 };
+    point_t p2 = { 1.0, 1.0 };
+    point_t p3 = { 0.0, 1.0 };
     return new Regular(p1, p2, p3);
   }
   else
   {
-    return 0;
+    point_t p1 = { 0.0, 0.0 };
+    point_t p2 = { 1.0, 1.0 };
+    point_t p3 = { 0.0, 1.0 };
+    return new Regular(p1, p2, p3);
   }
 }
 
@@ -55,7 +42,6 @@ nikitov::Shape** nikitov::increaseArray(Shape** figures, size_t nFigures)
   for (size_t i = 0; i != nFigures; ++i)
   {
     newFigures[i] = figures[i];
-    delete figures[i];
   }
   delete[] figures;
   return newFigures;
