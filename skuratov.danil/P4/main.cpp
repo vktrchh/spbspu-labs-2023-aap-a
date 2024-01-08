@@ -30,12 +30,12 @@ int main(int argc, char* argv[])
   std::ofstream out(argv[3]);
   if (!in.is_open())
   {
-    std::cerr << "Cannot open file!\n";
+    std::cerr << "Cannot open file!" << '\n';
     return 2;
   }
   if (!in)
   {
-    std::cerr << "Cannot read numbers!\n";
+    std::cerr << "Cannot read numbers!" << '\n';
     return 2;
   }
   in >> rows >> cols;

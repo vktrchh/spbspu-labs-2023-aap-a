@@ -6,6 +6,6 @@
 
 namespace skuratov
 {
-  int* skuratov::readArray(std::ifstream& in, int array[], const size_t& rows, const size_t& cols);
+  int* readArray(std::ifstream& in, int array[], const size_t& rows, const size_t& cols);
 }
 #endif
