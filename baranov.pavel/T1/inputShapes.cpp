@@ -172,7 +172,6 @@ baranov::Shape ** baranov::inputShapes(std::istream & input, size_t & count, poi
     }
     catch (const std::logic_error &)
     {
-      delete[] string;
     }
     catch (const std::exception &)
     {
