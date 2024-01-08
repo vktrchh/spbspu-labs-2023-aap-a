@@ -6,9 +6,9 @@ int lopatina::isLowerTriMatrix(int * matrix, size_t rows, size_t cols)
   {
     return 0;
   }
-  for (int i = 0; i < rows; ++i)
+  for (size_t i = 0; i < rows; ++i)
   {
-    for (int j = 0; j < cols; ++j)
+    for (size_t j = 0; j < cols; ++j)
     {
       if (i < j && matrix[i * rows + j] != 0)
       {
