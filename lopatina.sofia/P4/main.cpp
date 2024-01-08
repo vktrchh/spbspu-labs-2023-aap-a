@@ -37,7 +37,7 @@ int isLowerTriMatrix(int * matrix, size_t rows, size_t cols)
 }
 
 //num_diag_without_zero.cpp
-size_t numDiagWithoutZero(int * matrix, size_t rows, size_t cols)
+size_t countDiagWithoutZero(int * matrix, size_t rows, size_t cols)
 {
   if (rows != cols || rows == 0)
   {
@@ -88,14 +88,6 @@ size_t numDiagWithoutZero(int * matrix, size_t rows, size_t cols)
 //main.cpp
 int main(int argc, char ** argv)
 {
-  //----for test----
-  for (int i = 0; i < argc; ++i)
-  {
-    std::cout << argv[i] << '\n';
-  }
-  std::cout << '\n';
-  //------------
-
   if (argc < 4)
   {
     std::cerr << "Not enough arguments\n";
@@ -112,7 +104,6 @@ int main(int argc, char ** argv)
   try
   {
     num = std::stoll(argv[1]);
-    std::cout << "Num is " << num << " but was " << argv[1] << '\n';
   }
   catch (const std::out_of_range &)
   {
@@ -140,25 +131,14 @@ int main(int argc, char ** argv)
     std::cerr << "Cannot read rows or cols\n";
     return 2;
   }
-  std::cout << "Rows and cols are: " <<  rows << ' ' << cols << '\n';
 
-  //------------------------
-  // массив фиксированного размера; на стеке; кол-во элементов не превышает 10 000; num =  1
+  //----------Работа с массивом--------------
   int res1 = 0;
   size_t res2 = 0;
   if (num == 1)
   {
     int matrix[10000] = {};
     size_t result =  inputArray(input, matrix, rows * cols, rows * cols);
-    //---for test---
-    std::cout << "Result inputArray: " <<  result << '\n';
-    std::cout << "Matrix: ";
-    for (int i = 0; i < rows * cols; ++i)
-    {
-      std::cout << matrix[i] << ' ';
-    }
-    std::cout << '\n';
-    //--------------
     if (result != rows * cols)
     {
       std::cerr << "Invalid input array\n";
@@ -166,44 +146,32 @@ int main(int argc, char ** argv)
     }
 
     res1 = isLowerTriMatrix(matrix, rows, cols);
-    std::cout << "isLowerTriMatrix: " << res1 << '\n';
-    res2 = numDiagWithoutZero(matrix, rows, cols);
-    std::cout << "numDiag: " << res2 << '\n';
+    res2 = countDiagWithoutZero(matrix, rows, cols);
   }
+
   if (num == 2)
   {
     int * matrix = new int[rows * cols];
     size_t result =  inputArray(input, matrix, rows * cols, rows * cols);
-    //---for test---
-    std::cout << "Result inputArray: " <<  result << '\n';
-    std::cout << "Matrix: ";
-    for (int i = 0; i < rows * cols; ++i)
-    {
-      std::cout << matrix[i] << ' ';
-    }
-    std::cout << '\n';
-    //--------------
     if (result != rows * cols)
     {
       std::cerr << "Invalid input array\n";
       delete[] matrix;
       return 2;
     }
-    //работа с матрицей (нижняя треугольная матрица => квадратная матрица)
+
     res1 = isLowerTriMatrix(matrix, rows, cols);
-    std::cout << "isLowerTriMatrix: " << res1 << '\n';
-    res2 = numDiagWithoutZero(matrix, rows, cols);
-    std::cout << "numDiag: " << res2 << '\n';
+    res2 = countDiagWithoutZero(matrix, rows, cols);
     delete[] matrix;
-    //return 0;
   }
+
   //argv[3] - имя файла для результата
   std::ofstream output(argv[3]);
   if (res1 == 0)
   {
     output << "LWR-TRI-MTRX: " << "false\n" << "CNT-NZR-DIG: " << res2 << '\n';
   }
-  if (res1 == 1)
+  else if (res1 == 1)
   {
      output << "LWR-TRI-MTRX: " << "true\n" << "CNT-NZR-DIG: " << res2 << '\n';
   }
