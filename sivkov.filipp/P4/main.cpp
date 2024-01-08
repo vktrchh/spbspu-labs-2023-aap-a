@@ -64,13 +64,13 @@ int main(int argc, char * argv[])
     std::cerr << "empty file!\n";
     return 2;
   }
-  int defoltMatrix[10000] = {};
+  int StaticMatrix[10000] = {};
   int* dynamicMatrix = nullptr;
   int* matrix = nullptr;
 
   if (numOfTask == 1)
   {
-    matrix = defoltMatrix;
+    matrix = StaticMatrix;
   }
   else
   {
@@ -82,7 +82,6 @@ int main(int argc, char * argv[])
     catch (const std::bad_alloc&)
     {
       std::cerr << "Error with array\n";
-      delete[] dynamicMatrix;
       return 2;
     }
   }
@@ -92,7 +91,7 @@ int main(int argc, char * argv[])
     fillMatrix(input, matrix, rows * cols);
     count = findLocalMax(matrix, rows, cols);
   }
-  catch(const std::logic_error&)
+  catch (const std::logic_error&)
   {
     std::cerr << "Error data or array\n";
     if (numOfTask == 2)
@@ -101,7 +100,6 @@ int main(int argc, char * argv[])
     }
       return 2;
   }
-
   std::ofstream output(argv[3]);
   output << count << '\n';
 
@@ -109,5 +107,5 @@ int main(int argc, char * argv[])
   {
     delete[] matrix;
   }
-   return 0;
+  return 0;
 }
