@@ -1,5 +1,5 @@
 #include "figureInputFunction.hpp"
-#include <math>
+#include <cmath>
 
 bool rebdev::isRectangle(point_t * pointsArr)
 {
@@ -24,7 +24,7 @@ bool rebdev::isConcave(point_t * pointsArr)
 {
   for (int i = 0; i < 4; ++i)
   {
-    if (isTriangle(pointArr[i], pointArr[(i + 1) % 4], pointArr[(i + 2) % 4]))
+    if (isTriangle(pointsArr[i], pointsArr[(i + 1) % 4], pointsArr[(i + 2) % 4]))
     {
       double arr[3];
       /*
@@ -36,10 +36,10 @@ bool rebdev::isConcave(point_t * pointsArr)
       */
       for (int j = 0; j < 3; ++j)
       {
-        arr[j] = (pointArr[(i + j) % 4].x_ - pointArr[(i + 3) % 4].x_)
-          * (pointArr[(i + (j + 1) % 3) % 4].y_ - pointArr[(i + j) % 4].y_);
-        arr[j] -= (pointArr[(i + (j + 1) % 3) % 4].x_ - pointArr[(i + j) % 4].x_)
-          * (pointArr[(i + j) % 4].y_ - pointArr[(i + 3) % 4].y_);
+        arr[j] = (pointsArr[(i + j) % 4].x_ - pointsArr[(i + 3) % 4].x_)
+          * (pointsArr[(i + (j + 1) % 3) % 4].y_ - pointsArr[(i + j) % 4].y_);
+        arr[j] -= (pointsArr[(i + (j + 1) % 3) % 4].x_ - pointsArr[(i + j) % 4].x_)
+          * (pointsArr[(i + j) % 4].y_ - pointsArr[(i + 3) % 4].y_);
       }
 
       bool identicalSigns = ((arr[0] > 0) && (arr[1] > 0) && (arr[2] > 0));
@@ -47,10 +47,10 @@ bool rebdev::isConcave(point_t * pointsArr)
 
       if (identicalSigns)
       {
-        point_t newPointArr[4] = {pointArr[i], pointArr[(i + 1) % 4], pointArr[(i + 2) % 4], pointArr[(i + 3) % 4]};
+        point_t newPointArr[4] = {pointsArr[i], pointsArr[(i + 1) % 4], pointsArr[(i + 2) % 4], pointsArr[(i + 3) % 4]};
         for (int i = 0; i < 4; ++i)
         {
-          pointArr[i] = newPointArr[i];
+          pointsArr[i] = newPointArr[i];
         }
         return 1;
       }
@@ -83,7 +83,7 @@ bool rebdev::isTriangle(const point_t f, const point_t s, const point_t t)
     return (((t.x_ - f.x_) / (s.x_ - f.x_)) != ((t.y_ - f.y_) / (s.y_ - f.y_)));
 };
 
-bool rebdev::isNameCorrect(std::istream input, const int nameSize, const char * name)
+bool rebdev::isNameCorrect(std::istream & input, const int nameSize, const char * name)
 {
 char sym = 0;
   for (int i = 1; i < nameSize; ++i)
@@ -98,7 +98,7 @@ char sym = 0;
   return 0;
 };
 
-bool rebdev::ipnutVertexs(std::istream input, point_t * vertexsArr, size_t & numOfVertexs)
+bool rebdev::ipnutVertexs(std::istream & input, point_t * vertexsArr, size_t & numOfVertexs)
 {
   char sym = 0;
   size_t numOfVertexs_ = 0;
@@ -121,7 +121,7 @@ bool rebdev::ipnutVertexs(std::istream input, point_t * vertexsArr, size_t & num
       afterPoint = 0;
       afterPointNum = 1;
 
-      if (xy = 0)
+      if (xy == 0)
       {
         newArrOfVertexs(vertexsArr, numOfVertexs_);
         vertexsArr[numOfVertexs_].x_ = numNow;
@@ -132,19 +132,19 @@ bool rebdev::ipnutVertexs(std::istream input, point_t * vertexsArr, size_t & num
         numOfVertexs_ += 1;
       }
 
-      xy != xy;
+      xy = !xy;
       numNow = 0;
     }
 
     if (afterPoint)
     {
-      numNow += (atof(sym - '0')) * pow(0.1, afterPointNum);
+      numNow += (double(sym - '0')) * pow(0.1, afterPointNum);
       afterPointNum += 1;
     }
     else
     {
       numNow *= 10;
-      numNow += atof(sym - '0');
+      numNow += double(sym - '0');
     }
   }
   input >> std::skipws;
@@ -158,7 +158,7 @@ bool rebdev::ipnutVertexs(std::istream input, point_t * vertexsArr, size_t & num
   return 1;
 };
 
-bool rebdev::figureIsCorrect(const point_t * vertexsArr, const size_t numOfVertexs, const int figureNumber)
+bool rebdev::figureIsCorrect(point_t * vertexsArr, const size_t numOfVertexs, const int figureNumber)
 {
   if (figureNumber == 0)
   {
@@ -175,25 +175,26 @@ bool rebdev::figureIsCorrect(const point_t * vertexsArr, const size_t numOfVerte
   return 0;
 };
 
-rebdev::Shape * rebdev::newFigure(const point_t * vertexsArr, const size_t numOfVertexs, const int figureNumber)
+rebdev::Shape * rebdev::newFigure(point_t * vertexsArr, const size_t numOfVertexs, const int figureNumber)
 {
   if (figureNumber == 0)
   {
-    return *Rectangle(vertexsArr[0], vertexsArr[1]);
+    return (new Rectangle(vertexsArr[0], vertexsArr[1]));
   }
   else  if (figureNumber == 1)
   {
-    return *Concave(vertexsArr);
+    return (new Concave(vertexsArr));
   }
   else  if (figureNumber == 2)
   {
-    return *Polygon(vertexsArr, numOfVertexs);
+    return (new Polygon(vertexsArr, numOfVertexs));
   }
+  return nullptr;
 };
 
 void rebdev::newArrOfVertexs(point_t * vertexsArr, const size_t numOfVertexs)
 {
-  point_t newVertexsArr = new point_t[numOfVertexs + 1];
+  point_t * newVertexsArr = new point_t[numOfVertexs + 1];
 
   for (size_t i = 0; i < numOfVertexs; ++i)
   {

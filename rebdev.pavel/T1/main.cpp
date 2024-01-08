@@ -5,24 +5,29 @@
 #include "rectangle.hpp"
 #include "base-types.hpp"
 #include "figureInputFunction.hpp"
+#include "isoScale.hpp"
 
 int main()
 {
-  const char figureName[] = {
-    "RECTANGLE",
-    "CONCAVE",
-    "POLYGON"
-  };
+  const char * figureName = nullptr;
+  const char rectangleName[] = {"RECTANGLE"};
+  const char concaveName[] = {"CONCAVE"};
+  const char polygonName[] = {"POLYGON"};
+
   const int sizeOfFigureName[] = {9, 7, 7};
 
-  rebdev::Shape * shapes = nullptr;
+  rebdev::Shape ** shapes = nullptr;
   try
   {
-    shapes = new rebdev::Shape[1000];
+    shapes = new rebdev::Shape * [1000];
+    for (int i = 0; i < 1000; ++i)
+    {
+      shapes[i] = nullptr;
+    }
   }
   catch (const std::exception & e)
   {
-    std::cerr >> "Error in allocat dynamic memory";
+    std::cerr << "Error in allocat dynamic memory";
     return 2;
   }
 
@@ -37,8 +42,35 @@ int main()
     size_t numberOfVertexs = 0;
     if (sym == 'S')
     {
-      if (isNameCorrect(std::cin, 5, "SCALE"))
+      if (rebdev::isNameCorrect(std::cin, 5, "SCALE"))
       {
+        rebdev::point_t isoPoint {0.0, 0.0};
+        double k = 0;
+        std::cin >> isoPoint.x_ >> isoPoint.y_ >> k;
+
+        if ((!std::cin) || (k <= 0))
+        {
+          break;
+        }
+
+        isScale = 1;
+
+        rebdev::isoScale(shapes, numOfShape, isoPoint, k);
+
+        double sum = 0;
+        for (int i = 0; i < numOfShape; ++i)
+        {
+          sum += shapes[i]->getArea();
+        }
+        std::cout << sum << '\n';
+        for (int i = 0; i < numOfShape; ++i)
+        {
+          rebdev::rectangle_t rect = shapes[i]->getFrameRect();
+          rebdev::point_t lowLeft = {rect.pos_.x_ - rect.width_/2, rect.pos_.y_ - rect.height_/2};
+          rebdev::point_t upRight = {lowLeft.x_ + rect.width_, lowLeft.y_ + rect.height_};
+          std::cout << lowLeft.x_ << " " << lowLeft.y_ << " ";
+          std::cout << upRight.x_ << " " << upRight.y_ << '\n';
+        }
         break;
       }
     }
@@ -46,27 +78,31 @@ int main()
     {
       figureNumber = 0;
       numberOfVertexs = 2;
+      figureName = rectangleName;
     }
     else if (sym == 'C')
     {
       figureNumber = 1;
       numberOfVertexs = 4;
+      figureName = concaveName;
     }
     else if (sym == 'P')
     {
       figureNumber = 2;
       numberOfVertexs = 0;
+      figureName = polygonName;
     }
 
     if (figureNumber != -1)
     {
-      if (rebdev::isNameCorrect(std::cin, sizeOfFigureName[figureNumber], figureName[figureNumber]))
+      if (rebdev::isNameCorrect(std::cin, sizeOfFigureName[figureNumber], figureName))
       {
-        if (rebdev::ipnutVertexs(pointArr, numberOfVertexs))
+        if (rebdev::ipnutVertexs(std::cin, pointArr, numberOfVertexs))
         {
           if (rebdev::figureIsCorrect(pointArr, numberOfVertexs, figureNumber))
           {
-            rebdev::Shape[numOfShape] = newFigure(pointArr, numberOfVertexs, figureNumber);
+            shapes[numOfShape] = newFigure(pointArr, numberOfVertexs, figureNumber);
+            numOfShape += 1;
           }
           else
           {
@@ -86,8 +122,6 @@ int main()
     }
   }
 
-  delete[] shapes;
-
   if (figureError)
   {
     std::cerr << "Some figure is incorrect!\n";
@@ -98,5 +132,22 @@ int main()
    return 1;
   }
 
+  double sum = 0;
+  for (int i = 0; i < numOfShape; ++i)
+  {
+    sum += shapes[i]->getArea();
+  }
+  std::cout << sum << '\n';
+  for (int i = 0; i < numOfShape; ++i)
+  {
+    rebdev::rectangle_t rect = shapes[i]->getFrameRect();
+    rebdev::point_t lowLeft = {rect.pos_.x_ - rect.width_/2, rect.pos_.y_ - rect.height_/2};
+    rebdev::point_t upRight = {lowLeft.x_ + rect.width_, lowLeft.y_ + rect.height_};
+    std::cout << lowLeft.x_ << " " << lowLeft.y_ << " ";
+    std::cout << upRight.x_ << " " << upRight.y_ << '\n';
+    delete[] shapes[i];
+  }
+
+  delete[] shapes;
   return 0;
 }
