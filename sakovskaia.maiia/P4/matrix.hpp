@@ -6,6 +6,6 @@
 namespace sakovskaia
 {
   void inputMatrix(std::ifstream & input, int * a, size_t b);
-  void counterclockWiseMatrixCounter(int * a, size_t rows, size_t columns);
+  void countCounterclockwiseMatrix(int * a, size_t rows, size_t columns);
 }
 #endif
