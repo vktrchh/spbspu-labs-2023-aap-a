@@ -86,10 +86,12 @@ int main(int argc, char* argv[])
     int* dynamicArray = new int[sizeOfArray];
     if (!readArray(in, dynamicArray, rows, cols))
     {
+      delete[] dynamicArray;
       return 1;
     }
     if (dynamicArray == nullptr)
     {
+      delete[] dynamicArray;
       return 1;
     }
     int res = countSaddlePoints(dynamicArray, rows, cols);
