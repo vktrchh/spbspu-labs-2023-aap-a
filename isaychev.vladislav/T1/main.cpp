@@ -1,6 +1,7 @@
 #include <iostream>
 #include "deleteFigures.hpp"
-#include "createFigure.hpp"
+#include "creatingFigures.hpp"
+#include "stringManipulations.hpp"
 #include "inputString.hpp"
 
 int main()

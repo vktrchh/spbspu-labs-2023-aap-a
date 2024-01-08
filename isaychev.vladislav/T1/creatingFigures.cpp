@@ -1,22 +1,6 @@
-#include <iostream>
 #include "creatingFigures.hpp"
-#include <utility>
 #include <stdexcept>
-
-int isaychev::checkString(const char * string, const char * strForCheck)
-{
-  size_t i = 0;
-  int checkFlag = 1;
-  while (strForCheck[i] != '\0')
-  {
-    if (strForCheck[i] != string[i])
-    {
-      checkFlag = 0;
-    }
-    i++;
-  }
-  return checkFlag;
-}
+#include "stringManipulations.hpp"
 
 size_t isaychev::determineShape(const char * str)
 {
@@ -34,39 +18,6 @@ size_t isaychev::determineShape(const char * str)
   return 0;
 }
 
-size_t isaychev::countWSpaces(const char * str)
-{
-  size_t counter = 0, i = 0;
-  while (str[i] != '\0')
-  {
-    if (str[i] == ' ')
-    {
-      counter++;
-    }
-    i++;
-  }
-  return counter;
-}
-
-void isaychev::skipParameter(char * str)
-{
-  size_t i = 0;
-  while (str[i] != ' ')
-  {
-    i++;
-  }
-  for (size_t j = 0; j < i + 1; j++)
-  {
-    size_t k = 0;
-    while (str[k + 1] != '\0')
-    {
-      std::swap(str[k], str[k + 1]);
-      k++;
-    }
-    str[k] = '\0';
-  }
-}
-
 void isaychev::parseFigureParams(char * str, const size_t numOfParameters, double * figureParameters)
 {
   size_t pos = 0;
@@ -75,7 +26,6 @@ void isaychev::parseFigureParams(char * str, const size_t numOfParameters, doubl
   for(size_t j = 0; j < numOfParameters; ++j)
   {
     figureParameters[j] = std::stod(str2, &pos);
- //   skipParameter(str);
     str2 += pos;
   }
 }
@@ -96,7 +46,6 @@ isaychev::Shape * isaychev::createFigure(char * str)
 {
   size_t numOfCurrFigure = determineShape(str);
   size_t numOfParameters = countWSpaces(str);
-  //double * parameters = parseFigureParams(str, numOfParameters);
   isaychev::Shape * currFigure = nullptr;
   if (numOfCurrFigure == 1)
   {

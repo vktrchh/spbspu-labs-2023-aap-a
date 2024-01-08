@@ -1,7 +1,7 @@
 #include "inputString.hpp"
-//#include <iomanip>
 #include <iostream>
 #include <stdexcept>
+#include "stringManipulations.hpp"
 
 char * isaychev::inputString(std::istream & input, size_t & length1, size_t & capacity)
 {
@@ -41,12 +41,4 @@ char * isaychev::inputString(std::istream & input, size_t & length1, size_t & ca
   length1 = 0;
   capacity = 10;
   return str;
-}
-
-void isaychev::copyString(const char * str, char * str2, size_t len)
-{
-  for (size_t j = 0; j < len; ++j)
-  {
-    str2[j] = str[j];
-  }
 }

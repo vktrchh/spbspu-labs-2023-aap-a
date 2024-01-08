@@ -1,0 +1,58 @@
+#include "stringManipulations.hpp"
+#include <utility>
+
+int isaychev::checkString(const char * string, const char * strForCheck)
+{
+  size_t i = 0;
+  int checkFlag = 1;
+  while (strForCheck[i] != '\0')
+  {
+    if (strForCheck[i] != string[i])
+    {
+      checkFlag = 0;
+    }
+    i++;
+  }
+  return checkFlag;
+}
+
+size_t isaychev::countWSpaces(const char * str)
+{
+  size_t counter = 0, i = 0;
+  while (str[i] != '\0')
+  {
+    if (str[i] == ' ')
+    {
+      counter++;
+    }
+    i++;
+  }
+  return counter;
+}
+
+void isaychev::skipParameter(char * str)
+{
+  size_t i = 0;
+  while (str[i] != ' ')
+  {
+    i++;
+  }
+  for (size_t j = 0; j < i + 1; j++)
+  {
+    size_t k = 0;
+    while (str[k + 1] != '\0')
+    {
+      std::swap(str[k], str[k + 1]);
+      k++;
+    }
+    str[k] = '\0';
+  }
+}
+
+void isaychev::copyString(const char * str, char * str2, size_t len)
+{
+  for (size_t j = 0; j < len; ++j)
+  {
+    str2[j] = str[j];
+  }
+}
