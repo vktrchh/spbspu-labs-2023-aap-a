@@ -16,13 +16,16 @@ nikitov::Diamond::Diamond(point_t& firstPoint, point_t& secondPoint, point_t& th
   }
 }
 
-double nikitov::Diamond::getArea()
+nikitov::Diamond::~Diamond()
+{}
+
+double nikitov::Diamond::getArea() const
 {
   rectangle_t frame = getFrameRect();
   return frame.width * frame.height / 2;
 }
 
-nikitov::rectangle_t nikitov::Diamond::getFrameRect()
+nikitov::rectangle_t nikitov::Diamond::getFrameRect() const
 {
   double width = 0;
   double height = 0;

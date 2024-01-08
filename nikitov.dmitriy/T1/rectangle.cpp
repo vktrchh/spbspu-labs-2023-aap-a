@@ -11,12 +11,15 @@ nikitov::Rectangle::Rectangle(point_t& leftCorner, point_t& rightCorner):
   }
 }
 
-double nikitov::Rectangle::getArea()
+nikitov::Rectangle::~Rectangle()
+{}
+
+double nikitov::Rectangle::getArea() const
 {
   return (rightCorner_.x - leftCorner_.x) * (rightCorner_.y - leftCorner_.y);
 }
 
-nikitov::rectangle_t nikitov::Rectangle::getFrameRect()
+nikitov::rectangle_t nikitov::Rectangle::getFrameRect() const
 {
   double width = rightCorner_.x - leftCorner_.x;
   double height = rightCorner_.y - leftCorner_.y;

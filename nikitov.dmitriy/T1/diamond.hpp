@@ -9,8 +9,9 @@ namespace nikitov
   {
   public:
     Diamond(point_t& firstPoint, point_t& secondPoint, point_t& thirdPoint);
-    virtual double getArea();
-    virtual rectangle_t getFrameRect();
+    virtual ~Diamond();
+    virtual double getArea() const;
+    virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t& point);
     virtual void move(double dx, double dy);
     virtual void scale(double ratio);

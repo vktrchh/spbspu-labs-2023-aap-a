@@ -16,7 +16,10 @@ nikitov::Regular::Regular(point_t& firstPoint, point_t& secondPoint, point_t& th
   }
 }
 
-double nikitov::Regular::getArea()
+nikitov::Regular::~Regular()
+{}
+
+double nikitov::Regular::getArea() const
 {
   double firstLine = sqrt(pow(firstPoint_.x - secondPoint_.x, 2) + pow(firstPoint_.y - secondPoint_.y, 2));
   double secondLine = sqrt(pow(thirdPoint_.x - secondPoint_.x, 2) + pow(thirdPoint_.y - secondPoint_.y, 2));
@@ -38,7 +41,7 @@ double nikitov::Regular::getArea()
   return 0.5 * n * a * inRadius;
 }
 
-nikitov::rectangle_t nikitov::Regular::getFrameRect()
+nikitov::rectangle_t nikitov::Regular::getFrameRect() const
 {
   double firstLine = sqrt(pow(firstPoint_.x - secondPoint_.x, 2) + pow(firstPoint_.y - secondPoint_.y, 2));
   double secondLine = sqrt(pow(thirdPoint_.x - secondPoint_.x, 2) + pow(thirdPoint_.y - secondPoint_.y, 2));
