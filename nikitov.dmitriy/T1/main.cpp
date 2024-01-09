@@ -3,6 +3,7 @@
 #include "shape.hpp"
 #include "input_figures.hpp"
 #include "input_components.hpp"
+#include "scale_figures.hpp"
 
 int main()
 {
@@ -20,13 +21,16 @@ int main()
     std::cerr << "Error";
     return 1;
   }
-  figures[0]->move(3.5, 3.5);
+  if (nFigures != 0)
+  {
+    scaleFigures(figures, nFigures, line);
+  }
 
   freeFigures(figures, nFigures);
 
   if (isErrorInProgram)
   {
-    std::cerr << "Error: wrong coordinates for figure\n";
+    std::cerr << "Error: Wrong coordinates for figure\n";
   }
   return 0;
 }
