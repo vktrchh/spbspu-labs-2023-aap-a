@@ -40,26 +40,31 @@ nikitov::Shape** nikitov::inputArray(std::string& line, bool& isErrorInProgram, 
       bool isErrorInIteration = false;
       try
       {
-        if (line.find("SCALE") == std::string::npos)
+        if (line.find("SCALE") != std::string::npos)
         {
           return figures;
         }
-        else if (line.find("RECTANGLE") == std::string::npos)
+        else if (line.find("RECTANGLE") != std::string::npos)
         {
           figures[nFigures] = insertRectangle(line);
         }
-        else if (line.find("DIAMOND") == std::string::npos)
+        else if (line.find("DIAMOND") != std::string::npos)
         {
           figures[nFigures] = insertDiamond(line);
         }
-        else if (line.find("REGULAR") == std::string::npos)
+        else if (line.find("REGULAR") != std::string::npos)
         {
           figures[nFigures] = insertRegular(line);
+        }
+        else
+        {
+          isErrorInIteration = true;
         }
       }
       catch(std::invalid_argument&)
       {
         isErrorInIteration = true;
+        isErrorInProgram = true;
       }
 
       if (!isErrorInIteration)
@@ -74,10 +79,6 @@ nikitov::Shape** nikitov::inputArray(std::string& line, bool& isErrorInProgram, 
         Shape** tempFigures = increaseArray(figures, nFigures);
         delete[] figures;
         figures = tempFigures;
-      }
-      else
-      {
-        isErrorInProgram = true;
       }
     }
   }

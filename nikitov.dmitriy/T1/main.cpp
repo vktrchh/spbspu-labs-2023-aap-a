@@ -22,7 +22,7 @@ int main()
   }
   if (nFigures != 0)
   {
-    scaleFigures(figures, nFigures, line);
+    scaleFigures(figures, line, nFigures, std::cout);
   }
 
   freeArray(figures, nFigures);

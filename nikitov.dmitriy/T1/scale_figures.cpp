@@ -1,40 +1,50 @@
 #include "scale_figures.hpp"
-
 #include <iostream>
 #include <stdexcept>
 #include <iomanip>
+#include "shape.hpp"
 
-void nikitov::scaleFigures(Shape** figures, size_t nFigures, std::string line)
+double countAreasSum(nikitov::Shape** figures, size_t nFigures)
 {
-  std::cout << std::fixed << std::setprecision(1);
+  double areasSum = 0.0;
+  for(size_t i = 0; i != nFigures; ++i)
+  {
+    areasSum += figures[i]->getArea();
+  }
+  return areasSum;
+}
+
+void outputFrame(nikitov::Shape* figure, std::ostream& output)
+{
+  nikitov::rectangle_t frame = figure->getFrameRect();
+  output << ' ' << frame.pos.x - frame.width / 2;
+  output << ' ' << frame.pos.y - frame.height / 2;
+  output << ' ' << frame.pos.x + frame.width / 2;
+  output << ' ' << frame.pos.y + frame.height / 2;
+}
+
+void nikitov::scaleFigures(Shape** figures, std::string line, size_t nFigures, std::ostream& output)
+{
   line = line.substr(6);
   const char* cLine = line.c_str();
   size_t coordinatePointer = 0;
   double coordinates[3] = {};
-  std::cout << '\t';
   for (size_t i = 0; i != 3; ++i)
   {
     coordinates[i] = std::stod(cLine, &coordinatePointer);
     cLine += coordinatePointer;
   }
+
+  output << std::fixed << std::setprecision(1);
   if (coordinates[2] > 0)
   {
-    double sumOfAreas = 0;
-    for(size_t i = 0; i != nFigures; ++i)
-    {
-      sumOfAreas += figures[i]->getArea();
-    }
-    std::cout << sumOfAreas << ' ';
+    output << countAreasSum(figures, nFigures);
 
     for(size_t i = 0; i != nFigures; ++i)
     {
-      rectangle_t frame = figures[i]->getFrameRect();
-      std::cout << frame.pos.x - frame.width / 2 << ' ';
-      std::cout << frame.pos.y - frame.height / 2 << ' ';
-      std::cout << frame.pos.x + frame.width / 2 << ' ';
-      std::cout << frame.pos.y + frame.height / 2 << ' ';
+      outputFrame(figures[i], output);
     }
-    std::cout << '\n' << '\t';
+    output << '\n';
 
     for(size_t i = 0; i != nFigures; ++i)
     {
@@ -42,20 +52,11 @@ void nikitov::scaleFigures(Shape** figures, size_t nFigures, std::string line)
       figures[i]->scale(coordinates[2]);
     }
 
-    sumOfAreas = 0;
-    for(size_t i = 0; i != nFigures; ++i)
-    {
-      sumOfAreas += figures[i]->getArea();
-    }
-    std::cout << sumOfAreas << ' ';
+    output << countAreasSum(figures, nFigures);
 
     for(size_t i = 0; i != nFigures; ++i)
     {
-      rectangle_t frame = figures[i]->getFrameRect();
-      std::cout << frame.pos.x - frame.width / 2 << ' ';
-      std::cout << frame.pos.y - frame.height / 2 << ' ';
-      std::cout << frame.pos.x + frame.width / 2 << ' ';
-      std::cout << frame.pos.y + frame.height / 2 << ' ';
+      outputFrame(figures[i], output);
     }
     std::cout << '\n';
   }
