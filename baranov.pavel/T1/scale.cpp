@@ -1,7 +1,6 @@
 #include "scale.hpp"
-#include <iostream>
 
-void baranov::scale(baranov::Shape * shape, const baranov::point_t scalePoint, const size_t scaleRatio)
+void baranov::scale(Shape * shape, const point_t scalePoint, const double scaleRatio)
 {
   rectangle_t frameRect = shape->getFrameRect();
   point_t startPoint = frameRect.pos;

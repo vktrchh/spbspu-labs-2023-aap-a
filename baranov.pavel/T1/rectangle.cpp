@@ -20,7 +20,7 @@ baranov::rectangle_t baranov::Rectangle::getFrameRect() const
 {
   double height = ruCorner_.y - ldCorner_.y;
   double width = ruCorner_.x - ldCorner_.x;
-  point_t pos = { ldCorner_.x +  width / 2, ldCorner_.y + height / 2 };
+  point_t pos = { ldCorner_.x + width / 2, ldCorner_.y + height / 2 };
   return { width, height, pos };
 }
 
@@ -45,9 +45,9 @@ void baranov::Rectangle::scale(const double ratio)
     throw std::invalid_argument("Invalid scale ratio");
   }
   rectangle_t frameRect = getFrameRect();
-  ruCorner_.x = frameRect.pos.x + ratio * (ruCorner_.x - frameRect.pos.x);
-  ruCorner_.y = frameRect.pos.y + ratio * (ruCorner_.y - frameRect.pos.y);
-  ldCorner_.x = frameRect.pos.x - ratio * (frameRect.pos.x - ldCorner_.x);
-  ldCorner_.y = frameRect.pos.y - ratio * (frameRect.pos.y - ldCorner_.y);
+  ruCorner_.x = frameRect.pos.x + ratio * (frameRect.width / 2);
+  ruCorner_.y = frameRect.pos.y + ratio * (frameRect.height / 2);
+  ldCorner_.x = frameRect.pos.x - ratio * (frameRect.width / 2);
+  ldCorner_.y = frameRect.pos.y - ratio * (frameRect.height / 2);
 }
 

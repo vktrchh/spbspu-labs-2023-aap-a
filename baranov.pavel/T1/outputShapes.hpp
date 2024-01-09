@@ -1,5 +1,5 @@
-#ifndef OUTPUT_HPP
-#define OUTPUT_HPP
+#ifndef OUTPUT_SHAPES_HPP
+#define OUTPUT_SHAPES_HPP
 #include "shape.hpp"
 #include <iostream>
 

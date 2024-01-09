@@ -10,7 +10,7 @@ int main()
   using namespace baranov;
   Shape ** shapes = nullptr;
   size_t count = 0;
-  point_t scalePoint = { 0,0 };
+  point_t scalePoint = { 0, 0 };
   size_t scaleRatio = 0;
   try
   {

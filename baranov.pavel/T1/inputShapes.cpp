@@ -4,6 +4,7 @@
 #include "rectangle.hpp"
 #include "ring.hpp"
 #include "ellipse.hpp"
+
 #include <cstring>
 #include <stdexcept>
 
