@@ -1,14 +1,14 @@
-#ifndef PARALLELOGRAM_H
-#define PARALLELOGRAM_H
+#ifndef RECTANGLE_HPP
+#define RECTANGLE_HPP
 #include "base-types.hpp"
 #include "shape.hpp"
 
 namespace zaitsev
 {
-  class Parallelogram : public Shape
+  class Rectangle : public Shape
   {
   public:
-    Parallelogram(const point_t* vertices_);
+    Rectangle(const point_t& left_corner, const point_t& right_corner);
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t& dest_pos);
@@ -16,7 +16,8 @@ namespace zaitsev
     virtual void scale(double factor);
     point_t getCenter() const;
   private:
-    point_t def_vertices_[3];
+    point_t left_corner_;
+    point_t right_corner_;
   };
 }
 #endif

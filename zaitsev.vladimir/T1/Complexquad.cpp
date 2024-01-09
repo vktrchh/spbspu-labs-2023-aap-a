@@ -1,4 +1,4 @@
-#include "Complexquad.h"
+#include "complexquad.hpp"
 #include <stdexcept>
 #include <cstring>
 #include <cmath>

@@ -4,8 +4,6 @@
 #include <cstddef>
 #include "base-types.hpp"
 #include "shape.hpp"
-#include "Rectangle.h"
-#include "Complexquad.h"
 
 namespace zaitsev
 {

@@ -1,5 +1,5 @@
-#ifndef COMPLEXQUAD_H
-#define COMPLEXQUAD_H
+#ifndef COMPLEXQUAD_HPP
+#define COMPLEXQUAD_HPP
 #include "base-types.hpp"
 #include "shape.hpp"
 

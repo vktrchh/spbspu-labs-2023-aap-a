@@ -7,9 +7,9 @@
 #include <cstddef>
 #include "base-types.hpp"
 #include "shape.hpp"
-#include "Rectangle.h"
-#include "Complexquad.h"
-#include "Parallelogram.h"
+#include "rectangle.hpp"
+#include "complexquad.hpp"
+#include "parallelogram.hpp"
 #include "Geom_functions.h"
 
 double zaitsev::readNextValue(char* param)
