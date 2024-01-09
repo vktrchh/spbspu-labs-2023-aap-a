@@ -11,23 +11,18 @@ double zaitsev::skewProduct(const point_t& vector1, const point_t& vector2)
 
 bool zaitsev::checkIntersection(const point_t* sections)
 {
-  point_t vec0 = { sections[1].x - sections[0].x,sections[1].y - sections[0].y };
-  point_t vec1 = { sections[2].x - sections[0].x,sections[2].y - sections[0].y };
-  point_t vec2 = { sections[3].x - sections[0].x,sections[3].y - sections[0].y };
-  if (skewProduct(vec0, vec1) * skewProduct(vec0, vec2) > 0)
+  point_t vec10 = { sections[1].x - sections[0].x,sections[1].y - sections[0].y };
+  point_t vec20 = { sections[2].x - sections[0].x,sections[2].y - sections[0].y };
+  point_t vec30 = { sections[3].x - sections[0].x,sections[3].y - sections[0].y };
+  if (skewProduct(vec10, vec20) * skewProduct(vec10, vec30) >= 0)
   {
     return false;
   }
 
-  vec0 = { sections[3].x - sections[2].x,sections[3].y - sections[2].y };
-  vec1 = { sections[0].x - sections[2].x,sections[0].y - sections[2].y };
-  vec2 = { sections[1].x - sections[2].x,sections[1].y - sections[2].y };
-  if (skewProduct(vec0, vec1) * skewProduct(vec0, vec2) > 0)
-  {
-    return false;
-  }
-
-  if (abs(skewProduct(vec0, vec1)) == 0 && abs(skewProduct(vec0, vec2)) == 0)
+  vec10 = { sections[3].x - sections[2].x,sections[3].y - sections[2].y };
+  vec20 = { sections[0].x - sections[2].x,sections[0].y - sections[2].y };
+  vec30 = { sections[1].x - sections[2].x,sections[1].y - sections[2].y };
+  if (skewProduct(vec10, vec20) * skewProduct(vec10, vec30) >= 0)
   {
     return false;
   }
