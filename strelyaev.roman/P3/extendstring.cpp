@@ -18,7 +18,15 @@ char * strelyaev::inputString(std::istream & in)
       if (i == (size - 1))
       {
         size_t buffer_size = size + 10;
-        char * buffer = new char [buffer_size];
+        char * buffer = nullptr;
+        try
+        {
+          buffer = new char [buffer_size];
+        }
+        catch (...)
+        {
+          delete [] string;
+        }
         for (size_t j = 0; j < i; j++)
         {
           buffer[j] = string[j];
