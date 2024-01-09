@@ -48,8 +48,12 @@ void nikitov::scaleFigures(Shape** figures, std::string line, size_t nFigures, s
 
     for(size_t i = 0; i != nFigures; ++i)
     {
-      figures[i]->move({ coordinates[0], coordinates [1] });
+      point_t center = figures[i]->getFrameRect().pos;
+      figures[i]->move({ coordinates[0], coordinates[1] });
       figures[i]->scale(coordinates[2]);
+      double dx = (coordinates[0] - center.x) * coordinates[2];
+      double dy = (coordinates[1] - center.y) * coordinates[2];
+      figures[i]->move(-dx, -dy);
     }
 
     output << countAreasSum(figures, nFigures);
