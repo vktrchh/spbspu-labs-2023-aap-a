@@ -1,19 +1,18 @@
 #include <istream>
 #include <iostream>
-#include "createline.hpp"
+#include "createlinemissinglatinletters.hpp"
 #include "inputline.hpp"
 
 int main()
 {
   using namespace piyavkin;
-  size_t length = 0;
   char * new_line = nullptr;
   char * new_alphabet = nullptr;
   std::cin >> std::noskipws;
   try
   {
-    new_line = inputLine(std::cin, length);
-    new_alphabet = createLine(new_line);
+    new_line = inputLine(std::cin);
+    new_alphabet = createLineMissingLatinLetters(new_line);
   }
   catch (const std::bad_alloc & e)
   {

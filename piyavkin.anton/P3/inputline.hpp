@@ -3,6 +3,6 @@
 #include <istream>
 namespace piyavkin
 {
-  char * inputLine(std::istream & in, size_t & length);
+  char * inputLine(std::istream & in);
 }
 #endif

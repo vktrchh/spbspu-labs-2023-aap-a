@@ -1,6 +1,6 @@
-#include "createline.hpp"
+#include "createlinemissinglatinletters.hpp"
 
-char * piyavkin::createLine(char * line)
+char * piyavkin::createLineMissingLatinLetters(char * line)
 {
   const size_t number_letters_alphabet = 26;
   char * alphabet = new char[number_letters_alphabet + 1] {};

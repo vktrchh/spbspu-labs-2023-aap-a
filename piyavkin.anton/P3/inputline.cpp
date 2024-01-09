@@ -2,8 +2,9 @@
 #include <istream>
 #include <iostream>
 
-char * piyavkin::inputLine(std::istream & in, size_t & length)
+char * piyavkin::inputLine(std::istream & in)
 {
+  size_t length = 0;
   char sym = 0;
   char * old_line = nullptr;
   char * new_line = nullptr;
