@@ -6,6 +6,7 @@
 #include <limits>
 #include <algorithm>
 #include "base-types.hpp"
+#include "Geom_functions.h"
 
 
 zaitsev::Parallelogram::Parallelogram(const point_t* vertices)
@@ -28,7 +29,7 @@ zaitsev::Parallelogram::Parallelogram(const point_t* vertices)
 
 double zaitsev::Parallelogram::getArea() const
 {
-  return fabs(def_vertices_[0].x - def_vertices_[1].x) * fabs(def_vertices_[1].y - def_vertices_[2].y);
+  return 2 * getAreaOfTriangle(def_vertices_[0], def_vertices_[1], def_vertices_[2]);
 }
 
 zaitsev::rectangle_t zaitsev::Parallelogram::getFrameRect() const
