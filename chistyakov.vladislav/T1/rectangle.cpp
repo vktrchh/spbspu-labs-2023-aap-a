@@ -1,5 +1,7 @@
 #include "rectangle.hpp"
 
+#include <stdexcept>
+
 chistyakov::Rectangle::Rectangle(const point_t & leftCorner, const point_t rightCorner):
   leftCorner_(leftCorner),
   rightCorner_(rightCorner)
@@ -44,7 +46,7 @@ void chistyakov::Rectangle::move(const double mx, const double my)
   rightCorner_.y += my;
 }
 
-void scale(const double ratio)
+void chistyakov::Rectangle::scale(const double ratio)
 {
   if (ratio <= 0)
   {

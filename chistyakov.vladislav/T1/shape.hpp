@@ -12,8 +12,8 @@ namespace chistyakov
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t & point);
     virtual void move(const double mx, const double my);
-    virtual void scale(const double ratio);)
-  }
+    virtual void scale(const double ratio);
+  };
 }
 
 #endif

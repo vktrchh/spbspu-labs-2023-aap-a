@@ -20,6 +20,7 @@ namespace chistyakov
     point_t secondPoint_;
     point_t thirdPoint_;
     point_t fourthPoint_;
+    point_t cross_;
   }
 }
 

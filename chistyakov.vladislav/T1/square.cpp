@@ -1,10 +1,12 @@
 #include "square.hpp"
 
+#include <stdexcept>
+
 chistyakov::Square::Square(const point_t leftCorner, const double side):
   leftCorner_(leftCorner),
   side_(side)
 {
-  if (side <= 0)
+  if (side <= 0.0)
   {
     throw std::invalid_argument("Invalid argument for side of the square");
   }
@@ -39,7 +41,7 @@ void chistyakov::Square::move(const double mx, const double my)
 
 void chistyakov::Square::scale(const double ratio)
 {
-  if (ratio <= 0)
+  if (ratio <= 0.0)
   {
     throw std::invalid_argument("Invalid argument for ratio");
   }

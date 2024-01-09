@@ -5,7 +5,6 @@ namespace chistyakov
 {
   struct point_t
   {
-    bool operator==(point_t const & lhs, point_t const & rhs) const;
     double x;
     double y;
   };

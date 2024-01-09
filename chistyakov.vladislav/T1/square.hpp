@@ -18,7 +18,7 @@ namespace chistyakov
   private:
     point_t leftCorner_;
     double side_;
-  }
+  };
 }
 
 #endif
