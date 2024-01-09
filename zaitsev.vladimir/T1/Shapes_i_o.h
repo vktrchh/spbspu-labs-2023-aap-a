@@ -2,7 +2,7 @@
 #define SHAPES_I_O_H
 #include <ostream>
 #include <cstddef>
-#include "base-types.h"
+#include "base-types.hpp"
 #include "Shape.h"
 #include "Rectangle.h"
 #include "Complexquad.h"

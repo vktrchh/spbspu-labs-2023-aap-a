@@ -5,6 +5,8 @@
 #include <cstddef>
 #include <limits>
 #include <algorithm>
+#include "base-types.hpp"
+
 
 zaitsev::Parallelogram::Parallelogram(const point_t* vertices)
 {

@@ -3,7 +3,7 @@
 #include <string>
 #include <cstring>
 #include <cstdlib>
-#include "base-types.h"
+#include "base-types.hpp"
 #include "Geom_functions.h"
 #include "Shapes_i_o.h"
 

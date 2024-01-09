@@ -1,7 +1,7 @@
 #include "Geom_functions.h"
 #include <stdexcept>
 #include <cmath>
-#include "base-types.h"
+#include "base-types.hpp"
 #include "Shape.h"
 
 double zaitsev::skewProduct(const point_t& vector1, const point_t& vector2)

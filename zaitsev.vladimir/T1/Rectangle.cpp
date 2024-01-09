@@ -1,6 +1,6 @@
 #include "Rectangle.h"
 #include <stdexcept>
-#include "base-types.h"
+#include "base-types.hpp"
 
 
 zaitsev::Rectangle::Rectangle(const point_t& left_corner, const point_t& right_corner) :

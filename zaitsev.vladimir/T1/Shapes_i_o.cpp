@@ -5,6 +5,7 @@
 #include <cstring>
 #include <stdexcept>
 #include <cstddef>
+#include "base-types.hpp"
 #include "Shape.h"
 #include "Rectangle.h"
 #include "Complexquad.h"

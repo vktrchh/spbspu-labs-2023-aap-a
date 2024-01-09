@@ -1,6 +1,6 @@
 #ifndef COMPLEXQUAD_H
 #define COMPLEXQUAD_H
-#include "base-types.h"
+#include "base-types.hpp"
 #include "Shape.h"
 
 namespace zaitsev

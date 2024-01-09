@@ -5,7 +5,7 @@
 #include <cstddef>
 #include <limits>
 #include <algorithm>
-#include "base-types.h"
+#include "base-types.hpp"
 #include "Geom_functions.h"
 
 zaitsev::Complexquad::Complexquad(const point_t* sections)
