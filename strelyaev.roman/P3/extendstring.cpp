@@ -26,6 +26,7 @@ char * strelyaev::inputString(std::istream & in)
         catch (...)
         {
           delete [] string;
+          return nullptr;
         }
         for (size_t j = 0; j < i; j++)
         {

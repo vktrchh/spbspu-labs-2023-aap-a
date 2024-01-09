@@ -15,6 +15,11 @@ int main()
     std::cerr << e.what() << "\n";
     return 1;
   }
+  if (string == nullptr)
+  {
+    std::cerr << "Something went wrong\n";
+    return 1;
+  }
   std::cout << strelyaev::checkRepDgt(string) << "\n";
   delete [] string;
   std::cin >> std::skipws;
