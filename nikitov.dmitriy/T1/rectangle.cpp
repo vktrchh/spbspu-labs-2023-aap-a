@@ -48,6 +48,6 @@ void nikitov::Rectangle::scale(double ratio)
   point_t center = getFrameRect().pos;
   leftCorner_.x = center.x - (center.x - leftCorner_.x) * ratio;
   leftCorner_.y = center.y - (center.y - leftCorner_.y) * ratio;
-  rightCorner_.x = center.x + (leftCorner_.x - center.x) * ratio;
-  rightCorner_.y = center.y + (leftCorner_.y - center.y) * ratio;
+  rightCorner_.x = center.x + (center.x - leftCorner_.x);
+  rightCorner_.y = center.y + (center.y - leftCorner_.y);
 }

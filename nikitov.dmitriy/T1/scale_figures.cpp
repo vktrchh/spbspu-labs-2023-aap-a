@@ -2,9 +2,11 @@
 
 #include <iostream>
 #include <stdexcept>
+#include <iomanip>
 
 void nikitov::scaleFigures(Shape** figures, size_t nFigures, std::string line)
 {
+  std::cout << std::fixed << std::setprecision(1);
   line = line.substr(6);
   const char* cLine = line.c_str();
   size_t coordinatePointer = 0;
