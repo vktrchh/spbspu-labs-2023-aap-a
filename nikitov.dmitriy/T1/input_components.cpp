@@ -6,6 +6,15 @@
 #include "regular.hpp"
 #include "insert_figures.hpp"
 
+bool nikitov::checkLine(std::string line)
+{
+  bool isCorrect = line.find("RECTANGLE") != std::string::npos;
+  isCorrect = line.find("DIAMOND") != std::string::npos || isCorrect;
+  isCorrect = line.find("REGULAR") != std::string::npos || isCorrect;
+  isCorrect = line.find("SCALE") != std::string::npos || isCorrect;
+  return isCorrect && line.length() != 0;
+}
+
 nikitov::Shape* nikitov::recognizeFigure(std::string line)
 {
   if (line.find("RECTANGLE") != std::string::npos)
@@ -33,11 +42,11 @@ nikitov::Shape** nikitov::increaseArray(Shape** figures, size_t nFigures)
   return newFigures;
 }
 
-bool nikitov::checkLine(std::string line)
+void nikitov::freeFigures(Shape** figures, size_t nFigures)
 {
-  bool isCorrect = line.find("RECTANGLE") != std::string::npos;
-  isCorrect = line.find("DIAMOND") != std::string::npos || isCorrect;
-  isCorrect = line.find("REGULAR") != std::string::npos || isCorrect;
-  isCorrect = line.find("SCALE") != std::string::npos || isCorrect;
-  return isCorrect && line.length() != 0;
+  for (size_t i = 0; i != nFigures; ++i)
+  {
+    delete figures[i];
+  }
+  delete[] figures;
 }

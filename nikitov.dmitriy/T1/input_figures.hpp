@@ -7,6 +7,6 @@
 
 namespace nikitov
 {
-  Shape** inputFigures(std::string& line, size_t& nFigures, std::istream& input);
+  Shape** inputFigures(std::string& line, bool& isErrorInProgram, size_t& nFigures, std::istream& input);
 }
 #endif
