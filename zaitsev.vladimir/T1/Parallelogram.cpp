@@ -11,11 +11,15 @@
 
 zaitsev::Parallelogram::Parallelogram(const point_t* vertices)
 {
-  if (vertices[0].x != vertices[1].x && vertices[2].x != vertices[1].x)
+  if (vertices[0].y != vertices[1].y && vertices[2].y != vertices[1].y)
   {
     throw std::invalid_argument("Sides are not parallel to x axis");
   }
-  if (vertices[0].x != vertices[1].x)
+  if (getAreaOfTriangle(vertices[0],vertices[1],vertices[2])==0)
+  {
+    throw std::invalid_argument("Parallelogram degenerated into a point");
+  }
+  if (vertices[0].y != vertices[1].y)
   {
     def_vertices_[0] = vertices[2];
     def_vertices_[1] = vertices[1];
@@ -35,9 +39,9 @@ double zaitsev::Parallelogram::getArea() const
 zaitsev::rectangle_t zaitsev::Parallelogram::getFrameRect() const
 {
   double lower = std::numeric_limits< double >::max();
-  double upper = std::numeric_limits< double >::min();
+  double upper = std::numeric_limits< double >::lowest();
   double left = std::numeric_limits< double >::max();
-  double right = std::numeric_limits< double >::min();
+  double right = std::numeric_limits< double >::lowest();
 
   for (size_t i = 0; i < 3; ++i)
   {
@@ -57,7 +61,7 @@ zaitsev::rectangle_t zaitsev::Parallelogram::getFrameRect() const
 
   double width = right - left;
   double height = upper - lower;
-  point_t pos = { (lower + upper) / 2, (left + right) / 2 };
+  point_t pos = { (left + right) / 2, (lower + upper) / 2 };
   return { width, height, pos };
 }
 
@@ -88,11 +92,11 @@ void zaitsev::Parallelogram::scale(double factor)
     def_vertices_[i].x = center.x + (def_vertices_[i].x - center.x) * factor;
     def_vertices_[i].y = center.y + (def_vertices_[i].y - center.y) * factor;
   }
-}
+  }
 
 zaitsev::point_t zaitsev::Parallelogram::getCenter() const
 {
-  double x = (def_vertices_[0].x + def_vertices_[2].x) / 2 - def_vertices_[1].x;
-  double y = (def_vertices_[0].y + def_vertices_[2].y) / 2 - def_vertices_[1].y;
+  double x = (def_vertices_[0].x + def_vertices_[2].x) / 2;
+  double y = (def_vertices_[0].y + def_vertices_[2].y) / 2;
   return { x,y };
 }
