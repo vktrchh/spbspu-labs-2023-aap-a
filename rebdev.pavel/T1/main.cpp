@@ -55,10 +55,6 @@ int main()
           break;
         }
 
-        isScale = 1;
-
-        rebdev::isoScale(shapes, numOfShape, isoPoint, k);
-
         double sum = 0;
         for (int i = 0; i < numOfShape; ++i)
         {
@@ -73,6 +69,9 @@ int main()
           std::cout << lowLeft.x_ << " " << lowLeft.y_ << " ";
           std::cout << upRight.x_ << " " << upRight.y_ << '\n';
         }
+
+        rebdev::isoScale(shapes, numOfShape, isoPoint, k);
+        isScale = 1;
         break;
       }
     }
@@ -109,11 +108,13 @@ int main()
           }
           else
           {
+            std::cout << "1\n";
             figureError = 1;
           }
         }
         else
         {
+          std::cout << "0\n";
           figureError = 1;
         }
       }
