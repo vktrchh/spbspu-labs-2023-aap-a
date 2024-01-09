@@ -28,7 +28,7 @@ zaitsev::Parallelogram::Parallelogram(const point_t* vertices)
 
 double zaitsev::Parallelogram::getArea() const
 {
-  return abs(def_vertices_[0].x - def_vertices_[1].x) * abs(def_vertices_[1].y - def_vertices_[2].y);
+  return fabs(def_vertices_[0].x - def_vertices_[1].x) * fabs(def_vertices_[1].y - def_vertices_[2].y);
 }
 
 zaitsev::rectangle_t zaitsev::Parallelogram::getFrameRect() const
