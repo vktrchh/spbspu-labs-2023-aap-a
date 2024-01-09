@@ -5,12 +5,57 @@
 #include "shape.hpp"
 #include "input_components.hpp"
 
+bool checkLine(std::string line)
+{
+  bool isCorrect = line.find("RECTANGLE") != std::string::npos;
+  isCorrect = line.find("DIAMOND") != std::string::npos || isCorrect;
+  isCorrect = line.find("REGULAR") != std::string::npos || isCorrect;
+  isCorrect = line.find("SCALE") != std::string::npos || isCorrect;
+  return isCorrect;
+}
+
+nikitov::Shape* recognizeFigure(std::string line)
+{
+  if (line.find("RECTANGLE") != std::string::npos)
+  {
+    return insertRectangle(line);
+  }
+  else if (line.find("DIAMOND") != std::string::npos)
+  {
+    return insertDiamond(line);
+  }
+  else
+  {
+    return insertRegular(line);
+  }
+}
+
+nikitov::Shape** increaseArray(Shape** figures, size_t nFigures)
+{
+  Shape** newFigures = new Shape*[nFigures + 1];
+  for (size_t i = 0; i != nFigures; ++i)
+  {
+    newFigures[i] = figures[i];
+  }
+  delete[] figures;
+  return newFigures;
+}
+
+void freeFigures(Shape** figures, size_t nFigures)
+{
+  for (size_t i = 0; i != nFigures; ++i)
+  {
+    delete figures[i];
+  }
+  delete[] figures;
+}
+
 nikitov::Shape** nikitov::inputFigures(std::string& line, bool& isErrorInProgram, size_t& nFigures, std::istream& input)
 {
   Shape** figures = new Shape*[1];
   try
   {
-    for(;;)
+    while (input)
     {
       bool isErrorInIteration = false;
       std::getline(input, line);
