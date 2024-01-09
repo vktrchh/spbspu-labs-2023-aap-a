@@ -3,6 +3,6 @@
 #include <cstddef>
 namespace piyavkin
 {
-  char * createLine(char * line, size_t length, size_t & count);
+  char * createLine(char * line);
 }
 #endif

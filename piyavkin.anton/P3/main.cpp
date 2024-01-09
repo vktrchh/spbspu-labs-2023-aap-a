@@ -9,12 +9,11 @@ int main()
   size_t length = 0;
   char * new_line = nullptr;
   char * new_alphabet = nullptr;
-  size_t count = 26;
   std::cin >> std::noskipws;
   try
   {
     new_line = inputLine(std::cin, length);
-    new_alphabet = createLine(new_line, length, count);
+    new_alphabet = createLine(new_line);
   }
   catch (const std::bad_alloc & e)
   {
@@ -30,9 +29,10 @@ int main()
     return 1;
   }
   std::cin >> std::skipws;
-  for (size_t i = 0; i < count+1; ++i)
+  size_t i = 0;
+  while (new_alphabet[i] != '\0')
   {
-    std::cout << new_alphabet[i];
+    std::cout << new_alphabet[i++];
   }
   std::cout << '\n';
   delete [] new_line;

@@ -1,6 +1,6 @@
+#include "inputline.hpp"
 #include <istream>
 #include <iostream>
-#include "inputline.hpp"
 
 char * piyavkin::inputLine(std::istream & in, size_t & length)
 {
@@ -16,7 +16,7 @@ char * piyavkin::inputLine(std::istream & in, size_t & length)
       new_line[i] = old_line[i];
     }
     delete[] old_line;
-    new_line[length++] = tolower(sym);
+    new_line[length++] = std::tolower(sym);
     if (sym == '\n')
     {
       new_line[length-1] = '\0';
