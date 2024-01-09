@@ -1,7 +1,7 @@
 #include "rectangle.hpp"
 #include <stdexcept>
 
-novokhatskiy::Rectangle::Rectangle(const point_t &leftAngle, 
+novokhatskiy::Rectangle::Rectangle(const point_t &leftAngle,
 const point_t &rightAngle)
 {
   if ((leftAngle.y >= leftAngle.x) || (rightAngle.y >= rightAngle.x))
@@ -17,8 +17,8 @@ double novokhatskiy::Rectangle::getArea() const
 }
 rectangle_t novokhatskiy::Rectangle::getFrameRect() const
 {
-  return {(rightAngle_.x - leftAngle_.x), (rightAngle_.y - leftAngle_.y), 
-  {((rightAngle_.x - leftAngle_.x) / 2), 
+  return {(rightAngle_.x - leftAngle_.x), (rightAngle_.y - leftAngle_.y),
+  {((rightAngle_.x - leftAngle_.x) / 2),
   ((rightAngle_.y - leftAngle_.y) / 2)}};
 }
 void novokhatskiy::Rectangle::move(const point_t &p)
