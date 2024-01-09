@@ -1,7 +1,7 @@
 #ifndef PARALLELOGRAM_H
 #define PARALLELOGRAM_H
 #include "base-types.hpp"
-#include "Shape.h"
+#include "shape.hpp"
 
 namespace zaitsev
 {

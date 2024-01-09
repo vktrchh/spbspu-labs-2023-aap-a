@@ -6,7 +6,7 @@
 #include <stdexcept>
 #include <cstddef>
 #include "base-types.hpp"
-#include "Shape.h"
+#include "shape.hpp"
 #include "Rectangle.h"
 #include "Complexquad.h"
 #include "Parallelogram.h"

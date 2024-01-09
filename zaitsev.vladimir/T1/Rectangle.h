@@ -1,7 +1,7 @@
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
 #include "base-types.hpp"
-#include "Shape.h"
+#include "shape.hpp"
 
 namespace zaitsev
 {

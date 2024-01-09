@@ -2,7 +2,7 @@
 #include <stdexcept>
 #include <cmath>
 #include "base-types.hpp"
-#include "Shape.h"
+#include "shape.hpp"
 
 double zaitsev::skewProduct(const point_t& vector1, const point_t& vector2)
 {

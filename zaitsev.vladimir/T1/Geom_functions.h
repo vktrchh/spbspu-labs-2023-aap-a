@@ -1,7 +1,7 @@
 #ifndef GEOM_FUNCTIONS_H
 #define GEOM_FUNCTIONS_H
 #include "base-types.hpp"
-#include "Shape.h"
+#include "shape.hpp"
 
 namespace zaitsev
 {
