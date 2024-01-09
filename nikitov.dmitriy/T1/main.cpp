@@ -6,10 +6,8 @@
 int main()
 {
   using namespace nikitov;
-  {
-    std::string line;
-    size_t nFigures;
-    Shape** figures = inputFigures(line, nFigures, std::cin);
-    figures[0]->move(5.0, 3.0);
-  }
+  std::string line;
+  size_t nFigures = 0;
+  Shape** figures = inputFigures(line, nFigures, std::cin);
+  figures[1]->move(3.0, 5.0);
 }
