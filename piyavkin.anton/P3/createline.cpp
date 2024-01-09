@@ -1,9 +1,9 @@
 #include "createline.hpp"
 
-char* piyavkin::createLine(char* line)
+char * piyavkin::createLine(char * line)
 {
   const size_t number_letters_alphabet = 26;
-  char* alphabet = new char[number_letters_alphabet + 1] {};
+  char * alphabet = new char[number_letters_alphabet + 1] {};
   for (size_t i = 0; i < number_letters_alphabet; ++i)
   {
     alphabet[i] = static_cast<char>('a' + i);
@@ -11,7 +11,7 @@ char* piyavkin::createLine(char* line)
   alphabet[number_letters_alphabet] = '\0';
   size_t i = 0;
   size_t number_new_line = number_letters_alphabet;
-  char* old_alphabet = nullptr;
+  char * old_alphabet = nullptr;
   while (line[i] != '\0')
   {
     for (size_t j = 0; j < number_new_line; ++j)
@@ -29,7 +29,7 @@ char* piyavkin::createLine(char* line)
             alphabet[count++] = old_alphabet[p];
           }
         }
-        delete[] old_alphabet;
+        delete [] old_alphabet;
         alphabet[number_new_line] = '\0';
       }
     }

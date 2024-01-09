@@ -15,11 +15,11 @@ char * piyavkin::inputLine(std::istream & in, size_t & length)
     {
       new_line[i] = old_line[i];
     }
-    delete[] old_line;
+    delete [] old_line;
     new_line[length++] = std::tolower(sym);
     if (sym == '\n')
     {
-      new_line[length-1] = '\0';
+      new_line[length - 1] = '\0';
       break;
     }
   }
