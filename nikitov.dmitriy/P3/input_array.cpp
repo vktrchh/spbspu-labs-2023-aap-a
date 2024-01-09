@@ -75,7 +75,9 @@ std::pair< char*, size_t > nikitov::inputArray(std::istream& input)
         return { actualArray, actualSize };
       }
 
-      actualArray = increaseArray(actualArray, actualSize, bufferSize);
+      char* newArray = increaseArray(actualArray, actualSize, bufferSize);
+      delete[] actualArray;
+      actualArray = newArray;
     }
   }
   catch (...)
