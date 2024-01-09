@@ -10,7 +10,7 @@ char * piyavkin::inputLine(std::istream & in, size_t & length)
   while (in >> sym)
   {
     old_line = new_line;
-    new_line = new char [length + 1] {};
+    new_line = new char [length + 2] {};
     for (size_t i = 0; i < length; ++i)
     {
       new_line[i] = old_line[i];
@@ -19,9 +19,10 @@ char * piyavkin::inputLine(std::istream & in, size_t & length)
     new_line[length++] = std::tolower(sym);
     if (sym == '\n')
     {
-      new_line[length - 1] = '\0';
+      new_line[length] = '\0';
       break;
     }
+    new_line[length] = '\0';
   }
   return new_line;
 }

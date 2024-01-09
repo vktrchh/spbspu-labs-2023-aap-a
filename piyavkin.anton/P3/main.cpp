@@ -19,7 +19,6 @@ int main()
   {
     std::cerr << e.what() << '\n';
     delete [] new_line;
-    delete [] new_alphabet;
     return 1;
   }
   if (new_line == nullptr)
