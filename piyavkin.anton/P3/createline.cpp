@@ -12,28 +12,31 @@ char * piyavkin::createLine(char * line)
   size_t i = 0;
   size_t number_new_line = number_letters_alphabet;
   char * old_alphabet = nullptr;
-  while (line[i] != '\0')
+  if (line != nullptr)
   {
-    for (size_t j = 0; j < number_new_line; ++j)
+    while (line[i] != '\0')
     {
-      if (alphabet[j] == line[i])
+      for (size_t j = 0; j < number_new_line; ++j)
       {
-        --number_new_line;
-        old_alphabet = alphabet;
-        alphabet = new char[number_new_line + 1] {};
-        size_t count = 0;
-        for (size_t p = 0; p < number_new_line + 1; ++p)
+        if (alphabet[j] == line[i])
         {
-          if (old_alphabet[p] != line[i])
+          --number_new_line;
+          old_alphabet = alphabet;
+          alphabet = new char[number_new_line + 1] {};
+          size_t count = 0;
+          for (size_t p = 0; p < number_new_line + 1; ++p)
           {
-            alphabet[count++] = old_alphabet[p];
+            if (old_alphabet[p] != line[i])
+            {
+              alphabet[count++] = old_alphabet[p];
+            }
           }
+          delete [] old_alphabet;
+          alphabet[number_new_line] = '\0';
         }
-        delete [] old_alphabet;
-        alphabet[number_new_line] = '\0';
       }
+      ++i;
     }
-    ++i;
   }
   return alphabet;
 }
