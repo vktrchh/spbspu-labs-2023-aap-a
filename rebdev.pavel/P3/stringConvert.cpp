@@ -2,7 +2,7 @@
 #include <cstddef>
 #include <cctype>
 
-void rebdev::creatingStringFromTwoStrings(const char * firstString, const char * secondString, char * endString)
+void rebdev::createStringFromTwoStrings(const char * firstString, const char * secondString, char * endString)
 {
   size_t i = 0;
   while (firstString[i] != '\0')

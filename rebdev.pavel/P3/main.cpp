@@ -52,7 +52,7 @@ int main()
     return 2;
   }
 
-  rebdev::creatingStringFromTwoStrings(firstStr, secondStr, finishStr);
+  rebdev::createStringFromTwoStrings(firstStr, secondStr, finishStr);
 
   std::cout << finishStr << '\n';
   delete[] finishStr;
