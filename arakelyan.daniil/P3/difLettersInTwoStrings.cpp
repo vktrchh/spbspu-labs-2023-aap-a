@@ -25,7 +25,7 @@ void arakelyan::findAndPasteDiffSymb(const char *array, char *answer, size_t &fr
   }
 }
 
-void arakelyan::differentLetters(const char *inputArr, const char *defaultArray, char *answer)
+void arakelyan::differentLettersInTwoStrings(const char *inputArr, const char *defaultArray, char *answer)
 {
   for (size_t i = 0; i < 27; i++)
   {

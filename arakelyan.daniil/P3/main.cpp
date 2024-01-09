@@ -39,7 +39,7 @@ int main()
     return 1;
   }
 
-  differentLetters(inputString, defaultStringForTaskTwo, answerTaskTwo);
+  differentLettersInTwoStrings(inputString, defaultStringForTaskTwo, answerTaskTwo);
 
   std::cout << answerTaskOne << "\n" << answerTaskTwo << "\n";
 
