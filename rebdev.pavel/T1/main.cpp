@@ -40,6 +40,8 @@ int main()
     rebdev::point_t * pointArr = nullptr;
     int figureNumber = -1;
     size_t numberOfVertexs = 0;
+    figureName = nullptr;
+
     if (sym == 'S')
     {
       if (rebdev::isNameCorrect(std::cin, 5, "SCALE"))
@@ -97,7 +99,8 @@ int main()
     {
       if (rebdev::isNameCorrect(std::cin, sizeOfFigureName[figureNumber], figureName))
       {
-        if (rebdev::ipnutVertexs(std::cin, pointArr, numberOfVertexs))
+        pointArr = rebdev::ipnutVertexs(std::cin, numberOfVertexs);
+        if (pointArr != nullptr)
         {
           if (rebdev::figureIsCorrect(pointArr, numberOfVertexs, figureNumber))
           {
@@ -114,11 +117,6 @@ int main()
           figureError = 1;
         }
       }
-    }
-
-    while (sym != '\n')
-    {
-      std::cin >> sym;
     }
   }
 

@@ -16,10 +16,9 @@ namespace rebdev
   bool isTriangle(const point_t f, const point_t s, const point_t t);
 
   bool isNameCorrect(std::istream & input, const int nameSize, const char * name);
-  bool ipnutVertexs(std::istream & input, point_t * vertexsArr, size_t & numOfVertexs);
+  point_t * ipnutVertexs(std::istream & input, size_t & numOfVertexs);
   bool figureIsCorrect(point_t * vertexsArr, const size_t numOfVertexs, const int figureNumber);
 
   Shape * newFigure(point_t * vertexsArr, const size_t numOfVertexs, const int figureNumber);
-  void newArrOfVertexs(point_t * vertexsArr, const size_t numOfVertexs);
 }
 #endif

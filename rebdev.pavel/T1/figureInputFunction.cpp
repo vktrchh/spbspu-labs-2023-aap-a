@@ -91,71 +91,89 @@ char sym = 0;
     input >> sym;
     if (sym != name[i])
     {
-      return 1;
+      return 0;
     }
   }
 
-  return 0;
+  return 1;
 };
 
-bool rebdev::ipnutVertexs(std::istream & input, point_t * vertexsArr, size_t & numOfVertexs)
+rebdev::point_t * rebdev::ipnutVertexs(std::istream & input, size_t & numOfVertexs)
 {
-  char sym = 0;
-  size_t numOfVertexs_ = 0;
-  bool afterPoint = 0;
-  bool xy = 0;
-  int afterPointNum = 1;
-  double numNow = 0;
-
-  vertexsArr = new point_t[1]{point_t{0.0, 0.0}};
-  input >> std::noskipws;
-  while (sym != '\n')
-  {
-    input >> sym;
-    if (sym == '.')
-    {
-      afterPoint = 1;
-    }
-    else if (sym == ' ' && !((xy == 0) && (numOfVertexs_ == 0)))
-    {
-      afterPoint = 0;
-      afterPointNum = 1;
-
-      if (xy == 0)
-      {
-        newArrOfVertexs(vertexsArr, numOfVertexs_);
-        vertexsArr[numOfVertexs_].x_ = numNow;
-      }
-      else
-      {
-        vertexsArr[numOfVertexs_].y_ = numNow;
-        numOfVertexs_ += 1;
-      }
-
-      xy = !xy;
-      numNow = 0;
-    }
-
-    if (afterPoint)
-    {
-      numNow += (double(sym - '0')) * pow(0.1, afterPointNum);
-      afterPointNum += 1;
-    }
-    else
-    {
-      numNow *= 10;
-      numNow += double(sym - '0');
-    }
-  }
-  input >> std::skipws;
-
+  point_t * vertexsArr = nullptr;
   if (numOfVertexs != 0)
   {
-    return (numOfVertexs == numOfVertexs_);
+    try
+    {
+      vertexsArr = new point_t[numOfVertexs];
+    }
+    catch (const std::exception & e)
+    {
+      delete[] vertexsArr;
+      return nullptr;
+    }
+    for (size_t i = 0; i < numOfVertexs; ++i)
+    {
+      input >> vertexsArr[i].x_ >> vertexsArr[i].y_;
+      if (!input)
+      {
+        return nullptr;
+      }
+    }
+  }
+  else
+  {
+    point_t * bufferArr = nullptr;
+    size_t bufferSize = 0;
+    while (!input)
+    {
+      if (numOfVertexs == bufferSize)
+      {
+        bufferSize += 10;
+        try
+        {
+          bufferArr = new point_t[bufferSize];
+        }
+        catch (const std::exception & e)
+        {
+          delete[] bufferArr;
+          delete[] vertexsArr;
+          return nullptr;
+        }
+        for (size_t i = 0; i < numOfVertexs; ++i)
+        {
+          bufferArr[i] = vertexsArr[i];
+        }
+        for (size_t i = numOfVertexs; i < bufferSize; ++i)
+        {
+          bufferArr[i] = point_t{0.0, 0.0};
+        }
+        delete[] vertexsArr;
+        vertexsArr = bufferArr;
+        bufferArr = nullptr;
+      }
+      input >> vertexsArr[numOfVertexs].x_ >> vertexsArr[numOfVertexs].y_;
+      vertexsArr += 1;
+    }
+
+    try
+    {
+      bufferArr = new point_t[numOfVertexs];
+    }
+    catch (const std::exception & e)
+    {
+      delete[] bufferArr;
+      delete[] vertexsArr;
+      return nullptr;
+    }
+
+    delete[] vertexsArr;
+    vertexsArr = bufferArr;
+    bufferArr = nullptr;
+
   }
 
-  numOfVertexs = numOfVertexs_;
-  return 1;
+  return vertexsArr;
 };
 
 bool rebdev::figureIsCorrect(point_t * vertexsArr, const size_t numOfVertexs, const int figureNumber)
@@ -190,19 +208,4 @@ rebdev::Shape * rebdev::newFigure(point_t * vertexsArr, const size_t numOfVertex
     return (new Polygon(vertexsArr, numOfVertexs));
   }
   return nullptr;
-};
-
-void rebdev::newArrOfVertexs(point_t * vertexsArr, const size_t numOfVertexs)
-{
-  point_t * newVertexsArr = new point_t[numOfVertexs + 1];
-
-  for (size_t i = 0; i < numOfVertexs; ++i)
-  {
-    newVertexsArr[i] = vertexsArr[i];
-  }
-
-  delete[] vertexsArr;
-  vertexsArr = newVertexsArr;
-  newVertexsArr = nullptr;
-  vertexsArr[numOfVertexs] = point_t{0.0, 0.0};
 };
