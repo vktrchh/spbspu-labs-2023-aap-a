@@ -7,10 +7,10 @@ nikitov::Diamond::Diamond(point_t& firstPoint, point_t& secondPoint, point_t& th
   secondPoint_(secondPoint),
   thirdPoint_(thirdPoint)
 {
-  bool status = (firstPoint_.x - secondPoint_.x == 0 || firstPoint_.y - secondPoint_.y == 0);
-  status = (firstPoint_.x - thirdPoint_.x == 0 || firstPoint_.y - thirdPoint_.y == 0) && status;
-  status = (secondPoint_.x - thirdPoint_.x == 0 || secondPoint_.y - thirdPoint_.y == 0) && status;
-  if (!status)
+  size_t status = (firstPoint_.x - secondPoint_.x == 0 || firstPoint_.y - secondPoint_.y == 0);
+  status += (firstPoint_.x - thirdPoint_.x == 0 || firstPoint_.y - thirdPoint_.y == 0);
+  status += (secondPoint_.x - thirdPoint_.x == 0 || secondPoint_.y - thirdPoint_.y == 0);
+  if (status < 2)
   {
     throw std::invalid_argument("Error: invalid diamond arguments");
   }
