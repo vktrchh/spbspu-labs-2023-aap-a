@@ -5,8 +5,7 @@
 
 namespace gladyshev
 {
-  bool checkVowel(const char a);
-  char * createFinalArray(char * start);
+  char * removeVowels(char * start);
 }
 
 #endif

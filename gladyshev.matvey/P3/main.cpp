@@ -22,7 +22,7 @@ int main()
     std::cerr << "Error: " << e.what() << "\n";
     return 1;
   }
-  endArray = createFinalArray(endArray);
+  endArray = removeVowels(endArray);
   std::cout << endArray << "\n";
   delete[] endArray;
   return 0;
