@@ -14,6 +14,10 @@ nikitov::Shape** nikitov::inputFigures(std::string& line, bool& isErrorInProgram
     {
       bool isErrorInIteration = false;
       std::getline(input, line);
+      if (!std::cin)
+      {
+        throw std::invalid_argument("Error: Wrong input");
+      }
       if (checkLine(line))
       {
         if (line.find("SCALE") == std::string::npos)

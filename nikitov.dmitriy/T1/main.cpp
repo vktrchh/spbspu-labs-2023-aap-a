@@ -17,6 +17,7 @@ int main()
   }
   catch(...)
   {
+    std::cerr << "Error";
     return 1;
   }
   figures[0]->move(3.5, 3.5);
