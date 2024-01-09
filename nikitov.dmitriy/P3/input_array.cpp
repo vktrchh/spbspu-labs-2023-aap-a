@@ -42,7 +42,6 @@ char* increaseArray(char* actualArray, size_t arraySize, size_t bufferSize)
   {
     newArray[j] = actualArray[j];
   }
-  delete[] actualArray;
   return newArray;
 }
 
