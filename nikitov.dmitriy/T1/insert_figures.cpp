@@ -1,6 +1,5 @@
 #include "insert_figures.hpp"
 #include <string>
-#include <cstring>
 #include "shape.hpp"
 #include "rectangle.hpp"
 #include "diamond.hpp"

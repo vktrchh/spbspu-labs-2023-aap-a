@@ -1,8 +1,7 @@
 #include <iostream>
 #include <string>
 #include "shape.hpp"
-#include "input_figures.hpp"
-#include "input_components.hpp"
+#include "input_array.hpp"
 #include "scale_figures.hpp"
 
 int main()
@@ -14,7 +13,7 @@ int main()
   Shape** figures = nullptr;
   try
   {
-    figures = inputFigures(line, isErrorInProgram, nFigures, std::cin);
+    figures = inputArray(line, isErrorInProgram, nFigures, std::cin);
   }
   catch(...)
   {
@@ -26,7 +25,7 @@ int main()
     scaleFigures(figures, nFigures, line);
   }
 
-  freeFigures(figures, nFigures);
+  freeArray(figures, nFigures);
 
   if (isErrorInProgram)
   {
