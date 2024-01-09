@@ -91,7 +91,7 @@ double zaitsev::getAreaOfTriangle(const point_t& p1, const point_t& p2, const po
 {
   point_t v1 = { p2.x - p1.x,p2.y - p1.y };
   point_t v2 = { p3.x - p1.x,p3.y - p1.y };
-  return abs(skewProduct(v1, v2)) / 2;
+  return fabs(skewProduct(v1, v2)) / 2;
 }
 
 void zaitsev::scale(Shape* shape, double factor, const point_t& iso_center)
