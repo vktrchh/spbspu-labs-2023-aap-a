@@ -13,10 +13,12 @@ namespace novokhatskiy
     virtual void move(const point_t &point);
     virtual void move(double x, double y);
     virtual void scale(double ratio);
+
   private:
     point_t center_;
     double vert_;
     double horizon_;
   };
 }
+
 #endif

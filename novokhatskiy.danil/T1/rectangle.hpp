@@ -20,4 +20,5 @@ namespace novokhatskiy
     point_t rightAngle_;
   };
 }
+
 #endif

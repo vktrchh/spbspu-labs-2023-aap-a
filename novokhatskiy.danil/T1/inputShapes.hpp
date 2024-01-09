@@ -8,4 +8,5 @@ namespace novokhatskiy
 {
   Shape **inputShapes(std::istream &input, size_t &shapeCounter);
 }
+
 #endif

@@ -15,4 +15,5 @@ namespace novokhatskiy
     virtual ~Shape(){};
   };
 }
+
 #endif

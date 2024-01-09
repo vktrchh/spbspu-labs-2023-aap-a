@@ -20,4 +20,5 @@ namespace novokhatskiy
     double radius2_;
   };
 }
+
 #endif
