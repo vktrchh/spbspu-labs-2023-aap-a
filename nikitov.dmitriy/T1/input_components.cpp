@@ -4,35 +4,21 @@
 #include "rectangle.hpp"
 #include "diamond.hpp"
 #include "regular.hpp"
+#include "insert_figures.hpp"
 
 nikitov::Shape* nikitov::recognizeFigure(std::string line)
 {
   if (line.find("RECTANGLE") != std::string::npos)
   {
-    point_t p1 = { 0.0, 0.0 };
-    point_t p2 = { 1.0, 1.0 };
-    return new Rectangle(p1, p2);
+    return insertRectangle(line);
   }
   else if (line.find("DIAMOND") != std::string::npos)
   {
-    point_t p1 = { 0.0, 0.0 };
-    point_t p2 = { 1.0, 1.0 };
-    point_t p3 = { 0.0, 1.0 };
-    return new Diamond(p1, p2, p3);
-  }
-  else if (line.find("REGULAR") != std::string::npos)
-  {
-    point_t p1 = { 0.0, 0.0 };
-    point_t p2 = { 1.0, 1.0 };
-    point_t p3 = { 0.0, 1.0 };
-    return new Regular(p1, p2, p3);
+    return insertDiamond(line);
   }
   else
   {
-    point_t p1 = { 0.0, 0.0 };
-    point_t p2 = { 1.0, 1.0 };
-    point_t p3 = { 0.0, 1.0 };
-    return new Regular(p1, p2, p3);
+    return insertRegular(line);
   }
 }
 
@@ -45,4 +31,13 @@ nikitov::Shape** nikitov::increaseArray(Shape** figures, size_t nFigures)
   }
   delete[] figures;
   return newFigures;
+}
+
+bool nikitov::checkLine(std::string line)
+{
+  bool isCorrect = line.find("RECTANGLE") != std::string::npos;
+  isCorrect = line.find("DIAMOND") != std::string::npos || isCorrect;
+  isCorrect = line.find("REGULAR") != std::string::npos || isCorrect;
+  isCorrect = line.find("SCALE") != std::string::npos || isCorrect;
+  return isCorrect && line.length() != 0;
 }

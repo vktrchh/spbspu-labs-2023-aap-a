@@ -9,6 +9,8 @@ namespace nikitov
   Shape* recognizeFigure(std::string line);
 
   Shape** increaseArray(Shape** figures, size_t nFigures);
+
+  bool checkLine(std::string line);
 }
 
 #endif
