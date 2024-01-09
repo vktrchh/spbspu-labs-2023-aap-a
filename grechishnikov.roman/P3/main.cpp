@@ -2,7 +2,7 @@
 #include <cstddef>
 #include <exception>
 #include "inputStr.hpp"
-#include "countUnic.hpp"
+#include "countUniq.hpp"
 
 int main()
 {
@@ -14,12 +14,18 @@ int main()
   {
     str = inputStr(std::cin, size);
   }
+  catch (const std::bad_alloc &e)
+  {
+    delete[] str;
+    std::cerr << "Cannot allocate enough\n";
+    return 1;
+  }
   catch (const std::logic_error &e)
   {
     delete[] str;
     std::cerr << e.what() << "\n";
     return 1;
   }
-  std::cout << countUnic(str, size) << "\n";
+  std::cout << countUniq(str) << "\n";
   delete[] str;
 }
