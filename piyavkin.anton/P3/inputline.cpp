@@ -1,6 +1,4 @@
 #include "inputline.hpp"
-#include <istream>
-#include <iostream>
 
 char * piyavkin::inputLine(std::istream & in)
 {
@@ -27,4 +25,3 @@ char * piyavkin::inputLine(std::istream & in)
   }
   return new_line;
 }
-
