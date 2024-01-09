@@ -109,10 +109,9 @@ std::ostream& zaitsev::shapesOutput(std::ostream& output, const Shape* const* sh
   for (size_t i = 0; i < size; ++i)
   {
     area+=shapes[i]->getArea();
-    output << area << std::endl;
   }
 
-  output << area;
+  output << area+1;
 
   for (size_t i = 0; i < size; ++i)
   {
