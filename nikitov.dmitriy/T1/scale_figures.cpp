@@ -11,6 +11,7 @@ void nikitov::scaleFigures(Shape** figures, size_t nFigures, std::string line)
   const char* cLine = line.c_str();
   size_t coordinatePointer = 0;
   double coordinates[3] = {};
+  std::cout << '\t';
   for (size_t i = 0; i != 3; ++i)
   {
     coordinates[i] = std::stod(cLine, &coordinatePointer);
@@ -33,7 +34,7 @@ void nikitov::scaleFigures(Shape** figures, size_t nFigures, std::string line)
       std::cout << frame.pos.x + frame.width / 2 << ' ';
       std::cout << frame.pos.y + frame.height / 2 << ' ';
     }
-    std::cout << '\n';
+    std::cout << '\n' << '\t';
 
     for(size_t i = 0; i != nFigures; ++i)
     {
