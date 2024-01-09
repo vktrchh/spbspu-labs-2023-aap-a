@@ -26,9 +26,9 @@ double zaitsev::Complexquad::getArea() const
 zaitsev::rectangle_t zaitsev::Complexquad::getFrameRect() const
 {
   double lower = std::numeric_limits< double >::max();
-  double upper = std::numeric_limits< double >::min();
+  double upper = std::numeric_limits< double >::lowest();
   double left = std::numeric_limits< double >::max();
-  double right = std::numeric_limits< double >::min();
+  double right = std::numeric_limits< double >::lowest();
 
   for (size_t i = 0; i < 4; ++i)
   {
@@ -40,7 +40,7 @@ zaitsev::rectangle_t zaitsev::Complexquad::getFrameRect() const
 
   double width = right - left;
   double height = upper - lower;
-  point_t pos = { (lower + upper) / 2, (left + right) / 2 };
+  point_t pos = { (left + right) / 2, (lower + upper) / 2 };
   return { width, height, pos };
 }
 
