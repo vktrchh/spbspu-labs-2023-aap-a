@@ -16,7 +16,7 @@ double novokhatskiy::Rectangle::getArea() const
 }
 novokhatskiy::rectangle_t novokhatskiy::Rectangle::getFrameRect() const
 {
-  return { (rightAngle_.x - leftAngle_.x), (rightAngle_.y - leftAngle_.y) , 
+  return { (rightAngle_.x - leftAngle_.x), (rightAngle_.y - leftAngle_.y) ,
   {((rightAngle_.x - leftAngle_.x) / 2), ((rightAngle_.y - leftAngle_.y) / 2)} };
 }
 void novokhatskiy::Rectangle::move(const point_t& p)
