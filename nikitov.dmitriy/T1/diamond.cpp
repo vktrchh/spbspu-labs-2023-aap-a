@@ -69,7 +69,7 @@ nikitov::rectangle_t nikitov::Diamond::getFrameRect() const
       center = thirdPoint_;
     }
   }
-  return { height, width, center };
+  return { width, height, center };
 }
 
 void nikitov::Diamond::move(const point_t& point)

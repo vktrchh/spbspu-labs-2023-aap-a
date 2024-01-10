@@ -14,15 +14,22 @@ int main()
   try
   {
     figures = inputArray(line, isErrorInProgram, nFigures, std::cin);
+
+    if (nFigures != 0)
+    {
+      scaleFigures(figures, line, nFigures, std::cout);
+    }
+    else
+    {
+      freeArray(figures, nFigures);
+      std::cerr << "Error: Not enough figures for scaling\n";
+      return 1;
+    }
   }
   catch(...)
   {
     std::cerr << "Error";
     return 1;
-  }
-  if (nFigures != 0)
-  {
-    scaleFigures(figures, line, nFigures, std::cout);
   }
 
   freeArray(figures, nFigures);
