@@ -1,6 +1,7 @@
 #include "regular.hpp"
 #define _USE_MATH_DEFINES
 #include <cmath>
+#include <limits>
 #include <stdexcept>
 
 nikitov::Regular::Regular(point_t& firstPoint, point_t& secondPoint, point_t& thirdPoint):
@@ -41,37 +42,38 @@ nikitov::rectangle_t nikitov::Regular::getFrameRect() const
 
   double circumRadius = std::max(firstLine, thirdLine);
   double inRadius = std::min(firstLine, thirdLine);
-  int n = round(-2 * M_PI / (asin(inRadius / circumRadius) * 2 - M_PI));
+  size_t n = round(-2 * M_PI / (asin(inRadius / circumRadius) * 2 - M_PI));
   double a = 2 * circumRadius * sin(M_PI / n);
 
-  double height = 0;
-  double width = 0;
-  if (n == 3 || n == 4)
+  double maxX, maxY, minX, minY;
+  maxX = maxY = std::numeric_limits < double >::min();
+  minX = minY = std::numeric_limits < double >::max();
+
+  point_t point;
+  if (circumRadius == firstLine)
   {
-    width = a;
-  }
-  else if (n % 2 == 0 && n % 4 != 0)
-  {
-    width = 2 * circumRadius * sin(n * M_PI / 2 / n);
-  }
-  else if (n % 2 != 0)
-  {
-    width = 2 * circumRadius * sin(n * M_PI / (2 * n + 1));
+    point = secondPoint_;
   }
   else
   {
-    double diagonal = 2 * circumRadius * sin(n * M_PI / 2 / n);
-    width = sqrt(pow(diagonal, 2) - pow(a, 2));
+    point = thirdPoint_;
   }
-  if (n % 2 == 0)
+
+  point.x = point.x - firstPoint_.x;
+  point.y = point.y - firstPoint_.y;
+  double angle = 2 * asin(a / 2  / circumRadius);
+  for (size_t i = 0; i != n; ++i)
   {
-    height = 2 * inRadius;
+    double x = point.x;
+    double y = point.y;
+    point.x = x * cos(angle) - y * sin(angle);
+    point.y = y * cos(angle) + x * sin(angle);
+    maxX = std::max(maxX, point.x);
+    minX = std::min(minX, point.x);
+    maxY = std::max(maxY, point.y);
+    minY = std::min(minY, point.y);
   }
-  else
-  {
-    height = circumRadius + inRadius;
-  }
-  return { width, height, firstPoint_ };
+  return { maxX - minX, maxY - minY, firstPoint_ };
 }
 
 void nikitov::Regular::move(const point_t& point)
