@@ -66,6 +66,6 @@ void nikitov::scaleFigures(Shape** figures, std::string line, size_t nFigures, s
   }
   else
   {
-    throw std::invalid_argument("Error");
+    throw std::invalid_argument("Error: Wrong scale parameters");
   }
 }

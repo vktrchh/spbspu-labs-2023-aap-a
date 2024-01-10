@@ -34,7 +34,7 @@ nikitov::Shape** nikitov::inputArray(std::string& line, bool& isErrorInProgram, 
       std::getline(input, line);
       if (!input)
       {
-        throw std::invalid_argument("Error: Wrong input");
+        throw std::logic_error("Error: Wrong input");
       }
 
       bool isErrorInIteration = false;
@@ -72,7 +72,7 @@ nikitov::Shape** nikitov::inputArray(std::string& line, bool& isErrorInProgram, 
         size_t maxLim = std::numeric_limits< size_t >::max();
         if (nFigures > maxLim - 1)
         {
-          throw std::out_of_range("Error: Array size out of range");
+          throw std::length_error("Error: Array size out of range");
         }
         ++nFigures;
 
