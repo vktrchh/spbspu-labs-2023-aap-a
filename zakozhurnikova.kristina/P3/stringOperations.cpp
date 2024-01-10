@@ -1,6 +1,6 @@
 #include "stringOperations.h"
 
-void makeCopy(char *dest, const char *src)
+void zakozhurnikova::makeCopy(char *dest, const char *src)
 {
   for (; *src != '\0'; ++src, ++dest)
   {
@@ -8,10 +8,10 @@ void makeCopy(char *dest, const char *src)
   }
 }
 
-char *zakozhurnikova::getExtendedString(char *string, char *str)
+void zakozhurnikova::swapStrings(char *&dest, char *&src)
 {
-  makeCopy(string, str);
-  delete[] str;
-  return string;
+  char *temp = dest;
+  dest = src;
+  src = temp;
 }
 

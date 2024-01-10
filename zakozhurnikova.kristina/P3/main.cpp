@@ -19,11 +19,12 @@ int main()
       {
         size *= 2;
         char *string = new char[size]{'\0'};
-        buff = zakozhurnikova::getExtendedString(string, buff);
+        zakozhurnikova::makeCopy(string, buff);
+        zakozhurnikova::swapStrings(buff, string);
+        delete[] string;
       }
       buff[counter] = c;
       ++counter;
-
       if (c == '\n')
       {
         break;
@@ -37,8 +38,6 @@ int main()
     }
 
     dest = new char[size]{'\0'};
-
-
     zakozhurnikova::removeSpaces(dest, buff);
     std::cout << dest;
     std::cout << '\n';
