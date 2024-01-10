@@ -21,7 +21,9 @@ char* zaitsev::readStr(std::istream& input)
     {
       if (size + 1 == capacity)
       {
-        resizeStr(std::addressof(str), capacity, capacity * 2);
+        char* resized_str = resizeStr(str, capacity, capacity * 2);
+        delete[] str;
+        str = resized_str;
         capacity *= 2;
       }
       if (x == '\n')
@@ -34,7 +36,7 @@ char* zaitsev::readStr(std::istream& input)
       input.get(x);
     }
   }
-  catch (const std::bad_alloc& e)
+  catch (const std::bad_alloc&)
   {
     delete[] str;
     throw;
@@ -49,11 +51,9 @@ char* zaitsev::readStr(std::istream& input)
   return str;
 }
 
-void zaitsev::resizeStr(char** str, size_t old_size, size_t new_size)
+char* zaitsev::resizeStr(char* str, size_t old_size, size_t new_size)
 {
   char* new_str = new char[new_size];
-  memcpy(new_str, *str, std::min(old_size, new_size));
-  char* temp = *str;
-  *str = new_str;
-  delete[] temp;
+  memcpy(new_str, str, std::min(old_size, new_size));
+  return new_str;
 }
