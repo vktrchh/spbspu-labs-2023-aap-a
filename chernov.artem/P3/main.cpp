@@ -1,3 +1,6 @@
+#include "deleteDecimalDigits.hpp"
+
+#include <iomanip>
 #include <iostream>
 #include <cstddef>
 
@@ -45,5 +48,12 @@ int main()
     }
   }
   std::cin >> std::skipws;
+  char* stringWithDecimalDigitsRemoved = new char[sizeOfInput] {};
+
+  char* withoutDecimalDigits = removeDecimalDigits(input, stringWithDecimalDigitsRemoved, sizeOfInput);
+
+  std::cout << withoutDecimalDigits << "\n";
+
+  delete[] stringWithDecimalDigitsRemoved;
   delete[] input;
 }
