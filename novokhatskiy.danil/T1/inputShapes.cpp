@@ -88,7 +88,7 @@ novokhatskiy::Shape** novokhatskiy::inputShapes(std::istream& input, size_t& sha
     }
     input >> std::noskipws;
     while (symbol != '\n')
-    { 
+    {
       input >> symbol;
     }
     input >> std::skipws;
