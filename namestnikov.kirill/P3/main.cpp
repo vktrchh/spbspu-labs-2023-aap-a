@@ -35,7 +35,6 @@ int main()
   catch (...)
   {
     delete [] firstString;
-    delete [] result;
     std::cerr << "Not enough memory\n";
     return 1;
   }

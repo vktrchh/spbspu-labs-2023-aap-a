@@ -4,16 +4,9 @@
 char * namestnikov::getLongerString(char * string, size_t oldSize, size_t newSize)
 {
   char * newString = new char[newSize];
-  for (size_t i = 0; i < newSize; ++i)
+  for (size_t i = 0; i < oldSize; ++i)
   {
-    if (i < oldSize)
-    {
-      newString[i] = string[i];
-    }
-    else
-    {
-      newString[i] = '0';
-    }
+    newString[i] = string[i];
   }
   delete [] string;
   return newString;
@@ -26,7 +19,7 @@ char * namestnikov::inputString(std::istream & in, size_t & strIndex)
   strSize = defaultSize;
   char * string = new char [defaultSize]{};
   string[0] = '\0';
-  char sym = '0';
+  char sym = 0;
   in >> std::noskipws;
   while (in >> sym)
   {
