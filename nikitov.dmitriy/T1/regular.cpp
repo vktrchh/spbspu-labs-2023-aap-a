@@ -93,8 +93,8 @@ void nikitov::Regular::move(double dx, double dy)
 
 void nikitov::Regular::scale(double ratio)
 {
-  secondPoint_.x = firstPoint_.x + (secondPoint_.x - firstPoint_.x) * ratio * ratio;
-  secondPoint_.y = firstPoint_.y + (secondPoint_.y - firstPoint_.y) * ratio * ratio;
-  thirdPoint_.x = firstPoint_.x + (thirdPoint_.x - firstPoint_.x) * ratio * ratio;
-  thirdPoint_.y = firstPoint_.y + (thirdPoint_.y - firstPoint_.y) * ratio * ratio;
+  secondPoint_.x = firstPoint_.x + (secondPoint_.x - firstPoint_.x) * ratio;
+  secondPoint_.y = firstPoint_.y + (secondPoint_.y - firstPoint_.y) * ratio;
+  thirdPoint_.x = firstPoint_.x + (thirdPoint_.x - firstPoint_.x) * ratio;
+  thirdPoint_.y = firstPoint_.y + (thirdPoint_.y - firstPoint_.y) * ratio;
 }
