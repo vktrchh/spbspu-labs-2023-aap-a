@@ -12,11 +12,14 @@ char* zaitsev::readStr(std::istream& input)
   char x;
   char* str = nullptr;
 
+  std::ios format_holder(nullptr);
+  format_holder.copyfmt(input);
+  input.unsetf(std::ios_base::skipws);
   try
   {
     str = new char[capacity];
     str[0] = '\0';
-    input.get(x);
+    input >> x;
     while (input)
     {
       if (size + 1 == capacity)
@@ -33,15 +36,16 @@ char* zaitsev::readStr(std::istream& input)
       str[size] = x;
       ++size;
       str[size] = '\0';
-      input.get(x);
+      input >> x;
     }
   }
   catch (const std::bad_alloc&)
   {
+    input.copyfmt(format_holder);
     delete[] str;
     throw;
   }
-
+  input.copyfmt(format_holder);
   if (!size && !input)
   {
     delete[] str;
