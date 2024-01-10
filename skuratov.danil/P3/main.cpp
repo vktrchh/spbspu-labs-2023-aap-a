@@ -32,4 +32,21 @@ int main()
   delete[] line1;
   delete[] line2;
   delete[] line3;
+
+  const int maxStringLength = 10;
+
+  char str1[maxStringLength];
+  char str2[maxStringLength];
+
+  std::cout << "Enter the first string: ";
+  std::cin.getline(str1, maxStringLength);
+
+  std::cout << "Enter the second string: ";
+  std::cin.getline(str2, maxStringLength);
+
+  char* result = removeDuplicate(str1, str2);
+
+  std::cout << "Result after removing duplicates: " << result;
+
+  delete[] result;
 }

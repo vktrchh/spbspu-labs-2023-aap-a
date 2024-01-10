@@ -2,23 +2,44 @@
 #include <iostream>
 #include <cstring>
 
-char* removeDuplicate(const char* str1, const char* str2)
+char* removeDuplicate(char* str1, char* str2)
 {
-  char result[100];
-  strcpy(result, str1);
-
-  int len1 = strlen(result);
-  int len2 = strlen(str2);
-
-  for (int i = 0; i < len2; i++)
+  char* result1 = str1;
+  char* result2 = str2;
+  int len1 = 0;
+  int len2 = 0;
+  while (*result1 != '\0')
   {
-    char* pos = nullptr;
-    while ((pos = strchr(result, str2[i])) != nullptr)
+    len1++;
+    result1++;
+  }
+  while (*result2 != '\0')
+  {
+    len2++;
+    result2++;
+  }
+  result1 = str1;
+  std::string result;
+  for (int i = 0; i < len1; i++)
+  {
+    for (int j = 0; j < len2; j++)
     {
-      memmove(pos, pos + 1, strlen(pos));
-      len1--;
+      if (result1[i] == result2[j])
+      {
+        break;
+      }
+      if (j == len2 - 1)
+      {
+        result += result[i];
+      }
     }
   }
-  result[len1] = '\0';
-  return result;
+  result = result + '\0';
+  char* resultChar = new char[result.length() + 1];
+  for (std::size_t i = 0; i < result.length(); ++i)
+  {
+    resultChar[i] = result[i];
+  }
+  resultChar[result.length()] = '\0';
+  return resultChar;
 }
