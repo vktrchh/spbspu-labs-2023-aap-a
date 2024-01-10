@@ -19,7 +19,7 @@ double novokhatskiy::Ellipse::getArea() const
   return M_PI * vert_ * horizon_;
 }
 
-rectangle_t novokhatskiy::Ellipse::getFrameRect() const
+novokhatskiy::rectangle_t novokhatskiy::Ellipse::getFrameRect() const
 {
   return {2 * horizon_, 2 * vert_, center_};
 }

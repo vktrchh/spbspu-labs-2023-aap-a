@@ -22,7 +22,7 @@ double novokhatskiy::Ring::getArea() const
 {
   return (M_PI * radius2_ * radius2_) - (M_PI * radius1_ * radius1_);
 }
-rectangle_t novokhatskiy::Ring::getFrameRect() const
+novokhatskiy::rectangle_t novokhatskiy::Ring::getFrameRect() const
 {
   return {2 * radius2_, 2 * radius2_, center_};
 }
