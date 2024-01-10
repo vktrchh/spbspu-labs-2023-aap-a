@@ -19,27 +19,28 @@ char* removeDuplicate(char* str1, char* str2)
     result2++;
   }
   result1 = str1;
-  std::string result;
+  char* result = new char[len1 + 1];
+  int index = 0;
+  int found = 0;
+
   for (int i = 0; i < len1; i++)
   {
+    found = 0;
     for (int j = 0; j < len2; j++)
     {
-      if (result1[i] == result2[j])
+      if (result1[i] == str2[j])
       {
+        found = 1;
         break;
       }
-      if (j == len2 - 1)
-      {
-        result += result[i];
-      }
+    }
+    if (!found)
+    {
+      result[index++] = result1[i];
     }
   }
-  result = result + '\0';
-  char* resultChar = new char[result.length() + 1];
-  for (std::size_t i = 0; i < result.length(); ++i)
-  {
-    resultChar[i] = result[i];
-  }
-  resultChar[result.length()] = '\0';
-  return resultChar;
+  result[index] = '\0';
+  return result;
 }
+
+    

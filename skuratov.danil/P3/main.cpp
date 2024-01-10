@@ -22,13 +22,12 @@ int main()
     delete[] input1;
     return 1;
   }
-  std::cout << input1;
-
+  
   char* line1 = new char[size];
   char* line2 = new char[size];
   char* line3 = new char[size];
   line3 = mergeTwoLines(input1, input2);
-  std::cout << line3;
+  std::cout << "Result merging: " << line3 << '\n';
   delete[] line1;
   delete[] line2;
   delete[] line3;
@@ -39,10 +38,10 @@ int main()
   char str2[maxStringLength];
 
   std::cout << "Enter the first string: ";
-  std::cin.getline(str1, maxStringLength);
+  std::cin >> str1;
 
   std::cout << "Enter the second string: ";
-  std::cin.getline(str2, maxStringLength);
+  std::cin >> str2;
 
   char* result = removeDuplicate(str1, str2);
 
