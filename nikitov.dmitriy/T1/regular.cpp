@@ -11,7 +11,7 @@ nikitov::Regular::Regular(point_t& firstPoint, point_t& secondPoint, point_t& th
   double firstLine = pow(firstPoint_.x - secondPoint_.x, 2) + pow(firstPoint_.y - secondPoint_.y, 2);
   double secondLine = pow(thirdPoint_.x - secondPoint_.x, 2) + pow(thirdPoint_.y - secondPoint_.y, 2);
   double thirdLine = pow(firstPoint_.x - thirdPoint_.x, 2) + pow(firstPoint_.y - thirdPoint_.y, 2);
-  if (!(firstLine + secondLine == thirdLine || secondLine + thirdLine == firstLine))
+  if (!(firstLine + secondLine == thirdLine || secondLine + thirdLine == firstLine) || std::max(sqrt(firstLine), sqrt(thirdLine)) > sqrt(secondLine) * 2)
   {
     throw std::invalid_argument("Error: invalid regular agrugments");
   }
@@ -23,20 +23,12 @@ nikitov::Regular::~Regular()
 double nikitov::Regular::getArea() const
 {
   double firstLine = sqrt(pow(firstPoint_.x - secondPoint_.x, 2) + pow(firstPoint_.y - secondPoint_.y, 2));
-  double secondLine = sqrt(pow(thirdPoint_.x - secondPoint_.x, 2) + pow(thirdPoint_.y - secondPoint_.y, 2));
   double thirdLine = sqrt(pow(firstPoint_.x - thirdPoint_.x, 2) + pow(firstPoint_.y - thirdPoint_.y, 2));
 
   double circumRadius = std::max(firstLine, thirdLine);
   double inRadius = std::min(firstLine, thirdLine);
   int n = 0;
-  if (abs(180 / (acos(firstLine/circumRadius))) - abs(int(180 / (acos(firstLine/circumRadius))) < 0.000001))
-  {
-    n = round(180 / (acos(firstLine/circumRadius)));
-  }
-  else
-  {
-    n = round(180 / (acos(secondLine/circumRadius)));
-  }
+  n = round(-2 * M_PI / (asin(inRadius / circumRadius) * 2 - M_PI));
 
   double a = 2 * circumRadius * sin(M_PI / n);
   return 0.5 * n * a * inRadius;

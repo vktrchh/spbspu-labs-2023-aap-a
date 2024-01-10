@@ -29,6 +29,7 @@ int main()
   catch(...)
   {
     std::cerr << "Error";
+    freeArray(figures, nFigures);
     return 1;
   }
 
