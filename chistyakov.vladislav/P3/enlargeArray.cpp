@@ -17,9 +17,9 @@ char* chistyakov::enlargeArray(char* array, size_t size)
     delete[] array;
     return newArray;
   }
-  catch (std::bad_alloc & e)
+  catch (const std::bad_alloc & e)
   {
     delete[] newArray;
-    throw e.what();
+    throw;
   }
 }
