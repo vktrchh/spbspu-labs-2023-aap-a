@@ -12,7 +12,7 @@ void chistyakov::numOfOccurOfLetters(const char* array, char* dictChar, size_t* 
     {
       nowChar = array[i];
 
-      for (int j = 0; j < 128; ++j)
+      for (size_t j = 0; j < 128; ++j)
       {
         if (dictChar[j] == 0)
         {
