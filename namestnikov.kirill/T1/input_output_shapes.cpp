@@ -89,17 +89,17 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
               try
               {
                 point_t * points = new point_t[4];
+                for (size_t i = 0; i < 8; i += 2)
+                {
+                  points[i / 2] = {currentParameters[i], currentParameters[i + 1]};
+                }
+                currentShapes[count] = new Complexquad(points);
+                ++count;
               }
               catch (const std::bad_alloc & e)
               {
                 namestnikov::deleteShapes(currentShapes, count);
               }
-              for (size_t j = 0; j < 8; j += 2)
-              {
-                points[j / 2] = {currentParameters[j], currentParameters[j + 1]};
-              }
-              currentShapes[count] = new Complexquad(points);
-              ++count;
             }
           }
           catch (const std::exception & e)
