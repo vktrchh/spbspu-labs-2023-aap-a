@@ -27,8 +27,10 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
     }
     else
     {
-      for (const auto & [shapeName, possibleSize] : possibleShapes)
+      for (auto now : possibleShapes)
       {
+        std::string shapeName = now.first;
+        size_t possibleSize = now.second;
         if (currentShapeName == shapeName)
         {
           ++count;
