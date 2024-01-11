@@ -34,16 +34,29 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
         if (currentShapeName == shapeName)
         {
           ++count;
-          currentParameters = new double[possibleSize];
+          try
+          {
+            currentParameters = new double[possibleSize];
+          }
+          catch (const std::bad_alloc & e)
+          {
+            if (currentShapes != nullptr)
+            {
+              namestnikov::deleteShapes(currentShapes, count);
+            }
+            throw e;
+          }
           for (size_t i = 0; i < possibleSize; ++i)
           {
             in >> currentParameters[i];
           }
           if (!in)
           {
+            if (currentShapes != nullptr)
+            {
+              namestnikov::deleteShapes(currentShapes, count);
+            }
             delete [] currentParameters;
-            delete [] currentShapes;
-            delete [] oldShapes;
             throw std::invalid_argument("Error in input\n");
           }
           oldShapes = currentShapes;
@@ -68,18 +81,27 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
             }
             else if (currentShapeName == "COMPLEXQUAD")
             {
-              point_t * points = new point_t[4];
+              try
+              {
+                point_t * points = new point_t[4];
+              }
+              catch (const std::bad_alloc & e)
+              {
+                namestnikov::deleteShapes(currentShapes, count);
+              }
               for (size_t j = 0; j < 8; j += 2)
               {
                 points[j / 2] = {currentParameters[j], currentParameters[j + 1]};
               }
               currentShapes[count - 1] = new Complexquad(points);
             }
+            ++count;
           }
-          catch (...)
+          catch (const std::exception & e)
           {
-            deleteShapes(currentShapes, count);
-            throw;
+            delete [] currentParameters;
+            namestnikov::deleteShapes(currentShapes, count);
+            throw e;
           }
           delete [] currentParameters;
         }
