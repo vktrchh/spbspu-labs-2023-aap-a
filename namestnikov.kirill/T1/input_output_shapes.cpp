@@ -37,7 +37,6 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
         size_t possibleSize = now.second;
         if (currentShapeName == shapeName)
         {
-          ++count;
           try
           {
             currentParameters = new double[possibleSize];
@@ -64,7 +63,7 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
             throw std::invalid_argument("Error in input\n");
           }
           oldShapes = currentShapes;
-          currentShapes = new Shape * [count];
+          currentShapes = new Shape * [count + 1];
           if (oldShapes)
           {
             for (size_t i = 0; i < count; ++i)
@@ -77,11 +76,13 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
           {
             if (currentShapeName == "RECTANGLE")
             {
-              currentShapes[count - 1] = new Rectangle({currentParameters[0], currentParameters[1]}, {currentParameters[2], currentParameters[3]});
+              currentShapes[count] = new Rectangle({currentParameters[0], currentParameters[1]}, {currentParameters[2], currentParameters[3]});
+              ++count;
             }
             else if (currentShapeName == "CIRCLE")
             {
-              currentShapes[count - 1] = new Circle({currentParameters[0], currentParameters[1]}, currentParameters[2]);
+              currentShapes[count] = new Circle({currentParameters[0], currentParameters[1]}, currentParameters[2]);
+              ++count;
             }
             else if (currentShapeName == "COMPLEXQUAD")
             {
@@ -97,9 +98,9 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
               {
                 points[j / 2] = {currentParameters[j], currentParameters[j + 1]};
               }
-              currentShapes[count - 1] = new Complexquad(points);
+              currentShapes[count] = new Complexquad(points);
+              ++count;
             }
-            ++count;
           }
           catch (const std::exception & e)
           {
