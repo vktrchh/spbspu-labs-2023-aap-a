@@ -5,6 +5,7 @@
 #include "parallelogram.hpp"
 #include "shape.hpp"
 #include "rectangle.hpp"
+#include "diamond.hpp"
 
 
 int main()
