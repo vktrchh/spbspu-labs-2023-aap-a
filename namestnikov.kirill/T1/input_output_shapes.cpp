@@ -25,6 +25,10 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
     {
       break;
     }
+    else if (currentShapeName == "")
+    {
+      std::cerr << "Wrong shape name\n";
+    }
     else
     {
       for (auto now : possibleShapes)

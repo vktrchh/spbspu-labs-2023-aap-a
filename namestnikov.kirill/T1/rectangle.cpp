@@ -4,7 +4,12 @@
 namestnikov::Rectangle::Rectangle(const point_t & leftAnglePoint, const point_t & rightAnglePoint):
   leftAnglePoint_(leftAnglePoint),
   rightAnglePoint_(rightAnglePoint)
-{}
+{
+  if ((leftAnglePoint.x >= rightAnglePoint.x) || (leftAnglePoint.y >= rightAnglePoint.y))
+  {
+    throw std::invalid_argument("Wrong rectangle points\n");
+  }
+}
 
 double namestnikov::Rectangle::getArea() const
 {
