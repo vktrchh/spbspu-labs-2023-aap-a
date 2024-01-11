@@ -1,11 +1,11 @@
 #include "rectangle.hpp"
 #include <stdexcept>
 
-novokhatskiy::Rectangle::Rectangle(const point_t& leftAngle, const point_t& rightAngle)
+novokhatskiy::Rectangle::Rectangle(point_t& leftAngle, point_t& rightAngle)
 {
   leftAngle_ = leftAngle;
   rightAngle_ = rightAngle;
-  if (!((rightAngle_.y >= leftAngle_.y) || (rightAngle_.x >= leftAngle_.x)))
+  if (leftAngle_.x >= rightAngle_.x || leftAngle_.y >= rightAngle_.x)
   {
     throw std::invalid_argument("Wrong arguments\n");
   }

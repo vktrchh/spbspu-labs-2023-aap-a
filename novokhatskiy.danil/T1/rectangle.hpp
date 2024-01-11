@@ -8,7 +8,7 @@ namespace novokhatskiy
   {
 
   public:
-    Rectangle(const point_t &leftAngle, const point_t &rightAngle);
+    Rectangle(point_t &leftAngle, point_t &rightAngle);
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t &p);
