@@ -1,4 +1,5 @@
 #include "deleteDecimalDigits.hpp"
+#include "removeVowels.hpp"
 
 #include <iomanip>
 #include <iostream>
@@ -49,11 +50,15 @@ int main()
   }
   std::cin >> std::skipws;
   char* stringWithDecimalDigitsRemoved = new char[sizeOfInput] {};
+  char* stringWithVowelsRemoved = new char[sizeOfInput] {};
 
   char* withoutDecimalDigits = removeDecimalDigits(input, stringWithDecimalDigitsRemoved, sizeOfInput);
+  char* withoutVowels = removeVowels(input, stringWithVowelsRemoved, sizeOfInput);
 
   std::cout << withoutDecimalDigits << "\n";
+  std::cout << withoutVowels << "\n";
 
   delete[] stringWithDecimalDigitsRemoved;
+  delete[] stringWithVowelsRemoved;
   delete[] input;
 }
