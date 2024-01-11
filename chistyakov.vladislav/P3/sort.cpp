@@ -32,7 +32,7 @@ char* chistyakov::sortingCertainNumnerOfItems(char* array, char* result, size_t 
   return result;
 }
 
-void chistyakov::sortingByQuantity(char* array, char* chars, size_t* nums)
+void chistyakov::sortingByQuantity(const char* array, char* chars, size_t* nums)
 {
   numOfOccurOfLetters(array, chars, nums);
 

@@ -5,7 +5,7 @@
 
 namespace chistyakov
 {
-  void numOfOccurOfLetters(char* array, char* dictChar, size_t* dictNumsOfChar);
+  void numOfOccurOfLetters(const char* array, char* dictChar, size_t* dictNumsOfChar);
 }
 
 #endif
