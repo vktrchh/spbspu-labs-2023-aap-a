@@ -79,12 +79,3 @@ void arakelyan::Diamond::scale(const double k)
 
 arakelyan::Diamond::~Diamond()
 {}
-
-void arakelyan::Diamond::getData() const
-{
-  std::cout << "p1: x = " << p1_.x_ << "; y = " << p1_.y_ << "\n";
-  std::cout << "p2: x = " << p2_.x_ << "; y = " << p2_.y_ << "\n";
-  std::cout << "p3: x = " << p3_.x_ << "; y = " << p3_.y_ << "\n";
-  std::cout << "p4: x = " << p4_.x_ << "; y = " << p4_.y_ << "\n";
-  std::cout << "midpoint: x = " << midPoint_.x_ << "; y = " << midPoint_.y_ << "\n";
-}
