@@ -1,7 +1,7 @@
 #include "rectangle.hpp"
 #include <stdexcept>
 
-novokhatskiy::Rectangle::Rectangle(point_t& leftAngle, point_t& rightAngle)
+novokhatskiy::Rectangle::Rectangle(const point_t& leftAngle, const point_t& rightAngle)
 {
   leftAngle_ = leftAngle;
   rightAngle_ = rightAngle;
