@@ -7,16 +7,14 @@ int main()
 {
   using namespace isaychev;
   size_t capacity = 10, length1 = 0;
-  size_t & linkToCap = capacity;
-  size_t & linkToLgth = length1;
   char * str = nullptr;
   try
   {
-    str = inputString(std::cin, linkToLgth, linkToCap);
+    str = inputString(std::cin, length1, capacity);
   }
-  catch (const char * errMessage)
+  catch (const std::bad_alloc &)
   {
-    std::cerr << errMessage << "\n";
+    std::cerr << "can't allocate memory for first string\n";
     return 1;
   }
   catch (const std::logic_error & e)

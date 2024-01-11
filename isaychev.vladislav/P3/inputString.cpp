@@ -6,49 +6,47 @@
 char * isaychev::inputString(std::istream & input, size_t & length1, size_t & capacity)
 {
   char * str = nullptr;
-  str = new char[capacity]{};
-  if (str == nullptr)
+  try
   {
-    throw "can't allocate memory for string";
-  }
-  char curr_char = 0;
-  input >> std::noskipws;
-  while ((input >> curr_char) && (length1 < capacity))
-  {
-    if (length1 == capacity - 1)
+    str = new char[capacity]{};
+    char curr_char = 0;
+    input >> std::noskipws;
+    while ((input >> curr_char) && (length1 < capacity))
     {
-      capacity += 10;
-      char * bigger_str = nullptr;
-      bigger_str = new char[capacity]{};
-      if (bigger_str == nullptr)
+      if (length1 == capacity - 1)
+      {
+        capacity += 10;
+        char * bigger_str = new char[capacity]{};
+        copyString(str, bigger_str);
+        delete [] str;
+        str = bigger_str;
+      }
+      str[length1] = curr_char;
+      if (curr_char == '\n')
+      {
+        str[length1] = '\0';
+        break;
+      }
+      length1++;
+      if (length1 == 0)
       {
         delete [] str;
-        throw "can't allocate memory for string";
+        throw std::logic_error("Not enough characters in string");
       }
-      copyString(str, bigger_str, length1);
-      delete [] str;
-      str = bigger_str;
     }
-    str[length1] = curr_char;
-    if (curr_char == '\n')
-    {
-      str[length1] = '\0';
-      break;
-    }
-    length1++;
   }
-  if (length1 == 0)
+  catch (const std::bad_alloc &)
   {
     delete [] str;
-    throw std::logic_error("Not enough characters in string");
+    throw;
   }
   input >> std::skipws;
   return str;
 }
 
-void isaychev::copyString(const char * str, char * str2, size_t len)
+void isaychev::copyString(const char * str, char * str2)
 {
-  for (size_t j = 0; j < len; ++j)
+  for (size_t j = 0; str[j] != '\0'; ++j)
   {
     str2[j] = str[j];
   }

@@ -31,13 +31,17 @@ void isaychev::fillInUniqueChars(const char * str_base, char * str_final, size_t
 void isaychev::addLat(const char * str1, const char * str2, char * str3)
 {
   size_t num = 0;
-  size_t & linkToCounter = num;
-  fillInUniqueChars(str1, str3, linkToCounter);
-  fillInUniqueChars(str2, str3, linkToCounter);
+  fillInUniqueChars(str1, str3, num);
+  fillInUniqueChars(str2, str3, num);
+  sortCharsAZ(str3);
+  str3[num] = '\0';
+}
 
-  for (size_t i = 0; i < num - 1; ++i)
+void isaychev::sortCharsAZ(char * str3)
+{
+  for (size_t i = 0; str3[i] != '\0'; ++i)
   {
-    for (size_t k = 0; k < num - i - 1; ++k)
+    for (size_t k = 0; str3[k + 1] != '\0'; ++k)
     {
       if (str3[k] > str3[k + 1])
       {
@@ -45,5 +49,4 @@ void isaychev::addLat(const char * str1, const char * str2, char * str3)
       }
     }
   }
-  str3[num] = '\0';
 }

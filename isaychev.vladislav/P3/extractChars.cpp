@@ -5,7 +5,7 @@ void isaychev::extractChars(const char * str_base, const char * str_sec, char * 
   size_t i = 0, j = 0;
   while (str_base[i] != '\0')
   {
-    size_t check = checkForSameElem(str_base, str_sec, i);
+    size_t check = checkForSameElem(str_sec, str_base[i]);
     if (check == 0)
     {
       wk_str[j] = str_base[i];
@@ -15,12 +15,12 @@ void isaychev::extractChars(const char * str_base, const char * str_sec, char * 
   }
 }
 
-size_t isaychev::checkForSameElem(const char * str1, const char * str2, size_t arrayIndex)
+size_t isaychev::checkForSameElem(const char * str2, char charForCheck)
 {
   size_t check = 0, k = 0;
   while (str2[k] != '\0')
   {
-    if (str1[arrayIndex] == str2[k])
+    if (charForCheck == str2[k])
     {
       check++;
     }
