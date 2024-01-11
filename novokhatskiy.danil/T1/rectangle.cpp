@@ -3,12 +3,12 @@
 
 novokhatskiy::Rectangle::Rectangle(const point_t& leftAngle, const point_t& rightAngle)
 {
-  if (!((rightAngle.y >= leftAngle.y) && (rightAngle.x >= leftAngle.x)))
+  leftAngle_ = leftAngle;
+  rightAngle_ = rightAngle;
+  if (!((rightAngle_.y >= leftAngle_.y) || (rightAngle_.x >= leftAngle_.x)))
   {
     throw std::invalid_argument("Wrong arguments\n");
   }
-  leftAngle_ = leftAngle;
-  rightAngle_ = rightAngle;
 }
 double novokhatskiy::Rectangle::getArea() const
 {
