@@ -124,6 +124,10 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
 
 std::ostream & namestnikov::outputShapes(std::ostream & out, size_t count, Shape ** shapes)
 {
+  if (count == 0)
+  {
+    throw std::invalid_argument("Nothing to output\n");
+  }
   double square = 0.0;
   for (size_t i = 0; i < count; ++i)
   {
