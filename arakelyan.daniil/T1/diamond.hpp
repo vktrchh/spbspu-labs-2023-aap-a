@@ -4,7 +4,7 @@
 #include "rectangle.hpp"
 #include "base-types.hpp"
 
-namespace arakelyan 
+namespace arakelyan
 {
   class Diamond: public Shape
   {
