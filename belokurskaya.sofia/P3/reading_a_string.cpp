@@ -3,7 +3,7 @@
 #include <cstring>
 #include <algorithm>
 
-char* resizeStringBuffer(const char* my_string, const size_t size, const size_t new_memory)
+char* belokurskaya::resizeStringBuffer(const char* my_string, const size_t size, const size_t new_memory)
 {
   try
   {
@@ -21,7 +21,7 @@ char* resizeStringBuffer(const char* my_string, const size_t size, const size_t 
   }
 }
 
-std::string inputString(std::istream& input)
+std::string belokurskaya::inputString(std::istream& input)
 {
   const size_t size_of_memory = 20;
   std::string input_str;
@@ -32,7 +32,7 @@ std::string inputString(std::istream& input)
   while ((input >> c) && c != '\n')
   {
     input_str += c;
-    if (input_str.size() >= size_of_memory)
+    if (input_str.size() > size_of_memory)
     {
       input_str.resize(input_str.size() + size_of_memory);
     }

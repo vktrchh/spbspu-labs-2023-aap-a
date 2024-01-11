@@ -5,6 +5,7 @@
 
 int main()
 {
+  using namespace belokurskaya;
   try
   {
     std::string input_str = inputString(std::cin);
