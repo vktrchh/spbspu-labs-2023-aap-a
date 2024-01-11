@@ -1,13 +1,14 @@
 #include "diamond.hpp"
 #include "base-types.hpp"
 #include <stdexcept>
+#include <iostream>
 
 arakelyan::Diamond::Diamond(const point_t fp, const point_t sp, const point_t tp):
   p1_(fp),
   p2_(sp),
   midPoint_(tp),
-  p3_{(fp.x_), (tp.y_ - fp.y_)},
-  p4_{(tp.x_ - sp.x_),(sp.y_)}
+  p3_{(fp.x_), (tp.y_ - (fp.y_ - tp.y_))},
+  p4_{(tp.x_ - (sp.x_ - tp.x_)),(sp.y_)}
 {
   if ((fp.x_ != tp.x_) || (sp.y_ != tp.y_))
   {
@@ -17,13 +18,13 @@ arakelyan::Diamond::Diamond(const point_t fp, const point_t sp, const point_t tp
 
 double arakelyan::Diamond::getArea() const
 {
-  return std::abs((p1_.y_ - midPoint_.y_) * (p2_.x_ - midPoint_.x_));
+  return std::abs(((p1_.y_ - p3_.y_) * (p2_.x_ - p4_.x_)) / 2.0);
 }
 
 rectangle_t arakelyan::Diamond::getFrameRect()
 {
-  double width = std::abs(p1_.y_ - midPoint_.y_) * 2.0;
-  double height = std::abs(p2_.x_ - midPoint_.x_) * 2.0;
+  double width = std::abs(p2_.x_ - midPoint_.x_) * 2.0;
+  double height = std::abs(p1_.y_ - midPoint_.y_) * 2.0;
   rectangle_t data = {width, height, midPoint_};
   return data;
 }
@@ -78,3 +79,12 @@ void arakelyan::Diamond::scale(const double k)
 
 arakelyan::Diamond::~Diamond()
 {}
+
+void arakelyan::Diamond::getData() const
+{
+  std::cout << "p1: x = " << p1_.x_ << "; y = " << p1_.y_ << "\n";
+  std::cout << "p2: x = " << p2_.x_ << "; y = " << p2_.y_ << "\n";
+  std::cout << "p3: x = " << p3_.x_ << "; y = " << p3_.y_ << "\n";
+  std::cout << "p4: x = " << p4_.x_ << "; y = " << p4_.y_ << "\n";
+  std::cout << "midpoint: x = " << midPoint_.x_ << "; y = " << midPoint_.y_ << "\n";
+}
