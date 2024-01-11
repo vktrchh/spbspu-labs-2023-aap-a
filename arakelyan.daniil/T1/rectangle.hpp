@@ -2,9 +2,9 @@
 #define RECTANGLE_HPP
 #include "base-types.hpp"
 #include "shape.hpp"
-namespace arakelyanRectangle
+namespace arakelyan
 {
-  class Rectangle: public arakelyanShape::Shape
+  class Rectangle: public arakelyan::Shape
   {
   public:
     Rectangle(point_t fp,point_t sp);

@@ -1,7 +1,7 @@
 #ifndef SHAPE_HPP
 #define SHAPE_HPP
 #include "base-types.hpp"
-namespace arakelyanShape
+namespace arakelyan
 {
   struct Shape
   {

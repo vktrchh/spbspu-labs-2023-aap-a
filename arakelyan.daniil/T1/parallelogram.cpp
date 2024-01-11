@@ -1,7 +1,7 @@
 #include "parallelogram.hpp"
 #include <stdexcept>
 
-arakelyanParallelogram::Parallelogram::Parallelogram(point_t fp, point_t sp, point_t tp):
+arakelyan::Parallelogram::Parallelogram(point_t fp, point_t sp, point_t tp):
   p1_(fp),
   p2_(sp),
   p3_(tp),
@@ -14,12 +14,12 @@ arakelyanParallelogram::Parallelogram::Parallelogram(point_t fp, point_t sp, poi
   }
 };
 
-double arakelyanParallelogram::Parallelogram::getArea() const
+double arakelyan::Parallelogram::getArea() const
 {
   return std::abs((p2_.x_ - p1_.x_) * (p1_.y_ - p3_.y_));
 }
 
-rectangle_t arakelyanParallelogram::Parallelogram::getFrameRect()
+rectangle_t arakelyan::Parallelogram::getFrameRect()
 {
   double width = std::abs(p3_.x_ - p1_.x_);
   double height = std::abs(p1_.y_ - p3_.y_);
@@ -28,7 +28,7 @@ rectangle_t arakelyanParallelogram::Parallelogram::getFrameRect()
   return data;
 }
 
-void arakelyanParallelogram::Parallelogram::move(const point_t point)
+void arakelyan::Parallelogram::move(const point_t point)
 {
   double dx = point.x_ - midpoint_.x_;
   double dy = point.y_ - midpoint_.y_;
@@ -41,7 +41,7 @@ void arakelyanParallelogram::Parallelogram::move(const point_t point)
   midpoint_ = point;
 }
 
-void arakelyanParallelogram::Parallelogram::move(const double delX, const double delY)
+void arakelyan::Parallelogram::move(const double delX, const double delY)
 {
   p1_.x_ += delX;
   p1_.y_ += delY;
@@ -55,7 +55,7 @@ void arakelyanParallelogram::Parallelogram::move(const double delX, const double
   midpoint_.y_ += delY;
 }
 
-void arakelyanParallelogram::Parallelogram::scale(const double k)
+void arakelyan::Parallelogram::scale(const double k)
 {
   if (k < 0.0)
   {
@@ -74,5 +74,5 @@ void arakelyanParallelogram::Parallelogram::scale(const double k)
   p4_.y_ = midpoint_.y_ + (heightWithScale / 2.0);
 }
 
-arakelyanParallelogram::Parallelogram::~Parallelogram()
+arakelyan::Parallelogram::~Parallelogram()
 {};
