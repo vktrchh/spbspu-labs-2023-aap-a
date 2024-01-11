@@ -20,11 +20,27 @@ novokhatskiy::Shape** novokhatskiy::inputShapes(std::istream& input, size_t& sha
     {
       if (currentName == shapesNames[i])
       {
-        currentParameters = new double[rightShapesParametersCount[i]];
+        try
+        {
+          currentParameters = new double[rightShapesParametersCount[i]];
+        }
+        catch (const std::bad_alloc&)
+        {
+          if (currentShapes != nullptr)
+          {
+            for (size_t i = 0; i < shapeCounter; i++)
+            {
+              delete currentShapes[i];
+            }
+          delete[] currentShapes;
+          }
+          throw;
+        }
         for (size_t j = 0; j < rightShapesParametersCount[i]; j++)
         {
           input >> currentParameters[j];
         }
+
         if (!input)
         {
           if (currentShapes != nullptr)
@@ -35,8 +51,8 @@ novokhatskiy::Shape** novokhatskiy::inputShapes(std::istream& input, size_t& sha
             }
             delete[] currentShapes;
           }
-            delete[] currentParameters;
-            throw std::invalid_argument("Wrong arguments\n");
+          delete[] currentParameters;
+          throw std::invalid_argument("Wrong arguments\n");
         }
         oldShapes = currentShapes;
         currentShapes = new Shape * [shapeCounter + 1];
@@ -62,6 +78,7 @@ novokhatskiy::Shape** novokhatskiy::inputShapes(std::istream& input, size_t& sha
           {
             currentShapes[shapeCounter] = new Ellipse({currentParameters[0], currentParameters[1] }, currentParameters[2], currentParameters[3]);
           }
+          ++shapeCounter;
         }
         catch (const std::bad_alloc&)
         {
@@ -71,11 +88,13 @@ novokhatskiy::Shape** novokhatskiy::inputShapes(std::istream& input, size_t& sha
             delete currentShapes[i];
           }
           delete[] currentShapes;
-
           throw;
         }
+        catch (const std::exception& e)
+        {
+          std::cerr << e.what() << '\n';
+        }
         delete[] currentParameters;
-        ++shapeCounter;
       }
     }
     if (currentName == "")
