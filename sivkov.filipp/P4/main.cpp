@@ -44,7 +44,6 @@ int main(int argc, char * argv[])
     std::cerr << "Cannot open file!\n";
     return 2;
   }
-  if (!input)
   input >> rows >> cols;
   if (!input)
   {
