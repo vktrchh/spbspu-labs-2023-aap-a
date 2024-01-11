@@ -5,7 +5,7 @@
 
 novokhatskiy::Ellipse::Ellipse(const point_t& center, double vert, double horizon)
 {
-  if ((vert < 0.0) && (horizon < 0.0))
+  if ((vert <= 0.0) || (horizon <= 0.0))
   {
     throw std::invalid_argument("Ellipse radiuses are wrong\n");
   }
@@ -16,7 +16,7 @@ novokhatskiy::Ellipse::Ellipse(const point_t& center, double vert, double horizo
 
 double novokhatskiy::Ellipse::getArea() const
 {
-  return 2.0 * M_PI * vert_ * horizon_;
+  return M_PI * vert_ * horizon_;
 }
 
 novokhatskiy::rectangle_t novokhatskiy::Ellipse::getFrameRect() const

@@ -4,6 +4,10 @@
 
 void novokhatskiy::outputShapes(std::ostream& output, size_t shapeCounter, Shape** shapes)
 {
+  if (shapeCounter == 0)
+  {
+    throw std::logic_error("No shapes\n");
+  }
   double area = 0.0;
   output << std::fixed;
   output.precision(1);
@@ -14,7 +18,7 @@ void novokhatskiy::outputShapes(std::ostream& output, size_t shapeCounter, Shape
       area += shapes[i]->getArea();
     }
   }
-  output << std::round(10.0 * area) / 10.0 << " ";
+  output << area;
 
   for (size_t i = 0; i < shapeCounter; ++i)
   {
@@ -25,7 +29,7 @@ void novokhatskiy::outputShapes(std::ostream& output, size_t shapeCounter, Shape
       point_t point = shapes[i]->getFrameRect().pos;
       point_t leftCorner = {point.x - width / 2.0, point.y - height / 2.0};
       point_t rightCorner = {point.x + width / 2.0, point.y + height / 2.0};
-      output << leftCorner.x << " " << leftCorner.y << " " << rightCorner.x << " " << rightCorner.y;
+      output << " " << leftCorner.x << " " << leftCorner.y << " " << rightCorner.x << " " << rightCorner.y;
     }
   }
   output << "\n";
