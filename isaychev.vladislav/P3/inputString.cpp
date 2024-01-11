@@ -43,7 +43,6 @@ char * isaychev::inputString(std::istream & input, size_t & length1, size_t & ca
   input >> std::skipws;
   return str;
 }
-
 void isaychev::copyString(const char * str, char * str2)
 {
   for (size_t j = 0; str[j] != '\0'; ++j)
