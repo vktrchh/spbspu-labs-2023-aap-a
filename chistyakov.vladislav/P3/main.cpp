@@ -1,10 +1,9 @@
 #include <iostream>
 #include <stdexcept>
 
-#include "countChars.hpp"
+#include "numOfOccurOfLetters.hpp"
 #include "sort.hpp"
 #include "inputArray.hpp"
-#include "sortingByQuantity.hpp"
 
 int main()
 {
@@ -26,9 +25,9 @@ int main()
     return 2;
   }
 
-  char dictChar[52]{};
-  size_t dictNumsOfChar[52]{};
-  countChars(array, dictChar, dictNumsOfChar);
+  char dictChar[128]{};
+  size_t dictNumsOfChar[128]{};
+  sortingByQuantity(array, dictChar, dictNumsOfChar);
 
   if (dictChar[1] == 0 || dictChar[2] == 0)
   {
@@ -37,10 +36,8 @@ int main()
     return 1;
   }
 
-  sortingByQuantity(dictChar, dictNumsOfChar);
-
   char result[3]{};
-  sort(dictChar, result, 3);
+  sortingCertainNumnerOfItems(dictChar, result, 3);
 
   for (size_t i = 0; i < 3; ++i)
   {

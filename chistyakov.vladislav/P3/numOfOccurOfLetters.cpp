@@ -1,8 +1,7 @@
-#include "countChars.hpp"
+#include "numOfOccurOfLetters.hpp"
 #include <cctype>
-#include "sortingByQuantity.hpp"
 
-void chistyakov::countChars(char* array, char* dictChar, size_t* dictNumsOfChar)
+void chistyakov::numOfOccurOfLetters(char* array, char* dictChar, size_t* dictNumsOfChar)
 {
   char nowChar = 0;
   size_t i = 0;
@@ -13,7 +12,7 @@ void chistyakov::countChars(char* array, char* dictChar, size_t* dictNumsOfChar)
     {
       nowChar = array[i];
 
-      for (int j = 0; j < 52; ++j)
+      for (int j = 0; j < 128; ++j)
       {
         if (dictChar[j] == 0)
         {
