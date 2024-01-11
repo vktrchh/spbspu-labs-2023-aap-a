@@ -8,7 +8,7 @@
 int main()
 {
   size_t size = 10;
-  std::cout << "Enter first line: ";
+  std::cout << "1.Enter first line: ";
 
   char* input1 = new char[size];
   input1 = transformInputString(input1, size);
@@ -22,30 +22,36 @@ int main()
     delete[] input1;
     return 1;
   }
-  
   char* line1 = new char[size];
   char* line2 = new char[size];
   char* line3 = new char[size];
   line3 = mergeTwoLines(input1, input2);
+
   std::cout << "Result merging: " << line3 << '\n';
   delete[] line1;
   delete[] line2;
   delete[] line3;
 
-  const int maxStringLength = 10;
+  std::cout << "2.Enter first line: ";
 
-  char str1[maxStringLength];
-  char str2[maxStringLength];
+  char* input3 = new char[size];
+  input3 = transformInputString(input3, size);
 
-  std::cout << "Enter the first string: ";
-  std::cin >> str1;
+  std::cout << "Enter second line: ";
 
-  std::cout << "Enter the second string: ";
-  std::cin >> str2;
-
-  char* result = removeDuplicate(str1, str2);
+  char* input4 = new char[size];
+  input4 = transformInputString(input4, size);
+  if (input3 == nullptr)
+  {
+    delete[] input3;
+    return 1;
+  }
+  char* line4 = new char[size];
+  char* line5 = new char[size];
+  char* result = removeDuplicate(input3, input4);
 
   std::cout << "Result after removing duplicates: " << result;
-
+  delete[] line4;
+  delete[] line5;
   delete[] result;
 }

@@ -42,5 +42,4 @@ char* removeDuplicate(char* str1, char* str2)
   result[index] = '\0';
   return result;
 }
-
     

@@ -5,22 +5,49 @@
 
 char* mergeTwoLines(char* line1, char* line2)
 {
-  size_t size1 = strlen(line1);
-  size_t size2 = strlen(line2);
+  size_t size1 = 0;
+  while (*line1 != '\0')
+  {
+    size1++;
+    line1++;
+  }
+  size_t size2 = 0;
+  while (*line2 != '\0')
+  {
+    size2++;
+    line2++;
+  }
+  int c = size1;
+  int c2 = size2;
+  while (c > 0)
+  {
+    line1--;
+    c--;
+  }
+  while (c2 > 0)
+  {
+    line2--;
+    c2--;
+  }
   size_t size = size1 + size2;
-
   char* result = new char[size + 1];
 
-  size_t i = 0;
-  for (size_t r = 0; r < size1; ++r)
+  size_t r = 0;
+  int i = 0;
+  while (*line1 != '\0' || *line2 != '\0')
   {
-    result[i] = line1[r];
-    ++i;
-  }
-  for (size_t r = 0; r < size2; ++r)
-  {
-    result[i] = line2[r];
-    ++i;
+    if (*line1 != '\0')
+    {
+      result[i] = *line1;
+      i++;
+      line1++;
+    }
+    if (*line2 != '\0')
+    {
+      result[i] = *line2;
+      i++;
+      line2++;
+    }
   }
   result[i] = '\0';
   return result;
