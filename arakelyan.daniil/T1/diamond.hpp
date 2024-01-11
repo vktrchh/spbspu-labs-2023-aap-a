@@ -19,9 +19,9 @@ namespace arakelyan
   private:
     point_t p1_;
     point_t p2_;
+    point_t midPoint_;
     point_t p3_;
     point_t p4_;
-    point_t midPoint_;
   };
 }
 
