@@ -31,5 +31,6 @@ char * gladyshev::removeVowels(char * start)
     }
     ++nummain;
   }
+  start[numsup] = '\0';
   return start;
 }
