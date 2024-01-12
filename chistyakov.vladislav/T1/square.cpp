@@ -2,7 +2,7 @@
 
 #include <stdexcept>
 
-chistyakov::Square::Square(const point_t leftCorner, const double side):
+chistyakov::Square::Square(const point_t & leftCorner, const double side):
   leftCorner_(leftCorner),
   side_(side)
 {
