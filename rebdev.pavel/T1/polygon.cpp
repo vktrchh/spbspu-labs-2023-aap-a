@@ -7,13 +7,13 @@ rebdev::Polygon::Polygon():
   numOfVertexs_(0)
 {};
 rebdev::Polygon::Polygon(point_t * const vertexs, size_t numOfVertexs):
-  vertexs_(new point_t[numOfVertexs]),
+  vertexs_(vertexs),
   numOfVertexs_(numOfVertexs)
+{};
+
+rebdev::Polygon::~Polygon()
 {
-  for (size_t i = 0; i < numOfVertexs; ++i)
-  {
-    vertexs_[i] = vertexs[i];
-  }
+delete[] vertexs_;
 };
 
 double rebdev::Polygon::getArea() const

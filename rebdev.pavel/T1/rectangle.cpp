@@ -1,51 +1,27 @@
 #include "rectangle.hpp"
 
 rebdev::Rectangle::Rectangle():
-  lowLeftAngle_(point_t{0.0, 0.0}),
-  upRightAngle_(point_t{0.0, 0.0})
+  angles_(nullptr)
 {};
-rebdev::Rectangle::Rectangle(const point_t & lowLeftAngle, const point_t & upRightAngle):
-  lowLeftAngle_(point_t{0.0, 0.0}),
-  upRightAngle_(point_t{0.0, 0.0})
-{
-  if ((upRightAngle.x_ < lowLeftAngle.x_) || (upRightAngle.y_ < lowLeftAngle.y_))
-  {
-    lowLeftAngle_ = upRightAngle;
-    upRightAngle_ = lowLeftAngle;
-  }
-  else
-  {
-    lowLeftAngle_ = lowLeftAngle;
-    upRightAngle_ = upRightAngle;
-  }
-};
-rebdev::Rectangle::Rectangle(const double xLLA, const double yLLA, const double xURA, const double yURA):
-  lowLeftAngle_(point_t{0.0, 0.0}),
-  upRightAngle_(point_t{0.0, 0.0})
-{
-  if ((xURA < xLLA) || (yURA < yLLA))
-  {
-    lowLeftAngle_ = point_t{xURA, yURA};
-    upRightAngle_ = point_t{xLLA, yLLA};
-  }
-  else
-  {
-    lowLeftAngle_ = point_t{xLLA, yLLA};
-    upRightAngle_ = point_t{xURA, yURA};
-  }
-};
+rebdev::Rectangle::Rectangle(point_t * angles):
+  angles_(angles)
+{}
 
+rebdev::Rectangle::~Rectangle()
+{
+  delete[] angles_;
+};
 
 double rebdev::Rectangle::getArea() const
 {
-  return  ((upRightAngle_.x_ - lowLeftAngle_.x_) * (upRightAngle_.y_ - lowLeftAngle_.y_));
+  return  ((angles_[1].x_ - angles_[0].x_) * (angles_[1].y_ - angles_[0].y_));
 };
 
 rebdev::rectangle_t rebdev::Rectangle::getFrameRect()
 {
-  double width = upRightAngle_.x_ - lowLeftAngle_.x_;
-  double height = upRightAngle_.y_ - lowLeftAngle_.y_;
-  point_t pos = {(upRightAngle_.x_ + lowLeftAngle_.x_)/2, (upRightAngle_.y_ + lowLeftAngle_.y_)/2};
+  double width = angles_[1].x_ - angles_[0].x_;
+  double height = angles_[1].y_ - angles_[0].y_;
+  point_t pos = {(angles_[1].x_ + angles_[0].x_)/2, (angles_[1].y_ + angles_[0].y_)/2};
   return rectangle_t{width, height, pos};
 };
 
@@ -56,26 +32,26 @@ void rebdev::Rectangle::move(const point_t point)
   double yChange = frameRectangle.pos_.y_ - point.y_;
   double xChange = frameRectangle.pos_.x_ - point.x_;
 
-  upRightAngle_.y_ += yChange;
-  upRightAngle_.x_ += xChange;
-  lowLeftAngle_.y_ += yChange;
-  lowLeftAngle_.x_ += xChange;
+  angles_[1].y_ += yChange;
+  angles_[1].x_ += xChange;
+  angles_[0].y_ += yChange;
+  angles_[0].x_ += xChange;
 };
 
 void rebdev::Rectangle::move(const double x, const double y)
 {
-  lowLeftAngle_.x_ += x;
-  lowLeftAngle_.y_ += y;
-  upRightAngle_.x_ += x;
-  upRightAngle_.y_ += y;
+  angles_[0].x_ += x;
+  angles_[0].y_ += y;
+  angles_[1].x_ += x;
+  angles_[1].y_ += y;
 };
 
 void rebdev::Rectangle::scale(const double k)
 {
   rectangle_t frameRectangle = getFrameRect();
 
-  upRightAngle_.x_ = (upRightAngle_.x_ - frameRectangle.pos_.x_) * k + frameRectangle.pos_.x_;
-  upRightAngle_.y_ = (upRightAngle_.y_ - frameRectangle.pos_.y_) * k + frameRectangle.pos_.y_;
-  lowLeftAngle_.x_ = (lowLeftAngle_.x_ - frameRectangle.pos_.x_) * k + frameRectangle.pos_.x_;
-  lowLeftAngle_.y_ = (lowLeftAngle_.y_ - frameRectangle.pos_.y_) * k + frameRectangle.pos_.y_;
+  angles_[1].x_ = (angles_[1].x_ - frameRectangle.pos_.x_) * k + frameRectangle.pos_.x_;
+  angles_[1].y_ = (angles_[1].y_ - frameRectangle.pos_.y_) * k + frameRectangle.pos_.y_;
+  angles_[0].x_ = (angles_[0].x_ - frameRectangle.pos_.x_) * k + frameRectangle.pos_.x_;
+  angles_[0].y_ = (angles_[0].y_ - frameRectangle.pos_.y_) * k + frameRectangle.pos_.y_;
 };

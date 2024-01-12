@@ -6,6 +6,7 @@ namespace rebdev
   class Shape
   {
     public:
+    virtual ~Shape() = default;
     virtual double getArea() const = 0;
     virtual rectangle_t getFrameRect() = 0;
     virtual void move(const point_t point) = 0;

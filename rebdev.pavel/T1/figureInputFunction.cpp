@@ -3,21 +3,7 @@
 
 bool rebdev::isRectangle(point_t * pointsArr)
 {
-  if ((pointsArr[0].x_ > pointsArr[1].x_) && (pointsArr[0].y_ > pointsArr[1].y_))
-  {
-    pointsArr[0].x_ += pointsArr[1].x_;
-    pointsArr[1].x_ = pointsArr[0].x_ - pointsArr[1].x_;
-    pointsArr[0].x_ -= pointsArr[1].x_;
-
-    pointsArr[0].y_ += pointsArr[1].y_;
-    pointsArr[1].y_ = pointsArr[0].y_ - pointsArr[1].y_;
-    pointsArr[0].y_ -= pointsArr[1].y_;
-  }
-  else if (!((pointsArr[0].x_ < pointsArr[1].x_) && (pointsArr[0].y_ < pointsArr[1].y_)))
-  {
-    return 0;
-  }
-  return 1;
+  return !((pointsArr[0].x_ >= pointsArr[1].x_) && (pointsArr[0].y_ >= pointsArr[1].y_));
 };
 
 bool rebdev::isConcave(point_t * pointsArr)
@@ -202,7 +188,7 @@ rebdev::Shape * rebdev::newFigure(point_t * vertexsArr, const size_t numOfVertex
 {
   if (figureNumber == 0)
   {
-    return (new Rectangle(vertexsArr[0], vertexsArr[1]));
+    return (new Rectangle(vertexsArr));
   }
   else  if (figureNumber == 1)
   {

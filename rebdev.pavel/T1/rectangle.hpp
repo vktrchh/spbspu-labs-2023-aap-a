@@ -8,18 +8,16 @@ namespace rebdev
   {
     public:
       Rectangle();
-      Rectangle(const point_t & lowLeftAngle, const point_t & upRightAngle);
-      Rectangle(const double xLLA, const double yLLA, const double xURA, const double yURA);
+      Rectangle(point_t * angles);
 
-
-      double getArea() const;
-      rectangle_t getFrameRect();
-      void move(const point_t point);
-      void move(const double x, const double y);
-      void scale(const double k);
+      virtual ~Rectangle();
+      virtual double getArea() const;
+      virtual rectangle_t getFrameRect();
+      virtual void move(const point_t point);
+      virtual void move(const double x, const double y);
+      virtual void scale(const double k);
     private:
-      point_t lowLeftAngle_;
-      point_t upRightAngle_;
+      point_t * angles_;
   };
 }
 #endif

@@ -2,21 +2,16 @@
 #include <limits>
 
 rebdev::Concave::Concave():
-  vertexs_{
-    rebdev::point_t{0.0, 0.0}, rebdev::point_t{0.0, 0.0}, rebdev::point_t{0.0, 0.0}, rebdev::point_t{0.0, 0.0}
-  }
+  vertexs_{nullptr}
 {};
-rebdev::Concave::Concave(const point_t vertexs[]):
-  vertexs_{
-    vertexs[0], vertexs[1], vertexs[2], vertexs[3]
-  }
+rebdev::Concave::Concave(point_t * vertexs):
+  vertexs_{vertexs}
 {};
-rebdev::Concave::Concave(const point_t firstVertex, const point_t secondVertex,
-  const point_t thirdVertex, const point_t fourthVertex):
-  vertexs_{
-    firstVertex, secondVertex, thirdVertex, fourthVertex
-  }
-{};
+
+rebdev::Concave::~Concave()
+{
+  delete[] vertexs_;
+};
 
 double rebdev::Concave::getArea() const
 {
