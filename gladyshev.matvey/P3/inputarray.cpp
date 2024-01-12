@@ -6,7 +6,7 @@ char * gladyshev::inputArray(std::istream& input)
   char currsym = 0;
   size_t len = 10;
   size_t counter = 0;
-  char * baseArray = new char[len]{};
+  char * baseArray = new char[len];
   input >> std::noskipws;
   while (input >> currsym)
   {
