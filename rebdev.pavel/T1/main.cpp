@@ -6,6 +6,7 @@
 #include "base-types.hpp"
 #include "figureInputFunction.hpp"
 #include "isoScale.hpp"
+#include "outputShapes.hpp"
 
 int main()
 {
@@ -55,26 +56,7 @@ int main()
           break;
         }
 
-        double sum = 0;
-        for (int i = 0; i < numOfShape; ++i)
-        {
-          sum += shapes[i]->getArea();
-        }
-
-        std::cout << std::fixed;
-        std::cout.precision(1);
-
-        std::cout << sum << " ";
-        for (int i = 0; i < numOfShape; ++i)
-        {
-          rebdev::rectangle_t rect = shapes[i]->getFrameRect();
-          rebdev::point_t lowLeft = {rect.pos_.x_ - rect.width_/2, rect.pos_.y_ - rect.height_/2};
-          rebdev::point_t upRight = {lowLeft.x_ + rect.width_, lowLeft.y_ + rect.height_};
-          std::cout << lowLeft.x_ << " " << lowLeft.y_ << " ";
-          std::cout << upRight.x_ << " " << upRight.y_ << " ";
-        }
-
-        std::cout << '\n';
+        rebdev::outputShapes(shapes, numOfShape, std::cout);
         rebdev::isoScale(shapes, numOfShape, isoPoint, k);
         isScale = 1;
         break;
@@ -139,24 +121,12 @@ int main()
     return 1;
   }
 
-  double sum = 0;
-  for (int i = 0; i < numOfShape; ++i)
-  {
-    sum += shapes[i]->getArea();
-  }
-  std::cout << sum << " ";
-  for (int i = 0; i < numOfShape; ++i)
-  {
-    rebdev::rectangle_t rect = shapes[i]->getFrameRect();
-    rebdev::point_t lowLeft = {rect.pos_.x_ - rect.width_/2, rect.pos_.y_ - rect.height_/2};
-    rebdev::point_t upRight = {lowLeft.x_ + rect.width_, lowLeft.y_ + rect.height_};
-    std::cout << lowLeft.x_ << " " << lowLeft.y_ << " ";
-    std::cout << upRight.x_ << " " << upRight.y_ << " ";
+  rebdev::outputShapes(shapes, numOfShape, std::cout);
 
+  for (int i = 0; i < numOfShape; ++i)
+  {
     delete shapes[i];
   }
-
-
   delete[] shapes;
   return 0;
 }
