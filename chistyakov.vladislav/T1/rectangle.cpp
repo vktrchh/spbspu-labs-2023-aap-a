@@ -2,7 +2,7 @@
 
 #include <stdexcept>
 
-chistyakov::Rectangle::Rectangle(const point_t & leftCorner, const point_t rightCorner):
+chistyakov::Rectangle::Rectangle(const point_t & leftCorner, const point_t & rightCorner):
   leftCorner_(leftCorner),
   rightCorner_(rightCorner)
 {
@@ -10,10 +10,6 @@ chistyakov::Rectangle::Rectangle(const point_t & leftCorner, const point_t right
   {
     throw std::invalid_argument("Invalid argument for rectangle");
   }
-}
-
-chistyakov::Rectangle::~Rectangle()
-{
 }
 
 double chistyakov::Rectangle::getArea() const
