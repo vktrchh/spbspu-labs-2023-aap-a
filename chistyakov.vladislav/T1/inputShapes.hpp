@@ -1,8 +1,9 @@
 #ifndef INPUTSHAPES_HPP
 #define INPUTSHAPES_HPP
 
-#include "shape.hpp"
+#include <iostream>
 #include <string>
+#include "shape.hpp"
 
 namespace chistyakov
 {

@@ -1,7 +1,7 @@
 #include "inputShapes.hpp"
 #include <string>
 
-chistyakov::inputShapes(std::istream & input, Shape * array)
+void chistyakov::inputShapes(std::istream & input, Shape * array)
 {
   std::string rectangle = "RECTANGLE";
   std::string square = "SQUARE";
@@ -23,10 +23,10 @@ chistyakov::inputShapes(std::istream & input, Shape * array)
 
       if (str.size() == str.max_size() - 1)
       {
-        throw logic_error("Seq too long");
+        throw std::logic_error("Seq too long");
       }
 
-      if (now == "\n")
+      if (now == '\n')
       {
         break;
       }
@@ -39,9 +39,10 @@ chistyakov::inputShapes(std::istream & input, Shape * array)
     std::string shapeName = "";
     for (size_t j = 0; j < str.size(); ++j)
     {
-      if (str[j] == " ")
+      if (str[j] == ' ')
       {
-        shapeName = str.resize(j);
+        shapeName = str;
+        shapeName.resize(j);
         break;
       }
     }
@@ -65,4 +66,12 @@ chistyakov::inputShapes(std::istream & input, Shape * array)
   }
 }
 
-chistyakov::inputRectangle(str)
+void chistyakov::inputRectangle(std::string str, Shape * array)
+{}
+
+void chistyakov::inputSquare(std::string str, Shape * array)
+{}
+
+void chistyakov::inputComplexquad(std::string str, Shape * array)
+{}
+
