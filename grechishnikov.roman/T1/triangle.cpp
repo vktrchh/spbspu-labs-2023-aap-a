@@ -16,6 +16,13 @@ grechishnikov::Triangle::Triangle(const point_t& a, const point_t& b, const poin
   }
 }
 
+grechishnikov::Triangle::Triangle():
+  a_( { 0.0, 0.0 } ),
+  b_( { 0.0, 0.0 } ),
+  c_( { 0.0, 0.0 } )
+{}
+
+
 double grechishnikov::Triangle::getArea() const
 {
   double sq = ((b_.x - a_.x) * (c_.y - a_.y) - (c_.x - a_.x) * (b_.y - a_.y)) / 2;
@@ -28,14 +35,14 @@ double grechishnikov::Triangle::getArea() const
 
 grechishnikov::rectangle_t grechishnikov::Triangle::getFrameRect() const
 {
-  double maxX = max(a_.x, b_.x, c_.x);
-  double maxY = max(a_.y, b_.y, c_.y);
-  double minX = min(a_.x, b_.x, c_.x);
-  double minY = min(a_.y, b_.y, c_.y);
+  double max_x = max(a_.x, b_.x, c_.x);
+  double max_y = max(a_.y, b_.y, c_.y);
+  double min_x = min(a_.x, b_.x, c_.x);
+  double min_y = min(a_.y, b_.y, c_.y);
 
-  double width = maxX - minX;
-  double height = maxY - minY;
-  point_t pos = { minX + width / 2, minY + height / 2 };
+  double width = max_x - min_x;
+  double height = max_y - min_y;
+  point_t pos = { min_x + width / 2, min_y + height / 2 };
   return { width, height, pos };
 }
 
