@@ -109,6 +109,7 @@ int main()
           }
           else
           {
+            delete[] pointArr;
             figureError = 1;
           }
         }
@@ -125,8 +126,13 @@ int main()
   }
   if (!isScale)
   {
-   std::cerr << "Programm end without scale!\n";
-   return 1;
+    std::cerr << "Programm end without scale!\n";
+    for (int i = 0; i < numOfShape; ++i)
+    {
+      delete shapes[i];
+    }
+    delete[] shapes;
+    return 1;
   }
 
   double sum = 0;
@@ -145,6 +151,7 @@ int main()
 
     delete shapes[i];
   }
+
 
   delete[] shapes;
   return 0;
