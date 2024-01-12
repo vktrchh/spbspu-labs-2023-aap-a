@@ -58,7 +58,6 @@ int main()
         double sum = 0;
         for (int i = 0; i < numOfShape; ++i)
         {
-          std::cout << shapes[i]->getArea() << '\n';
           sum += shapes[i]->getArea();
         }
         std::cout << sum << '\n';
