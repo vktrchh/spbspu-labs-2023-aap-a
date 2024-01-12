@@ -1,7 +1,7 @@
 #ifndef INPUTARRAY_H
 #define INPUTARRAY_H
 
-#include <iostream>
+#include <istream>
 
 namespace gladyshev
 {

@@ -1,5 +1,7 @@
 #include "createarray.h"
 
+#include <cstddef>
+
 namespace gladyshev
 {
   bool checkVowel(const char arrayelem)
@@ -20,7 +22,7 @@ char * gladyshev::removeVowels(char * start)
 {
   size_t nummain = 0;
   size_t numsup = 0;
-  while (start[nummain] == '\0')
+  while (start[nummain] != '\0')
   {
     if (checkVowel(start[nummain]))
     {
