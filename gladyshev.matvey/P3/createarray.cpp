@@ -22,7 +22,7 @@ char * gladyshev::removeVowels(char * start)
 {
   size_t nummain = 0;
   size_t numsup = 0;
-  while (start[nummain] == '\0')
+  while (start[nummain] != '\0')
   {
     if (checkVowel(start[nummain]))
     {
@@ -31,6 +31,5 @@ char * gladyshev::removeVowels(char * start)
     }
     ++nummain;
   }
-  start[numsup] = '\0';
   return start;
 }
