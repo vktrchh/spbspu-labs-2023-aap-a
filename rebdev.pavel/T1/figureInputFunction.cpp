@@ -117,6 +117,7 @@ rebdev::point_t * rebdev::ipnutVertexs(std::istream & input, size_t & numOfVerte
       input >> vertexsArr[i].x_ >> vertexsArr[i].y_;
       if (!input)
       {
+        delete[] vertexsArr;
         return nullptr;
       }
     }

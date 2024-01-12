@@ -60,16 +60,17 @@ int main()
         {
           sum += shapes[i]->getArea();
         }
-        std::cout << sum << '\n';
+        std::cout << sum << " ";
         for (int i = 0; i < numOfShape; ++i)
         {
           rebdev::rectangle_t rect = shapes[i]->getFrameRect();
           rebdev::point_t lowLeft = {rect.pos_.x_ - rect.width_/2, rect.pos_.y_ - rect.height_/2};
           rebdev::point_t upRight = {lowLeft.x_ + rect.width_, lowLeft.y_ + rect.height_};
           std::cout << lowLeft.x_ << " " << lowLeft.y_ << " ";
-          std::cout << upRight.x_ << " " << upRight.y_ << '\n';
+          std::cout << upRight.x_ << " " << upRight.y_ << " ";
         }
 
+        std::cout << '\n';
         rebdev::isoScale(shapes, numOfShape, isoPoint, k);
         isScale = 1;
         break;
@@ -133,15 +134,16 @@ int main()
   {
     sum += shapes[i]->getArea();
   }
-  std::cout << sum << '\n';
+  std::cout << sum << " ";
   for (int i = 0; i < numOfShape; ++i)
   {
     rebdev::rectangle_t rect = shapes[i]->getFrameRect();
     rebdev::point_t lowLeft = {rect.pos_.x_ - rect.width_/2, rect.pos_.y_ - rect.height_/2};
     rebdev::point_t upRight = {lowLeft.x_ + rect.width_, lowLeft.y_ + rect.height_};
     std::cout << lowLeft.x_ << " " << lowLeft.y_ << " ";
-    std::cout << upRight.x_ << " " << upRight.y_ << '\n';
-    delete[] shapes[i];
+    std::cout << upRight.x_ << " " << upRight.y_ << " ";
+
+    delete shapes[i];
   }
 
   delete[] shapes;
