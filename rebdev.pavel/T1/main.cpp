@@ -60,6 +60,10 @@ int main()
         {
           sum += shapes[i]->getArea();
         }
+
+        std::cout << std::fixed;
+        std::cout.precision(1);
+
         std::cout << sum << " ";
         for (int i = 0; i < numOfShape; ++i)
         {
