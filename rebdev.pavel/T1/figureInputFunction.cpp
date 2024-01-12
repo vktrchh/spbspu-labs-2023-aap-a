@@ -63,7 +63,6 @@ bool rebdev::isPolygon(const point_t * pointsArr, const size_t size)
 {
   if (size < 3)
   {
-    std::cout << "2\n";
     return 0;
   }
   for (size_t i = 0; i < (size - 1); ++i)
@@ -72,9 +71,6 @@ bool rebdev::isPolygon(const point_t * pointsArr, const size_t size)
     {
       if ((pointsArr[i].x_ == pointsArr[j].x_) && (pointsArr[i].y_ == pointsArr[j].y_))
       {
-        std::cout << i << " " << j << '\n';
-        std::cout << pointsArr[i].x_ << " " << pointsArr[j].x_ << " ";
-        std::cout << pointsArr[i].y_ << " " << pointsArr[j].y_ << '\n';
         return 0;
       }
     }
@@ -129,7 +125,7 @@ rebdev::point_t * rebdev::ipnutVertexs(std::istream & input, size_t & numOfVerte
   {
     point_t * bufferArr = nullptr;
     size_t bufferSize = 0;
-    while (input)
+    while (input.peek() != '\n')
     {
       if (numOfVertexs == bufferSize)
       {
@@ -156,10 +152,10 @@ rebdev::point_t * rebdev::ipnutVertexs(std::istream & input, size_t & numOfVerte
         vertexsArr = bufferArr;
         bufferArr = nullptr;
       }
+
       input >> vertexsArr[numOfVertexs].x_ >> vertexsArr[numOfVertexs].y_;
       numOfVertexs += 1;
     }
-
     try
     {
       bufferArr = new point_t[numOfVertexs];
@@ -171,10 +167,14 @@ rebdev::point_t * rebdev::ipnutVertexs(std::istream & input, size_t & numOfVerte
       return nullptr;
     }
 
+    for (size_t i = 0; i < numOfVertexs; ++i)
+    {
+      bufferArr[i] = vertexsArr[i];
+    }
+
     delete[] vertexsArr;
     vertexsArr = bufferArr;
     bufferArr = nullptr;
-
   }
 
   return vertexsArr;

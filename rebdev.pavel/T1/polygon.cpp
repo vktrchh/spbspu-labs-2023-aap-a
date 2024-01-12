@@ -14,7 +14,6 @@ rebdev::Polygon::Polygon(point_t * const vertexs, size_t numOfVertexs):
   {
     vertexs_[i] = vertexs[i];
   }
-
 };
 
 double rebdev::Polygon::getArea() const
@@ -31,7 +30,7 @@ double rebdev::Polygon::getArea() const
 
 rebdev::rectangle_t rebdev::Polygon::getFrameRect()
 {
-  double xMin = std::numeric_limits< double >::min(), xMax = std::numeric_limits< double >::max();
+  double xMin = std::numeric_limits< double >::max(), xMax = std::numeric_limits< double >::min();
   double yMin = xMin, yMax = xMax;
   for (size_t i = 0; i < numOfVertexs_; ++i)
   {

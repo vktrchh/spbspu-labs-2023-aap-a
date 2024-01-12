@@ -46,7 +46,7 @@ int main()
     {
       if (rebdev::isNameCorrect(std::cin, 5, "SCALE"))
       {
-        rebdev::point_t isoPoint {0.0, 0.0};
+        rebdev::point_t isoPoint = {0.0, 0.0};
         double k = 0;
         std::cin >> isoPoint.x_ >> isoPoint.y_ >> k;
 
@@ -58,6 +58,7 @@ int main()
         double sum = 0;
         for (int i = 0; i < numOfShape; ++i)
         {
+          std::cout << shapes[i]->getArea() << '\n';
           sum += shapes[i]->getArea();
         }
         std::cout << sum << '\n';
@@ -108,19 +109,16 @@ int main()
           }
           else
           {
-            std::cout << "1\n";
             figureError = 1;
           }
         }
         else
         {
-          std::cout << "0\n";
           figureError = 1;
         }
       }
-    }
   }
-
+}
   if (figureError)
   {
     std::cerr << "Some figure is incorrect!\n";
