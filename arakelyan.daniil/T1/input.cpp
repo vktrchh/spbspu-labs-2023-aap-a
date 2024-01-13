@@ -17,9 +17,6 @@ void arakelyan::freeMem(Shape **shapes, const char *string, const size_t countOf
 
 arakelyan::Shape ** arakelyan::inputData(std::istream &input)
 {
-  pointForIsoScale.x_ = 0.0;
-  pointForIsoScale.y_ = 0.0;
-  kForIsoScale = 1;
 
   size_t shapesCount = 1;
   size_t usedSlotsForShapes = 0;

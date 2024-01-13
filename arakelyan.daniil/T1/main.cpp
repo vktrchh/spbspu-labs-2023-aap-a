@@ -16,7 +16,7 @@ int main()
   Shape ** myShapes = nullptr;
   try
   {
-    myShapes = inputData(std::cin, pointForIsoScale, kForIsoScale);
+    myShapes = inputData(std::cin);
   }
   catch (const std::bad_alloc & e)
   {
