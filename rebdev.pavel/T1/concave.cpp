@@ -15,17 +15,17 @@ rebdev::Concave::~Concave()
 
 double rebdev::Concave::getArea() const
 {
-  double sum = 0;
-  for(int i = 0; i < 3; ++i)
+  double sum  = 0;
+  for(int i = 0; i < 4; ++i)
   {
-    sum += (vertexs_[i].x_ - vertexs_[i + 1].x_) * (vertexs_[i].y_ + vertexs_[i + 1].y_);
+    sum += (vertexs_[i].x_ * vertexs_[(i + 1) % 4].y_) - (vertexs_[(i + 1) % 4].x_ * vertexs_[i].y_);
   }
-  sum += (vertexs_[3].x_ - vertexs_[0].x_) * (vertexs_[3].y_ + vertexs_[0].y_);
   sum /= 2;
-  return  ((sum >= 0) ? sum : -sum);
+
+  return ((sum < 0) ? -sum : sum);
 };
 
-rebdev::rectangle_t rebdev::Concave::getFrameRect()
+rebdev::rectangle_t rebdev::Concave::getFrameRect() const
 {
   double xMin = std::numeric_limits< double >::max(), xMax = std::numeric_limits< double >::min();
   double yMin = xMin, yMax = xMax;

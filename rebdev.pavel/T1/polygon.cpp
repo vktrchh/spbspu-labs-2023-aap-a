@@ -28,7 +28,7 @@ double rebdev::Polygon::getArea() const
   return  ((sum >= 0) ? sum : -sum);
 };
 
-rebdev::rectangle_t rebdev::Polygon::getFrameRect()
+rebdev::rectangle_t rebdev::Polygon::getFrameRect() const
 {
   double xMin = std::numeric_limits< double >::max(), xMax = std::numeric_limits< double >::min();
   double yMin = xMin, yMax = xMax;

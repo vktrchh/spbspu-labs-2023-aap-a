@@ -17,7 +17,7 @@ double rebdev::Rectangle::getArea() const
   return  ((angles_[1].x_ - angles_[0].x_) * (angles_[1].y_ - angles_[0].y_));
 };
 
-rebdev::rectangle_t rebdev::Rectangle::getFrameRect()
+rebdev::rectangle_t rebdev::Rectangle::getFrameRect() const
 {
   double width = angles_[1].x_ - angles_[0].x_;
   double height = angles_[1].y_ - angles_[0].y_;

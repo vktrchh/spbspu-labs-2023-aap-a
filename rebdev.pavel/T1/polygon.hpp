@@ -13,7 +13,7 @@ namespace rebdev
 
       virtual ~Polygon();
       virtual double getArea() const;
-      virtual rectangle_t getFrameRect();
+      virtual rectangle_t getFrameRect() const;
       virtual void move(const point_t point);
       virtual void move(const double x, const double y);
       virtual void scale(const double k);
