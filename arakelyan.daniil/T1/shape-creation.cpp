@@ -53,7 +53,6 @@ void arakelyan::dataExtractionRect(const char * string, point_t & p1, point_t & 
   p2 = {coordStorage[2], coordStorage[3]};
 }
 
-
 arakelyan::Shape * arakelyan::createPar(const char * string)
 {
   size_t wordLen = 13;
@@ -66,7 +65,7 @@ arakelyan::Shape * arakelyan::createPar(const char * string)
 
 arakelyan::Shape * arakelyan::createDiam(const char * string)
 {
-  size_t wordLen = 7; 
+  size_t wordLen = 7;
   point_t p1 = {0.0, 0.0};
   point_t p2 = {0.0, 0.0};
   point_t p3 = {0.0, 0.0};
