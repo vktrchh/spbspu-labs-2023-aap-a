@@ -110,7 +110,7 @@ int main()
   {
     std::cerr << "Some figure is incorrect!\n";
   }
-  if (!isScale)
+  if (!isScale || (numOfShape == 0))
   {
     std::cerr << "Programm end without scale!\n";
     for (int i = 0; i < numOfShape; ++i)
