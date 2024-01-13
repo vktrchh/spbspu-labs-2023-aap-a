@@ -4,31 +4,6 @@
 #include "shape-creation.hpp"
 #include "shape.hpp"
 
-void arakelyan::inputScaleParam(const char *string, point_t &point, double &k)
-{
-  size_t wordLen = 5;
-  string += wordLen;
-
-  double arrayOfScaleData[3] = {};
-
-  for (size_t i = 0; i < 6; ++i)
-  {
-    while ((*string == ' ') || (*string == '\t'))
-    {
-      ++string;
-    }
-
-    char * endPtr;
-    arrayOfScaleData[i] = std::strtod(string, & endPtr);
-
-    string = endPtr;
-  }
-
-
-  point.x_ = arrayOfScaleData[0];
-  point.y_ = arrayOfScaleData[1];
-  k = arrayOfScaleData[2];
-}
 
 void arakelyan::freeMem(Shape **shapes, const char *string, const size_t countOfshapes)
 {
@@ -42,6 +17,9 @@ void arakelyan::freeMem(Shape **shapes, const char *string, const size_t countOf
 
 arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForIsoScale, double &kForIsoScale)
 {
+  point_t tempPoint = {0.0, 0.0};
+  double tempK = 0;
+
   pointForIsoScale.x_ = 0.0;
   pointForIsoScale.y_ = 0.0;
   kForIsoScale = 1;
@@ -98,9 +76,6 @@ arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForI
       string = tempBuf;
     }
 
-    string[i] = symb;
-    i++;
-
     if (symb == '\n')
     {
       if (shapesCount >= 1000)
@@ -109,7 +84,7 @@ arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForI
         throw std::logic_error("Too many shapes obj!");
       }
 
-      string[i - 1] = '\0';
+      string[i] = '\0';
 
       char * tempString = nullptr;
 
@@ -120,11 +95,10 @@ arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForI
         throw std::bad_alloc();
       }
 
-      for (size_t k = 0; k < i; k++)
+      for (size_t k = 0; string[k] != '\0'; k++)
       {
         tempString[k] = string[k];
       }
-
       delete [] string;
       string = tempString;
 
@@ -132,15 +106,6 @@ arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForI
 
       if (foundScale != nullptr)
       {
-        try
-        {
-          inputScaleParam(string, pointForIsoScale, kForIsoScale);
-        }
-        catch (const std::logic_error & e)
-        {
-          freeMem(shapes, string, shapesCount);
-          throw std::logic_error(e.what());
-        }
         break;
       }
 
@@ -180,6 +145,9 @@ arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForI
 
       i = 0;
     }
+
+    string[i] = symb;
+    i++;
   }
 
   delete [] string;
