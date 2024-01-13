@@ -7,11 +7,11 @@
 
 namespace chistyakov
 {
-  void inputShapes(std::istream & input, Shape * array);
-  void inputRectangle(std::string str, Shape * array);
-  void inputSquare(std::string str, Shape * array);
-  void inputComplexquad(std::string str, Shape * array);
-  void writeShapeInArray(Shape * array, Shape & shape, size_t size);
+  void inputShapes(std::istream & input, Shape ** array);
+  void inputRectangle(std::string str, Shape ** array);
+  void inputSquare(std::string str, Shape ** array);
+  void inputComplexquad(std::string str, Shape ** array);
+  void writeShapeInArray(Shape & shape, Shape ** array, size_t size);
 }
 
 #endif
