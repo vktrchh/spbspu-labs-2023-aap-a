@@ -92,7 +92,8 @@ void chistyakov::inputRectangle(std::string str, Shape * array)
     }
   }
 
-  Rectangle({ {cords[0], cords[1]}, {cords[2], cords[3]} });
+  Rectangle shape({ {cords[0], cords[1]}, {cords[2], cords[3]} });
+  writeShapeInArray(array, shape, 1000);
 }
 
 void chistyakov::inputSquare(std::string str, Shape * array)
@@ -118,7 +119,8 @@ void chistyakov::inputSquare(std::string str, Shape * array)
     }
   }
 
-  Square({ cords[0], cords[1] }, cords[2]);
+  Square shape({ cords[0], cords[1] }, cords[2]);
+  writeShapeInArray(array, shape, 1000);
 }
 
 void chistyakov::inputComplexquad(std::string str, Shape * array)
@@ -149,6 +151,18 @@ void chistyakov::inputComplexquad(std::string str, Shape * array)
   point_t pnt3 = { cords[4], cords[5] };
   point_t pnt4 = { cords[6], cords[7] };
 
-  Complexquad(pnt1, pnt2, pnt3, pnt4);
+  Complexquad shape(pnt1, pnt2, pnt3, pnt4);
+  writeShapeInArray(array, shape, 1000);
 }
 
+void chistyakov::writeShapeInArray(Shape * array, Shape & shape, size_t size)
+{
+  for (size_t i = 0; i < size; ++i)
+  {
+    if (array[i] == 0)
+    {
+      array[i] = shape;
+      break;
+    }
+  }
+}
