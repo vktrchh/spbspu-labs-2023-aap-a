@@ -1,6 +1,4 @@
-#include <iostream>
 #include <cstdlib>
-#include <cstring>
 #include <stdexcept>
 #include "input.hpp"
 #include "shape-creation.hpp"
@@ -92,9 +90,11 @@ arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForI
 
       if (foundScale != nullptr)
       {
-        // сделать для scale в main переменную "координата"(point_t) и "коэф"(double).
+        // сделать для scale в main переменную 
+        // "координата"(point_t) и "коэф"(double).
         // передавать их по ссылке и тут менять
-        // тут считываение координат для изотропного масшабирования и считывания коэф.
+        // тут считываение координат для изотропного масшабирования
+        // и считывания коэф.
         // масштабирования (для него сделать проверку, не может быть меньше 0.0)
         break;
       }
