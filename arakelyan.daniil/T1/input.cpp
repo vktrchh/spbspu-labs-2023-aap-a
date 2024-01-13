@@ -7,9 +7,8 @@
 #include "shape.hpp"
 
 
-arakelyan::Shape ** arakelyan::inputData(std::istream & input, point_t & pointForIsoScale, double & kForIsoScale)
+arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForIsoScale, double &kForIsoScale)
 {
-
   size_t shapesCount = 3;
   size_t usedSlotsForShapes = 0;
   arakelyan::Shape ** shapes = nullptr;
@@ -93,7 +92,7 @@ arakelyan::Shape ** arakelyan::inputData(std::istream & input, point_t & pointFo
 
       if (foundScale != nullptr)
       {
-        // сделать для scale в main переменную "координата"(point_t) и "коэф"(double). 
+        // сделать для scale в main переменную "координата"(point_t) и "коэф"(double).
         // передавать их по ссылке и тут менять
         // тут считываение координат для изотропного масшабирования и считывания коэф.
         // масштабирования (для него сделать проверку, не может быть меньше 0.0)
