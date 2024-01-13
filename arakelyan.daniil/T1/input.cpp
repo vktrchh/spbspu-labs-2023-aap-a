@@ -1,4 +1,3 @@
-#include <cmath>
 #include <cstring>
 #include <stdexcept>
 #include "input.hpp"
@@ -32,8 +31,7 @@ void arakelyan::inputScaleParam(const char *string, point_t &point, double &k)
   point.x_ = arrayOfScaleData[0];
   point.y_ = arrayOfScaleData[1];
   k = arrayOfScaleData[2];
-} 
-
+}
 
 arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForIsoScale, double &kForIsoScale)
 {
