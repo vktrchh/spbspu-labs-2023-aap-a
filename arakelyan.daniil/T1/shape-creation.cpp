@@ -87,12 +87,10 @@ arakelyan::Shape * arakelyan::defineAndCreateShape(const char * string)
   const char * targetWordRectangle = "RECTANGLE";
   const char * targetWordParallelogram = "PARALLELOGRAM";
   const char * targetWordDiamond = "DIAMOND";
-  const char * targetWordScale = "SCALE";
 
   const char * foundPar = std::strstr(string, targetWordParallelogram);
   const char * foundRect = std::strstr(string, targetWordRectangle);
   const char * foundDia = std::strstr(string, targetWordDiamond);
-  const char * foundScale = std::strstr(string, targetWordScale);
 
   if (foundPar != nullptr)
   {

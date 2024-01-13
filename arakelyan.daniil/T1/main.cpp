@@ -17,7 +17,7 @@ int main()
   {
     myShapes = inputData(std::cin, pointForIsoScale, kForIsoScale);
   }
-  catch (const std::bad_alloc)
+  catch (const std::bad_alloc & e)
   {
     std::cerr << "Bad allocation dynamic memory!\n";
     return 1;

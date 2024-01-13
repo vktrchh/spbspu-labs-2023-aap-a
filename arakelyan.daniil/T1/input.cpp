@@ -7,6 +7,9 @@
 
 arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForIsoScale, double &kForIsoScale)
 {
+  pointForIsoScale.x_ = 0.0;
+  pointForIsoScale.y_ = 0.0;
+  kForIsoScale = 1;
   size_t shapesCount = 3;
   size_t usedSlotsForShapes = 0;
   arakelyan::Shape ** shapes = nullptr;
