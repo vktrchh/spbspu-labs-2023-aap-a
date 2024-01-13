@@ -1,8 +1,38 @@
+#include <cmath>
 #include <cstring>
 #include <stdexcept>
 #include "input.hpp"
 #include "shape-creation.hpp"
 #include "shape.hpp"
+
+void arakelyan::inputScaleParam(const char *string, point_t &point, double &k)
+{
+  size_t wordLen = 5;
+  string += wordLen;
+
+  double arrayOfScaleData[3] = {};
+
+  for (size_t i = 0; i < 6; ++i)
+  {
+    while ((*string == ' ') || (*string == '\t'))
+    {
+      ++string;
+    }
+
+    char * endPtr;
+    arrayOfScaleData[i] = std::strtod(string, & endPtr);
+
+    string = endPtr;
+  }
+  if (*string != '\0')
+  {
+    throw std::logic_error("Too many arg for scale!");
+  }
+
+  point.x_ = arrayOfScaleData[0];
+  point.y_ = arrayOfScaleData[1];
+  k = arrayOfScaleData[2];
+} 
 
 
 arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForIsoScale, double &kForIsoScale)
@@ -11,7 +41,7 @@ arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForI
   pointForIsoScale.y_ = 0.0;
   kForIsoScale = 1;
 
-  size_t shapesCount = 3;
+  size_t shapesCount = 1;
   size_t usedSlotsForShapes = 0;
   arakelyan::Shape ** shapes = nullptr;
   shapes = new arakelyan::Shape * [shapesCount];
@@ -101,14 +131,19 @@ arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForI
 
       if (foundScale != nullptr)
       {
-        // сделать для scale в main переменную
-        // "координата"(point_t) и "коэф"(double).
-        // передавать их по ссылке и тут менять
-        // тут считываение координат для изотропного масшабирования
-        // и считывания коэф.
-        // масштабирования (для него сделать проверку, не может быть меньше 0.0)
+        try
+        {
+          inputScaleParam(string, pointForIsoScale, kForIsoScale);
+        }
+        catch (const std::logic_error & e)
+        {
+          delete [] shapes;
+          delete [] string;
+          throw std::logic_error(e.what());
+        }
         break;
       }
+
       if (usedSlotsForShapes == (shapesCount - 1))
       {
         shapesCount += 5;
@@ -131,8 +166,19 @@ arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForI
         delete [] shapes;
         shapes = tempShapesStorage;
       }
-      shapes[usedSlotsForShapes] = defineAndCreateShape(string);
+
+      try
+      {
+        shapes[usedSlotsForShapes] = defineAndCreateShape(string);
+      }
+      catch (const std::logic_error & e)
+      {
+        delete [] shapes;
+        delete [] string;
+        throw std::logic_error(e.what());
+      }
       usedSlotsForShapes++;
+      shapesCount++;
 
       i = 0;
     }

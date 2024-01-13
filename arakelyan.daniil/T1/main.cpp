@@ -11,6 +11,7 @@ int main()
 {
   point_t pointForIsoScale = {0.0, 0.0};
   double kForIsoScale = 0;
+
   using namespace arakelyan;
   Shape ** myShapes = nullptr;
   try
@@ -19,27 +20,15 @@ int main()
   }
   catch (const std::bad_alloc & e)
   {
+    delete [] myShapes;
     std::cerr << "Bad allocation dynamic memory!\n";
     return 1;
   }
   catch (const std::logic_error & e)
   {
+    delete [] myShapes;
     std::cerr << "Error: " << e.what() << "\n";
     return 1;
-  }
-
-  size_t size = 0;
-  for (size_t i = 0; myShapes[i]; i++)
-  {
-    size++;
-  }
-
-  for (size_t i = 0; i < size; i++)
-  {
-    if (myShapes[i])
-    {
-      std::cout << myShapes[i]->getArea() << "\n";
-    }
   }
 
   delete [] myShapes;

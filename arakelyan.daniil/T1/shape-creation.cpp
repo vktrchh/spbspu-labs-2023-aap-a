@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <cstring>
+#include <stdexcept>
 #include "shape-creation.hpp"
 #include "base-types.hpp"
 #include "shape.hpp"
@@ -12,7 +13,7 @@ void arakelyan::dataExtractionParAndDiam(const char * string, point_t & p1, poin
   string += wordLen;
   double coordStorage[6] = {};
 
-  for (int i = 0; i < 6; ++i)
+  for (size_t i = 0; i < 6; ++i)
   {
     while ((*string == ' ') || (*string == '\t'))
     {
@@ -23,6 +24,10 @@ void arakelyan::dataExtractionParAndDiam(const char * string, point_t & p1, poin
     coordStorage[i] = std::strtod(string, & endPtr);
 
     string = endPtr;
+  } 
+  if (*string != '\0')
+  {
+    throw std::logic_error("Invalid input of shape coordinates, too many arg PARALLELOGRAM of DIAMOND!");
   }
 
   p1 = {coordStorage[0], coordStorage[1]};
@@ -36,7 +41,7 @@ void arakelyan::dataExtractionRect(const char * string, point_t & p1, point_t & 
   size_t wordLen = 9;
   string += wordLen;
 
-  for (int i = 0; i < 4; ++i)
+  for (size_t i = 0; i < 4; ++i)
   {
     while ((*string == ' ') || (*string == '\t'))
     {
@@ -47,6 +52,10 @@ void arakelyan::dataExtractionRect(const char * string, point_t & p1, point_t & 
     coordStorage[i] = std::strtod(string, & endPtr);
 
     string = endPtr;
+  }
+  if (*string != '\0')
+  {
+    throw std::logic_error("Invalid input of shape coordinates, too many arg for RECTANGLE!");
   }
 
   p1 = {coordStorage[0], coordStorage[1]};
@@ -91,20 +100,24 @@ arakelyan::Shape * arakelyan::defineAndCreateShape(const char * string)
   const char * foundRect = std::strstr(string, targetWordRectangle);
   const char * foundDia = std::strstr(string, targetWordDiamond);
 
-  if (foundPar != nullptr)
+  try
   {
-     return createPar(string);
+    if (foundPar != nullptr)
+    {
+      return createPar(string);
+    }
+    else if (foundRect != nullptr)
+    {
+      return createRect(string);
+    }
+    else if (foundDia != nullptr)
+    {
+      return createDiam(string);
+    }
   }
-  else if (foundRect != nullptr)
+  catch (const std::logic_error & e)
   {
-     return createRect(string);
+    throw;
   }
-  else if (foundDia != nullptr)
-  {
-    return createDiam(string);
-  }
-  else
-  {
-    return nullptr;
-  }
+  return nullptr;
 }
