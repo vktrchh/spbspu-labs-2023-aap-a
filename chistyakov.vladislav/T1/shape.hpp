@@ -7,12 +7,12 @@ namespace chistyakov
 {
   class Shape
   {
-    virtual ~Shape() = default;
-    virtual double getArea() const;
-    virtual rectangle_t getFrameRect() const;
-    virtual void move(const point_t & point);
-    virtual void move(const double mx, const double my);
-    virtual void scale(const double ratio);
+  public:
+    virtual double getArea() const = 0;
+    virtual rectangle_t getFrameRect() const = 0;
+    virtual void move(const point_t & point) = 0;
+    virtual void move(const double mx, const double my) = 0;
+    virtual void scale(const double ratio) = 0;
   };
 }
 
