@@ -1,61 +1,129 @@
+#include <iostream>
+#include <cstdlib>
+#include <cstring>
+#include <stdexcept>
 #include "input.hpp"
+#include "shape-creation.hpp"
+#include "shape.hpp"
 
-char * arakelyanInput::inputData(std::istream & input)
+
+arakelyan::Shape ** arakelyan::inputData(std::istream & input, point_t & pointForIsoScale, double & kForIsoScale)
 {
+
+  size_t shapesCount = 3;
+  size_t usedSlotsForShapes = 0;
+  arakelyan::Shape ** shapes = nullptr;
+  shapes = new arakelyan::Shape * [shapesCount];
+
   size_t arrSize = 10;
-
   size_t i = 0;
-  char sym = 0;
 
-  char * mainBuffer = nullptr;
-  mainBuffer = new char[arrSize];
-  if (mainBuffer == nullptr)
+  char symb = 0;
+  const char * targetWordScale = "SCALE";
+
+  char * string = new char[arrSize];
+  if (string == nullptr)
   {
-    throw std::logic_error("Empty input!\n");
+    throw std::bad_alloc();
   }
 
   input >> std::noskipws;
-  while ((input >> sym) && (sym != '\n'))
+
+  while (input >> symb)
   {
-    if (!std::cin)
+    if (!input)
     {
-      delete [] mainBuffer;
-      throw std::logic_error("Cannot read input data!\n");
+      throw std::logic_error("Input error");
+      delete[] string;
     }
 
     if (i == (arrSize - 1))
     {
       arrSize *= 2;
 
-      char * tempBuffer = nullptr;
-
-
-      tempBuffer = new char[arrSize];
-      if (tempBuffer == nullptr)
+      char* tempBuf = new char[arrSize];
+      if (tempBuf == nullptr)
       {
-        delete [] mainBuffer;
-        throw std::logic_error("Cannot create tempBuffer array!\n");
+        throw std::bad_alloc();
+        delete[] string;
       }
+
       for (size_t j = 0; j < i; j++)
       {
-        tempBuffer[j] = mainBuffer[j];
+        tempBuf[j] = string[j];
       }
 
-      delete [] mainBuffer;
-
-      mainBuffer = tempBuffer;
+      delete[] string;
+      string = tempBuf;
     }
-    mainBuffer[i] = sym;
+
+    string[i] = symb;
     i++;
-  }
-  mainBuffer[i] = '\0';
 
-  if (mainBuffer[0] == '\0')
-  {
-    delete [] mainBuffer;
-    throw std::logic_error("Empty input!\n");
-  }
-  input >> std::skipws;
+    if (symb == '\n')
+    {
+      if (shapesCount >= 1000)
+      {
+        delete [] string;
+        delete [] shapes;
+        throw std::logic_error("Too many shapes obj!");
+      }
 
-  return mainBuffer;
+      string[i - 1] = '\0';
+
+      char * tempString = nullptr;
+
+      tempString = new char[i];
+      if (tempString == nullptr)
+      {
+        delete [] shapes;
+        delete [] string;
+        throw std::bad_alloc();
+      }
+
+      for (size_t k = 0; k < i; k++)
+      {
+        tempString[k] = string[k];
+      }
+
+      delete [] string;
+      string = tempString;
+
+      const char * foundScale = std::strstr(tempString, targetWordScale);
+
+      if (foundScale != nullptr)
+      {
+        std::cout << "SCALE found\n";  // сделать для scale в main переменную "координата"(point_t) и "коэф"(double). передавать их по ссылке и тут менять
+        // тут считываение координат для изотропного масшабирования и считывания коэф. масштабирования (для него сделать проверку, не может быть меньше 0.0)
+      }
+      if (usedSlotsForShapes == (shapesCount - 1))
+      {
+        shapesCount += 5;
+
+        arakelyan::Shape ** tempShapesStorage = nullptr;
+
+        tempShapesStorage = new arakelyan::Shape * [shapesCount];
+        if (tempShapesStorage == nullptr)
+        {
+          delete [] shapes;
+          delete [] string;
+          throw std::bad_alloc();
+        }
+
+        for (size_t i = 0; i < usedSlotsForShapes; i++)
+        {
+          tempShapesStorage[i] = shapes[i];
+        }
+
+        delete [] shapes;
+        shapes = tempShapesStorage;
+      }
+      shapes[usedSlotsForShapes] = defineAndCreateShape(string);
+      usedSlotsForShapes++;
+
+      i = 0;
+    }
+  }
+
+  return 0;
 }

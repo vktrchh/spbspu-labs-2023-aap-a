@@ -1,7 +1,6 @@
 #ifndef DIAMOND_HPP
 #define DIAMOND_HPP
 #include "shape.hpp"
-#include "rectangle.hpp"
 #include "base-types.hpp"
 
 namespace arakelyan

@@ -1,7 +1,6 @@
 #include "diamond.hpp"
 #include "base-types.hpp"
 #include <stdexcept>
-#include <iostream>
 
 arakelyan::Diamond::Diamond(const point_t fp, const point_t sp, const point_t tp):
   p1_(fp),
