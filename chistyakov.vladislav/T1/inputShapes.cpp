@@ -1,5 +1,8 @@
 #include "inputShapes.hpp"
 #include <string>
+#include "rectangle.hpp"
+#include "square.hpp"
+#include "complexquad.hpp"
 
 void chistyakov::inputShapes(std::istream & input, Shape * array)
 {
@@ -67,11 +70,85 @@ void chistyakov::inputShapes(std::istream & input, Shape * array)
 }
 
 void chistyakov::inputRectangle(std::string str, Shape * array)
-{}
+{
+  double cords[4]{};
+  size_t index = 10;
+
+  for (size_t tr = 0; tr < 4; ++tr)
+  {
+    if (index + 1 == str.size())
+    {
+      throw std::logic_error("Not enough coordinates for the shape (RECTANGLE)!");
+    }
+
+    for (size_t i = index; i < str.size(); ++i)
+    {
+      if (str[i] == ' ')
+      {
+        cords[tr] = stod(str.substr(index, i - index));
+        index = i + 1;
+        break;
+      }
+    }
+  }
+
+  Rectangle({ {cords[0], cords[1]}, {cords[2], cords[3]} });
+}
 
 void chistyakov::inputSquare(std::string str, Shape * array)
-{}
+{
+  double cords[3]{};
+  size_t index = 7;
+
+  for (size_t tr = 0; tr < 3; ++tr)
+  {
+    if (index + 1 == str.size())
+    {
+      throw std::logic_error("Not enough coordinates for the shape (SQUARE)!");
+    }
+
+    for (size_t i = index; i < str.size(); ++i)
+    {
+      if (str[i] == ' ')
+      {
+        cords[tr] = stod(str.substr(index, i - index));
+        index = i + 1;
+        break;
+      }
+    }
+  }
+
+  Square({ cords[0], cords[1] }, cords[2]);
+}
 
 void chistyakov::inputComplexquad(std::string str, Shape * array)
-{}
+{
+  double cords[8]{};
+  size_t index = 12;
+
+  for (size_t tr = 0; tr < 8; ++tr)
+  {
+    if (index + 1 == str.size())
+    {
+      throw std::logic_error("Not enough coordinates for the shape (COMPLEXQUAD)!");
+    }
+
+    for (size_t i = index; i < str.size(); ++i)
+    {
+      if (str[i] == ' ')
+      {
+        cords[tr] = stod(str.substr(index, i - index));
+        index = i + 1;
+        break;
+      }
+    }
+  }
+
+  point_t pnt1 = { cords[0], cords[1] };
+  point_t pnt2 = { cords[2], cords[3] };
+  point_t pnt3 = { cords[4], cords[5] };
+  point_t pnt4 = { cords[6], cords[7] };
+
+  Complexquad(pnt1, pnt2, pnt3, pnt4);
+}
 
