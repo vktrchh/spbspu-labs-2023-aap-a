@@ -1,9 +1,10 @@
 #include "rectangle.hpp"
 #include <stdexcept>
+#include <iostream>
 
 arakelyan::Rectangle::Rectangle(point_t fp, point_t sp):
-  pointRightUp_(fp),
-  pointLeftDown_(sp),
+  pointRightUp_(sp),
+  pointLeftDown_(fp),
   midpoint_{((pointRightUp_.x_ + pointLeftDown_.x_) / 2), ((pointRightUp_.y_ + pointLeftDown_.y_) / 2)}
 {
   if (pointLeftDown_.y_ > pointRightUp_.y_ || pointLeftDown_.x_ > pointRightUp_.x_)
@@ -67,4 +68,10 @@ void arakelyan::Rectangle::scale(const double k)
   pointLeftDown_.y_ -= heightHalf;
   pointRightUp_.x_ += widthHalf;
   pointRightUp_.y_ += heightHalf;
+}
+
+void arakelyan::Rectangle::getData() const
+{
+  std::cout << "p right up: x = " << pointRightUp_.x_ << "; y = " << pointRightUp_.y_ << "\n";
+  std::cout << "p left down: x = " << pointLeftDown_.x_ << "; y = " << pointLeftDown_.y_ << "\n";
 }

@@ -93,8 +93,9 @@ arakelyan::Shape ** arakelyan::inputData(std::istream & input, point_t & pointFo
 
       if (foundScale != nullptr)
       {
-        std::cout << "SCALE found\n";  // сделать для scale в main переменную "координата"(point_t) и "коэф"(double). передавать их по ссылке и тут менять
+        // сделать для scale в main переменную "координата"(point_t) и "коэф"(double). передавать их по ссылке и тут менять
         // тут считываение координат для изотропного масшабирования и считывания коэф. масштабирования (для него сделать проверку, не может быть меньше 0.0)
+        break;
       }
       if (usedSlotsForShapes == (shapesCount - 1))
       {
@@ -124,6 +125,6 @@ arakelyan::Shape ** arakelyan::inputData(std::istream & input, point_t & pointFo
       i = 0;
     }
   }
-
-  return 0;
+  input >> std::skipws;
+  return shapes;
 }

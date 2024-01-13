@@ -1,59 +1,88 @@
-#include <cstddef>
+#include <cstdlib>
 #include <cstring>
 #include "shape-creation.hpp"
 #include "base-types.hpp"
 #include "shape.hpp"
 #include "parallelogram.hpp"
+#include "diamond.hpp"
+#include "rectangle.hpp"
 
-arakelyan::Shape * arakelyan::createPar(const char * string)
+void arakelyan::dataExtractionParAndDiam(const char * string, point_t & p1, point_t & p2, point_t & p3)
 {
   double coordStorage[6] = {};
 
+  for (int i = 0; i < 6; ++i)
+  {
+    while (* string == ' ' || * string == '\t')
+    {
+      ++string;
+    }
 
+    char * endPtr;
+    coordStorage[i] = std::strtod(string, & endPtr);
 
+    string = endPtr;
+  }
 
-
-
-  point_t p1 = {coordStorage[0], coordStorage[1]};
-  point_t p2 = {coordStorage[2], coordStorage[3]};
-  point_t p3 = {coordStorage[4], coordStorage[5]};
-
-  return new arakelyan::Parallelogram(p1, p2, p3);
+  p1 = {coordStorage[0], coordStorage[1]};
+  p2 = {coordStorage[2], coordStorage[3]};
+  p3 = {coordStorage[4], coordStorage[5]};
 }
 
-arakelyan::Shape * arakelyan::createDiam(const char *string)
-{
-  double coordStorage[6] = {};
-
-
-
-
-
-
-  point_t p1 = {coordStorage[0], coordStorage[1]};
-  point_t p2 = {coordStorage[2], coordStorage[3]};
-  point_t p3 = {coordStorage[4], coordStorage[5]};
-
-  return new arakelyan::Parallelogram(p1, p2, p3);
-}
-
-arakelyan::Shape * arakelyan::createRect(const char *string)
+void arakelyan::dataExtractionRect(const char * string, point_t & p1, point_t & p2)
 {
   double coordStorage[4] = {};
 
+  for (int i = 0; i < 4; ++i)
+  {
+    while (* string == ' ' || * string == '\t')
+    {
+      ++string;
+    }
+
+    char * endPtr;
+    coordStorage[i] = std::strtod(string, & endPtr);
 
 
+    string = endPtr;
+  }
+
+  p1 = {coordStorage[0], coordStorage[1]};
+  p2 = {coordStorage[2], coordStorage[3]};
+}
 
 
+arakelyan::Shape * arakelyan::createPar(const char * string)
+{
+  point_t p1 = {0.0, 0.0};
+  point_t p2 = {0.0, 0.0};
+  point_t p3 = {0.0, 0.0};
 
-  point_t p1 = {coordStorage[0], coordStorage[1]};
-  point_t p2 = {coordStorage[2], coordStorage[3]};
-  point_t p3 = {coordStorage[4], coordStorage[5]};
+  dataExtractionParAndDiam(string, p1, p2, p3);
 
   return new arakelyan::Parallelogram(p1, p2, p3);
 }
 
-arakelyan::Shape * arakelyan::defineShape(const char * string)
+arakelyan::Shape * arakelyan::createDiam(const char * string)
+{
+  point_t p1 = {0.0, 0.0};
+  point_t p2 = {0.0, 0.0};
+  point_t p3 = {0.0, 0.0};
+
+  dataExtractionParAndDiam(string, p1, p2, p3);
+  return new arakelyan::Diamond(p1, p2, p3);
+}
+
+arakelyan::Shape * arakelyan::createRect(const char * string)
+{
+  point_t p1 = {0.0, 0.0};
+  point_t p2 = {0.0, 0.0};
+
+  dataExtractionRect(string, p1, p2);
+  return new arakelyan::Rectangle(p1, p2);
+}
+
+arakelyan::Shape * arakelyan::defineAndCreateShape(const char * string)
 {
   const char * targetWordRectangle = "RECTANGLE";
   const char * targetWordParallelogram = "PARALLELOGRAM";
@@ -77,5 +106,8 @@ arakelyan::Shape * arakelyan::defineShape(const char * string)
   {
     return createDiam(string);
   }
-  return 0;
+  else
+  {
+    return nullptr;
+  }
 }
