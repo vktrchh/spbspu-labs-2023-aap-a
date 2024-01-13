@@ -1,5 +1,4 @@
 #include "square.hpp"
-
 #include <stdexcept>
 
 chistyakov::Square::Square(const point_t & leftCorner, const double side):
@@ -21,7 +20,7 @@ double chistyakov::Square::getArea() const
   return side_ * side_;
 }
 
-rectangle_t chistyakov::Square::getFrameRect() const
+chistyakov::rectangle_t chistyakov::Square::getFrameRect() const
 {
   point_t pos = { side_/2.0 + leftCorner_.x, side_/2.0 + leftCorner_.y};
   return {side_, side_, pos};
