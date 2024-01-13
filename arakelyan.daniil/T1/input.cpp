@@ -15,11 +15,8 @@ void arakelyan::freeMem(Shape **shapes, const char *string, const size_t countOf
   delete string;
 }
 
-arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForIsoScale, double &kForIsoScale)
+arakelyan::Shape ** arakelyan::inputData(std::istream &input)
 {
-  point_t tempPoint = {0.0, 0.0};
-  double tempK = 0;
-
   pointForIsoScale.x_ = 0.0;
   pointForIsoScale.y_ = 0.0;
   kForIsoScale = 1;
