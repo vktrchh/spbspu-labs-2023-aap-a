@@ -2,6 +2,7 @@
 #define ISOTROPSCALE_HPP
 
 #include "shape.hpp"
+#include "base-types.hpp"
 
 namespace chistyakov
 {
