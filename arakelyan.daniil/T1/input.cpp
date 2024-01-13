@@ -10,10 +10,15 @@ arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForI
   pointForIsoScale.x_ = 0.0;
   pointForIsoScale.y_ = 0.0;
   kForIsoScale = 1;
+
   size_t shapesCount = 3;
   size_t usedSlotsForShapes = 0;
   arakelyan::Shape ** shapes = nullptr;
   shapes = new arakelyan::Shape * [shapesCount];
+  if (shapes == nullptr)
+  {
+    throw std::bad_alloc();
+  }
 
   size_t arrSize = 10;
   size_t i = 0;
@@ -24,6 +29,7 @@ arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForI
   char * string = new char[arrSize];
   if (string == nullptr)
   {
+    delete [] shapes;
     throw std::bad_alloc();
   }
 
@@ -33,8 +39,9 @@ arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForI
   {
     if (!input)
     {
-      throw std::logic_error("Input error");
+      delete [] shapes;
       delete[] string;
+      throw std::logic_error("Input error");
     }
 
     if (i == (arrSize - 1))
@@ -44,8 +51,9 @@ arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForI
       char* tempBuf = new char[arrSize];
       if (tempBuf == nullptr)
       {
-        throw std::bad_alloc();
+        delete [] shapes;
         delete[] string;
+        throw std::bad_alloc();
       }
 
       for (size_t j = 0; j < i; j++)
@@ -129,6 +137,8 @@ arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForI
       i = 0;
     }
   }
+
+  delete [] string;
   input >> std::skipws;
   return shapes;
 }
