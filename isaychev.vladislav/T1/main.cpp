@@ -11,19 +11,15 @@ int main()
   char * currDesc = nullptr;
   size_t capacity = 10, length = 0, i = 0, figuresCount = 0;
   Shape * Figures[1000] = {};
-  /*for (size_t k = 0; k < 1000; k++)
-  {
-    Figures[k] = nullptr;
-  }*/
   while (i < 1000)
   {
     try
     {
       currDesc = inputString(std::cin, length, capacity);
     }
-    catch(const char * errMessage)
+    catch(const std::bad_alloc &)
     {
-      std::cerr << errMessage << "\n";
+      std::cerr << "can't allocate memory for description of figure\n";
       return 1;
     }
     if (checkString(currDesc, scaleStr) == 1)

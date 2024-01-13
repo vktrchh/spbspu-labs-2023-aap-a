@@ -1,5 +1,6 @@
 #include "creatingFigures.hpp"
 #include <stdexcept>
+#include <cmath>
 #include "stringManipulations.hpp"
 
 size_t isaychev::determineShape(const char * str)
@@ -54,6 +55,45 @@ isaychev::Circle * isaychev::createCircle(double * params)
   return circle;
 }
 
+isaychev::Shape * isaychev::createRegular(double * params)
+{
+  Regular * reg = nullptr;
+  point_t p1 = {params[0], params[1]};
+  point_t p2 = {params[2], params[3]};
+  point_t p3 = {params[4], params[5]};
+  double side1 = 0, side2 = 0, bottom = 0;
+  side1 = std::sqrt((p1.x_ - p2.x_) * (p1.x_ - p2.x_) + (p1.y_ - p2.y_) * (p1.y_ - p2.y_));
+  side2 = std::sqrt((p1.x_ - p3.x_) * (p1.x_ - p3.x_) + (p1.y_ - p3.y_) * (p1.y_ - p3.y_));
+  bottom = std::sqrt((p2.x_ - p3.x_) * (p2.x_ - p3.x_) + (p2.y_ - p3.y_) * (p2.y_ - p3.y_));
+  if (side1 < side2 + bottom && side2 < side1 + bottom && bottom < side1 + side2)
+  {
+    double cos = (side1 * side1 + side2 * side2 + bottom * bottom) / (2 * side1 * side2)
+    double numOfSides = 3.1415926535 / std::acos(cos);
+    double botBorder = std::round(numOfsides) - 0.01;
+    double upBorder = std::round(numOfsides) + 0.01;
+    if (numOfSides >= botBorder && numOfSides <= upBorder)
+    {
+      if (side1 * side1 == side2 * side2 + bottom * bottom)
+      {
+        reg = new Regular(p1, p3, p2);
+      }
+      else if (side2 * side2 == side1 * side1 + bottom * bottom)
+      {
+        reg = new Regular(p1, p2, p3);
+      }
+      else if (bottom * bottom == side1 * side1 + side2 * side2)
+      {
+        reg = nullptr;
+      }
+    }
+   else
+    {
+      //искл для неверных параметров
+    }
+  }
+  return reg;
+}
+
 isaychev::Shape * isaychev::createFigure(char * str)
 {
   size_t numOfCurrFigure = determineShape(str);
@@ -73,7 +113,7 @@ isaychev::Shape * isaychev::createFigure(char * str)
   }
   else if (numOfCurrFigure == 3)
   {
-    double parameters[4] = {};
+    double parameters[6] = {};
     parseFigureParams(str, numOfParameters, parameters);
   //  currFigure = createRegular(parameters);
   }

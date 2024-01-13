@@ -11,6 +11,7 @@ namespace isaychev
   void parseFigureParams(char * str, const size_t numOfParameters, double * figureParameters);
   Rectangle * createRectangle(double * params);
   Circle * createCircle(double * params);
+  Shape * createRegular(double * params);
   Shape * createFigure(char * str);
 }
 
