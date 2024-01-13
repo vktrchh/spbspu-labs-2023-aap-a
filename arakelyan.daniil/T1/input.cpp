@@ -1,4 +1,4 @@
-#include <cstdlib>
+#include <cstring>
 #include <stdexcept>
 #include "input.hpp"
 #include "shape-creation.hpp"
