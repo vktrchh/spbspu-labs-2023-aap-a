@@ -23,14 +23,21 @@ void arakelyan::inputScaleParam(const char *string, point_t &point, double &k)
 
     string = endPtr;
   }
-  if (*string != '\0')
-  {
-    throw std::logic_error("Too many arg for scale!");
-  }
+
 
   point.x_ = arrayOfScaleData[0];
   point.y_ = arrayOfScaleData[1];
   k = arrayOfScaleData[2];
+}
+
+void arakelyan::freeMem(Shape **shapes, const char *string, const size_t countOfshapes)
+{
+  for (size_t i = 0; i < countOfshapes; i++)
+  {
+    delete [] shapes[i];
+  }
+  delete [] shapes;
+  delete string;
 }
 
 arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForIsoScale, double &kForIsoScale)
@@ -57,7 +64,7 @@ arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForI
   char * string = new char[arrSize];
   if (string == nullptr)
   {
-    delete [] shapes;
+    freeMem(shapes, string, shapesCount);
     throw std::bad_alloc();
   }
 
@@ -67,8 +74,7 @@ arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForI
   {
     if (!input)
     {
-      delete [] shapes;
-      delete[] string;
+      freeMem(shapes, string, shapesCount);
       throw std::logic_error("Input error");
     }
 
@@ -79,8 +85,7 @@ arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForI
       char* tempBuf = new char[arrSize];
       if (tempBuf == nullptr)
       {
-        delete [] shapes;
-        delete[] string;
+        freeMem(shapes, string, shapesCount);
         throw std::bad_alloc();
       }
 
@@ -100,8 +105,7 @@ arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForI
     {
       if (shapesCount >= 1000)
       {
-        delete [] string;
-        delete [] shapes;
+        freeMem(shapes, string, shapesCount);
         throw std::logic_error("Too many shapes obj!");
       }
 
@@ -112,8 +116,7 @@ arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForI
       tempString = new char[i];
       if (tempString == nullptr)
       {
-        delete [] shapes;
-        delete [] string;
+        freeMem(shapes, string, shapesCount);
         throw std::bad_alloc();
       }
 
@@ -135,8 +138,7 @@ arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForI
         }
         catch (const std::logic_error & e)
         {
-          delete [] shapes;
-          delete [] string;
+          freeMem(shapes, string, shapesCount);
           throw std::logic_error(e.what());
         }
         break;
@@ -151,8 +153,7 @@ arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForI
         tempShapesStorage = new arakelyan::Shape * [shapesCount];
         if (tempShapesStorage == nullptr)
         {
-          delete [] shapes;
-          delete [] string;
+          freeMem(shapes, string, shapesCount);
           throw std::bad_alloc();
         }
 
@@ -171,8 +172,7 @@ arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForI
       }
       catch (const std::logic_error & e)
       {
-        delete [] shapes;
-        delete [] string;
+        freeMem(shapes, string, shapesCount);
         throw std::logic_error(e.what());
       }
       usedSlotsForShapes++;
