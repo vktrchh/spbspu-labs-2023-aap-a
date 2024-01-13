@@ -18,7 +18,7 @@ double chistyakov::Rectangle::getArea() const
   return area.width * area.height;
 }
 
-rectangle_t chistyakov::Rectangle::getFrameRect() const
+chistyakov::rectangle_t chistyakov::Rectangle::getFrameRect() const
 {
   double width = rightCorner_.x - leftCorner_.x;
   double height = rightCorner_.y - leftCorner_.y;
