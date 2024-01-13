@@ -9,9 +9,6 @@
 
 int main()
 {
-  point_t pointForIsoScale = {0.0, 0.0};
-  double kForIsoScale = 0;
-
   using namespace arakelyan;
   Shape ** myShapes = nullptr;
   try
