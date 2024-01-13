@@ -69,9 +69,3 @@ void arakelyan::Rectangle::scale(const double k)
   pointRightUp_.x_ += widthHalf;
   pointRightUp_.y_ += heightHalf;
 }
-
-void arakelyan::Rectangle::getData() const
-{
-  std::cout << "p right up: x = " << pointRightUp_.x_ << "; y = " << pointRightUp_.y_ << "\n";
-  std::cout << "p left down: x = " << pointLeftDown_.x_ << "; y = " << pointLeftDown_.y_ << "\n";
-}
