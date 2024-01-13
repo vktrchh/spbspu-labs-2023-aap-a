@@ -90,7 +90,7 @@ arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &pointForI
 
       if (foundScale != nullptr)
       {
-        // сделать для scale в main переменную 
+        // сделать для scale в main переменную
         // "координата"(point_t) и "коэф"(double).
         // передавать их по ссылке и тут менять
         // тут считываение координат для изотропного масшабирования
