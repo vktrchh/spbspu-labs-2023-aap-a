@@ -7,13 +7,14 @@
 #include "diamond.hpp"
 #include "rectangle.hpp"
 
-void arakelyan::dataExtractionParAndDiam(const char * string, point_t & p1, point_t & p2, point_t & p3)
+void arakelyan::dataExtractionParAndDiam(const char * string, point_t & p1, point_t & p2, point_t & p3, const size_t wordLen)
 {
+  string += wordLen;
   double coordStorage[6] = {};
 
   for (int i = 0; i < 6; ++i)
   {
-    while (* string == ' ' || * string == '\t')
+    while ((*string == ' ') || (*string == '\t'))
     {
       ++string;
     }
@@ -32,17 +33,18 @@ void arakelyan::dataExtractionParAndDiam(const char * string, point_t & p1, poin
 void arakelyan::dataExtractionRect(const char * string, point_t & p1, point_t & p2)
 {
   double coordStorage[4] = {};
+  size_t wordLen = 9;
+  string += wordLen;
 
   for (int i = 0; i < 4; ++i)
   {
-    while (* string == ' ' || * string == '\t')
+    while ((*string == ' ') || (*string == '\t'))
     {
       ++string;
     }
 
     char * endPtr;
     coordStorage[i] = std::strtod(string, & endPtr);
-
 
     string = endPtr;
   }
@@ -54,22 +56,21 @@ void arakelyan::dataExtractionRect(const char * string, point_t & p1, point_t & 
 
 arakelyan::Shape * arakelyan::createPar(const char * string)
 {
+  size_t wordLen = 13;
   point_t p1 = {0.0, 0.0};
   point_t p2 = {0.0, 0.0};
   point_t p3 = {0.0, 0.0};
-
-  dataExtractionParAndDiam(string, p1, p2, p3);
-
+  dataExtractionParAndDiam(string, p1, p2, p3, wordLen);
   return new arakelyan::Parallelogram(p1, p2, p3);
 }
 
 arakelyan::Shape * arakelyan::createDiam(const char * string)
 {
+  size_t wordLen = 7; 
   point_t p1 = {0.0, 0.0};
   point_t p2 = {0.0, 0.0};
   point_t p3 = {0.0, 0.0};
-
-  dataExtractionParAndDiam(string, p1, p2, p3);
+  dataExtractionParAndDiam(string, p1, p2, p3, wordLen);
   return new arakelyan::Diamond(p1, p2, p3);
 }
 
@@ -77,7 +78,6 @@ arakelyan::Shape * arakelyan::createRect(const char * string)
 {
   point_t p1 = {0.0, 0.0};
   point_t p2 = {0.0, 0.0};
-
   dataExtractionRect(string, p1, p2);
   return new arakelyan::Rectangle(p1, p2);
 }
@@ -96,11 +96,11 @@ arakelyan::Shape * arakelyan::defineAndCreateShape(const char * string)
   {
      return createPar(string);
   }
-  if (foundRect != nullptr)
+  else if (foundRect != nullptr)
   {
      return createRect(string);
   }
-  if (foundDia != nullptr)
+  else if (foundDia != nullptr)
   {
     return createDiam(string);
   }

@@ -1,6 +1,5 @@
 #include "rectangle.hpp"
 #include <stdexcept>
-#include <iostream>
 
 arakelyan::Rectangle::Rectangle(point_t fp, point_t sp):
   pointRightUp_(sp),

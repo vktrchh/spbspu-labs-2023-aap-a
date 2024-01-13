@@ -27,9 +27,21 @@ int main()
     std::cerr << "Error: " << e.what() << "\n";
     return 1;
   }
-  if (myShapes[0])
+
+  size_t size = 0;
+  for (size_t i = 0; myShapes[i]; i++)
   {
-    std::cout << "all good, here smth: " << myShapes[0]->getArea() << "\n";
+    size++;
   }
+
+  for (size_t i = 0; i < size; i++)
+  {
+    if (myShapes[i])
+    {
+      std::cout << myShapes[i]->getArea() << "\n";
+    }
+  }
+
+  delete [] myShapes;
   return 0;
 }
