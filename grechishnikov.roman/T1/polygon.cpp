@@ -1,6 +1,7 @@
 #include "polygon.hpp"
 #include "triangle.hpp"
 #include <stdexcept>
+#include <iostream>
 
 grechishnikov::Polygon::Polygon(point_t* points, size_t size):
   points_(points),
@@ -20,7 +21,13 @@ double grechishnikov::Polygon::getArea() const
     pTri[i - 2] = { points_[0], points_[i - 1], points_[i] };
   }
 
-  return 0;
+  double rez = 0;
+  for (size_t i = 0; i < size_ - 2; i++)
+  {
+    std::cout << ":" << pTri[i].getArea() << "\n";
+    rez += pTri[i].getArea();
+  }
+  return rez;
 }
 
 grechishnikov::rectangle_t grechishnikov::Polygon::getFrameRect() const
@@ -36,26 +43,14 @@ grechishnikov::rectangle_t grechishnikov::Polygon::getFrameRect() const
     {
       max_x = points_[i].x;
     }
-  }
-
-  for (size_t i = 1; i < size_; i++)
-  {
     if (max_y < points_[i].y)
     {
       max_y = points_[i].y;
     }
-  }
-
-  for (size_t i = 1; i < size_; i++)
-  {
     if (min_x > points_[i].x)
     {
       min_x = points_[i].x;
     }
-  }
-
-  for (size_t i = 1; i < size_; i++)
-  {
     if (min_y > points_[i].y)
     {
       min_y = points_[i].y;
@@ -70,32 +65,44 @@ grechishnikov::rectangle_t grechishnikov::Polygon::getFrameRect() const
 
 void grechishnikov::Polygon::move(const point_t& pos)
 {
-
+  double sr_x = 0;
+  double sr_y = 0;
+  for (size_t i = 0; i < size_; i++)
+  {
+    sr_x += points_[i].x;
+    sr_y += points_[i].y;
+  }
+  sr_x /= size_;
+  sr_y /= size_;
+  point_t sPos = { sr_x, sr_y };
+  move(pos.x - sPos.x, pos.y - sPos.y);
 }
 
 void grechishnikov::Polygon::move(double dx, double dy)
 {
-
+  for (size_t i = 0; i < size_; i++)
+  {
+    points_[i].x += dx;
+    points_[i].y += dy;
+  }
 }
 
 void grechishnikov::Polygon::scale(double rate)
 {
-
-}
-
-/*
-Triangle* tiangulation(const Poligon& poly)
-{
-  Triangle** pTri = nullptr;
-  try
+  double sr_x = 0;
+  double sr_y = 0;
+  for (size_t i = 0; i < size_; i++)
   {
-    pTri = new Triangle* [poly.size_ - 2] { nullptr };
-    for (size_t i = 2; i < poly.size_; i++)
-    {
-      size_t iter = 0;
-      Triangle tempTri(poly.points[0], poly.points[i - 1], poly.points[i];
-      pTri[iter] = &tempTri;
-    }
+    sr_x += points_[i].x;
+    sr_y += points_[i].y;
+  }
+  sr_x /= size_;
+  sr_y /= size_;
+  point_t sPos = { sr_x, sr_y };
+
+  for (size_t i = 0; i < size_; i++)
+  {
+    points_[i].x = sPos.x + (points_[i].x - sPos.x) * rate;
+    points_[i].y = sPos.y + (points_[i].y - sPos.y) * rate;
   }
 }
-*/
