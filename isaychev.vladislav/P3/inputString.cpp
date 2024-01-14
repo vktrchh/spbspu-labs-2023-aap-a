@@ -9,20 +9,20 @@ char * isaychev::inputString(std::istream & input, size_t & length1, size_t & ca
   try
   {
     str = new char[capacity]{};
-    char curr_char = 0;
+    char currChar = 0;
     input >> std::noskipws;
-    while ((input >> curr_char) && (length1 < capacity))
+    while ((input >> currChar) && (length1 < capacity))
     {
       if (length1 == capacity - 1)
       {
         capacity += 10;
-        char * bigger_str = new char[capacity]{};
-        copyString(str, bigger_str);
+        char * biggerStr = new char[capacity]{};
+        copyString(str, biggerStr);
         delete [] str;
-        str = bigger_str;
+        str = biggerStr;
       }
-      str[length1] = curr_char;
-      if (curr_char == '\n')
+      str[length1] = currChar;
+      if (currChar == '\n')
       {
         str[length1] = '\0';
         break;

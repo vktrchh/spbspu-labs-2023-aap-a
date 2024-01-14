@@ -23,26 +23,26 @@ int main()
     return 2;
   }
   const char * str2 = "AFD12hd";
-  char * str_after_extr = nullptr;
+  char * strAfterExtr = nullptr;
   char * strLat = nullptr;
   try
   {
     size_t size = 'z' - 'a' + 1;
-    str_after_extr = new char[capacity]{};
+    strAfterExtr = new char[capacity]{};
     strLat = new char[size + 1]{};
   }
   catch (const std::bad_alloc &)
   {
     std::cerr << "can't allocate memory for two final strings\n";
-    delete [] str_after_extr;
+    delete [] strAfterExtr;
     delete [] strLat;
     delete [] str;
     return 1;
   }
-  extractChars(str, str2, str_after_extr);
+  extractChars(str, str2, strAfterExtr);
   addLat(str, str2, strLat);
-  std::cout << str_after_extr << "\n" << strLat << "\n";
-  delete [] str_after_extr;
+  std::cout << strAfterExtr << "\n" << strLat << "\n";
+  delete [] strAfterExtr;
   delete [] strLat;
   delete [] str;
 }
