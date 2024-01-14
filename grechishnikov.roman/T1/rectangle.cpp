@@ -26,8 +26,8 @@ grechishnikov::rectangle_t grechishnikov::Rectangle::getFrameRect() const
 
 void grechishnikov::Rectangle::move(const point_t& pos)
 {
-  point_t sPos = { (rCorner_.x + lCorner_.x) / 2, (rCorner_.y + lCorner_.y) / 2 };
-  move(pos.x - sPos.x, pos.y - sPos.y);
+  point_t aPos = { (rCorner_.x + lCorner_.x) / 2, (rCorner_.y + lCorner_.y) / 2 };
+  move(pos.x - aPos.x, pos.y - aPos.y);
 }
 
 void grechishnikov::Rectangle::move(double dx, double dy)
@@ -40,9 +40,9 @@ void grechishnikov::Rectangle::move(double dx, double dy)
 
 void grechishnikov::Rectangle::scale(double rate)
 {
-  point_t sPos = { (rCorner_.x + lCorner_.x) / 2, (rCorner_.y + lCorner_.y) / 2 };
-  lCorner_.x = sPos.x + (lCorner_.x - sPos.x) * rate;
-  lCorner_.y = sPos.y + (lCorner_.y - sPos.y) * rate;
-  rCorner_.x = sPos.x + (rCorner_.x - sPos.x) * rate;
-  rCorner_.y = sPos.y + (rCorner_.y - sPos.y) * rate;
+  point_t aPos = { (rCorner_.x + lCorner_.x) / 2, (rCorner_.y + lCorner_.y) / 2 };
+  lCorner_.x = aPos.x + (lCorner_.x - aPos.x) * rate;
+  lCorner_.y = aPos.y + (lCorner_.y - aPos.y) * rate;
+  rCorner_.x = aPos.x + (rCorner_.x - aPos.x) * rate;
+  rCorner_.y = aPos.y + (rCorner_.y - aPos.y) * rate;
 }
