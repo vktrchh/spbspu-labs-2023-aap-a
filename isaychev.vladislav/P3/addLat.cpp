@@ -1,52 +1,53 @@
 #include "addLat.hpp"
 #include <cctype>
-#include <iostream>
+#include <utility>
+#include <cstddef>
 
-void isaychev::addLat(const char * str1, const char * str2, char * str3, ulli_t lgth1, ulli_t lgth2)
+void fillInUniqueChars(const char * str1, char * str2, size_t & counter)
 {
-  ulli_t num = 0;
-  for (ulli_t i = 0; i < lgth1; ++i)
+  size_t i = 0, j = 0, checkForSameChar = 0;
+  while (str1[j] != '\0')
   {
-    if (std::isalpha(str1[i]))
+    if (std::isalpha(str1[j]))
     {
-      str3[num]=str1[i];
-      num++;
-    }
-  }
-  for (ulli_t i = 0; i < lgth2; ++i)
-  {
-    if (std::isalpha(str2[i]))
-    {
-      str3[num]=str2[i];
-      num++;
-    }
-  }
-  char tempElem = 0;
-  for(ulli_t i = 0; i < num - 1; ++i)
-  {
-    for (ulli_t k = 0; k < num - i - 1; ++k)
-    {
-      if (str3[k] > str3[k + 1])
+      while (str2[i] != '\0')
       {
-        tempElem = str3[k];
-        str3[k] = str3[k + 1];
-        str3[k + 1] = tempElem;
-      }
-    }
-  }
-  for(ulli_t k = 0; k < num; ++k)
-  {
-    for (ulli_t i = k + 1; i < num; ++i)
-    {
-      if (str3[k] == str3[k + 1])
-      {
-        for (ulli_t j = i; j < num - 1; ++j)
+        if (str2[i] == std::tolower(str1[j]))
         {
-          str3[j] = str3[j + 1];
+          checkForSameChar++;
         }
-        num--;
+        i++;
+      }
+      i = 0;
+      if (checkForSameChar == 0)
+      {
+        str2[counter++] = std::tolower(str1[j]);
+      }
+      checkForSameChar = 0;
+    }
+    j++;
+  }
+}
+
+void sortCharsAZ(char * str)
+{
+  for (size_t i = 0; str[i] != '\0'; ++i)
+  {
+    for (size_t k = 0; str[k + 1] != '\0'; ++k)
+    {
+      if (str[k] > str[k + 1])
+      {
+        std::swap(str[k], str[k + 1]);
       }
     }
   }
+}
+
+void isaychev::addLat(const char * str1, const char * str2, char * str3)
+{
+  size_t num = 0;
+  fillInUniqueChars(str1, str3, num);
+  fillInUniqueChars(str2, str3, num);
+  sortCharsAZ(str3);
   str3[num] = '\0';
 }
