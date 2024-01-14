@@ -7,7 +7,7 @@ namespace gladyshev
     double * newarr = new double[len + 10]{};
     for (size_t i = 0; i < len; ++i)
     {
-        newarr[i] = basicar[i];
+      newarr[i] = basicar[i];
     }
     return newarr;
   }
@@ -17,11 +17,11 @@ namespace gladyshev
     FigureData * newarr = new FigureData[len + 10]{};
     for (size_t i = 0; i < len; ++i)
     {
-        newarr[i].name = basicar[i].name;
-        for (size_t j = 0; j < 6; ++j)
-        {
-            newarr[i].cord[j] = basicar[i].cord[j];
-        }
+      newarr[i].name = basicar[i].name;
+      for (size_t j = 0; j < 6; ++j)
+      {
+        newarr[i].cord[j] = basicar[i].cord[j];
+      }
     }
     return newarr;
   }
