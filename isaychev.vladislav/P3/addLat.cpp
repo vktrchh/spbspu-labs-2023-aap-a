@@ -1,6 +1,7 @@
 #include "addLat.hpp"
 #include <cctype>
 #include <utility>
+#include <cstddef>
 
 void fillInUniqueChars(const char * str1, char * str2, size_t & counter)
 {

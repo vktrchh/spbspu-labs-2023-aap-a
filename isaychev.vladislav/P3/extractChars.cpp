@@ -1,4 +1,19 @@
 #include "extractChars.hpp"
+#include <cstddef>
+
+size_t checkForSameElem(const char * str2, char charForCheck)
+{
+  size_t check = 0, k = 0;
+  while (str2[k] != '\0')
+  {
+    if (charForCheck == str2[k])
+    {
+      check++;
+    }
+    k++;
+  }
+  return check;
+}
 
 void isaychev::extractChars(const char * str1, const char * str2, char * str3)
 {
@@ -13,18 +28,4 @@ void isaychev::extractChars(const char * str1, const char * str2, char * str3)
     }
     i++;
   }
-}
-
-size_t checkForSameElem(const char * str2, char charForCheck)
-{
-  size_t check = 0, k = 0;
-  while (str2[k] != '\0')
-  {
-    if (charForCheck == str2[k])
-    {
-      check++;
-    }
-    k++;
-  }
-  return check;
 }
