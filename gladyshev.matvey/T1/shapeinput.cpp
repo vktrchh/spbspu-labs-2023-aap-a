@@ -7,6 +7,7 @@
 #include "base-types.hpp"
 #include "circle.hpp"
 #include "parallelogram.hpp"
+#include "increasearray.hpp"
 
 namespace gladyshev
 {
@@ -65,71 +66,63 @@ namespace gladyshev
       }
       if (inputName == "RECTANGLE")
       {
-        double p1x, p1y, p2x, p2y = 0;
-        in >> p1x >> p1y >> p2x >> p2y;
-        if (!in)
+        double cords[6] = { 0 };
+        for (size_t i = 0; i < 4; ++i)
         {
-          delete[] arrayFigure;
-          delete[] arrayBeforeScale;
-          throw std::invalid_argument("bad input of rectangle coords");
+          in >> cords[i];
+          if (!in)
+          {
+            delete[] arrayFigure;
+            delete[] arrayBeforeScale;
+            throw std::invalid_argument("bad input of rectangle coords");
+          }
         }
-        if ((p1x == p2x) || (p1y == p2y) || (p2x < p1x) || (p2y < p1y))
+        if ((cords[0] == cords[2]) || (cords[1] == cords[3]) || (cords[2] < cords[0]) || (cords[3] < cords[1]))
         {
           incorFig = true;
         }
         else
         {
-          Rectangle rectangle({ p1x, p1y }, { p2x, p2y });
+          Rectangle rectangle({ cords[0], cords[1] }, { cords[2], cords[3] });
           arrayFigure[counterFigure].name = "RECTANGLE";
-          arrayFigure[counterFigure].cord[0] = p1x;
-          arrayFigure[counterFigure].cord[1] = p1y;
-          arrayFigure[counterFigure].cord[2] = p2x;
-          arrayFigure[counterFigure].cord[3] = p2y;
+          for (size_t i = 0; i < 4; ++i)
+          {
+            arrayFigure[counterFigure].cord[i] = cords[i];
+          }
           ++counterFigure;
-          arrayBeforeScale[counterFrame] = p1x;
-          ++counterFrame;
-          arrayBeforeScale[counterFrame] = p1y;
-          ++counterFrame;
-          arrayBeforeScale[counterFrame] = p2x;
-          ++counterFrame;
-          arrayBeforeScale[counterFrame] = p2y;
-          ++counterFrame;
+          rectangle_t frame = rectangle.getFrameRect();
+          increaseArray(arrayBeforeScale, counterFrame, frame);
           beforeScaleArea += rectangle.getArea();
         }
       }
       else if (inputName == "PARALLELOGRAM")
       {
-        double p1x, p1y, p2x, p2y, p3x, p3y = 0;
-        in >> p1x >> p1y >> p2x >> p2y >> p3x >> p3y;
-        if (!in)
+        double cords[6] = { 0 };
+        for (size_t i = 0; i < 6; ++i)
         {
-          delete[] arrayFigure;
-          delete[] arrayBeforeScale;
-          throw std::invalid_argument("bad input of circle coords");
+          in >> cords[i];
+          if (!in)
+          {
+            delete[] arrayFigure;
+            delete[] arrayBeforeScale;
+            throw std::invalid_argument("bad input of circle coords");
+          }
         }
-        if (!(((p1y == p2y) && (p2y != p3y) && (p1x != p2x)) || ((p2y == p3y) && (p3y != p1y) && (p2x != p3x))))
+        if (!(((cords[1] == cords[3]) && (cords[3] != cords[5]) && (cords[0] != cords[2])) || ((cords[3] == cords[5]) && (cords[5] != cords[1]) && (cords[2] != cords[4]))))
         {
           incorFig = true;
         }
         else
         {
-          Parallelogram parallelogram({ p1x, p1y }, { p2x, p2y }, { p3x, p3y });
+          Parallelogram parallelogram({ cords[0], cords[1] }, { cords[2], cords[3] }, { cords[4], cords[5] });
           arrayFigure[counterFigure].name = "PARALLELOGRAM";
-          arrayFigure[counterFigure].cord[0] = p1x;
-          arrayFigure[counterFigure].cord[1] = p1y;
-          arrayFigure[counterFigure].cord[2] = p2x;
-          arrayFigure[counterFigure].cord[3] = p2y;
-          arrayFigure[counterFigure].cord[4] = p3x;
-          arrayFigure[counterFigure].cord[5] = p3y;
+          for (size_t i = 0; i < 6; ++i)
+          {
+            arrayFigure[counterFigure].cord[i] = cords[i];
+          }
           ++counterFigure;
-          arrayBeforeScale[counterFrame] = parallelogram.getFrameRect().pos.x - parallelogram.getFrameRect().width / 2;
-          ++counterFrame;
-          arrayBeforeScale[counterFrame] = parallelogram.getFrameRect().pos.y - parallelogram.getFrameRect().height / 2;
-          ++counterFrame;
-          arrayBeforeScale[counterFrame] = parallelogram.getFrameRect().pos.x + parallelogram.getFrameRect().width / 2;
-          ++counterFrame;
-          arrayBeforeScale[counterFrame] = parallelogram.getFrameRect().pos.y + parallelogram.getFrameRect().height / 2;
-          ++counterFrame;
+          rectangle_t frame = parallelogram.getFrameRect();
+          increaseArray(arrayBeforeScale, counterFrame, frame);
           beforeScaleArea += parallelogram.getArea();
         }
       }
@@ -155,14 +148,8 @@ namespace gladyshev
           arrayFigure[counterFigure].cord[1] = p1y;
           arrayFigure[counterFigure].cord[2] = radius;
           ++counterFigure;
-          arrayBeforeScale[counterFrame] = circle.getFrameRect().pos.x - circle.getFrameRect().width / 2;
-          ++counterFrame;
-          arrayBeforeScale[counterFrame] = circle.getFrameRect().pos.y - circle.getFrameRect().height / 2;
-          ++counterFrame;
-          arrayBeforeScale[counterFrame] = circle.getFrameRect().pos.x + circle.getFrameRect().width / 2;
-          ++counterFrame;
-          arrayBeforeScale[counterFrame] = circle.getFrameRect().pos.y + circle.getFrameRect().height / 2;
-          ++counterFrame;
+          rectangle_t frame = circle.getFrameRect();
+          increaseArray(arrayBeforeScale, counterFrame, frame);
           beforeScaleArea += circle.getArea();
         }
       }

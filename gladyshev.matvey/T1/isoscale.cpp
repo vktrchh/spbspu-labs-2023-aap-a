@@ -6,6 +6,7 @@
 #include "parallelogram.hpp"
 #include "base-types.hpp"
 #include "memoryallocate.hpp"
+#include "increasearray.hpp"
 
 namespace gladyshev
 {
@@ -36,14 +37,8 @@ namespace gladyshev
       {
         Rectangle rectangle({ arr[i].cord[0], arr[i].cord[1] }, { arr[i].cord[2], arr[i].cord[3] });
         rectangle.scale({ x,y }, factor);
-        arrayAfterScale[con] = rectangle.getFrameRect().pos.x - rectangle.getFrameRect().width / 2;
-        ++con;
-        arrayAfterScale[con] = rectangle.getFrameRect().pos.y - rectangle.getFrameRect().height / 2;
-        ++con;
-        arrayAfterScale[con] = rectangle.getFrameRect().pos.x + rectangle.getFrameRect().width / 2;
-        ++con;
-        arrayAfterScale[con] = rectangle.getFrameRect().pos.y + rectangle.getFrameRect().height / 2;
-        ++con;
+        rectangle_t frame = rectangle.getFrameRect();
+        increaseArray(arrayAfterScale, con, frame);
         afterScaleArea += rectangle.getArea();
       }
       else if (arr[i].name == "PARALLELOGRAM")
@@ -53,28 +48,16 @@ namespace gladyshev
         point_t p3 = { arr[i].cord[4], arr[i].cord[5] };
         Parallelogram parallelogram(p1, p2, p3);
         parallelogram.scale({ x,y }, factor);
-        arrayAfterScale[con] = parallelogram.getFrameRect().pos.x - parallelogram.getFrameRect().width / 2;
-        ++con;
-        arrayAfterScale[con] = parallelogram.getFrameRect().pos.y - parallelogram.getFrameRect().height / 2;
-        ++con;
-        arrayAfterScale[con] = parallelogram.getFrameRect().pos.x + parallelogram.getFrameRect().width / 2;
-        ++con;
-        arrayAfterScale[con] = parallelogram.getFrameRect().pos.y + parallelogram.getFrameRect().height / 2;
-        ++con;
+        rectangle_t frame = parallelogram.getFrameRect();
+        increaseArray(arrayAfterScale, con, frame);
         afterScaleArea += parallelogram.getArea();
       }
       else if (arr[i].name == "CIRCLE")
       {
         Circle circle({ arr[i].cord[0], arr[i].cord[1] }, arr[i].cord[2]);
         circle.scale({ x,y }, factor);
-        arrayAfterScale[con] = circle.getFrameRect().pos.x - circle.getFrameRect().width / 2;
-        ++con;
-        arrayAfterScale[con] = circle.getFrameRect().pos.y - circle.getFrameRect().height / 2;
-        ++con;
-        arrayAfterScale[con] = circle.getFrameRect().pos.x + circle.getFrameRect().width / 2;
-        ++con;
-        arrayAfterScale[con] = circle.getFrameRect().pos.y + circle.getFrameRect().height / 2;
-        ++con;
+        rectangle_t frame = circle.getFrameRect();
+        increaseArray(arrayAfterScale, con, frame);
         afterScaleArea += circle.getArea();
       }
     }
