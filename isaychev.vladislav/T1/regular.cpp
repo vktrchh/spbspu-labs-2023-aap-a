@@ -34,11 +34,11 @@ isaychev::rectangle_t isaychev::Regular::getFrameRect() const
   double steerAngle = 2 * std::acos(leg / outRad);
   double numOfSides = std::round(3.1415926535 / std::acos(leg / outRad));
   double minX = 0.0, minY = 0.0, maxX = 0.0, maxY = 0.0;
-  minX = maxX = distPnt.x_;
-  minY = maxY = distPnt.y_;
+  minX = maxX = distPnt_.x_;
+  minY = maxY = distPnt_.y_;
   for (double i = 1.0; i < numOfSides; i++)
   {
-    currX = center_.x_ + outRad * cos(initXAngle + i * steerAngle);
+    double currX = center_.x_ + outRad * cos(initXAngle + i * steerAngle);
     if (currX < minX)
     {
       minX = currX;
@@ -47,7 +47,7 @@ isaychev::rectangle_t isaychev::Regular::getFrameRect() const
     {
       maxX = currX;
     }
-    currY = center_.y_ + outRad * sin(initXAngle + i * steerAngle);
+    double currY = center_.y_ + outRad * sin(initXAngle + i * steerAngle);
     if (currY < minY)
     {
       minY = currY;
@@ -86,13 +86,14 @@ void isaychev::Regular::move(const point_t & newPos)
 
 void isaychev::Regular::scale(const double coeff)
 {
+  double coordCoeff = 0.0;
   if (coeff > 1.0)
   {
-    double coordCoeff = std::sqrt(coeff - 1);
+    coordCoeff = std::sqrt(coeff - 1);
   }
   else
   {
-    double coordCoeff = std::sqrt(1 - coeff);
+    coordCoeff = std::sqrt(1 - coeff);
   }
   distPnt_.x_ *= coordCoeff;
   closePnt_.x_ *= coordCoeff;

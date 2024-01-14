@@ -9,16 +9,18 @@ int main()
   using namespace isaychev;
   const char * scaleStr = "SCALE ";
   char * currDesc = nullptr;
-  size_t capacity = 10, length = 0, i = 0, figuresCount = 0;
+  size_t i = 0, figuresCount = 0;
   Shape * Figures[1000] = {};
+  double pars[6] = {};
   while (i < 1000)
   {
     try
     {
-      currDesc = inputString(std::cin, length, capacity);
+      currDesc = inputString(std::cin);
     }
     catch(const std::bad_alloc &)
     {
+      deleteFigures(Figures, figuresCount);
       std::cerr << "can't allocate memory for description of figure\n";
       return 1;
     }
@@ -38,8 +40,8 @@ int main()
     }
     delete [] currDesc;
   }
-  size_t sumOfAreas = 0;
-  for (size_t j = 0; j < figuresCount; j++)
+/*  size_t sumOfAreas = 0;
+  for (unsigned int j = 0; j < figuresCount; j++)
   {
     sumOfAreas += Figures[j]->getArea();
     rectangle_t rect = Figures[j]->getFrameRect();
@@ -51,8 +53,7 @@ int main()
   std::cout << sumOfAreas << "\n";
   sumOfAreas = 0;
   Figures[0]->move({2.5, 1.5});
-  Figures[1]->scale(2.0);
-  Figures[1]->move(-2, -1);
+  Figures[0]->scale(2.0);
   for (size_t j = 0; j < figuresCount; j++)
   {
     sumOfAreas += Figures[j]->getArea();
@@ -62,7 +63,7 @@ int main()
     std::cout << rect.pos.x_ + (rect.width / 2) << " ";
     std::cout << rect.pos.y_ + (rect.height / 2) << " ";
   }
-  std::cout << sumOfAreas << "\n";
+  std::cout << sumOfAreas << "\n"; */
   deleteFigures(Figures, figuresCount);
   delete [] currDesc;
 }
