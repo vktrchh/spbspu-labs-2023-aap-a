@@ -1,15 +1,15 @@
 #include "extractChars.hpp"
 #include "stringManipulations.hpp"
 
-void isaychev::extractChars(const char * str_base, const char * str_sec, char * wk_str)
+void isaychev::extractChars(const char * str1, const char * str2, char * str3)
 {
   size_t i = 0, j = 0;
-  while (str_base[i] != '\0')
+  while (str1[i] != '\0')
   {
-    size_t check = checkForSameElem(str_sec, str_base[i]);
+    size_t check = checkForSameElem(str2, str1[i]);
     if (check == 0)
     {
-      wk_str[j] = str_base[i];
+      str3[j] = str1[i];
       j++;
     }
     i++;

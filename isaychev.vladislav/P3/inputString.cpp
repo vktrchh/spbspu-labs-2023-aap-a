@@ -44,10 +44,10 @@ char * isaychev::inputString(std::istream & input, size_t & length1, size_t & ca
   return str;
 }
 
-void isaychev::copyString(const char * str, char * str2)
+void isaychev::copyString(const char * str1, char * str2)
 {
-  for (size_t j = 0; str[j] != '\0'; ++j)
+  for (size_t j = 0; str1[j] != '\0'; ++j)
   {
-    str2[j] = str[j];
+    str2[j] = str1[j];
   }
 }

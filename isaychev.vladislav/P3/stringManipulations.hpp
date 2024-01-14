@@ -6,8 +6,8 @@
 namespace isaychev
 {
   size_t checkForSameElem(const char * str2, char charForCheck);
-  void fillInUniqueChars(const char * str_base, char * str_final, size_t & counter);
-  void sortCharsAZ(char * str3);
+  void fillInUniqueChars(const char * str1, char * str2, size_t & counter);
+  void sortCharsAZ(char * str);
 }
 
 #endif

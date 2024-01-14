@@ -2,16 +2,16 @@
 #include <cctype>
 #include <utility>
 
-void isaychev::fillInUniqueChars(const char * str_base, char * str_final, size_t & counter)
+void isaychev::fillInUniqueChars(const char * str1, char * str2, size_t & counter)
 {
   size_t i = 0, j = 0, checkForSameChar = 0;
-  while (str_base[j] != '\0')
+  while (str1[j] != '\0')
   {
-    if (std::isalpha(str_base[j]))
+    if (std::isalpha(str1[j]))
     {
-      while (str_final[i] != '\0')
+      while (str2[i] != '\0')
       {
-        if (str_final[i] == std::tolower(str_base[j]))
+        if (str2[i] == std::tolower(str1[j]))
         {
           checkForSameChar++;
         }
@@ -20,7 +20,7 @@ void isaychev::fillInUniqueChars(const char * str_base, char * str_final, size_t
       i = 0;
       if (checkForSameChar == 0)
       {
-        str_final[counter++] = std::tolower(str_base[j]);
+        str2[counter++] = std::tolower(str1[j]);
       }
       checkForSameChar = 0;
     }
@@ -28,15 +28,15 @@ void isaychev::fillInUniqueChars(const char * str_base, char * str_final, size_t
   }
 }
 
-void isaychev::sortCharsAZ(char * str3)
+void isaychev::sortCharsAZ(char * str)
 {
-  for (size_t i = 0; str3[i] != '\0'; ++i)
+  for (size_t i = 0; str[i] != '\0'; ++i)
   {
-    for (size_t k = 0; str3[k + 1] != '\0'; ++k)
+    for (size_t k = 0; str[k + 1] != '\0'; ++k)
     {
-      if (str3[k] > str3[k + 1])
+      if (str[k] > str[k + 1])
       {
-        std::swap(str3[k], str3[k + 1]);
+        std::swap(str[k], str[k + 1]);
       }
     }
   }
