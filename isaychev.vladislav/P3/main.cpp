@@ -23,11 +23,6 @@ int main()
     return 2;
   }
   const char * str2 = "AFD12hd";
-  size_t length2 = 0;
-  while (str2[length2] != '\0')
-  {
-    length2++;
-  }
   char * str_after_extr = nullptr;
   char * strLat = nullptr;
   try
