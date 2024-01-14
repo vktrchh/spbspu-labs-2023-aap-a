@@ -24,7 +24,6 @@ double grechishnikov::Polygon::getArea() const
   double rez = 0;
   for (size_t i = 0; i < size_ - 2; i++)
   {
-    std::cout << ":" << pTri[i].getArea() << "\n";
     rez += pTri[i].getArea();
   }
   return rez;

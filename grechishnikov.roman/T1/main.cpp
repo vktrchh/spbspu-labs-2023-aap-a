@@ -16,4 +16,11 @@ int main()
   rectangle_t t2 = poly.getFrameRect();
   std::cout << t2.width << " " << t2.height << " " << t2.pos.x << " " << t2.pos.y << "\n";
   std::cout << poly.getArea() << "\n";
+
+  {
+    Polygon p = { points, 4 };
+    rectangle_t fr = p.getFrameRect();
+    std::cout << t.width << " " << t.height << "\n";
+  }
+  std::cout << "end\n";
 }
