@@ -66,18 +66,18 @@ isaychev::Regular * isaychev::createRegular(double * params)
   side1 = std::sqrt((p1.x_ - p2.x_) * (p1.x_ - p2.x_) + (p1.y_ - p2.y_) * (p1.y_ - p2.y_));
   side2 = std::sqrt((p1.x_ - p3.x_) * (p1.x_ - p3.x_) + (p1.y_ - p3.y_) * (p1.y_ - p3.y_));
   bottom = std::sqrt((p2.x_ - p3.x_) * (p2.x_ - p3.x_) + (p2.y_ - p3.y_) * (p2.y_ - p3.y_));
-  double inacurr = 0.00000000000001;
   Regular * reg = nullptr;
-  double check1 = (side1 * side1) - (side2 * side2 + bottom * bottom);
-  double check2 = (side2 * side2) - (side1 * side1 + bottom * bottom);
+  double hyp11 = std::round((side1 * side1 * 10000)) / 10000;
+  double hyp12 = std::round((side2 * side2 + bottom * bottom) * 10000) / 10000;
+  double hyp21 = std::round((side2 * side2) * 10000) / 10000;
+  double hyp22  = std::round((side1 * side1 + bottom * bottom) * 10000) / 10000;
   if (side1 < side2 + bottom && side2 < side1 + bottom && bottom < side1 + side2)
   {
-    if ((check1 < inacurr && check1 > 0) || (check1 > -inacurr && check1 < 0))
+    if (hyp11 == hyp12)
     {
-      std::cout << check1 << "\n";
       reg = new Regular(p1, p3, p2);
     }
-    else if ((check2 < inacurr && check2 > 0) || (check2 > -inacurr && check2 < 0))
+    else if (hyp21 == hyp22)
     {
       reg = new Regular(p1, p2, p3);
     }
