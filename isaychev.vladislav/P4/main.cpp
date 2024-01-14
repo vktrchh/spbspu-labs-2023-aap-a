@@ -1,6 +1,4 @@
-#include <stdexcept>
 #include <fstream>
-#include <cstdlib>
 #include <string>
 #include "fillMatrix.hpp"
 #include "searchLines.hpp"
@@ -24,7 +22,7 @@ int main(int argc, char * argv[])
   }
   char * endPtr = nullptr;
   long long int ctrl_parameter = std::strtoll(argv[1], &endPtr, 10);
-  if ( endPtr == argv[1] || (endPtr != argv[1] && (endPtr - argv[1] < lengthOfArr)))
+  if (endPtr == argv[1] || (endPtr != argv[1] && (endPtr - argv[1] < lengthOfArr)))
   {
     std::cerr << "First parameter is not a number\n";
     return 1;
@@ -52,12 +50,9 @@ int main(int argc, char * argv[])
   int * dynMatrix = nullptr;
   int * arrName = nullptr;
   size_t lineSearch = 0;
-  if (ctrl_parameter == 1)
-  {
-    int matrixStat[10000] = {};
-    arrName = matrixStat;
-  }
-  else if (ctrl_parameter == 2)
+  int matrixStat[10000] = {};
+  arrName = matrixStat;
+  if (ctrl_parameter == 2)
   {
     dynMatrix = new int[rows * columns]{};
     arrName = dynMatrix;
@@ -83,3 +78,4 @@ int main(int argc, char * argv[])
     delete [] dynMatrix;
   }
 }
+
