@@ -21,9 +21,9 @@ double rebdev::Polygon::getArea() const
   double sum = 0;
   for(size_t i = 0; i < (numOfVertexs_ - 1); ++i)
   {
-    sum += (vertexs_[i].x_ - vertexs_[i + 1].x_) * (vertexs_[i].y_ + vertexs_[i + 1].y_);
+    sum += (vertexs_[i].x - vertexs_[i + 1].x) * (vertexs_[i].y + vertexs_[i + 1].y);
   }
-  sum += (vertexs_[numOfVertexs_ - 1].x_ - vertexs_[0].x_) * (vertexs_[numOfVertexs_ - 1].y_ + vertexs_[0].y_);
+  sum += (vertexs_[numOfVertexs_ - 1].x - vertexs_[0].x) * (vertexs_[numOfVertexs_ - 1].y + vertexs_[0].y);
   sum /= 2;
   return  ((sum >= 0) ? sum : -sum);
 };
@@ -34,10 +34,10 @@ rebdev::rectangle_t rebdev::Polygon::getFrameRect() const
   double yMin = xMin, yMax = xMax;
   for (size_t i = 0; i < numOfVertexs_; ++i)
   {
-    xMin = ((xMin >= vertexs_[i].x_) ? vertexs_[i].x_ : xMin);
-    yMin = ((yMin >= vertexs_[i].y_) ? vertexs_[i].y_ : yMin);
-    xMax = ((xMax <= vertexs_[i].x_) ? vertexs_[i].x_ : xMax);
-    yMax = ((yMax <= vertexs_[i].y_) ? vertexs_[i].y_ : yMax);
+    xMin = ((xMin >= vertexs_[i].x) ? vertexs_[i].x : xMin);
+    yMin = ((yMin >= vertexs_[i].y) ? vertexs_[i].y : yMin);
+    xMax = ((xMax <= vertexs_[i].x) ? vertexs_[i].x : xMax);
+    yMax = ((yMax <= vertexs_[i].y) ? vertexs_[i].y : yMax);
   }
   return rectangle_t{(xMax - xMin), (yMax - yMin), point_t{xMin + (xMax - xMin)/2, yMin + (yMax - yMin)/2}};
 };
@@ -48,19 +48,19 @@ void rebdev::Polygon::move(const point_t point)
 
   for (size_t i = 0; i < numOfVertexs_; ++i)
   {
-    center.x_ += vertexs_[i].x_;
-    center.y_ += vertexs_[i].y_;
+    center.x += vertexs_[i].x;
+    center.y += vertexs_[i].y;
   }
 
-  center.x_ /= numOfVertexs_;
-  center.y_ /= numOfVertexs_;
+  center.x /= numOfVertexs_;
+  center.y /= numOfVertexs_;
 
-  double xChange = center.x_ - point.x_;
-  double yChange = center.y_ - point.y_;
+  double xChange = center.x - point.x;
+  double yChange = center.y - point.y;
   for (size_t i = 0; i < numOfVertexs_; ++i)
   {
-    vertexs_[i].x_ += xChange;
-    vertexs_[i].y_ += yChange;
+    vertexs_[i].x += xChange;
+    vertexs_[i].y += yChange;
   }
 };
 
@@ -68,8 +68,8 @@ void rebdev::Polygon::move(const double x, const double y)
 {
   for (size_t i = 0; i < numOfVertexs_; ++i)
   {
-    vertexs_[i].x_ += x;
-    vertexs_[i].y_ += y;
+    vertexs_[i].x += x;
+    vertexs_[i].y += y;
   }
 };
 
@@ -79,17 +79,17 @@ void rebdev::Polygon::scale(const double k)
 
   for (size_t i = 0; i < numOfVertexs_; ++i)
   {
-    center.x_ += vertexs_[i].x_;
-    center.y_ += vertexs_[i].y_;
+    center.x += vertexs_[i].x;
+    center.y += vertexs_[i].y;
   }
 
-  center.x_ /= numOfVertexs_;
-  center.y_ /= numOfVertexs_;
+  center.x /= numOfVertexs_;
+  center.y /= numOfVertexs_;
 
   for (size_t i = 0; i < numOfVertexs_; ++i)
   {
-    vertexs_[i].x_ = (vertexs_[i].x_ - center.x_) * k + center.x_;
-    vertexs_[i].y_ = (vertexs_[i].y_ - center.y_) * k + center.y_;
+    vertexs_[i].x = (vertexs_[i].x - center.x) * k + center.x;
+    vertexs_[i].y = (vertexs_[i].y - center.y) * k + center.y;
   }
 
 };

@@ -49,7 +49,7 @@ int main()
       {
         rebdev::point_t isoPoint = {0.0, 0.0};
         double k = 0;
-        std::cin >> isoPoint.x_ >> isoPoint.y_ >> k;
+        std::cin >> isoPoint.x >> isoPoint.y >> k;
 
         if ((!std::cin) || (k <= 0))
         {

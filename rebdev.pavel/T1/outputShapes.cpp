@@ -16,10 +16,10 @@ void rebdev::outputShapes(Shape ** shapes, int numOfShapes, std::ostream & out)
   for (int i = 0; i < numOfShapes; ++i)
   {
     rebdev::rectangle_t rect = shapes[i]->getFrameRect();
-    rebdev::point_t lowLeft = {rect.pos_.x_ - rect.width_/2, rect.pos_.y_ - rect.height_/2};
-    rebdev::point_t upRight = {lowLeft.x_ + rect.width_, lowLeft.y_ + rect.height_};
-    out << ' ' << lowLeft.x_ << ' ' << lowLeft.y_;
-    out << ' ' << upRight.x_ << ' ' << upRight.y_;
+    rebdev::point_t lowLeft = {rect.pos.x - rect.width/2, rect.pos.y - rect.height/2};
+    rebdev::point_t upRight = {lowLeft.x + rect.width, lowLeft.y + rect.height};
+    out << ' ' << lowLeft.x << ' ' << lowLeft.y;
+    out << ' ' << upRight.x << ' ' << upRight.y;
   }
 
   out << '\n';

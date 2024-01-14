@@ -3,7 +3,7 @@
 
 bool rebdev::isRectangle(point_t * pointsArr)
 {
-  return !((pointsArr[0].x_ >= pointsArr[1].x_) && (pointsArr[0].y_ >= pointsArr[1].y_));
+  return !((pointsArr[0].x >= pointsArr[1].x) && (pointsArr[0].y >= pointsArr[1].y));
 };
 
 bool rebdev::isConcave(point_t * pointsArr)
@@ -22,10 +22,10 @@ bool rebdev::isConcave(point_t * pointsArr)
       */
       for (int j = 0; j < 3; ++j)
       {
-        arr[j] = (pointsArr[(i + j) % 4].x_ - pointsArr[(i + 3) % 4].x_)
-          * (pointsArr[(i + (j + 1) % 3) % 4].y_ - pointsArr[(i + j) % 4].y_);
-        arr[j] -= (pointsArr[(i + (j + 1) % 3) % 4].x_ - pointsArr[(i + j) % 4].x_)
-          * (pointsArr[(i + j) % 4].y_ - pointsArr[(i + 3) % 4].y_);
+        arr[j] = (pointsArr[(i + j) % 4].x - pointsArr[(i + 3) % 4].x)
+          * (pointsArr[(i + (j + 1) % 3) % 4].y - pointsArr[(i + j) % 4].y);
+        arr[j] -= (pointsArr[(i + (j + 1) % 3) % 4].x - pointsArr[(i + j) % 4].x)
+          * (pointsArr[(i + j) % 4].y - pointsArr[(i + 3) % 4].y);
       }
 
       bool identicalSigns = ((arr[0] > 0) && (arr[1] > 0) && (arr[2] > 0));
@@ -55,7 +55,7 @@ bool rebdev::isPolygon(const point_t * pointsArr, const size_t size)
   {
     for (size_t j = (i + 1); j < size; ++j)
     {
-      if ((pointsArr[i].x_ == pointsArr[j].x_) && (pointsArr[i].y_ == pointsArr[j].y_))
+      if ((pointsArr[i].x == pointsArr[j].x) && (pointsArr[i].y == pointsArr[j].y))
       {
         return 0;
       }
@@ -66,7 +66,7 @@ bool rebdev::isPolygon(const point_t * pointsArr, const size_t size)
 
 bool rebdev::isTriangle(const point_t f, const point_t s, const point_t t)
 {
-    return (((t.x_ - f.x_) / (s.x_ - f.x_)) != ((t.y_ - f.y_) / (s.y_ - f.y_)));
+    return (((t.x - f.x) / (s.x - f.x)) != ((t.y - f.y) / (s.y - f.y)));
 };
 
 bool rebdev::isNameCorrect(std::istream & input, const int nameSize, const char * name)
@@ -100,7 +100,7 @@ rebdev::point_t * rebdev::ipnutVertexs(std::istream & input, size_t & numOfVerte
     }
     for (size_t i = 0; i < numOfVertexs; ++i)
     {
-      input >> vertexsArr[i].x_ >> vertexsArr[i].y_;
+      input >> vertexsArr[i].x >> vertexsArr[i].y;
       if (!input)
       {
         delete[] vertexsArr;
@@ -140,7 +140,7 @@ rebdev::point_t * rebdev::ipnutVertexs(std::istream & input, size_t & numOfVerte
         bufferArr = nullptr;
       }
 
-      input >> vertexsArr[numOfVertexs].x_ >> vertexsArr[numOfVertexs].y_;
+      input >> vertexsArr[numOfVertexs].x >> vertexsArr[numOfVertexs].y;
       numOfVertexs += 1;
     }
     try
