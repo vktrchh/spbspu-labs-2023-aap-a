@@ -97,10 +97,10 @@ namespace gladyshev
       }
       else if (inputName == "PARALLELOGRAM")
       {
-        double cords[6] = { 0 };
+        double p[6] = { 0 };
         for (size_t i = 0; i < 6; ++i)
         {
-          in >> cords[i];
+          in >> p[i];
           if (!in)
           {
             delete[] arrayFigure;
@@ -108,17 +108,17 @@ namespace gladyshev
             throw std::invalid_argument("bad input of circle coords");
           }
         }
-        if (!(((cords[1] == cords[3]) && (cords[3] != cords[5]) && (cords[0] != cords[2])) || ((cords[3] == cords[5]) && (cords[5] != cords[1]) && (cords[2] != cords[4]))))
+        if (!(((p[1] == p[3]) && (p[3] != p[5]) && (p[0] != p[2])) || ((p[3] == p[5]) && (p[5] != p[1]) && (p[2] != p[4]))))
         {
           incorFig = true;
         }
         else
         {
-          Parallelogram parallelogram({ cords[0], cords[1] }, { cords[2], cords[3] }, { cords[4], cords[5] });
+          Parallelogram parallelogram({ p[0], p[1] }, { p[2], p[3] }, { p[4], p[5] });
           arrayFigure[counterFigure].name = "PARALLELOGRAM";
           for (size_t i = 0; i < 6; ++i)
           {
-            arrayFigure[counterFigure].cord[i] = cords[i];
+            arrayFigure[counterFigure].cord[i] = p[i];
           }
           ++counterFigure;
           rectangle_t frame = parallelogram.getFrameRect();
