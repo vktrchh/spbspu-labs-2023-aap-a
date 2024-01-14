@@ -1,6 +1,7 @@
 #include "creatingFigures.hpp"
 #include <stdexcept>
 #include <cmath>
+#include <limits>
 #include <iostream>
 #include "stringManipulations.hpp"
 
@@ -28,7 +29,6 @@ void isaychev::parseFigureParams(char * str, const size_t numOfParameters, doubl
   for(size_t j = 0; j < numOfParameters; ++j)
   {
     figureParameters[j] = std::stod(str2, &pos);
-    std::cout << figureParameters[j] << "\n";
     str2 += pos;
   }
 }
@@ -66,23 +66,22 @@ isaychev::Regular * isaychev::createRegular(double * params)
   side1 = std::sqrt((p1.x_ - p2.x_) * (p1.x_ - p2.x_) + (p1.y_ - p2.y_) * (p1.y_ - p2.y_));
   side2 = std::sqrt((p1.x_ - p3.x_) * (p1.x_ - p3.x_) + (p1.y_ - p3.y_) * (p1.y_ - p3.y_));
   bottom = std::sqrt((p2.x_ - p3.x_) * (p2.x_ - p3.x_) + (p2.y_ - p3.y_) * (p2.y_ - p3.y_));
+  double inacurr = 0.00000000000001;
   Regular * reg = nullptr;
+  double check1 = (side1 * side1) - (side2 * side2 + bottom * bottom);
+  double check2 = (side2 * side2) - (side1 * side1 + bottom * bottom);
   if (side1 < side2 + bottom && side2 < side1 + bottom && bottom < side1 + side2)
   {
-    if (side1 * side1 == side2 * side2 + bottom * bottom)
+    if ((check1 < inacurr && check1 > 0) || (check1 > -inacurr && check1 < 0))
     {
+      std::cout << check1 << "\n";
       reg = new Regular(p1, p3, p2);
     }
-    else if (side2 * side2 == side1 * side1 + bottom * bottom)
+    else if ((check2 < inacurr && check2 > 0) || (check2 > -inacurr && check2 < 0))
     {
       reg = new Regular(p1, p2, p3);
     }
-    else if (bottom * bottom == side1 * side1 + side2 * side2)
-    {
-      reg = nullptr; // при этом условии гипотенуза не явл радиусом опис окр-ти
-    }
   }
-  std::cout << "regul\n";
   return reg;
 }
 

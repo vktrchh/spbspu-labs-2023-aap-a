@@ -1,6 +1,6 @@
 #include "regular.hpp"
+#include <iostream>
 #include <cmath>
-//#include <limits>
 
 isaychev::Regular::Regular(const point_t & p1, const point_t & p2, const point_t & p3):
   center_(p1),
@@ -17,7 +17,7 @@ double isaychev::Regular::getArea() const
   radX = (center_.x_ - closePnt_.x_) * (center_.x_ - closePnt_.x_);
   radY = (center_.y_ - closePnt_.y_) * (center_.y_ - closePnt_.y_);
   inRad = std::sqrt(radX + radY);
-  double numOfSides = 3.1415926535 / std::atan(bottom / inRad);
+  double numOfSides = std::round(3.1415926535 / std::atan(bottom / inRad));
   return bottom * inRad * numOfSides;
 }
 
