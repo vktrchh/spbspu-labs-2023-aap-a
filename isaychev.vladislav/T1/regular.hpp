@@ -16,9 +16,9 @@ namespace isaychev
     virtual void scale(const double coeff);
 
    private:
-    point_t center;
-    point_t closePnt;
-    point_t distPnt;
+    point_t center_;
+    point_t closePnt_;
+    point_t distPnt_;
   };
 }
 

@@ -83,7 +83,7 @@ isaychev::Shape * isaychev::createRegular(double * params)
       }
       else if (bottom * bottom == side1 * side1 + side2 * side2)
       {
-        reg = nullptr;
+        reg = nullptr; // при этом условии гипотенуза не явл радиусом опис окр-ти
       }
     }
    else
@@ -93,7 +93,7 @@ isaychev::Shape * isaychev::createRegular(double * params)
   }
   return reg;
 }
-
+//если центр многоугольника не лежит на гипотенузе заданного треуголььника, то параметры не верны
 isaychev::Shape * isaychev::createFigure(char * str)
 {
   size_t numOfCurrFigure = determineShape(str);
@@ -115,7 +115,7 @@ isaychev::Shape * isaychev::createFigure(char * str)
   {
     double parameters[6] = {};
     parseFigureParams(str, numOfParameters, parameters);
-  //  currFigure = createRegular(parameters);
+    currFigure = createRegular(parameters);
   }
   return currFigure;
 }
