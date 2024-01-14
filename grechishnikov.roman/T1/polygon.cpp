@@ -21,12 +21,12 @@ double grechishnikov::Polygon::getArea() const
     pTri[i - 2] = { points_[0], points_[i - 1], points_[i] };
   }
 
-  double rez = 0;
+  double result = 0;
   for (size_t i = 0; i < size_ - 2; i++)
   {
-    rez += pTri[i].getArea();
+    result += pTri[i].getArea();
   }
-  return rez;
+  return result;
 }
 
 grechishnikov::rectangle_t grechishnikov::Polygon::getFrameRect() const
@@ -64,17 +64,17 @@ grechishnikov::rectangle_t grechishnikov::Polygon::getFrameRect() const
 
 void grechishnikov::Polygon::move(const point_t& pos)
 {
-  double sr_x = 0;
-  double sr_y = 0;
+  double average_x = 0;
+  double average_y = 0;
   for (size_t i = 0; i < size_; i++)
   {
-    sr_x += points_[i].x;
-    sr_y += points_[i].y;
+    average_x += points_[i].x;
+    average_y += points_[i].y;
   }
-  sr_x /= size_;
-  sr_y /= size_;
-  point_t sPos = { sr_x, sr_y };
-  move(pos.x - sPos.x, pos.y - sPos.y);
+  average_x /= size_;
+  average_y /= size_;
+  point_t aPos = { average_x, average_y };
+  move(pos.x - aPos.x, pos.y - aPos.y);
 }
 
 void grechishnikov::Polygon::move(double dx, double dy)
@@ -88,20 +88,20 @@ void grechishnikov::Polygon::move(double dx, double dy)
 
 void grechishnikov::Polygon::scale(double rate)
 {
-  double sr_x = 0;
-  double sr_y = 0;
+  double average_x = 0;
+  double average_y = 0;
   for (size_t i = 0; i < size_; i++)
   {
-    sr_x += points_[i].x;
-    sr_y += points_[i].y;
+    average_x += points_[i].x;
+    average_y += points_[i].y;
   }
-  sr_x /= size_;
-  sr_y /= size_;
-  point_t sPos = { sr_x, sr_y };
+  average_x /= size_;
+  average_y /= size_;
+  point_t aPos = { average_x, average_y };
 
   for (size_t i = 0; i < size_; i++)
   {
-    points_[i].x = sPos.x + (points_[i].x - sPos.x) * rate;
-    points_[i].y = sPos.y + (points_[i].y - sPos.y) * rate;
+    points_[i].x = aPos.x + (points_[i].x - aPos.x) * rate;
+    points_[i].y = aPos.y + (points_[i].y - aPos.y) * rate;
   }
 }
