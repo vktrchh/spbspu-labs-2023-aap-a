@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <cctype>
 //-----
 #include <cstring>
 //-----
@@ -45,7 +46,30 @@ char * excludeCommon(char * first_str, const char * second_str, size_t size1, co
   return result;
 }
 
-
+char * addNumbers(char * first_str, const char * second_str, size_t size1, const size_t size2)
+{
+  char * result = new char[size1 + size2];
+  size_t last = 0;
+  for (size_t i = 0; i < size1; ++i)
+  {
+    if (first_str[i] == '\0')
+    {
+      last = i - 1;
+      break;
+    }
+    result[i] = first_str[i];
+  }
+  for (size_t j = 0; j < size2; ++j)
+  {
+    if (isdigit(second_str[j]))
+    {
+      last += 1;
+      result[last] = second_str[j];
+    }
+  }
+  result[last + 1] = '\0';
+  return result;
+}
 
 int main()
 {
@@ -95,7 +119,8 @@ int main()
 
   const char * string2 = "g1h2k";
   const size_t size2 = 5;
-  //char * result2 = new char[amount]
+  char * result2 = addNumbers(input, string2, amount, size2);
+  std::cout << result2 << '\n';
 
    delete [] input;
 }
