@@ -3,6 +3,12 @@
 #include <stdexcept>
 #include <string>
 
+
+
+
+
+#include <iostream>
+
 Shape * inputRectangle(const char string[])
 {
   const char * coords_string = string + 10;
@@ -11,8 +17,9 @@ Shape * inputRectangle(const char string[])
   for (size_t i = 0; i < 4; ++i)
   {
     coords_array[i] = std::stod(coords_string, std::addressof(pos));
+    coords_string += pos;
   }
-  if (*coords_array != '\0')
+  if (*coords_string != '\0')
   {
     throw std::invalid_argument("Invalid RECTANGLE arguments");
   }
@@ -28,8 +35,9 @@ Shape * inputTriangle(const char string[])
   for (size_t i = 0; i < 6; ++i)
   {
     coords_array[i] = std::stod(coords_string, std::addressof(pos));
+    coords_string += pos;
   }
-  if (*coords_array != '\0')
+  if (*coords_string != '\0')
   {
     throw std::invalid_argument("Invalid TRIANGLE arguments");
   }
@@ -47,8 +55,9 @@ Shape * inputParallelogram(const char string[])
   for (size_t i = 0; i < 6; ++i)
   {
     coords_array[i] = std::stod(coords_string, std::addressof(pos));
+    coords_string += pos;
   }
-  if (*coords_array != '\0')
+  if (*coords_string != '\0')
   {
     throw std::invalid_argument("Invalid PARALLELOGRAM arguments");
   }

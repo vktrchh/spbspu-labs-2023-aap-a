@@ -70,15 +70,15 @@ Shape * getShape(const char string[])
     {
       if (i == 0)
       {
-        return 0;
+        return inputRectangle(string);
       }
       if (i == 1)
       {
-        return 0;
+        return inputTriangle(string);
       }
       if (i == 2)
       {
-        return 0;
+        return inputParallelogram(string);
       }
     }
   }
@@ -100,8 +100,8 @@ int main ()
   std::cin >> std::noskipws;
   //char * string = inputString(std::cin);
   std::cin >> std::skipws;
-  char string[] = "RECTANGLE 0 0 1 1";
-  Shape * rect = inputRectangle(string);
+  char string[] = "RECTANGLE 0 0 2 2";
+  Shape * rect = getShape(string);
   double area = rect->getArea();
   std::cout << area;
 }
