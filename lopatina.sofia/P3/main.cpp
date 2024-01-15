@@ -15,20 +15,34 @@ char * expandArray(char * arr, size_t size)
   return new_arr;
 }
 
-void excludeCommon(char * first_str, const char * second_str, size_t size1, const size_t size2)
+char * excludeCommon(char * first_str, const char * second_str, size_t size1, const size_t size2)
 {
+  char * result = new char[size1];
+  int flag = 0;
+  size_t k = 0;
   for (size_t i = 0; i < size1; ++i)
   {
     if (first_str[i] == '\0')
     {
+      result[k++] = first_str[i];
       break;
     }
     std::cout << "exc1: " << first_str[i] << '\n';
+    for (size_t j = 0; j < size2; ++j)
+    {
+      if (first_str[i] == second_str[j])
+      {
+        flag = 1;
+        std::cout << first_str[i] << " = " << second_str[j] << '\n';
+      }
+    }
+    if (flag == 0)
+    {
+      result[k++] = first_str[i];
+    }
+    flag = 0;
   }
-  for (size_t j = 0; j < size2; ++j)
-  {
-    std::cout << "exc2: " << second_str[j] << '\n';
-  }
+  return result;
 }
 
 
@@ -75,8 +89,8 @@ int main()
 
   const char * string1 = "abc";
   const size_t size1 = 3;
-  excludeCommon(input, string1, amount, size1);
-
+  char * result1 = excludeCommon(input, string1, amount, size1);
+  std::cout << result1 << '\n';
  // вариант DGT-SND
 
   const char * string2 = "g1h2k";
