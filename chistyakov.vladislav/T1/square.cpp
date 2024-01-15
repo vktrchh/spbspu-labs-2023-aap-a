@@ -1,8 +1,8 @@
 #include "square.hpp"
 #include <stdexcept>
 
-chistyakov::Square::Square(const point_t & leftCorner, const double side):
-  leftCorner_(leftCorner),
+chistyakov::Square::Square(const point_t & leftDownCorner, const double side):
+  leftDownCorner_(leftDownCorner),
   side_(side)
 {
   if (side <= 0.0)
@@ -22,20 +22,20 @@ double chistyakov::Square::getArea() const
 
 chistyakov::rectangle_t chistyakov::Square::getFrameRect() const
 {
-  point_t pos = { side_/2.0 + leftCorner_.x, side_/2.0 + leftCorner_.y};
+  point_t pos = { side_/2.0 + leftDownCorner_.x, side_/2.0 + leftDownCorner_.y};
   return {side_, side_, pos};
 }
 
 void chistyakov::Square::move(const point_t & point)
 {
-  leftCorner_.x += point.x;
-  leftCorner_.y += point.y;
+  leftDownCorner_.x += point.x;
+  leftDownCorner_.y += point.y;
 }
 
 void chistyakov::Square::move(const double mx, const double my)
 {
-  leftCorner_.x += mx;
-  leftCorner_.y += my;
+  leftDownCorner_.x += mx;
+  leftDownCorner_.y += my;
 }
 
 void chistyakov::Square::scale(const double ratio)
@@ -45,7 +45,12 @@ void chistyakov::Square::scale(const double ratio)
     throw std::invalid_argument("Invalid argument for ratio");
   }
 
-  leftCorner_.x -= (side_ * ratio - side_)/2.0;
-  leftCorner_.y -= (side_ * ratio - side_)/2.0;
+  leftDownCorner_.x -= (side_ * ratio - side_)/2.0;
+  leftDownCorner_.y -= (side_ * ratio - side_)/2.0;
   side_ = side_ * ratio;
+}
+
+void chistyakov::Square::printCords() const
+{
+  std::cout << leftDownCorner_.x << " " << leftDownCorner_.y << " " << side_ << "\n";
 }

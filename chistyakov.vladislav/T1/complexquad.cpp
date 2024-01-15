@@ -121,3 +121,13 @@ void chistyakov::Complexquad::scale(const double ratio)
     points[i].y = cross_.y + (points[i].y - cross_.y) * ratio;
   }
 }
+
+void chistyakov::Complexquad::printCords() const
+{
+  chistyakov::point_t points[4] = { pnt1_, pnt2_, pnt3_, pnt4_ };
+  for (int i = 0; i < 4; ++i)
+  {
+    std::cout << points[i].x << " " << points[i].y << " ";
+  }
+  std::cout << "\n";
+}

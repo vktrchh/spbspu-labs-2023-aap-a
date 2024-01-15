@@ -8,15 +8,16 @@ namespace chistyakov
   class Square : public Shape
   {
   public:
-    Square(const point_t & leftCorner, const double side);
+    Square(const point_t & leftDownCorner, const double side);
     virtual ~Square();
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t & point);
     virtual void move(const double mx, const double my);
     virtual void scale(const double ratio);
+    virtual void printCords() const;
   private:
-    point_t leftCorner_;
+    point_t leftDownCorner_;
     double side_;
   };
 }

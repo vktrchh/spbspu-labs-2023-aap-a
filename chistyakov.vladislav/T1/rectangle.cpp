@@ -2,11 +2,11 @@
 
 #include <stdexcept>
 
-chistyakov::Rectangle::Rectangle(const point_t & leftCorner, const point_t & rightCorner):
-  leftCorner_(leftCorner),
-  rightCorner_(rightCorner)
+chistyakov::Rectangle::Rectangle(const point_t & leftDownCorner, const point_t & rightUpCorner):
+  leftDownCorner_(leftDownCorner),
+  rightUpCorner_(rightUpCorner)
 {
-  if (leftCorner.x >= rightCorner.x || leftCorner.y >= rightCorner.y)
+  if (leftDownCorner.x >= rightUpCorner.x || leftDownCorner.y >= rightUpCorner.y)
   {
     throw std::invalid_argument("Invalid argument for rectangle");
   }
@@ -20,26 +20,26 @@ double chistyakov::Rectangle::getArea() const
 
 chistyakov::rectangle_t chistyakov::Rectangle::getFrameRect() const
 {
-  double width = rightCorner_.x - leftCorner_.x;
-  double height = rightCorner_.y - leftCorner_.y;
-  point_t pos = { width/2.0 + leftCorner_.x, height/2.0 + leftCorner_.y};
+  double width = rightUpCorner_.x - leftDownCorner_.x;
+  double height = rightUpCorner_.y - leftDownCorner_.y;
+  point_t pos = { width/2.0 + leftDownCorner_.x, height/2.0 + leftDownCorner_.y};
   return {width, height, pos};
 }
 
 void chistyakov::Rectangle::move(const point_t & point)
 {
-  leftCorner_.x += point.x;
-  leftCorner_.y += point.y;
-  rightCorner_.x += point.x;
-  rightCorner_.y += point.y;
+  leftDownCorner_.x += point.x;
+  leftDownCorner_.y += point.y;
+  rightUpCorner_.x += point.x;
+  rightUpCorner_.y += point.y;
 }
 
 void chistyakov::Rectangle::move(const double mx, const double my)
 {
-  leftCorner_.x += mx;
-  leftCorner_.y += my;
-  rightCorner_.x += mx;
-  rightCorner_.y += my;
+  leftDownCorner_.x += mx;
+  leftDownCorner_.y += my;
+  rightUpCorner_.x += mx;
+  rightUpCorner_.y += my;
 }
 
 void chistyakov::Rectangle::scale(const double ratio)
@@ -50,8 +50,13 @@ void chistyakov::Rectangle::scale(const double ratio)
   }
 
   rectangle_t area = getFrameRect();
-  leftCorner_.x -= (area.width * ratio - area.width) / 2.0;
-  leftCorner_.y -= (area.height * ratio - area.height) / 2.0;
-  rightCorner_.x += (area.width * ratio - area.width) / 2.0;
-  rightCorner_.y += (area.height * ratio - area.height) / 2.0;
+  leftDownCorner_.x -= (area.width * ratio - area.width) / 2.0;
+  leftDownCorner_.y -= (area.height * ratio - area.height) / 2.0;
+  rightUpCorner_.x += (area.width * ratio - area.width) / 2.0;
+  rightUpCorner_.y += (area.height * ratio - area.height) / 2.0;
+}
+
+void chistyakov::Rectangle::printCords() const
+{
+  std::cout << leftDownCorner_.x << " " << leftDownCorner_.y << " " << rightUpCorner_.x << " " << rightUpCorner_.y << "\n";
 }
