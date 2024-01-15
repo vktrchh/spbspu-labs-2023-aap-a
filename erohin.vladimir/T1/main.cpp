@@ -43,13 +43,13 @@ int main()
   catch (const std::invalid_argument& e)
   {
     freeShape(shape, size - 1);
-    std::cerr << e.what();
+    std::cerr << e.what() << "\n";
     return 2;
   }
   catch (const std::logic_error& e)
   {
     freeShape(shape, size - 1);
-    std::cerr << e.what();
+    std::cerr << e.what() << "\n";
     return 3;
   }
   freeShape(shape, size - 1);
