@@ -1,11 +1,11 @@
 #include "inputStr.hpp"
 
-char* grechishnikov::inputStr(std::istream& in, size_t& size)
+char* reallocate(const char* str, size_t lenF, size_t lenS);
+
+char* grechishnikov::inputStr(std::istream& in)
 {
   size_t len = 10;
-  char* curStr = nullptr;
-  curStr = new char[len];
-
+  char* curStr = new char[len];
   char chInput = '0';
   size_t curPos = 0;
   in >> std::noskipws;
@@ -41,17 +41,12 @@ char* grechishnikov::inputStr(std::istream& in, size_t& size)
   }
   in >> std::skipws;
 
-  size = curPos;
   return curStr;
 }
 
-char* grechishnikov::reallocate(char* str, size_t lenF, size_t lenS)
+char* reallocate(const char* str, size_t lenF, size_t lenS)
 {
   char* newStr = new char [lenS];
-  for (size_t i = 0; i < lenS; ++i)
-  {
-    newStr[i] = 0;
-  }
   size_t min = (lenF < lenS) ? lenF : lenS;
   for (size_t i = 0; i < min; ++i)
   {
