@@ -4,10 +4,6 @@
 
 void erohin::isoScale(Shape& shape, point_t pos, double ratio)
 {
-  if (ratio <= 0)
-  {
-    throw std::invalid_argument("Wrong scale ratio");
-  }
   rectangle_t init = shape.getFrameRect();
   shape.move(pos);
   shape.scale(ratio);

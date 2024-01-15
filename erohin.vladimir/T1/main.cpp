@@ -23,6 +23,12 @@ int main()
     std::cerr << "Memory allocation fault\n";
     return 1;
   }
+  if (scale_ratio <= 0.0)
+  {
+    freeShape(shape, size - 1);
+    std::cerr << "Wrong scale ratio\n";
+    return 2;
+  }
   try
   {
     outputShape(std::cout, shape, size - 1);
@@ -44,13 +50,13 @@ int main()
   {
     freeShape(shape, size - 1);
     std::cerr << e.what() << "\n";
-    return 2;
+    return 3;
   }
   catch (const std::logic_error& e)
   {
     freeShape(shape, size - 1);
     std::cerr << e.what() << "\n";
-    return 3;
+    return 4;
   }
   freeShape(shape, size - 1);
   return 0;
