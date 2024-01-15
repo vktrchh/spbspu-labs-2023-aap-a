@@ -6,8 +6,8 @@
 
 namespace erohin
 {
-	void outputShape(std::ostream& output, const erohin::Shape* const* shape, size_t size);
-	bool isNullFrameRect(rectangle_t frameRect);
+  void outputShape(std::ostream& output, const erohin::Shape* const* shape, size_t size);
+  bool isNullFrameRect(rectangle_t frameRect);
 }
 
 #endif
