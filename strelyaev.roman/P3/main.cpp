@@ -4,25 +4,15 @@
 
 int main()
 {
-  std::cin >> std::noskipws;
-
   char * string = nullptr;
-  size_t size = 0;
+  std::cin >> std::noskipws;
   try
   {
-    size = 10;
-    string = new char [10];
+    string = strelyaev::inputString(std::cin);
   }
-  catch (...)
+  catch (const std::logic_error & e)
   {
-    delete [] string;
-    std::cerr << "Unable to allocate memory\n";
-    return 1;
-  }
-  string = strelyaev::extendString(string, size, std::cin);
-  if (string == nullptr)
-  {
-    std::cerr << "Unable to create a string\n";
+    std::cerr << e.what() << "\n";
     return 1;
   }
   std::cout << strelyaev::checkRepDgt(string) << "\n";
