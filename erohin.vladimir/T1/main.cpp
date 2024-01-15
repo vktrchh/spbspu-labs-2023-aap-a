@@ -26,7 +26,7 @@ int main()
   if (scale_ratio <= 0.0)
   {
     freeShape(shape, size - 1);
-    std::cerr << "Wrong scale ratio\n";
+    std::cerr << "Wrong scale command\n";
     return 2;
   }
   try
