@@ -118,6 +118,14 @@ baranov::Shape * baranov::parseShape(char * string)
   throw std::invalid_argument("Invalid shape name");
 }
 
+void baranov::freeShapes(baranov::Shape ** shapes, size_t size)
+{
+  for (size_t i = 0; i < size; ++i)
+  {
+    delete shapes[i];
+  }
+}
+
 void baranov::inputShapes(std::istream & input, Shape ** shapes, size_t & count, point_t & scalePoint, size_t & scaleRatio)
 {
   char * string = nullptr;
@@ -146,11 +154,13 @@ void baranov::inputShapes(std::istream & input, Shape ** shapes, size_t & count,
     }
     catch (const std::range_error &)
     {
+      freeShapes(shapes, count);
       throw;
     }
     catch (const std::exception &)
     {
       delete[] string;
+      freeShapes(shapes, count);
       throw;
     }
   }

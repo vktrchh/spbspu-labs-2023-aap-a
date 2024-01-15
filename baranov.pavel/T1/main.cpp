@@ -25,6 +25,7 @@ int main()
   if (count == 0)
   {
     std::cerr << "Nothing to scale\n";
+    freeShapes(shapes, count);
     return 2;
   }
 
@@ -37,5 +38,6 @@ int main()
 
   outputShapes(std::cout, shapes, count);
 
+  freeShapes(shapes, count);
 }
 

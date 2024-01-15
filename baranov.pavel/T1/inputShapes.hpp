@@ -10,6 +10,7 @@ namespace baranov
   baranov::Shape * parseEllipse(const char * string);
   void parseScale(const char * string, point_t & scalePoint, size_t & scaleRatio);
   baranov::Shape * parseShape(char * string);
+  void freeShapes(Shape ** shapes, size_t size);
   void inputShapes(std::istream & input, Shape ** shapes, size_t & size, point_t & scalePoint, size_t & scaleRatio);
 }
 
