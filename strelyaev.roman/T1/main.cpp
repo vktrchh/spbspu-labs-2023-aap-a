@@ -60,7 +60,7 @@ char * inputString(std::istream & in)
 
 Shape * getShape(const char string[])
 {
-  const char * shape_names[] = { "RECTANGLE", "TRIANGLE", "PARALLELOGRAM" };
+  const char * shape_names[] = { "RECTANGLE", "TRIANGLE", "PARALLELOGRAM"};
   const size_t shapes_count = 3;
 
   for (size_t i = 0; i < shapes_count; i++)
@@ -82,7 +82,7 @@ Shape * getShape(const char string[])
       }
     }
   }
-  return 0;
+  return nullptr;
 }
 
 void isotrScale(Shape * shape, const point_t point, const double k)
@@ -95,13 +95,69 @@ void isotrScale(Shape * shape, const point_t point, const double k)
   shape->move(-x, -y);
 }
 
+Shape ** makeList(Shape * new_shape, Shape ** old_list, size_t old_size)
+{
+  Shape ** new_list = new Shape * [old_size + 1];
+  for (size_t i = 0; i < old_size; i++)
+  {
+    new_list[i] = old_list[i];
+  }
+  new_list[old_size] = new_shape;
+  delete [] old_list;
+  return new_list;
+}
+
+Shape ** extendErrors(const char ** errors, size_t error_count)
+{
+}
+
 int main ()
 {
+  bool marker = true;
+  size_t list_size = 1;
+  Shape ** list = new Shape * [list_size];
+  const char * errors[1] = {};
+  size_t error_count = 0;
+
+
   std::cin >> std::noskipws;
-  //char * string = inputString(std::cin);
+  while (marker)
+  {
+    char * string = inputString(std::cin);
+    if (strncmp("SCALE", string, 5) == 0)
+    {
+      double arguments[3]{};
+      size_t pos = 0;
+      const char * argument_string = string + 6;
+      for (size_t i = 0; i < 3; ++i)
+      {
+        arguments[i] = std::stod(argument_string, std::addressof(pos));
+        argument_string += pos;
+      }
+      const point_t center = {arguments[0], arguments[1]};
+
+      for (size_t i = 1; i < list_size; i++)
+      {
+        std::cout << list[i]->getArea() << "\n";
+        isotrScale(list[i], center, arguments[2]);
+        std::cout << list[i]->getArea() << "\n";
+      }
+      return 0;
+    }
+
+    Shape * new_shape = nullptr;
+    try
+    {
+      new_shape = getShape(string);
+    }
+    catch(const std::exception & e)
+    {
+      errors[error_count++] = e.what();
+      continue;
+    }
+    list = makeList(new_shape, list, list_size);
+    list_size += 1;
+  }
   std::cin >> std::skipws;
-  char string[] = "RECTANGLE 0 0 2 2";
-  Shape * rect = getShape(string);
-  double area = rect->getArea();
-  std::cout << area;
+
 }
