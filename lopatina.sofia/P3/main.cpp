@@ -99,6 +99,7 @@ int main()
       catch (const std::bad_alloc & e)
       {
         std::cerr << e.what();
+        delete [] input;
         return 1;
       }
     }
@@ -109,18 +110,41 @@ int main()
   std::cout << "size: " << strlen(input) << '\n';
   std::cout << "amount: " << amount << '\n';
 
-  // вариант EXC-SND
+  char * result1 = 0;
+  char * result2 = 0;
+  try
+  {
+    // вариант EXC-SND
+    const char * string1 = "abc";
+    const size_t size1 = 3;
+    char * result1 = excludeCommon(input, string1, amount, size1);
+    std::cout << "EXC-SND: " << result1 << '\n';
+    delete [] result1;
+  }
+  catch(std::bad_alloc & e)
+  {
+    std::cerr << e.what();
+    delete [] result1;
+    delete [] input;
+    return 1;
+  }
 
-  const char * string1 = "abc";
-  const size_t size1 = 3;
-  char * result1 = excludeCommon(input, string1, amount, size1);
-  std::cout << result1 << '\n';
- // вариант DGT-SND
+  try
+  {
+    // вариант DGT-SND
+    const char * string2 = "g1h2k";
+    const size_t size2 = 5;
+    char * result2 = addNumbers(input, string2, amount, size2);
+    std::cout << "DGT-SND: " << result2 << '\n';
+    delete [] result2;
+  }
+  catch(std::bad_alloc & e)
+  {
+    std::cerr << e.what();
+    delete [] result2;
+    delete [] input;
+    return 1;
+  }
 
-  const char * string2 = "g1h2k";
-  const size_t size2 = 5;
-  char * result2 = addNumbers(input, string2, amount, size2);
-  std::cout << result2 << '\n';
-
-   delete [] input;
+  delete [] input;
 }
