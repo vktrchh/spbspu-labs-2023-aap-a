@@ -167,16 +167,14 @@ void zhalilov::freeMemory(Shape **shapes, size_t size, const char string[])
   for (size_t i = 0; i < size; i++)
   {
     delete shapes[i];
+    shapes[i] = nullptr;
   }
-  delete[] shapes;
   delete[] string;
 }
 
-zhalilov::Shape **zhalilov::inputShapesSource(point_t &point, double &ratio, size_t &length, size_t &size, std::istream &input)
+zhalilov::Shape **zhalilov::inputShapesSource(Shape **shapes, point_t &point, double &ratio, size_t &length, std::istream &input)
 {
   size_t shapeIndex = 0;
-  size = 10;
-  Shape **shapes = new Shape*[10]{};
   char *string = nullptr;
   while (true)
   {
@@ -186,12 +184,12 @@ zhalilov::Shape **zhalilov::inputShapesSource(point_t &point, double &ratio, siz
     }
     catch (const std::bad_alloc &e)
     {
-      freeMemory(shapes, size, string);
+      freeMemory(shapes, shapeIndex, string);
       throw;
     }
     catch (const std::invalid_argument &e)
     {
-      freeMemory(shapes, size, string);
+      freeMemory(shapes, shapeIndex, string);
       throw;
     }
 
@@ -200,12 +198,6 @@ zhalilov::Shape **zhalilov::inputShapesSource(point_t &point, double &ratio, siz
       shapeInputFunc inputFunc = identifyShape(string);
       if (inputFunc)
       {
-        if (shapeIndex == size)
-        {
-          Shape **newShapes = increaseLength(shapes, size, 5);
-          delete[] shapes;
-          shapes = newShapes;
-        }
         shapes[shapeIndex] = inputFunc(string);
         shapeIndex++;
       }
@@ -217,7 +209,7 @@ zhalilov::Shape **zhalilov::inputShapesSource(point_t &point, double &ratio, siz
     }
     catch (const std::bad_alloc &e)
     {
-      freeMemory(shapes, size, string);
+      freeMemory(shapes, shapeIndex, string);
       throw;
     }
 

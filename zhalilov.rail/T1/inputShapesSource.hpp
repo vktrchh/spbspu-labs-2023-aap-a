@@ -9,7 +9,7 @@
 using shapeInputFunc = zhalilov::Shape *(*)(const char string[]);
 namespace zhalilov
 {
-  Shape **inputShapesSource(point_t &point, double &ratio, size_t &length, size_t &size, std::istream &input);
+  Shape **inputShapesSource(Shape **shapes, point_t &point, double &ratio, size_t &length, std::istream &input);
   void freeMemory(Shape **shapes, size_t size, const char string[]);
 }
 

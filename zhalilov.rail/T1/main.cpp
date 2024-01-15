@@ -7,14 +7,13 @@
 int main()
 {
   using namespace zhalilov;
-  Shape **shapes = nullptr;
+  Shape *shapes[1000] = {};
   point_t point = { 0.0, 0.0 };
   double ratio = 0.0;
   size_t length = 0;
-  size_t size = 0;
   try
   {
-    shapes = inputShapesSource(point, ratio, length, size, std::cin);
+    inputShapesSource(shapes, point, ratio, length, std::cin);
   }
   catch (const std::invalid_argument &e)
   {
@@ -30,7 +29,6 @@ int main()
   if (length == 0)
   {
     std::cerr << "An error has occured: nothing to scale\n";
-    delete[] shapes;
     return 1;
   }
 
@@ -58,9 +56,9 @@ int main()
   catch (const std::invalid_argument &e)
   {
     std::cerr << "An error has occured: " << e.what();
-    freeMemory(shapes, size, nullptr);
+    freeMemory(shapes, length, nullptr);
     return 1;
   }
 
-  freeMemory(shapes, size, nullptr);
+  freeMemory(shapes, length, nullptr);
 }
