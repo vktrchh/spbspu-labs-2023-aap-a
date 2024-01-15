@@ -46,17 +46,11 @@ int main()
     }
     outputShape(std::cout, shape, size - 1);
   }
-  catch (const std::invalid_argument& e)
-  {
-    freeShape(shape, size - 1);
-    std::cerr << e.what() << "\n";
-    return 3;
-  }
   catch (const std::logic_error& e)
   {
     freeShape(shape, size - 1);
     std::cerr << e.what() << "\n";
-    return 4;
+    return 3;
   }
   freeShape(shape, size - 1);
   return 0;
