@@ -98,10 +98,10 @@ void isotrScale(Shape * shape, const point_t point, const double k)
 int main ()
 {
   std::cin >> std::noskipws;
-  char * string = inputString(std::cin);
+  //char * string = inputString(std::cin);
   std::cin >> std::skipws;
-  //Shape * r1 = inputTriangle(string);
-  //Shape * shapes[10] = {};
-  //shapes[0] = getShape(string);
-  //std::cout << shapes[0]->getArea();
+  char string[] = "RECTANGLE 0 0 1 1";
+  Shape * rect = inputRectangle(string);
+  double area = rect->getArea();
+  std::cout << area;
 }
