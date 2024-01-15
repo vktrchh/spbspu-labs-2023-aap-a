@@ -21,43 +21,34 @@ int main()
   }
   catch (const std::bad_alloc&)
   {
+    freeShape(shape, size - 1);
     std::cerr << "Memory allocation fault\n";
-    return 2;
+    return 1;
   }
+  outputShape(std::cout, shape, size - 1);
   try
   {
     for (size_t i = 0; i < size - 1; ++i)
     {
-      if (shape[i])
+      if(shape[i])
       {
-        if (!isNullFrameRect(shape[i]->getFrameRect()))
-        {
-          outputShape(std::cout, shape[i]);
-          std::cout << "\n";
-          isoScale(*shape[i], scale_pos, scale_ratio);
-          outputShape(std::cout, shape[i]);
-          std::cout << "\n";
-        }
-        else
-        {
-          std::cerr << "Wrong parametres to create a figure\n";
-          isError = true;
-        }
+        isoScale(*shape[i], scale_pos, scale_ratio);
       }
     }
+    outputShape(std::cout, shape, size - 1);
+  }
+  catch (const std::invalid_argument& e)
+  {
+    std::cerr << e.what();
+    freeShape(shape, size - 1);
+    return 2;
   }
   catch (const std::logic_error& e)
   {
     std::cerr << e.what();
-    for (size_t i = 0; i < size - 1; ++i)
-    {
-      delete shape[i];
-    }
+    freeShape(shape, size - 1);
     return 3;
   }
-  for (size_t i = 0; i < size; ++i)
-  {
-    delete shape[i];
-  }
-  return isError;
+  freeShape(shape, size - 1);
+  return 0;
 }

@@ -9,7 +9,7 @@ namespace erohin
 {
   Shape** inputShape(std::istream& input, Shape** shape, size_t& size, point_t& pos, double& ratio);
   Shape** resize(Shape** str, size_t size, size_t shift);
-  bool isNullFrameRect(rectangle_t frameRect);
+  void freeShape(Shape** shape, size_t size);
 }
 
 #endif
