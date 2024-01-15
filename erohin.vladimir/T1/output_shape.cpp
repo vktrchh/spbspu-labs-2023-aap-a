@@ -37,7 +37,6 @@ void erohin::outputShape(std::ostream& output, const erohin::Shape* const* shape
         output << frameRect.pos.y - frameRect.height / 2.0 << " ";
         output << frameRect.pos.x + frameRect.width / 2.0 << " ";
         output << frameRect.pos.y + frameRect.height / 2.0;
-
       }
       else
       {
@@ -46,7 +45,7 @@ void erohin::outputShape(std::ostream& output, const erohin::Shape* const* shape
     }
   }
   std::cout << "\n";
-  if(!isError)
+  if(isError)
   {
     throw std::logic_error("Wrong parametres to create a figure\n");
   }

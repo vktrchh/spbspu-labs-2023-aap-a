@@ -20,11 +20,15 @@ int main()
   }
   catch (const std::bad_alloc&)
   {
-    freeShape(shape, size - 1);
     std::cerr << "Memory allocation fault\n";
     return 1;
   }
-  outputShape(std::cout, shape, size - 1);
+  try
+  {
+    outputShape(std::cout, shape, size - 1);
+  }
+  catch (...)
+  {}
   try
   {
     for (size_t i = 0; i < size - 1; ++i)
@@ -38,14 +42,14 @@ int main()
   }
   catch (const std::invalid_argument& e)
   {
-    std::cerr << e.what();
     freeShape(shape, size - 1);
+    std::cerr << e.what();
     return 2;
   }
   catch (const std::logic_error& e)
   {
-    std::cerr << e.what();
     freeShape(shape, size - 1);
+    std::cerr << e.what();
     return 3;
   }
   freeShape(shape, size - 1);
