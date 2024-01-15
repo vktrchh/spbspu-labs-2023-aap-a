@@ -8,16 +8,6 @@
 #include <cstring>
 #include <stdexcept>
 
-baranov::Shape ** baranov::expandShapes(Shape ** shapes, const size_t size, const size_t newSize)
-{
-  baranov::Shape ** result = new baranov::Shape*[newSize];
-  for (size_t i = 0; i < size; ++i)
-  {
-    result[i] = shapes[i];
-  }
-  return result;
-}
-
 baranov::Shape * baranov::parseRectangle(const char * string)
 {
   double rectParameters[4]{};
@@ -128,22 +118,9 @@ baranov::Shape * baranov::parseShape(char * string)
   throw std::invalid_argument("Invalid shape name");
 }
 
-void baranov::freeShapes(baranov::Shape ** shapes, size_t size)
+void baranov::inputShapes(std::istream & input, Shape ** shapes, size_t & count, point_t & scalePoint, size_t & scaleRatio)
 {
-  for (size_t i = 0; i < size; ++i)
-  {
-    delete shapes[i];
-  }
-  delete[] shapes;
-}
-
-baranov::Shape ** baranov::inputShapes(std::istream & input, size_t & count, point_t & scalePoint, size_t & scaleRatio)
-{
-  baranov::Shape ** result = nullptr;
-  baranov::Shape ** temp = nullptr;
-  size_t size = 20;
   char * string = nullptr;
-  result = new baranov::Shape*[20]{};
   while (true)
   {
     try
@@ -153,16 +130,9 @@ baranov::Shape ** baranov::inputShapes(std::istream & input, size_t & count, poi
       {
         baranov::parseScale(string, scalePoint, scaleRatio);
         delete[] string;
-        return result;
+        return;;
       }
-      if (count == size - 1)
-      {
-        temp = baranov::expandShapes(result, size, size + 10);
-        baranov::freeShapes(result, size);
-        result = temp;
-        size += 10;
-      }
-      result[count] = baranov::parseShape(string);
+      shapes[count] = baranov::parseShape(string);
       ++count;
       delete[] string;
     }
@@ -176,13 +146,11 @@ baranov::Shape ** baranov::inputShapes(std::istream & input, size_t & count, poi
     }
     catch (const std::range_error &)
     {
-      baranov::freeShapes(result, size);
       throw;
     }
     catch (const std::exception &)
     {
       delete[] string;
-      baranov::freeShapes(result, size);
       throw;
     }
   }

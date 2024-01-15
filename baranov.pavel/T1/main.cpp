@@ -8,13 +8,13 @@
 int main()
 {
   using namespace baranov;
-  Shape ** shapes = nullptr;
+  Shape * shapes[1000]{};
   size_t count = 0;
   point_t scalePoint = { 0, 0 };
   size_t scaleRatio = 0;
   try
   {
-    shapes = inputShapes(std::cin, count, scalePoint, scaleRatio);
+    inputShapes(std::cin, shapes, count, scalePoint, scaleRatio);
   }
   catch (const std::exception & e)
   {
@@ -24,7 +24,6 @@ int main()
 
   if (count == 0)
   {
-    freeShapes(shapes, count);
     std::cerr << "Nothing to scale\n";
     return 2;
   }
@@ -38,6 +37,5 @@ int main()
 
   outputShapes(std::cout, shapes, count);
 
-  freeShapes(shapes, count);
 }
 
