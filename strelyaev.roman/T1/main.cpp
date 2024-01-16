@@ -27,16 +27,17 @@ int main ()
     {
       string = inputString(std::cin);
     }
-    catch (...)
+    catch (const std::exception & e)
     {
-      continue;
+      std::cerr << e.what() << "\n";
+      break;
     }
     if (strncmp("SCALE", string, 5) == 0)
     {
       if (current_index == 0)
       {
-        std::cerr << "Nothing to scale";
-        return 1;
+        std::cerr << "Nothing to scale\n";
+        break;
       }
       double arguments[3]{};
       size_t pos = 0;
