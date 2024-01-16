@@ -37,6 +37,7 @@ int main ()
       if (current_index == 0)
       {
         std::cerr << "Nothing to scale\n";
+        delete [] string;
         break;
       }
       double arguments[3]{};
@@ -72,7 +73,9 @@ int main ()
         std::cout << list[i]->getArea() << " " << left_bottom_x << " ";
         std::cout << left_bottom_y << " " << right_top_x << " " << right_top_y << "\n";
         delete list[i];
+
       }
+      delete [] string;
       break;
     }
 
@@ -88,8 +91,10 @@ int main ()
     catch(const std::invalid_argument & e)
     {
       errors[errors_count++] = e.what();
+      delete [] string;
       continue;
     }
+    delete [] string;
   }
   std::cin >> std::skipws;
 
