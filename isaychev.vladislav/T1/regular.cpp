@@ -86,17 +86,8 @@ void isaychev::Regular::move(const point_t & newPos)
 
 void isaychev::Regular::scale(const double coeff)
 {
-  double coordCoeff = 0.0;
-  if (coeff > 1.0)
-  {
-    coordCoeff = std::sqrt(coeff - 1);
-  }
-  else
-  {
-    coordCoeff = std::sqrt(1 - coeff);
-  }
-  distPnt_.x_ *= coordCoeff;
-  closePnt_.x_ *= coordCoeff;
-  distPnt_.y_ *= coordCoeff;
-  closePnt_.y_ *= coordCoeff;
+  distPnt_.x_ *= coeff;
+  closePnt_.x_ *= coeff;
+  distPnt_.y_ *= coeff;
+  closePnt_.y_ *= coeff;
 }
