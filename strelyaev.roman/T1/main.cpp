@@ -40,9 +40,23 @@ int main ()
         {
           break;
         }
-        std::cout << list[i]->getArea() << "\n";
+        rectangle_t rect = list[i]->getFrameRect();
+        double left_bottom_x = rect.pos_.x_ - rect.width_ / 2;
+        double left_bottom_y = rect.pos_.y_ - rect.height_ / 2;
+        double right_top_x = rect.pos_.x_ + rect.width_ / 2;
+        double right_top_y = rect.pos_.y_ + rect.height_ / 2;
+        std::cout << list[i]->getArea() << " " << left_bottom_x << " ";
+        std::cout << left_bottom_y << " " << right_top_x << " " << right_top_y << "\n";
+
         isotrScale(list[i], center, arguments[2]);
-        std::cout << list[i]->getArea() << "\n";
+
+        rect = list[i]->getFrameRect();
+        left_bottom_x = rect.pos_.x_ - rect.width_ / 2;
+        left_bottom_y = rect.pos_.y_ - rect.height_ / 2;
+        right_top_x = rect.pos_.x_ + rect.width_ / 2;
+        right_top_y = rect.pos_.y_ + rect.height_ / 2;
+        std::cout << list[i]->getArea() << " " << left_bottom_x << " ";
+        std::cout << left_bottom_y << " " << right_top_x << " " << right_top_y << "\n";
       }
       break;
     }
