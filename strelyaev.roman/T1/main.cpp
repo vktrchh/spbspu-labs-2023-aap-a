@@ -94,6 +94,7 @@ int main ()
     catch(const std::invalid_argument & e)
     {
       errors[errors_count++] = e.what();
+      delete new_shape;
     }
     delete [] string;
   }
