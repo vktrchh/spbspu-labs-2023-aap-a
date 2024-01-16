@@ -92,3 +92,4 @@ void strelyaev::Triangle::scale(double k)
   p3_.x_ = center_.x_ + (p3_.x_ - center_.x_) * k;
   p3_.y_ = center_.y_ + (p3_.y_ - center_.y_) * k;
 }
+
