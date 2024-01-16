@@ -89,3 +89,49 @@ void strelyaev::isotrScale(Shape * shape, const point_t point, const double k)
   shape->move(-x, -y);
 }
 
+void strelyaev::printCoords(Shape * shape)
+{
+  rectangle_t rect = shape->getFrameRect();
+  double left_bottom_x = rect.pos_.x_ - rect.width_ / 2;
+  double left_bottom_y = rect.pos_.y_ - rect.height_ / 2;
+  double right_top_x = rect.pos_.x_ + rect.width_ / 2;
+  double right_top_y = rect.pos_.y_ + rect.height_ / 2;
+  std::cout << shape->getArea() << " " << left_bottom_x << " ";
+  std::cout << left_bottom_y << " " << right_top_x << " " << right_top_y << "\n";
+}
+
+void strelyaev::scaleShapes(Shape ** list, size_t current_index, const double arguments[3], const size_t max_shapes)
+{
+  if (current_index == 0)
+  {
+    throw std::logic_error("Nothing to scale");
+  }
+  if (arguments[2] < 0)
+  {
+    throw std::logic_error("Invalid SCALE argument");
+  }
+  const point_t center = {arguments[0], arguments[1]};
+  for (size_t i = 0; i < max_shapes; ++i)
+  {
+    if (list[i] == 0)
+    {
+      break;
+    }
+    printCoords(list[i]);
+    isotrScale(list[i], center, arguments[2]);
+    printCoords(list[i]);
+
+  }
+}
+
+void strelyaev::printErrors(const char ** errors, size_t max_shapes)
+{
+  for (size_t i = 0; i < max_shapes; i++)
+  {
+    if (errors[i] == 0)
+    {
+      break;
+    }
+    std::cerr << errors[i] << "\n";
+  }
+}
