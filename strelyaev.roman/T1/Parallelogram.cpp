@@ -1,6 +1,6 @@
 #include "Parallelogram.hpp"
 #include <cmath>
-
+#include <algorithm>
 strelyaev::Parallelogram::Parallelogram(point_t p1, point_t p2, point_t p3):
   p1_(p1),
   p2_(p2),
