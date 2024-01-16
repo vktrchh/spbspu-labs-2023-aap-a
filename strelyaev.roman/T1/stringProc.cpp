@@ -134,3 +134,4 @@ void strelyaev::printErrors(const char ** errors, size_t maxshapes)
     std::cerr << errors[i] << "\n";
   }
 }
+
