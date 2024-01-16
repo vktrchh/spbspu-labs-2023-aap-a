@@ -100,7 +100,6 @@ int main ()
   }
   std::cin >> std::skipws;
 
-  printErrors(errors, maxshapes);
   for (size_t i = 0; i < current_index; i++)
   {
     delete list[i];

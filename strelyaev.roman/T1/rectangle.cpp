@@ -9,7 +9,7 @@ strelyaev::Rectangle::Rectangle(point_t p1, point_t p2):
   p2_(p2),
   center_({(p1_.x + p2_.x) / 2, (p1_.y + p2_.y) / 2})
 {
-  if (p1.x >= p2.x || p1.y >= p2.y)
+  if (p1_.x >= p2_.x || p1_.y >= p2_.y)
   {
     throw std::invalid_argument("Invalid points for RECTANGLE");
   }
