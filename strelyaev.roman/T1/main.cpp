@@ -26,6 +26,13 @@ int main ()
     if (!std::cin.good())
     {
       std::cout << "Something went wrong with input\n";
+      delete [] string;
+      delete [] errors;
+      for (size_t i = 0; i < current_index; i++)
+      {
+        delete list[i];
+      }
+      delete [] list;
       return 1;
     }
     string = nullptr;
