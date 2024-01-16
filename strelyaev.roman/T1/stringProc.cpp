@@ -3,6 +3,7 @@
 #include <string>
 #include <cstring>
 #include "inputShapes.hpp"
+#include <new>
 
 char * strelyaev::inputString(std::istream & in)
 {
@@ -45,10 +46,9 @@ char * strelyaev::inputString(std::istream & in)
     }
   }
   string[i] = '\0';
-  if ((string[0] == '\n') || (string[0] == '\0'))
+  if (*string == EOF)
   {
-    delete [] string;
-    throw std::logic_error("Unable to create string");
+    throw std::logic_error("EOF is met");
   }
   return string;
 }
@@ -88,3 +88,4 @@ void strelyaev::isotrScale(Shape * shape, const point_t point, const double k)
   double y = (point.y_ - start_pos.y_) * k;
   shape->move(-x, -y);
 }
+
