@@ -15,4 +15,4 @@ namespace strelyaev
     point_t pos_;
   };
 }
-  #endif
+#endif

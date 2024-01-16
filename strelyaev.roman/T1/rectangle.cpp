@@ -1,6 +1,5 @@
 #include "rectangle.hpp"
 #include <cmath>
-
 #include "rectangle.hpp"
 #include <cmath>
 
