@@ -65,7 +65,7 @@ int main ()
       }
       try
       {
-        scaleShapes(list, current_index, arguments, maxshapes);
+        scaleShapes(list, current_index, arguments, std::cout);
         delete [] string;
         break;
       }
