@@ -120,7 +120,6 @@ void strelyaev::scaleShapes(Shape ** list, size_t current_index, const double ar
     printCoords(list[i]);
     isotrScale(list[i], center, arguments[2]);
     printCoords(list[i]);
-
   }
 }
 
@@ -128,7 +127,7 @@ void strelyaev::printErrors(const char ** errors, size_t max_shapes)
 {
   for (size_t i = 0; i < max_shapes; i++)
   {
-    if (errors[i] == 0)
+    if (errors[i] == nullptr)
     {
       break;
     }
