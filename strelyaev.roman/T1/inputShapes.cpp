@@ -3,12 +3,6 @@
 #include <stdexcept>
 #include <string>
 
-
-
-
-
-#include <iostream>
-
 strelyaev::Shape * strelyaev::inputRectangle(const char string[])
 {
   const char * coords_string = string + 10;
