@@ -96,7 +96,7 @@ void strelyaev::printCoords(Shape * shape)
   double left_bottom_y = rect.pos.y - rect.height / 2;
   double right_top_x = rect.pos.x + rect.width / 2;
   double right_top_y = rect.pos.y + rect.height / 2;
-  std::cout << "        " << shape->getArea() << " " << left_bottom_x << " ";
+  std::cout << shape->getArea() << " " << left_bottom_x << " ";
   std::cout << left_bottom_y << " " << right_top_x << " " << right_top_y << "\n";
 }
 
