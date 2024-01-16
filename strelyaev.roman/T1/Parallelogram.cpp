@@ -13,7 +13,7 @@ double strelyaev::Parallelogram::getArea() const
 {
   return std::abs((p1_.x * (p2_.y - p3_.y) + p2_.x * (p3_.y - p1_.y) + p3_.x * (p1_.y - p2_.y)));
 }
-strelyaev::rectangle_t strelyaev::Parallelogram::getFrameRect()
+strelyaev::rectangle_t strelyaev::Parallelogram::getFrameRect() const
 {
   double up = std::max(p1_.y, std::max(p2_.y, p3_.y));
   double down = std::min(p1_.y, std::min(p2_.y, p3_.y));

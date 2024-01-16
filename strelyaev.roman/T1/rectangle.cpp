@@ -16,7 +16,7 @@ double strelyaev::Rectangle::getArea() const
   return height * width;
 }
 
-strelyaev::rectangle_t strelyaev::Rectangle::getFrameRect()
+strelyaev::rectangle_t strelyaev::Rectangle::getFrameRect() const
 {
   double height = std::abs(p1_.y - p2_.y);
   double width = std::abs(p1_.x - p2_.x);

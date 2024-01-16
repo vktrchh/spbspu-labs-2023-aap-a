@@ -8,7 +8,7 @@ namespace strelyaev
     public:
      Rectangle(point_t, point_t);
      virtual double getArea() const;
-     virtual rectangle_t getFrameRect();
+     virtual rectangle_t getFrameRect() const;
      virtual void move(point_t);
      virtual void move(double);
      virtual void move(double, double);

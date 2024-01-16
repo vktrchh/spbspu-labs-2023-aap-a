@@ -24,7 +24,7 @@ double strelyaev::Triangle::getArea() const
   return std::sqrt(half_per * (half_per - a) * (half_per - b) * (half_per - c));
 }
 
-strelyaev::rectangle_t strelyaev::Triangle::getFrameRect()
+strelyaev::rectangle_t strelyaev::Triangle::getFrameRect() const
 {
   double up = std::max(p1_.y, std::max(p2_.y, p3_.y));
   double down = std::min(p1_.y, std::min(p2_.y, p3_.y));
