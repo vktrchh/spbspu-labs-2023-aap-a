@@ -25,8 +25,7 @@ int main ()
   {
     if (!std::cin.good())
     {
-      std::cout << "Something went wrong with input\n";
-      delete [] string;
+      std::cerr << "Something went wrong with input\n";
       delete [] errors;
       for (size_t i = 0; i < current_index; i++)
       {
