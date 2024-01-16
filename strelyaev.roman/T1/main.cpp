@@ -13,11 +13,11 @@ using namespace strelyaev;
 
 int main ()
 {
-  const size_t max_shapes = 1000;
+  const size_t maxshapes = 1000;
   char * string = nullptr;
   size_t current_index = 0;
-  Shape ** list = new Shape * [max_shapes]{nullptr};
-  const char ** errors = new const char * [max_shapes]{nullptr};
+  Shape ** list = new Shape * [maxshapes]{nullptr};
+  const char ** errors = new const char * [maxshapes]{nullptr};
   size_t errors_count = 0;
 
   std::cin >> std::noskipws;
@@ -63,7 +63,7 @@ int main ()
       }
       try
       {
-        scaleShapes(list, current_index, arguments, max_shapes);
+        scaleShapes(list, current_index, arguments, maxshapes);
         delete [] string;
         break;
       }
@@ -97,7 +97,7 @@ int main ()
   }
   std::cin >> std::skipws;
 
-  printErrors(errors, max_shapes);
+  printErrors(errors, maxshapes);
   for (size_t i = 0; i < current_index; i++)
   {
     delete list[i];

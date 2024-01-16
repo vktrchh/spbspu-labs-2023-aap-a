@@ -6,67 +6,67 @@
 strelyaev::Rectangle::Rectangle(point_t p1, point_t p2):
   p1_(p1),
   p2_(p2),
-  center_({(p1_.x_ + p2_.x_) / 2, (p1_.y_ + p2_.y_) / 2})
+  center_({(p1_.x + p2_.x) / 2, (p1_.y + p2_.y) / 2})
 {}
 
 double strelyaev::Rectangle::getArea() const
 {
-  double height = std::abs(p1_.y_ - p2_.y_);
-  double width = std::abs(p1_.x_ - p2_.x_);
+  double height = std::abs(p1_.y - p2_.y);
+  double width = std::abs(p1_.x - p2_.x);
   return height * width;
 }
 
 strelyaev::rectangle_t strelyaev::Rectangle::getFrameRect()
 {
-  double height = std::abs(p1_.y_ - p2_.y_);
-  double width = std::abs(p1_.x_ - p2_.x_);
+  double height = std::abs(p1_.y - p2_.y);
+  double width = std::abs(p1_.x - p2_.x);
   rectangle_t r1 = {width, height, center_};
   return r1;
 }
 
 void strelyaev::Rectangle::move(point_t new_center)
 {
-  double offset_x = new_center.x_ - center_.x_;
-  double offset_y = new_center.y_ - center_.y_;
-  p1_.x_ += offset_x;
-  p1_.y_ += offset_y;
-  p2_.x_ += offset_x;
-  p2_.y_ += offset_y;
+  double offset_x = new_center.x - center_.x;
+  double offset_y = new_center.y - center_.y;
+  p1_.x += offset_x;
+  p1_.y += offset_y;
+  p2_.x += offset_x;
+  p2_.y += offset_y;
   center_ = new_center;
 }
 
 void strelyaev::Rectangle::move(double k)
 {
-  center_.x_ += k;
-  center_.y_ += k;
-  p1_.x_ += k;
-  p1_.y_ += k;
-  p2_.x_ += k;
-  p2_.y_ += k;
+  center_.x += k;
+  center_.y += k;
+  p1_.x += k;
+  p1_.y += k;
+  p2_.x += k;
+  p2_.y += k;
 }
 
 void strelyaev::Rectangle::move(double dx, double dy)
 {
-  center_.x_ += dx;
-  center_.y_ += dy;
-  p1_.x_ += dx;
-  p1_.y_ += dy;
-  p2_.x_ += dx;
-  p2_.y_ += dy;
+  center_.x += dx;
+  center_.y += dy;
+  p1_.x += dx;
+  p1_.y += dy;
+  p2_.x += dx;
+  p2_.y += dy;
 }
 
 void strelyaev::Rectangle::scale(double k)
 {
-  double width = std::abs(p1_.x_ - p2_.x_);
-  double height = std::abs(p1_.y_ - p2_.y_);
+  double width = std::abs(p1_.x - p2_.x);
+  double height = std::abs(p1_.y - p2_.y);
 
   double new_width = width * k;
   double new_height = height * k;
 
   double offset_x = (new_width - width) / 2.0;
   double offset_y = (new_height - height) / 2.0;
-  p1_.x_ -= offset_x;
-  p1_.y_ -= offset_y;
-  p2_.x_ += offset_x;
-  p2_.y_ += offset_y;
+  p1_.x -= offset_x;
+  p1_.y -= offset_y;
+  p2_.x += offset_x;
+  p2_.y += offset_y;
 }

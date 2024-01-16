@@ -81,26 +81,26 @@ strelyaev::Shape * strelyaev::getShape(const char string[])
 
 void strelyaev::isotrScale(Shape * shape, const point_t point, const double k)
 {
-  point_t start_pos = shape->getFrameRect().pos_;
+  point_t start_pos = shape->getFrameRect().pos;
   shape->move(point);
   shape->scale(k);
-  double x = (point.x_ - start_pos.x_) * k;
-  double y = (point.y_ - start_pos.y_) * k;
+  double x = (point.x - start_pos.x) * k;
+  double y = (point.y - start_pos.y) * k;
   shape->move(-x, -y);
 }
 
 void strelyaev::printCoords(Shape * shape)
 {
   rectangle_t rect = shape->getFrameRect();
-  double left_bottom_x = rect.pos_.x_ - rect.width_ / 2;
-  double left_bottom_y = rect.pos_.y_ - rect.height_ / 2;
-  double right_top_x = rect.pos_.x_ + rect.width_ / 2;
-  double right_top_y = rect.pos_.y_ + rect.height_ / 2;
+  double left_bottom_x = rect.pos.x - rect.width / 2;
+  double left_bottom_y = rect.pos.y - rect.height / 2;
+  double right_top_x = rect.pos.x + rect.width / 2;
+  double right_top_y = rect.pos.y + rect.height / 2;
   std::cout << shape->getArea() << " " << left_bottom_x << " ";
   std::cout << left_bottom_y << " " << right_top_x << " " << right_top_y << "\n";
 }
 
-void strelyaev::scaleShapes(Shape ** list, size_t current_index, const double arguments[3], const size_t max_shapes)
+void strelyaev::scaleShapes(Shape ** list, size_t current_index, const double arguments[3], const size_t maxshapes)
 {
   if (current_index == 0)
   {
@@ -111,7 +111,7 @@ void strelyaev::scaleShapes(Shape ** list, size_t current_index, const double ar
     throw std::logic_error("Invalid SCALE argument");
   }
   const point_t center = {arguments[0], arguments[1]};
-  for (size_t i = 0; i < max_shapes; ++i)
+  for (size_t i = 0; i < maxshapes; ++i)
   {
     if (list[i] == 0)
     {
@@ -123,9 +123,9 @@ void strelyaev::scaleShapes(Shape ** list, size_t current_index, const double ar
   }
 }
 
-void strelyaev::printErrors(const char ** errors, size_t max_shapes)
+void strelyaev::printErrors(const char ** errors, size_t maxshapes)
 {
-  for (size_t i = 0; i < max_shapes; i++)
+  for (size_t i = 0; i < maxshapes; i++)
   {
     if (errors[i] == nullptr)
     {
