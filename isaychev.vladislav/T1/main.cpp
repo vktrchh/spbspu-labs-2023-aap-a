@@ -41,7 +41,7 @@ int main()
   }
   std::cout << figuresCount << "\n";
   outputResults(Figures, figuresCount);
-  Figures[0]->move({2, 1});
+  Figures[0]->move(2.1, -3.5);
 //  Figures[0]->scale(2);
   outputResults(Figures, figuresCount);
   deleteFigures(Figures, figuresCount);

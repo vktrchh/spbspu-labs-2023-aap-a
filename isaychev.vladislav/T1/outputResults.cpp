@@ -1,4 +1,5 @@
 #include "outputResults.hpp"
+#include <cmath>
 #include <iomanip>
 
 void isaychev::outputResults(Shape ** Figures, size_t figuresCount)
@@ -13,10 +14,10 @@ void isaychev::outputResults(Shape ** Figures, size_t figuresCount)
   for (size_t j = 0; j < figuresCount; j++)
   {
     rectangle_t rect = Figures[j]->getFrameRect();
-    std::cout << std::setprecision(1) << rect.pos.x_ - (rect.width / 2) << " ";
-    std::cout << std::setprecision(1) << rect.pos.y_ - (rect.height / 2) << " ";
-    std::cout << std::setprecision(1) << rect.pos.x_ + (rect.width / 2) << " ";
-    std::cout << std::setprecision(1) << rect.pos.y_ + (rect.height / 2) << " ";
+    std::cout << std::setprecision(1) << std::round((rect.pos.x_ - (rect.width / 2)) * 10) / 10 << " ";
+    std::cout << std::setprecision(1) << std::round((rect.pos.y_ - (rect.height / 2)) * 10) / 10 << " ";
+    std::cout << std::setprecision(1) << std::round((rect.pos.x_ + (rect.width / 2)) * 10) / 10  << " ";
+    std::cout << std::setprecision(1) << std::round((rect.pos.y_ + (rect.height / 2)) * 10) / 10 << " ";
   }
   std::cout << "\n";
 }
