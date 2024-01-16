@@ -47,7 +47,6 @@ int main ()
         argument_string += pos;
       }
       const point_t center = {arguments[0], arguments[1]};
-      
       for (size_t i = 0; i < 1000; i++)
       {
         if (list[i] == 0)
