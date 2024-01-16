@@ -13,7 +13,7 @@ using namespace strelyaev;
 int main ()
 {
   bool marker = true;
-  size_t current_index = 1;
+  size_t current_index = 0;
   Shape ** list = new Shape * [1000]{};
   const char ** errors = new const char * [1000]{};
   size_t errors_count = 0;
@@ -21,9 +21,23 @@ int main ()
   std::cin >> std::noskipws;
   while (marker)
   {
-    char * string = inputString(std::cin);
+
+    char * string = nullptr;
+    try
+    {
+      string = inputString(std::cin);
+    }
+    catch (...)
+    {
+      continue;
+    }
     if (strncmp("SCALE", string, 5) == 0)
     {
+      if (current_index == 0)
+      {
+        std::cerr << "Nothing to scale";
+        return 1;
+      }
       double arguments[3]{};
       size_t pos = 0;
       const char * argument_string = string + 6;
@@ -33,8 +47,8 @@ int main ()
         argument_string += pos;
       }
       const point_t center = {arguments[0], arguments[1]};
-
-      for (size_t i = 1; i < 1000; i++)
+      
+      for (size_t i = 0; i < 1000; i++)
       {
         if (list[i] == 0)
         {
@@ -57,7 +71,7 @@ int main ()
         right_top_y = rect.pos_.y_ + rect.height_ / 2;
         std::cout << list[i]->getArea() << " " << left_bottom_x << " ";
         std::cout << left_bottom_y << " " << right_top_x << " " << right_top_y << "\n";
-        delete [] list[i];
+        delete list[i];
       }
       break;
     }
@@ -66,13 +80,16 @@ int main ()
     try
     {
       new_shape = getShape(string);
+      if (new_shape != nullptr)
+      {
+        list[current_index++] = new_shape;
+      }
     }
     catch(const std::invalid_argument & e)
     {
       errors[errors_count++] = e.what();
       continue;
     }
-    list[current_index++] = new_shape;
   }
   std::cin >> std::skipws;
 
@@ -82,7 +99,7 @@ int main ()
     {
       break;
     }
-    std::cout << errors[i] << "\n";
+    std::cerr << errors[i] << "\n";
   }
   delete [] list;
   delete [] errors;
