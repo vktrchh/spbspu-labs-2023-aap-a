@@ -3,13 +3,7 @@
 #include <stdexcept>
 #include <string>
 
-
-
-
-
-#include <iostream>
-
-Shape * inputRectangle(const char string[])
+strelyaev::Shape * strelyaev::inputRectangle(const char string[])
 {
   const char * coords_string = string + 10;
   double coords_array[4]{};
@@ -27,7 +21,8 @@ Shape * inputRectangle(const char string[])
   point_t p2 = {coords_array[2], coords_array[3]};
   return new Rectangle(p1, p2);
 }
-Shape * inputTriangle(const char string[])
+
+strelyaev::Shape * strelyaev::inputTriangle(const char string[])
 {
   const char * coords_string = string + 9;
   double coords_array[6]{};
@@ -47,7 +42,7 @@ Shape * inputTriangle(const char string[])
   return new Triangle(p1, p2, p3);
 }
 
-Shape * inputParallelogram(const char string[])
+strelyaev::Shape * strelyaev::inputParallelogram(const char string[])
 {
   const char * coords_string = string + 14;
   double coords_array[6]{};

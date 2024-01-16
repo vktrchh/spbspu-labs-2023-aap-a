@@ -4,7 +4,10 @@
 #include "rectangle.hpp"
 #include "triangle.hpp"
 #include "Parallelogram.hpp"
-Shape * inputRectangle(const char string[]);
-Shape * inputTriangle(const char string[]);
-Shape * inputParallelogram(const char string[]);
+namespace strelyaev
+{
+  Shape * inputRectangle(const char string[]);
+  Shape * inputTriangle(const char string[]);
+  Shape * inputParallelogram(const char string[]);
+}
 #endif

@@ -4,20 +4,20 @@
 #include "rectangle.hpp"
 #include <cmath>
 
-Rectangle::Rectangle(point_t p1, point_t p2):
+strelyaev::Rectangle::Rectangle(point_t p1, point_t p2):
   p1_(p1),
   p2_(p2),
   center_({(p1_.x_ + p2_.x_) / 2, (p1_.y_ + p2_.y_) / 2})
 {}
 
-double Rectangle::getArea() const
+double strelyaev::Rectangle::getArea() const
 {
   double height = std::abs(p1_.y_ - p2_.y_);
   double width = std::abs(p1_.x_ - p2_.x_);
   return height * width;
 }
 
-rectangle_t Rectangle::getFrameRect()
+strelyaev::rectangle_t strelyaev::Rectangle::getFrameRect()
 {
   double height = std::abs(p1_.y_ - p2_.y_);
   double width = std::abs(p1_.x_ - p2_.x_);
@@ -25,7 +25,7 @@ rectangle_t Rectangle::getFrameRect()
   return r1;
 }
 
-void Rectangle::move(point_t new_center)
+void strelyaev::Rectangle::move(point_t new_center)
 {
   double offset_x = new_center.x_ - center_.x_;
   double offset_y = new_center.y_ - center_.y_;
@@ -36,7 +36,7 @@ void Rectangle::move(point_t new_center)
   center_ = new_center;
 }
 
-void Rectangle::move(double k)
+void strelyaev::Rectangle::move(double k)
 {
   center_.x_ += k;
   center_.y_ += k;
@@ -46,7 +46,7 @@ void Rectangle::move(double k)
   p2_.y_ += k;
 }
 
-void Rectangle::move(double dx, double dy)
+void strelyaev::Rectangle::move(double dx, double dy)
 {
   center_.x_ += dx;
   center_.y_ += dy;
@@ -56,7 +56,7 @@ void Rectangle::move(double dx, double dy)
   p2_.y_ += dy;
 }
 
-void Rectangle::scale(double k)
+void strelyaev::Rectangle::scale(double k)
 {
   double width = std::abs(p1_.x_ - p2_.x_);
   double height = std::abs(p1_.y_ - p2_.y_);
