@@ -6,6 +6,7 @@ namespace strelyaev
   class Shape
   {
     public:
+    virtual ~Shape() = default;
      virtual double getArea() const = 0;
      virtual strelyaev::rectangle_t getFrameRect() = 0;
      virtual void move(point_t) = 0;
