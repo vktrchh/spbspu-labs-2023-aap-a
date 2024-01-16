@@ -96,7 +96,7 @@ void strelyaev::printCoords(Shape * shape)
   double left_bottom_y = rect.pos.y - rect.height / 2;
   double right_top_x = rect.pos.x + rect.width / 2;
   double right_top_y = rect.pos.y + rect.height / 2;
-  std::cout << "	" << shape->getArea() << " " << left_bottom_x << " ";
+  std::cout << "        " << shape->getArea() << " " << left_bottom_x << " ";
   std::cout << left_bottom_y << " " << right_top_x << " " << right_top_y << "\n";
 }
 
@@ -122,16 +122,3 @@ void strelyaev::scaleShapes(Shape ** list, size_t current_index, const double ar
     printCoords(list[i]);
   }
 }
-
-void strelyaev::printErrors(const char ** errors, size_t maxshapes)
-{
-  for (size_t i = 0; i < maxshapes; i++)
-  {
-    if (errors[i] == nullptr)
-    {
-      break;
-    }
-    std::cerr << errors[i] << "\n";
-  }
-}
-
