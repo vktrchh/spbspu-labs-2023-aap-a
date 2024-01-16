@@ -57,6 +57,7 @@ int main ()
         right_top_y = rect.pos_.y_ + rect.height_ / 2;
         std::cout << list[i]->getArea() << " " << left_bottom_x << " ";
         std::cout << left_bottom_y << " " << right_top_x << " " << right_top_y << "\n";
+        delete [] list[i];
       }
       break;
     }
