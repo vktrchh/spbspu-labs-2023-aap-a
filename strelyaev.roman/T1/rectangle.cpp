@@ -41,15 +41,7 @@ void strelyaev::Rectangle::move(point_t new_center)
   center_ = new_center;
 }
 
-void strelyaev::Rectangle::move(double k)
-{
-  center_.x += k;
-  center_.y += k;
-  p1_.x += k;
-  p1_.y += k;
-  p2_.x += k;
-  p2_.y += k;
-}
+
 
 void strelyaev::Rectangle::move(double dx, double dy)
 {

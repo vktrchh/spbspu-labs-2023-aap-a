@@ -3,19 +3,20 @@
 #include <algorithm>
 #include <stdexcept>
 
-
-
-#include <iostream>
 strelyaev::Triangle::Triangle(point_t p1, point_t p2, point_t p3):
   p1_(p1),
   p2_(p2),
-  p3_(p3)
+  p3_(p3),
+  center_({0, 0})
 {
   double determinant = p1_.x * (p2_.y - p3_.y) - p2_.x * (p1_.y - p3_.y) + p3_.x * (p1_.y - p2_.y);
   if (determinant == 0)
   {
     throw std::invalid_argument("Invalid points for TRIANGLE");
   }
+  double center_x = (p1_.x + p2_.x + p3_.x) / 3;
+  double center_y = (p1_.y + p2_.y + p3_.y) / 3;
+  center_ = {center_x, center_y};
 }
 
 double strelyaev::Triangle::getDistance(const point_t p1, const point_t p2) const
@@ -55,17 +56,16 @@ strelyaev::rectangle_t strelyaev::Triangle::getFrameRect() const
 
 void strelyaev::Triangle::move(const point_t point)
 {
-  double tr_center_x = (p1_.x + p2_.x + p3_.x) / 3;
-  double tr_center_y = (p1_.y + p2_.y + p3_.y) / 3;
-  point_t tr_center = {tr_center_x, tr_center_y};
-  double dx = point.x - tr_center.x;
-  double dy = point.y - tr_center.y;
+  double dx = point.x - center_.x;
+  double dy = point.y - center_.y;
   p1_.x += dx;
   p2_.x += dx;
   p3_.x += dx;
   p1_.y += dy;
   p2_.y += dy;
   p3_.y += dy;
+  center_.x = point.x;
+  center_.y = point.y;
 }
 
 
@@ -78,21 +78,17 @@ void strelyaev::Triangle::move(double dx, double dy)
   p1_.y += dy;
   p2_.y += dy;
   p3_.y += dy;
+  center_.x += dx;
+  center_.y += dy;
 }
 
 void strelyaev::Triangle::scale(double k)
 {
-  double tr_center_x = (p1_.x + p2_.x + p3_.x) / 3;
-  double tr_center_y = (p1_.y + p2_.y + p3_.y) / 3;
-  point_t tr_center = {0, 0};
-
-  p1_.x = tr_center.x + (p1_.x - tr_center.x) * k;
-  p1_.y = tr_center.y + (p1_.y - tr_center.y) * k;
-
-  p2_.x = tr_center.x + (p2_.x - tr_center.x) * k;
-  p2_.y = tr_center.y + (p2_.y - tr_center.y) * k;
-
-  p3_.x = tr_center.x + (p3_.x - tr_center.x) * k;
-  p3_.y = tr_center.y + (p3_.y - tr_center.y) * k;
+  p1_.x = center_.x + (p1_.x - center_.x) * k;
+  p1_.y = center_.y + (p1_.y - center_.y) * k;
+  p2_.x = center_.x + (p2_.x - center_.x) * k;
+  p2_.y = center_.y + (p2_.y - center_.y) * k;
+  p3_.x = center_.x + (p3_.x - center_.x) * k;
+  p3_.y = center_.y + (p3_.y - center_.y) * k;
 }
 

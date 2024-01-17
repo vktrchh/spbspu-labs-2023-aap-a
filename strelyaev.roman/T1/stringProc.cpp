@@ -3,7 +3,6 @@
 #include <string>
 #include <cstring>
 #include "inputShapes.hpp"
-#include <new>
 
 char * strelyaev::inputString(std::istream & in)
 {
@@ -81,23 +80,21 @@ strelyaev::Shape * strelyaev::getShape(const char string[])
 
 void strelyaev::isotrScale(Shape * shape, const point_t point, const double k)
 {
-  point_t start_pos = shape->getFrameRect().pos;
+  point_t start = shape->getFrameRect().pos;
   shape->move(point);
+  point_t moved = shape->getFrameRect().pos;
+  double dx = (moved.x - start.x) * k;
+  double dy = (moved.y - start.y) * k;
   shape->scale(k);
-  double x = (point.x - start_pos.x) * k;
-  double y = (point.y - start_pos.y) * k;
-  shape->move(-x, -y);
+  shape->move(-dx, -dy);
 }
 
-void strelyaev::printCoords(Shape * shape)
+void strelyaev::printErrors(const char ** errors, size_t maxshapes, std::ostream & err)
 {
-  rectangle_t rect = shape->getFrameRect();
-  double left_bottom_x = rect.pos.x - rect.width / 2;
-  double left_bottom_y = rect.pos.y - rect.height / 2;
-  double right_top_x = rect.pos.x + rect.width / 2;
-  double right_top_y = rect.pos.y + rect.height / 2;
-  std::cout << shape->getArea() << " " << left_bottom_x << " ";
-  std::cout << left_bottom_y << " " << right_top_x << " " << right_top_y << "\n";
+  for (size_t i = 0; i < maxshapes; i++)
+  {
+    err << errors[i] << "\n";
+  }
 }
 
 void strelyaev::outputShapes(std::ostream & out, Shape ** list, size_t current_index)
@@ -107,7 +104,9 @@ void strelyaev::outputShapes(std::ostream & out, Shape ** list, size_t current_i
   {
     sum += list[i]->getArea();
   }
-  out << sum << " ";
+  out << std::fixed;
+  out.precision(1);
+  out << sum;
 
   for (size_t i = 0; i < current_index; i++)
   {
@@ -116,10 +115,10 @@ void strelyaev::outputShapes(std::ostream & out, Shape ** list, size_t current_i
     double left_bottom_y = rect.pos.y - rect.height / 2;
     double right_top_x = rect.pos.x + rect.width / 2;
     double right_top_y = rect.pos.y + rect.height / 2;
-    out << left_bottom_x << ' ' << left_bottom_y << ' ';
-    out << right_top_x << ' ' << right_top_y;
+    out << " " << left_bottom_x << " " << left_bottom_y;
+    out << " " << right_top_x << " " << right_top_y;
   }
-  out << '\n';
+  out << "\n";
 }
 
 void strelyaev::scaleShapes(Shape ** list, size_t current_index, const double arguments[3], std::ostream & out)

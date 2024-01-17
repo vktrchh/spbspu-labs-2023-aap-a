@@ -21,8 +21,6 @@ int main ()
   size_t errors_count = 0;
 
   std::cin >> std::noskipws;
-  std::cout << std::fixed;
-  std::cout.precision(1);
   while (true)
   {
     if (!std::cin.good())
@@ -99,7 +97,7 @@ int main ()
     delete [] string;
   }
   std::cin >> std::skipws;
-
+  printErrors(errors, maxshapes, std::cerr);
   for (size_t i = 0; i < current_index; i++)
   {
     delete list[i];
