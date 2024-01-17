@@ -10,7 +10,6 @@ namespace strelyaev
      virtual double getArea() const;
      virtual rectangle_t getFrameRect() const;
      virtual void move(point_t);
-     virtual void move(double);
      virtual void move(double, double);
      virtual void scale(double);
     private:
@@ -18,7 +17,6 @@ namespace strelyaev
      point_t p1_;
      point_t p2_;
      point_t p3_;
-     point_t center_;
   };
 }
 #endif

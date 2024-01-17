@@ -35,61 +35,64 @@ double strelyaev::Triangle::getArea() const
 
 strelyaev::rectangle_t strelyaev::Triangle::getFrameRect() const
 {
-  double up = std::max({p1_.y, p2_.y, p3_.y});
-  double down = std::min({p1_.y, p2_.y, p3_.y});
-  double left = std::min({p1_.x, p2_.x, p3_.x});
-  double right = std::max({p1_.x, p2_.x, p3_.x});
-
-  double r_center_x = (right + left) / 2.0;
-  double r_center_y = (up + down) / 2.0;
+  double up = std::max(p1_.y, std::max(p2_.y, p3_.y));
+  double down = std::min(p1_.y, std::min(p2_.y, p3_.y));
+  double right = std::max(p1_.x, std::max(p2_.x, p3_.x));
+  double left = std::min(p1_.x, std::min(p2_.x, p3_.x));
+  point_t r_p1 = {left, down};
+  point_t r_p2 = {left, up};
+  point_t r_p3 = {right, up};
+  point_t r_p4 = {right, down};
+  double height = up - down;
+  double width = right - left;
+  double r_center_x = (r_p1.x + r_p2.x + r_p3.x + r_p4.x) / 4;
+  double r_center_y = (r_p1.y + r_p2.y + r_p3.y + r_p4.y) / 4;
   point_t r_center = {r_center_x, r_center_y};
+  rectangle_t rect = {width, height, r_center};
+  return rect;
 
-  rectangle_t r1 = {right - left, up - down, r_center};
-  return r1;
 }
 
-void strelyaev::Triangle::move(point_t new_center)
+void strelyaev::Triangle::move(const point_t point)
 {
-  double offset_x = new_center.x;
-  double offset_y = new_center.y;
-  p1_.x += offset_x;
-  p2_.x += offset_x;
-  p3_.x += offset_x;
-  p1_.y += offset_y;
-  p2_.y += offset_y;
-  p3_.y += offset_y;
+  double tr_center_x = (p1_.x + p2_.x + p3_.x) / 3;
+  double tr_center_y = (p1_.y + p2_.y + p3_.y) / 3;
+  point_t tr_center = {tr_center_x, tr_center_y};
+  double dx = point.x - tr_center.x;
+  double dy = point.y - tr_center.y;
+  p1_.x += dx;
+  p2_.x += dx;
+  p3_.x += dx;
+  p1_.y += dy;
+  p2_.y += dy;
+  p3_.y += dy;
 }
 
-void strelyaev::Triangle::move(double k)
-{
-  p1_.x += k;
-  p1_.y += k;
-  p2_.x += k;
-  p2_.y += k;
-  p3_.x += k;
-  p3_.y += k;
-}
+
 
 void strelyaev::Triangle::move(double dx, double dy)
 {
   p1_.x += dx;
-  p1_.y += dy;
   p2_.x += dx;
-  p2_.y += dy;
   p3_.x += dx;
+  p1_.y += dy;
+  p2_.y += dy;
   p3_.y += dy;
 }
 
 void strelyaev::Triangle::scale(double k)
 {
-  point_t center = {(p1_.x + p2_.x + p3_.x) / 3, (p1_.y + p2_.y + p3_.y) / 3};
-  p1_.x = center_.x + (p1_.x - center_.x) * k;
-  p1_.y = center_.y + (p1_.y - center_.y) * k;
+  double tr_center_x = (p1_.x + p2_.x + p3_.x) / 3;
+  double tr_center_y = (p1_.y + p2_.y + p3_.y) / 3;
+  point_t tr_center = {0, 0};
 
-  p2_.x = center_.x + (p2_.x - center_.x) * k;
-  p2_.y = center_.y + (p2_.y - center_.y) * k;
+  p1_.x = tr_center.x + (p1_.x - tr_center.x) * k;
+  p1_.y = tr_center.y + (p1_.y - tr_center.y) * k;
 
-  p3_.x = center_.x + (p3_.x - center_.x) * k;
-  p3_.y = center_.y + (p3_.y - center_.y) * k;
+  p2_.x = tr_center.x + (p2_.x - tr_center.x) * k;
+  p2_.y = tr_center.y + (p2_.y - tr_center.y) * k;
+
+  p3_.x = tr_center.x + (p3_.x - tr_center.x) * k;
+  p3_.y = tr_center.y + (p3_.y - tr_center.y) * k;
 }
 
