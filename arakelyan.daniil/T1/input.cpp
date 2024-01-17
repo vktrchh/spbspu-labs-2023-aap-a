@@ -47,13 +47,10 @@ arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &scalePoin
   double tempScaleK = 0;
 
   size_t usedSlotsForShapes = 0;
+  const size_t maxShapesCount = 1000;
 
   arakelyan::Shape ** shapes = nullptr;
-  shapes = new arakelyan::Shape * [1000];
-  for (size_t i = 0; i < 1000; i++)
-  {
-    shapes[i] = nullptr;
-  }
+  shapes = new arakelyan::Shape * [maxShapesCount]{nullptr};
 
   size_t arrSize = 20;
   size_t i = 0;
@@ -76,6 +73,11 @@ arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &scalePoin
     {
       freeMem(shapes, string, usedSlotsForShapes);
       throw std::logic_error("Input error");
+    }
+    if (!input.good())
+    {
+      freeMem(shapes, string, usedSlotsForShapes);
+      throw std::logic_error("Somethink wen wrong in input proc.!");
     }
 
     if (i == (arrSize - 1))
