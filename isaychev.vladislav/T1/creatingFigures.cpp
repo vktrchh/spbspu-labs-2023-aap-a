@@ -21,18 +21,6 @@ size_t isaychev::determineShape(const char * str)
   return 0;
 }
 
-void isaychev::parseFigureParams(char * str, const size_t numOfParameters, double * figureParameters)
-{
-  size_t pos = 0;
-  skipParameter(str);
-  char * str2 = str;
-  for(size_t j = 0; j < numOfParameters; ++j)
-  {
-    figureParameters[j] = std::stod(str2, &pos);
-    str2 += pos;
-  }
-}
-
 isaychev::Rectangle * isaychev::createRectangle(double * params)
 {
   if (params[0] >= params[2] || params[1] >= params[3])
@@ -93,19 +81,19 @@ isaychev::Shape * isaychev::createFigure(char * str)
   if (numOfCurrFigure == 1)
   {
     double parameters[4] = {};
-    parseFigureParams(str, numOfParameters, parameters);
+    parseParams(str, numOfParameters, parameters);
     currFigure = createRectangle(parameters);
   }
   else if (numOfCurrFigure == 2)
   {
     double parameters[3] = {};
-    parseFigureParams(str, numOfParameters, parameters);
+    parseParams(str, numOfParameters, parameters);
     currFigure = createCircle(parameters);
   }
   else if (numOfCurrFigure == 3)
   {
     double parameters[6] = {};
-    parseFigureParams(str, numOfParameters, parameters);
+    parseParams(str, numOfParameters, parameters);
     currFigure = createRegular(parameters);
   }
   return currFigure;

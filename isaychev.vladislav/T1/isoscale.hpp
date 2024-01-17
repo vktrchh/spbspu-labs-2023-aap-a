@@ -1,11 +1,12 @@
 #ifndef ISOSCALE_HPP
-#define ISPSCLAE_HPP
+#define ISPSCALE_HPP
 
 #include "shape.hpp"
+#include <cstdlib>
 
 namespace isaychev
 {
-  void isoscale(const point_t & center, const double coeff, Shape * figure);
+  void isoscale(char * str, Shape ** figures, const size_t numOfFigures);
 }
 
 #endif

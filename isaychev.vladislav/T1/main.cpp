@@ -40,11 +40,8 @@ int main()
     }
     delete [] currDesc;
   }
-  std::cout << figuresCount << "\n";
   outputResults(Figures, figuresCount);
-//  Figures[0]->move(2.1, -3.5);
-//  Figures[0]->scale(2);
-  isoscale({1.0, 1.0}, 2.0, Figures[0]);
+  isoscale(currDesc, Figures, figuresCount);
   outputResults(Figures, figuresCount);
   deleteFigures(Figures, figuresCount);
   delete [] currDesc;

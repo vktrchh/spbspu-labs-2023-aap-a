@@ -1,5 +1,6 @@
 #include "stringManipulations.hpp"
 #include <utility>
+#include <string>
 
 int isaychev::checkString(const char * string, const char * strForCheck)
 {
@@ -46,6 +47,18 @@ void isaychev::skipParameter(char * str)
       k++;
     }
     str[k] = '\0';
+  }
+}
+
+void isaychev::parseParams(char * str, const size_t numOfParameters, double * parameters)
+{
+  size_t pos = 0;
+  skipParameter(str);
+  char * str2 = str;
+  for(size_t j = 0; j < numOfParameters; ++j)
+  {
+    parameters[j] = std::stod(str2, &pos);
+    str2 += pos;
   }
 }
 
