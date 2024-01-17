@@ -19,7 +19,7 @@ int main ()
   Shape ** list = new Shape * [maxshapes]{nullptr};
 
   size_t current_error = 0;
-  const char * errors[maxshapes] = {};
+  const char * errors[maxshapes]{nullptr};
 
   std::cin >> std::noskipws;
   while (true)
@@ -89,8 +89,15 @@ int main ()
     }
     catch(const std::invalid_argument & e)
     {
-      errors[current_error] = e.what();
-      current_error++;
+      const char * error_message = e.what();
+      if (error_message)
+      {
+        errors[current_error++] = error_message;
+      }
+      else
+      {
+        errors[current_error++] = "Unknow error";
+      }
       delete new_shape;
     }
     delete [] string;
