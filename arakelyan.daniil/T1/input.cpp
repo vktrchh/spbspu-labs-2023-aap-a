@@ -27,9 +27,9 @@ void arakelyan::inputScaleParam(const char *string, point_t &point, double &k)
   k = arrayOfScaleData[2];
 }
 
-void arakelyan::freeMem(Shape **shapes, const char *string, const size_t shapescount)
+void arakelyan::freeMem(Shape **shapes, const char *string, const size_t shapesCount)
 {
-  for (size_t i = 0; i < 1000; i++)
+  for (size_t i = 0; i < shapesCount; i++)
   {
     delete shapes[i];
   }
