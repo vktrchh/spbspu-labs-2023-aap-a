@@ -5,14 +5,14 @@
 #include <iostream>
 #include "stringManipulations.hpp"
 
-size_t isaychev::determineShape(const char * str)
+size_t determineShape(const char * str)
 {
   constexpr size_t numOfFigures = 3;
   const char * figureNames[numOfFigures] = {"RECTANGLE", "CIRCLE", "REGULAR"};
   size_t numOfCurrFigure = 1;
   for (size_t i = 0; i < numOfFigures; i++)
   {
-    if (checkString(str, figureNames[i]) == 1)
+    if (isaychev::checkString(str, figureNames[i]) == 1)
     {
       return numOfCurrFigure;
     }
@@ -21,40 +21,40 @@ size_t isaychev::determineShape(const char * str)
   return 0;
 }
 
-isaychev::Rectangle * isaychev::createRectangle(double * params)
+isaychev::Rectangle * createRectangle(const double * params)
 {
   if (params[0] >= params[2] || params[1] >= params[3])
   {
     throw std::logic_error("Incorrect rectangle parameters");
   }
-  point_t bot = {params[0], params[1]};
-  point_t top = {params[2], params[3]};
-  Rectangle * rec = new Rectangle(bot, top);
+  isaychev::point_t bot = {params[0], params[1]};
+  isaychev::point_t top = {params[2], params[3]};
+  isaychev::Rectangle * rec = new isaychev::Rectangle(bot, top);
   return rec;
 }
 
-isaychev::Circle * isaychev::createCircle(double * params)
+isaychev::Circle * createCircle(const double * params)
 {
   if (params[2] < 0.0)
   {
     throw std::logic_error("Incorrect circle parameters");
   }
   double rad = params[2];
-  point_t cent = {params[0], params[1]};
-  Circle * circle = new Circle(cent, rad);
-  return circle;
+  isaychev::point_t cent = {params[0], params[1]};
+  isaychev::Circle * circ = new isaychev::Circle(cent, rad);
+  return circ;
 }
 
-isaychev::Regular * isaychev::createRegular(double * params)
+isaychev::Regular * createRegular(const double * params)
 {
-  point_t p1 = {params[0], params[1]};
-  point_t p2 = {params[2], params[3]};
-  point_t p3 = {params[4], params[5]};
+  isaychev::point_t p1 = {params[0], params[1]};
+  isaychev::point_t p2 = {params[2], params[3]};
+  isaychev::point_t p3 = {params[4], params[5]};
   double side1 = 0.0, side2 = 0.0, bottom = 0.0;
   side1 = std::sqrt((p1.x_ - p2.x_) * (p1.x_ - p2.x_) + (p1.y_ - p2.y_) * (p1.y_ - p2.y_));
   side2 = std::sqrt((p1.x_ - p3.x_) * (p1.x_ - p3.x_) + (p1.y_ - p3.y_) * (p1.y_ - p3.y_));
   bottom = std::sqrt((p2.x_ - p3.x_) * (p2.x_ - p3.x_) + (p2.y_ - p3.y_) * (p2.y_ - p3.y_));
-  Regular * reg = nullptr;
+  isaychev::Regular * reg = nullptr;
   double hyp11 = std::round((side1 * side1 * 10000)) / 10000;
   double hyp12 = std::round((side2 * side2 + bottom * bottom) * 10000) / 10000;
   double hyp21 = std::round((side2 * side2) * 10000) / 10000;
@@ -63,11 +63,15 @@ isaychev::Regular * isaychev::createRegular(double * params)
   {
     if (hyp11 == hyp12)
     {
-      reg = new Regular(p1, p3, p2);
+      reg = new isaychev::Regular(p1, p3, p2);
     }
     else if (hyp21 == hyp22)
     {
-      reg = new Regular(p1, p2, p3);
+      reg = new isaychev::Regular(p1, p2, p3);
+    }
+    else
+    {
+      throw std::logic_error("Incorrect regular parameters");
     }
   }
   return reg;
@@ -78,23 +82,34 @@ isaychev::Shape * isaychev::createFigure(char * str)
   size_t numOfCurrFigure = determineShape(str);
   size_t numOfParameters = countWSpaces(str);
   isaychev::Shape * currFigure = nullptr;
-  if (numOfCurrFigure == 1)
+  try
   {
-    double parameters[4] = {};
-    parseParams(str, numOfParameters, parameters);
-    currFigure = createRectangle(parameters);
+    if (numOfCurrFigure == 1)
+    {
+      double parameters[4] = {};
+      parseParams(str, numOfParameters, parameters);
+      currFigure = createRectangle(parameters);
+    }
+    else if (numOfCurrFigure == 2)
+    {
+      double parameters[3] = {};
+      parseParams(str, numOfParameters, parameters);
+      currFigure = createCircle(parameters);
+    }
+    else if (numOfCurrFigure == 3)
+    {
+      double parameters[6] = {};
+      parseParams(str, numOfParameters, parameters);
+      currFigure = createRegular(parameters);
+    }
   }
-  else if (numOfCurrFigure == 2)
+  catch (const std::bad_alloc &)
   {
-    double parameters[3] = {};
-    parseParams(str, numOfParameters, parameters);
-    currFigure = createCircle(parameters);
+    throw;
   }
-  else if (numOfCurrFigure == 3)
+  catch (const std::logic_error &)
   {
-    double parameters[6] = {};
-    parseParams(str, numOfParameters, parameters);
-    currFigure = createRegular(parameters);
+    throw;
   }
   return currFigure;
 }

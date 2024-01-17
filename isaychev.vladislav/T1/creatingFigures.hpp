@@ -8,10 +8,6 @@
 
 namespace isaychev
 {
-  size_t determineShape(const char * str);
-  Rectangle * createRectangle(double * params);
-  Circle * createCircle(double * params);
-  Regular * createRegular(double * params);
   Shape * createFigure(char * str);
 }
 
