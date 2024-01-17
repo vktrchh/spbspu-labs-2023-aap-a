@@ -97,7 +97,7 @@ int main ()
     delete [] string;
   }
   std::cin >> std::skipws;
-  printErrors(errors, maxshapes, std::cerr);
+  printErrors(errors, errors_count, std::cerr);
   for (size_t i = 0; i < current_index; i++)
   {
     delete list[i];

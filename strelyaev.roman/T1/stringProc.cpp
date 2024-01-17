@@ -89,9 +89,9 @@ void strelyaev::isotrScale(Shape * shape, const point_t point, const double k)
   shape->move(-dx, -dy);
 }
 
-void strelyaev::printErrors(const char ** errors, size_t maxshapes, std::ostream & err)
+void strelyaev::printErrors(const char ** errors, size_t errors_count, std::ostream & err)
 {
-  for (size_t i = 0; i < maxshapes - 1; i++)
+  for (size_t i = 0; i < errors_count - 1; i++)
   {
     err << errors[i] << "\n";
   }
