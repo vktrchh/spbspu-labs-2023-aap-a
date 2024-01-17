@@ -17,8 +17,6 @@ int main ()
   char * string = nullptr;
   size_t current_index = 0;
   Shape ** list = new Shape * [maxshapes]{nullptr};
-  const char * errors[maxshapes]{nullptr};
-  size_t errors_count = 0;
 
   std::cin >> std::noskipws;
   while (true)
@@ -88,13 +86,11 @@ int main ()
     }
     catch(const std::invalid_argument & e)
     {
-      errors[errors_count++] = e.what();
       delete new_shape;
     }
     delete [] string;
   }
   std::cin >> std::skipws;
-  printErrors(errors, errors_count, std::cerr);
   for (size_t i = 0; i < current_index; i++)
   {
     delete list[i];
