@@ -27,16 +27,21 @@ double strelyaev::Parallelogram::getArea() const
 
 strelyaev::rectangle_t strelyaev::Parallelogram::getFrameRect() const
 {
-  double min_x = std::min({p1_.x, p2_.x, p3_.x, p4_.x});
-  double max_x = std::max({p1_.x, p2_.x, p3_.x, p4_.x});
-  double min_y = std::min({p1_.y, p2_.y, p3_.y, p4_.y});
-  double max_y = std::max({p1_.y, p2_.y, p3_.y, p4_.y});
-
-  double width = max_x - min_x;
-  double height = max_y - min_y;
-
-  rectangle_t r1 = {width, height, {(max_x + min_x) / 2, (max_y + min_y) / 2}};
-  return r1;
+  double up = std::max(p1_.y, std::max(p2_.y, p3_.y));
+  double down = std::min(p1_.y, std::min(p2_.y, p3_.y));
+  double right = std::max(p1_.x, std::max(p2_.x, p3_.x));
+  double left = std::min(p1_.x, std::min(p2_.x, p3_.x));
+  point_t r_p1 = {left, down};
+  point_t r_p2 = {left, up};
+  point_t r_p3 = {right, up};
+  point_t r_p4 = {right, down};
+  double height = up - down;
+  double width = right - left;
+  double r_center_x = (r_p1.x + r_p2.x + r_p3.x + r_p4.x) / 4;
+  double r_center_y = (r_p1.y + r_p2.y + r_p3.y + r_p4.y) / 4;
+  point_t r_center = {r_center_x, r_center_y};
+  rectangle_t rect = {width, height, r_center};
+  return rect;
 }
 void strelyaev::Parallelogram::move(point_t new_center)
 {
