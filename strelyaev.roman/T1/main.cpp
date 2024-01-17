@@ -17,16 +17,14 @@ int main ()
   char * string = nullptr;
   size_t current_index = 0;
   Shape ** list = new Shape * [maxshapes]{nullptr};
-
-  size_t current_error = 0;
-  const char * errors[maxshapes]{nullptr};
+  bool errors = false;
 
   std::cin >> std::noskipws;
   while (true)
   {
     if (!std::cin.good())
     {
-      std::cerr << "Something went wrong with input\n";
+      std::cerr << "Something went wrong with the input\n";
       for (size_t i = 0; i < current_index; i++)
       {
         delete list[i];
@@ -89,23 +87,15 @@ int main ()
     }
     catch(const std::invalid_argument & e)
     {
-      const char * error_message = e.what();
-      if (error_message)
-      {
-        errors[current_error++] = error_message;
-      }
-      else
-      {
-        errors[current_error++] = "Unknow error";
-      }
       delete new_shape;
+      errors = true;
     }
     delete [] string;
   }
   std::cin >> std::skipws;
-  for (size_t i = 0; i < current_error; i++)
+  if (errors)
   {
-    std::cerr << errors[i] << "\n";
+    std::cerr << "Some shapes are incorrect!\n";
   }
   for (size_t i = 0; i < current_index; i++)
   {
