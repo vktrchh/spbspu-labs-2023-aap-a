@@ -1,13 +1,13 @@
-#include <exception>
 #include <iostream>
 #include <stdexcept>
+#include <cstring>
 #include "base-types.hpp"
 #include "input.hpp"
+#include "shape-creation.hpp"
 #include "shape.hpp"
 #include "rectangle.hpp"
 #include "diamond.hpp"
 #include "parallelogram.hpp"
-#include "shape-creation.hpp"
 
 int main()
 {

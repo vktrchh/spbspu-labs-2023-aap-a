@@ -1,4 +1,3 @@
-#include <cstring>
 #include <stdexcept>
 #include "input.hpp"
 #include "shape-creation.hpp"
@@ -25,19 +24,6 @@ void arakelyan::inputScaleParam(const char *string, point_t &point, double &k)
   point.x_ = arrayOfScaleData[0];
   point.y_ = arrayOfScaleData[1];
   k = arrayOfScaleData[2];
-}
-
-void arakelyan::freeMem(Shape **shapes, const char *string, const size_t shapesCount)
-{
-  for (size_t i = 0; i < shapesCount; i++)
-  {
-    delete shapes[i];
-  }
-  delete [] shapes;
-  if (string != nullptr)
-  {
-    delete [] string;
-  }
 }
 
 char * arakelyan::inputString(std::istream &input)
