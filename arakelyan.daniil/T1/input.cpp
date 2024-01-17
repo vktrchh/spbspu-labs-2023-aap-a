@@ -40,110 +40,70 @@ void arakelyan::freeMem(Shape **shapes, const char *string, const size_t shapesC
   }
 }
 
-arakelyan::Shape ** arakelyan::inputData(std::istream &input, point_t &scalePoint, double &scaleK, size_t &resShapesCount)
+char * arakelyan::inputString(std::istream &input)
 {
+  size_t arrSize = 10;
 
-  point_t tempScalePoint = {0.0, 0.0};
-  double tempScaleK = 0;
-
-  size_t usedSlotsForShapes = 0;
-  const size_t maxShapesCount = 1000;
-
-  arakelyan::Shape ** shapes = nullptr;
-  shapes = new arakelyan::Shape * [maxShapesCount]{nullptr};
-
-  size_t arrSize = 20;
   size_t i = 0;
+  char sym = 0;
 
-  char symb = 0;
-  const char * targetWordScale = "SCALE";
-
-  char * string = new char[arrSize];
+  char * string = nullptr;
+  string = new char[arrSize];
   if (string == nullptr)
   {
-    freeMem(shapes, string, usedSlotsForShapes);
     throw std::bad_alloc();
   }
 
   input >> std::noskipws;
-
-  while (input >> symb)
+  while (input >> sym)
   {
     if (!input)
     {
-      freeMem(shapes, string, usedSlotsForShapes);
-      throw std::logic_error("Input error");
-    }
-    if (!input.good())
-    {
-      freeMem(shapes, string, usedSlotsForShapes);
-      throw std::logic_error("Somethink wen wrong in input proc.!");
+      delete [] string;
+      throw std::logic_error("Input error!");
     }
 
     if (i == (arrSize - 1))
     {
       arrSize *= 2;
 
-      char * tempBuf = new char[arrSize];
-      if (tempBuf == nullptr)
+      char * tempBuffer = nullptr;
+
+      tempBuffer = new char[arrSize];
+      if (tempBuffer == nullptr)
       {
-        freeMem(shapes, string, usedSlotsForShapes);
+        delete [] string;
         throw std::bad_alloc();
       }
 
       for (size_t j = 0; j < i; j++)
       {
-        tempBuf[j] = string[j];
+        tempBuffer[j] = string[j];
       }
 
-      delete[] string;
-      string = tempBuf;
+      delete [] string;
+
+      string = tempBuffer;
     }
 
-    if (symb == '\n' && i == 0)
+
+    string[i] = sym;
+    if (sym == '\n' && i == 0)
     {
       continue;
     }
-
-    string[i] = symb;
-    i++;
-
-    if ((symb == '\n') && (i != 1))
+    else if (sym == '\n' && i != 0)
     {
-      if (usedSlotsForShapes > 1000)
-      {
-        freeMem(shapes, string, usedSlotsForShapes);
-        throw std::logic_error("Too many shapes obj!");
-      }
-      string[i - 1] = '\0';
-
-      const char * foundScale = std::strstr(string, targetWordScale);
-      if (foundScale != nullptr)
-      {
-        inputScaleParam(string, tempScalePoint, tempScaleK);
-        scalePoint = tempScalePoint;
-        scaleK = tempScaleK;
-        resShapesCount = usedSlotsForShapes;
-        delete [] string;
-        return shapes;
-      }
-
-      try
-      {
-        shapes[usedSlotsForShapes] = defineAndCreateShape(string);
-      }
-      catch (const std::logic_error & e)
-      {
-        freeMem(shapes, string, usedSlotsForShapes);
-        throw std::logic_error(e.what());
-      }
-      usedSlotsForShapes++;
-
-      i = 0;
+      break;
     }
+    i++;
   }
-
-  delete [] string;
+  string[i] = '\0';
+  if (*string == EOF)
+  {
+    delete [] string;
+    throw std::logic_error("EOF here!");
+  }
   input >> std::skipws;
-  return nullptr;
+  return string;
 }
