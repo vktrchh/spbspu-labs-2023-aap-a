@@ -9,6 +9,8 @@
 
 int main()
 {
+  point_t point = {0.0, 0.0};
+  double k = 0;
   using namespace arakelyan;
   Shape ** myShapes = nullptr;
   try
@@ -28,6 +30,16 @@ int main()
     return 1;
   }
 
+  rectangle_t data = myShapes[0]->getFrameRect();
+  std::cout << "width = " << data.width_ << "; height = " <<  data.height_ << "\n";
+  // for (size_t i = 0; i < shapesCount; i++)
+  // {
+  //   std::cout << myShapes[i]->getArea() << "\n";
+  // }
+  // for (size_t j = 0; j < shapesCount; j++)
+  // {
+  //   delete [] myShapes[j];
+  // }
   delete [] myShapes;
   return 0;
 }
