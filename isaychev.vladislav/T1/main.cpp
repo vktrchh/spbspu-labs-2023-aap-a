@@ -3,6 +3,7 @@
 #include "stringManipulations.hpp"
 #include "inputString.hpp"
 #include "outputResults.hpp"
+#include "isoscale.hpp"
 
 int main()
 {
@@ -42,7 +43,8 @@ int main()
   std::cout << figuresCount << "\n";
   outputResults(Figures, figuresCount);
 //  Figures[0]->move(2.1, -3.5);
-  Figures[0]->scale(2);
+//  Figures[0]->scale(2);
+  isoscale({1.0, 1.0}, 2.0, Figures[0]);
   outputResults(Figures, figuresCount);
   deleteFigures(Figures, figuresCount);
   delete [] currDesc;
