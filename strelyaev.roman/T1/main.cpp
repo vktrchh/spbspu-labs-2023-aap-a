@@ -17,7 +17,7 @@ int main ()
   char * string = nullptr;
   size_t current_index = 0;
   Shape ** list = new Shape * [maxshapes]{nullptr};
-  const char ** errors = new const char * [maxshapes]{nullptr};
+  const char * errors[maxshapes]{nullptr};
   size_t errors_count = 0;
 
   std::cin >> std::noskipws;
@@ -26,7 +26,6 @@ int main ()
     if (!std::cin.good())
     {
       std::cerr << "Something went wrong with input\n";
-      delete [] errors;
       for (size_t i = 0; i < current_index; i++)
       {
         delete list[i];
@@ -43,7 +42,6 @@ int main ()
     {
       std::cerr << e.what() << "\n";
       delete [] string;
-      delete [] errors;
       for (size_t i = 0; i < current_index; i++)
       {
         delete list[i];
@@ -76,7 +74,6 @@ int main ()
           delete list[i];
         }
         delete [] list;
-        delete [] errors;
         return 2;
       }
     }
@@ -103,5 +100,4 @@ int main ()
     delete list[i];
   }
   delete [] list;
-  delete [] errors;
 }
