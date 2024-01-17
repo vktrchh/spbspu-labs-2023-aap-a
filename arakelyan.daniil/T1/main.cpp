@@ -21,7 +21,7 @@ int main()
   const char * targetWordScale = "SCALE";
 
   char * string = nullptr;
-  
+
   while (true)
   {
     try
