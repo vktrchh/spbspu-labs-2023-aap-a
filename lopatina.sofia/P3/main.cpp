@@ -4,6 +4,7 @@
 //-----
 #include <cstring>
 //-----
+#include <limits>
 
 char * expandArray(char * arr, size_t size)
 {
@@ -15,6 +16,32 @@ char * expandArray(char * arr, size_t size)
   }
   return new_arr;
 }
+//----------------
+size_t defineLen(const char * str)
+{
+  size_t count = 0;
+  while (str[count++] != 0)
+  {
+  }
+  return count;
+}
+
+size_t countNumbers(const char * str)
+{
+  size_t i = 0, count = 0;
+  while (str[i] != 0)
+  {
+    if (isdigit(str[i]))
+    {
+      count += 1;
+    }
+    i += 1;
+  }
+  return count;
+}
+
+//---------------------
+
 
 char * excludeCommon(char * first_str, const char * second_str, size_t size1, const size_t size2)
 {
@@ -46,9 +73,14 @@ char * excludeCommon(char * first_str, const char * second_str, size_t size1, co
   return result;
 }
 
-char * addNumbers(char * first_str, const char * second_str, size_t size1, const size_t size2)
+char * addNumbers(char * first_str, const char * second_str, size_t size1, size_t size2)
 {
-  char * result = new char[size1 + size2];
+  size_t num_dig = countNumbers(second_str);
+  if (num_dig == 0)
+  {
+    return first_str;
+  }
+  char * result = new char[size1 + num_dig];
   size_t last = 0;
   for (size_t i = 0; i < size1; ++i)
   {
@@ -116,7 +148,7 @@ int main()
   {
     // вариант EXC-SND
     const char * string1 = "abc";
-    const size_t size1 = 3;
+    const size_t size1 = defineLen(string1);
     char * result1 = excludeCommon(input, string1, amount, size1);
     std::cout << "EXC-SND: " << result1 << '\n';
     delete [] result1;
@@ -133,7 +165,7 @@ int main()
   {
     // вариант DGT-SND
     const char * string2 = "g1h2k";
-    const size_t size2 = 5;
+    const size_t size2 = defineLen(string2);
     char * result2 = addNumbers(input, string2, amount, size2);
     std::cout << "DGT-SND: " << result2 << '\n';
     delete [] result2;
@@ -146,5 +178,7 @@ int main()
     return 1;
   }
 
+  std::cout << "strLen: " << defineLen("aaa") << '\n';
   delete [] input;
+  return 0;
 }
