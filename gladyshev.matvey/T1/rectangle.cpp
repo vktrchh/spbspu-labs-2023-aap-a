@@ -40,7 +40,7 @@ gladyshev::rectangle_t gladyshev::Rectangle::getFrameRect() const
 void gladyshev::Rectangle::scale(const point_t& p4, double factor)
 {
   double posfinishx = getFrameRect().pos.x;
-  double posfinishy = getFrameRect().pos.x;
+  double posfinishy = getFrameRect().pos.y;
   move(p4);
   rectangle_t frameRect = getFrameRect();
   p1FrameRec_.x = p1FrameRec_.x - (frameRect.pos.x - p1FrameRec_.x) * (factor - 1);

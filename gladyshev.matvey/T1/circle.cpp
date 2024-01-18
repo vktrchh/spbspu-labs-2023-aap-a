@@ -35,7 +35,7 @@ void gladyshev::Circle::move(const point_t& newPos)
 void gladyshev::Circle::scale(const point_t& p4, double factor)
 {
   double posfinishx = getFrameRect().pos.x;
-  double posfinishy = getFrameRect().pos.x;
+  double posfinishy = getFrameRect().pos.y;
   move(p4);
   rectangle_t frameRect = getFrameRect();
   p1FrameCir_.x = p1FrameCir_.x - (frameRect.pos.x - p1FrameCir_.x) * (factor - 1);
