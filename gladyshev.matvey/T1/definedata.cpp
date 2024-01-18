@@ -111,8 +111,8 @@ namespace gladyshev
             return inputParallelogram(string);
           case 2:
             return inputCircle(string);
-         }
-       }
-     }
-   }
+        }
+      }
+    }
+  }
 }
