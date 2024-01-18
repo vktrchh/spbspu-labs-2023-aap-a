@@ -42,10 +42,6 @@ namespace gladyshev
     {
       throw std::logic_error("too many arguments for scale");
     }
-    if (dataScale[2] <= 0)
-    {
-      throw std::logic_error("factor of scale must be positive");
-    }
     pos = { dataScale[0], dataScale[1] };
     factor = dataScale[2];
   }
