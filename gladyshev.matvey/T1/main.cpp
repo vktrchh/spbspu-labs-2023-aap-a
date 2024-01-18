@@ -16,7 +16,7 @@ int main()
   try
   {
     makeString(std::cin, shapes, incorrectFigure, unsupportedFigure, pos, counter, factor);
-    outData(std::cout, shapes, incorrectFigure, unsupportedFigure, counter, pos, factor);
+    outData(std::cout, shapes, counter, pos, factor);
   }
   catch (const std::invalid_argument& e)
   {

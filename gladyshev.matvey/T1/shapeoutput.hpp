@@ -9,7 +9,7 @@
 
 namespace gladyshev
 {
-  std::ostream& outData(std::ostream& out, Shape ** shapes, bool incorFig, bool unsupFig, size_t counter, point_t pos, double factor);
+  std::ostream& outData(std::ostream& out, Shape ** shapes, size_t counter, point_t pos, double factor);
 }
 
 #endif
