@@ -43,17 +43,6 @@ namespace gladyshev
         }
       }
     }
-    out << "\n";
-    if (unsupFig)
-    {
-      out << "The presence of an incorrect figure";
-      out << "\n";
-    }
-    if (incorFig)
-    {
-      out << "Errors in the description of supported figures";
-      out << "\n";
-    }
     return out;
   }
 }

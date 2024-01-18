@@ -38,6 +38,14 @@ int main()
     std::cerr << "Error in memory allocating" << "\n";
     return 2;
   }
+  if (incorrectFigure)
+  {
+    std::cerr << "Errors in the description of supported figures\n";
+  }
+  if (unsupportedFigure)
+  {
+    std::cerr << "The presence of an incorrect figure\n";
+  }
   freeMemory(shapes, counter);
   return 0;
 }
