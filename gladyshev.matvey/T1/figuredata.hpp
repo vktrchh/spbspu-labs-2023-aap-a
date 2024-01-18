@@ -1,6 +1,5 @@
 #ifndef FIGUREDATA_HPP
-#define FIGUREDATA_HPP
-
+#define FIGUREDATA_H
 #include <iostream>
 
 namespace gladyshev

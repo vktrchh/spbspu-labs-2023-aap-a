@@ -1,6 +1,5 @@
 #ifndef ISOSCALE_HPP
-#define ISOSCALE_HPP
-
+#define ISOSCALE_HP
 #include <cstddef>
 
 #include "figuredata.hpp"

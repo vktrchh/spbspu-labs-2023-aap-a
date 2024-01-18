@@ -1,5 +1,5 @@
-#ifndef INCREASEARRAY_HPP
-#define INCREASEARRAY_HPP
+#ifndef DEFINEDATA_HPP
+#define DEFINEDATA_HPP
 
 #include <cstddef>
 
@@ -7,7 +7,10 @@
 
 namespace gladyshev
 {
-  void increaseArray(double * arr, size_t& counter, rectangle_t frame);
+  Shape * inputRectangle(const char * string);
+  void inputScale(const char * string, point_t& pos, double& factor);
+  Shape * inputCircle(const char * string)
+  Shape * inputParallelogram(const char * string)
 }
 
 #endif

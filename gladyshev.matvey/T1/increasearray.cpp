@@ -1,5 +1,4 @@
-#include "increasearray.hpp"
-
+#include "increasearray.hp
 namespace gladyshev
 {
   void increaseArray(double * arr, size_t& counter, rectangle_t frame)
