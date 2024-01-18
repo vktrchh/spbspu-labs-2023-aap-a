@@ -13,7 +13,7 @@ char * arakelyan::inputArray(std::istream &input)
   mainBuffer = new char[arrSize];
   if (mainBuffer == nullptr)
   {
-    throw std::bad_alloc();
+    throw std::logic_error("String was not created!");
   }
 
   input >> std::noskipws;
@@ -35,7 +35,7 @@ char * arakelyan::inputArray(std::istream &input)
       if (tempBuffer == nullptr)
       {
         delete [] mainBuffer;
-        throw std::bad_alloc();
+        throw std::logic_error("TempString was not created!");
       }
 
       for (size_t j = 0; j < i; j++)

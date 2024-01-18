@@ -18,11 +18,6 @@ int main()
     std::cerr << "Error: " << e.what() << "\n";
     return 1;
   }
-  catch (const std::bad_alloc & e)
-  {
-    std::cerr << "Memory cannot be allocated in input process!\n";
-    return 1;
-  }
 
   using namespace arakelyan;
   size_t answerTaskOne = countOfdifferentLetters(inputString);
