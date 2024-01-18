@@ -43,6 +43,7 @@ namespace gladyshev
         }
       }
     }
+    out << "\n";
     return out;
   }
 }
