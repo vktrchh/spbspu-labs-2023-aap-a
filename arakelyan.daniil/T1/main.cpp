@@ -2,7 +2,7 @@
 #include <stdexcept>
 #include <cstring>
 #include "base-types.hpp"
-#include "input.hpp"
+#include "inputOperations.hpp"
 #include "shape-creation.hpp"
 #include "shape.hpp"
 #include "rectangle.hpp"
@@ -63,7 +63,10 @@ int main()
         std::cerr << "Error: " << e.what() << "\n";
         return 1;
       }
-      currentShapesCount++;
+      if (myShapes[currentShapesCount] != nullptr)
+      {
+        currentShapesCount++;
+      }
     }
     delete [] string;
   }
@@ -73,6 +76,8 @@ int main()
     std::cout << myShapes[i]->getArea() << "\n";
   }
   std::cout << "x: " << scalePoint.x_ << "; y: " << scalePoint.y_ << "; k: " << scaleK << "\n";
+
+
   for (size_t i = 0; i < currentShapesCount; i++)
   {
     delete myShapes[i];
