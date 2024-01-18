@@ -72,7 +72,20 @@ int main()
     delete [] string;
   }
 
-  scaleFunction(myShapes, currentShapesCount, scalePoint, scaleK);
+  try
+  {
+    scaleFunction(myShapes, currentShapesCount, scalePoint, scaleK);
+  }
+  catch (const std::logic_error & e)
+  {
+    for (size_t i = 0; i < currentShapesCount; i++)
+    {
+      delete myShapes[i];
+    }
+    delete [] myShapes;
+    std::cout << "Error: " << e.what() << "\n";
+    return 1;
+  }
 
 
   for (size_t i = 0; i < currentShapesCount; i++)
