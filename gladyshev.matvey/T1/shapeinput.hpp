@@ -3,9 +3,12 @@
 
 #include <istream>
 
+#include "shape.hpp"
+#include "base-types.hpp"
+
 namespace gladyshev
 {
-  std::pair<double *, double *> makeString(std::istream& in, bool& incorFig, bool& unsupFig);
+  void makeString(std::istream& in, Shape ** shapes, bool& incorFig, bool& unsupFig, point_t& pos, size_t& counter, double& factor);
 }
 
 #endif

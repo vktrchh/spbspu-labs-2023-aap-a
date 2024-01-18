@@ -2,10 +2,14 @@
 #define SHAPEOUTPUT_HPP
 
 #include <ostream>
+#include <cstddef>
+
+#include "shape.hpp"
+#include "base-types.hpp"
 
 namespace gladyshev
 {
-  std::ostream& outData(std::ostream& out, const double * firstArr, const double * secArr, bool incorFig, bool unsupFig);
+  std::ostream& outData(std::ostream& out, Shape ** shapes, bool incorFig, bool unsupFig, size_t counter, point_t pos, double factor);
 }
 
 #endif

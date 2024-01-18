@@ -4,23 +4,45 @@
 
 namespace gladyshev
 {
-  std::ostream& outData(std::ostream& out, const double * firstArr, const double * secArr, bool incorFig, bool unsupFig)
+  std::ostream& outData(std::ostream& out, Shape** shapes, bool incorFig, bool unsupFig, size_t counter, point_t pos, double factor)
   {
-    size_t firstCounter = 1;
-    size_t secondCounter = 1;
-    while (firstCounter < firstArr[0] - 1)
+    out << std::fixed;
+    out.precision(1);
+    double area = 0;
+    for (size_t i = 0; i < counter; ++i)
     {
-      out << std::fixed << std::setprecision(1) << firstArr[firstCounter] << " ";
-      ++firstCounter;
+      area += shapes[i]->getArea();
     }
-    out << std::fixed << std::setprecision(1) << firstArr[firstCounter];
+    out << area << " ";
+    for (size_t i = 0; i < counter; ++i)
+    {
+      rectangle_t frame = shapes[i]->getFrameRect();
+      for (size_t j = 0; j < 2; ++j)
+      {
+        out << ((j % 2 == 0) ? frame.pos.x - frame.width / 2 : frame.pos.x + frame.width / 2) << " ";
+        out << ((j % 2 == 0) ? frame.pos.y - frame.height / 2 : frame.pos.y + frame.height / 2);
+        if (i != counter - 1 || j != 1)
+        {
+          out << " ";
+        }
+      }
+    }
     out << "\n";
-    while (secondCounter < secArr[0] - 1)
+    out << area * factor * factor << " ";
+    for (size_t i = 0; i < counter; ++i)
     {
-      out << std::fixed << std::setprecision(1) << secArr[secondCounter] << " ";
-      ++secondCounter;
+      shapes[i]->scale(pos, factor);
+      rectangle_t frame = shapes[i]->getFrameRect();
+      for (size_t j = 0; j < 2; ++j)
+      {
+        out << ((j % 2 == 0) ? frame.pos.x - frame.width / 2 : frame.pos.x + frame.width / 2) << " ";
+        out << ((j % 2 == 0) ? frame.pos.y - frame.height / 2 : frame.pos.y + frame.height / 2);
+        if (i != counter - 1 || j != 1)
+        {
+          out << " ";
+        }
+      }
     }
-    out << std::fixed << std::setprecision(1) << secArr[secondCounter];
     out << "\n";
     if (unsupFig)
     {

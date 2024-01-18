@@ -7,8 +7,7 @@
 
 namespace gladyshev
 {
-  double * newMemory(const double * basicar, const size_t len);
-  FigureData* newMemoryStruct(const FigureData * basicar, const size_t len);
+  char * newMemory(const char * basicar, size_t len);
 }
 
 #endif
