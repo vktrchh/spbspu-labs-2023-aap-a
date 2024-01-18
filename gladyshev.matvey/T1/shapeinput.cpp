@@ -36,7 +36,7 @@ namespace gladyshev
           freeMemory(shapes, mainCounter);
           throw;
         }
-        catch (std::logic_error)
+        catch (std::logic_error& e)
         {
           delete[] rectangleData;
           freeMemory(shapes, mainCounter);
