@@ -24,6 +24,5 @@ char * piyavkin::createLineMissingLatinLetters(const char * line, char * alphabe
       alphabet[count++] = i;
     }
   }
-  alphabet[count] = '\0';
   return alphabet;
 }
