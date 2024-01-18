@@ -109,6 +109,6 @@ void arakelyan::shapeOutput(std::ostream &output, arakelyan::Shape **shapes, con
     double leftDownY = rectCurrShape.pos_.y_ - (rectCurrShape.height_ / 2.0);
     double rigtUpX = rectCurrShape.pos_.x_ + (rectCurrShape.width_ / 2.0);
     double rightUpY = rectCurrShape.pos_.y_ + (rectCurrShape.height_ / 2.0);
-    std::cout << totalArea << " " << leftDownX << " " << leftDownY << " " << rigtUpX << " " << rightUpY << "\n";
+    output << totalArea << " " << leftDownX << " " << leftDownY << " " << rigtUpX << " " << rightUpY << "\n";
   }
 }
