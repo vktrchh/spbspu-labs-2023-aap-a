@@ -9,23 +9,23 @@ namespace gladyshev
 {
   Shape * inputRectangle(const char * string)
   {
-    double rectCoords[4] = { 0 };
+    double p[4] = { 0 };
     size_t counter = 0;
     const char * tempString = string;
     for (size_t i = 0; i < 4; i++)
     {
-      rectCoords[i] = std::stod(tempString, std::addressof(counter));
+      p[i] = std::stod(tempString, std::addressof(counter));
       tempString += counter;
     }
     if (*tempString != '\0')
     {
       throw std::invalid_argument("too many args for rectangle");
     }
-    if ((rectCoords[0] == rectCoords[2]) || (rectCoords[1] == rectCoords[3]) || (rectCoords[2] < rectCoords[0]) || (rectCoords[3] < rectCoords[1]))
+    if ((p[0] == p[2]) || (p[1] == p[3]) || (p[2] < p[0]) || (p[3] < p[1]))
     {
       return nullptr;
     }
-    return new Rectangle({ rectCoords[0], rectCoords[1] }, { rectCoords[2], rectCoords[3] });
+    return new Rectangle({ p[0], p[1] }, { p[2], p[3] });
   }
 
   void inputScale(const char * string, point_t& pos, double& factor)
