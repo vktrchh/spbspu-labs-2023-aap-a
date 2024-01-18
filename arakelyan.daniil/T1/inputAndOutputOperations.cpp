@@ -1,5 +1,6 @@
 #include <stdexcept>
-#include "inputOperations.hpp"
+#include "base-types.hpp"
+#include "inputAndOutputOperations.hpp"
 #include "shape-creation.hpp"
 #include "shape.hpp"
 
@@ -92,4 +93,22 @@ char * arakelyan::inputString(std::istream &input)
   }
   input >> std::skipws;
   return string;
+}
+
+void arakelyan::shapeOutput(std::ostream &output, arakelyan::Shape **shapes, const size_t shapesCount)
+{
+  double totalArea = 0;
+  for (size_t i = 0; i < shapesCount; i++)
+  {
+    totalArea += shapes[i]->getArea();
+  }
+  for (size_t i = 0; i < shapesCount; i++)
+  {
+    rectangle_t rectCurrShape = shapes[i]->getFrameRect();
+    double leftDownX = rectCurrShape.pos_.x_ - (rectCurrShape.width_ / 2.0);
+    double leftDownY = rectCurrShape.pos_.y_ - (rectCurrShape.height_ / 2.0);
+    double rigtUpX = rectCurrShape.pos_.x_ + (rectCurrShape.width_ / 2.0);
+    double rightUpY = rectCurrShape.pos_.y_ + (rectCurrShape.height_ / 2.0);
+    std::cout << totalArea << " " << leftDownX << " " << leftDownY << " " << rigtUpX << " " << rightUpY << "\n";
+  }
 }

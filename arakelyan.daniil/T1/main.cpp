@@ -2,7 +2,8 @@
 #include <stdexcept>
 #include <cstring>
 #include "base-types.hpp"
-#include "inputOperations.hpp"
+#include "inputAndOutputOperations.hpp"
+#include "scaleOperations.hpp"
 #include "shape-creation.hpp"
 #include "shape.hpp"
 #include "rectangle.hpp"
@@ -71,11 +72,7 @@ int main()
     delete [] string;
   }
 
-  for (size_t i = 0; i < currentShapesCount; i++)
-  {
-    std::cout << myShapes[i]->getArea() << "\n";
-  }
-  std::cout << "x: " << scalePoint.x_ << "; y: " << scalePoint.y_ << "; k: " << scaleK << "\n";
+  scaleFunction(myShapes, currentShapesCount, scalePoint, scaleK);
 
 
   for (size_t i = 0; i < currentShapesCount; i++)
