@@ -36,7 +36,7 @@ namespace gladyshev
           freeMemory(shapes, mainCounter);
           throw;
         }
-        catch (std::logic_error& e)
+        catch (const std::logic_error& e)
         {
           delete[] rectangleData;
           freeMemory(shapes, mainCounter);
@@ -59,7 +59,16 @@ namespace gladyshev
           throw std::logic_error("lack of supported data");
         }
         counter = mainCounter;
-        inputScale(rectangleData, pos, factor);
+        try
+        {
+          inputScale(rectangleData, pos, factor);
+        }
+        catch (const std::logic_error& e)
+        {
+          delete[] rectangleData;
+          freeMemory(shapes, mainCounter);
+          throw;
+        }
         delete[] rectangleData;
         return;
       }
