@@ -34,6 +34,6 @@ int main()
     std::cout << alphabet[i];
   }
   std::cout << '\n';
-  delete[] new_line;
-  delete[] alphabet;
+  delete [] new_line;
+  delete [] alphabet;
 }

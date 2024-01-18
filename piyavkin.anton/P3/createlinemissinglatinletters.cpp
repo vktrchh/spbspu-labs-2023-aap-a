@@ -17,14 +17,11 @@ bool piyavkin::checkExistenceLetter(const char letter, const char * line)
 char * piyavkin::createLineMissingLatinLetters(const char * line, char * alphabet)
 {
   size_t count = 0;
-  if (line != nullptr)
+  for (char i = 'a'; i <= 'z'; ++i)
   {
-    for (char i = 'a'; i <= 'z'; ++i)
+    if (!checkExistenceLetter(i, line))
     {
-      if (!checkExistenceLetter(i, line))
-      {
-        alphabet[count++] = i;
-      }
+      alphabet[count++] = i;
     }
   }
   alphabet[count] = '\0';
