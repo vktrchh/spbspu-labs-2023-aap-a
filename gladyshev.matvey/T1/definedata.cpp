@@ -49,6 +49,7 @@ namespace gladyshev
     pos = { dataScale[0], dataScale[1] };
     factor = dataScale[2];
   }
+
   Shape* inputCircle(const char * string)
   {
     double rectCoords[3] = { 0 };
@@ -69,6 +70,7 @@ namespace gladyshev
     }
     return new Circle({ rectCoords[0], rectCoords[1] }, rectCoords[2]);
   }
+
   Shape * inputParallelogram(const char * string)
   {
     double p[6] = { 0 };
@@ -96,6 +98,7 @@ namespace gladyshev
       delete shapes[i];
     }
   }
+
   Shape * identifyShape(std::string inputName, const char* string)
   {
     const char* names[] = { "RECTANGLE", "PARALLELOGRAM", "CIRCLE" };
@@ -114,5 +117,6 @@ namespace gladyshev
         }
       }
     }
+    return nullptr;
   }
 }
