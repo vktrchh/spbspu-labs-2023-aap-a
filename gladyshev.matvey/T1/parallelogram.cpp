@@ -16,7 +16,7 @@ gladyshev::Parallelogram::~Parallelogram()
 
 double gladyshev::Parallelogram::getArea() const
 {
-  return std::abs((p1par_.y - p3par_.y) * (p1par_.x - p2par_.x)) * kf_;
+  return std::abs((p1par_.y - p3par_.y) * (std::max(std::abs(p1par_.x - p2par_.x), std::abs(p2par_.x - p3par_.x)))) * kf_;
 }
 
 gladyshev::rectangle_t gladyshev::Parallelogram::getFrameRect() const
