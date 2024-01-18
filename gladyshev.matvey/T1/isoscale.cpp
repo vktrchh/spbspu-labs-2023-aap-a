@@ -1,7 +1,6 @@
 #include <iostream>
-
 #include "isoscale.hpp"
-#include "rectangle.hpp"
+include "rectangle.hpp"
 #include "circle.hpp"
 #include "parallelogram.hpp"
 #include "base-types.hpp"
