@@ -54,13 +54,13 @@ int main(int argc, char * argv[])
   {
     return 0;
   }
-  int StaticMatrix[10000] = {};
+  int FixedLenMatrix[10000] = {};
   int* dynamicMatrix = nullptr;
   int* matrix = nullptr;
 
   if (numOfTask == 1)
   {
-    matrix = StaticMatrix;
+    matrix = FixedLenMatrix;
   }
   else
   {
