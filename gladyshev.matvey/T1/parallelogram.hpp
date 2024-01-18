@@ -16,11 +16,11 @@ namespace gladyshev
       virtual void move(const point_t& pos);
       virtual void scale(const point_t& pos, double factor);
     private:
-      point_t p1FramePar_;
-      point_t p2FramePar_;
       point_t p1par_;
       point_t p2par_;
       point_t p3par_;
+      point_t p1FramePar_;
+      point_t p2FramePar_;
       double kf_;
   };
 }
