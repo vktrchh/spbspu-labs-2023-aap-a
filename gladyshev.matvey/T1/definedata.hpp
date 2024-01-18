@@ -15,6 +15,7 @@ namespace gladyshev
   Shape * inputParallelogram(const char * string);
   void freeMemory(Shape ** shapes, size_t amount);
   Shape * identifyShape(std::string inputName, const char * string);
+  void isoScale(Shape * shapes, point_t pos, double factor);
 }
 
 #endif

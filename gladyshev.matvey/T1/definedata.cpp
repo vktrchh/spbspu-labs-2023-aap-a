@@ -99,7 +99,7 @@ namespace gladyshev
     }
   }
 
-  Shape * identifyShape(std::string inputName, const char* string)
+  Shape * identifyShape(std::string inputName, const char * string)
   {
     const char* names[] = { "RECTANGLE", "PARALLELOGRAM", "CIRCLE" };
     for (size_t i = 0; i < 3; ++i)
@@ -118,5 +118,14 @@ namespace gladyshev
       }
     }
     return nullptr;
+  }
+  void isoScale(Shape * shapes, point_t pos, double factor)
+  {
+    rectangle_t frame = shapes->getFrameRect();
+    double posfinishx = frame.pos.x;
+    double posfinishy = frame.pos.y;
+    shapes->move(pos);
+    shapes->scale(factor);
+    shapes->move(-(pos.x - posfinishx) * factor, -(pos.y - posfinishy) * factor);
   }
 }

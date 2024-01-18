@@ -1,6 +1,7 @@
 #include <iomanip>
 
 #include "shapeoutput.hpp"
+#include "definedata.hpp"
 
 namespace gladyshev
 {
@@ -31,7 +32,7 @@ namespace gladyshev
     out << area * factor * factor << " ";
     for (size_t i = 0; i < counter; ++i)
     {
-      shapes[i]->scale(pos, factor);
+      isoScale(shapes[i], pos, factor);
       rectangle_t frame = shapes[i]->getFrameRect();
       for (size_t j = 0; j < 2; ++j)
       {

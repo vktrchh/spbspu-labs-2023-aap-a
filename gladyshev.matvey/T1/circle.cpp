@@ -32,16 +32,11 @@ void gladyshev::Circle::move(const point_t& newPos)
 {
   move(newPos.x - getFrameRect().pos.x, newPos.y - getFrameRect().pos.y);
 }
-void gladyshev::Circle::scale(const point_t& p4, double factor)
+void gladyshev::Circle::scale(double factor)
 {
-  double posfinishx = getFrameRect().pos.x;
-  double posfinishy = getFrameRect().pos.y;
-  move(p4);
   rectangle_t frameRect = getFrameRect();
   p1FrameCir_.x = p1FrameCir_.x - (frameRect.pos.x - p1FrameCir_.x) * (factor - 1);
   p1FrameCir_.y = p1FrameCir_.y - (frameRect.pos.y - p1FrameCir_.y) * (factor - 1);
   p2FrameCir_.x = p2FrameCir_.x - (frameRect.pos.x - p2FrameCir_.x) * (factor - 1);
   p2FrameCir_.y = p2FrameCir_.y - (frameRect.pos.y - p2FrameCir_.y) * (factor - 1);
-  move(-(p4.x - posfinishx) * factor, -(p4.y - posfinishy) * factor);
-  radiuscircle_ *= factor;
 }

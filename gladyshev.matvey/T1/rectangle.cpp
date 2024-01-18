@@ -37,15 +37,11 @@ gladyshev::rectangle_t gladyshev::Rectangle::getFrameRect() const
   return frameRect;
 }
 
-void gladyshev::Rectangle::scale(const point_t& p4, double factor)
+void gladyshev::Rectangle::scale(double factor)
 {
-  double posfinishx = getFrameRect().pos.x;
-  double posfinishy = getFrameRect().pos.y;
-  move(p4);
   rectangle_t frameRect = getFrameRect();
   p1FrameRec_.x = p1FrameRec_.x - (frameRect.pos.x - p1FrameRec_.x) * (factor - 1);
   p1FrameRec_.y = p1FrameRec_.y - (frameRect.pos.y - p1FrameRec_.y) * (factor - 1);
   p2FrameRec_.x = p2FrameRec_.x - (frameRect.pos.x - p2FrameRec_.x) * (factor - 1);
   p2FrameRec_.y = p2FrameRec_.y - (frameRect.pos.y - p2FrameRec_.y) * (factor - 1);
-  move(-(p4.x - posfinishx) * factor, -(p4.y - posfinishy) * factor);
 }
