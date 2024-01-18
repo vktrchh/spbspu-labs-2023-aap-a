@@ -38,7 +38,7 @@ char * arakelyan::inputString(std::istream &input)
   string = new char[arrSize];
   if (string == nullptr)
   {
-    throw std::bad_alloc();
+    throw std::logic_error("Cannot allocate memory for string!");
   }
 
   input >> std::noskipws;
