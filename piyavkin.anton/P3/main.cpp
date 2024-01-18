@@ -7,33 +7,33 @@ int main()
 {
   using namespace piyavkin;
   char * new_line = nullptr;
-  char * new_alphabet = nullptr;
+  const size_t number_letters_alphabet = 26;
+  char * alphabet = nullptr;
   std::cin >> std::noskipws;
   try
   {
     new_line = inputLine(std::cin);
-    new_alphabet = createLineMissingLatinLetters(new_line);
+    alphabet = new char[number_letters_alphabet] {};
   }
   catch (const std::bad_alloc & e)
   {
     std::cerr << e.what() << '\n';
-    delete [] new_line;
+    delete[] new_line;
     return 1;
   }
   if (new_line == nullptr)
   {
     std::cerr << "Line not read\n";
-    delete [] new_alphabet;
-    delete [] new_line;
+    delete[] new_line;
     return 1;
   }
   std::cin >> std::skipws;
-  size_t i = 0;
-  while (new_alphabet[i] != '\0')
+  alphabet = createLineMissingLatinLetters(new_line, alphabet);
+  for (size_t i = 0; alphabet[i] != '\0'; ++i)
   {
-    std::cout << new_alphabet[i++];
+    std::cout << alphabet[i];
   }
   std::cout << '\n';
-  delete [] new_line;
-  delete [] new_alphabet;
+  delete[] new_line;
+  delete[] alphabet;
 }

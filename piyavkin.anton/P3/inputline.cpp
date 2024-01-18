@@ -18,7 +18,7 @@ char * piyavkin::inputLine(std::istream & in)
     new_line[length++] = std::tolower(sym);
     if (sym == '\n')
     {
-      new_line[length] = '\0';
+      new_line[length - 1] = '\0';
       break;
     }
     new_line[length] = '\0';

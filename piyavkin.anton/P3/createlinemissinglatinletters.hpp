@@ -1,8 +1,8 @@
 #ifndef CREATELINEMISSINGLATINLETTERS_HPP
 #define CREATELINEMISSINGLATINLETTERS_HPP
-#include <cstddef>
 namespace piyavkin
 {
-  char * createLineMissingLatinLetters(char * line);
+  bool checkExistenceLetter(char letter, const char * line);
+  char * createLineMissingLatinLetters(const char * line, char * alphabet);
 }
 #endif
