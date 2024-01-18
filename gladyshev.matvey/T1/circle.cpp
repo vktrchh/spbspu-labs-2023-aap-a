@@ -34,10 +34,6 @@ void gladyshev::Circle::move(const point_t& newPos)
 }
 void gladyshev::Circle::scale(const point_t& p4, double factor)
 {
-  if (factor <= 0)
-  {
-    throw std::logic_error("bad factor");
-  }
   double posfinishx = getFrameRect().pos.x;
   double posfinishy = getFrameRect().pos.x;
   move(p4);
