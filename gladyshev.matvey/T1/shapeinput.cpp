@@ -80,7 +80,7 @@ namespace gladyshev
     }
     if (in.eof())
     {
-      delete[] rectangleData;
+      freeMemory(shapes, mainCounter);
       throw std::runtime_error("EOF");
     }
   }
