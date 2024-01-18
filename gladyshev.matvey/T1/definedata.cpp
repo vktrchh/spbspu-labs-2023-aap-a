@@ -64,7 +64,7 @@ namespace gladyshev
     {
       throw std::logic_error("too many arguments for circle");
     }
-    if (rectCoords[2] < 0)
+    if (rectCoords[2] <= 0)
     {
       return nullptr;
     }
