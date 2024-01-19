@@ -3,12 +3,11 @@
 
 char * namestnikov::getLongerString(char * string, size_t oldSize, size_t newSize)
 {
-  char * newString = new char[newSize];
+  char * newString = new char[newSize]{};
   for (size_t i = 0; i < oldSize; ++i)
   {
     newString[i] = string[i];
   }
-  delete [] string;
   return newString;
 }
 
@@ -34,7 +33,9 @@ char * namestnikov::inputString(std::istream & in, size_t & strIndex)
     {
       try
       {
-        string = getLongerString(string, strSize, strSize + 20);
+        char * newString = getLongerString(string, strSize, strSize + 20);
+        delete [] string;
+        string = newString;
         strSize += 20;
       }
       catch (...)
