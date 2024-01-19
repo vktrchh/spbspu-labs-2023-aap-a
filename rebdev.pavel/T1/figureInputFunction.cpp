@@ -33,7 +33,7 @@ bool rebdev::isConcave(point_t * pointsArr)
 
       if (identicalSigns)
       {
-        point_t newPointArr[4] = {pointsArr[i], pointsArr[(i + 1) % 4], pointsArr[(i + 2) % 4], pointsArr[(i + 3) % 4]};
+        point_t newPointArr[4] = {pointsArr[i], pointsArr[(i + 1) % 4], pointsArr[(i + 3) % 4], pointsArr[(i + 2) % 4]};
         for (int i = 0; i < 4; ++i)
         {
           pointsArr[i] = newPointArr[i];
