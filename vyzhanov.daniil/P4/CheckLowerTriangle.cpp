@@ -1,6 +1,6 @@
 #include "CheckLowerTriangle.hpp"
 
-bool vyzhanov::CheckLowerTriangle(const int * matrix, size_t rows, size_t cols)
+bool vyzhanov::CheckLowerTriangle(const int* matrix, size_t rows, size_t cols)
 {
   size_t rowsCount = 0;
   size_t numZeroInRows = 0;
