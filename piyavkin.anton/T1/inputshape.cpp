@@ -8,14 +8,15 @@ piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
 {
   std::string name = "";
   double* parameters = nullptr;
-  std::string shapeNames[3] = { "RECTANGLE", "TRIANGLE", "PARALLELOGRAM" };
-  size_t shapeParametersCount[3] = {4, 6, 6};
+  const size_t numbersFigures = 3;
+  std::string shapeNames[numbersFigures] = { "RECTANGLE", "TRIANGLE", "PARALLELOGRAM" };
+  size_t shapeParametersCount[numbersFigures] = {4, 6, 6};
   Shape** shapeArray = nullptr;
   Shape** oldShapeArray = nullptr;
   char symbol = 0;
   while (in >> name)
   {
-    for (size_t i = 0; i < 3; ++i)
+    for (size_t i = 0; i < numbersFigures; ++i)
     {
       if (name == shapeNames[i])
       {
@@ -35,7 +36,7 @@ piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
           throw std::logic_error("Invalid arguments");
         }
         oldShapeArray = shapeArray;
-        shapeArray = new Shape * [shapeCount + 1];
+        shapeArray = new Shape* [shapeCount + 1];
         if (oldShapeArray)
         {
           for (size_t i = 0; i < shapeCount + 1; ++i)

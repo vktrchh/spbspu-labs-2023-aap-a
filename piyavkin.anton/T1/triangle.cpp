@@ -17,7 +17,7 @@ namespace piyavkin
       throw std::logic_error("It is not triangle");
     }
   }
-  double Triangle::getArea()
+  double Triangle::getArea() const
   {
     double ab_ = std::sqrt((a_.x - b_.x) * (a_.x - b_.x) + (a_.y - b_.y) * (a_.y - b_.y));
     double ac_ = std::sqrt((a_.x - c_.x) * (a_.x - c_.x) + (a_.y - c_.y) * (a_.y - c_.y));
@@ -25,7 +25,7 @@ namespace piyavkin
     double semiperimeter = (ab_ + bc_ + ac_) / 2;
     return std::sqrt(semiperimeter * (semiperimeter - ab_) * (semiperimeter - bc_) * (semiperimeter - ac_));
   }
-  rectangle_t Triangle::getFrameRect()
+  rectangle_t Triangle::getFrameRect() const
   {
     double heigth = (std::max(std::max(a_.y, b_.y), c_.y) - std::min(std::min(a_.y, b_.y), c_.y));
     double width = (std::max(std::max(a_.x, b_.x), c_.x) - std::min(std::min(a_.x, b_.x), c_.x));

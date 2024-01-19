@@ -15,13 +15,13 @@ namespace piyavkin
       throw std::logic_error("It is not parallelogram");
     }
   }
-  double piyavkin::Parallelogram::getArea()
+  double piyavkin::Parallelogram::getArea() const
   {
     double h = std::abs(b_.y - c_.y);
     double a = (a_.y == b_.y) ? std::abs(a_.x - b_.x) : std::abs(a_.x - c_.x);
     return a * h;
   }
-  rectangle_t piyavkin::Parallelogram::getFrameRect()
+  rectangle_t piyavkin::Parallelogram::getFrameRect() const
   {
     double heigth = std::abs(b_.y - c_.y);
     double width = 2 * ((a_.y == b_.y) ? std::abs(a_.x - b_.x) : std::abs(a_.x - c_.x)) + (c_.x - b_.x);

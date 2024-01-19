@@ -12,11 +12,11 @@ namespace piyavkin
       throw std::logic_error("It is not rectangle");
     }
   }
-  double Rectangle::getArea()
+  double Rectangle::getArea() const
   {
     return std::abs((p1_.x - p2_.x) * (p1_.y - p2_.y));
   }
-  rectangle_t piyavkin::Rectangle::getFrameRect()
+  rectangle_t piyavkin::Rectangle::getFrameRect() const
   {
     point_t pos = { (p1_.x + p2_.x) / 2, (p1_.y + p2_.y) / 2 };
     return { std::abs(p1_.x - p2_.x), std::abs(p1_.y - p2_.y), pos };
