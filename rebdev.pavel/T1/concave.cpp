@@ -41,8 +41,8 @@ rebdev::rectangle_t rebdev::Concave::getFrameRect() const
 
 void rebdev::Concave::move(const point_t point)
 {
-  double yChange = point.y - vertexs_[2].y;
-  double xChange = point.x - vertexs_[2].x;
+  double yChange = vertexs_[2].y - point.y;
+  double xChange = vertexs_[2].x - point.x;
   for (int i = 0; i < 4; ++i)
   {
     vertexs_[i].x += xChange;
