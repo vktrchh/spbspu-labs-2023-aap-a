@@ -18,7 +18,6 @@ char * namestnikov::inputString(std::istream & in, size_t & strIndex)
   constexpr size_t defaultSize = 20;
   strSize = defaultSize;
   char * string = new char [defaultSize]{};
-  string[0] = '\0';
   char sym = 0;
   in >> std::noskipws;
   while (in >> sym)
