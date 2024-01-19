@@ -1,7 +1,7 @@
 #include "input_string.hpp"
 
 
-char * namestnikov::getLongerString(char * string, size_t oldSize, size_t newSize)
+char * getLongerString(char * string, size_t oldSize, size_t newSize)
 {
   char * newString = new char[newSize]{};
   for (size_t i = 0; i < oldSize; ++i)
