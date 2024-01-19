@@ -1,7 +1,6 @@
 #include "CheckLowerTriangle.hpp"
-#include <iostream>
 
-const char* vyzhanov::CheckLowerTriangle(const int * matrix, size_t rows, size_t cols)
+bool vyzhanov::CheckLowerTriangle(const int * matrix, size_t rows, size_t cols)
 {
   size_t rowsCount = 0;
   size_t numZeroInRows = 0;
@@ -12,7 +11,7 @@ const char* vyzhanov::CheckLowerTriangle(const int * matrix, size_t rows, size_t
   }
   if (rows * cols < 4)
   {
-    return "false";
+    return false;
   }
   for (size_t i = 0; i < rows * cols; i += cols)
   {
@@ -32,10 +31,10 @@ const char* vyzhanov::CheckLowerTriangle(const int * matrix, size_t rows, size_t
   }
   if (rowsCount == rows)
   {
-    return "true";
+    return true;
   }
   else
   {
-    return "false";
+    return false;
   }
 }

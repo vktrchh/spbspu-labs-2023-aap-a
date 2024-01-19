@@ -1,7 +1,6 @@
 #include "CountRowsWithoutRepeat.hpp"
-#include <iostream>
 
-size_t vyzhanov::CountRowsWithoutRepeat(const int * matrix, size_t rows, size_t cols)
+size_t vyzhanov::CountRowsWithoutRepeat(const int* matrix, size_t rows, size_t cols)
 {
   size_t countNum = 1;
   size_t countWithoutRep = 0;

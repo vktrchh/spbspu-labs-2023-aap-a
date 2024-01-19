@@ -1,11 +1,11 @@
 #ifndef CHECKLOWERTRIANGLE_HPP
 #define CHECKLOWERTRIANGLE_HPP
 
-#include <cstddef>
+#include <iostream>
 
 namespace vyzhanov
 {
-  const char* CheckLowerTriangle(const int * matrix, size_t rows, size_t cols);
+  bool CheckLowerTriangle(const int* matrix, size_t rows, size_t cols);
 }
 
 #endif

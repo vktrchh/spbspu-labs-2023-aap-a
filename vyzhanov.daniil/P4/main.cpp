@@ -5,7 +5,7 @@
 #include "CountRowsWithoutRepeat.hpp"
 #include "CheckLowerTriangle.hpp"
 
-int main(int argc, char * argv[])
+int main(int argc, char* argv[])
 {
   if (argc != 4)
   {
@@ -21,7 +21,7 @@ int main(int argc, char * argv[])
       throw std::logic_error("First arg must be 1 or 2");
     }
   }
-  catch (const std::exception & e)
+  catch (const std::exception &e)
   {
     std::cerr << "Error: " << e.what() << "\n";
     return 1;
@@ -31,8 +31,8 @@ int main(int argc, char * argv[])
   size_t cols = 0;
   std::ifstream inputFile(argv[2]);
   inputFile >> rows >> cols;
-  int staticMatrix[10000] = {};
-  int *matrix = nullptr;
+  int fixedMatrix[10000] = {};
+  int* matrix = nullptr;
   if (num == 1)
   {
     if (!inputFile)
@@ -40,17 +40,16 @@ int main(int argc, char * argv[])
       std::cerr << "Not a matrix\n";
       return 2;
     }
-    matrix = staticMatrix;
+    matrix = fixedMatrix;
   }
   else if (num == 2)
   {
-    matrix = new int[rows * cols];
     if (!inputFile)
     {
       std::cerr << "Not a matrix\n";
-      delete[] matrix;
       return 2;
     }
+    matrix = new int[rows * cols];
     for (size_t i = 0; i < rows * cols; i++ )
     {
       matrix[i] = 0;
@@ -63,7 +62,7 @@ int main(int argc, char * argv[])
     outputFile << vyzhanov::CountRowsWithoutRepeat(matrix, rows, cols) << "\n";
     outputFile << vyzhanov::CheckLowerTriangle(matrix, rows, cols) << "\n";
   }
-  catch(const std::exception & e)
+  catch(const std::exception &e)
   {
     std::cerr << "Error: " << e.what() << "\n";
     if (num == 2)

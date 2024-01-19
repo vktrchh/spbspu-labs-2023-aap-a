@@ -6,7 +6,7 @@
 
 namespace vyzhanov
 {
-   void createMatrix(size_t rows, size_t cols, int * matrix, std::istream &inputFile);
+   void createMatrix(size_t rows, size_t cols, int* matrix, std::istream &inputFile);
 }
 
 #endif
