@@ -14,28 +14,27 @@ bool isSymbolInString(const char * string, char sym)
   return false;
 }
 
-void fillUniqueSymArray(const char * str1, const char * str2, char * result, size_t & resultIndex)
+void namestnikov::getUniqueSymArray(const char * str1, const char * str2, char * result)
 {
-  const char * temp = str1;
-  while (*temp != '\0')
+  size_t i = 0;
+  size_t j = 0;
+  while (str1[i] != '\0')
   {
-    if (!(isSymbolInString(str2, *temp)) && !(isSymbolInString(result, *temp)))
+    if (!(isSymbolInString(str2, str1[i])) && !(isSymbolInString(result, str1[i])))
     {
-      result[resultIndex] = *temp;
-      ++resultIndex;
+      result[j] = str1[i];
+      ++j;
     }
-    ++temp;
+    ++i;
   }
-}
-
-char * namestnikov::getUniqueSymArray(const char * str1, const char * str2, size_t firstSize, size_t secondSize)
-{
-  size_t resultIndex = 0;
-  size_t defaultSize = std::max(firstSize, secondSize);
-  char * result = new char[defaultSize]{};
-  fillUniqueSymArray(str1, str2, result, resultIndex);
-  fillUniqueSymArray(str2, str1, result, resultIndex);
-  result[resultIndex] = '\0';
-  std::sort(result, result + resultIndex);
-  return result;
+  i = 0;
+  while (str2[i] != '\0')
+  {
+    if (!(isSymbolInString(str1, str2[i])) && !(isSymbolInString(result, str2[i])))
+    {
+      result[j] = str2[i];
+      ++j;
+    }
+    ++i;
+  }
 }

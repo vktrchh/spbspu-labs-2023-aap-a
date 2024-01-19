@@ -4,7 +4,7 @@
 
 namespace namestnikov
 {
-  char * getUniqueSymArray(const char * str1, const char * str2, size_t firstSize, size_t secondSize);
+  void getUniqueSymArray(const char * str1, const char * str2, char * result);
 }
 
 #endif

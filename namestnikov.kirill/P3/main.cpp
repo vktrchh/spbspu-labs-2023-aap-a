@@ -30,7 +30,8 @@ int main()
   char * result = nullptr;
   try
   {
-    result = getUniqueSymArray(firstString, secondString, firstSize, secondSize);
+    result = new char[firstSize + secondSize]{};
+    getUniqueSymArray(firstString, secondString, result);
   }
   catch (...)
   {
