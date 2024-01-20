@@ -18,11 +18,6 @@ int main()
     makeString(std::cin, shapes, incorrectFigure, unsupportedFigure, pos, counter, factor);
     outData(std::cout, shapes, counter, pos, factor);
   }
-  catch (const std::invalid_argument& e)
-  {
-    std::cerr << "Error: " << e.what() << "\n";
-    return 2;
-  }
   catch (const std::logic_error& e)
   {
     std::cerr << "Error: " << e.what() << "\n";

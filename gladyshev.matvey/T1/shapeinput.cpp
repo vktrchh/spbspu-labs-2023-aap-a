@@ -30,12 +30,6 @@ namespace gladyshev
         {
           checkedShape = identifyShape(inputName, rectangleData);
         }
-        catch (const std::invalid_argument& e)
-        {
-          delete[] rectangleData;
-          freeMemory(shapes, mainCounter);
-          throw;
-        }
         catch (const std::logic_error& e)
         {
           delete[] rectangleData;
