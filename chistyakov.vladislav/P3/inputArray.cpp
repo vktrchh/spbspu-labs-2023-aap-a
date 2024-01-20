@@ -26,7 +26,7 @@ char* chistyakov::inputArray(std::istream & in)
         array = newArray;
         size += 10;
       }
-      catch(const std::bad_alloc &)
+      catch (const std::bad_alloc &)
       {
         delete[] array;
         in >> std::skipws;

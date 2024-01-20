@@ -14,12 +14,12 @@ int main()
   {
     array = inputArray(std::cin);
   }
-  catch(const std::bad_alloc & e)
+  catch (const std::bad_alloc & e)
   {
     std::cerr << "Error: " << e.what() << "\n";
     return 1;
   }
-  catch(const std::invalid_argument & e)
+  catch (const std::invalid_argument & e)
   {
     std::cerr << "Error: " << e.what() << "\n";
     return 2;

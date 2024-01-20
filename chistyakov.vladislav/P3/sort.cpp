@@ -1,5 +1,4 @@
 #include "sort.hpp"
-#include <cstddef>
 #include "numOfOccurOfLetters.hpp"
 
 char* chistyakov::sortingCertainNumnerOfItems(char* array, char* result, size_t lenght)
