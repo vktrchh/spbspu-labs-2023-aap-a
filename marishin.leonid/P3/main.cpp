@@ -7,31 +7,28 @@ int main()
 {
   using namespace marishin;
   std::cin >> std::noskipws;
-  char targetChar = 0;
-  char replacementChar = 0;
   char* buffer = nullptr;
-  char* result = nullptr;
+  char firstSymbol = 'c';
+  char secondSymbol = 'b';
   try
   {
     buffer = inputString(std::cin);
   }
-  catch (const std::exception& ba)
+  catch (const std::exception& e)
   {
-    std::cerr << "Error: " << ba.what() << '\n';
+    std::cerr << "Error: " << e.what() << '\n';
     return 1;
   }
   std::cin >> std::skipws;
-  std::cin >> targetChar >> replacementChar;
   try
   {
-    result = modifyString(buffer, targetChar, replacementChar);
+    buffer = modifyString(buffer, firstSymbol, secondSymbol);
   }
-  catch (const std::exception& ba)
+  catch (const std::exception& e)
   {
-    std::cerr << "Error: " << ba.what() << '\n';
+    std::cerr << "Error: " << e.what() << '\n';
     return 1;
   }
-  std::cout << result;
+  std::cout << buffer;
   delete[] buffer;
-  delete[] result;
 }
