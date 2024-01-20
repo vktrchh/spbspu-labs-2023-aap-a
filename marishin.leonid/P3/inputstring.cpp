@@ -2,17 +2,8 @@
 
 char* marishin::inputString(std::istream& input)
 {
-  const size_t initialBufferSize = 10;
-  char* buffer = nullptr;
-  try
-  {
-    buffer = new char[initialBufferSize];
-  }
-  catch (const std::bad_alloc& ba)
-  {
-    delete[] buffer;
-    throw ba;
-  }
+  size_t initialBufferSize = 10;
+  char* buffer = new char[initialBufferSize];
   size_t bufferSize = initialBufferSize;
   size_t currentIndex = 0;
   char currentChar = 0;
@@ -22,21 +13,21 @@ char* marishin::inputString(std::istream& input)
     {
       bufferSize *= 2;
       char* newBuffer = nullptr;
-      try
+      newBuffer = new char[bufferSize];
+      if (newBuffer != nullptr)
       {
-        newBuffer = new char[bufferSize];
+        for (size_t i = 0; i < currentIndex; ++i)
+        {
+          newBuffer[i] = buffer[i];
+        }
+        delete[] buffer;
+        buffer = newBuffer;
       }
-      catch (const std::bad_alloc& ba)
+      else
       {
         delete[] buffer;
-        throw ba;
+        throw std::logic_error("unable to create array!");
       }
-      for (size_t i = 0; i < currentIndex; ++i)
-      {
-        newBuffer[i] = buffer[i];
-      }
-      delete[] buffer;
-      buffer = newBuffer;
     }
     buffer[currentIndex] = currentChar;
     currentIndex++;
