@@ -50,22 +50,22 @@ namespace gladyshev
 
   Shape * inputCircle(const char * string)
   {
-    double rectCoords[3] = { 0 };
+    double p[3] = { 0 };
     size_t counter = 0;
     for (size_t i = 0; i < 3; ++i)
     {
-      rectCoords[i] = std::stod(string, std::addressof(counter));
+      p[i] = std::stod(string, std::addressof(counter));
       string += counter;
     }
     if (*string != '\0')
     {
       throw std::logic_error("too many arguments for circle");
     }
-    if (rectCoords[2] <= 0)
+    if (p[2] <= 0)
     {
       return nullptr;
     }
-    return new Circle({ rectCoords[0], rectCoords[1] }, rectCoords[2]);
+    return new Circle({ p[0], p[1] }, p[2]);
   }
 
   Shape * inputParallelogram(const char * string)
