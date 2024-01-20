@@ -18,7 +18,7 @@ namespace gladyshev
     }
     if (*string != '\0')
     {
-      throw std::invalid_argument("too many args for rectangle");
+      throw std::logic_error("too many args for rectangle");
     }
     if ((p[0] == p[2]) || (p[1] == p[3]) || (p[2] < p[0]) || (p[3] < p[1]))
     {

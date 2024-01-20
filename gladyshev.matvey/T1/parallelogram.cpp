@@ -1,4 +1,4 @@
-#include <stdexcept>
+#include <algorithm>
 
 #include "parallelogram.hpp"
 
@@ -26,6 +26,7 @@ gladyshev::rectangle_t gladyshev::Parallelogram::getFrameRect() const
   frameRect.pos = { (p1FramePar_.x + p2FramePar_.x) / 2, (p1FramePar_.y + p2FramePar_.y) / 2 };
   return frameRect;
 }
+
 void gladyshev::Parallelogram::move(double dx, double dy)
 {
   p1FramePar_.x += dx;
@@ -33,10 +34,12 @@ void gladyshev::Parallelogram::move(double dx, double dy)
   p1FramePar_.y += dy;
   p2FramePar_.y += dy;
 }
+
 void gladyshev::Parallelogram::move(const point_t& newPos)
 {
   move(newPos.x - getFrameRect().pos.x, newPos.y - getFrameRect().pos.y);
 }
+
 void gladyshev::Parallelogram::scale(double factor)
 {
   rectangle_t frameRect = getFrameRect();
