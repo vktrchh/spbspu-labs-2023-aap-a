@@ -1,34 +1,15 @@
 #include "modifystring.hpp"
 
-char* marishin::modifyString(const char* stroka, const char targetChar, const char replacementChar)
+char* marishin::modifyString(char* string, char firstSymbol, char secondSymbol)
 {
-  int inputLength = 0;
-  while (stroka[inputLength] != '\0')
+  size_t count = 0;
+  while (string[count] != '\0')
   {
-    ++inputLength;
-  }
-  char* result = nullptr;
-  try
-  {
-    result = new char[inputLength + 1];
-  }
-  catch (const std::bad_alloc& ba)
-  {
-    delete[] result;
-    throw ba;
-  }
-  for (int i = 0; i < inputLength; ++i)
-  {
-    result[i] = stroka[i];
-  }
-  result[inputLength] = '\0';
-
-  for (int i = 0; i < inputLength; ++i)
-  {
-    if (result[i] == targetChar)
+    if (string[count] == firstSymbol)
     {
-      result[i] = replacementChar;
+      string[count] = secondSymbol;
     }
+    ++count;
   }
-  return result;
+  return string;
 }
