@@ -1,5 +1,4 @@
 #include "inputArray.hpp"
-#include "enlargeArray.hpp"
 
 char* chistyakov::inputArray(std::istream & in)
 {
@@ -16,16 +15,23 @@ char* chistyakov::inputArray(std::istream & in)
     {
       try
       {
-        array = enlargeArray(array, size);
+        char* newArray = new char[size + 10]{};
+
+        for (size_t i = 0; i < size; ++i)
+        {
+          newArray[i] = array[i];
+        }
+
+        delete[] array;
+        array = newArray;
+        size += 10;
       }
-      catch(const std::exception & e)
+      catch(const std::bad_alloc &)
       {
         delete[] array;
         in >> std::skipws;
-        throw e.what();
+        throw;
       }
-
-      size += 10;
     }
 
     if (input == '\n')
