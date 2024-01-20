@@ -11,13 +11,12 @@ namespace gladyshev
   {
     double p[4] = { 0 };
     size_t counter = 0;
-    const char * tempString = string;
     for (size_t i = 0; i < 4; i++)
     {
-      p[i] = std::stod(tempString, std::addressof(counter));
-      tempString += counter;
+      p[i] = std::stod(string, std::addressof(counter));
+      string += counter;
     }
-    if (*tempString != '\0')
+    if (*string != '\0')
     {
       throw std::invalid_argument("too many args for rectangle");
     }
@@ -32,13 +31,12 @@ namespace gladyshev
   {
     double dataScale[3] = { 0 };
     size_t counter = 0;
-    const char * tempString = string;
     for (size_t i = 0; i < 3; ++i)
     {
-      dataScale[i] = std::stod(tempString, std::addressof(counter));
-      tempString += counter;
+      dataScale[i] = std::stod(string, std::addressof(counter));
+      string += counter;
     }
-    if (*tempString != '\0')
+    if (*string != '\0')
     {
       throw std::logic_error("too many arguments for scale");
     }
@@ -50,17 +48,16 @@ namespace gladyshev
     factor = dataScale[2];
   }
 
-  Shape* inputCircle(const char * string)
+  Shape * inputCircle(const char * string)
   {
     double rectCoords[3] = { 0 };
     size_t counter = 0;
-    const char * tempString = string;
     for (size_t i = 0; i < 3; ++i)
     {
-      rectCoords[i] = std::stod(tempString, std::addressof(counter));
-      tempString += counter;
+      rectCoords[i] = std::stod(string, std::addressof(counter));
+      string += counter;
     }
-    if (*tempString != '\0')
+    if (*string != '\0')
     {
       throw std::logic_error("too many arguments for circle");
     }
@@ -75,13 +72,12 @@ namespace gladyshev
   {
     double p[6] = { 0 };
     size_t counter = 0;
-    const char * tempString = string;
     for (size_t i = 0; i < 6; ++i)
     {
-      p[i] = std::stod(tempString, std::addressof(counter));
-      tempString += counter;
+      p[i] = std::stod(string, std::addressof(counter));
+      string += counter;
     }
-    if (*tempString != '\0')
+    if (*string != '\0')
     {
       throw std::logic_error("too many arguments for parallelogram");
     }
@@ -101,7 +97,7 @@ namespace gladyshev
 
   Shape * identifyShape(std::string inputName, const char * string)
   {
-    const char* names[] = { "RECTANGLE", "PARALLELOGRAM", "CIRCLE" };
+    const char * names[] = { "RECTANGLE", "PARALLELOGRAM", "CIRCLE" };
     for (size_t i = 0; i < 3; ++i)
     {
       if (inputName == names[i])
