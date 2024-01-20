@@ -18,9 +18,10 @@ rectangle_t Rectangle::getFrameRect() const
 
 void Rectangle::move(const point_t& p)
 {
-  point_t shift((-(downLeft_ + upRight_) - p) / 2.0);
-  downLeft_ += shift;
-  upRight_ += shift;
+  point_t center(downLeft_ + upRight_)  / 2.0;
+  double shiftX = p.getX() - center.getX();
+  double shiftY = p.getY() - center.getY();
+  move(shiftX, shiftY);
 }
 
 void Rectangle::move(double dx, double dy)
@@ -36,7 +37,7 @@ void Rectangle::scale(double k)
   {
     throw std::invalid_argument("Scale coefficient should be a positive real number.");
   }
-  point_t pos = point_t(getFrameRect().getCenter());
+  point_t pos((downLeft_ + upRight_) / 2.0);
   downLeft_ = downLeft_.scaleShift(k, pos);
   upRight_ = upRight_.scaleShift(k, pos);
 }

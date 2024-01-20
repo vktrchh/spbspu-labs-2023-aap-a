@@ -44,10 +44,10 @@ point_t point_t::operator/(double k) const
   return point_t(x_ / k, y_ / k);
 }
 
-point_t point_t::scaleShift(double k, const point_t p)
+point_t point_t::scaleShift(double k, const point_t& p)
 {
-  double shiftX = p.getX() + k * (getX() - p.getX());
-  double shiftY = p.getY() + k * (getY() - p.getY());
+  double shiftX = p.x_ + k * (x_ - p.x_);
+  double shiftY = p.y_ + k * (y_ - p.y_);
   return point_t(shiftX, shiftY);
 }
 
