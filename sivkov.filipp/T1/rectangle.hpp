@@ -6,17 +6,16 @@
 class Rectangle : public Shape
 {
 public:
-  Rectangle(const point_t &leftTop, const point_t &rightBottom);
-  virtual ~Rectangle();
-  virtual double getArea() const;
-  virtual rectangle_t getFrameRect() const;
-  virtual void move(const point_t &newPos);
-  virtual void move(double dx, double dy);
-  virtual void scale(double factor);
+  Rectangle(const point_t& leftTop, const point_t& rightBottom);
+  virtual double getArea() const override;
+  virtual rectangle_t getFrameRect() const override;
+  virtual void move(const point_t& newPos) override;
+  virtual void move(double dx, double dy) override;
+  virtual void scale(double factor) override;
 
 private:
-  double leftTop_;
-  double rightBottom_;
+  point_t leftTop_;
+  point_t rightBottom_;
 };
 
 #endif
