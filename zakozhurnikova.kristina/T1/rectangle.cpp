@@ -1,14 +1,14 @@
 #include "rectangle.hpp"
 #include <stdexcept>
 
-double Rectangle::getArea() const
+double zakozhurnikova::Rectangle::getArea() const
 {
   double width = upRight_.getX() - downLeft_.getX();
   double height = upRight_.getY() - downLeft_.getY();
   return width * height;
 }
 
-rectangle_t Rectangle::getFrameRect() const
+rectangle_t zakozhurnikova::Rectangle::getFrameRect() const
 {
   double width = upRight_.getX() - downLeft_.getX();
   double height = upRight_.getY() - downLeft_.getY();
@@ -16,7 +16,7 @@ rectangle_t Rectangle::getFrameRect() const
   return rectangle_t(width, height, pos);
 }
 
-void Rectangle::move(const point_t& p)
+void zakozhurnikova::Rectangle::move(const point_t& p)
 {
   point_t center(downLeft_ + upRight_)  / 2.0;
   double shiftX = p.getX() - center.getX();
@@ -24,14 +24,14 @@ void Rectangle::move(const point_t& p)
   move(shiftX, shiftY);
 }
 
-void Rectangle::move(double dx, double dy)
+void zakozhurnikova::Rectangle::move(double dx, double dy)
 {
   point_t shift(dx, dy);
   downLeft_ += shift;
   upRight_ += shift;
 }
 
-void Rectangle::scale(double k)
+void zakozhurnikova::Rectangle::scale(double k)
 {
   if (k <= 0)
   {
