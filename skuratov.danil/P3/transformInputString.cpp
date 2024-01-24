@@ -1,6 +1,5 @@
 #include "transformInputString.hpp"
 #include <iostream>
-#include <cstddef>
 #include <iomanip>
 
 char* skuratov::transformInputString(char* input, size_t size)
