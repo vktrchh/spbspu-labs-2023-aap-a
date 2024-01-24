@@ -3,5 +3,8 @@
 
 #include <cstring>
 
-char* mergeTwoLines(char* line1, char* line2);
+namespace skuratov
+{
+  char* mergeTwoLines(char* line1, char* line2);
+}
 #endif

@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cstring>
 
-char* removeDuplicate(char* str1, char* str2)
+char* skuratov::removeDuplicate(char* str1, char* str2)
 {
   char* result1 = str1;
   char* result2 = str2;

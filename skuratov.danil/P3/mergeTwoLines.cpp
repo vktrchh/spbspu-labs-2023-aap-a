@@ -3,7 +3,7 @@
 #include <cstddef>
 #include <cstring>
 
-char* mergeTwoLines(char* line1, char* line2)
+char* skuratov::mergeTwoLines(char* line1, char* line2)
 {
   size_t size1 = 0;
   while (*line1 != '\0')

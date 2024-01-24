@@ -7,6 +7,7 @@
 
 int main()
 {
+  using namespace skuratov;
   size_t size = 10;
   std::cout << "1.Enter first line: ";
 
