@@ -35,6 +35,7 @@ int main()
   }
   catch(const std::bad_alloc& e)
   {
+    delete[] first;
     delete[] united;
     delete[] replaced;
     std::cerr << "Cannot create new strings: " << e.what() << "\n";
