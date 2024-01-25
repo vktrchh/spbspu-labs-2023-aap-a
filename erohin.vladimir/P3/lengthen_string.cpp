@@ -19,7 +19,7 @@ char* erohin::lengthenString(const char* str, const char* source)
   {
     (str[i] != '\0') ? ++i : ++j;
   }
-  char* resized = new char[i + j];
-  resized[i + j - 1] = '\0';
+  char* resized = new char[i + j + 1];
+  resized[i + j] = '\0';
   return resized;
 }

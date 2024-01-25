@@ -20,6 +20,12 @@ int main()
     std::cerr << "Cannot allocate memory: " << e.what() << "\n";
     return 1;
   }
+  if (*first == '\0')
+  {
+    delete[] first;
+    std::cerr << "Input string is null\n";
+    return 2;
+  }
   char* united = nullptr;
   char* replaced = nullptr;
   try
@@ -32,7 +38,7 @@ int main()
     delete[] united;
     delete[] replaced;
     std::cerr << "Cannot create new strings: " << e.what() << "\n";
-    return 2;
+    return 3;
   }
   united = uniteString(united, first, second);
   replaced = replaceSymbol(replaced, first, old, change);
