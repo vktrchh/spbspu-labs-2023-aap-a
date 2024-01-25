@@ -17,15 +17,8 @@ int main()
   }
   catch (const std::bad_alloc& e)
   {
-    delete[] first;
     std::cerr << "Cannot allocate memory: " << e.what() << "\n";
     return 1;
-  }
-  if (first[0] == '\0')
-  {
-    std::cerr << "String is null\n";
-    delete[] first;
-    return 2;
   }
   char* united = nullptr;
   char* replaced = nullptr;
@@ -39,7 +32,7 @@ int main()
     delete[] united;
     delete[] replaced;
     std::cerr << "Cannot create new strings: " << e.what() << "\n";
-    return 3;
+    return 2;
   }
   united = uniteString(united, first, second);
   replaced = replaceSymbol(replaced, first, old, change);
