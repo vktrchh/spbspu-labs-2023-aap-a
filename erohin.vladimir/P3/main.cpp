@@ -7,10 +7,10 @@
 int main()
 {
   using namespace erohin;
-  char* first = nullptr;
-  const char* second = "abcdabcdabcdabcd";
   char old = 'c';
   char change = 'b';
+  char* first = nullptr;
+  const char* second = "abcdabcdabcdabcd";
   try
   {
     first = inputString(std::cin);
@@ -27,16 +27,22 @@ int main()
     delete[] first;
     return 2;
   }
-  char* united = uniteString(first, second);
-  char* replaced = replaceSymbol(first, old, change);
-  if (!united || !replaced)
+  char* united = nullptr;
+  char* replaced = nullptr;
+  try
   {
-    std::cerr << "Invalid string creation\n";
-    delete[] first;
+    united = lengthenString(first, second);
+    replaced = lengthenString(first, "");
+  }
+  catch(const std::bad_alloc& e)
+  {
     delete[] united;
     delete[] replaced;
+    std::cerr << "Cannot create new strings: " << e.what() << "\n";
     return 3;
   }
+  united = uniteString(united, first, second);
+  replaced = replaceSymbol(replaced, first, old, change);
   std::cout << united << "\n";
   std::cout << replaced << "\n";
   delete[] first;

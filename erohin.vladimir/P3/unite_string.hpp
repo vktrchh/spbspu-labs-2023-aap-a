@@ -3,7 +3,7 @@
 
 namespace erohin
 {
-  char* uniteString(const char* str1, const char* str2);
+  char* uniteString(char* result, const char* str1, const char* str2);
 }
 
 #endif

@@ -6,6 +6,7 @@
 namespace erohin
 {
   char* lengthenString(const char* str, size_t size, size_t shift);
+  char* lengthenString(const char* str, const char* source);
 }
 
 #endif
