@@ -32,6 +32,8 @@ int main()
   delete[] line1;
   delete[] line2;
   delete[] line3;
+  delete[] input1;
+  delete[] input2;
 
   std::cout << "2.Enter first line: ";
 
@@ -55,4 +57,6 @@ int main()
   delete[] line4;
   delete[] line5;
   delete[] result;
+  delete[] input3;
+  delete[] input4;
 }
