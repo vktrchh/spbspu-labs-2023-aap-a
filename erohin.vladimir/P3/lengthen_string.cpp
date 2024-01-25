@@ -15,7 +15,7 @@ char* erohin::lengthenString(const char* str, const char* source)
 {
   size_t i = 0;
   size_t j = 0;
-  while(source[j] != '\0')
+  while(str[i] != '\0' || source[j] != '\0')
   {
     (str[i] != '\0') ? ++i : ++j;
   }
