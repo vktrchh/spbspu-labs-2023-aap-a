@@ -9,13 +9,13 @@ int main()
   using namespace erohin;
   char old = 'c';
   char change = 'b';
-  char* first = nullptr;
-  const char* second = "abcdabcdabcdabcd";
+  char * first = nullptr;
+  const char * second = "abcdabcdabcdabcd";
   try
   {
     first = inputString(std::cin);
   }
-  catch (const std::bad_alloc& e)
+  catch (const std::bad_alloc & e)
   {
     std::cerr << "Cannot allocate memory: " << e.what() << "\n";
     return 1;
@@ -26,14 +26,14 @@ int main()
     std::cerr << "Input string is null\n";
     return 2;
   }
-  char* united = nullptr;
-  char* replaced = nullptr;
+  char * united = nullptr;
+  char * replaced = nullptr;
   try
   {
     united = lengthenString(first, second);
     replaced = lengthenString(first, "");
   }
-  catch(const std::bad_alloc& e)
+  catch(const std::bad_alloc & e)
   {
     delete[] first;
     delete[] united;

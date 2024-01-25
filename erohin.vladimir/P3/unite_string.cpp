@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include "lengthen_string.hpp"
 
-char* erohin::uniteString(char* result, const char* str1, const char* str2)
+char * erohin::uniteString(char * result, const char * str1, const char * str2)
 {
   size_t i = 0;
   size_t j = 0;

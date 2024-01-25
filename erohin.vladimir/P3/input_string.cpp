@@ -3,14 +3,14 @@
 #include <stdexcept>
 #include "lengthen_string.hpp"
 
-char* erohin::inputString(std::istream& input)
+char * erohin::inputString(std::istream & input)
 {
   const size_t iter_size = 20;
   size_t size = iter_size;
-  char* str = new char[iter_size + 1]{};
+  char * str = new char[iter_size + 1]{};
   char elem = 0;
   size_t i = 0;
-  char* temp = nullptr;
+  char * temp = nullptr;
   input >> std::noskipws;
   while (input >> elem)
   {
@@ -23,10 +23,10 @@ char* erohin::inputString(std::istream& input)
         delete[] str;
         str = temp;
       }
-      catch (const std::bad_alloc& e)
+      catch (const std::bad_alloc & e)
       {
         delete[] str;
-        throw e;
+        throw;
       }
     }
     str[i++] = elem;
