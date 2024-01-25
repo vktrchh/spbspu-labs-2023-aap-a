@@ -9,22 +9,21 @@ char* zaitsev::readStr(std::istream& input)
 {
   size_t capacity = 20;
   size_t size = 0;
-  char x;
+  char x='\0';
   char* str = nullptr;
 
-  std::ios format_holder(nullptr);
-  format_holder.copyfmt(input);
-  input.unsetf(std::ios_base::skipws);
+ 
   try
   {
     str = new char[capacity];
     str[0] = '\0';
-    input >> x;
+    input >> std::noskipws >> x;
     while (input)
     {
       if (size + 1 == capacity)
       {
-        char* resized_str = resizeStr(str, capacity, capacity * 2);
+        char* resized_str = new char[capacity * 2];
+        memcpy(resized_str, str, capacity);
         delete[] str;
         str = resized_str;
         capacity *= 2;
@@ -41,23 +40,17 @@ char* zaitsev::readStr(std::istream& input)
   }
   catch (const std::bad_alloc&)
   {
-    input.copyfmt(format_holder);
+    input >> std::skipws;
     delete[] str;
     throw;
   }
-  input.copyfmt(format_holder);
   if (!size && !input)
   {
+    input >> std::skipws;
     delete[] str;
     return nullptr;
   }
 
+  input >> std::skipws;
   return str;
-}
-
-char* zaitsev::resizeStr(char* str, size_t old_size, size_t new_size)
-{
-  char* new_str = new char[new_size];
-  memcpy(new_str, str, std::min(old_size, new_size));
-  return new_str;
 }

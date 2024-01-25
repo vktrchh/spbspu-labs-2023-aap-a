@@ -17,7 +17,8 @@ int main()
       std::cerr << "Failed to read string" << '\n';
       return 2;
     }
-    res = uniqueChars(string1, string2);
+    res = new char[strlen(string1) + strlen(string2) + 1];
+    uniqueChars(string1, string2, res);
   }
   catch (const std::bad_alloc&)
   {

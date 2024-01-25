@@ -4,8 +4,6 @@
 
 namespace zaitsev
 {
-  char* uniqueChars(const char* str1, const char* str2);
-  int isCharInStr(const char* str, char c);
-  char* addUnique(const char* basic_str, const char* comp_str, char* res_str, size_t* capacity, size_t* size);
+  void uniqueChars(const char* str1, const char* str2, char* result_str);
 }
 #endif
