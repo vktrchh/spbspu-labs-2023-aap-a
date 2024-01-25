@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdexcept>
+#include <cstring>
 #include "input.h"
 #include "unique_symbols.h"
 

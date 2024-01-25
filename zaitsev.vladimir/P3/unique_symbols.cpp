@@ -1,6 +1,7 @@
 #include "unique_symbols.h"
 #include <stdexcept>
 #include <cstddef>
+#include <cstring>
 #include "input.h"
 
 void zaitsev::uniqueChars(const char* str1, const char* str2, char* result_str)
@@ -14,7 +15,7 @@ void zaitsev::uniqueChars(const char* str1, const char* str2, char* result_str)
   }
   while (str2&&*str2)
   {
-    ++symbols[*str2];
+    ++symbols[size_t(*str2)];
     ++str2;
   }
 
