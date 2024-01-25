@@ -6,7 +6,7 @@
 void zaitsev::uniqueChars(const char* str1, const char* str2, char* result_str)
 {
   char symbols[256] = {};
-  
+
   while(str1&&*str1)
   {
     ++symbols[size_t(*str1)];

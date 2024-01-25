@@ -11,7 +11,6 @@ char* zaitsev::readStr(std::istream& input)
   size_t size = 0;
   char x='\0';
   char* str = nullptr;
-
  
   try
   {
