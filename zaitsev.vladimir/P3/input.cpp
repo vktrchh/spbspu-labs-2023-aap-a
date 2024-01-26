@@ -5,6 +5,8 @@
 #include <stdexcept>
 #include <limits>
 
+char* resizeStr(const char* str, size_t old_size, size_t new_size);
+
 char* zaitsev::readStr(std::istream& input)
 {
   size_t capacity = 20;
@@ -53,7 +55,7 @@ char* zaitsev::readStr(std::istream& input)
   return str;
 }
 
-char* zaitsev::resizeStr(const char* str, size_t old_size, size_t new_size)
+char* resizeStr(const char* str, size_t old_size, size_t new_size)
 {
   char* new_str = new char[new_size];
   std::memcpy(new_str, str, std::min(old_size, new_size));

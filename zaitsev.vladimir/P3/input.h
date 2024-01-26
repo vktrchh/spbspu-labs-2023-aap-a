@@ -6,6 +6,5 @@
 namespace zaitsev
 {
   char* readStr(std::istream& input);
-  char* resizeStr(const char* str, size_t old_size, size_t new_size);
 }
 #endif
