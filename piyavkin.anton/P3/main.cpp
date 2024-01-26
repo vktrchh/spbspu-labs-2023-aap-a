@@ -21,17 +21,12 @@ int main()
     delete [] new_line;
     return 1;
   }
-  if (new_line == nullptr)
-  {
-    std::cerr << "Line not read\n";
-    delete [] alphabet;
-    return 1;
-  }
   std::cin >> std::skipws;
   alphabet = createLineMissingLatinLetters(new_line, alphabet);
-  for (size_t i = 0; alphabet[i] != '\0'; ++i)
+  size_t i = 0;
+  while (alphabet[i] != '\0')
   {
-    std::cout << alphabet[i];
+    std::cout << alphabet[i++];
   }
   std::cout << '\n';
   delete [] new_line;

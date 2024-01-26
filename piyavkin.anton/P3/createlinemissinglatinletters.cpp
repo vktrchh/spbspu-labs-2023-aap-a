@@ -4,11 +4,14 @@
 bool piyavkin::checkExistenceLetter(const char letter, const char * line)
 {
   size_t i = 0;
-  while (line[i] != '\0')
+  if (line != nullptr)
   {
-    if (line[i++] == letter)
+    while (line[i] != '\0')
     {
-      return true;
+      if (line[i++] == letter)
+      {
+        return true;
+      }
     }
   }
   return false;
