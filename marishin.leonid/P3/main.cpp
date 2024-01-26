@@ -26,15 +26,7 @@ int main()
     return 1;
   }
   std::cin >> std::skipws;
-  try
-  {
-    buffer = modifyString(buffer, firstSymbol, secondSymbol);
-  }
-  catch (const std::exception& e)
-  {
-    std::cerr << "Error: " << e.what() << '\n';
-    return 1;
-  }
+  buffer = modifyString(buffer, firstSymbol, secondSymbol);
   std::cout << buffer;
   delete[] buffer;
 }
