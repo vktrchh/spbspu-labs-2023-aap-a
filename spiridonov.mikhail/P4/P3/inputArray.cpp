@@ -1,5 +1,5 @@
-#include <iostream>
 #include "inputArray.hpp"
+#include <iostream>
 
 char * spiridonov::inputArray(std::istream& input, size_t& sizeOfStr)
 {
