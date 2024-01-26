@@ -1,7 +1,6 @@
 #include "replace_symbol.hpp"
 #include <cstddef>
 #include <stdexcept>
-#include "lengthen_string.hpp"
 
 char * erohin::replaceSymbol(char * result, const char * str, char old, char change)
 {

@@ -1,6 +1,6 @@
 #include <iostream>
 #include "input_string.hpp"
-#include "lengthen_string.hpp"
+#include "resize_string.hpp"
 #include "unite_string.hpp"
 #include "replace_symbol.hpp"
 
@@ -30,10 +30,10 @@ int main()
   char * replaced = nullptr;
   try
   {
-    united = lengthenString(first, second);
-    replaced = lengthenString(first, "");
+    united = resizeString(first, second);
+    replaced = resizeString(first, "");
   }
-  catch(const std::bad_alloc & e)
+  catch (const std::bad_alloc & e)
   {
     delete[] first;
     delete[] united;

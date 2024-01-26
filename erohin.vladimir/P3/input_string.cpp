@@ -1,7 +1,7 @@
 #include "input_string.hpp"
 #include <iostream>
 #include <stdexcept>
-#include "lengthen_string.hpp"
+#include "resize_string.hpp"
 
 char * erohin::inputString(std::istream & input)
 {
@@ -10,7 +10,6 @@ char * erohin::inputString(std::istream & input)
   char * str = new char[iter_size + 1]{};
   char elem = 0;
   size_t i = 0;
-  char * temp = nullptr;
   input >> std::noskipws;
   while (input >> elem)
   {
@@ -18,7 +17,7 @@ char * erohin::inputString(std::istream & input)
     {
       try
       {
-        temp = lengthenString(str, size, iter_size);
+        char * temp = resizeString(str, size, iter_size);
         size += iter_size;
         delete[] str;
         str = temp;
