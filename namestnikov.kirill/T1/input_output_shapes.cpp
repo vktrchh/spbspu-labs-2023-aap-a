@@ -151,6 +151,5 @@ std::ostream & namestnikov::outputShapes(std::ostream & out, size_t count, Shape
            << positionX + (width / 2.0) << " " << positionY + (height / 2.0);
     }
   }
-  out << "\n";
   return out;
 }
