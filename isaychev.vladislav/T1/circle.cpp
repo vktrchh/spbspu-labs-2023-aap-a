@@ -12,18 +12,18 @@ double isaychev::Circle::getArea() const
 
 isaychev::rectangle_t isaychev::Circle::getFrameRect() const
 {
-  return {2 * radius_, 2 * radius_, {center_.x_, center_.y_}};
+  return {2 * radius_, 2 * radius_, {center_.x, center_.y}};
 }
 
 void isaychev::Circle::move(const point_t & newPos)
 {
-  center_ = {newPos.x_, newPos.y_};
+  center_ = {newPos.x, newPos.y};
 }
 
 void isaychev::Circle::move(const double dX, const double dY)
 {
-  center_.x_ += dX;
-  center_.y_ += dY;
+  center_.x += dX;
+  center_.y += dY;
 }
 
 void isaychev::Circle::scale(const double coeff)

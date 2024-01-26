@@ -11,11 +11,11 @@ isaychev::Regular::Regular(const point_t & p1, const point_t & p2, const point_t
 double isaychev::Regular::getArea() const
 {
   double inRad = 0.0, bottom = 0.0, radX = 0.0, radY = 0.0;
-  radX = (distPnt_.x_ - closePnt_.x_) * (distPnt_.x_ - closePnt_.x_);
-  radY = (distPnt_.y_ - closePnt_.y_) * (distPnt_.y_ - closePnt_.y_);
+  radX = (distPnt_.x - closePnt_.x) * (distPnt_.x - closePnt_.x);
+  radY = (distPnt_.y - closePnt_.y) * (distPnt_.y - closePnt_.y);
   bottom = std::sqrt(radX + radY);
-  radX = (center_.x_ - closePnt_.x_) * (center_.x_ - closePnt_.x_);
-  radY = (center_.y_ - closePnt_.y_) * (center_.y_ - closePnt_.y_);
+  radX = (center_.x - closePnt_.x) * (center_.x - closePnt_.x);
+  radY = (center_.y - closePnt_.y) * (center_.y - closePnt_.y);
   inRad = std::sqrt(radX + radY);
   double numOfSides = std::round(3.1415926535 / std::atan(bottom / inRad));
   return bottom * inRad * numOfSides;
@@ -24,21 +24,21 @@ double isaychev::Regular::getArea() const
 isaychev::rectangle_t isaychev::Regular::getFrameRect() const
 {
   double radX = 0, radY = 0;
-  radX = (center_.x_ - closePnt_.x_) * (center_.x_ - closePnt_.x_);
-  radY = (center_.y_ - closePnt_.y_) * (center_.y_ - closePnt_.y_);
+  radX = (center_.x - closePnt_.x) * (center_.x - closePnt_.x);
+  radY = (center_.y - closePnt_.y) * (center_.y - closePnt_.y);
   double leg = std::sqrt(radX + radY);
-  radX = (distPnt_.x_ - center_.x_);
-  radY = (distPnt_.y_ - center_.y_);
+  radX = (distPnt_.x - center_.x);
+  radY = (distPnt_.y - center_.y);
   double outRad = std::sqrt(radX * radX + radY * radY);
   double initXAngle = std::acos(radX / outRad);
   double steerAngle = 2 * std::acos(leg / outRad);
   double numOfSides = std::round(3.1415926535 / std::acos(leg / outRad));
   double minX = 0.0, minY = 0.0, maxX = 0.0, maxY = 0.0;
-  minX = maxX = distPnt_.x_;
-  minY = maxY = distPnt_.y_;
+  minX = maxX = distPnt_.x;
+  minY = maxY = distPnt_.y;
   for (double i = 1.0; i < numOfSides; i++)
   {
-    double currX = center_.x_ + outRad * cos(initXAngle + i * steerAngle);
+    double currX = center_.x + outRad * cos(initXAngle + i * steerAngle);
     if (currX < minX)
     {
       minX = currX;
@@ -47,7 +47,7 @@ isaychev::rectangle_t isaychev::Regular::getFrameRect() const
     {
       maxX = currX;
     }
-    double currY = center_.y_ + outRad * sin(initXAngle + i * steerAngle);
+    double currY = center_.y + outRad * sin(initXAngle + i * steerAngle);
     if (currY < minY)
     {
       minY = currY;
@@ -65,29 +65,29 @@ isaychev::rectangle_t isaychev::Regular::getFrameRect() const
 
 void isaychev::Regular::move(const double dX, const double dY)
 {
-  center_.x_ += std::round(dX * 10) / 10;
-  closePnt_.x_ += std::round(dX * 10) / 10;
-  distPnt_.x_ += std::round(dX * 10) / 10;
-  center_.y_ += std::round(dY * 10) / 10;
-  closePnt_.y_ += std::round(dY * 10) / 10;
-  distPnt_.y_ += std::round(dY * 10) /10;
+  center_.x += std::round(dX * 10) / 10;
+  closePnt_.x += std::round(dX * 10) / 10;
+  distPnt_.x += std::round(dX * 10) / 10;
+  center_.y += std::round(dY * 10) / 10;
+  closePnt_.y += std::round(dY * 10) / 10;
+  distPnt_.y += std::round(dY * 10) /10;
 }
 
 void isaychev::Regular::move(const point_t & newPos)
 {
-  double dX = std::round((newPos.x_ - center_.x_) * 10) / 10;
-  closePnt_.x_ += dX;
-  distPnt_.x_ += dX;
-  double dY = std::round((newPos.y_ - center_.y_) * 10) / 10;
-  closePnt_.y_ += dY;
-  distPnt_.y_ += dY;
-  center_ = {newPos.x_, newPos.y_};
+  double dX = std::round((newPos.x - center_.x) * 10) / 10;
+  closePnt_.x += dX;
+  distPnt_.x += dX;
+  double dY = std::round((newPos.y - center_.y) * 10) / 10;
+  closePnt_.y += dY;
+  distPnt_.y += dY;
+  center_ = {newPos.x, newPos.y};
 }
 
 void isaychev::Regular::scale(const double coeff)
 {
-  distPnt_.x_ *= coeff;
-  closePnt_.x_ *= coeff;
-  distPnt_.y_ *= coeff;
-  closePnt_.y_ *= coeff;
+  distPnt_.x *= coeff;
+  closePnt_.x *= coeff;
+  distPnt_.y *= coeff;
+  closePnt_.y *= coeff;
 }

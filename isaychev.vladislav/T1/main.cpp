@@ -47,29 +47,32 @@ int main()
     }
     delete [] currDesc;
   }
-  if (eofCheck > 1 && checkString(currDesc, scaleStr) == 0)
+  if (eofCheck == 1 && checkString(currDesc, scaleStr) == 0)
   {
     std::cerr << "input was finished with eof symbol; scale wasn't inputed\n";
     return 2;
   }
-  outputResults(Figures, figuresCount);
-  try
+  else
   {
-    isoscale(currDesc, Figures, figuresCount);
-  }
-  catch (const std::invalid_argument & e)
-  {
-    if (eofCheck > 0)
+    outputResults(Figures, figuresCount);
+    try
     {
-      std::cerr << "input was finished with eof symbol; " << e.what() << "\n";
-      deleteFigures(Figures, figuresCount);
-      return 3;
+      isoscale(currDesc, Figures, figuresCount);
     }
-    std::cerr << e.what() << "\n";
-    deleteFigures(Figures, figuresCount);
-    return 4;
+    catch (const std::invalid_argument & e)
+    {
+      if (eofCheck > 0)
+      {
+        std::cerr << "input was finished with eof symbol; " << e.what() << "\n";
+        deleteFigures(Figures, figuresCount);
+        return 3;
+      }
+      std::cerr << e.what() << "\n";
+      deleteFigures(Figures, figuresCount);
+      return 4;
+    }
+    outputResults(Figures, figuresCount);
   }
-  outputResults(Figures, figuresCount);
   if (figDescMistakeCheck > 0)
   {
     std::cerr << "There were mistake in figure descriptions\n";

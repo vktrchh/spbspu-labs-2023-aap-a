@@ -51,9 +51,9 @@ isaychev::Regular * createRegular(const double * params)
   isaychev::point_t p2 = {params[2], params[3]};
   isaychev::point_t p3 = {params[4], params[5]};
   double side1 = 0.0, side2 = 0.0, bottom = 0.0;
-  side1 = std::sqrt((p1.x_ - p2.x_) * (p1.x_ - p2.x_) + (p1.y_ - p2.y_) * (p1.y_ - p2.y_));
-  side2 = std::sqrt((p1.x_ - p3.x_) * (p1.x_ - p3.x_) + (p1.y_ - p3.y_) * (p1.y_ - p3.y_));
-  bottom = std::sqrt((p2.x_ - p3.x_) * (p2.x_ - p3.x_) + (p2.y_ - p3.y_) * (p2.y_ - p3.y_));
+  side1 = std::sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
+  side2 = std::sqrt((p1.x - p3.x) * (p1.x - p3.x) + (p1.y - p3.y) * (p1.y - p3.y));
+  bottom = std::sqrt((p2.x - p3.x) * (p2.x - p3.x) + (p2.y - p3.y) * (p2.y - p3.y));
   isaychev::Regular * reg = nullptr;
   double hyp11 = std::round((side1 * side1 * 10000)) / 10000;
   double hyp12 = std::round((side2 * side2 + bottom * bottom) * 10000) / 10000;

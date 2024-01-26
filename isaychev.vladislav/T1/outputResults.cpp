@@ -10,14 +10,14 @@ void isaychev::outputResults(Shape ** Figures, size_t figuresCount)
     sumOfAreas += Figures[j]->getArea();
   }
   std::cout << std::fixed;
-   std::cout << std::setprecision(1) << sumOfAreas << " ";
+  std::cout << std::setprecision(1) << sumOfAreas << " ";
   for (size_t j = 0; j < figuresCount; j++)
   {
     rectangle_t rect = Figures[j]->getFrameRect();
-    std::cout << std::setprecision(1) << std::round((rect.pos.x_ - (rect.width / 2)) * 10) / 10 << " ";
-    std::cout << std::setprecision(1) << std::round((rect.pos.y_ - (rect.height / 2)) * 10) / 10 << " ";
-    std::cout << std::setprecision(1) << std::round((rect.pos.x_ + (rect.width / 2)) * 10) / 10  << " ";
-    std::cout << std::setprecision(1) << std::round((rect.pos.y_ + (rect.height / 2)) * 10) / 10 << " ";
+    std::cout << std::setprecision(1) << std::round((rect.pos.x - (rect.width / 2)) * 10) / 10 << " ";
+    std::cout << std::setprecision(1) << std::round((rect.pos.y - (rect.height / 2)) * 10) / 10 << " ";
+    std::cout << std::setprecision(1) << std::round((rect.pos.x + (rect.width / 2)) * 10) / 10  << " ";
+    std::cout << std::setprecision(1) << std::round((rect.pos.y + (rect.height / 2)) * 10) / 10 << " ";
   }
   std::cout << "\n";
 }
