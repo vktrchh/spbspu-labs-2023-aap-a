@@ -49,17 +49,17 @@ piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
         {
           if (name == "RECTANGLE")
           {
-            shapeArray[shapeCount] = new Rectangle({parameters[0], parameters[1]},\
+            shapeArray[shapeCount] = new Rectangle({parameters[0], parameters[1]},
                 {parameters[2], parameters[3]});
           }
           else if (name == "TRIANGLE")
           {
-            shapeArray[shapeCount] = new Triangle({parameters[0], parameters[1]},\
+            shapeArray[shapeCount] = new Triangle({parameters[0], parameters[1]},
                 {parameters[2], parameters[3]}, {parameters[4], parameters[5]});
           }
           else if (name == "PARALLELOGRAM")
           {
-            shapeArray[shapeCount] = new Parallelogram({parameters[0], parameters[1]},\
+            shapeArray[shapeCount] = new Parallelogram({parameters[0], parameters[1]},
                 {parameters[2], parameters[3]}, {parameters[4], parameters[5]});
           }
         }
