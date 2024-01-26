@@ -2,12 +2,12 @@
 
 int spiridonov::hasConsecutiveDuplicates(const char * str)
 {
-  if (str == nullptr)
+  const char* current = str;
+  if (current == nullptr)
   {
     return 0;
   }
 
-  const char* current = str;
   while (*(current + 1) != '\0')
   {
     if (*current == *(current + 1))
