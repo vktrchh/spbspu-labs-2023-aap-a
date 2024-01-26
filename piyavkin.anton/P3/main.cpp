@@ -21,6 +21,11 @@ int main()
     delete [] new_line;
     return 1;
   }
+  catch (const std::logic_error & e)
+  {
+    std::cerr << e.what() << '\n';
+    return 1;
+  }
   std::cin >> std::skipws;
   alphabet = createLineMissingLatinLetters(new_line, alphabet);
   size_t i = 0;

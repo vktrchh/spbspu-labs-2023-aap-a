@@ -9,7 +9,7 @@ char * piyavkin::inputLine(std::istream & in)
   while (in >> sym)
   {
     old_line = new_line;
-    new_line = new char [length + 2] {};
+    new_line = new char[length + 2] {};
     for (size_t i = 0; i < length; ++i)
     {
       new_line[i] = old_line[i];
@@ -22,6 +22,10 @@ char * piyavkin::inputLine(std::istream & in)
       break;
     }
     new_line[length] = '\0';
+  }
+  if (new_line == nullptr)
+  {
+    throw std::logic_error("Line not read");
   }
   return new_line;
 }
