@@ -25,7 +25,6 @@ int main()
   }
 
   delete[] currentArray;
-  std::cin >> std::skipws;
 
   return 0;
 }
