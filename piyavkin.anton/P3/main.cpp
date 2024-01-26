@@ -15,25 +15,15 @@ int main()
     new_line = inputLine(std::cin);
     alphabet = new char[number_letters_alphabet] {};
   }
-  catch (const std::bad_alloc & e)
+  catch (...)
   {
-    std::cerr << e.what() << '\n';
+    std::cerr << "error: line not read\n";
     delete [] new_line;
-    return 1;
-  }
-  catch (const std::logic_error & e)
-  {
-    std::cerr << e.what() << '\n';
     return 1;
   }
   std::cin >> std::skipws;
   alphabet = createLineMissingLatinLetters(new_line, alphabet);
-  size_t i = 0;
-  while (alphabet[i] != '\0')
-  {
-    std::cout << alphabet[i++];
-  }
-  std::cout << '\n';
+  std::cout << alphabet << '\n';
   delete [] new_line;
   delete [] alphabet;
 }
