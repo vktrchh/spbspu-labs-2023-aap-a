@@ -24,7 +24,7 @@ int main()
   catch (const std::bad_alloc&)
   {
     std::cerr << "Failed memory allocation" << "\n";
-    if (currentArray != nullptr
+    if (currentArray != nullptr)
     {
       delete[] currentArray;
     }

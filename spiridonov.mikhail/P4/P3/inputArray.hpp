@@ -4,7 +4,7 @@
 
 namespace spiridonov
 {
-  char * inputArray(std::istream& input, size_t sizeOfStr);
+  char * inputArray(std::istream& input, size_t& sizeOfStr);
 }
 
 #endif
