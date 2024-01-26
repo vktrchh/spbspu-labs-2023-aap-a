@@ -17,7 +17,7 @@ int main()
     using namespace piyavkin;
     shapes = inputShape(std::cin, shapeCount);
     double k = 0;
-    point_t center = { 0, 0 };
+    point_t center = {0, 0};
     std::cin >> center.x >> center.y >> k;
     output(std::cout, shapes, shapeCount);
     for (size_t i = 0; i < shapeCount; ++i)

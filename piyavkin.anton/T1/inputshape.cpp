@@ -94,7 +94,7 @@ piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
     }
     in >> std::skipws;
   }
-  if (name == "")
+  if (!in)
   {
     throw std::logic_error("It is not shape");
   }
