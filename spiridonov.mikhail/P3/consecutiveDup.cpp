@@ -7,12 +7,14 @@ int spiridonov::hasConsecutiveDuplicates(const char * str)
     return 0;
   }
 
-  for (int i = 1; str[i] != '\0'; ++i)
+  const char* current = str;
+  while (*(current + 1) != '\0')
   {
-    if (str[i] == str[i - 1])
+    if (*current == *(current + 1))
     {
       return 1;
     }
+    current++;
   }
   return 0;
 }
