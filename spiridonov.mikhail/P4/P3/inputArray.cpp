@@ -28,6 +28,7 @@ char * spiridonov::inputArray(std::istream& input, size_t& sizeOfStr)
         sizeOfStr += chunkSize;
       }
     }
+    sizeOfStr = i;
   }
   catch (const std::bad_alloc&)
   {
@@ -35,13 +36,5 @@ char * spiridonov::inputArray(std::istream& input, size_t& sizeOfStr)
     throw;
   }
 
-  char* finalArray = new char[i];
-  for (size_t j = 0; j < i; ++j)
-  {
-    finalArray[j] = currentArray[j];
-  }
-
-  delete[] currentArray;
-  sizeOfStr = i;
-  return finalArray;
+  return currentArray;
 }
