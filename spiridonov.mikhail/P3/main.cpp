@@ -16,10 +16,6 @@ int main()
   catch (const std::bad_alloc&)
   {
     std::cerr << "Failed memory allocation" << "\n";
-    if (currentArray != nullptr)
-    {
-      delete[] currentArray;
-    }
     return 1;
   }
   catch (...)
@@ -29,6 +25,7 @@ int main()
   }
 
   delete[] currentArray;
+  std::cin >> std::skipws;
 
   return 0;
 }
