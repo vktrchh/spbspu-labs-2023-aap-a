@@ -1,4 +1,4 @@
-#include "seqsym.hpp"
+#include "consecutiveDup.hpp"
 #include <cstring>
 
 int spiridonov::hasConsecutiveDuplicates(const char * str)

@@ -1,5 +1,5 @@
-#ifndef SECSYM_HPP
-#define SECSYM_HPP
+#ifndef CONSECUTIVE_DUP_HPP
+#define CONSECUTIVE_DUP_HPP
 
 namespace spiridonov
 {
