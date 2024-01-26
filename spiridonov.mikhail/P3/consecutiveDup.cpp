@@ -3,7 +3,7 @@
 int spiridonov::hasConsecutiveDuplicates(const char * str)
 {
   const char* current = str;
-  if (str == nullptr || *str == '\0')
+  if (str == nullptr)
   {
     return 0;
   }
