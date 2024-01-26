@@ -1,5 +1,4 @@
 #include "consecutiveDup.hpp"
-#include <cstring>
 
 int spiridonov::hasConsecutiveDuplicates(const char * str)
 {
@@ -8,14 +7,7 @@ int spiridonov::hasConsecutiveDuplicates(const char * str)
     return 0;
   }
 
-  int length = strlen(str);
-
-  if (length < 2)
-  {
-    return 0;
-  }
-
-  for (int i = 1; i < length; ++i)
+  for (int i = 1; str[i] != '\0'; ++i)
   {
     if (str[i] == str[i - 1])
     {
