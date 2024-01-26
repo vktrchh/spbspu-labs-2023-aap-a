@@ -10,7 +10,7 @@ int main()
   try
   {
     currentArray = spiridonov::inputArray(std::cin, size);
-    int result = spiridonov::hasConsecutiveDuplicates(currentArray);
+    int result = spiridonov::hasConsecutiveDuplicates(currentArray, size);
     std::cout << result << "\n";
   }
   catch (const std::bad_alloc&)
