@@ -3,7 +3,7 @@
 
 namespace spiridonov
 {
-  int hasConsecutiveDuplicates(const char * str);
+  int hasConsecutiveDuplicates(const char *);
 }
 
 #endif
