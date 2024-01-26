@@ -9,12 +9,9 @@ int main()
 {
   using namespace skuratov;
   size_t size = 10;
-  std::cout << "1.Enter first line: ";
 
   char* input1 = new char[size];
   input1 = transformInputString(input1, size);
-
-  std::cout << "Enter second line: ";
 
   char* input2 = new char[size];
   input2 = transformInputString(input2, size);
@@ -28,19 +25,15 @@ int main()
   char* line3 = new char[size];
   line3 = mergeTwoLines(input1, input2);
 
-  std::cout << "Result merging: " << line3 << '\n';
+  std::cout << line3 << '\n';
   delete[] line1;
   delete[] line2;
   delete[] line3;
   delete[] input1;
   delete[] input2;
 
-  std::cout << "2.Enter first line: ";
-
   char* input3 = new char[size];
   input3 = transformInputString(input3, size);
-
-  std::cout << "Enter second line: ";
 
   char* input4 = new char[size];
   input4 = transformInputString(input4, size);
@@ -53,7 +46,7 @@ int main()
   char* line5 = new char[size];
   char* result = removeDuplicate(input3, input4);
 
-  std::cout << "Result after removing duplicates: " << result;
+  std::cout << result;
   delete[] line4;
   delete[] line5;
   delete[] result;

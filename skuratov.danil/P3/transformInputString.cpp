@@ -16,16 +16,18 @@ char* skuratov::transformInputString(char* input, size_t size)
     }
     if (i == size - 1)
     {
-      size *= 2;
+      size += 10;
       char* newinput = new char[size];
-      for (size_t g = 0; g < i; g++)
+      for (size_t j = 0; j < i; j++)
       {
-        newinput[g] = input[g];
+        newinput[j] = input[j];
       }
       delete[] input;
       input = newinput;
+      delete[] newinput;
     }
-    input[i++] = c;
+    input[i] = c;
+    i++;
     if (c == '\n')
     {
       input[i - 1] = '\0';
