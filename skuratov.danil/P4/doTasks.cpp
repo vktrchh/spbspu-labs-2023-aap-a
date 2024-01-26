@@ -22,18 +22,18 @@ void skuratov::doTasks(std::ofstream& out, std::ifstream& in, int* array, size_t
   out << res << '\n';
   if (!(out << res))
   {
-    throw std::exception("Error output file");
+    throw std::runtime_error("Error output file");
   }
   res = skuratov::findMinSumAlongSecondaryDiagonal(array, rows, cols);
   out << res << '\n';
   if (!(out << res))
   {
-    throw std::exception("Error output file");
+    throw std::runtime_error("Error output file");
   }
   res = skuratov::findLongestSeriesRow(array, rows, cols);
   out << res << '\n';
   if (!(out << res))
   {
-    throw std::exception("Error output file");
+    throw std::runtime_error("Error output file");
   }
 }

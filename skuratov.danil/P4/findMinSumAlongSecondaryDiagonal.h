@@ -7,4 +7,5 @@ namespace skuratov
 {
   int findMinSumAlongSecondaryDiagonal(const int* array, size_t rows, size_t cols);
 }
+
 #endif

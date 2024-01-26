@@ -12,13 +12,13 @@ int* skuratov::readArray(std::ifstream& in, int* array, size_t rows, size_t cols
   {
     if (!(in >> array[i]))
     {
-      throw std::exception("Error reading element at index\n");
+      throw std::runtime_error("Error reading element at index\n");
     }
     count++;
   }
   if (count != rows * cols)
   {
-    throw std::exception("Error\n");
+    throw std::runtime_error("Error\n");
   }
   return array;
 }
