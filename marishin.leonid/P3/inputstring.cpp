@@ -3,43 +3,33 @@
 char* marishin::inputString(std::istream& input)
 {
   size_t initialBufferSize = 10;
-  char* buffer = new char[initialBufferSize];
-  size_t bufferSize = initialBufferSize;
   size_t currentIndex = 0;
+  char* buffer = new char[initialBufferSize];
   char currentChar = 0;
   while ((input >> currentChar) && (currentChar != '\n'))
   {
-    if (currentIndex == (bufferSize - 1))
+    if (currentIndex + 1 == initialBufferSize)
     {
-      bufferSize *= 2;
-      char* newBuffer = nullptr;
-      newBuffer = new char[bufferSize];
-      if (newBuffer != nullptr)
+      try
       {
-        for (size_t i = 0; i < currentIndex; ++i)
+        char* newBuffer = new char[initialBufferSize + 10];
+        for (size_t i = 0; i < initialBufferSize; ++i)
         {
           newBuffer[i] = buffer[i];
         }
         delete[] buffer;
         buffer = newBuffer;
+        initialBufferSize += 10;
       }
-      else
+      catch (const std::bad_alloc& e)
       {
         delete[] buffer;
-        throw std::logic_error("unable to create array!");
+        throw;
       }
     }
     buffer[currentIndex] = currentChar;
     currentIndex++;
   }
   buffer[currentIndex] = '\0';
-  if (buffer[0] == '\0')
-  {
-    delete[] buffer;
-    throw std::logic_error("empty input!");
-  }
-  else
-  {
-    return buffer;
-  }
+  return buffer;
 }
