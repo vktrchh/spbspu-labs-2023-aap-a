@@ -19,6 +19,12 @@ int main()
     std::cerr << "Error: " << e.what() << '\n';
     return 1;
   }
+  if (buffer[0] == '\0')
+  {
+    std::cerr << "empty input!\n";
+    delete[] buffer;
+    return 1;
+  }
   std::cin >> std::skipws;
   try
   {
