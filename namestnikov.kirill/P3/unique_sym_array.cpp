@@ -1,5 +1,4 @@
 #include "unique_sym_array.hpp"
-#include <algorithm>
 
 bool isSymbolInString(const char * string, char sym)
 {

@@ -1,6 +1,4 @@
 #include <iostream>
-#include <iomanip>
-#include <algorithm>
 #include "unique_sym_array.hpp"
 #include "input_string.hpp"
 
@@ -31,7 +29,6 @@ int main()
   try
   {
     result = new char[firstSize + secondSize]{};
-    getUniqueSymArray(firstString, secondString, result);
   }
   catch (...)
   {
@@ -39,6 +36,7 @@ int main()
     std::cerr << "Not enough memory\n";
     return 1;
   }
+  getUniqueSymArray(firstString, secondString, result);
   std::cout << result << "\n";
   delete [] firstString;
   delete [] result;

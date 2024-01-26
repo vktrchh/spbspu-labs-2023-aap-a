@@ -1,6 +1,5 @@
 #include "input_string.hpp"
 
-
 char * getLongerString(char * string, size_t oldSize, size_t newSize)
 {
   char * newString = new char[newSize]{};
@@ -13,9 +12,8 @@ char * getLongerString(char * string, size_t oldSize, size_t newSize)
 
 char * namestnikov::inputString(std::istream & in, size_t & strIndex)
 {
-  size_t strSize = 0;
+  size_t strSize = 20;
   constexpr size_t defaultSize = 20;
-  strSize = defaultSize;
   char * string = new char [defaultSize]{};
   char sym = 0;
   in >> std::noskipws;
