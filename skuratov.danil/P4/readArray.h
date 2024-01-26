@@ -1,11 +1,11 @@
 #ifndef READ_ARRAY_H
 #define READ_ARRAY_H
 
-#include <fstream>
 #include <cstddef>
+#include <fstream>
 
 namespace skuratov
 {
-  int* readArray(std::ifstream& in, int array[], const size_t& rows, const size_t& cols);
+  int* readArray(std::ifstream& in, int* array, size_t rows, size_t cols);
 }
 #endif

@@ -5,6 +5,6 @@
 
 namespace skuratov
 {
-  int findMinSumAlongSecondaryDiagonal(int* array, size_t rows, size_t cols);
+  int findMinSumAlongSecondaryDiagonal(const int* array, size_t rows, size_t cols);
 }
 #endif
