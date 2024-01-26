@@ -1,4 +1,4 @@
-#include "seqsym.hpp"
+#include "consecutiveDup.hpp"
 #include "inputArray.hpp"
 #include <iostream>
 
@@ -11,7 +11,13 @@ int main()
   {
     currentArray = spiridonov::inputArray(std::cin, size);
     int result = spiridonov::hasConsecutiveDuplicates(currentArray);
-    std::cout << result << '\n';
+    std::cout << result << "\n";
+  }
+  catch (const std::bad_alloc&)
+  {
+    std::cerr << "Failed memory allocation" << "\n";
+    delete[] currentArray;
+    return 1;
   }
   catch (...)
   {
