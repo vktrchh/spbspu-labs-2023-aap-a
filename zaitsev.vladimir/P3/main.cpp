@@ -1,6 +1,5 @@
 #include <iostream>
 #include <stdexcept>
-#include <cstring>
 #include "input.h"
 #include "unique_symbols.h"
 
@@ -13,12 +12,7 @@ int main()
   try
   {
     string1 = readStr(std::cin);
-    if (!string1)
-    {
-      std::cerr << "Failed to read string" << '\n';
-      return 2;
-    }
-    res = new char[strlen(string1) + strlen(string2) + 1];
+    res = new char[256];
     uniqueChars(string1, string2, res);
   }
   catch (const std::bad_alloc&)
@@ -28,23 +22,15 @@ int main()
     std::cerr << "Failed to allocate memory" << '\n';
     return 1;
   }
-
-  if (!string1)
+  catch (const std::ios_base::failure&)
   {
+    delete[] string1;
     std::cerr << "Failed to read string" << '\n';
     return 2;
   }
 
-  if (res)
-  {
-    std::cout << res << "\n";
-  }
-  else
-  {
-    std::cerr << "Failed to allocate memory" << '\n';
-    delete[] string1;
-    return 1;
-  }
+  std::cout << res << "\n";
+
   delete[] string1;
   delete[] res;
   return 0;

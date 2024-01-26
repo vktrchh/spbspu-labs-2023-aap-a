@@ -1,33 +1,31 @@
 #include "unique_symbols.h"
-#include <stdexcept>
-#include <cstddef>
-#include <cstring>
 #include "input.h"
+
+int isCharInString(const char* str, char c);
 
 void zaitsev::uniqueChars(const char* str1, const char* str2, char* result_str)
 {
-  char symbols[256] = {};
-
-  while(str1&&*str1)
+  for (char symbol = 1; symbol != 0; ++symbol)
   {
-    ++symbols[size_t(*str1)];
-    ++str1;
-  }
-  while (str2&&*str2)
-  {
-    ++symbols[size_t(*str2)];
-    ++str2;
-  }
-
-  size_t res_len = 0;
-  for (size_t i = 0; i < 256; ++i)
-  {
-    if (symbols[i])
+    if (isCharInString(str1, symbol) + isCharInString(str2, symbol) == 1)
     {
-      result_str[res_len] = char(i);
-      ++res_len;
+      *result_str = symbol;
+      ++result_str;
     }
   }
-  result_str[res_len] = '\0';
+  *result_str = '\0';
   return;
+}
+
+int isCharInString(const char* str, char c)
+{
+  while (str && *str)
+  {
+    if (*str == c)
+    {
+      return 1;
+    }
+    ++str;
+  }
+  return 0;
 }

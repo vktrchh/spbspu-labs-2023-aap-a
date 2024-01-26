@@ -1,6 +1,5 @@
 #ifndef UNIQUE_SYMBOLS_H
 #define UNIQUE_SYMBOLS_H
-#include <cstddef>
 
 namespace zaitsev
 {
