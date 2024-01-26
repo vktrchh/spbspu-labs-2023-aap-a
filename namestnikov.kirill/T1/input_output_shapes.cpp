@@ -129,6 +129,8 @@ std::ostream & namestnikov::outputShapes(std::ostream & out, size_t count, Shape
   {
     throw std::invalid_argument("Nothing to output\n");
   }
+  out << std::fixed;
+  out.precision(1);
   double square = 0.0;
   for (size_t i = 0; i < count; ++i)
   {
@@ -151,5 +153,6 @@ std::ostream & namestnikov::outputShapes(std::ostream & out, size_t count, Shape
            << positionX + (width / 2.0) << " " << positionY + (height / 2.0);
     }
   }
+  out << "\n";
   return out;
 }

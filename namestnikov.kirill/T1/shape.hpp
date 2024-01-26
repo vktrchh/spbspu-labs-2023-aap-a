@@ -8,12 +8,12 @@ namespace namestnikov
   class Shape
   {
   public:
-    virtual double getArea() const = 0;
-    virtual rectangle_t getFrameRect() const = 0;
-    virtual void move(const point_t & p) = 0;
-    virtual void move(const double dx, const double dy) = 0;
-    virtual void scale(const double coefficient) = 0;
-    virtual ~Shape(){};
+    virtual double getArea() const;
+    virtual rectangle_t getFrameRect() const;
+    virtual void move(const point_t & p);
+    virtual void move(const double dx, const double dy);
+    virtual void scale(const double coefficient);
+    virtual ~Shape() = default;
   };
 }
 

@@ -24,19 +24,20 @@ int main()
       throw std::invalid_argument("Error in input\n");
       return 1;
     }
+    if (scaleCoefficient < 0)
+    {
+      throw std::invalid_argument("Scaling coefficient must be greater than zero\n");
+    }
     for (size_t i = 0; i < count; ++i)
     {
-      try
-      {
-        isoScale(shapes[i], scalePoint, scaleCoefficient);
-      }
-      catch (...)
-      {
-        std::cerr << "Coefficient isn't right\n";
-        return 1;
-      }
+      isoScale(shapes[i], scalePoint, scaleCoefficient);
     }
     outputShapes(std::cout, count, shapes);
+  }
+  catch (const std::bad_alloc &)
+  {
+    std::cerr << "Not enough memory\n";
+    return 1;
   }
   catch (const std::exception & e)
   {
