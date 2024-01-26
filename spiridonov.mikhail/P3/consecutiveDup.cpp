@@ -1,22 +1,28 @@
 #include "consecutiveDup.hpp"
 
-int spiridonov::hasConsecutiveDuplicates(const char * str, size_t length)
+int spiridonov::hasConsecutiveDuplicates(const char * str)
 {
-  const char* current = str;
-  size_t index = 0;
-
-  if (str == nullptr || length == 0)
+  if (str == nullptr || *str == '\n')
   {
     return 0;
   }
 
-  while (index < length - 1)
+  const char* current = str;
+
+  while (*current)
   {
-    if (current[index] == current[index + 1])
+    if (*(current + 1))
     {
-      return 1;
+      if (*current == *(current + 1))
+      {
+        return 1;
+      }
+      current++;
     }
-    index++;
+    else
+    {
+      break;
+    }
   }
   return 0;
 }
