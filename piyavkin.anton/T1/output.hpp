@@ -6,6 +6,6 @@
 #include "base-types.hpp"
 namespace piyavkin
 {
-  void output(std::ostream& out, size_t shapeCount, Shape** shapes);
+  void output(std::ostream& out, Shape** shapes, size_t shapeCount);
 }
 #endif

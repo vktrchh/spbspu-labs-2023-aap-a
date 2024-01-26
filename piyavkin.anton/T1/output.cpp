@@ -1,7 +1,7 @@
 #include "output.hpp"
 namespace piyavkin
 {
-  void output(std::ostream& out, size_t shapeCount, Shape** shapes)
+  void output(std::ostream& out, Shape** shapes, size_t shapeCount)
   {
     double sum = 0;
     for (size_t i = 0; i < shapeCount; ++i)

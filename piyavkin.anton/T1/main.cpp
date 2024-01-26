@@ -19,12 +19,12 @@ int main()
     double k = 0;
     point_t center = { 0, 0 };
     std::cin >> center.x >> center.y >> k;
-    output(std::cout, shapeCount, shapes);
+    output(std::cout, shapes, shapeCount);
     for (size_t i = 0; i < shapeCount; ++i)
     {
       isoScale(shapes[i], center, k);
     }
-    output(std::cout, shapeCount, shapes);
+    output(std::cout, shapes, shapeCount);
     for (size_t i = 0; i < shapeCount; ++i)
     {
       delete shapes[i];

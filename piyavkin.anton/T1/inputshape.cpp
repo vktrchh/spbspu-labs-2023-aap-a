@@ -20,7 +20,7 @@ piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
     {
       if (name == shapeNames[i])
       {
-        parameters = new double[shapeParametersCount[i]];
+        parameters = new double[shapeParametersCount[i]] {};
         for (size_t j = 0; j < shapeParametersCount[i]; ++j)
         {
           in >> parameters[j];
@@ -36,10 +36,10 @@ piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
           throw std::logic_error("Invalid arguments");
         }
         oldShapeArray = shapeArray;
-        shapeArray = new Shape* [shapeCount + 1];
+        shapeArray = new Shape* [shapeCount + 1] {};
         if (oldShapeArray)
         {
-          for (size_t i = 0; i < shapeCount + 1; ++i)
+          for (size_t i = 0; i < shapeCount; ++i)
           {
             shapeArray[i] = oldShapeArray[i];
           }

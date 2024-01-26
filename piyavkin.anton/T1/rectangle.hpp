@@ -14,8 +14,8 @@ namespace piyavkin
     void move(double dx, double dy) override;
     void scale(double k) override;
   private:
-    point_t p1_;
-    point_t p2_;
+    point_t lowerLeftCorner_;
+    point_t topRightCorner_;
   };
 }
 #endif
