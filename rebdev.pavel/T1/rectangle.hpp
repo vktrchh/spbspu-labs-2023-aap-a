@@ -7,8 +7,7 @@ namespace rebdev
   class Rectangle: public Shape
   {
     public:
-      Rectangle();
-      Rectangle(point_t * angles);
+      Rectangle(const point_t * angles);
 
       virtual ~Rectangle();
       virtual double getArea() const;

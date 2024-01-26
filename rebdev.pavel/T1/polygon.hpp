@@ -8,8 +8,7 @@ namespace rebdev
   class Polygon: public Shape
   {
     public:
-      Polygon();
-      Polygon(point_t * const vertexs, size_t numOfVertexs);
+      Polygon(const point_t * vertexs, const size_t numOfVertexs);
 
       virtual ~Polygon();
       virtual double getArea() const;

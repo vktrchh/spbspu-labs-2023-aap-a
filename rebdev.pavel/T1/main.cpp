@@ -91,6 +91,9 @@ int main()
           if (rebdev::figureIsCorrect(pointArr, numberOfVertexs, figureNumber))
           {
             shapes[numOfShape] = newFigure(pointArr, numberOfVertexs, figureNumber);
+
+            delete[] pointArr;
+
             numOfShape += 1;
           }
           else

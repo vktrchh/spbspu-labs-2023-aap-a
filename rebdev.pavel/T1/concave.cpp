@@ -1,12 +1,25 @@
 #include "concave.hpp"
-#include <limits>
+#include <cstddef>
+#include <iostream>
 
-rebdev::Concave::Concave():
-  vertexs_{nullptr}
-{};
-rebdev::Concave::Concave(point_t * vertexs):
-  vertexs_{vertexs}
-{};
+rebdev::Concave::Concave(const point_t * vertexs):
+  vertexs_(nullptr)
+{
+  try
+  {
+    vertexs_ = new point_t[4];
+  }
+  catch (const std::exception & e)
+  {
+    delete[] vertexs_;
+    throw;
+  }
+
+  for (size_t i = 0; i < 4; ++i)
+  {
+    vertexs_[i] = vertexs[i];
+  }
+};
 
 rebdev::Concave::~Concave()
 {
@@ -16,7 +29,7 @@ rebdev::Concave::~Concave()
 double rebdev::Concave::getArea() const
 {
   double sum  = 0;
-  for(int i = 0; i < 4; ++i)
+  for (size_t i = 0; i < 4; ++i)
   {
     sum += (vertexs_[i].x * vertexs_[(i + 1) % 4].y) - (vertexs_[(i + 1) % 4].x * vertexs_[i].y);
   }
@@ -27,7 +40,7 @@ double rebdev::Concave::getArea() const
 
 rebdev::rectangle_t rebdev::Concave::getFrameRect() const
 {
-  double xMin = std::numeric_limits< double >::max(), xMax = std::numeric_limits< double >::min();
+  double xMin = vertexs_[0].x, xMax = vertexs_[0].y;
   double yMin = xMin, yMax = xMax;
   for (int i = 0; i < 4; ++i)
   {

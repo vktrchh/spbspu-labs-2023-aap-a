@@ -1,19 +1,31 @@
 #include "polygon.hpp"
 #include <cstddef>
 #include <limits>
+#include <iostream>
 
-rebdev::Polygon::Polygon():
+rebdev::Polygon::Polygon(const point_t * vertexs, const size_t numOfVertexs):
   vertexs_(nullptr),
-  numOfVertexs_(0)
-{};
-rebdev::Polygon::Polygon(point_t * const vertexs, size_t numOfVertexs):
-  vertexs_(vertexs),
   numOfVertexs_(numOfVertexs)
-{};
+{
+  try
+  {
+    vertexs_ = new point_t[numOfVertexs_];
+  }
+  catch (const std::exception & e)
+  {
+    delete[] vertexs_;
+    throw;
+  }
+
+  for (size_t i = 0; i < numOfVertexs_; ++i)
+  {
+    vertexs_[i] = vertexs[i];
+  }
+};
 
 rebdev::Polygon::~Polygon()
 {
-delete[] vertexs_;
+  delete[] vertexs_;
 };
 
 double rebdev::Polygon::getArea() const

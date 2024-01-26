@@ -1,11 +1,24 @@
 #include "rectangle.hpp"
+#include <iostream>
 
-rebdev::Rectangle::Rectangle():
+rebdev::Rectangle::Rectangle(const point_t * angles):
   angles_(nullptr)
-{};
-rebdev::Rectangle::Rectangle(point_t * angles):
-  angles_(angles)
-{}
+{
+  try
+  {
+    angles_ = new point_t[2];
+  }
+  catch (const std::exception & e)
+  {
+    delete[] angles_;
+    throw;
+  }
+
+  for (size_t i = 0; i < 2; ++i)
+  {
+    angles_[i] = angles[i];
+  }
+}
 
 rebdev::Rectangle::~Rectangle()
 {
