@@ -3,17 +3,17 @@
 
 int spiridonov::hasConsecutiveDuplicates(const char * str)
 {
-  int length = strlen(str);
-  for (int i = 1; i < length; i++)
+  if (str == nullptr || strlen(str) < 2)
+  {
+    return 0;
+  }
+
+  for (int i = 1; str[i] != '\0'; i++)
   {
     if (str[i] == str[i - 1])
     {
       return 1;
     }
-    else
-    {
-      return 0;
-    }
   }
-   return 0;
+  return 0;
 }
