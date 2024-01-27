@@ -12,7 +12,7 @@ namespace novokhatskiy
     virtual void move(const point_t &p) = 0;
     virtual void move(double x, double y) = 0;
     virtual void scale(double ratio) = 0;
-    virtual ~Shape(){};
+    virtual ~Shape() = default;
   };
 }
 

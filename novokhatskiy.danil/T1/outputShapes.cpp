@@ -2,11 +2,11 @@
 #include <cmath>
 #include <iomanip>
 
-void novokhatskiy::outputShapes(std::ostream& output, size_t shapeCounter, Shape** shapes)
+void novokhatskiy::outputShapes(std::ostream &output, const Shape **shapes, size_t shapeCounter)
 {
   if (shapeCounter == 0)
   {
-    throw std::logic_error("No shapes\n");
+    throw std::logic_error("No shapes");
   }
   double area = 0.0;
   output << std::fixed;
@@ -32,5 +32,4 @@ void novokhatskiy::outputShapes(std::ostream& output, size_t shapeCounter, Shape
       output << " " << leftCorner.x << " " << leftCorner.y << " " << rightCorner.x << " " << rightCorner.y;
     }
   }
-  output << "\n";
 }

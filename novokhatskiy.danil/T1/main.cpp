@@ -9,35 +9,35 @@
 int main()
 {
   using namespace novokhatskiy;
-  Shape** shapes = nullptr;
+  Shape **shapes = nullptr;
   size_t shapesCount = 0;
   point_t point;
   double ratio = 0.0;
   try
   {
     shapes = inputShapes(std::cin, shapesCount);
-    outputShapes(std::cout, shapesCount, shapes);
+    outputShapes(std::cout, shapes, shapesCount);
     std::cin >> point.x >> point.y >> ratio;
     if (!std::cin)
     {
-      throw std::invalid_argument("Wrong input\n");
+      throw std::invalid_argument("Wrong input");
     }
     if (ratio < 0)
     {
-      throw std::invalid_argument("Ratio can not be negative\n");
+      throw std::invalid_argument("Ratio can not be negative");
     }
     for (size_t i = 0; i < shapesCount; i++)
     {
       isoScale(shapes[i], point, ratio);
     }
-    outputShapes(std::cout, shapesCount, shapes);
+    outputShapes(std::cout, shapes, shapesCount);
   }
-  catch (const std::bad_alloc&)
+  catch (const std::bad_alloc &)
   {
-    std::cerr << "Memory error\n";
+    std::cerr << "Memory error";
     return 1;
   }
-  catch (const std::exception& e)
+  catch (const std::exception &e)
   {
     std::cerr << e.what() << '\n';
     for (size_t i = 0; i < shapesCount; i++)
