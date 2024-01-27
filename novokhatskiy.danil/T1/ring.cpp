@@ -3,14 +3,18 @@
 #include <algorithm>
 
 novokhatskiy::Ring::Ring(const point_t &center, double innerRadius, double outerRadius):
-innerRadius_(innerRadius),
-outerRadius_(outerRadius)
+center_(center)
 {
-  if ((innerRadius <= 0.0) || (outerRadius <= 0.0) || (innerRadius >= outerRadius))
+  if ((innerRadius <= 0.0) || (outerRadius <= 0.0) || (innerRadius == outerRadius))
   {
     throw std::invalid_argument("Ring radiuses are wrong");
   }
-  center_ = center;
+  if (innerRadius > outerRadius)
+  {
+    std::swap(innerRadius, outerRadius);
+  }
+  innerRadius_ = innerRadius;
+  outerRadius_ = outerRadius;
 }
 double novokhatskiy::Ring::getArea() const
 {
