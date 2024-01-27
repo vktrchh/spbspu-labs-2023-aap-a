@@ -29,8 +29,7 @@ void novokhatskiy::outputShapes(std::ostream &output, Shape **const shapes, size
       point_t point = shapes[i]->getFrameRect().pos;
       point_t leftCorner = {point.x - width / 2.0, point.y - height / 2.0};
       point_t rightCorner = {point.x + width / 2.0, point.y + height / 2.0};
-      output << " " << leftCorner.x << " " << leftCorner.y << " " << rightCorner.x << " " << rightCorner.y;
+      output << " " << leftCorner.x << " " << leftCorner.y << " " << rightCorner.x << " " << rightCorner.y << '\n';
     }
   }
-  output << '\n';
 }
