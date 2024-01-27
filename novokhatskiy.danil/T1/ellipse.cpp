@@ -14,7 +14,7 @@ horizon_(horizon)
 
 double novokhatskiy::Ellipse::getArea() const
 {
-  const double PI = 3.14;
+  const double PI = 3.1415926535;
   return PI * vert_ * horizon_;
 }
 

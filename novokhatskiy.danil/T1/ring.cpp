@@ -13,7 +13,7 @@ outerRadius_(outerRadius)
 }
 double novokhatskiy::Ring::getArea() const
 {
-  const double PI = 3.14;
+  const double PI = 3.1415926535;
   return (PI * outerRadius_ * outerRadius_) - (PI * innerRadius_ * innerRadius_);
 }
 novokhatskiy::rectangle_t novokhatskiy::Ring::getFrameRect() const
