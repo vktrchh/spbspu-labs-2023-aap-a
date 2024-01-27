@@ -11,7 +11,8 @@ namespace piyavkin
     }
     point_t pos = shape->getFrameRect().pos;
     shape->move(center);
+    point_t newPos = shape->getFrameRect().pos;
     shape->scale(k);
-    shape->move(k * (pos.x - shape->getFrameRect().pos.x), k * (pos.y - shape->getFrameRect().pos.y));
+    shape->move(k * (pos.x - newPos.x), k * (pos.y - newPos.y));
   }
 }

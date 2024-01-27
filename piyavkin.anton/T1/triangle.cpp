@@ -29,19 +29,16 @@ namespace piyavkin
   {
     double heigth = (std::max(std::max(a_.y, b_.y), c_.y) - std::min(std::min(a_.y, b_.y), c_.y));
     double width = (std::max(std::max(a_.x, b_.x), c_.x) - std::min(std::min(a_.x, b_.x), c_.x));
-    point_t pos = { std::min(std::min(a_.x, b_.x), c_.x) + width / 2, std::min(std::min(a_.y, b_.y), c_.y) + heigth / 2 };
-    return { width, heigth, pos };
+    point_t pos = {std::min(std::min(a_.x, b_.x), c_.x) + width / 2, std::min(std::min(a_.y, b_.y), c_.y) + heigth / 2};
+    return {width, heigth, pos};
   }
   void Triangle::move(point_t bias)
   {
-    point_t pos = { (a_.x + b_.x + c_.x) / 3, (a_.y + b_.y + c_.y) / 3 };
+    point_t pos = {(a_.x + b_.x + c_.x) / 3, (a_.y + b_.y + c_.y) / 3};
     move(bias.x - pos.x, bias.y - pos.y);
   }
   void Triangle::move(double dx, double dy)
   {
-    point_t pos = { (a_.x + b_.x + c_.x) / 3, (a_.y + b_.y + c_.y) / 3 };
-    pos.x += dx;
-    pos.y += dy;
     a_.x += dx;
     a_.y += dy;
     b_.x += dx;
@@ -51,7 +48,7 @@ namespace piyavkin
   }
   void Triangle::scale(double k)
   {
-    point_t pos = { (a_.x + b_.x + c_.x) / 3, (a_.y + b_.y + c_.y) / 3 };
+    point_t pos = {(a_.x + b_.x + c_.x) / 3, (a_.y + b_.y + c_.y) / 3};
     a_.x = k * (a_.x - pos.x) + pos.x;
     a_.y = k * (a_.y - pos.y) + pos.y;
     b_.x = k * (b_.x - pos.x) + pos.x;
