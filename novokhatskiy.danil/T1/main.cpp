@@ -17,6 +17,7 @@ int main()
   {
     shapes = inputShapes(std::cin, shapesCount);
     outputShapes(std::cout, shapes, shapesCount);
+    std::cout << '\n';
     std::cin >> point.x >> point.y >> ratio;
     if (!std::cin)
     {
@@ -31,6 +32,7 @@ int main()
       isoScale(shapes[i], point, ratio);
     }
     outputShapes(std::cout, shapes, shapesCount);
+    std::cout << '\n';
   }
   catch (const std::bad_alloc &)
   {

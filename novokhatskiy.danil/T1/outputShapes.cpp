@@ -32,5 +32,4 @@ void novokhatskiy::outputShapes(std::ostream &output, Shape **const shapes, size
       output << " " << leftCorner.x << " " << leftCorner.y << " " << rightCorner.x << " " << rightCorner.y;
     }
   }
-  output << '\n';
 }
