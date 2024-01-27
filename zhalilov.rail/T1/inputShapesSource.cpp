@@ -110,20 +110,21 @@ namespace zhalilov
     }
   }
 
-  shapeInputFunc identifyShape(const char string[])
+  Shape *identifyShape(std::istream &input)
   {
-    const char *names[] = {"RECTANGLE", "CIRCLE", "POLYGON"};
+    std::string names[] = {"RECTANGLE", "CIRCLE", "POLYGON"};
     shapeInputFunc functions[3];
     functions[0] = inputRectangle;
     functions[1] = inputCircle;
     functions[2] = inputPolygon;
     size_t namesSize = 3;
+    std::string name = "";
+    input >> name;
     for (size_t i = 0; i < namesSize; i++)
     {
-      size_t nameLen = strlen(names[i]);
-      if (strncmp(names[i], string, nameLen) == 0)
+      if (names[i] == name)
       {
-        return functions[i];
+        return functions[i](input);
       }
     }
     return nullptr;
@@ -150,49 +151,22 @@ namespace zhalilov
     }
     return false;
   }
-
-  Shape **increaseLength(Shape **shapes, size_t size, size_t delta)
-  {
-    Shape **newShapes = new Shape*[size + delta]{};
-    for (size_t i = 0; i < size; i++)
-    {
-      newShapes[i] = shapes[i];
-    }
-    return newShapes;
-  }
 }
 
-void zhalilov::freeMemory(Shape **shapes, size_t size, const char string[])
+void zhalilov::freeMemory(Shape **shapes, size_t size)
 {
   for (size_t i = 0; i < size; i++)
   {
     delete shapes[i];
     shapes[i] = nullptr;
   }
-  delete[] string;
 }
 
 zhalilov::Shape **zhalilov::inputShapesSource(Shape **shapes, point_t &point, double &ratio, size_t &length, std::istream &input)
 {
   size_t shapeIndex = 0;
-  char *string = nullptr;
   while (true)
   {
-    try
-    {
-      string = inputString(input);
-    }
-    catch (const std::bad_alloc &e)
-    {
-      freeMemory(shapes, shapeIndex, string);
-      throw;
-    }
-    catch (const std::invalid_argument &e)
-    {
-      freeMemory(shapes, shapeIndex, string);
-      throw;
-    }
-
     try
     {
       shapeInputFunc inputFunc = identifyShape(string);
