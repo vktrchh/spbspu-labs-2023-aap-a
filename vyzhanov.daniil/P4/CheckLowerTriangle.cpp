@@ -1,4 +1,5 @@
 #include "CheckLowerTriangle.hpp"
+#include "stdexcept"
 
 bool vyzhanov::CheckLowerTriangle(const int* matrix, size_t rows, size_t cols)
 {

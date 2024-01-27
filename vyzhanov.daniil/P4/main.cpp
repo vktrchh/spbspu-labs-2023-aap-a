@@ -5,7 +5,7 @@
 #include "CountRowsWithoutRepeat.hpp"
 #include "CheckLowerTriangle.hpp"
 
-int main(int argc, char * argv[])
+int main(int argc, char* argv[])
 {
   if (argc != 4)
   {
@@ -21,7 +21,7 @@ int main(int argc, char * argv[])
       throw std::logic_error("First arg must be 1 or 2");
     }
   }
-  catch (const std::exception & e)
+  catch (const std::exception& e)
   {
     std::cerr << "Error: " << e.what() << "\n";
     return 1;
@@ -62,7 +62,7 @@ int main(int argc, char * argv[])
     outputFile << vyzhanov::CountRowsWithoutRepeat(matrix, rows, cols) << "\n";
     outputFile << std::boolalpha << vyzhanov::CheckLowerTriangle(matrix, rows, cols) << "\n";
   }
-  catch (const std::exception & e)
+  catch (const std::exception& e)
   {
     std::cerr << "Error: " << e.what() << "\n";
     if (num == 2)

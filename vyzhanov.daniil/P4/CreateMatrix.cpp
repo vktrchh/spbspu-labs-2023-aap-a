@@ -1,6 +1,6 @@
 #include "CreateMatrix.hpp"
 
-void vyzhanov::createMatrix(size_t rows, size_t cols, int* matrix, std::istream &inputFile)
+void vyzhanov::createMatrix(size_t rows, size_t cols, int* matrix, std::istream& inputFile)
 {
   for (size_t i = 0; i < rows * cols; i++)
   {

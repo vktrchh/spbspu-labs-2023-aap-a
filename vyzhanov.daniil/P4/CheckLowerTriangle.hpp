@@ -1,7 +1,7 @@
 #ifndef CHECKLOWERTRIANGLE_HPP
 #define CHECKLOWERTRIANGLE_HPP
 
-#include <iostream>
+#include <cstddef>
 
 namespace vyzhanov
 {
