@@ -2,7 +2,7 @@
 #include <cmath>
 #include <iomanip>
 
-void novokhatskiy::outputShapes(std::ostream &output, const Shape **shapes, size_t shapeCounter)
+void novokhatskiy::outputShapes(std::ostream &output, Shape **const shapes, size_t shapeCounter)
 {
   if (shapeCounter == 0)
   {
