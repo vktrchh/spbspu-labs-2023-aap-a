@@ -36,9 +36,9 @@ namespace piyavkin
   void piyavkin::Rectangle::scale(double k)
   {
     point_t pos = {(lowerLeftCorner_.x + topRightCorner_.x) / 2, (lowerLeftCorner_.y + topRightCorner_.y) / 2};
-    lowerLeftCorner_.x = k * (pos.x - lowerLeftCorner_.x);
-    topRightCorner_.x = k * (pos.x - topRightCorner_.x);
-    lowerLeftCorner_.y = k * (pos.y - lowerLeftCorner_.y);
-    topRightCorner_.y = k * (pos.y - topRightCorner_.y);
+    lowerLeftCorner_.x = k * (pos.x - lowerLeftCorner_.x) + pos.x;
+    topRightCorner_.x = k * (pos.x - topRightCorner_.x) + pos.x;
+    lowerLeftCorner_.y = k * (pos.y - lowerLeftCorner_.y) + pos.y;
+    topRightCorner_.y = k * (pos.y - topRightCorner_.y) + pos.y;
   }
 }
