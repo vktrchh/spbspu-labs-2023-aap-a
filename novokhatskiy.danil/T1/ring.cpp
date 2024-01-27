@@ -6,13 +6,9 @@ novokhatskiy::Ring::Ring(const point_t &center, double innerRadius, double outer
 innerRadius_(innerRadius),
 outerRadius_(outerRadius)
 {
-  if ((innerRadius <= 0.0) || (innerRadius <= 0.0))
+  if ((innerRadius <= 0.0) || (innerRadius <= 0.0) || (innerRadius > outerRadius))
   {
     throw std::invalid_argument("Ring radiuses are wrong");
-  }
-  if (innerRadius > outerRadius)
-  {
-    std::swap(innerRadius, outerRadius);
   }
   center_ = center;
 }
