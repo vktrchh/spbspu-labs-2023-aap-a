@@ -7,7 +7,7 @@
 
 namespace zhalilov
 {
-  class Polygon : public Shape
+  class Polygon: public Shape
   {
   public:
     Polygon(point_t *points, const size_t size);
@@ -15,8 +15,8 @@ namespace zhalilov
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t &point);
-    virtual void move(const double dx, const double dy);
-    virtual void scale(const double ratio);
+    virtual void move(double dx, double dy);
+    virtual void scale(double ratio);
   private:
     point_t *m_points;
     size_t m_size;
