@@ -1,13 +1,18 @@
 #include "ring.hpp"
 #include <stdexcept>
+#include <algorithm>
 
 novokhatskiy::Ring::Ring(const point_t &center, double innerRadius, double outerRadius):
 innerRadius_(innerRadius),
 outerRadius_(outerRadius)
 {
-  if ((innerRadius <= 0.0) || (innerRadius <= 0.0) || (innerRadius > outerRadius))
+  if ((innerRadius <= 0.0) || (innerRadius <= 0.0))
   {
     throw std::invalid_argument("Ring radiuses are wrong");
+  }
+  if (innerRadius > outerRadius)
+  {
+    std::swap(innerRadius, outerRadius);
   }
   center_ = center;
 }
