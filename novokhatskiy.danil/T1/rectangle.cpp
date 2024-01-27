@@ -1,7 +1,7 @@
 #include "rectangle.hpp"
 #include <stdexcept>
 
-novokhatskiy::Rectangle::Rectangle(const point_t &lowerLeftCorner, const point_t &upperRightCorner): 
+novokhatskiy::Rectangle::Rectangle(const point_t &lowerLeftCorner, const point_t &upperRightCorner):
 lowerLeftCorner_(lowerLeftCorner),
 upperRightCorner_(upperRightCorner)
 {
