@@ -5,7 +5,7 @@
 
 namespace erohin
 {
-  char * resizeString(const char * str, size_t size, size_t shift);
+  char * resizeString(const char * str, size_t size, size_t difference);
   char * resizeString(const char * str, const char * source);
 }
 
