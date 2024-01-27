@@ -1,12 +1,13 @@
+#include <fstream>
+#include <cstdlib>
+
 #include "matrix_input.hpp"
 #include "trimatrix_check.hpp"
 #include "numrow_check.hpp"
 
-#include <fstream>
-#include <cstdlib>
-
 int main(int argc, char ** argv)
 {
+  using namespace ishmuratov;
   if (argc != 4)
   {
     std::cerr << "Error in command line arguments\n";
@@ -39,6 +40,7 @@ int main(int argc, char ** argv)
   }
 
   int fixedMatrix[10000] = {};
+  int * dynamicMatrix = nullptr;
   int * matrix = nullptr;
 
   if (num == 1)
@@ -47,7 +49,8 @@ int main(int argc, char ** argv)
   }
   else if (num == 2)
   {
-    matrix = new int[rows * cols];
+    dynamicMatrix = new int[rows * cols];
+    matrix = dynamicMatrix;
   }
   else
   {
@@ -61,28 +64,20 @@ int main(int argc, char ** argv)
   catch (const std::invalid_argument & e)
   {
     std::cerr << "Error: " << e.what() << "\n";
-    if (num == 2)
+    if (dynamicMatrix != nullptr)
     {
-      delete [] matrix;
+      delete [] dynamicMatrix;
     }
     return 2;
   }
 
   std::ofstream output(argv[3]);
 
-  if (ishmuratov::lowerMatrixCheck(matrix, rows, cols))
-  {
-    output << "true" << "\n";
-  }
-  else
-  {
-    output << "false" << "\n";
-  }
-
+  output << std::boolalpha << ishmuratov::lowerMatrixCheck(matrix, rows, cols) << "\n";
   output << ishmuratov::checkRow(matrix, rows, cols) << "\n";
 
-  if (num == 2)
+  if (dynamicMatrix != nullptr)
   {
-    delete [] matrix;
+    delete [] dynamicMatrix;
   }
 }
