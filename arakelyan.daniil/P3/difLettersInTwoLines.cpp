@@ -34,9 +34,9 @@ void arakelyan::searchForDifferentLettersInTwoLines(const char *inputArr, const 
   size_t indexOfUsedCells = 0;
   arakelyan::findAndInsertDiffLetters(inputArr, answer, indexOfUsedCells);
   arakelyan::findAndInsertDiffLetters(defaultArray, answer, indexOfUsedCells);
-  for (size_t i = 0; answer[i] != '\0'; i++)
+  for (size_t i = 0; i < indexOfUsedCells; i++)
   {
-    for (size_t j = 0; answer[j + 1] != '\0'; j++)
+    for (size_t j = 0; j < indexOfUsedCells - i; j++)
     {
       if (std::isalpha(answer[j]) && std::isalpha(answer[j + 1]))
       {
