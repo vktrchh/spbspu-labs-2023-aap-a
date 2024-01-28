@@ -27,7 +27,7 @@ void arakelyan::findAndInsertDiffLetters(const char *array, char *answer, size_t
 
 void arakelyan::searchForDifferentLettersInTwoLines(const char *inputArr, const char *defaultArray, char *answer)
 {
-  for (size_t i = 0; i < ('z' - 'a' + 1); i++)
+  for (size_t i = 0; i < ('z' - 'a' + 1) + 1; i++)
   {
     answer[i] = 1;
   }
