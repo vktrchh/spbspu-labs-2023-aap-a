@@ -87,4 +87,3 @@ void namestnikov::Complexquad::scale(const double coefficient)
     }
   }
 }
-
