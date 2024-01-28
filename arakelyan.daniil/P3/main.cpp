@@ -23,10 +23,9 @@ int main()
   size_t answerTaskOne = countOfdifferentLetters(inputString);
 
   char *answerTaskTwo = nullptr;
-  size_t sizeOfAlphabet = 'z' - 'a' + 1;
   try
   {
-    answerTaskTwo = new char[sizeOfAlphabet + 1];
+    answerTaskTwo = new char[27];
   }
   catch (const std::bad_alloc & e)
   {
