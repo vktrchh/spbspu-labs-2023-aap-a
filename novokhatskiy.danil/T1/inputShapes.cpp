@@ -5,14 +5,25 @@
 #include <iostream>
 #include <string>
 
-novokhatskiy::Shape **novokhatskiy::inputShapes(std::istream &input, size_t &shapeCounter)
+
+
+void novokhatskiy::freeShapes(Shape** shapes, size_t shapeCounter)
 {
-  std::string shapesNames[3] = {"RECTANGLE", "RING", "ELLIPSE"};
-  size_t rightShapesParametersCount[3] = {4, 4, 4};
+  for (size_t i = 0; i < shapeCounter; i++)
+  {
+    delete shapes[i];
+  }
+  delete[] shapes;
+}
+
+novokhatskiy::Shape** novokhatskiy::inputShapes(std::istream& input, size_t& shapeCounter)
+{
+  std::string shapesNames[3] = { "RECTANGLE", "RING", "ELLIPSE" };
+  size_t rightShapesParametersCount[3] = { 4, 4, 4 };
   std::string currentName = "";
-  double *currentParameters = nullptr;
-  novokhatskiy::Shape **currentShapes = nullptr;
-  novokhatskiy::Shape **oldShapes = nullptr;
+  double* currentParameters = nullptr;
+  novokhatskiy::Shape** currentShapes = nullptr;
+  novokhatskiy::Shape** oldShapes = nullptr;
   char symbol = 0;
   while (input >> currentName)
   {
@@ -24,15 +35,11 @@ novokhatskiy::Shape **novokhatskiy::inputShapes(std::istream &input, size_t &sha
         {
           currentParameters = new double[rightShapesParametersCount[i]];
         }
-        catch (const std::bad_alloc &)
+        catch (const std::bad_alloc&)
         {
           if (currentShapes != nullptr)
           {
-            for (size_t i = 0; i < shapeCounter; i++)
-            {
-              delete currentShapes[i];
-            }
-            delete[] currentShapes;
+            freeShapes(currentShapes, shapeCounter);
           }
           throw;
         }
@@ -45,17 +52,13 @@ novokhatskiy::Shape **novokhatskiy::inputShapes(std::istream &input, size_t &sha
         {
           if (currentShapes != nullptr)
           {
-            for (size_t i = 0; i < shapeCounter; i++)
-            {
-              delete currentShapes[i];
-            }
-            delete[] currentShapes;
+            freeShapes(currentShapes, shapeCounter);
           }
           delete[] currentParameters;
           throw std::invalid_argument("Wrong arguments");
         }
         oldShapes = currentShapes;
-        currentShapes = new Shape *[shapeCounter + 1];
+        currentShapes = new Shape * [shapeCounter + 1];
         if (oldShapes)
         {
           for (size_t i = 0; i < shapeCounter; i++)
@@ -68,29 +71,25 @@ novokhatskiy::Shape **novokhatskiy::inputShapes(std::istream &input, size_t &sha
         {
           if (currentName == "RECTANGLE")
           {
-            currentShapes[shapeCounter] = new Rectangle({currentParameters[0], currentParameters[1]}, {currentParameters[2], currentParameters[3]});
+            currentShapes[shapeCounter] = new Rectangle({ currentParameters[0], currentParameters[1] }, { currentParameters[2], currentParameters[3] });
           }
           else if (currentName == "RING")
           {
-            currentShapes[shapeCounter] = new Ring({currentParameters[0], currentParameters[1]}, currentParameters[2], currentParameters[3]);
+            currentShapes[shapeCounter] = new Ring({ currentParameters[0], currentParameters[1] }, currentParameters[2], currentParameters[3]);
           }
           else if (currentName == "ELLIPSE")
           {
-            currentShapes[shapeCounter] = new Ellipse({currentParameters[0], currentParameters[1]}, currentParameters[2], currentParameters[3]);
+            currentShapes[shapeCounter] = new Ellipse({ currentParameters[0], currentParameters[1] }, currentParameters[2], currentParameters[3]);
           }
           ++shapeCounter;
         }
-        catch (const std::bad_alloc &)
+        catch (const std::bad_alloc&)
         {
           delete[] currentParameters;
-          for (size_t i = 0; i < shapeCounter; i++)
-          {
-            delete currentShapes[i];
-          }
-          delete[] currentShapes;
+          freeShapes(currentShapes, shapeCounter);
           throw;
         }
-        catch (const std::exception &e)
+        catch (const std::exception& e)
         {
           std::cerr << e.what() << '\n';
         }

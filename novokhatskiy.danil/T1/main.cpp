@@ -9,7 +9,7 @@
 int main()
 {
   using namespace novokhatskiy;
-  Shape **shapes = nullptr;
+  Shape** shapes = nullptr;
   size_t shapesCount = 0;
   point_t point;
   double ratio = 0.0;
@@ -34,25 +34,17 @@ int main()
     outputShapes(std::cout, shapes, shapesCount);
     std::cout << '\n';
   }
-  catch (const std::bad_alloc &)
+  catch (const std::bad_alloc&)
   {
     std::cerr << "Memory error";
     return 1;
   }
-  catch (const std::exception &e)
+  catch (const std::exception& e)
   {
     std::cerr << e.what() << '\n';
-    for (size_t i = 0; i < shapesCount; i++)
-    {
-      delete shapes[i];
-    }
-    delete[] shapes;
+    freeShapes(shapes, shapesCount);
     return 1;
   }
-  for (size_t i = 0; i < shapesCount; i++)
-  {
-    delete shapes[i];
-  }
-  delete[] shapes;
+  freeShapes(shapes, shapesCount);
   return 0;
 }

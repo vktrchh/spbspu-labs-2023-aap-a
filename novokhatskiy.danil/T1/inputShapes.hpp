@@ -6,7 +6,8 @@
 
 namespace novokhatskiy
 {
-  Shape **inputShapes(std::istream &input, size_t &shapeCounter);
+  void freeShapes(Shape** shapes, size_t shapeCounter);
+  Shape** inputShapes(std::istream& input, size_t& shapeCounter);
 }
 
 #endif
