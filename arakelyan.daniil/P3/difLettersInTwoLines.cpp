@@ -27,17 +27,20 @@ void arakelyan::findAndInsertDiffLetters(const char *array, char *answer, size_t
 
 void arakelyan::searchForDifferentLettersInTwoLines(const char *inputArr, const char *defaultArray, char *answer)
 {
+  for (size_t i = 0; i < ('z' - 'a' + 1); i++)
+  {
+    answer[i] = 1;
+  }
   size_t indexOfUsedCells = 0;
   arakelyan::findAndInsertDiffLetters(inputArr, answer, indexOfUsedCells);
   arakelyan::findAndInsertDiffLetters(defaultArray, answer, indexOfUsedCells);
-  answer[indexOfUsedCells + 1] = '\0';
   for (size_t i = 0; answer[i] != '\0'; i++)
   {
-    for (size_t j = 0; answer[j+1] != '\0'; j++)
+    for (size_t j = 0; answer[j + 1] != '\0'; j++)
     {
-      if (std::isalpha(answer[j]) && std::isalpha(answer[j+1]))
+      if (std::isalpha(answer[j]) && std::isalpha(answer[j + 1]))
       {
-        if (answer[j] > answer[j+1])
+        if (answer[j] > answer[j + 1])
         {
           char temp = answer[j];
           answer[j] = answer[j + 1];
@@ -46,4 +49,5 @@ void arakelyan::searchForDifferentLettersInTwoLines(const char *inputArr, const 
       }
     }
   }
+  answer[indexOfUsedCells] = '\0';
 }
