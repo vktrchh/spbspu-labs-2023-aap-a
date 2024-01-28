@@ -1,8 +1,8 @@
 #include <iostream>
 #include <stdexcept>
-#include "inputArray.hpp"
+#include "inputLine.hpp"
 #include "difLetters.hpp"
-#include "difLettersInTwoStrings.hpp"
+#include "difLettersInTwoLines.hpp"
 
 int main()
 {
@@ -25,7 +25,7 @@ int main()
   char *answerTaskTwo = nullptr;
   try
   {
-    answerTaskTwo = new char[26 + 1];
+    answerTaskTwo = new char[27];
   }
   catch (const std::bad_alloc & e)
   {
@@ -34,7 +34,7 @@ int main()
     return 1;
   }
 
-  differentLettersInTwoStrings(inputString, defaultStringForTaskTwo, answerTaskTwo);
+  searchForDifferentLettersInTwoLines(inputString, defaultStringForTaskTwo, answerTaskTwo);
 
   std::cout << answerTaskOne << "\n" << answerTaskTwo << "\n";
 

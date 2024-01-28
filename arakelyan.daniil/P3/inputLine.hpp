@@ -1,5 +1,5 @@
-#ifndef INPUTARRAY_HPP
-#define INPUTARRAY_HPP
+#ifndef INPUTLINE_HPP
+#define INPUTLINE_HPP
 #include <iostream>
 namespace arakelyan
 {
