@@ -1,4 +1,5 @@
 #include "rectangle.hpp"
+#include "base-types.hpp"
 #include <stdexcept>
 
 arakelyan::Rectangle::Rectangle(point_t fp, point_t sp):
@@ -57,14 +58,13 @@ void arakelyan::Rectangle::scale(const double k)
   {
     throw std::logic_error("The coefficient cannot be less than zero! (Rectangle)");
   }
-  double width = std::abs(pointRightUp_.x_ - pointLeftDown_.x_);
-  double height = std::abs(pointRightUp_.y_ - pointLeftDown_.y_);
-  double widthWithScale = width * k;
-  double heightWithScale = height * k;
+  rectangle_t data = getFrameRect();
+  double widthWithScale = data.width_ * k;
+  double heightWithScale = data.height_ * k;
   double widthHalf = widthWithScale / 2.0;
   double heightHalf = heightWithScale / 2.0;
-  pointLeftDown_.x_ -= widthHalf;
-  pointLeftDown_.y_ -= heightHalf;
-  pointRightUp_.x_ += widthHalf;
-  pointRightUp_.y_ += heightHalf;
+  pointLeftDown_.x_ = data.pos_.x_ - widthHalf;
+  pointLeftDown_.y_ = data.pos_.y_ - heightHalf;
+  pointRightUp_.x_ = data.pos_.x_ + widthHalf;
+  pointRightUp_.y_ = data.pos_.y_ + heightHalf;
 }
