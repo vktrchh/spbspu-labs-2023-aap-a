@@ -95,6 +95,7 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
                 }
                 currentShapes[count] = new Complexquad(points);
                 ++count;
+                delete [] points;
               }
               catch (const std::bad_alloc & e)
               {
