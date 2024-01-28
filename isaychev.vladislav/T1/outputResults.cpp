@@ -14,10 +14,14 @@ void isaychev::outputResults(Shape ** Figures, size_t figuresCount)
   for (size_t j = 0; j < figuresCount; j++)
   {
     rectangle_t rect = Figures[j]->getFrameRect();
-    std::cout << std::setprecision(1) << rect.pos.x - (rect.width / 2) << " "; //std::round((rect.pos.x - (rect.width / 2)) * 10) / 10 << " ";
-    std::cout << std::setprecision(1) << rect.pos.y - (rect.height / 2) << " "; //std::round((rect.pos.y - (rect.height / 2)) * 10) / 10 << " ";
-    std::cout << std::setprecision(1) << rect.pos.x + (rect.width / 2) << " ";//std::round((rect.pos.x + (rect.width / 2)) * 10) / 10  << " ";
-    std::cout << std::setprecision(1) << rect.pos.y + (rect.height / 2) << " "; //std::round((rect.pos.y + (rect.height / 2)) * 10) / 10 << " ";
+    std::cout << std::setprecision(1) << std::round((rect.pos.x - (rect.width / 2)) * 10) / 10 << " ";
+    std::cout << std::setprecision(1) << std::round((rect.pos.y - (rect.height / 2)) * 10) / 10 << " ";
+    std::cout << std::setprecision(1) << std::round((rect.pos.x + (rect.width / 2)) * 10) / 10  << " ";
+    std::cout << std::setprecision(1) << std::round((rect.pos.y + (rect.height / 2)) * 10) / 10;
+    if (j != figuresCount - 1)
+    {
+      std::cout << " ";
+    }
   }
   std::cout << "\n";
 }
