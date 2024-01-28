@@ -4,7 +4,7 @@
 
 namespace novokhatskiy
 {
-  class Ellipse : public Shape
+  class Ellipse: public Shape
   {
   public:
     Ellipse(const point_t &center, double vert, double horizon);

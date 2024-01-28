@@ -4,10 +4,10 @@
 
 namespace novokhatskiy
 {
-  class Ring : public Shape
+  class Ring: public Shape
   {
   public:
-    Ring(const point_t &center, double innerRadius, double outerRadius);
+    Ring(const point_t &center, double outerRadius, double innerRadius);
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t &point);
