@@ -4,7 +4,7 @@
 char * spiridonov::inputArray(std::istream& input, size_t& sizeOfStr)
 {
   const size_t chunkSize = 10;
-  char * currentArray = new char[sizeOfStr];
+  char * currentArray = new char[sizeOfStr]();
   char character = 0;
   size_t i = 0;
   input >> std::noskipws;
@@ -18,7 +18,7 @@ char * spiridonov::inputArray(std::istream& input, size_t& sizeOfStr)
 
       if (i >= sizeOfStr)
       {
-        char* newArray = new char[sizeOfStr + chunkSize];
+        char* newArray = new char[sizeOfStr + chunkSize]();
         for (size_t j = 0; j < sizeOfStr; ++j)
         {
           newArray[j] = currentArray[j];
