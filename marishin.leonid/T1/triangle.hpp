@@ -20,7 +20,7 @@ namespace marishin
     point_t firstPoint_;
     point_t secondPoint_;
     point_t thirdPoint_;
-  }
+  };
 }
 
 #endif
