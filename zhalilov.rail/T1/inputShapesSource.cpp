@@ -11,67 +11,39 @@
 
 namespace zhalilov
 {
-  Shape *inputRectangle(const char string[])
+  Shape *createRectangle(const double nums[], size_t length)
   {
-    double coords[4] = {};
-    size_t delta = 0;
-    size_t nameLen = 9;
-    const char *newStr = string + nameLen;
-    for (size_t i = 0; i < 4; i++)
+    if (length != 4)
     {
-      coords[i] = std::stod(newStr, &delta);
-      newStr += delta;
+      throw std::invalid_argument("incorrect rect src's num of args");
     }
-    if (*newStr != '\0')
-    {
-      throw std::invalid_argument("too many args to describe rectangle");
-    }
-    point_t leftCorner = { coords[0], coords[1] };
-    point_t rightCorner = { coords[2], coords[3] };
+    point_t leftCorner = { nums[0], nums[1] };
+    point_t rightCorner = { nums[2], nums[3] };
     return new Rectangle(leftCorner, rightCorner);
   }
 
-  Shape *inputCircle(const char string[])
+  Shape *createCircle(const double nums[], size_t length)
   {
-    double nums[3] = {};
-    size_t delta = 0;
-    size_t nameLen = 6;
-    const char *newStr = string + nameLen;
-    for (size_t i = 0; i < 3; i++)
+    if (length != 3)
     {
-      nums[i] = std::stod(newStr, &delta);
-      newStr += delta;
-    }
-    if (*newStr != '\0')
-    {
-      throw std::invalid_argument("too many args to describe circle");
+      throw std::invalid_argument("incorrect circle src's num of args");
     }
     point_t center = { nums[0], nums[1] };
     double radius = nums[2];
     return new Circle(center, radius);
   }
 
-  Shape *inputPolygon(const char string[])
+  Shape *createPolygon(const double nums[], size_t length)
   {
-    size_t size = 10;
-    size_t length = 0;
-    double *coords = new double[10];
-    size_t nameLen = 7;
-    const char *newStr = string + nameLen;
-    size_t i = 0;
-    size_t delta = 0;
-    length = i;
-    if (length % 2 != 0)
+    if (length % 2 != 0 || length < 6)
     {
-      delete[] coords;
-      throw std::invalid_argument("incorrect num of args to describe polygon");
+      throw std::invalid_argument("incorrect polygon src's nums of args");
     }
     point_t *points = new point_t[length / 2];
-    for (size_t j = 0; j < length; j += 2)
+    for (size_t i = 0; i < length; i += 2)
     {
-      points[j / 2] = { coords[j], coords[j + 1] };
+      points[i / 2] = { nums[i], nums[i + 1] };
     }
-    delete[] coords;
     try
     {
       Shape *shape = new Polygon(points, length / 2);
@@ -84,21 +56,20 @@ namespace zhalilov
     }
   }
 
-  Shape *identifyShape(std::istream &input)
+  Shape *identifyShape(const std::string &name, const double nums[], size_t length)
   {
     std::string names[] = {"RECTANGLE", "CIRCLE", "POLYGON"};
-    shapeInputFunc functions[3];
+    using shapeCreatingFunc = Shape *(*)(const double nums[], size_t length);
+    shapeCreatingFunc functions[3];
     functions[0] = inputRectangle;
     functions[1] = inputCircle;
     functions[2] = inputPolygon;
     size_t namesSize = 3;
-    std::string name = "";
-    input >> name;
     for (size_t i = 0; i < namesSize; i++)
     {
       if (names[i] == name)
       {
-        return functions[i](input);
+        return functions[i](nums, length);
       }
     }
     return nullptr;
@@ -200,5 +171,5 @@ zhalilov::Shape **zhalilov::inputShapesSource(Shape **shapes, point_t &point, do
     delete[] string;
     string = nullptr;
   }
-  delete srcNums[];
+  delete[] srcNums;
 }
