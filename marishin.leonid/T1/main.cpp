@@ -33,7 +33,7 @@ int main()
     outputShapesInfo(std::cout, numberOfShapes, myShapes);
 
   }
-  catch (const std::exception& e)
+  catch (const std::bad_alloc& e)
   {
     std::cerr << "memory allocation error";
     return 1;
