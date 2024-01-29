@@ -2,7 +2,7 @@
 
 void marishin::outputShapesInfo(std::ostream& out, size_t shapeCount, Shape** shapes)
 {
-  double totalArea = 0;
+  double totalArea = 0.0;
 
   for (size_t i = 0; i < shapeCount; ++i)
   {
@@ -25,5 +25,7 @@ void marishin::outputShapesInfo(std::ostream& out, size_t shapeCount, Shape** sh
         << round(10 * lowerLeftCorner.y) / 10 << " " << round(10 * topRightCorner.x) / 10 << " "
         << round(10 * topRightCorner.y) / 10;
   }
+
+  out << "\n";
 
 }
