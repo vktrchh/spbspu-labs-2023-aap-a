@@ -37,7 +37,7 @@ int main()
     {
       figureName.erase(0, 1);
     }
-    std::cout << figureName << '\n';
+
     if (figureName == "SCALE")
     {
       rebdev::point_t isoPoint = {0.0, 0.0};
