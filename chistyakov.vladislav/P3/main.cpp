@@ -27,7 +27,7 @@ int main()
 
   char dictChar[128]{};
   size_t dictNumsOfChar[128]{};
-  sortingByQuantity(array, dictChar, dictNumsOfChar);
+  sortByQuantity(array, dictChar, dictNumsOfChar);
 
   if (dictChar[1] == 0 || dictChar[2] == 0)
   {
@@ -37,7 +37,7 @@ int main()
   }
 
   char result[3]{};
-  sortingCertainNumnerOfItems(dictChar, result, 3);
+  sortCertainNumnerOfItems(dictChar, result, 3);
 
   for (size_t i = 0; i < 3; ++i)
   {
