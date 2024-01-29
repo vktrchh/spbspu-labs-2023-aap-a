@@ -8,13 +8,21 @@ int spiridonov::hasConsecutiveDuplicates(const char * str)
   }
 
   const char* current = str;
-  while (*(current + 1) != '\0')
+
+  while (*current)
   {
-    if (*current == *(current + 1))
+    if (*(current + 1))
     {
-      return 1;
+      if (*current == *(current + 1))
+      {
+        return 1;
+      }
+      current++;
     }
-    current++;
+    else
+    {
+      break;
+    }
   }
   return 0;
 }
