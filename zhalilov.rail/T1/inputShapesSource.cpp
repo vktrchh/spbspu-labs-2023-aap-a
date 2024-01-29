@@ -60,32 +60,6 @@ namespace zhalilov
     const char *newStr = string + nameLen;
     size_t i = 0;
     size_t delta = 0;
-    while (*newStr != '\0')
-    {
-      coords[i] = std::stod(newStr, &delta);
-      newStr += delta;
-      if (i + 1 == size)
-      {
-        double *newCoords = nullptr;
-        try
-        {
-          newCoords = new double[size + 4]{};
-          for (size_t j = 0; j < size; j++)
-          {
-            newCoords[j] = coords[j];
-          }
-          delete[] coords;
-          coords = newCoords;
-          size += 4;
-        }
-        catch (const std::bad_alloc &e)
-        {
-          delete[] coords;
-          throw;
-        }
-      }
-      i++;
-    }
     length = i;
     if (length % 2 != 0)
     {
@@ -165,8 +139,38 @@ void zhalilov::freeMemory(Shape **shapes, size_t size)
 zhalilov::Shape **zhalilov::inputShapesSource(Shape **shapes, point_t &point, double &ratio, size_t &length, std::istream &input)
 {
   size_t shapeIndex = 0;
+  std::string srcName = "";
+  size_t size = 10;
+  double srcNums = new double[size];
   while (true)
   {
+    input >> srcName;
+    size_t i = 0;
+    while (input >> srcNums[i])
+    {
+      if (i + 1 == size)
+      {
+        double *newNums = nullptr;
+        try
+        {
+          newNums = new double[size + 4]{};
+          for (size_t j = 0; j < size; j++)
+          {
+            newNums[j] = srcNums[j];
+          }
+          delete[] srcNums;
+          srcNums = newNums;
+          size += 4;
+        }
+        catch (const std::bad_alloc &e)
+        {
+          delete[] srcNums;
+          throw;
+        }
+      }
+      i++;
+    }
+
     try
     {
       shapeInputFunc inputFunc = identifyShape(string);
@@ -196,4 +200,5 @@ zhalilov::Shape **zhalilov::inputShapesSource(Shape **shapes, point_t &point, do
     delete[] string;
     string = nullptr;
   }
+  delete srcNums[];
 }
