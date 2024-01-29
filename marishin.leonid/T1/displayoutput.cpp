@@ -9,7 +9,7 @@ void marishin::outputShapesInfo(std::ostream& out, size_t shapeCount, Shape** sh
     totalArea += shapes[i]->getArea();
   }
 
-  out << "Total Area: " << totalArea << " ";
+  out << totalArea << " ";
 
   for (size_t i = 0; i < shapeCount; ++i)
   {
