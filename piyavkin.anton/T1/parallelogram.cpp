@@ -10,7 +10,7 @@ namespace piyavkin
     double ab = std::sqrt((a_.x - b_.x) * (a_.x - b_.x) + (a_.y - b_.y) * (a_.y - b_.y));
     double ac = std::sqrt((a_.x - c_.x) * (a_.x - c_.x) + (a_.y - c_.y) * (a_.y - c_.y));
     double bc = std::sqrt((b_.x - c_.x) * (b_.x - c_.x) + (b_.y - c_.y) * (b_.y - c_.y));
-    if ((a_.y != c_.y && a_.y != b_.y) || ab >= ac + bc || bc >= ab + ac || ac >= ab + bc)
+    if (((a_.y != c_.y && a_.y != b_.y) && (b_.y != c_.y && a_.y != b_.y)) || ab >= ac + bc || bc >= ab + ac || ac >= ab + bc)
     {
       throw std::logic_error("It is not parallelogram");
     }

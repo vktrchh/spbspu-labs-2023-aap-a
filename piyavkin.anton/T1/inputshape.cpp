@@ -4,6 +4,12 @@
 #include "triangle.hpp"
 #include "parallelogram.hpp"
 
+size_t piyavkin::countIrregularFigures()
+{
+  static int count = 0;
+  return count++;
+}
+
 piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
 {
   std::string name = "";
@@ -65,7 +71,7 @@ piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
         }
         catch (const std::logic_error& e)
         {
-          std::cerr << e.what() << "\n";
+          countIrregularFigures();
           delete[] parameters;
           continue;
         }
