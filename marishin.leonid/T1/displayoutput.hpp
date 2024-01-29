@@ -4,6 +4,7 @@
 #include <ostream>
 #include <iomanip>
 #include "shape.hpp"
+#include <cmath>
 
 namespace marishin
 {
