@@ -1,6 +1,8 @@
 #include "inputshape.hpp"
 #include "displayoutput.hpp"
 #include "scale.hpp"
+#include "scale.hpp"
+#include "scale.hpp"
 
 int main()
 {
@@ -13,29 +15,34 @@ int main()
   try
   {
     myShapes = inputShape(std::cin, numberOfShapes);
+    outputShapesInfo(std::cout, numberOfShapes, myShapes);
     std::cin >> center.x >> center.y >> scalingFactor;
 
-    outputShapesInfo(std::cout, numberOfShapes, myShapes);
+    if (!std::cin)
+    {
+      throw std::invalid_argument("incorrect input");
+    }
+    if (scalingFactor < 0)
+    {
+      throw std::invalid_argument("the coefficient must be positive");
+    }
     for (size_t i = 0; i < numberOfShapes; ++i)
     {
       scale(myShapes[i], center, scalingFactor);
     }
     outputShapesInfo(std::cout, numberOfShapes, myShapes);
 
-    for (size_t i = 0; i < numberOfShapes; ++i)
-    {
-      delete myShapes[i];
-    }
-    delete[] myShapes;
   }
-  catch (const std::exception& ex)
+  catch (const std::exception& e)
   {
-    std::cerr << ex.what() << "\n";
-    for (size_t i = 0; i < numberOfShapes; ++i)
-    {
-      delete myShapes[i];
-    }
-    delete[] myShapes;
+    std::cerr << "memory allocation error";
     return 1;
   }
+  catch (const std::exception& e)
+  {
+    std::cerr << e.what() << "\n";
+    cleanupShapes(myShapes, numberOfShapes);
+    return 1;
+  }
+  cleanupShapes(myShapes, numberOfShapes);
 }
