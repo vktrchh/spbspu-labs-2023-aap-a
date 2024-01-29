@@ -6,11 +6,10 @@
 
 #include "shape.hpp"
 
-using shapeInputFunc = zhalilov::Shape *(*)(const char string[]);
 namespace zhalilov
 {
   Shape **inputShapesSource(Shape **shapes, point_t &point, double &ratio, size_t &length, std::istream &input);
-  void freeMemory(Shape **shapes, size_t size, const char string[]);
+  void freeShapesMemory(Shape **shapes, size_t size);
 }
 
 #endif

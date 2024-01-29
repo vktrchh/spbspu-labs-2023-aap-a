@@ -98,7 +98,7 @@ namespace zhalilov
   }
 }
 
-void zhalilov::freeMemory(Shape **shapes, size_t size)
+void zhalilov::freeShapesMemory(Shape **shapes, size_t size)
 {
   for (size_t i = 0; i < size; i++)
   {
