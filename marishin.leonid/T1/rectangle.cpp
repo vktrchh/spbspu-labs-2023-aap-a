@@ -1,15 +1,15 @@
 #include "rectangle.hpp"
 #include <stdexcept>
+#include <cmath>
 
-
-marishin::Rectangle::Rectangle(const point_t lowerLeftCorner, const point_t topRightCorner):
+marishin::Rectangle::Rectangle(point_t lowerLeftCorner, point_t topRightCorner):
   lowerLeftCorner_(lowerLeftCorner),
   topRightCorner_(topRightCorner)
 {
   if (!(((lowerLeftCorner_.x < topRightCorner_.x) && (lowerLeftCorner_.y < topRightCorner_.y))
     || ((lowerLeftCorner_.x > topRightCorner_.x) && (lowerLeftCorner_.y > topRightCorner_.y))))
   {
-    throw std::logic_error("Invalid rectangle");
+    throw std::invalid_argument("Invalid rectangle");
   }
 }
 
@@ -30,13 +30,13 @@ marishin::rectangle_t marishin::Rectangle::getFrameRect()
   return { pos, width_t, height_t };
 }
 
-void marishin::Rectangle::move(const point_t newPos)
+void marishin::Rectangle::move(point_t newPos)
 {
-  point_t pos = { ((lowerLeftCorner_.x + topRightCorner_.x) / 2), ((lowerLeftCorner_.y + topRightCorner_.y) / 2) };
-  move(newPos.x - pos.x, newPos.y - pos.y);
+  rectangle_t f = getFrameRect();;
+  move(newPos.x - f.pos.x, newPos.y - f.pos.y);
 }
 
-void marishin::Rectangle::move(const double dx, const double dy)
+void marishin::Rectangle::move(double dx, double dy)
 {
   lowerLeftCorner_.x += dx;
   lowerLeftCorner_.y += dy;
@@ -44,11 +44,15 @@ void marishin::Rectangle::move(const double dx, const double dy)
   topRightCorner_.y += dy;
 }
 
-void marishin::Rectangle::scale(const double factor)
+void marishin::Rectangle::scale(double factor)
 {
+  if (factor <= 0.0)
+  {
+    throw std::invalid_argument("the coefficient must be positive");
+  }
   point_t pos = { ((lowerLeftCorner_.x + topRightCorner_.x) / 2), ((lowerLeftCorner_.y + topRightCorner_.y) / 2) };
-  lowerLeftCorner_.x = pos.x + (pos.x - lowerLeftCorner_.x) * factor;
-  lowerLeftCorner_.y = pos.y + (pos.y - lowerLeftCorner_.y) * factor;
-  topRightCorner_.x = pos.x + (pos.x - lowerLeftCorner_.x) * factor;
-  topRightCorner_.y = pos.y + (pos.y - lowerLeftCorner_.y) * factor;
+  lowerLeftCorner_.x = lowerLeftCorner_.x - (pos.x - lowerLeftCorner_.x) * (factor - 1);
+  lowerLeftCorner_.y = lowerLeftCorner_.y - (pos.y - lowerLeftCorner_.y) * (factor - 1);
+  topRightCorner_.x = topRightCorner_.x - (pos.x - topRightCorner_.x) * (factor - 1);
+  topRightCorner_.y = topRightCorner_.y - (pos.y - topRightCorner_.y) * (factor - 1);
 }
