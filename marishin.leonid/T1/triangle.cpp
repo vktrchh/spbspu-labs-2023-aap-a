@@ -1,7 +1,7 @@
 #include "triangle.hpp"
 #include <stdexcept>
 
-marishin::Triangle::Triangle(const point_t firstPoint, const point_t secondPoint, const point_t thirdPoint):
+marishin::Triangle::Triangle(point_t firstPoint, point_t secondPoint, point_t thirdPoint):
   firstPoint_(firstPoint),
   secondPoint_(secondPoint),
   thirdPoint_(thirdPoint)
@@ -35,21 +35,15 @@ marishin::rectangle_t marishin::Triangle::getFrameRect()
   return { pos, height, width };
 }
 
-void marishin::Triangle::move(const point_t newPos)
+void marishin::Triangle::move(point_t newPos)
 {
   point_t pos = { (firstPoint_.x + secondPoint_.x + thirdPoint_.x) / 3.0,
     (firstPoint_.y + secondPoint_.y + thirdPoint_.y) / 3.0 };
   move(newPos.x - pos.x, newPos.y - pos.y);
 }
 
-void marishin::Triangle::move(const double dx, const double dy)
+void marishin::Triangle::move(double dx, double dy)
 {
-  point_t pos = { (firstPoint_.x + secondPoint_.x + thirdPoint_.x) / 3.0,
-    (firstPoint_.y + secondPoint_.y + thirdPoint_.y) / 3.0 };
-
-  pos.x += dx;
-  pos.y += dy;
-
   firstPoint_.x += dx;
   firstPoint_.y += dy;
 
@@ -60,17 +54,17 @@ void marishin::Triangle::move(const double dx, const double dy)
   thirdPoint_.y += dy;
 }
 
-void marishin::Triangle::scale(const double factor)
+void marishin::Triangle::scale(double factor)
 {
   point_t pos = { (firstPoint_.x + secondPoint_.x + thirdPoint_.x) / 3.0,
     (firstPoint_.y + secondPoint_.y + thirdPoint_.y) / 3.0 };
 
-  firstPoint_.x = pos.x + (firstPoint_.x - pos.x) * factor;
-  firstPoint_.y = pos.y + (firstPoint_.y - pos.y) * factor;
+  firstPoint_.x = factor * (firstPoint_.x - pos.x) + pos.x;
+  firstPoint_.y = factor * (firstPoint_.y - pos.y) + pos.y;
 
-  secondPoint_.x = pos.x + (secondPoint_.x - pos.x) * factor;
-  secondPoint_.y = pos.y + (secondPoint_.y - pos.y) * factor;
+  secondPoint_.x = factor * (secondPoint_.x - pos.x) + pos.x;
+  secondPoint_.y = factor * (secondPoint_.y - pos.y) + pos.y;
 
-  thirdPoint_.x = pos.x + (thirdPoint_.x - pos.x) * factor;
-  thirdPoint_.y = pos.y + (thirdPoint_.y - pos.y) * factor;
+  thirdPoint_.x = factor * (thirdPoint_.x - pos.x) + pos.x;
+  thirdPoint_.y = factor * (thirdPoint_.y - pos.y) + pos.y;
 }
