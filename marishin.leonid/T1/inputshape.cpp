@@ -4,10 +4,9 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
 {
   const size_t NUM_SHAPES = 3;
   const std::string shapeNames[NUM_SHAPES] = { "RECTANGLE", "TRIANGLE", "RING" };
-  const size_t shapeParametrsCount[NUM_SHAPES] = { 4, 6, 4};
+  const size_t shapeParametersCount[NUM_SHAPES] = { 4, 6, 4};
 
   Shape** shapeArray = nullptr;
-  char symbol = 0;
 
   while (true)
   {
@@ -40,7 +39,7 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
           throw std::logic_error("Invalid arguments");
         }
 
-        Shape** oldShapeArray = ShapeArray;
+        Shape** oldShapeArray = shapeArray;
         shapeArray = new Shape* [shapeCount + 1];
 
         if (oldShapeArray)
@@ -75,7 +74,7 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
     }
   }
 
-  if (shapeCount = 0)
+  if (shapeCount == 0)
   {
     throw std::logic_error("No shapes provided");
   }
@@ -112,7 +111,7 @@ marishin::Shape* marishin::createShape(const std::string& name, double* paramete
 
 void marishin::skipLine(std::istream& in)
 {
-  char symbol;
+  char symbol = 0;
   in >> std::noskipws;
   while (in >> symbol && symbol != '\n');
   in >> std::skipws;
