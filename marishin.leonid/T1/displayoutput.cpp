@@ -3,6 +3,8 @@
 void marishin::outputShapesInfo(std::ostream& out, size_t shapeCount, Shape** shapes)
 {
   double totalArea = 0.0;
+  out << std::fixed;
+  out.precision(1);
 
   for (size_t i = 0; i < shapeCount; ++i)
   {
@@ -11,8 +13,6 @@ void marishin::outputShapesInfo(std::ostream& out, size_t shapeCount, Shape** sh
 
   out << totalArea;
 
-  out << std::fixed;
-  out.setprecision(1);
   for (size_t i = 0; i < shapeCount; ++i)
   {
     const auto& frameRect = shapes[i]->getFrameRect();
