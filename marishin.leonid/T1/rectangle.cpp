@@ -22,7 +22,7 @@ double marishin::Rectangle::getArea()
   return (std::abs((lowerLeftCorner_.x - topRightCorner_.x) * (lowerLeftCorner_.y - topRightCorner_.y)));
 }
 
-rectangle_t marishin::Rectangle::getFrameRect()
+marishin::rectangle_t marishin::Rectangle::getFrameRect()
 {
   point_t pos = { ((lowerLeftCorner_.x + topRightCorner_.x) / 2), ((lowerLeftCorner_.y + topRightCorner_.y) / 2) };
   double width_t = std::abs(lowerLeftCorner_.x - topRightCorner_.x);
