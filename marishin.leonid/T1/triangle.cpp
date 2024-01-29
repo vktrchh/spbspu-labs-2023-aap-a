@@ -22,7 +22,7 @@ double marishin::Triangle::getArea()
   return area;
 }
 
-rectangle_t marishin::Triangle::getFrameRect()
+marishin::rectangle_t marishin::Triangle::getFrameRect()
 {
   point_t pos = { (std::max(firstPoint_.x, (std::max(secondPoint_.x, thirdPoint_.x)))
     - std::min(firstPoint_.x, (std::min(secondPoint_.x, thirdPoint_.x)))) / 2,
