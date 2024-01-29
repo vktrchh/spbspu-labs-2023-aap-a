@@ -9,7 +9,7 @@ void marishin::outputShapesInfo(std::ostream& out, size_t shapeCount, Shape** sh
     totalArea += shapes[i]->getArea();
   }
 
-  out << totalArea << " ";
+  out << totalArea;
 
   for (size_t i = 0; i < shapeCount; ++i)
   {
@@ -21,11 +21,9 @@ void marishin::outputShapesInfo(std::ostream& out, size_t shapeCount, Shape** sh
     point_t lowerLeftCorner = { point.x - width / 2.0, point.y - height / 2.0 };
     point_t topRightCorner = { point.x + width / 2.0, point.y + height / 2.0 };
 
-    out << std::fixed << std::setprecision(1) << round(10 * lowerLeftCorner.x) / 10 << " "
+    out << std::fixed << std::setprecision(1) << " " << round(10 * lowerLeftCorner.x) / 10 << " "
         << round(10 * lowerLeftCorner.y) / 10 << " " << round(10 * topRightCorner.x) / 10 << " "
         << round(10 * topRightCorner.y) / 10;
   }
-
-  out << "\n";
 
 }
