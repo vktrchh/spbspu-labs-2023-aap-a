@@ -47,9 +47,10 @@ namespace zhalilov
     try
     {
       Shape *shape = new Polygon(points, length / 2);
+      delete[] points;
       return shape;
     }
-    catch (const std::invalid_argument &e)
+    catch (const std::exception &e)
     {
       delete[] points;
       throw;
@@ -112,18 +113,19 @@ zhalilov::Shape **zhalilov::inputShapesSource(Shape **shapes, point_t &point, do
   size_t shapeIndex = 0;
   std::string srcName = "";
   size_t size = 10;
+  bool hasIncorrectShapes = false;
   double srcNums = new double[size];
   while (true)
   {
-    input >> srcName;
-    size_t i = 0;
-    while (input >> srcNums[i])
+    try
     {
-      if (i + 1 == size)
+      input >> srcName;
+      size_t i = 0;
+      while (input >> srcNums[i])
       {
-        double *newNums = nullptr;
-        try
+        if (i + 1 == size)
         {
+          double *newNums = nullptr;
           newNums = new double[size + 4]{};
           for (size_t j = 0; j < size; j++)
           {
@@ -133,32 +135,23 @@ zhalilov::Shape **zhalilov::inputShapesSource(Shape **shapes, point_t &point, do
           srcNums = newNums;
           size += 4;
         }
-        catch (const std::bad_alloc &e)
-        {
-          delete[] srcNums;
-          throw;
-        }
+        i++;
       }
-      i++;
-    }
 
-    try
-    {
-      shapeInputFunc inputFunc = identifyShape(string);
-      if (inputFunc)
+      shapes[shapeIndex] = identifyShape(string);
+      if (shapes[shapeIndex])
       {
-        shapes[shapeIndex] = inputFunc(string);
         shapeIndex++;
       }
     }
     catch (const std::invalid_argument &e)
     {
-      shapes[shapeIndex] = nullptr;
-      shapeIndex++;
+      hasIncorrectShapes = true;
     }
     catch (const std::bad_alloc &e)
     {
-      freeMemory(shapes, shapeIndex, string);
+      delete[] srcNums;
+      length = shapeIndex;
       throw;
     }
 
