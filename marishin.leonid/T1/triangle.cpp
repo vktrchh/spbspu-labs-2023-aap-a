@@ -1,5 +1,6 @@
 #include "triangle.hpp"
 #include <stdexcept>
+#include <cmath>
 
 marishin::Triangle::Triangle(point_t firstPoint, point_t secondPoint, point_t thirdPoint):
   firstPoint_(firstPoint),
