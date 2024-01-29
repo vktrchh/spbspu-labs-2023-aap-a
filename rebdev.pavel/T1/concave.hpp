@@ -12,11 +12,13 @@ namespace rebdev
       virtual ~Concave();
       virtual double getArea() const;
       virtual rectangle_t getFrameRect() const;
-      virtual void move(const point_t point);
-      virtual void move(const double x, const double y);
-      virtual void scale(const double k);
+      virtual void move(point_t point);
+      virtual void move(double x, double y);
+      virtual void scale(double k);
     private:
       point_t * vertexs_;
+      point_t scalePoint(const point_t & pointToScale, const point_t & centerPoint, double k);
+      bool isTriangle(point_t f, point_t s, point_t t);
   };
 }
 #endif

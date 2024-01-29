@@ -7,6 +7,21 @@ rebdev::Polygon::Polygon(const point_t * vertexs, const size_t numOfVertexs):
   vertexs_(nullptr),
   numOfVertexs_(numOfVertexs)
 {
+  if (numOfVertexs < 3)
+  {
+    throw "polygon error";
+  }
+  for (size_t i = 0; i < (numOfVertexs - 1); ++i)
+  {
+    for (size_t j = (i + 1); j < numOfVertexs; ++j)
+    {
+      if ((vertexs[i].x == vertexs[j].x) && (vertexs[i].y == vertexs[j].y))
+      {
+        throw "polygon error";
+      }
+    }
+  }
+
   try
   {
     vertexs_ = new point_t[numOfVertexs_];
@@ -31,7 +46,7 @@ rebdev::Polygon::~Polygon()
 double rebdev::Polygon::getArea() const
 {
   double sum = 0;
-  for(size_t i = 0; i < (numOfVertexs_ - 1); ++i)
+  for (size_t i = 0; i < (numOfVertexs_ - 1); ++i)
   {
     sum += (vertexs_[i].x - vertexs_[i + 1].x) * (vertexs_[i].y + vertexs_[i + 1].y);
   }

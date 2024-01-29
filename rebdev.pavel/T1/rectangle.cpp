@@ -4,6 +4,10 @@
 rebdev::Rectangle::Rectangle(const point_t * angles):
   angles_(nullptr)
 {
+  if ((angles[0].x >= angles[1].x) || (angles[0].y >= angles[1].y))
+  {
+    throw "rectangle error";
+  }
   try
   {
     angles_ = new point_t[2];

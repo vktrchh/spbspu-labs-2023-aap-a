@@ -4,6 +4,6 @@
 #include "shape.hpp"
 namespace rebdev
 {
-  void outputShapes(Shape ** shapes, int numOfShapes, std::ostream & out);
+  void outputShapes(Shape ** shapes, size_t numOfShapes, std::ostream & out);
 }
 #endif

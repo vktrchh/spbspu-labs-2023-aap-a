@@ -1,122 +1,51 @@
 #include "figureInputFunction.hpp"
-#include <cmath>
+#include "rectangle.hpp"
+#include "concave.hpp"
+#include "polygon.hpp"
 
-bool rebdev::isRectangle(point_t * pointsArr)
+rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name)
 {
-  return !((pointsArr[0].x >= pointsArr[1].x) && (pointsArr[0].y >= pointsArr[1].y));
-};
+  Shape * figure = nullptr;
 
-bool rebdev::isConcave(point_t * pointsArr)
-{
-  for (int i = 0; i < 4; ++i)
+  if (name == "RECTANGLE")
   {
-    if (isTriangle(pointsArr[i], pointsArr[(i + 1) % 4], pointsArr[(i + 2) % 4]))
+    point_t vertexs[2] = {{0.0, 0.0}, {0.0, 0.0}};
+    input >> vertexs[0].x >> vertexs[0].y >> vertexs[1].x >> vertexs[1].y;
+
+    if (!input)
     {
-      double arr[3];
-      /*
-      Проверка пренадлежит ли точка треугольнику:
-      (x1 - x0) * (y2 - y1) - (x2 - x1) * (y1 - y0)
-      (x2 - x0) * (y3 - y2) - (x3 - x2) * (y2 - y0)
-      (x3 - x0) * (y1 - y3) - (x1 - x3) * (y3 - y0)
-      знаки должны быть одинаковы
-      */
-      for (int j = 0; j < 3; ++j)
-      {
-        arr[j] = (pointsArr[(i + j) % 4].x - pointsArr[(i + 3) % 4].x)
-          * (pointsArr[(i + (j + 1) % 3) % 4].y - pointsArr[(i + j) % 4].y);
-        arr[j] -= (pointsArr[(i + (j + 1) % 3) % 4].x - pointsArr[(i + j) % 4].x)
-          * (pointsArr[(i + j) % 4].y - pointsArr[(i + 3) % 4].y);
-      }
-
-      bool identicalSigns = ((arr[0] > 0) && (arr[1] > 0) && (arr[2] > 0));
-      identicalSigns = (identicalSigns || ((arr[0] < 0) && (arr[1] < 0) && (arr[2] < 0)));
-
-      if (identicalSigns)
-      {
-        point_t newPointArr[4] = {pointsArr[i], pointsArr[(i + 1) % 4], pointsArr[(i + 3) % 4], pointsArr[(i + 2) % 4]};
-        for (int i = 0; i < 4; ++i)
-        {
-          pointsArr[i] = newPointArr[i];
-        }
-        return 1;
-      }
+      throw "input error";
     }
+
+    figure = new Rectangle(vertexs);
   }
-  return 0;
-};
-
-bool rebdev::isPolygon(const point_t * pointsArr, const size_t size)
-{
-  if (size < 3)
+  else if (name == "CONCAVE")
   {
-    return 0;
-  }
-  for (size_t i = 0; i < (size - 1); ++i)
-  {
-    for (size_t j = (i + 1); j < size; ++j)
-    {
-      if ((pointsArr[i].x == pointsArr[j].x) && (pointsArr[i].y == pointsArr[j].y))
-      {
-        return 0;
-      }
-    }
-  }
-  return 1;
-};
+    point_t vertexs[4] = {{0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}};
 
-bool rebdev::isTriangle(const point_t f, const point_t s, const point_t t)
-{
-    return (((t.x - f.x) / (s.x - f.x)) != ((t.y - f.y) / (s.y - f.y)));
-};
-
-bool rebdev::isNameCorrect(std::istream & input, const int nameSize, const char * name)
-{
-char sym = 0;
-  for (int i = 1; i < nameSize; ++i)
-  {
-    input >> sym;
-    if (sym != name[i])
+    for (size_t i = 0; i < 4; ++i)
     {
-      return 0;
-    }
-  }
-
-  return 1;
-};
-
-rebdev::point_t * rebdev::ipnutVertexs(std::istream & input, size_t & numOfVertexs)
-{
-  point_t * vertexsArr = nullptr;
-  if (numOfVertexs != 0)
-  {
-    try
-    {
-      vertexsArr = new point_t[numOfVertexs];
-    }
-    catch (const std::exception & e)
-    {
-      delete[] vertexsArr;
-      return nullptr;
-    }
-    for (size_t i = 0; i < numOfVertexs; ++i)
-    {
-      input >> vertexsArr[i].x >> vertexsArr[i].y;
+      input >> vertexs[i].x >> vertexs[i].y;
       if (!input)
       {
-        delete[] vertexsArr;
-        return nullptr;
+        throw "input error";
       }
     }
+
+    figure = new Concave(vertexs);
   }
-  else
+  else if (name == "POLYGON")
   {
+    point_t * vertexs = new point_t[1];
     point_t * bufferArr = nullptr;
-    size_t bufferSize = 0;
-    while (input.peek() != '\n')
+    size_t bufferSize = 1, numOfVertexs = 1;
+
+    while (input >> vertexs[numOfVertexs - 1].x >> vertexs[numOfVertexs - 1].y)
     {
       if (numOfVertexs == bufferSize)
       {
         bufferSize += 10;
+
         try
         {
           bufferArr = new point_t[bufferSize];
@@ -124,25 +53,30 @@ rebdev::point_t * rebdev::ipnutVertexs(std::istream & input, size_t & numOfVerte
         catch (const std::exception & e)
         {
           delete[] bufferArr;
-          delete[] vertexsArr;
-          return nullptr;
+          delete[] vertexs;
+
+          throw e;
         }
+
         for (size_t i = 0; i < numOfVertexs; ++i)
         {
-          bufferArr[i] = vertexsArr[i];
+          bufferArr[i] = vertexs[i];
         }
         for (size_t i = numOfVertexs; i < bufferSize; ++i)
         {
           bufferArr[i] = point_t{0.0, 0.0};
         }
-        delete[] vertexsArr;
-        vertexsArr = bufferArr;
+
+        delete[] vertexs;
+        vertexs = bufferArr;
         bufferArr = nullptr;
       }
 
-      input >> vertexsArr[numOfVertexs].x >> vertexsArr[numOfVertexs].y;
       numOfVertexs += 1;
     }
+
+    input.clear();
+
     try
     {
       bufferArr = new point_t[numOfVertexs];
@@ -150,53 +84,33 @@ rebdev::point_t * rebdev::ipnutVertexs(std::istream & input, size_t & numOfVerte
     catch (const std::exception & e)
     {
       delete[] bufferArr;
-      delete[] vertexsArr;
-      return nullptr;
+      delete[] vertexs;
+
+      throw e;
     }
 
     for (size_t i = 0; i < numOfVertexs; ++i)
     {
-      bufferArr[i] = vertexsArr[i];
+      bufferArr[i] = vertexs[i];
     }
 
-    delete[] vertexsArr;
-    vertexsArr = bufferArr;
+    delete[] vertexs;
+    vertexs = bufferArr;
     bufferArr = nullptr;
+
+    try
+    {
+      figure = new Polygon(vertexs, numOfVertexs);
+    }
+    catch (const std::exception & e)
+    {
+      delete[] vertexs;
+
+      throw e;
+    }
+
+    delete[] vertexs;
   }
 
-  return vertexsArr;
-};
-
-bool rebdev::figureIsCorrect(point_t * vertexsArr, const size_t numOfVertexs, const int figureNumber)
-{
-  if (figureNumber == 0)
-  {
-    return isRectangle(vertexsArr);
-  }
-  else  if (figureNumber == 1)
-  {
-    return isConcave(vertexsArr);
-  }
-  else  if (figureNumber == 2)
-  {
-    return isPolygon(vertexsArr, numOfVertexs);
-  }
-  return 0;
-};
-
-rebdev::Shape * rebdev::newFigure(point_t * vertexsArr, const size_t numOfVertexs, const int figureNumber)
-{
-  if (figureNumber == 0)
-  {
-    return (new Rectangle(vertexsArr));
-  }
-  else  if (figureNumber == 1)
-  {
-    return (new Concave(vertexsArr));
-  }
-  else  if (figureNumber == 2)
-  {
-    return (new Polygon(vertexsArr, numOfVertexs));
-  }
-  return nullptr;
+  return figure;
 };
