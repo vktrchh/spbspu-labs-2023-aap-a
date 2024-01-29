@@ -33,7 +33,11 @@ int main()
 
   while (std::getline(std::cin, figureName, ' '))
   {
-
+    if (figureName.find('\n') == 0)
+    {
+      figureName.erase(0, 1);
+    }
+    std::cout << figureName << '\n';
     if (figureName == "SCALE")
     {
       rebdev::point_t isoPoint = {0.0, 0.0};
@@ -47,6 +51,7 @@ int main()
 
       rebdev::outputShapes(shapes, numOfShape, std::cout);
       rebdev::isoScale(shapes, numOfShape, isoPoint, k);
+
       isScale = 1;
       break;
     }
@@ -58,6 +63,7 @@ int main()
       }
       catch (const std::exception & e)
       {
+        std::cerr << "Error\n";
         shapes[numOfShape] = nullptr;
         figureError = 1;
       }
