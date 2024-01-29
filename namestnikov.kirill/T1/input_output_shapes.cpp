@@ -10,7 +10,6 @@
 
 namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count)
 {
-  using namespace namestnikov;
   std::map<std::string, size_t> possibleShapes;
   possibleShapes["RECTANGLE"] = 4;
   possibleShapes["CIRCLE"] = 3;
@@ -136,7 +135,7 @@ std::ostream & namestnikov::outputShapes(std::ostream & out, size_t count, Shape
       square += shapes[i]->getArea();
     }
   }
-  out << square << " ";
+  out << square;
   for (size_t i = 0; i < count; ++i)
   {
     if (shapes[i])
@@ -146,7 +145,7 @@ std::ostream & namestnikov::outputShapes(std::ostream & out, size_t count, Shape
       point_t position = shapes[i]->getFrameRect().pos;
       double positionX = position.x;
       double positionY = position.y;
-      out << positionX - (width / 2.0) << " " << positionY - (height / 2.0) << " "
+      out << " " << positionX - (width / 2.0) << " " << positionY - (height / 2.0) << " "
            << positionX + (width / 2.0) << " " << positionY + (height / 2.0);
     }
   }
