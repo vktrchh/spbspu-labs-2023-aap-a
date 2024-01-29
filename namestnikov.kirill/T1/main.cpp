@@ -5,8 +5,6 @@
 #include "input_output_shapes.hpp"
 #include "geometric_functions.hpp"
 
-
-
 int main()
 {
   using namespace namestnikov;

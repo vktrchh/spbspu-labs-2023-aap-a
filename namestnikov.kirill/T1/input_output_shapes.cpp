@@ -86,28 +86,24 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
             }
             else if (currentShapeName == "COMPLEXQUAD")
             {
-              point_t * points = new point_t[4];
-              try
+              point_t points[4]{};
+              for (size_t i = 0; i < 8; i += 2)
               {
-                for (size_t i = 0; i < 8; i += 2)
-                {
-                  points[i / 2] = {currentParameters[i], currentParameters[i + 1]};
-                }
-                currentShapes[count] = new Complexquad(points);
-                ++count;
+                points[i / 2] = {currentParameters[i], currentParameters[i + 1]};
               }
-              catch (const std::bad_alloc & e)
-              {
-                namestnikov::deleteShapes(currentShapes, count);
-                delete [] points;
-              }
+              currentShapes[count] = new Complexquad(points);
+              ++count;
             }
           }
-          catch (const std::exception & e)
+          catch (const std::bad_alloc &)
           {
             delete [] currentParameters;
             namestnikov::deleteShapes(currentShapes, count);
-            throw e;
+            throw;
+          }
+          catch (const std::exception & e)
+          {
+            std::cerr << "Error: " << e.what() << "\n";
           }
           delete [] currentParameters;
         }
