@@ -1,9 +1,9 @@
 #include "ring.hpp"
 
 marishin::Ring::Ring(point_t center, const double radius1, const double radius2):
+  center_(center),
   radius1_(radius1),
-  radius2_(radius2),
-  center_(center)
+  radius2_(radius2)
 {
   if (radius1_ <= 0 || radius2_ <= 0 || radius1_ >= radius2_)
   {
@@ -20,7 +20,7 @@ double marishin::Ring::getArea()
   return ((M_PI * pow(radius2_, 2)) - (M_PI * pow(radius1_, 2)));
 }
 
-rectangle_t marishin::Ring::getFrameRect()
+marishin::rectangle_t marishin::Ring::getFrameRect()
 {
   point_t pos = center_;
   return { pos, radius2_ * 2, radius2_ * 2 };
