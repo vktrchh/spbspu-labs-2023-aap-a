@@ -1,5 +1,5 @@
 #include "sort.hpp"
-#include "numOfOccurOfLetters.hpp"
+#include "countNumOfOccurOfLetters.hpp"
 
 char* chistyakov::sortCertainNumnerOfItems(char* array, char* result, size_t lenght)
 {
@@ -33,7 +33,7 @@ char* chistyakov::sortCertainNumnerOfItems(char* array, char* result, size_t len
 
 void chistyakov::sortByQuantity(const char* array, char* chars, size_t* nums)
 {
-  numOfOccurOfLetters(array, chars, nums);
+  countNumOfOccurOfLetters(array, chars, nums);
 
   size_t lenght = 0;
   while (nums[lenght] != 0)

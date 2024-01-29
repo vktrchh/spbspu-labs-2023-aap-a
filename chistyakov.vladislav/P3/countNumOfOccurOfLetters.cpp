@@ -1,7 +1,7 @@
-#include "numOfOccurOfLetters.hpp"
+#include "countNumOfOccurOfLetters.hpp"
 #include <cctype>
 
-void chistyakov::numOfOccurOfLetters(const char* array, char* dictChar, size_t* dictNumsOfChar)
+void chistyakov::countNumOfOccurOfLetters(const char* array, char* dictChar, size_t* dictNumsOfChar)
 {
   char nowChar = 0;
   size_t i = 0;

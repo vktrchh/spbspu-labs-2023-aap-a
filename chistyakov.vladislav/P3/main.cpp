@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdexcept>
 
-#include "numOfOccurOfLetters.hpp"
+#include "countNumOfOccurOfLetters.hpp"
 #include "sort.hpp"
 #include "inputArray.hpp"
 
