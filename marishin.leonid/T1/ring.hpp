@@ -21,8 +21,8 @@ namespace marishin
     virtual void scale(double factor);
   private:
     point_t center_;
-    double radius1_;
     double radius2_;
+    double radius1_;
   };
 }
 
