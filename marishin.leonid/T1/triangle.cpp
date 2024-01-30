@@ -1,8 +1,9 @@
 #include "triangle.hpp"
 #include <stdexcept>
 #include <cmath>
+#include <algorithm>
 
-marishin::Triangle::Triangle(const point_t &firstPoint, const point_t &secondPoint, const point_t &thirdPoint):
+marishin::Triangle::Triangle(const point_t firstPoint, const point_t secondPoint, const point_t thirdPoint):
   firstPoint_(firstPoint),
   secondPoint_(secondPoint),
   thirdPoint_(thirdPoint)
@@ -42,7 +43,7 @@ marishin::rectangle_t marishin::Triangle::getFrameRect() const
   return { pos, height, width };
 }
 
-void marishin::Triangle::move(const point_t &newPos)
+void marishin::Triangle::move(const point_t newPos)
 {
   point_t pos = { (firstPoint_.x + secondPoint_.x + thirdPoint_.x) / 3,
     (firstPoint_.y + secondPoint_.y + thirdPoint_.y) / 3 };
