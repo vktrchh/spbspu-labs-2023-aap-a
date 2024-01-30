@@ -2,7 +2,7 @@
 #include <stdexcept>
 #include <cmath>
 
-marishin::Rectangle::Rectangle(const point_t &lowerLeftCorner, const point_t &topRightCorner):
+marishin::Rectangle::Rectangle(const point_t lowerLeftCorner, const point_t topRightCorner):
   lowerLeftCorner_(lowerLeftCorner),
   topRightCorner_(topRightCorner)
 {
@@ -25,7 +25,7 @@ marishin::rectangle_t marishin::Rectangle::getFrameRect() const
   return { pos, width_t, height_t };
 }
 
-void marishin::Rectangle::move(const point_t &newPos)
+void marishin::Rectangle::move(const point_t newPos)
 {
   rectangle_t f = getFrameRect();;
   move(newPos.x - f.pos.x, newPos.y - f.pos.y);

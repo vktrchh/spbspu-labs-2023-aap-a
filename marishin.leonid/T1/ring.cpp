@@ -1,6 +1,6 @@
 #include "ring.hpp"
 
-marishin::Ring::Ring(const point_t &center, double radius1, double radius2):
+marishin::Ring::Ring(const point_t center, double radius1, double radius2):
   center_(center),
   radius1_(radius1),
   radius2_(radius2)
@@ -17,7 +17,7 @@ marishin::rectangle_t marishin::Ring::getFrameRect() const
   return { pos, radius2_ * 2, radius2_ * 2 };
 }
 
-void marishin::Ring::move(const point_t &newPos)
+void marishin::Ring::move(const point_t newPos)
 {
   center_ = newPos;
 }

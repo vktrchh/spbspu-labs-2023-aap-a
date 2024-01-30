@@ -13,10 +13,10 @@ namespace marishin
   class Ring : public Shape
   {
   public:
-    Ring(const point_t &center, double radius1, double radius2);
+    Ring(const point_t center, double radius1, double radius2);
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
-    virtual void move(const point_t &newPos);
+    virtual void move(const point_t newPos);
     virtual void move(double dx, double dy);
     virtual void scale(double factor);
   private:
