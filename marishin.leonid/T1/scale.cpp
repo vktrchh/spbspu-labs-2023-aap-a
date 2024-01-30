@@ -1,6 +1,6 @@
 #include "scale.hpp"
 
-void marishin::scale(Shape *shape, const point_t &center, double scaleCoefficient)
+void marishin::scale(Shape *shape, point_t center, double scaleCoefficient)
 {
   if (scaleCoefficient <= 0.0)
   {
