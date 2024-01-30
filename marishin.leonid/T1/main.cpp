@@ -11,8 +11,8 @@ int main()
   using namespace marishin;
   Shape** myShapes = nullptr;
   size_t numberOfShapes = 0;
-  point_t center = { 0, 0 };
-  double scalingFactor = 0;
+  point_t center;
+  double scalingFactor = 0.0;
 
   try
   {
@@ -28,7 +28,7 @@ int main()
     {
       throw std::invalid_argument("the coefficient must be positive");
     }
-    for (size_t i = 0; i < numberOfShapes; ++i)
+    for (size_t i = 0; i < numberOfShapes; i++)
     {
       scale(myShapes[i], center, scalingFactor);
     }
