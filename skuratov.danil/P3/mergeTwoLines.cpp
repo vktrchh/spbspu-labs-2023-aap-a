@@ -12,7 +12,7 @@ char* skuratov::mergeTwoLines()
 
   char* input2 = new char[size];
   input2 = transformInputString(input2, size);
-    
+
   size_t size1 = 0;
   while (*input1 != '\0')
   {
