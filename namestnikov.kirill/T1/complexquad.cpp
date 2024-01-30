@@ -3,6 +3,7 @@
 #include "base-types.hpp"
 #include <stdexcept>
 #include <algorithm>
+#include <iostream>
 
 namestnikov::Complexquad::Complexquad(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4):
   complexquadP1_(p1),
@@ -31,17 +32,25 @@ double namestnikov::Complexquad::getArea() const
 {
   point_t centerPoint = getIntersectionOfTwoLines(complexquadP1_, complexquadP2_, complexquadP3_, complexquadP4_);
   double square = 0;
-  square += getAreaOfTriangle(complexquadP1_, complexquadP4_, centerPoint);
-  square += getAreaOfTriangle(complexquadP2_, complexquadP3_, centerPoint);
+  square += getAreaOfTriangle(complexquadP1_, complexquadP3_, centerPoint);
+  square += getAreaOfTriangle(complexquadP2_, complexquadP4_, centerPoint);
   return square;
 }
 
 namestnikov::rectangle_t namestnikov::Complexquad::getFrameRect() const
 {
-  double mostLowPoint = std::min(complexquadP1_.y, std::min(complexquadP2_.y, std::min(complexquadP3_.y, complexquadP4_.y)));
-  double mostHighPoint = std::max(complexquadP1_.y, std::max(complexquadP2_.y, std::max(complexquadP3_.y, complexquadP4_.y)));
-  double mostLeftPoint = std::min(complexquadP1_.x, std::min(complexquadP2_.x, std::min(complexquadP3_.x, complexquadP4_.x)));
-  double mostRightPoint = std::max(complexquadP1_.x, std::max(complexquadP2_.x, std::max(complexquadP3_.x, complexquadP4_.x)));
+  double mostLowPoint = complexquadP1_.y;
+  double mostHighPoint = complexquadP1_.y;
+  double mostLeftPoint = complexquadP1_.x;
+  double mostRightPoint = complexquadP1_.x;
+  namestnikov::point_t points[4] = {complexquadP1_, complexquadP2_, complexquadP3_, complexquadP4_};
+  for (size_t i = 1; i < 4; ++i)
+  {
+    mostLowPoint = std::min(mostLowPoint, points[i].y);
+    mostHighPoint = std::max(mostHighPoint, points[i].y);
+    mostLeftPoint = std::min(mostLeftPoint, points[i].x);
+    mostRightPoint = std::max(mostRightPoint, points[i].x);
+  }
   double width = std::abs(mostRightPoint - mostLeftPoint);
   double height = std::abs(mostHighPoint - mostLowPoint);
   point_t position = {mostLeftPoint + (width / 2), mostLowPoint + (height / 2)};
