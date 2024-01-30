@@ -1,31 +1,40 @@
 #include "displayoutput.hpp"
 
-void marishin::outputShapesInfo(std::ostream& out, size_t shapeCount, Shape** shapes)
+void marishin::outputShapesInfo(std::ostream& out, size_t shapeCount, Shape **const shapes)
 {
+  if (shapeCount == 0)
+  {
+    throw std::logic_error("no shapes");
+  }
+
   double totalArea = 0.0;
   out << std::fixed;
   out.precision(1);
 
-  for (size_t i = 0; i < shapeCount; ++i)
+  for (size_t i = 0; i < shapeCount; i++)
   {
-    totalArea += shapes[i]->getArea();
+    if (shapes[i])
+    {
+      totalArea += shapes[i]->getArea();
+    }
   }
 
   out << totalArea;
 
   for (size_t i = 0; i < shapeCount; ++i)
   {
-    const auto& frameRect = shapes[i]->getFrameRect();
-    double width = frameRect.width;
-    double height = frameRect.height;
-    point_t point = frameRect.pos;
+    if (shapes[i])
+    {
+      double width = shapes[i]->getFrameRect().width;
+      double height = shapes[i]->getFrameRect().height;
+      point_t point = shapes[i]->getFrameRect().pos;
 
-    point_t lowerLeftCorner = { point.x - width / 2.0, point.y - height / 2.0 };
-    point_t topRightCorner = { point.x + width / 2.0, point.y + height / 2.0 };
+      point_t lowerLeftCorner = { point.x - width / 2.0, point.y - height / 2.0 };
+      point_t topRightCorner = { point.x + width / 2.0, point.y + height / 2.0 };
 
-    out << " " << round(10 * lowerLeftCorner.x) / 10 << " "
-        << round(10 * lowerLeftCorner.y) / 10 << " " << round(10 * topRightCorner.x) / 10 << " "
-        << round(10 * topRightCorner.y) / 10;
+      out << " " << lowerLeftCorner.x << " " << lowerLeftCorner.y
+          << " " << topRightCorner.x << " " << topRightCorner.y;
+    }
   }
 
   out << "\n";
