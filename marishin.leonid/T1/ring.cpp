@@ -5,7 +5,7 @@ marishin::Ring::Ring(const point_t &center, double radius1, double radius2):
   radius1_(radius1),
   radius2_(radius2)
 {
-  if (radius1 <= 0.0 || radius2 <= 0.0 || radius1 >= radius2)
+  if ((radius1 <= 0.0) || (radius2 <= 0.0) || (radius1 >= radius2))
   {
     throw std::invalid_argument("Invalid ring");
   }
