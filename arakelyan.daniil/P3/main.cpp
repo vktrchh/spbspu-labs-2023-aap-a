@@ -23,12 +23,8 @@ int main()
   size_t answerTaskOne = countOfdifferentLetters(inputString);
 
   size_t sizeOfAlphabet = 'z' - 'a' + 1;
-  char *answerTaskTwo = nullptr;
-  try
-  {
-    answerTaskTwo = new char[sizeOfAlphabet + 1]{};
-  }
-  catch (const std::bad_alloc & e)
+  char *answerTaskTwo = new char[sizeOfAlphabet + 1]{};
+  if (answerTaskTwo == nullptr)
   {
     std::cerr << "Cannot create a dynamic array for answer of second task!\n";
     delete [] inputString;

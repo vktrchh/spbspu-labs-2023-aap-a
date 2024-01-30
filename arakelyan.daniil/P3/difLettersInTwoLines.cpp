@@ -1,7 +1,7 @@
 #include "difLettersInTwoLines.hpp"
 #include <cctype>
 
-void arakelyan::findAndInsertDiffLetters(const char *array, char *answer, size_t &freePos)
+void findAndInsertDiffLetters(const char *array, char *answer, size_t &freePos)
 {
   for (size_t i = 0; array[i] != '\0'; i++)
   {
@@ -28,8 +28,8 @@ void arakelyan::findAndInsertDiffLetters(const char *array, char *answer, size_t
 void arakelyan::searchForDifferentLettersInTwoLines(const char *inputArr, const char *defaultArray, char *answer)
 {
   size_t indexOfUsedCells = 0;
-  arakelyan::findAndInsertDiffLetters(inputArr, answer, indexOfUsedCells);
-  arakelyan::findAndInsertDiffLetters(defaultArray, answer, indexOfUsedCells);
+  findAndInsertDiffLetters(inputArr, answer, indexOfUsedCells);
+  findAndInsertDiffLetters(defaultArray, answer, indexOfUsedCells);
   for (size_t i = 0; answer[i] != '\0'; i++)
   {
     for (size_t j = 0; answer[j + 1] != '\0'; j++)
