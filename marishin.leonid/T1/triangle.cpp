@@ -40,7 +40,7 @@ marishin::rectangle_t marishin::Triangle::getFrameRect() const
     - (std::min(firstPoint_.x, (std::min(secondPoint_.x, thirdPoint_.x)))));
   point_t pos = { (std::min(firstPoint_.x, (std::min(secondPoint_.x, thirdPoint_.x)))) + width / 2,
     (std::min(firstPoint_.y, (std::min(secondPoint_.y, thirdPoint_.y)))) + height / 2  };
-  return { pos, height, width };
+  return { pos, width, height };
 }
 
 void marishin::Triangle::move(point_t newPos)
