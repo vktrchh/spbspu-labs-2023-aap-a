@@ -7,16 +7,28 @@ marishin::Triangle::Triangle(const point_t &firstPoint, const point_t &secondPoi
   secondPoint_(secondPoint),
   thirdPoint_(thirdPoint)
 {
-  if (isTriangleExist(firstPoint_, secondPoint_, thirdPoint_))
+  double ab = std::sqrt((firstPoint_.x - secondPoint_.x) * (firstPoint_.x - secondPoint_.x)
+    + (firstPoint_.y - secondPoint_.y) * (firstPoint_.y - secondPoint_.y));
+  double ac = std::sqrt((firstPoint_.x - thirdPoint_.x) * (firstPoint_.x - thirdPoint_.x)
+    + (firstPoint_.y - thirdPoint_.y) * (firstPoint_.y - thirdPoint_.y));
+  double bc = std::sqrt((secondPoint_.x - thirdPoint_.x) * (secondPoint_.x - thirdPoint_.x)
+    + (secondPoint_.y - thirdPoint_.y) * (secondPoint_.y - thirdPoint_.y));
+  if (ab >= ac + bc || bc >= ab + ac || ac >= ab + bc)
   {
-    throw std::logic_error("Irregular triangle");
+    throw std::invalid_argument("Irregular triangle");
   }
 }
 
 double marishin::Triangle::getArea() const
 {
-  double area = calculateTriangleArea(firstPoint_, secondPoint_, thirdPoint_);
-  return area;
+  double ab_ = std::sqrt((firstPoint_.x - secondPoint_.x) * (firstPoint_.x - secondPoint_.x)
+    + (firstPoint_.y - secondPoint_.y) * (firstPoint_.y - secondPoint_.y));
+  double ac_ = std::sqrt((firstPoint_.x - thirdPoint_.x) * (firstPoint_.x - thirdPoint_.x)
+    + (firstPoint_.y - thirdPoint_.y) * (firstPoint_.y - thirdPoint_.y));
+  double bc_ = std::sqrt((secondPoint_.x - thirdPoint_.x) * (secondPoint_.x - thirdPoint_.x)
+    + (secondPoint_.y - thirdPoint_.y) * (secondPoint_.y - thirdPoint_.y));
+  double abc = (ab_ + bc_ + ac_) / 2;
+  return std::sqrt(abc * (abc - ab_) * (abc - bc_) * (abc - ac_));
 }
 
 marishin::rectangle_t marishin::Triangle::getFrameRect() const
