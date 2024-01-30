@@ -85,7 +85,8 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
             }
             else if (currentShapeName == "COMPLEXQUAD")
             {
-              currentShapes[count] = new Complexquad({currentParameters[0], currentParameters[1]}, {currentParameters[2], currentParameters[3]}, {currentParameters[4], currentParameters[5]}, {currentParameters[6], currentParameters[7]});
+              currentShapes[count] = new Complexquad({currentParameters[0], currentParameters[1]}, {currentParameters[2], currentParameters[3]},\
+               {currentParameters[4], currentParameters[5]}, {currentParameters[6], currentParameters[7]});
               ++count;
             }
           }
