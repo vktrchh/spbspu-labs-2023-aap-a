@@ -5,6 +5,6 @@
 
 namespace skuratov
 {
-  char* mergeTwoLines(char* line1, char* line2);
+  char* mergeTwoLines();
 }
 #endif

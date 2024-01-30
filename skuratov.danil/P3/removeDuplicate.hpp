@@ -3,6 +3,6 @@
 
 namespace skuratov
 {
-  char* removeDuplicate(char* str1, char* str2);
+  char* removeDuplicate();
 }
 #endif

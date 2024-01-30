@@ -24,7 +24,6 @@ char* skuratov::transformInputString(char* input, size_t size)
       }
       delete[] input;
       input = newinput;
-      delete[] newinput;
     }
     input[i] = c;
     i++;
