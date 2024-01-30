@@ -1,5 +1,5 @@
-#ifndef COUNTOFDIFFERENTLETTERS_HPP
-#define COUNTOFDIFFERENTLETTERS_HPP
+#ifndef DIFLETTERS_HPP
+#define DIFLETTERS_HPP
 #include <cstddef>
 namespace arakelyan
 {
