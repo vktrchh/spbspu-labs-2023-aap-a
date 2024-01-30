@@ -3,6 +3,7 @@
 #include "shape.hpp"
 #include <cmath>
 #include <stdexcept>
+#include <iostream>
 
 double namestnikov::getSizeOfLine(const point_t & p1, const point_t & p2)
 {
@@ -19,13 +20,13 @@ double namestnikov::getAreaOfTriangle(const point_t & p1, const point_t & p2, co
   return std::sqrt(halfPerimetr * (halfPerimetr - a) * (halfPerimetr - b) * (halfPerimetr - c));
 }
 
-namestnikov::point_t namestnikov::getIntersectionOfTwoLines(const point_t * points)
+namestnikov::point_t namestnikov::getIntersectionOfTwoLines(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4)
 {
   double a1 = 0, b1 = 0, c1 = 0;
   double a2 = 0, b2 = 0, c2 = 0;
-  fillLineCoefficients(points[0], points[1], a1, b1, c1);
-  fillLineCoefficients(points[2], points[3], a2, b2, c2);
-  if ((a1 / a2) == (b1 / b2))
+  fillLineCoefficients(p1, p2, a1, b1, c1);
+  fillLineCoefficients(p3, p4, a2, b2, c2);
+  if (a1 / a2 == b1 / b2)
   {
     throw std::invalid_argument("There is no intersection\n");
   }
