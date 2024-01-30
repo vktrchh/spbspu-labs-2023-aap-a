@@ -2,7 +2,6 @@
 #define TRIANGLE_HPP
 
 #include "shape.hpp"
-#include "calculatetriangle.hpp"
 
 namespace marishin
 {
