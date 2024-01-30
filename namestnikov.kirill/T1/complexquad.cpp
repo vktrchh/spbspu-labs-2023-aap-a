@@ -9,7 +9,19 @@ namestnikov::Complexquad::Complexquad(const point_t & p1, const point_t & p2, co
   complexquadP2_(p2),
   complexquadP3_(p3),
   complexquadP4_(p4)
-{}
+{
+  namestnikov::point_t points[4] = {complexquadP1_, complexquadP2_, complexquadP3_, complexquadP4_};
+  for (size_t i = 0; i < 4; ++i)
+  {
+    for (size_t j = i + 1; j < 4; ++j)
+    {
+      if ((points[i].x == points[j].x) && (points[i].y == points[j].y))
+      {
+        throw std::invalid_argument("There shouldn't be 2 same points in complexquad\n");
+      }
+    }
+  }
+}
 
 double namestnikov::Complexquad::getArea() const
 {
