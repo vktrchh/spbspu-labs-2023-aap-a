@@ -2,12 +2,11 @@
 #define SCALE_HPP
 
 #include "shape.hpp"
-#include "base-types.hpp"
-#include <iostream>
+#include <stdexcept>
 
 namespace marishin
 {
-  void scale(Shape* shape, point_t& center, double scaleCoefficient);
+  void scale(Shape *shape, const point_t &center, double scaleCoefficient);
 }
 
 #endif
