@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <cmath>
 #include <math.h>
+#include <algorithm>
 #define _USE_MATH_DEFINES
 
 namespace marishin
@@ -12,13 +13,12 @@ namespace marishin
   class Ring : public Shape
   {
   public:
-    Ring(point_t center, const double radius1, const double radius2);
-    virtual ~Ring();
-    virtual double getArea();
-    virtual rectangle_t getFrameRect();
-    virtual void move(const point_t newPos);
-    virtual void move(const double dx, const double dy);
-    virtual void scale(const double factor);
+    Ring(const point_t &center, double radius1, double radius2);
+    virtual double getArea() const;
+    virtual rectangle_t getFrameRect() const;
+    virtual void move(const point_t &newPos);
+    virtual void move(double dx, double dy);
+    virtual void scale(double factor);
   private:
     point_t center_;
     double radius1_;
