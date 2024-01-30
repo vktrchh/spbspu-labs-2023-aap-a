@@ -4,11 +4,11 @@
 
 void arakelyan::isoScale(arakelyan::Shape * shapeObj, const point_t scalePoint, const double scaleK)
 {
-   point_t initialPos = shapeObj->getFrameRect().pos_;
+   point_t initialPos = shapeObj->getFrameRect().pos;
    shapeObj->move(scalePoint);
-   point_t modifiedPos = shapeObj->getFrameRect().pos_;
-   double dx = (modifiedPos.x_ - initialPos.x_) * scaleK;
-   double dy = (modifiedPos.y_ - initialPos.y_) * scaleK;
+   point_t modifiedPos = shapeObj->getFrameRect().pos;
+   double dx = (modifiedPos.x - initialPos.x) * scaleK;
+   double dy = (modifiedPos.y - initialPos.y) * scaleK;
    shapeObj->scale(scaleK);
    shapeObj->move(-dx, -dy);
 }

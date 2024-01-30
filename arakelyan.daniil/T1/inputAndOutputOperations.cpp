@@ -22,8 +22,8 @@ void arakelyan::inputScaleParam(const char *string, point_t &point, double &k)
     string = endPtr;
   }
 
-  point.x_ = arrayOfScaleData[0];
-  point.y_ = arrayOfScaleData[1];
+  point.x = arrayOfScaleData[0];
+  point.y = arrayOfScaleData[1];
   k = arrayOfScaleData[2];
 }
 
@@ -105,10 +105,10 @@ void arakelyan::shapeOutput(std::ostream &output, arakelyan::Shape **shapes, con
   for (size_t i = 0; i < shapesCount; i++)
   {
     rectangle_t rectCurrShape = shapes[i]->getFrameRect();
-    double leftDownX = rectCurrShape.pos_.x_ - (rectCurrShape.width_ / 2.0);
-    double leftDownY = rectCurrShape.pos_.y_ - (rectCurrShape.height_ / 2.0);
-    double rigtUpX = rectCurrShape.pos_.x_ + (rectCurrShape.width_ / 2.0);
-    double rightUpY = rectCurrShape.pos_.y_ + (rectCurrShape.height_ / 2.0);
+    double leftDownX = rectCurrShape.pos.x - (rectCurrShape.width / 2.0);
+    double leftDownY = rectCurrShape.pos.y - (rectCurrShape.height / 2.0);
+    double rigtUpX = rectCurrShape.pos.x + (rectCurrShape.width / 2.0);
+    double rightUpY = rectCurrShape.pos.y + (rectCurrShape.height / 2.0);
     output << totalArea << " " << leftDownX << " " << leftDownY << " " << rigtUpX << " " << rightUpY << "\n";
   }
 }
