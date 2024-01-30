@@ -30,8 +30,8 @@ rectangle_t arakelyan::Parallelogram::getFrameRect()
 
 void arakelyan::Parallelogram::move(const point_t point)
 {
-  double dx = point.x_ - midpoint_.x;
-  double dy = point.y_ - midpoint_.y;
+  double dx = point.x - midpoint_.x;
+  double dy = point.y - midpoint_.y;
   p1_.x += dx;
   p1_.y += dy;
   p2_.x += dx;
