@@ -1,5 +1,6 @@
 #include "difLettersInTwoLines.hpp"
 #include <cctype>
+#include <cstddef>
 
 void findAndInsertDiffLetters(const char *array, char *answer, size_t &freePos)
 {
