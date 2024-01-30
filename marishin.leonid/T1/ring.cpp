@@ -28,7 +28,7 @@ void marishin::Ring::move(const point_t newPos)
 
 void marishin::Ring::move(const double dx, const double dy)
 {
-  center_ = {center_.x + x, center_.y + y};
+  center_ = {center_.x + dx, center_.y + dy};
 }
 
 void marishin::Ring::scale(double factor)
