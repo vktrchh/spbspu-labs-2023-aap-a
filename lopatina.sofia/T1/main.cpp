@@ -70,7 +70,8 @@ private:
 
 int main()
 {
-  //std::string array[1000] = {};
+  std::string array[1000] = {};
+//-----------
   Rectangle* first = new Rectangle({ 1.0, 1.0 }, { 3.0, 4.0 });
   std::cout << first->getArea() << '\n';
   first->move({ 3.0, 5.0 });
@@ -78,4 +79,21 @@ int main()
   first->move(2.0, 1.0);
   std::cout << first->getFrameRect().pos_.x_ << '\n';
   std::cout << first->scale({ 5.0, 2.0 }, 2.0).pos_.y_ << '\n';
+//-----------
+  size_t counter = 0;
+  while (counter != 1000)
+  {
+    std::string filler = "";
+    std::cin >> filler;
+    array[counter] = filler;
+    std::cout << "Test: filler: " << filler << "  array: " << array[counter] << "  counter: " << counter << '\n';
+    if (filler == "SCALE")
+    {
+      break;
+    }
+    counter += 1;
+  }
+  std::cout << array[counter] << '\n';
+  std::cout << counter << '\n';
+
 }
