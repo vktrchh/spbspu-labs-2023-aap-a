@@ -8,11 +8,10 @@ namespace marishin
   class Rectangle : public Shape
   {
   public:
-    Rectangle(point_t lowerLeftCorner, point_t topRightCorner);
-    virtual ~Rectangle();
-    virtual double getArea();
-    virtual rectangle_t getFrameRect();
-    virtual void move(point_t newPos);
+    Rectangle(const point_t &lowerLeftCorner, const point_t &topRightCorner);
+    virtual double getArea() const;
+    virtual rectangle_t getFrameRect() const;
+    virtual void move(const point_t &newPos);
     virtual void move(double dx, double dy);
     virtual void scale(double factor);
   private:
