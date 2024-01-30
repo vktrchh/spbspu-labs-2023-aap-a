@@ -1,8 +1,10 @@
 #include "inputshape.hpp"
 #include "displayoutput.hpp"
 #include "scale.hpp"
-#include "scale.hpp"
-#include "scale.hpp"
+#include <iostream>
+#include "ring.hpp"
+#include "rectangle.hpp"
+#include "triangle.hpp"
 
 int main()
 {
