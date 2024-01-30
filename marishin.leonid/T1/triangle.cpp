@@ -7,7 +7,7 @@ marishin::Triangle::Triangle(const point_t &firstPoint, const point_t &secondPoi
   secondPoint_(secondPoint),
   thirdPoint_(thirdPoint)
 {
-  if (!(isTriangleExist(firstPoint_, secondPoint_, thirdPoint_)))
+  if (isTriangleExist(firstPoint_, secondPoint_, thirdPoint_))
   {
     throw std::logic_error("Irregular triangle");
   }
@@ -32,8 +32,8 @@ marishin::rectangle_t marishin::Triangle::getFrameRect() const
 
 void marishin::Triangle::move(const point_t &newPos)
 {
-  point_t pos = { (firstPoint_.x + secondPoint_.x + thirdPoint_.x) / 3.0,
-    (firstPoint_.y + secondPoint_.y + thirdPoint_.y) / 3.0 };
+  point_t pos = { (firstPoint_.x + secondPoint_.x + thirdPoint_.x) / 3,
+    (firstPoint_.y + secondPoint_.y + thirdPoint_.y) / 3 };
   move(newPos.x - pos.x, newPos.y - pos.y);
 }
 
@@ -51,8 +51,8 @@ void marishin::Triangle::move(double dx, double dy)
 
 void marishin::Triangle::scale(double factor)
 {
-  point_t pos = { (firstPoint_.x + secondPoint_.x + thirdPoint_.x) / 3.0,
-    (firstPoint_.y + secondPoint_.y + thirdPoint_.y) / 3.0 };
+  point_t pos = { (firstPoint_.x + secondPoint_.x + thirdPoint_.x) / 3,
+    (firstPoint_.y + secondPoint_.y + thirdPoint_.y) / 3 };
 
   firstPoint_.x = factor * (firstPoint_.x - pos.x) + pos.x;
   firstPoint_.y = factor * (firstPoint_.y - pos.y) + pos.y;
