@@ -2,18 +2,18 @@
 #define TRIANGLE_HPP
 
 #include "shape.hpp"
-
+#include "base-types.hpp"
 namespace marishin
 {
   class Triangle : public Shape
   {
   public:
-    Triangle(const point_t firstPoint, const point_t secondPoint, const point_t thirdPoint);
-    virtual double getArea() const;
-    virtual rectangle_t getFrameRect() const;
-    virtual void move(const point_t newPos);
-    virtual void move(double dx, double dy);
-    virtual void scale(double factor);
+    Triangle(point_t firstPoint, point_t secondPoint, point_t thirdPoint);
+    double getArea() const override;
+    rectangle_t getFrameRect() const override;
+    void move(const point_t newPos) override;
+    void move(double dx, double dy) override;
+    void scale(double factor) override;
   private:
     point_t firstPoint_;
     point_t secondPoint_;
