@@ -8,7 +8,7 @@
 int main()
 {
   using namespace skuratov;
- 
+
   std::cout << mergeTwoLines() << '\n';
   std::cout << removeDuplicate();
 }
