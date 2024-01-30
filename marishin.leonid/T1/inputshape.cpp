@@ -2,117 +2,113 @@
 
 marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
 {
-  const size_t NUM_SHAPES = 3;
-  const std::string shapeNames[NUM_SHAPES] = { "RECTANGLE", "TRIANGLE", "RING" };
-  const size_t shapeParametersCount[NUM_SHAPES] = { 4, 6, 4};
-
-  Shape** shapeArray = nullptr;
-
-  while (true)
+  size_t numShapes = 3;
+  std::string shapeNames[numShapes] = { "RECTANGLE", "TRIANGLE", "RING" };
+  size_t shapeParametersCount[numShapes] = { 4, 6, 4 };
+  std::string currentName = "";
+  double* parameters = nullptr;
+  marishin::Shape** currentShapes = nullptr;
+  marishin::Shape** oldShapes = nullptr;
+  char symbol = 0;
+  while (in >> currentName)
   {
-    std::string name;
-    in >> name;
-
-    if (name == "SCALE")
+    for (size_t i = 0; i < numShapes; ++i)
     {
-      break;
-    }
-
-    bool isValidShape = false;
-    for (size_t i = 0; i < NUM_SHAPES; ++i)
-    {
-      if (name == shapeNames[i])
+      if (currentName == shapeNames[i])
       {
-        isValidShape = true;
+        try
+        {
+          parameters = new double[shapeParametersCount[i]];
+        }
+        catch (const std::bad_alloc& e)
+        {
+          if (currentShapes != nullptr)
+          {
+            cleanupShapes(currentShapes, shapeCount);
+          }
+          throw;
+        }
 
-        double* parameters = new double[shapeParametersCount[i]];
-
-        for (size_t j = 0; j < shapeParametersCount[i]; ++j)
+        for (size_t j = 0; j < shapeParametersCount[i]; j++)
         {
           in >> parameters[j];
         }
 
         if (!in)
         {
-          marishin::cleanupShapes(shapeArray, shapeCount);
-          delete[] parameters;
-          throw std::logic_error("Invalid arguments");
-        }
-
-        Shape** oldShapeArray = shapeArray;
-        shapeArray = new Shape* [shapeCount + 1];
-
-        if (oldShapeArray)
-        {
-          for (size_t k = 0; k < shapeCount; ++k)
+          if (currentShapes != nullptr)
           {
-            shapeArray[k] = oldShapeArray[k];
+            cleanupShapes(currentShapes, shapeCount);
           }
-          delete[] oldShapeArray;
+          delete[] parameters;
+          throw std::invalid_argument("Invalid arguments");
         }
+
+        oldShapes = currentShapes;
+        currentShapes = new Shape * [shapeCount + 1];
+
+        if (oldShapes)
+        {
+          for (size_t k = 0; k < shapeCount; k++)
+          {
+            currentShapes[k] = oldShapes[k];
+          }
+        }
+        delete[] oldShapes;
 
         try
         {
-          shapeArray[shapeCount] = marishin::createShape(name, parameters);
+          if (currentName == "RECTANGLE")
+          {
+            currentShapes[shapeCount] = new Rectangle({ parameters[0], parameters[1] }, { parameters[2], parameters[3] });
+          }
+          else if (currentName == "TRIANGLE")
+          {
+            currentShapes[shapeCount] = new Triangle({ parameters[0], parameters[1] }, { parameters[2], parameters[3] }, { parameters[4], parameters[5] });
+          }
+          else if (currentName == "RING")
+          {
+            currentShapes[shapeCount] = new Ring({ parameters[0], parameters[1] }, parameters[2], parameters[3]);
+          }
+          ++shapeCount;
         }
-        catch (const std::exception& ex)
+        catch (const std::bad_alloc& e)
         {
-          std::cerr << ex.what() << "\n";
           delete[] parameters;
-          continue;
+          cleanupShapes(currentShapes, shapeCount);
+          throw;
         }
-
+        catch (const std::exception& e)
+        {
+          std::cerr << e.what() << '\n';
+        }
         delete[] parameters;
-        ++shapeCount;
       }
     }
 
-    if (!isValidShape)
+    if (currentName == "")
     {
-      marishin::skipLine(in);
-      throw std::logic_error("It is not a valid shape");
+      std::cerr << "Incorrect input";
     }
+    if (currentName == "SCALE")
+    {
+      break;
+    }
+    in >> std::noskipws;
+    while (symbol != '\n')
+    {
+      in >> symbol;
+    }
+    in >> std::skipws;
   }
-
-  if (shapeCount == 0)
-  {
-    throw std::logic_error("No shapes provided");
-  }
-
-  return shapeArray;
+  return currentShapes;
 }
 
 void marishin::cleanupShapes(Shape** shapes, size_t count)
 {
-  for (size_t i = 0; i < count; ++i)
+  for (size_t i = 0; i < count; i++)
   {
     delete shapes[i];
   }
   delete[] shapes;
-}
-
-marishin::Shape* marishin::createShape(const std::string& name, double* parameters)
-{
-  if (name == "RECTANGLE")
-  {
-    return new Rectangle({ parameters[0], parameters[1] }, { parameters[2], parameters[3] });
-  }
-  else if (name == "TRIANGLE")
-  {
-    return new Triangle({ parameters[0], parameters[1] }, { parameters[2], parameters[3] }, { parameters[4], parameters[5] });
-  }
-  else if (name == "RING")
-  {
-    return new Ring({ parameters[0], parameters[1] }, parameters[2], parameters[3] );
-  }
-
-  throw std::logic_error("Unsupported shape type");
-}
-
-void marishin::skipLine(std::istream& in)
-{
-  char symbol = 0;
-  in >> std::noskipws;
-  while (in >> symbol && symbol != '\n');
-  in >> std::skipws;
 }
