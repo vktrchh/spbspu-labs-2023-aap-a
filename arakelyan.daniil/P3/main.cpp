@@ -20,7 +20,7 @@ int main()
   }
 
   using namespace arakelyan;
-  size_t answerTaskOne = countOfdifferentLetters(inputString);
+  size_t answerTaskOne = countOfDifferentLetters(inputString);
 
   size_t sizeOfAlphabet = 'z' - 'a' + 1;
   char *answerTaskTwo = new char[sizeOfAlphabet + 1]{};
