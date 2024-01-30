@@ -10,6 +10,10 @@ namestnikov::Complexquad::Complexquad(const point_t & p1, const point_t & p2, co
   complexquadP3_(p3),
   complexquadP4_(p4)
 {
+  if (!checkIntersectionOfTwoLines(complexquadP1_, complexquadP2_, complexquadP3_, complexquadP4_))
+  {
+    throw std::invalid_argument("Lines are parallel in complexquad\n");
+  }
   namestnikov::point_t points[4] = {complexquadP1_, complexquadP2_, complexquadP3_, complexquadP4_};
   for (size_t i = 0; i < 4; ++i)
   {

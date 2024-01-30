@@ -42,6 +42,26 @@ namestnikov::point_t namestnikov::getIntersectionOfTwoLines(const point_t & p1, 
   }
 }
 
+bool namestnikov::checkIntersectionOfTwoLines(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4)
+{
+  point_t line1 = {p2.x - p1.x, p2.y - p1.y};
+  point_t line2 = {p3.x - p1.x, p3.y - p1.y};
+  point_t line3 = {p4.x - p1.x, p4.y - p1.y};
+  if ((line1.x * line2.y - line1.y * line2.x) * (line1.x * line3.y - line1.y * line3.x) >= 0)
+  {
+    return false;
+  }
+
+  line1 = {p4.x - p3.x, p4.y - p3.y};
+  line2 = {p1.x - p3.x, p1.y - p3.y};
+  line3 = {p2.x - p3.x, p2.y - p3.y};
+  if ((line1.x * line2.y - line1.y * line2.x) * (line1.x * line3.y - line1.y * line3.x) >= 0)
+  {
+    return false;
+  }
+  return true;
+}
+
 void namestnikov::fillLineCoefficients(const point_t & p1, const point_t & p2, double & a, double & b, double & c)
 {
   if (p1.x == p2.x)
