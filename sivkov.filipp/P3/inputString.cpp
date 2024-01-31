@@ -3,7 +3,7 @@
 #include <cstdio>
 #include <exception>
 
-char* inputString(std::istream& in)
+char* addString(std::istream& in)
 {
   size_t size = 20;
   char* string = new char[size];
