@@ -1,26 +1,25 @@
-#include <iostream>
-#include <exception>
 #include "inputString.hpp"
 #include "removing_spaces.hpp"
 #include "copyNum.hpp"
-#include <iomanip>
+
+#include <iostream>
+#include <exception>
 
 int main()
 {
   char* string1 = nullptr;
-//  char* string2 = nullptr;
+  char* string2 = nullptr;
   char* inputString1 = nullptr;
-//  char* inputString2 = nullptr;
-//  char* inputString3 = nullptr;
+  char* inputString2 = nullptr;
+  char* inputString3 = nullptr;
 
   try
   {
     inputString1 = addString(std::cin);
     string1 = deleteSpace(inputString1);
-//    numOfTask = numOfTask + 1;
-//    inputString2 = addString(size);
-//    inputString3 = addString(size);
-//    string2 = copyNum(inputString2, inputString3);
+    inputString2 = addString(std::cin);
+    inputString3 = addString(std::cin);
+    string2 = copyNum(inputString2, inputString3);
 
   }
   catch (const std::bad_alloc& e)
@@ -39,7 +38,6 @@ int main()
     {
       delete[] string1;
     }
-/*
     if (inputString2 != nullptr)
     {
       delete[] inputString2;
@@ -52,16 +50,15 @@ int main()
     {
       delete[] inputString3;
     }
-*/
     return 1;
   }
   std::cout << string1 << '\n';
-//  std::cout << string2 << '\n';
+  std::cout << string2 << '\n';
 
   delete[] inputString1;
   delete[] string1;
-//  delete[] inputString2;
-//  delete[] string2;
-//  delete[] inputString3;
+  delete[] inputString2;
+  delete[] string2;
+  delete[] inputString3;
   return 0;
 }
