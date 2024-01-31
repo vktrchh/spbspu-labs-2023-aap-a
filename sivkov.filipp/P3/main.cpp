@@ -1,52 +1,50 @@
 #include <iostream>
+#include "inputString.hpp"
 #include "removing_spaces.hpp"
 #include "copyNum.hpp"
-#include "inputString.hpp"
 
 int main()
 {
-  using namespace sivkov;
   size_t size = 20;
-  char* string = addString(size);
-  if (!string || string == nullptr)
+  char* string1 = nullptr;
+  char* string2 = nullptr;
+  char* inputString1 = nullptr;
+  char* inputString2 = nullptr;
+  char* inputString3 = nullptr;
+
+  try
   {
-    std::cerr << "Error with array\n";
-    delete[] string;
+    inputString1 = addString(size);
+    string1 = deleteSpace(inputString1);
+    inputString2 = addString(size);
+    inputString3 = addString(size);
+    string2 = copyNum(inputString2, inputString3);
+
+  }
+  catch (const std::bad_alloc& e)
+  {
+    std::cerr << "Memory allocation failed: " << e.what() << "\n";
+    return 1;
+  }
+  catch (...)
+  {
+    std::cerr << "line error\n";
+    delete[] inputString1;
+    delete[] string1;
+    delete[] inputString2;
+    delete[] string2;
+    delete[] inputString3;
     return 1;
   }
 
-  string = deleteSpace(string);
-  std::cout << string << "\n";
-  delete[] string;
+  std::cout << string1 << '\n';
+  std::cout << string2 << '\n';
 
-  char* string1 = addString(size);
-  if (!string1 || string1 == nullptr)
-  {
-    std::cerr << "Error with array\n";
-    delete[] string1;
-    return 1;
-  }
-  char* string2 = addString(size);
-  if (!string2 || string2 == nullptr)
-  {
-    std::cerr << "Error with array\n";
-    delete[] string1;
-    delete[] string2;
-    return 1;
-  }
-  string = copyNum(string1, string2);
-  if (string == nullptr)
-  {
-    std::cerr << "Error with array\n";
-    delete[] string;
-    delete[] string1;
-    delete[] string2;
-    return 1;
-  }
-  std::cout << string << "\n";
-  delete[] string;
+  delete[] inputString1;
   delete[] string1;
+  delete[] inputString2;
   delete[] string2;
-
+  delete[] inputString3;
   return 0;
 }
+

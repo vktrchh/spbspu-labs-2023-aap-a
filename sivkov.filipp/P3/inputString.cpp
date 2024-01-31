@@ -1,56 +1,42 @@
 #include "inputString.hpp"
 #include <iostream>
 
-char* sivkov::addString(size_t& size)
+char* addString(size_t size)
 {
-  char c = 0;
-  size_t k = 0;
-  size_t count = 0;
+  size_t length = 0;
+  char sym = 0;
+  char* lineBuffer = new char[size] {};
+  size_t capacity = size;
   std::cin >> std::noskipws;
 
-  char* string = new char[size];
-  if (!string)
+  try
   {
-    std::cerr << "Error with array\n";
-    return nullptr;
-  }
-
-  while (std::cin >> c)
-  {
-    if ((k == 0) && (c == '\n'))
+    while (std::cin >> sym)
     {
-      delete[] string;
-      return nullptr;
-    }
-
-    string[count++] = c;
-    k++;
-
-    if (c == '\n')
-    {
-      string[k - 1] = '\0';
-      break;
-    }
-    else
-    {
-      if (k == size - 1)
+      if (sym == '\n')
       {
-        size *= 2;
-        char* newstring = new char[size];
-        if (!newstring)
-        {
-          std::cerr << "Error with array\n";
-          delete[] string;
-          return nullptr;
-        }
-        for (size_t j = 0; j < k; j++)
-        {
-          newstring[j] = string[j];
-        }
-        delete[] string;
-        string = newstring;
+        lineBuffer[length] = '\0';
+        return lineBuffer;
       }
+      if (length + 1 >= capacity) {
+        capacity *= 2;
+        char* newBuffer = new char[capacity] {};
+        for (size_t i = 0; i < length; ++i) {
+          newBuffer[i] = lineBuffer[i];
+        }
+
+        delete[] lineBuffer;
+        lineBuffer = newBuffer;
+      }
+      lineBuffer[length++] = sym;
     }
   }
-  return string;
+  catch (...)
+  {
+    delete[] lineBuffer;
+    throw;
+  }
+
+  delete[] lineBuffer;
+  throw std::logic_error("Line not read");
 }
