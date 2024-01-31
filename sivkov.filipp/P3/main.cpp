@@ -3,6 +3,7 @@
 #include "inputString.hpp"
 #include "removing_spaces.hpp"
 #include "copyNum.hpp"
+#include <iomanip>
 
 int main()
 {
@@ -15,7 +16,7 @@ int main()
 
   try
   {
-    inputString1 = addString(size);
+    inputString1 = addString(std::cin);
     string1 = deleteSpace(inputString1);
 //    numOfTask = numOfTask + 1;
 //    inputString2 = addString(size);

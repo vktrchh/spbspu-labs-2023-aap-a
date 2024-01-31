@@ -2,7 +2,8 @@
 #define INPUTSTRING_HPP
 
 #include <cstddef>
+#include <iostream>
 
-char* addString(size_t size);
+char* addString(std::istream &);
 
 #endif

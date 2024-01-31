@@ -1,45 +1,50 @@
 #include "inputString.hpp"
 #include <iostream>
 #include <cstdio>
+#include <exception>
 
-char* addString(size_t size)
+char* addString(std::istream& in)
 {
-  size_t length = 0;
-  char sym = 0;
-  char* lineBuffer = new char[size] {};
-  size_t capacity = size;
-  std::cin >> std::noskipws;
+  size_t size = 10;
+  char* string = new char[size];
+  char c = 0;
+  size_t i = 0;
 
-  try
+  while ((in >> c) && (c != '\n'))
   {
-    while (std::cin >> sym)
+    if (i == (size - 1))
     {
-      if (sym == '\n')
+      size_t buffer_size = size + 10;
+      char* buffer = nullptr;
+      try
       {
-        lineBuffer[length] = '\0';
-        return lineBuffer;
+        buffer = new char[buffer_size];
       }
-      if (length + 1 >= capacity)
+      catch (...)
       {
-        capacity *= 2;
-        char* newBuffer = new char[capacity] {};
-        for (size_t i = 0; i < length; ++i)
-        {
-          newBuffer[i] = lineBuffer[i];
-        }
+        delete[] string;
+        throw std::logic_error("Unable to create buffer");
+      }
 
-        delete[] lineBuffer;
-        lineBuffer = newBuffer;
+      for (size_t j = 0; j < i; j++)
+      {
+        buffer[j] = string[j];
       }
-      lineBuffer[length++] = sym;
+
+      delete[] string;
+      string = buffer;
+      size = buffer_size;
     }
-  }
-  catch (const std::bad_alloc& e)
-  {
-    std::cerr << "Memory allocation failed: " << e.what() << "\n";
-    return nullptr;
-  }
-  delete[] lineBuffer;
-  throw std::logic_error("Line not read");
-}
 
+    string[i++] = c;
+  }
+
+  if (i == 0 || (string[0] == '\n') || (string[0] == '\0'))
+  {
+    delete[] string;
+    throw std::logic_error("Unable to create string");
+  }
+
+  string[i] = '\0';
+  return string;
+}
