@@ -13,7 +13,7 @@ int main()
 //  char* inputString1 = nullptr;
 
   char* inputString2 = nullptr;
-  char* inputString3 = "lk1dfls  2 sdf 3 44sj5";
+  char const* inputString3 = "lk1dfls  2 sdf 3 44sj5";
   try
   {
 //    inputString1 = addString(std::cin);

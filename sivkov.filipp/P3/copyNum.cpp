@@ -2,7 +2,7 @@
 #include <string>
 #include "copyNum.hpp"
 
-char* copyNum(char* string1, char* string2)
+char* copyNum(char* string1, const char* string2)
 {
   size_t k1 = 0;
   size_t k2 = 0;
