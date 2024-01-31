@@ -1,5 +1,6 @@
 #include "inputString.hpp"
 #include <iostream>
+#include <cstdio>
 
 char* addString(size_t size, int numOfTask)
 {
@@ -13,7 +14,7 @@ char* addString(size_t size, int numOfTask)
   {
     while (std::cin >> sym)
     {
-      if (numOfTask == 2 && sym == '\0')
+      if (numOfTask == 2 && sym == EOF)
       {
         lineBuffer[length] = '\0';
         return lineBuffer;
