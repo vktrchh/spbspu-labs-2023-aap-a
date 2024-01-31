@@ -33,6 +33,7 @@ char* spiridonov::inputArray(std::istream& input, size_t& sizeOfStr)
 
     char* finalArray = new char[i + 1]();
     std::copy(currentArray, currentArray + i, finalArray);
+    finalArray[i] = '\0';
 
     delete[] currentArray;
 
@@ -40,6 +41,7 @@ char* spiridonov::inputArray(std::istream& input, size_t& sizeOfStr)
 
     return finalArray;
   }
+
   catch (const std::bad_alloc&)
   {
     delete[] currentArray;

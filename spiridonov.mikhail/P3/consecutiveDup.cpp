@@ -17,7 +17,7 @@ int spiridonov::hasConsecutiveDuplicates(const char * str)
       {
         return 1;
       }
-      current++;
+    current++;
     }
     else
     {
