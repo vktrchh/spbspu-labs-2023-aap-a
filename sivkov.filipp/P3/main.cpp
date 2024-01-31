@@ -58,7 +58,7 @@ int main()
     return 1;
   }
   std::cout << string1 << '\n';
-  std::cout << string2 << '\n';
+//  std::cout << string2 << '\n';
 
   delete[] inputString1;
   delete[] string1;
