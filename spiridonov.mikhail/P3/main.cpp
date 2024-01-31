@@ -10,6 +10,13 @@ int main()
   try
   {
     currentArray = spiridonov::inputArray(std::cin, size);
+
+    if (size == 0 || currentArray[0] == '\n')
+    {
+      std::cerr << "Empty input" << "\n";
+      return 1;
+    }
+
     int result = spiridonov::hasConsecutiveDuplicates(currentArray);
     std::cout << result << "\n";
   }
