@@ -35,6 +35,5 @@ char * spiridonov::inputArray(std::istream& input, size_t& sizeOfStr)
     delete[] currentArray;
     throw;
   }
-
   return currentArray;
 }
