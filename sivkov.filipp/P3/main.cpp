@@ -60,6 +60,5 @@ int main()
 //  delete[] string1;
   delete[] inputString2;
   delete[] string2;
-  delete[] inputString3;
   return 0;
 }
