@@ -1,7 +1,7 @@
 #include "inputString.hpp"
 #include <iostream>
 
-char* addString(size_t size)
+char* addString(size_t size, int numOfTask)
 {
   size_t length = 0;
   char sym = 0;
@@ -13,15 +13,22 @@ char* addString(size_t size)
   {
     while (std::cin >> sym)
     {
+      if (numOfTask == 2 && sym == '\0')
+      {
+        lineBuffer[length] = '\0';
+        return lineBuffer;
+      }
       if (sym == '\n')
       {
         lineBuffer[length] = '\0';
         return lineBuffer;
       }
-      if (length + 1 >= capacity) {
+      if (length + 1 >= capacity)
+      {
         capacity *= 2;
         char* newBuffer = new char[capacity] {};
-        for (size_t i = 0; i < length; ++i) {
+        for (size_t i = 0; i < length; ++i)
+        {
           newBuffer[i] = lineBuffer[i];
         }
 
@@ -40,3 +47,4 @@ char* addString(size_t size)
   delete[] lineBuffer;
   throw std::logic_error("Line not read");
 }
+

@@ -5,8 +5,9 @@
 
 int main()
 {
+  int numOfTask = 1;
   size_t size = 20;
-  char* string1 = nullptr;
+  char* string1 = nullptr; 
   char* string2 = nullptr;
   char* inputString1 = nullptr;
   char* inputString2 = nullptr;
@@ -14,10 +15,11 @@ int main()
 
   try
   {
-    inputString1 = addString(size);
+    inputString1 = addString(size, numOfTask);
     string1 = deleteSpace(inputString1);
-    inputString2 = addString(size);
-    inputString3 = addString(size);
+    numOfTask = numOfTask + 1;
+    inputString2 = addString(size, numOfTask);
+    inputString3 = addString(size, numOfTask);
     string2 = copyNum(inputString2, inputString3);
 
   }

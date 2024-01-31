@@ -3,6 +3,6 @@
 
 #include <cstddef>
 
-char* addString(size_t size);
+char* addString(size_t size, int numOfTask);
 
 #endif
