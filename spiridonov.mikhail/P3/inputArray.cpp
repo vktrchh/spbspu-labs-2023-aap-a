@@ -5,33 +5,39 @@ char* spiridonov::inputArray(std::istream& input, size_t& sizeOfStr)
 {
   const size_t chunkSize = 10;
   char* currentArray = nullptr;
+
   try
   {
-    currentArray = new char[sizeOfStr]();
+    currentArray = new char[chunkSize]();
+    size_t capacity = chunkSize;
+
     char character = 0;
     size_t i = 0;
 
     input >> std::noskipws;
 
-    while ((input >> character) && (character != '\n'))
+    while (input >> character && character != '\n')
     {
-      currentArray[i] = character;
-      i++;
-
-      if (i >= sizeOfStr)
+      if (i >= capacity)
       {
-        char* newArray = new char[sizeOfStr + chunkSize]();
-        std::copy(currentArray, currentArray + sizeOfStr, newArray);
+        capacity += chunkSize;
+        char* newArray = new char[capacity]();
+        std::copy(currentArray, currentArray + i, newArray);
         delete[] currentArray;
         currentArray = newArray;
-        sizeOfStr += chunkSize;
       }
+
+      currentArray[i] = character;
+      i++;
     }
+
+    char* finalArray = new char[i + 1]();
+    std::copy(currentArray, currentArray + i, finalArray);
+
+    delete[] currentArray;
+
     sizeOfStr = i;
 
-    char* finalArray = new char[sizeOfStr + 1]();
-    std::copy(currentArray, currentArray + sizeOfStr, finalArray);
-    delete[] currentArray;
     return finalArray;
   }
   catch (const std::bad_alloc&)
