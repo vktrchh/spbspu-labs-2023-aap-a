@@ -5,7 +5,6 @@
 
 int main()
 {
-  int numOfTask = 1;
   size_t size = 20;
   char* string1 = nullptr;
   char* string2 = nullptr;
@@ -15,12 +14,12 @@ int main()
 
   try
   {
-    inputString1 = addString(size, numOfTask);
+    inputString1 = addString(size);
     string1 = deleteSpace(inputString1);
-    numOfTask = numOfTask + 1;
-    inputString2 = addString(size, numOfTask);
-    inputString3 = addString(size, numOfTask);
-    string2 = copyNum(inputString2, inputString3);
+//    numOfTask = numOfTask + 1;
+//    inputString2 = addString(size);
+//    inputString3 = addString(size);
+//    string2 = copyNum(inputString2, inputString3);
 
   }
   catch (const std::bad_alloc& e)
@@ -55,7 +54,7 @@ int main()
   }
 
   std::cout << string1 << '\n';
-  std::cout << string2 << '\n';
+//  std::cout << string2 << '\n';
 
   delete[] inputString1;
   delete[] string1;

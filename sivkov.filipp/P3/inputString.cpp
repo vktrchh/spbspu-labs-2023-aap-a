@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cstdio>
 
-char* addString(size_t size, int numOfTask)
+char* addString(size_t size)
 {
   size_t length = 0;
   char sym = 0;
@@ -39,18 +39,7 @@ char* addString(size_t size, int numOfTask)
     delete[] lineBuffer;
     throw;
   }
-  if (numOfTask == 2)
-  {
-    delete[] lineBuffer;
-    char* emptyBuffer = new char[1];
-    emptyBuffer[0] = '\0';
-    return emptyBuffer;
-  }
-  if (numOfTask == 1)
-  {
-    delete[] lineBuffer;
-    throw std::logic_error("Line not read");
-  }
-  return nullptr;
+  delete[] lineBuffer;
+  throw std::logic_error("Line not read");
 }
 
