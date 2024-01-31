@@ -8,9 +8,10 @@
 int main()
 {
   char* string1 = nullptr;
-  char* string2 = nullptr;
-/*
+//  char* string2 = nullptr;
+
   char* inputString1 = nullptr;
+/*
   char* inputString2 = nullptr;
   char* inputString3 = nullptr;
 */
