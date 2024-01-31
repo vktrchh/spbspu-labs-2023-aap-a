@@ -7,17 +7,17 @@
 
 int main()
 {
-//  char* string1 = nullptr;
+  char* string1 = nullptr;
   char* string2 = nullptr;
 
-//  char* inputString1 = nullptr;
+  char* inputString1 = nullptr;
 
   char* inputString2 = nullptr;
   char  inputString3[13] = {"h3ll0 w0r1d!"};
   try
   {
-//    inputString1 = addString(std::cin);
-//    string1 = deleteSpace(inputString1);
+    inputString1 = addString(std::cin);
+    string1 = deleteSpace(inputString1);
     inputString2 = addString(std::cin);
     string2 = copyNum(inputString2, inputString3);
   }
@@ -29,7 +29,7 @@ int main()
   catch (...)
   {
     std::cerr << "line error\n";
-/*  if (inputString1 != nullptr)
+  if (inputString1 != nullptr)
     {
       delete[] inputString1;
     }
@@ -37,7 +37,6 @@ int main()
     {
       delete[] string1;
     }
-*/
     if (inputString2 != nullptr)
     {
       delete[] inputString2;
@@ -49,11 +48,11 @@ int main()
 
     return 1;
   }
-//  std::cout << string1 << '\n';
+  std::cout << string1 << '\n';
   std::cout << string2 << '\n';
 
-//  delete[] inputString1;
-//  delete[] string1;
+  delete[] inputString1;
+  delete[] string1;
   delete[] inputString2;
   delete[] string2;
   return 0;
