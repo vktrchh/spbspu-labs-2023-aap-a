@@ -14,11 +14,6 @@ char* addString(size_t size, int numOfTask)
   {
     while (std::cin >> sym)
     {
-      if (numOfTask == 2 && sym == EOF)
-      {
-        lineBuffer[length] = '\0';
-        return lineBuffer;
-      }
       if (sym == '\n')
       {
         lineBuffer[length] = '\0';
@@ -44,8 +39,17 @@ char* addString(size_t size, int numOfTask)
     delete[] lineBuffer;
     throw;
   }
-
-  delete[] lineBuffer;
-  throw std::logic_error("Line not read");
+  if (numOfTask == 1)
+  {
+    delete[] lineBuffer;
+    throw std::logic_error("Line not read");
+  }
+  if (numOfTask == 2)
+  {
+    delete[] lineBuffer;
+    char* emptyBuffer = new char[1];
+    emptyBuffer[0] = '\0';
+    return emptyBuffer;
+  }
 }
 
