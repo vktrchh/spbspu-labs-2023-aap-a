@@ -91,6 +91,30 @@ int main()
     {
       break;
     }
+    if (filler == "RECTANGLE")
+    {
+      double low_left_x = 0, low_left_y = 0, up_right_x = 0, up_right_y = 0;
+      std::cin >> low_left_x >> low_left_y >> up_right_x >> up_right_y;
+      std::cout << "Test rect: " << low_left_x << ' ' << low_left_y << ' ' << up_right_x << ' ' << up_right_y;
+    }
+    if (filler == "SQUARE")
+    {
+      double low_left_x = 0, low_left_y = 0, side = 0;
+      std::cin >> low_left_x >> low_left_y >> side;
+      std::cout << "Test square: " << low_left_x << ' ' << low_left_y << ' ' << side;
+    }
+    if (filler == "TRIANGLE")
+    {
+      double point1_x = 0, point1_y = 0, point2_x = 0, point2_y = 0, point3_x = 0, point3_y = 0;
+      std::cin >> point1_x >> point1_y >> point2_x >> point2_y >> point3_x >> point3_y;
+      std::cout << "Test tri: " <<  point1_x << ' ' << point1_y << ' ' << point2_x << ' ' << point2_y << ' ' << point3_x << ' ' << point3_y;
+    }
+    if (filler == "DIAMOND")
+    {
+      double point1_x = 0, point1_y = 0, point2_x = 0, point2_y = 0, point3_x = 0, point3_y = 0;
+      std::cin >> point1_x >> point1_y >> point2_x >> point2_y >> point3_x >> point3_y;
+      std::cout << "Test diamond: " <<  point1_x << ' ' << point1_y << ' ' << point2_x << ' ' << point2_y << ' ' << point3_x << ' ' << point3_y;
+    }
     counter += 1;
   }
   std::cout << array[counter] << '\n';
