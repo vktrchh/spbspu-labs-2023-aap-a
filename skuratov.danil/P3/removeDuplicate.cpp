@@ -9,14 +9,14 @@ char* skuratov::removeDuplicate()
   try
   {
     size_t size = 10;
- 
+
     char* input3 = new char[size];
     transformInputString(input3, size);
 
     char* input4 = new char[size];
     transformInputString(input4, size);
- 
-    char* result1 = input3; 
+
+    char* result1 = input3;
     char* result2 = input4;
     int len1 = 0;
     int len2 = 0;
@@ -45,7 +45,7 @@ char* skuratov::removeDuplicate()
         {
           found = 1;
           break;
-        } 
+        }
       }
       if (!found)
       {

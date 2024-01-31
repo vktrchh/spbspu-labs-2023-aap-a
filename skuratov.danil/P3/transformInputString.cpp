@@ -6,7 +6,7 @@ char* skuratov::transformInputString(char* input, size_t size)
 {
   char c = 0;
   size_t i = 0;
- 
+
   try
   {
     std::cin >> std::noskipws;

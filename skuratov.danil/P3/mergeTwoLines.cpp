@@ -7,7 +7,7 @@
 char* skuratov::mergeTwoLines()
 {
   try
-  { 
+  {
     size_t size = 10;
 
     char* input1 = new char[size];
@@ -45,9 +45,9 @@ char* skuratov::mergeTwoLines()
     char* result = new char[size3 + 1];
 
     int i = 0;
-    
+
     while (*input1 != '\0' || *input2 != '\0')
-    { 
+    {
       if (*input1 != '\0')
       {
         result[i] = *input1;
