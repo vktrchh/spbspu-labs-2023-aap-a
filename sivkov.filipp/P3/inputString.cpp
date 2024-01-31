@@ -51,5 +51,6 @@ char* addString(size_t size, int numOfTask)
     delete[] lineBuffer;
     throw std::logic_error("Line not read");
   }
+  return nullptr;
 }
 
