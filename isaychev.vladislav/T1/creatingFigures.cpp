@@ -35,13 +35,17 @@ isaychev::Rectangle * createRectangle(const double * params)
 
 isaychev::Circle * createCircle(const double * params)
 {
+  isaychev::Circle * circ = nullptr;
   if (params[2] < 0.0)
   {
     throw std::logic_error("Incorrect circle parameters");
   }
-  double rad = params[2];
-  isaychev::point_t cent = {params[0], params[1]};
-  isaychev::Circle * circ = new isaychev::Circle(cent, rad);
+  else
+  {
+    double rad = params[2];
+    isaychev::point_t cent = {params[0], params[1]};
+    circ = new isaychev::Circle(cent, rad);
+  }
   return circ;
 }
 
