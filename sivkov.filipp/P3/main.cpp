@@ -29,11 +29,26 @@ int main()
   catch (...)
   {
     std::cerr << "line error\n";
-    delete[] inputString1;
-    delete[] string1;
-    delete[] inputString2;
-    delete[] string2;
-    delete[] inputString3;
+    if (inputString1 != nullptr)
+    {
+      delete[] inputString1;
+    }
+    if (string1 != nullptr)
+    {
+      delete[] string1;
+    }
+    if (inputString2 != nullptr)
+    {
+      delete[] inputString2;
+    }
+    if (string2 != nullptr)
+    {
+      delete[] string2;
+    }
+    if (inputString3 != nullptr)
+    {
+      delete[] inputString3;
+    }
     return 1;
   }
 
@@ -47,4 +62,3 @@ int main()
   delete[] inputString3;
   return 0;
 }
-
