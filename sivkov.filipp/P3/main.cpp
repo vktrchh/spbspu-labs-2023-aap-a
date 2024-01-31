@@ -7,7 +7,7 @@ int main()
 {
   int numOfTask = 1;
   size_t size = 20;
-  char* string1 = nullptr; 
+  char* string1 = nullptr;
   char* string2 = nullptr;
   char* inputString1 = nullptr;
   char* inputString2 = nullptr;
