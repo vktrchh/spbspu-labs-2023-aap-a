@@ -15,7 +15,6 @@ void erohin::outputShape(std::ostream& output, const erohin::Shape* const* shape
     sumArea += (shape[i] && !isNullFrameRect(shape[i]->getFrameRect())) ? shape[i]->getArea() : 0.0;
   }
   output << sumArea << " ";
-  bool isError = false;
   bool isFirstOutput = true;
   erohin::rectangle_t frameRect{0.0, 0.0, {0.0, 0.0}};
   for (size_t i = 0; i < size - 1; ++i)
@@ -38,17 +37,9 @@ void erohin::outputShape(std::ostream& output, const erohin::Shape* const* shape
         output << frameRect.pos.x + frameRect.width / 2.0 << " ";
         output << frameRect.pos.y + frameRect.height / 2.0;
       }
-      else
-      {
-        isError = true;
-      }
     }
   }
   std::cout << "\n";
-  if(isError)
-  {
-    throw std::logic_error("Wrong parametres to create a figure\n");
-  }
 }
 
 

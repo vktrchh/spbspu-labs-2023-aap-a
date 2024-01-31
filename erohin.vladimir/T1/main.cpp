@@ -29,29 +29,28 @@ int main()
     std::cerr << "Wrong scale command\n";
     return 2;
   }
-  try
+  outputShape(std::cout, shape, size - 1);
+  bool isWrongCreation = false;
+  for (size_t i = 0; i < size - 1; ++i)
   {
-    outputShape(std::cout, shape, size - 1);
-  }
-  catch (...)
-  {}
-  try
-  {
-    for (size_t i = 0; i < size - 1; ++i)
+    if(shape[i])
     {
-      if(shape[i])
-      {
-        isoScale(*shape[i], scale_pos, scale_ratio);
-      }
+      isoScale(*shape[i], scale_pos, scale_ratio);
     }
-    outputShape(std::cout, shape, size - 1);
+    else
+    {
+      isWrongCreation = true;
+    }
   }
-  catch (const std::logic_error& e)
+  outputShape(std::cout, shape, size - 1);
+  freeShape(shape, size - 1);
+  if (isWrongCreation)
   {
-    freeShape(shape, size - 1);
-    std::cerr << e.what() << "\n";
+    std::cerr << "Wrong parametres to create a figure\n";
     return 3;
   }
-  freeShape(shape, size - 1);
-  return 0;
+  else
+  {
+    return 0;
+  }
 }
