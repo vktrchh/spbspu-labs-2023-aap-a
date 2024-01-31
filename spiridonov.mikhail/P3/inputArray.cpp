@@ -31,6 +31,12 @@ char* spiridonov::inputArray(std::istream& input, size_t& sizeOfStr)
       i++;
     }
 
+    if (i == 0 || currentArray[0] == '\n')
+    {
+      delete[] currentArray;
+      throw;
+    }
+
     char* finalArray = new char[i + 1]();
     std::copy(currentArray, currentArray + i, finalArray);
     finalArray[i] = '\0';

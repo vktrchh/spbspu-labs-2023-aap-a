@@ -11,19 +11,8 @@ int main()
   {
     currentArray = spiridonov::inputArray(std::cin, size);
 
-    if (size == 0 || currentArray[0] == '\n')
-    {
-      std::cerr << "Empty input" << "\n";
-      return 1;
-    }
-
     int result = spiridonov::hasConsecutiveDuplicates(currentArray);
     std::cout << result << "\n";
-  }
-  catch (const std::bad_alloc&)
-  {
-    std::cerr << "Failed memory allocation" << "\n";
-    return 1;
   }
   catch (...)
   {
