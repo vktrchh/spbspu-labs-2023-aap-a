@@ -10,13 +10,13 @@
 int main()
 {
   using namespace erohin;
-  Shape** shape = nullptr;
   size_t size = 0;
   point_t scale_pos = {0.0, 0.0};
   double scale_ratio = 0.0;
+  Shape** shape = nullptr;
   try
   {
-    shape = inputShape(std::cin, shape, size, scale_pos, scale_ratio);
+    shape = inputShape(std::cin, size, scale_pos, scale_ratio);
   }
   catch (const std::bad_alloc&)
   {

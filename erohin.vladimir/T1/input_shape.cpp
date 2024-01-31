@@ -6,7 +6,7 @@
 #include "input_string.hpp"
 #include "parse.hpp"
 
-erohin::Shape** erohin::inputShape(std::istream& input, erohin::Shape** shape, size_t& size, point_t& pos, double& ratio)
+erohin::Shape** erohin::inputShape(std::istream& input, size_t& size, point_t& pos, double& ratio)
 {
   const size_t iter_size = 1;
   size = iter_size;
@@ -33,11 +33,11 @@ erohin::Shape** erohin::inputShape(std::istream& input, erohin::Shape** shape, s
       ++i;
     }
   }
-  catch (const std::bad_alloc& e)
+  catch (const std::bad_alloc&)
   {
     delete[] result;
     delete[] str;
-    throw e;
+    throw;
   }
   delete[] str;
   return result;
