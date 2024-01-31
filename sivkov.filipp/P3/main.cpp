@@ -13,7 +13,7 @@ int main()
 //  char* inputString1 = nullptr;
 
   char* inputString2 = nullptr;
-  char const* inputString3 = "lk1dfls  2 sdf 3 44sj5";
+  char  inputString3[13] = {"h3ll0 w0r1d!"};
   try
   {
 //    inputString1 = addString(std::cin);
@@ -45,10 +45,6 @@ int main()
     if (string2 != nullptr)
     {
       delete[] string2;
-    }
-    if (inputString3 != nullptr)
-    {
-      delete[] inputString3;
     }
 
     return 1;
