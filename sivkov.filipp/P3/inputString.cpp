@@ -46,7 +46,10 @@ char* addString(size_t size, int numOfTask)
     emptyBuffer[0] = '\0';
     return emptyBuffer;
   }
-  delete[] lineBuffer;
-  throw std::logic_error("Line not read");
+  if (numOfTask == 1)
+  {
+    delete[] lineBuffer;
+    throw std::logic_error("Line not read");
+  }
 }
 
