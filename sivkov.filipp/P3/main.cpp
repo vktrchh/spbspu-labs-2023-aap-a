@@ -7,7 +7,6 @@
 
 int main()
 {
-  size_t size = 20;
   char* string1 = nullptr;
 //  char* string2 = nullptr;
   char* inputString1 = nullptr;
