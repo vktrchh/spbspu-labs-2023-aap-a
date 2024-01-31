@@ -13,13 +13,12 @@ int main()
 //  char* inputString1 = nullptr;
 
   char* inputString2 = nullptr;
-  char* inputString3 = nullptr;
+  char* inputString3 = "lk1dfls  2 sdf 3 44sj5";
   try
   {
 //    inputString1 = addString(std::cin);
 //    string1 = deleteSpace(inputString1);
     inputString2 = addString(std::cin);
-    inputString3 = addString(std::cin);
     string2 = copyNum(inputString2, inputString3);
   }
   catch (const std::bad_alloc& e)
