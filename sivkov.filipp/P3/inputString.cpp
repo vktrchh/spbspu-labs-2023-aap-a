@@ -34,12 +34,12 @@ char* addString(size_t size)
       lineBuffer[length++] = sym;
     }
   }
-  catch (...)
+  catch (const std::bad_alloc& e)
   {
-    delete[] lineBuffer;
-    throw;
+    std::cerr << "Memory allocation failed: " << e.what() << "\n";
+    return nullptr;
   }
-  delete[] lineBuffer;
-  throw std::logic_error("Line not read");
+//  delete[] lineBuffer;
+//  throw std::logic_error("Line not read");
 }
 
