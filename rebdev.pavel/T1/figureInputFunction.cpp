@@ -14,7 +14,7 @@ rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name
 
     if (!input)
     {
-      throw "input error";
+      throw std::logic_error("input error");
     }
 
     figure = new Rectangle(vertexs);
@@ -28,7 +28,7 @@ rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name
       input >> vertexs[i].x >> vertexs[i].y;
       if (!input)
       {
-        throw "input error";
+        throw std::logic_error("input error");
       }
     }
 

@@ -6,7 +6,7 @@ rebdev::Rectangle::Rectangle(const point_t * angles):
 {
   if ((angles[0].x >= angles[1].x) || (angles[0].y >= angles[1].y))
   {
-    throw "rectangle error";
+    throw std::logic_error("rectangle error");
   }
   try
   {

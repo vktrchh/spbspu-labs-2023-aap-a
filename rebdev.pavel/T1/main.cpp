@@ -63,13 +63,14 @@ int main()
       }
       catch (const std::exception & e)
       {
-        std::cerr << "Error\n";
         shapes[numOfShape] = nullptr;
         figureError = 1;
       }
 
       numOfShape += (shapes[numOfShape] != nullptr);
     }
+
+    figureName.clear();
   }
 
   if (figureError)

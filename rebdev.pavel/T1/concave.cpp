@@ -44,7 +44,7 @@ rebdev::Concave::Concave(const point_t * vertexs):
   }
   if (!isConcave)
   {
-    throw "concave error";
+    throw std::logic_error("concave error");
   }
 
   for (size_t i = 0; i < 4; ++i)

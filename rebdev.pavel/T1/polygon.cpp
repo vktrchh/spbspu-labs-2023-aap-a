@@ -9,7 +9,7 @@ rebdev::Polygon::Polygon(const point_t * vertexs, const size_t numOfVertexs):
 {
   if (numOfVertexs < 3)
   {
-    throw "polygon error";
+    throw std::logic_error("polygon error");
   }
   for (size_t i = 0; i < (numOfVertexs - 1); ++i)
   {
@@ -17,7 +17,7 @@ rebdev::Polygon::Polygon(const point_t * vertexs, const size_t numOfVertexs):
     {
       if ((vertexs[i].x == vertexs[j].x) && (vertexs[i].y == vertexs[j].y))
       {
-        throw "polygon error";
+        throw std::logic_error("polygon error");
       }
     }
   }
