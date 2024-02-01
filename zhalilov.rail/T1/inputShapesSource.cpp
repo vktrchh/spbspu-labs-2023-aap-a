@@ -11,6 +11,12 @@
 
 namespace zhalilov
 {
+  struct scale_t
+  {
+    point_t point;
+    double ratio;
+  }
+
   Shape *createRectangle(const double nums[], size_t length)
   {
     if (length != 4)
@@ -59,16 +65,16 @@ namespace zhalilov
 
   Shape *identifyShape(const std::string &name, const double nums[], size_t length)
   {
-    std::string names[] = {"RECTANGLE", "CIRCLE", "POLYGON"};
     using shapeCreatingFunc = Shape *(*)(const double nums[], size_t length);
+    size_t namesSize = 3;
+    const std::string shapeNames[] = {"RECTANGLE", "CIRCLE", "POLYGON"};
     shapeCreatingFunc functions[3];
     functions[0] = inputRectangle;
     functions[1] = inputCircle;
     functions[2] = inputPolygon;
-    size_t namesSize = 3;
     for (size_t i = 0; i < namesSize; i++)
     {
-      if (names[i] == name)
+      if (shapeNames[i] == name)
       {
         return functions[i](nums, length);
       }
@@ -76,23 +82,16 @@ namespace zhalilov
     return nullptr;
   }
 
-  bool inputScale(point_t &point, double &ratio, const char string[])
+  bool identifyScale(const std::string &name, const double nums[], size_t length, point_t &center, double &ratio)
   {
-    char name[] = "SCALE";
-    size_t nameLen = 5;
-    if ((strncmp(name, string, nameLen) == 0)
-      && (isspace(string[nameLen])))
+    if (name == "SCALE")
     {
-      const char *newStr = string + nameLen;
-      size_t delta = 0;
-      double x = std::stod(newStr, &delta);
-      newStr += delta;
-      double y = std::stod(newStr, &delta);
-      newStr += delta;
-      double inputedRatio = std::stod(newStr, &delta);
-
-      point = { x, y };
-      ratio = inputedRatio;
+      if (nums[2] <= 0.0)
+      {
+        throw std::underflow_error("ratio scale should be greater than zero");
+      }
+      center = { nums[0], nums[1] };
+      ratio = nums[2];
       return true;
     }
     return false;
@@ -108,7 +107,7 @@ void zhalilov::freeShapesMemory(Shape **shapes, size_t size)
   }
 }
 
-zhalilov::Shape **zhalilov::inputShapesSource(Shape **shapes, point_t &point, double &ratio, size_t &length, std::istream &input)
+void zhalilov::inputShapesSource(Shape **shapes, point_t &point, double &ratio, size_t &length, std::istream &input)
 {
   size_t shapeIndex = 0;
   std::string srcName = "";
@@ -120,10 +119,10 @@ zhalilov::Shape **zhalilov::inputShapesSource(Shape **shapes, point_t &point, do
     try
     {
       input >> srcName;
-      size_t i = 0;
-      while (input >> srcNums[i])
+      size_t numsLength = 0;
+      while (input >> srcNums[numsLength])
       {
-        if (i + 1 == size)
+        if (numsLength + 1 == size)
         {
           double *newNums = nullptr;
           newNums = new double[size + 4]{};
@@ -135,34 +134,30 @@ zhalilov::Shape **zhalilov::inputShapesSource(Shape **shapes, point_t &point, do
           srcNums = newNums;
           size += 4;
         }
-        i++;
+        numsLength++;
       }
 
-      shapes[shapeIndex] = identifyShape(string);
+      shapes[shapeIndex] = identifyShape(srcName, srcNums, numsLength);
       if (shapes[shapeIndex])
       {
         shapeIndex++;
+      }
+      else if (identifyScale(srcName, srcNums, numsLength, point, ratio))
+      {
+        delete[] srcNums;
+        length = shapeIndex;
+        return;
       }
     }
     catch (const std::invalid_argument &e)
     {
       hasIncorrectShapes = true;
     }
-    catch (const std::bad_alloc &e)
+    catch (const std::exception &e)
     {
       delete[] srcNums;
       length = shapeIndex;
       throw;
     }
-
-    if (inputScale(point, ratio, string))
-    {
-      delete[] string;
-      length = shapeIndex;
-      return shapes;
-    }
-    delete[] string;
-    string = nullptr;
   }
-  delete[] srcNums;
 }

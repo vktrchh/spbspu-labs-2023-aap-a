@@ -8,8 +8,7 @@
 
 namespace zhalilov
 {
-  Shape **inputShapesSource(Shape **shapes, point_t &point, double &ratio, size_t &length, std::istream &input);
-  void freeShapesMemory(Shape **shapes, size_t size);
+  void inputShapesSource(Shape **shapes, point_t &point, double &ratio, size_t &length, std::istream &input);
 }
 
 #endif
