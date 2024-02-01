@@ -15,7 +15,7 @@ namespace zhalilov
   {
     point_t point;
     double ratio;
-  }
+  };
 
   Shape *createRectangle(const double nums[], size_t length)
   {
@@ -69,9 +69,9 @@ namespace zhalilov
     size_t namesSize = 3;
     const std::string shapeNames[] = {"RECTANGLE", "CIRCLE", "POLYGON"};
     shapeCreatingFunc functions[3];
-    functions[0] = inputRectangle;
-    functions[1] = inputCircle;
-    functions[2] = inputPolygon;
+    functions[0] = createRectangle;
+    functions[1] = createCircle;
+    functions[2] = createPolygon;
     for (size_t i = 0; i < namesSize; i++)
     {
       if (shapeNames[i] == name)
@@ -98,22 +98,13 @@ namespace zhalilov
   }
 }
 
-void zhalilov::freeShapesMemory(Shape **shapes, size_t size)
-{
-  for (size_t i = 0; i < size; i++)
-  {
-    delete shapes[i];
-    shapes[i] = nullptr;
-  }
-}
-
 void zhalilov::inputShapesSource(Shape **shapes, point_t &point, double &ratio, size_t &length, std::istream &input)
 {
   size_t shapeIndex = 0;
   std::string srcName = "";
   size_t size = 10;
   bool hasIncorrectShapes = false;
-  double srcNums = new double[size];
+  double *srcNums = new double[size];
   while (true)
   {
     try
@@ -146,6 +137,10 @@ void zhalilov::inputShapesSource(Shape **shapes, point_t &point, double &ratio, 
       {
         delete[] srcNums;
         length = shapeIndex;
+        if (hasIncorrectShapes)
+        {
+          throw std::invalid_argument("some shapes have incorrect source");
+        }
         return;
       }
     }

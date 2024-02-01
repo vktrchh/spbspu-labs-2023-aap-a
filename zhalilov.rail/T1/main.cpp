@@ -18,9 +18,8 @@ int main()
   catch (const std::invalid_argument &e)
   {
     std::cerr << "An error has occured: " << e.what();
-    return 1;
   }
-  catch (const std::bad_alloc &e)
+  catch (const std::exception &e)
   {
     std::cerr << "An error has occured: " << e.what();
     return 1;
@@ -32,33 +31,18 @@ int main()
     return 1;
   }
 
+  outputShapesSource(shapes, length, std::cout);
   for (size_t i = 0; i < length; i++)
   {
-    if (!shapes[i])
+    if (shapes[i])
     {
-      std::cerr << "Error: some shapes have incorrect source\n";
-      break;
+      isoScale(shapes[i], point, ratio);
     }
   }
+  outputShapesSource(shapes, length, std::cout);
 
-  try
+  for (size_t i = 0; i < length; i++)
   {
-    outputShapesSource(shapes, length, std::cout);
-    for (size_t i = 0; i < length; i++)
-    {
-      if (shapes[i])
-      {
-        isoScale(shapes[i], point, ratio);
-      }
-    }
-    outputShapesSource(shapes, length, std::cout);
+    delete shapes[i];
   }
-  catch (const std::invalid_argument &e)
-  {
-    std::cerr << "An error has occured: " << e.what();
-    freeMemory(shapes, length, nullptr);
-    return 1;
-  }
-
-  freeMemory(shapes, length, nullptr);
 }
