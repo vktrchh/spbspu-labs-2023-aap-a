@@ -49,6 +49,7 @@ int main()
   }
   if (eofCheck == 1 && checkString(currDesc, scaleStr) == 0)
   {
+    delete [] currDesc;
     std::cerr << "input was finished with eof symbol; scale wasn't inputed\n";
     return 2;
   }
@@ -63,10 +64,12 @@ int main()
     {
       if (eofCheck > 0)
       {
+        delete [] currDesc;
         std::cerr << "input was finished with eof symbol; " << e.what() << "\n";
         deleteFigures(Figures, figuresCount);
         return 3;
       }
+      delete [] currDesc;
       std::cerr << e.what() << "\n";
       deleteFigures(Figures, figuresCount);
       return 4;
@@ -75,7 +78,7 @@ int main()
   }
   if (figDescMistakeCheck > 0)
   {
-    std::cerr << "There were mistake in figure descriptions\n";
+    std::cerr << "There were mistakes in figure descriptions\n";
   }
   deleteFigures(Figures, figuresCount);
   delete [] currDesc;

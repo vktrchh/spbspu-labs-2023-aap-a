@@ -14,7 +14,6 @@ char * isaychev::inputString(std::istream & input)
     input >> std::noskipws;
     while ((input >> curr_char) && (length < capacity))
     {
-//      if (std::cin.eof())
       if (length == capacity - 1)
       {
         capacity += 10;
@@ -28,6 +27,11 @@ char * isaychev::inputString(std::istream & input)
       if (curr_char == '\n')
       {
         str[length] = '\0';
+        break;
+      }
+      if (input.eof())
+      {
+        delete [] str;
         break;
       }
       length++;
