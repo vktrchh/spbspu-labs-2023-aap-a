@@ -3,7 +3,6 @@
 #include "base-types.hpp"
 #include <stdexcept>
 #include <algorithm>
-#include <iostream>
 
 namestnikov::Complexquad::Complexquad(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4):
   complexquadP1_(p1),
@@ -26,14 +25,14 @@ namestnikov::Complexquad::Complexquad(const point_t & p1, const point_t & p2, co
       }
     }
   }
-  centerPoint_ = getIntersectionOfTwoLines(complexquadP1_, complexquadP2_, complexquadP3_, complexquadP4_);
 }
 
 double namestnikov::Complexquad::getArea() const
 {
   double square = 0;
-  square += getAreaOfTriangle(complexquadP1_, complexquadP4_, centerPoint_);
-  square += getAreaOfTriangle(complexquadP2_, complexquadP3_, centerPoint_);
+  point_t centerPoint = getIntersectionOfTwoLines(complexquadP1_, complexquadP2_, complexquadP3_, complexquadP4_);
+  square += getAreaOfTriangle(complexquadP1_, complexquadP4_, centerPoint);
+  square += getAreaOfTriangle(complexquadP2_, complexquadP3_, centerPoint);
   return square;
 }
 
@@ -65,18 +64,10 @@ namestnikov::point_t namestnikov::Complexquad::getCenter() const
 
 void namestnikov::Complexquad::move(const point_t & p)
 {
-  const double dx = p.x - centerPoint_.x;
-  const double dy = p.y - centerPoint_.y;
-  complexquadP1_.x += dx;
-  complexquadP1_.y += dy;
-  complexquadP2_.x += dx;
-  complexquadP2_.y += dy;
-  complexquadP3_.x += dx;
-  complexquadP3_.y += dy;
-  complexquadP4_.x += dx;
-  complexquadP4_.y += dy;
-  centerPoint_.x += dx;
-  centerPoint_.y += dy;
+  point_t centerPoint = getIntersectionOfTwoLines(complexquadP1_, complexquadP2_, complexquadP3_, complexquadP4_);
+  const double dx = p.x - centerPoint.x;
+  const double dy = p.y - centerPoint.y;
+  this->move(dx, dy);
 }
 
 void namestnikov::Complexquad::move(const double dx, const double dy)
@@ -89,8 +80,6 @@ void namestnikov::Complexquad::move(const double dx, const double dy)
   complexquadP3_.y += dy;
   complexquadP4_.x += dx;
   complexquadP4_.y += dy;
-  centerPoint_.x += dx;
-  centerPoint_.y += dy;
 }
 
 void namestnikov::Complexquad::scale(const double coefficient)
@@ -101,14 +90,14 @@ void namestnikov::Complexquad::scale(const double coefficient)
   }
   else
   {
-    complexquadP1_.x = centerPoint_.x + (complexquadP1_.x - centerPoint_.x) * coefficient;
-    complexquadP1_.y = centerPoint_.y + (complexquadP1_.y - centerPoint_.y) * coefficient;
-    complexquadP2_.x = centerPoint_.x + (complexquadP2_.x - centerPoint_.x) * coefficient;
-    complexquadP2_.y = centerPoint_.y + (complexquadP2_.y - centerPoint_.y) * coefficient;
-    complexquadP3_.x = centerPoint_.x + (complexquadP3_.x - centerPoint_.x) * coefficient;
-    complexquadP3_.y = centerPoint_.y + (complexquadP3_.y - centerPoint_.y) * coefficient;
-    complexquadP4_.x = centerPoint_.x + (complexquadP4_.x - centerPoint_.x) * coefficient;
-    complexquadP4_.y = centerPoint_.y + (complexquadP4_.y - centerPoint_.y) * coefficient;
+    point_t centerPoint = getIntersectionOfTwoLines(complexquadP1_, complexquadP2_, complexquadP3_, complexquadP4_);
+    complexquadP1_.x = centerPoint.x + (complexquadP1_.x - centerPoint.x) * coefficient;
+    complexquadP1_.y = centerPoint.y + (complexquadP1_.y - centerPoint.y) * coefficient;
+    complexquadP2_.x = centerPoint.x + (complexquadP2_.x - centerPoint.x) * coefficient;
+    complexquadP2_.y = centerPoint.y + (complexquadP2_.y - centerPoint.y) * coefficient;
+    complexquadP3_.x = centerPoint.x + (complexquadP3_.x - centerPoint.x) * coefficient;
+    complexquadP3_.y = centerPoint.y + (complexquadP3_.y - centerPoint.y) * coefficient;
+    complexquadP4_.x = centerPoint.x + (complexquadP4_.x - centerPoint.x) * coefficient;
+    complexquadP4_.y = centerPoint.y + (complexquadP4_.y - centerPoint.y) * coefficient;
   }
 }
-

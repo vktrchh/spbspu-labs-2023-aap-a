@@ -3,7 +3,6 @@
 #include "shape.hpp"
 #include <cmath>
 #include <stdexcept>
-#include <iostream>
 
 double namestnikov::getSizeOfLine(const point_t & p1, const point_t & p2)
 {

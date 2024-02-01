@@ -24,7 +24,6 @@ namespace namestnikov
     point_t complexquadP2_;
     point_t complexquadP3_;
     point_t complexquadP4_;
-    point_t centerPoint_;
   };
 }
 
