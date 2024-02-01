@@ -14,6 +14,7 @@ namespace namestnikov
   public:
     Complexquad(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4);
     virtual double getArea() const;
+    virtual point_t getCenter() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t & p);
     virtual void move(const double dx, const double dy);
@@ -23,6 +24,7 @@ namespace namestnikov
     point_t complexquadP2_;
     point_t complexquadP3_;
     point_t complexquadP4_;
+    point_t centerPoint_;
   };
 }
 

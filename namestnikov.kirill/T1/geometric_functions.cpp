@@ -34,10 +34,10 @@ namestnikov::point_t namestnikov::getIntersectionOfTwoLines(const point_t & p1, 
   {
     double x = 0, y = 0;
     double d = a1 * b2 - b1 * a2;
-    double dx = c1 * b2 - c2 * b1;
-    double dy = a1 * c2 - c1 * a2;
-    x = -(dx / d);
-    y = -(dy / d);
+    double dx = c2 * b1 - c1 * b2;
+    double dy = c1 * a2 - a1 * c2;
+    x = dx / d;
+    y = dy / d;
     return {x, y};
   }
 }
@@ -64,9 +64,24 @@ bool namestnikov::checkIntersectionOfTwoLines(const point_t & p1, const point_t 
 
 void namestnikov::fillLineCoefficients(const point_t & p1, const point_t & p2, double & a, double & b, double & c)
 {
-  a = p2.x - p1.x;
-  b = p1.y - p2.y;
-  c = -p1.y * p2.x + p2.y * p1.x;
+  if (p1.x == p2.x)
+  {
+    a = 1;
+    b = 0;
+    c = -p2.x;
+  }
+  else if (p1.y == p2.y)
+  {
+    a = 0;
+    b = 1;
+    c = -p2.y;
+  }
+  else
+  {
+    a = 1;
+    b = (p2.x - p1.x) / (p1.y - p2.y);
+    c = -p1.x * a - p1.y * b;
+  }
 }
 
 void namestnikov::isoScale(Shape * shape, const point_t & point, double coefficient)
@@ -77,10 +92,10 @@ void namestnikov::isoScale(Shape * shape, const point_t & point, double coeffici
   }
   else
   {
-    point_t oldCenterPoint = shape->getFrameRect().pos;
+    point_t oldCenterPoint = shape->getCenter();
     shape->move(point);
     shape->scale(coefficient);
-    point_t newCenterPoint = shape->getFrameRect().pos;
+    point_t newCenterPoint = shape->getCenter();
     double dx = (oldCenterPoint.x - newCenterPoint.x) * coefficient;
     double dy = (oldCenterPoint.y - newCenterPoint.y) * coefficient;
     shape->move(dx, dy);

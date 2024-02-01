@@ -22,6 +22,12 @@ namestnikov::rectangle_t namestnikov::Circle::getFrameRect() const
   return {2 * circleRadius_, 2 * circleRadius_, circleCenter_};
 }
 
+namestnikov::point_t namestnikov::Circle::getCenter() const
+{
+  point_t center = this->getFrameRect().pos;
+  return center;
+}
+
 void namestnikov::Circle::move(const point_t & p)
 {
   circleCenter_ = p;
