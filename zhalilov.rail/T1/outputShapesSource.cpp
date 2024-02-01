@@ -28,8 +28,8 @@ std::ostream &zhalilov::outputShapesSource(Shape **shapes, size_t size, std::ost
       double posY = shapes[i]->getFrameRect().pos.y;
       point_t leftCorner = { posX - width / 2.0, posY - height / 2.0 };
       point_t rightCorner = { posX + width / 2.0, posY + height / 2.0 };
-      output << " " << leftCorner.x << " " << leftCorner.y
-             << " " << rightCorner.x << " " << rightCorner.y;
+      output << " " << leftCorner.x << " " << leftCorner.y;
+      output << " " << rightCorner.x << " " << rightCorner.y;
     }
   }
   output << "\n";
