@@ -82,7 +82,7 @@ namespace zhalilov
     return nullptr;
   }
 
-  bool identifyScale(const std::string &name, const double nums[], size_t length, point_t &center, double &ratio)
+  bool identifyScale(const std::string &name, const double nums[], point_t &center, double &ratio)
   {
     if (name == "SCALE")
     {
@@ -133,7 +133,7 @@ void zhalilov::inputShapesSource(Shape **shapes, point_t &point, double &ratio, 
       {
         shapeIndex++;
       }
-      else if (identifyScale(srcName, srcNums, numsLength, point, ratio))
+      else if (identifyScale(srcName, srcNums, point, ratio))
       {
         delete[] srcNums;
         length = shapeIndex;
