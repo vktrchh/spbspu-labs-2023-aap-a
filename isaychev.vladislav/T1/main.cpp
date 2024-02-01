@@ -64,7 +64,7 @@ int main()
   }
   else
   {
-    outputResults(Figures, figuresCount);
+    outputResults(figures, figuresCount);
 // прочекать move для regular
     try
     {
