@@ -35,7 +35,7 @@ erohin::Shape** erohin::inputShape(std::istream& input, size_t& size, point_t& p
   }
   catch (const std::bad_alloc&)
   {
-    delete[] result;
+    freeShape(result, size);
     delete[] str;
     throw;
   }
@@ -62,4 +62,5 @@ void erohin::freeShape(Shape** shape, size_t size)
       delete shape[i];
     }
   }
+  delete[] shape;
 }

@@ -1,4 +1,4 @@
-#include "parse.hpp"
+﻿#include "parse.hpp"
 #include <cstring>
 #include <stdexcept>
 #include <iostream>
@@ -112,7 +112,7 @@ erohin::Shape* erohin::createShape(const char* name, double* par, size_t par_siz
         point[i] = { par[2 * i], par[2 * i + 1] };
       }
       shape = new Triangle(point);
-    }  
+    }
   }
   else if (!strcmp(name, "DIAMOND"))
   {
