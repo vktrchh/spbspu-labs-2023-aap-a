@@ -102,6 +102,10 @@ piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
   }
   if (!in)
   {
+    for (size_t i = 0; i < shapeCount; ++i)
+    {
+      delete shapeArray[i];
+    }
     delete[] shapeArray;
     throw std::logic_error("It is not shape");
   }
