@@ -10,6 +10,10 @@ namespace piyavkin
     }
     out << std::fixed;
     out.precision(1);
+    if (sum == 0)
+    {
+      throw std::logic_error("No figures");
+    }
     out << sum << " ";
     for (size_t i = 0; i < shapeCount; ++i)
     {
