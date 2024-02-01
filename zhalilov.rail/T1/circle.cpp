@@ -12,9 +12,6 @@ zhalilov::Circle::Circle(const point_t &center, double radius):
   }
 }
 
-zhalilov::Circle::~Circle()
-{}
-
 double zhalilov::Circle::getArea() const
 {
   return 3.14 * m_radius * m_radius;

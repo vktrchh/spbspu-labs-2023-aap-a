@@ -4,7 +4,7 @@
 #include <algorithm>
 
 zhalilov::Polygon::Polygon(point_t *points, const size_t size):
-  m_points(points),
+  m_points(nullptr),
   m_size(size)
 {
   if (m_size < 3)
@@ -15,12 +15,17 @@ zhalilov::Polygon::Polygon(point_t *points, const size_t size):
   {
     for (size_t j = i + 1; j < size; j++)
     {
-      if ((m_points[i].x == m_points[j].x)
-        && (m_points[i].y == m_points[j].y))
+      if ((m_points[i].x == m_points[j].x) && (m_points[i].y == m_points[j].y))
       {
         throw std::invalid_argument("some points are equal");
       }
     }
+  }
+
+  m_points = new point_t[m_size];
+  for (size_t i = 0; i < m_size; i++)
+  {
+    m_points[i] = points[i];
   }
 }
 

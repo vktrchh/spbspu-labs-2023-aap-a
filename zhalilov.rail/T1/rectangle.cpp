@@ -13,10 +13,6 @@ zhalilov::Rectangle::Rectangle(const point_t &leftCorner, const point_t &rightCo
   }
 }
 
-zhalilov::Rectangle::~Rectangle()
-{
-}
-
 double zhalilov::Rectangle::getArea() const
 {
   rectangle_t rect = getFrameRect();
