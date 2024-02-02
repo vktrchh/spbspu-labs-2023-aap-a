@@ -6,7 +6,7 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
   const std::string shapeNames[numShapes] = { "RECTANGLE", "TRIANGLE", "RING" };
   const size_t shapeParametersCount[numShapes] = { 4, 6, 4 };
   double* parameters = nullptr;
-  Shape** numShapes = nullptr;
+  Shape** newShapes = nullptr;
   Shape** shapes = nullptr;
   char symbol = 0;
   while (in)
