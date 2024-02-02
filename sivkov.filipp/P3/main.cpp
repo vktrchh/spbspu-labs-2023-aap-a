@@ -24,8 +24,8 @@ int main()
     return 1;
   }
   catch (...)
-  {    
-    std::cerr << "line error\n";  
+  {
+    std::cerr << "line error\n";
     if (inputString != nullptr)
     {
       delete[] inputString;
