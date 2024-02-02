@@ -11,13 +11,13 @@ int main()
   using namespace marishin;
   Shape** myShapes = nullptr;
   size_t numberOfShapes = 0;
-  point_t center;
+  point_t center = { 0 , 0 };
   double scalingFactor = 0.0;
 
   try
   {
     myShapes = inputShape(std::cin, numberOfShapes);
-    outputShapesInfo(std::cout, numberOfShapes, myShapes);
+    outputShapesInfo(std::cout, myShapes, numberOfShapes);
     std::cin >> center.x >> center.y >> scalingFactor;
 
     if (!std::cin)
@@ -32,8 +32,7 @@ int main()
     {
       scale(myShapes[i], center, scalingFactor);
     }
-    outputShapesInfo(std::cout, numberOfShapes, myShapes);
-
+    outputShapesInfo(std::cout, myShapes, numberOfShapes);
   }
   catch (const std::bad_alloc& e)
   {
