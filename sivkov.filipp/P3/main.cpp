@@ -42,7 +42,7 @@ int main()
   }
   std::cout << "\n[SPC-RMV]: " << string1 << '\n';
   std::cout << "[DGT-SND]: " << string2 << '\n';
-  
+
   delete[] inputString;
   delete[] string1;
   delete[] string2;
