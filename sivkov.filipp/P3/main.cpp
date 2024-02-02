@@ -7,41 +7,33 @@
 
 int main()
 {
-//  char* string1 = nullptr;
+  using namespace sivkov;
+  char* string1 = nullptr;
   char* string2 = nullptr;
-
-//  char* inputString1 = nullptr;
-
-  char* inputString2 = nullptr;
-  char  inputString3[13] = {"h3ll0 w0r1d!"};
+  char* inputString = nullptr;
+  char  inputString2[13] = {"h3ll0 w0r1d!"};
   try
   {
-//    inputString1 = addString(std::cin);
-//    string1 = deleteSpace(inputString1);
-    inputString2 = addString(std::cin);
-    string2 = copyNum(inputString2, inputString3);
+    inputString = addString(std::cin);
+    string1 = deleteSpace(inputString);
+    string2 = copyNum(inputString, inputString2);
   }
   catch (const std::bad_alloc& e)
   {
-    std::cerr << "Memory allocation failed: " << e.what() << "\n";
+    std::cerr << "Memory allocation failed: " << e.what() << '\n';
     return 1;
   }
   catch (...)
   {
     std::cerr << "line error\n";
-/*
-    if (inputString1 != nullptr)
+      
+    if (inputString != nullptr)
     {
-      delete[] inputString1;
+      delete[] inputString;
     }
     if (string1 != nullptr)
     {
       delete[] string1;
-    }
-*/
-    if (inputString2 != nullptr)
-    {
-      delete[] inputString2;
     }
     if (string2 != nullptr)
     {
@@ -49,12 +41,11 @@ int main()
     }
     return 1;
   }
-//  std::cout << string1 << '\n';
-  std::cout << string2 << '\n';
+  std::cout << "\n[SPC-RMV]: " << string1 << '\n';
+  std::cout << "[DGT-SND]: " << string2 << '\n';
 
-//  delete[] inputString1;
-//  delete[] string1;
-  delete[] inputString2;
+  delete[] inputString;
+  delete[] string1;
   delete[] string2;
   return 0;
 }
