@@ -4,6 +4,6 @@
 #include "shape.hpp"
 namespace piyavkin
 {
-  void isoScale(const Shape* shape, point_t center, double k);
+  void isoScale(Shape* shape, point_t center, double k);
 }
 #endif
