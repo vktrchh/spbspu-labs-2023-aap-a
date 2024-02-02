@@ -12,7 +12,6 @@ int main()
   char * currDesc = nullptr;
   size_t i = 0, figuresCount = 0, figDescMistakeCheck = 0, eofCheck = 0;
   Shape * figures[1000] = {};
-  //Shape * figuresAfterScale[1000] = {};
   while (i < 1000)
   {
     try
@@ -65,7 +64,6 @@ int main()
   else
   {
     outputResults(figures, figuresCount);
-// прочекать move для regular
     try
     {
       isoscale(currDesc, figures, figuresCount);

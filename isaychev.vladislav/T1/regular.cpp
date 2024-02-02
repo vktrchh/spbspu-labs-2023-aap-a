@@ -23,7 +23,7 @@ double isaychev::Regular::getArea() const
 
 isaychev::rectangle_t isaychev::Regular::getFrameRect() const
 {
-  double radX = 0, radY = 0;
+  double radX = 0.0, radY = 0.0;
   radX = (center_.x - closePnt_.x) * (center_.x - closePnt_.x);
   radY = (center_.y - closePnt_.y) * (center_.y - closePnt_.y);
   double leg = std::sqrt(radX + radY);
@@ -86,8 +86,8 @@ void isaychev::Regular::move(const point_t & newPos)
 
 void isaychev::Regular::scale(const double coeff)
 {
-  distPnt_.x *= coeff;
-  closePnt_.x *= coeff;
-  distPnt_.y *= coeff;
-  closePnt_.y *= coeff;
+  distPnt_.x = center_.x + (distPnt_.x - center_.x) * coeff;
+  closePnt_.x = center_.x + (closePnt_.x - center_.x) * coeff;
+  distPnt_.y = center_.y + (distPnt_.y - center_.y) * coeff;
+  closePnt_.y = center_.y + (closePnt_.y - center_.y) * coeff;
 }
