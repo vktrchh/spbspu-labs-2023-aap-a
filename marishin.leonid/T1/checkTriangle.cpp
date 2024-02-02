@@ -28,7 +28,7 @@ double marishin::getAreaTriangle(const point_t& firstPoint_, const point_t& seco
   return std::sqrt(abc * (abc - ab_) * (abc - bc_) * (abc - ac_));
 }
 
-marishin::point_t marishin::getFrameRectTriangle(const point_t& firstPoint_, const point_t& secondPoint_, const point_t& thirdPoint_)
+marishin::rectangle_t marishin::getFrameRectTriangle(const point_t& firstPoint_, const point_t& secondPoint_, const point_t& thirdPoint_)
 {
   double height = (std::max(firstPoint_.y, (std::max(secondPoint_.y, thirdPoint_.y)))
     - (std::min(firstPoint_.y, (std::min(secondPoint_.y, thirdPoint_.y)))));
