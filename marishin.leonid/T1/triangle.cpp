@@ -15,6 +15,7 @@ marishin::Triangle::Triangle(point_t firstPoint, point_t secondPoint, point_t th
   catch (const std::invalid_argument& e)
   {
     std::cerr << "Error: " << e.what() << '\n';
+    throw;
   }
 }
 
