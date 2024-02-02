@@ -5,7 +5,7 @@
 
 namespace marishin
 {
-  class Rectangle : public Shape
+  class Rectangle: public Shape
   {
   public:
     Rectangle(const point_t lowerLeftCorner, const point_t topRightCorner);
