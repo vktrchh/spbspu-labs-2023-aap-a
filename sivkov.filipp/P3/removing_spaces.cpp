@@ -1,7 +1,7 @@
 #include "removing_spaces.hpp"
 #include <cctype>
 
-char* deleteSpace(char* string)
+char* sivkov::deleteSpace(char* string)
 {
   if (string == nullptr)
   {
