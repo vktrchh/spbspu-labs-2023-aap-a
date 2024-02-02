@@ -1,11 +1,11 @@
 #include "ring.hpp"
 
-marishin::Ring::Ring(const point_t center, double radius1, double radius2):
+marishin::Ring::Ring(const point_t center, double outerRadius, double innerRadius):
   center_(center),
-  radius2_(radius2),
-  radius1_(radius1)
+  innerRadius_(innerRadius),
+  outerRadius_(outerRadius)
 {
-  if ((radius2 <= 0.0) || (radius1 <= 0.0) || (radius2 >= radius1))
+  if ((innerRadius <= 0) || (outerRadius <= 0) || (innerRadius >= outerRadius))
   {
     throw std::invalid_argument("Ring radiuses are wrong");
   }
@@ -13,12 +13,12 @@ marishin::Ring::Ring(const point_t center, double radius1, double radius2):
 
 double marishin::Ring::getArea() const
 {
-  return ((M_PI * pow(radius1_, 2)) - (M_PI * pow(radius2_, 2)));
+  return ((3.141592 * pow(outerRadius_, 2)) - (3.141592 * pow(innerRadius_, 2)));
 }
 
 marishin::rectangle_t marishin::Ring::getFrameRect() const
 {
-  return { center_, radius1_ * 2, radius1_ * 2 };
+  return { center_, outerRadius_ * 2, outerRadius_ * 2 };
 }
 
 void marishin::Ring::move(const point_t newPos)
@@ -28,7 +28,8 @@ void marishin::Ring::move(const point_t newPos)
 
 void marishin::Ring::move(const double dx, const double dy)
 {
-  center_ = {center_.x + dx, center_.y + dy};
+  center_.x += dx;
+  center_.y += dy;
 }
 
 void marishin::Ring::scale(double factor)
@@ -37,6 +38,6 @@ void marishin::Ring::scale(double factor)
   {
     throw std::invalid_argument("The coefficient must be positive");
   }
-  radius2_ *= factor;
-  radius1_ *= factor;
+  innerRadius_ *= factor;
+  outerRadius_ *= factor;
 }

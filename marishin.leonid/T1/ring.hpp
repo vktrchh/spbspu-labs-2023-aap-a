@@ -4,16 +4,13 @@
 #include "shape.hpp"
 #include <stdexcept>
 #include <cmath>
-#include <math.h>
-#include <algorithm>
-#define _USE_MATH_DEFINES
 
 namespace marishin
 {
-  class Ring : public Shape
+  class Ring: public Shape
   {
   public:
-    Ring(const point_t center, double radius1, double radius2);
+    Ring(const point_t center, double outerRadius, double innerRadius);
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t newPos);
@@ -21,8 +18,8 @@ namespace marishin
     virtual void scale(double factor);
   private:
     point_t center_;
-    double radius2_;
-    double radius1_;
+    double innerRadius_;
+    double outerRadius_;
   };
 }
 
