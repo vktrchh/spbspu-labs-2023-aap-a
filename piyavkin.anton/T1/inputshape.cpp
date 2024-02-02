@@ -4,11 +4,11 @@
 #include "triangle.hpp"
 #include "parallelogram.hpp"
 
-size_t piyavkin::countIrregularFigures()
-{
-  static int count = 0;
-  return count++;
-}
+//size_t piyavkin::countIrregularFigures()
+//{
+//  static int count = 0;
+//  return count++;
+//}
 
 void piyavkin::clearMemory(Shape** shapes, size_t shapeCount)
 {
@@ -76,7 +76,8 @@ piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
         }
         catch (const std::logic_error& e)
         {
-          countIrregularFigures();
+//          countIrregularFigures();
+          std::cerr << e.what();
           delete[] parameters;
           continue;
         }
