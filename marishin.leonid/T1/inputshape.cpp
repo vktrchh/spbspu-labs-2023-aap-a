@@ -36,7 +36,7 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
       if (!validShape)
       {
         std::cerr << "Invalid shape";
-        cleanupShapes(newShapes, shapeCount);
+        cleanupShapes(shapes, shapeCount);
         throw;
       }
 
@@ -50,7 +50,7 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
       if (!in)
       {
         std::cerr << "Invalid arguments";
-        cleanupShapes(newShapes, shapeCount);
+        cleanupShapes(shapes, shapeCount);
         delete[] parameters;
         throw;
       }
@@ -84,7 +84,7 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
     {
       std::cerr << "Failed to allocate memory for shape";
       delete[] parameters;
-      cleanupShapes(newShapes, shapeCount);
+      cleanupShapes(shapes, shapeCount);
       throw;
     }
     catch (const std::exception& e)
