@@ -11,7 +11,6 @@ int main()
   const size_t size = 10;
   char* inputLine = new char[size];
   const char* lineOfProgram = "abc";
-
   try
   {
     std::fill(inputLine, inputLine + size, '\0');

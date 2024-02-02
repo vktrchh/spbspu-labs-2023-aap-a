@@ -2,8 +2,8 @@
 
 #include <iomanip>
 #include <iostream>
-#include <cstddef>
 #include <stdexcept>
+#include <cstddef>
 
 char* skuratov::transformInputString(char* input, size_t size)
 {
@@ -24,8 +24,8 @@ char* skuratov::transformInputString(char* input, size_t size)
       {
         newInput[j] = input[j];
       }
-      input = newInput;
       delete[] input;
+      input = newInput;
     }
     input[i] = c;
     i++;
