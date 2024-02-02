@@ -3,7 +3,7 @@
 #include <cstdio>
 #include <exception>
 
-char* addString(std::istream& in)
+char* sivkov::addString(std::istream& in)
 {
   size_t size = 20;
   char* string = new char[size];
