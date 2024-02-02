@@ -10,6 +10,15 @@ size_t piyavkin::countIrregularFigures()
   return count++;
 }
 
+void piyavkin::clearMemory(Shape** shapes, size_t shapeCount)
+{
+  for (size_t i = 0; i < shapeCount; ++i)
+  {
+    delete shapes[i];
+  }
+  delete[] shapes;
+}
+
 piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
 {
   std::string name = "";
@@ -33,11 +42,7 @@ piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
         }
         if (!in)
         {
-          for (size_t i = 0; i < shapeCount; ++i)
-          {
-            delete shapeArray[i];
-          }
-          delete[] shapeArray;
+          clearMemory(shapeArray, shapeCount);
           delete[] parameters;
           throw std::logic_error("Invalid arguments");
         }
@@ -78,12 +83,8 @@ piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
         catch (const std::bad_alloc& e)
         {
           delete[] parameters;
-          for (size_t i = 0; i < shapeCount; ++i)
-          {
-            delete shapeArray[i];
-          }
-          delete[] shapeArray;
-          throw std::logic_error("Memory not allocated");
+          clearMemory(shapeArray, shapeCount);
+          throw;
         }
         delete[] parameters;
         ++shapeCount;
@@ -102,11 +103,7 @@ piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
   }
   if (!in)
   {
-    for (size_t i = 0; i < shapeCount; ++i)
-    {
-      delete shapeArray[i];
-    }
-    delete[] shapeArray;
+    clearMemory(shapeArray, shapeCount);
     throw std::logic_error("It is not shape");
   }
   return shapeArray;

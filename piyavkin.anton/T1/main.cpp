@@ -20,33 +20,22 @@ int main()
     point_t center = {0, 0};
     std::cin >> center.x >> center.y >> k;
     output(std::cout, shapes, shapeCount);
+    std::cout << '\n';
     for (size_t i = 0; i < shapeCount; ++i)
     {
       isoScale(shapes[i], center, k);
     }
     output(std::cout, shapes, shapeCount);
-    for (size_t i = 0; i < shapeCount; ++i)
-    {
-      delete shapes[i];
-    }
-    delete[] shapes;
+    std::cout << '\n';
+    clearMemory(shapes, shapeCount);
   }
   catch (const std::invalid_argument& e)
   {
     std::cerr << e.what() << "\n";
-    for (size_t i = 0; i < shapeCount; ++i)
-    {
-      delete shapes[i];
-    }
-    delete[] shapes;
+    clearMemory(shapes, shapeCount);
     return 1;
   }
-  catch (const std::logic_error& e)
-  {
-    std::cerr << e.what() << "\n";
-    return 1;
-  }
-  catch (const std::bad_alloc& e)
+  catch (const std::exception& e)
   {
     std::cerr << e.what() << "\n";
     return 1;
