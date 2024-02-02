@@ -3,6 +3,9 @@
 
 #include <cstddef>
 
-char* deleteSpace(char* string);
+namespace sivkov
+{
+  char* deleteSpace(char* string);
+}
 
 #endif
