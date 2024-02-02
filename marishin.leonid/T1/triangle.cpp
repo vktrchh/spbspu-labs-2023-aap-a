@@ -1,6 +1,7 @@
 #include "triangle.hpp"
 #include "checkTriangle.hpp"
 #include <stdexcept>
+#include <iostream>
 
 marishin::Triangle::Triangle(point_t firstPoint, point_t secondPoint, point_t thirdPoint):
   firstPoint_(firstPoint),
@@ -19,12 +20,12 @@ marishin::Triangle::Triangle(point_t firstPoint, point_t secondPoint, point_t th
 
 double marishin::Triangle::getArea() const
 {
-  getAreaTriangle(firstPoint_, secondPoint_, thirdPoint_);
+  return getAreaTriangle(firstPoint_, secondPoint_, thirdPoint_);
 }
 
 marishin::rectangle_t marishin::Triangle::getFrameRect() const
 {
-  getFrameRectTriangle(firstPoint_, secondPoint_, thirdPoint_);
+  return getFrameRectTriangle(firstPoint_, secondPoint_, thirdPoint_);
 }
 
 void marishin::Triangle::move(point_t newPos)
