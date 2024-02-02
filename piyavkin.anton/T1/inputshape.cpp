@@ -77,7 +77,7 @@ piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
         catch (const std::logic_error& e)
         {
 //          countIrregularFigures();
-          std::cerr << e.what();
+          std::cerr << e.what() << '\n';
           delete[] parameters;
           continue;
         }

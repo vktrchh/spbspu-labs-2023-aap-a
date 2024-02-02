@@ -21,7 +21,7 @@ namespace piyavkin
       out << shapes[i]->getFrameRect().pos.x - shapes[i]->getFrameRect().width / 2 << " ";
       out << shapes[i]->getFrameRect().pos.y - shapes[i]->getFrameRect().height / 2 << " ";
       out << shapes[i]->getFrameRect().pos.x + shapes[i]->getFrameRect().width / 2 << " ";
-      out << shapes[i]->getFrameRect().pos.y + shapes[i]->getFrameRect().height / 2 << " ";
+      out << shapes[i]->getFrameRect().pos.y + shapes[i]->getFrameRect().height / 2;
     }
   }
 }
