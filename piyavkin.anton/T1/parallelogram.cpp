@@ -31,18 +31,18 @@ namespace piyavkin
   }
   rectangle_t piyavkin::Parallelogram::getFrameRect() const
   {
-    double heigth = 0;
+    double height = 0;
     double width = 0;
     point_t pos = {0, 0};
     if (a_.y == c_.y)
     {
-      heigth = std::abs(b_.y - a_.y);
+      height = std::abs(b_.y - a_.y);
       width = std::max(std::max((std::abs(a_.x - c_.x) + b_.x), a_.x), c_.x) - std::min(std::min(a_.x, c_.x), b_.x);
       pos = {(b_.x + std::max(a_.x, c_.x)) / 2, (b_.y + c_.y) / 2};
     }
     else
     {
-      heigth = std::abs(a_.y - c_.y);
+      height = std::abs(a_.y - c_.y);
       if (b_.y == c_.y)
       {
         width = std::max(std::max((std::abs(b_.x - c_.x) + a_.x), b_.x), c_.x) - std::min(std::min(a_.x, c_.x), b_.x);
@@ -54,7 +54,7 @@ namespace piyavkin
         pos = {(std::max(a_.x, b_.x) + c_.x) / 2, (b_.y + c_.y) / 2};
       }
     }
-    return {width, heigth, pos};
+    return {width, height, pos};
   }
   void piyavkin::Parallelogram::move(point_t bias)
   {

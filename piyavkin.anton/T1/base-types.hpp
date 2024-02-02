@@ -12,7 +12,7 @@ namespace piyavkin
   struct rectangle_t
   {
     double width;
-    double heigth;
+    double height;
     point_t pos;
   };
 }

@@ -18,9 +18,9 @@ namespace piyavkin
     for (size_t i = 0; i < shapeCount; ++i)
     {
       out << shapes[i]->getFrameRect().pos.x - shapes[i]->getFrameRect().width / 2 << " ";
-      out << shapes[i]->getFrameRect().pos.y - shapes[i]->getFrameRect().heigth / 2 << " ";
+      out << shapes[i]->getFrameRect().pos.y - shapes[i]->getFrameRect().height / 2 << " ";
       out << shapes[i]->getFrameRect().pos.x + shapes[i]->getFrameRect().width / 2 << " ";
-      out << shapes[i]->getFrameRect().pos.y + shapes[i]->getFrameRect().heigth / 2 << " ";
+      out << shapes[i]->getFrameRect().pos.y + shapes[i]->getFrameRect().height / 2 << " ";
     }
     out << "\n";
   }

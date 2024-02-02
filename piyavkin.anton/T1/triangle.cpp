@@ -27,10 +27,10 @@ namespace piyavkin
   }
   rectangle_t Triangle::getFrameRect() const
   {
-    double heigth = (std::max(std::max(a_.y, b_.y), c_.y) - std::min(std::min(a_.y, b_.y), c_.y));
+    double height = (std::max(std::max(a_.y, b_.y), c_.y) - std::min(std::min(a_.y, b_.y), c_.y));
     double width = (std::max(std::max(a_.x, b_.x), c_.x) - std::min(std::min(a_.x, b_.x), c_.x));
-    point_t pos = {std::min(std::min(a_.x, b_.x), c_.x) + width / 2, std::min(std::min(a_.y, b_.y), c_.y) + heigth / 2};
-    return {width, heigth, pos};
+    point_t pos = {std::min(std::min(a_.x, b_.x), c_.x) + width / 2, std::min(std::min(a_.y, b_.y), c_.y) + height / 2};
+    return {width, height, pos};
   }
   void Triangle::move(point_t bias)
   {
