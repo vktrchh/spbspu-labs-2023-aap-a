@@ -3,6 +3,8 @@
 
 #include <iostream>
 
-char* addString(std::istream &);
-
+namespace sivkov
+{
+  char* addString(std::istream &);
+}
 #endif
