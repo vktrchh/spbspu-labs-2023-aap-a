@@ -15,9 +15,10 @@ namespace piyavkin
     }
     out << std::fixed;
     out.precision(1);
-    out << sum << " ";
+    out << sum;
     for (size_t i = 0; i < shapeCount; ++i)
     {
+      out << " ";
       out << shapes[i]->getFrameRect().pos.x - shapes[i]->getFrameRect().width / 2 << " ";
       out << shapes[i]->getFrameRect().pos.y - shapes[i]->getFrameRect().height / 2 << " ";
       out << shapes[i]->getFrameRect().pos.x + shapes[i]->getFrameRect().width / 2 << " ";
