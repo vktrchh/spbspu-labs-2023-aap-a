@@ -2,101 +2,99 @@
 
 marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
 {
-  size_t numShapes = 3;
-  std::string shapeNames[numShapes] = { "RECTANGLE", "TRIANGLE", "RING" };
-  size_t shapeParametersCount[numShapes] = { 4, 6, 4 };
-  std::string currentName = "";
-  double* parameters = nullptr;
-  marishin::Shape** currentShapes = nullptr;
-  marishin::Shape** oldShapes = nullptr;
+  const size_t numShapes = 3;
+  const std::string shapeNames[numShapes] = { "RECTANGLE", "TRIANGLE", "RING" };
+  const size_t shapeParametersCount[numShapes] = { 4, 6, 4 };
+
+  Shape** shapes = nullptr;
   char symbol = 0;
-  while (in >> currentName)
+  while (in)
   {
-    for (size_t i = 0; i < numShapes; ++i)
+    try
     {
-      if (currentName == shapeNames[i])
+      std::string currentName;
+      in >> currentName;
+
+      if (currentName == "SCALE")
       {
-        try
-        {
-          parameters = new double[shapeParametersCount[i]];
-        }
-        catch (const std::bad_alloc& e)
-        {
-          if (currentShapes != nullptr)
-          {
-            cleanupShapes(currentShapes, shapeCount);
-          }
-          throw;
-        }
-
-        for (size_t j = 0; j < shapeParametersCount[i]; j++)
-        {
-          in >> parameters[j];
-        }
-
-        if (!in)
-        {
-          if (currentShapes != nullptr)
-          {
-            cleanupShapes(currentShapes, shapeCount);
-          }
-          delete[] parameters;
-          throw std::invalid_argument("Invalid arguments");
-        }
-
-        oldShapes = currentShapes;
-        currentShapes = new Shape * [shapeCount + 1];
-
-        if (oldShapes)
-        {
-          for (size_t k = 0; k < shapeCount; k++)
-          {
-            currentShapes[k] = oldShapes[k];
-          }
-        }
-        delete[] oldShapes;
-
-        try
-        {
-          if (currentName == "RECTANGLE")
-          {
-            currentShapes[shapeCount] = new Rectangle({ parameters[0], parameters[1] },
-                { parameters[2], parameters[3] });
-          }
-          else if (currentName == "TRIANGLE")
-          {
-            currentShapes[shapeCount] = new Triangle({ parameters[0], parameters[1] },
-                { parameters[2], parameters[3] }, { parameters[4], parameters[5] });
-          }
-          else if (currentName == "RING")
-          {
-            currentShapes[shapeCount] = new Ring({ parameters[0], parameters[1] },
-                parameters[2], parameters[3]);
-          }
-          ++shapeCount;
-        }
-        catch (const std::bad_alloc& e)
-        {
-          delete[] parameters;
-          cleanupShapes(currentShapes, shapeCount);
-          throw;
-        }
-        catch (const std::exception& e)
-        {
-          std::cerr << e.what() << '\n';
-        }
-        delete[] parameters;
+        break;
       }
+
+      bool validShape = false;
+      size_t shapeIndex = 0;
+
+      for (size_t i = 0; i < numShapes; ++i)
+      {
+        if (currentName == shapeNames[i])
+        {
+          validShape = true;
+          shapeIndex = i;
+          break;
+        }
+      }
+
+      if (!validShape)
+      {
+        std::cerr << "Invalid shape"';
+        cleanupShapes(newShapes, shapeCount);
+        throw;
+      }
+
+      double* parameters = new double[shapeParametersCount[shapeIndex]];
+
+      for (size_t j = 0; j < shapeParametersCount[shapeIndex]; j++)
+      {
+        in >> parameters[j];
+      }
+
+      if (!in)
+      {
+        std::cerr << "Invalid arguments";
+        cleanupShapes(newShapes, shapeCount);
+        delete[] parameters;
+        throw;
+      }
+
+      Shape** newShapes = new Shape*[shapeCount + 1];
+
+      if (shapes)
+      {
+        for (size_t k = 0; k < shapeCount; k++)
+        {
+          newShapes[k] = shapes[k];
+        }
+        delete[] shapes;
+      }
+
+        if (currentName == "RECTANGLE")
+        {
+          newShapes[shapeCount] = new Rectangle({ parameters[0], parameters[1] }, { parameters[2], parameters[3] });
+        }
+        else if (currentName == "TRIANGLE")
+        {
+          newShapes[shapeCount] = new Triangle({ parameters[0], parameters[1] }, { parameters[2], parameters[3] }, { parameters[4], parameters[5] });
+        }
+        else if (currentName == "RING")
+        {
+          newShapes[shapeCount] = new Ring({ parameters[0], parameters[1] }, parameters[2], parameters[3]);
+        }
+        ++shapeCount;
+    }
+    catch (const std::bad_alloc& e)
+    {
+      std::cerr << "Failed to allocate memory for shape";
+      delete[] parameters;
+      cleanupShapes(newShapes, shapeCount);
+      throw;
+    }
+    catch (const std::exception& e)
+    {
+      std::cerr << e.what() << '\n';
     }
 
-    if (currentName == "")
-    {
-      std::cerr << "Incorrect input";
-    }
-    if (currentName == "SCALE")
-    {
-      break;
-    }
+    shapes = newShapes;
+    delete[] parameters;
+
     in >> std::noskipws;
     while (symbol != '\n')
     {
@@ -104,7 +102,8 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
     }
     in >> std::skipws;
   }
-  return currentShapes;
+
+  return shapes;
 }
 
 void marishin::cleanupShapes(Shape** shapes, size_t count)
