@@ -24,9 +24,8 @@ int main()
     return 1;
   }
   catch (...)
-  {
-    std::cerr << "line error\n";
-      
+  {    
+    std::cerr << "line error\n";  
     if (inputString != nullptr)
     {
       delete[] inputString;
@@ -43,7 +42,7 @@ int main()
   }
   std::cout << "\n[SPC-RMV]: " << string1 << '\n';
   std::cout << "[DGT-SND]: " << string2 << '\n';
-
+  
   delete[] inputString;
   delete[] string1;
   delete[] string2;
