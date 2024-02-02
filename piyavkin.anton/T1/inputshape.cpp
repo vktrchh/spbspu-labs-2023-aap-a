@@ -4,12 +4,6 @@
 #include "triangle.hpp"
 #include "parallelogram.hpp"
 
-//size_t piyavkin::countIrregularFigures()
-//{
-//  static int count = 0;
-//  return count++;
-//}
-
 void piyavkin::clearMemory(Shape** shapes, size_t shapeCount)
 {
   for (size_t i = 0; i < shapeCount; ++i)
@@ -42,8 +36,8 @@ piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
         }
         if (!in)
         {
-          clearMemory(shapeArray, shapeCount);
           delete[] parameters;
+          clearMemory(shapeArray, shapeCount);
           throw std::logic_error("Invalid arguments");
         }
         oldShapeArray = shapeArray;
@@ -76,7 +70,6 @@ piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
         }
         catch (const std::logic_error& e)
         {
-//          countIrregularFigures();
           std::cerr << e.what() << '\n';
           delete[] parameters;
           continue;

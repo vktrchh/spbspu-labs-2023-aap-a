@@ -40,9 +40,4 @@ int main()
     std::cerr << e.what() << "\n";
     return 1;
   }
-//  size_t errorCount = piyavkin::countIrregularFigures();
-//  if (errorCount != 0)
-//  {
-//    std::cerr << "Irregular figures: " << errorCount << '\n';
-//  }
 }

@@ -3,7 +3,7 @@
 
 namespace piyavkin
 {
-  void isoScale(Shape* shape, point_t center, double k)
+  void isoScale(const Shape* shape, point_t center, double k)
   {
     if (k < 0)
     {
