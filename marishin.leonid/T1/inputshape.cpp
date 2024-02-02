@@ -35,7 +35,7 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
 
       if (!validShape)
       {
-        std::cerr << "Invalid shape"';
+        std::cerr << "Invalid shape";
         cleanupShapes(newShapes, shapeCount);
         throw;
       }
