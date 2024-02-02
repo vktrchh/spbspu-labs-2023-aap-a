@@ -118,7 +118,7 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
   return currentShapes;
 }
 
-std::ostream & namestnikov::outputShapes(std::ostream & out, size_t count, Shape ** shapes)
+std::ostream & namestnikov::outputShapes(std::ostream & out, Shape ** shapes, size_t count)
 {
   if (count == 0)
   {
