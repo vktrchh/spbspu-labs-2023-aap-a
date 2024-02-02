@@ -22,7 +22,7 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
         }
         catch (const std::bad_alloc& e)
         {
-          cleanupShapes(currentShapes, shapeCount)
+          cleanupShapes(currentShapes, shapeCount);
           throw;
         }
 
