@@ -11,7 +11,7 @@ int main()
   char* string1 = nullptr;
   char* string2 = nullptr;
   char* inputString = nullptr;
-  char  inputString2[13] = {"h3ll0 w0r1d!"};
+  char inputString2[13] = {"h3ll0 w0r1d!"};
   try
   {
     inputString = addString(std::cin);
