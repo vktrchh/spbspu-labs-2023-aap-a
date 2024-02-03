@@ -11,7 +11,7 @@ int main()
   const char * scaleStr = "SCALE ";
   char * currDesc = nullptr;
   size_t i = 0, figuresCount = 0, figDescMistakeCheck = 0, eofCheck = 0;
-  Shape * figures[1000] = {};
+  Shape ** figures = new Shape *[1000]{};
   while (i < 1000)
   {
     try
@@ -50,6 +50,7 @@ int main()
   }
   if (figuresCount == 0 && checkString(currDesc, scaleStr) == 1)
   {
+    delete [] figures;
     delete [] currDesc;
     std::cerr << "nothing to scale\n";
     return 2;

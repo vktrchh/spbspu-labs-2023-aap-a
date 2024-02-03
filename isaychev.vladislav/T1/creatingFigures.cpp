@@ -65,6 +65,19 @@ int canBeReg(const double a, const double c)
   return check;
 }
 
+int isTriangle(const double a, const double b, const double c)
+{
+  int check = 0;
+  double a1 = std::sqrt(a);
+  double b1 = std::sqrt(b);
+  double c1 = std::sqrt(c);
+  if (a1 + b1 > c1 && a1 + c1 > b1 && b1 + c1 > a1)
+  {
+    check++;
+  }
+  return check;
+}
+
 isaychev::Regular * createRegular(const double * params)
 {
   isaychev::point_t p1 = {params[0], params[1]};
@@ -73,13 +86,14 @@ isaychev::Regular * createRegular(const double * params)
   double side1 = pow((p1.x - p2.x), 2) + pow((p1.y - p2.y), 2);
   double side2 = pow((p1.x - p3.x), 2) + pow((p1.y - p3.y), 2);
   double bottom = pow((p2.x - p3.x), 2) + pow((p2.y - p3.y), 2);
-  int check = canBeReg(side1, side2);
+  int regCheck = canBeReg(side1, side2);
+  int triangleCheck = isTriangle(side1, side2, bottom);
   isaychev::Regular * reg = nullptr;
-  if (side1 == side2 + bottom && check == 1)
+  if (side1 == side2 + bottom && regCheck == 1 && triangleCheck == 1)
   {
     reg = new isaychev::Regular(p1, p3, p2);
   }
-  else if (side2 == side1 + bottom && check == 1)
+  else if (side2 == side1 + bottom && regCheck == 1 && triangleCheck == 1)
   {
     reg = new isaychev::Regular(p1, p2, p3);
   }
@@ -95,34 +109,41 @@ isaychev::Shape * isaychev::createFigure(char * str)
   size_t numOfCurrFigure = determineShape(str);
   size_t numOfParameters = countWSpaces(str);
   isaychev::Shape * currFigure = nullptr;
+  double * parameters = nullptr;
+  if (numOfParameters > 0)
+  {
+    parameters = new double[numOfParameters]{};
+    parseParams(str, numOfParameters, parameters);
+  }
+  else
+  {
+    return currFigure;
+  }
   try
   {
     if (numOfCurrFigure == 1)
     {
-      double parameters[4] = {};
-      parseParams(str, numOfParameters, parameters);
       currFigure = createRectangle(parameters);
     }
     else if (numOfCurrFigure == 2)
     {
-      double parameters[3] = {};
-      parseParams(str, numOfParameters, parameters);
       currFigure = createCircle(parameters);
     }
     else if (numOfCurrFigure == 3)
     {
-      double parameters[6] = {};
-      parseParams(str, numOfParameters, parameters);
       currFigure = createRegular(parameters);
     }
   }
   catch (const std::bad_alloc &)
   {
+    delete [] parameters;
     throw;
   }
   catch (const std::logic_error &)
   {
+    delete [] parameters;
     throw;
   }
+  delete [] parameters;
   return currFigure;
 }
