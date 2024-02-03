@@ -15,6 +15,10 @@ erohin::Rectangle::Rectangle(point_t left_corner, point_t right_corner)
     frameRect_.height = right_corner.y - left_corner.y;
     frameRect_.pos = { left_corner.x + frameRect_.width / 2, left_corner.y + frameRect_.height / 2 };
   }
+  else
+  {
+    throw std::invalid_argument("Wrong figure creation");
+  }
 }
 
 erohin::Rectangle::~Rectangle() = default;

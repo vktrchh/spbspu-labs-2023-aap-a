@@ -19,19 +19,25 @@ erohin::Triangle::Triangle(point_t* corner)
   {
     vertex_[i] = corner[i];
   }
-  double* side = getSide();
-  for (int i = 0; i < 3; ++i)
+  double* side = nullptr;
+  try
   {
-    if (side[i % 3] >= side[(i + 1) % 3] + side[(i + 2) % 3])
+    side = getSide();
+    for (int i = 0; i < 3; ++i)
     {
-      for (int j = 0; j < 3; ++j)
+      if (side[i % 3] >= side[(i + 1) % 3] + side[(i + 2) % 3])
       {
-        vertex_[j] = { 0.0, 0.0 };
+        throw std::invalid_argument("Wrong figure creation");
       }
-      break;
     }
+    delete[] side;
   }
-  delete[] side;
+  catch (...)
+  {
+    delete[] vertex_;
+    delete[] side;
+    throw;
+  }
   for (int i = 0; i < 3; ++i)
   {
     center_.x += corner[i].x / 3.0;

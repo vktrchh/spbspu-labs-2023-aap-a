@@ -34,6 +34,11 @@ erohin::Complexquad::Complexquad(point_t* corner)
     x /= (dy[2] - dy[0]);
     y = vertex_[1].y + dy[0] * (x - vertex_[2].x) / dx[0];
   }
+  else
+  {
+    delete[] vertex_;
+    throw std::invalid_argument("Wrong figure creation");
+  }
   center_ = {x, y};
 }
 

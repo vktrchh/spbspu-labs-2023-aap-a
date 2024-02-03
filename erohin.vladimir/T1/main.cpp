@@ -12,10 +12,15 @@ int main()
   size_t size = 0;
   point_t scale_pos = {0.0, 0.0};
   double scale_ratio = 0.0;
+  bool isWrongFigureCreation = false;
   Shape* shape[1000] {nullptr};
   try
   {
     inputShape(shape, std::cin, size, scale_pos, scale_ratio);
+  }
+  catch (const std::invalid_argument&)
+  {
+    isWrongFigureCreation = true;
   }
   catch (const std::bad_alloc&)
   {
@@ -23,7 +28,7 @@ int main()
     std::cerr << "Memory allocation fault\n";
     return 1;
   }
-  catch (const std::invalid_argument& e)
+  catch (const std::logic_error& e)
   {
     freeShape(shape, size);
     std::cerr << e.what() << "\n";
@@ -36,21 +41,13 @@ int main()
     return 3;
   }
   outputShape(std::cout, shape, size);
-  bool isWrongCreation = false;
   for (size_t i = 0; i < size; ++i)
   {
-    if(shape[i])
-    {
-      isoScale(shape[i], scale_pos, scale_ratio);
-    }
-    else
-    {
-      isWrongCreation = true;
-    }
+    isoScale(shape[i], scale_pos, scale_ratio);
   }
   outputShape(std::cout, shape, size);
   freeShape(shape, size);
-  if (isWrongCreation)
+  if (isWrongFigureCreation)
   {
     std::cerr << "Wrong parametres to create a figure\n";
     return 4;

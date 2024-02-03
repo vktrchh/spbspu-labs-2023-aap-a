@@ -65,7 +65,7 @@ erohin::Shape* erohin::parseShape(const char* str, point_t& pos, double& ratio)
         ++j;
         if (j == iter_size)
         {
-          throw std::overflow_error("Too many arguments");
+          throw std::length_error("Too many arguments");
         }
       }
     }
@@ -113,24 +113,22 @@ erohin::Shape* erohin::createShape(const char* name, double* par, size_t par_siz
 
 erohin::Shape* erohin::createRectangle(double* par, size_t par_size)
 {
-  Shape* shape = nullptr;
   if (par_size != 4)
   {
-    shape = new Rectangle();
+    throw std::invalid_argument("Wrong figure parameteres number");
   }
   else
   {
-    shape = new Rectangle({ par[0], par[1] }, { par[2], par[3] });
+    Shape* shape = new Rectangle({ par[0], par[1] }, { par[2], par[3] });
+    return shape;
   }
-  return shape;
 }
 
 erohin::Shape* erohin::createTriangle(double* par, size_t par_size)
 {
-  Shape* shape = nullptr;
   if (par_size != 6)
   {
-    shape = new Triangle();
+    throw std::invalid_argument("Wrong figure parameteres number");
   }
   else
   {
@@ -139,17 +137,16 @@ erohin::Shape* erohin::createTriangle(double* par, size_t par_size)
     {
       point[i] = { par[2 * i], par[2 * i + 1] };
     }
-    shape = new Triangle(point);
+    Shape* shape = new Triangle(point);
+    return shape;
   }
-  return shape;
 }
 
 erohin::Shape* erohin::createComplexquad(double* par, size_t par_size)
 {
-  Shape* shape = nullptr;
   if (par_size != 8)
   {
-    shape = new Complexquad();
+    throw std::invalid_argument("Wrong figure parameteres number");
   }
   else
   {
@@ -158,17 +155,16 @@ erohin::Shape* erohin::createComplexquad(double* par, size_t par_size)
     {
       point[i] = { par[2 * i], par[2 * i + 1] };
     }
-    shape = new Complexquad(point);
+    Shape* shape = new Complexquad(point);
+    return shape;
   }
-  return shape;
 }
 
 erohin::Shape* erohin::createDiamond(double* par, size_t par_size)
 {
-  Shape* shape = nullptr;
   if (par_size != 6)
   {
-    shape = new Diamond();
+    throw std::invalid_argument("Wrong figure parameteres number");
   }
   else
   {
@@ -177,16 +173,16 @@ erohin::Shape* erohin::createDiamond(double* par, size_t par_size)
     {
       point[i] = { par[2 * i], par[2 * i + 1] };
     }
-    shape = new Diamond(point);
+    Shape* shape = new Diamond(point);
+    return shape;
   }
-  return shape;
 }
 
 void erohin::inputScaleParameteres(double* par, size_t par_size, point_t& pos, double& ratio)
 {
   if (par_size != 3)
   {
-    throw std::invalid_argument("Wrong scale comand parameteres");
+    throw std::logic_error("Wrong scale comand parameteres");
   }
   else
   {

@@ -11,17 +11,26 @@ void erohin::inputShape(Shape** result, std::istream& input, size_t& size, point
   Shape** temp = nullptr;
   char* str = nullptr;
   size = 0;
+  bool isWrongFigureCreation = false;
   try
   {
     str = new char[20 + 1]{'0'};
+    Shape* shape_ptr = nullptr;
     while (!input.eof())
     {
       if (!input)
       {
-        throw std::logic_error("Wrong input");
+        throw std::runtime_error("Wrong input");
       }
       str = inputString(input, str);
-      Shape* shape_ptr = parseShape(str, pos, ratio);
+      try
+      {
+        shape_ptr = parseShape(str, pos, ratio);
+      }
+      catch (const std::invalid_argument&)
+      {
+        isWrongFigureCreation = true;
+      }
       if (shape_ptr)
       {
         result[size++] = shape_ptr;
@@ -37,7 +46,11 @@ void erohin::inputShape(Shape** result, std::istream& input, size_t& size, point
   delete[] str;
   if (ratio <= 0.0)
   {
-    throw std::invalid_argument("Scale command do not find");
+    throw std::logic_error("Scale command do not find");
+  }
+  if (isWrongFigureCreation)
+  {
+    throw std::invalid_argument("Wrong figure creation");
   }
 }
 
