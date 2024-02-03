@@ -10,7 +10,7 @@ void erohin::inputShape(Shape** result, std::istream& input, size_t& size, point
 {
   Shape** temp = nullptr;
   char* str = nullptr;
-  size_t i = 0;
+  size = 0;
   try
   {
     str = new char[20 + 1]{'0'};
@@ -24,7 +24,7 @@ void erohin::inputShape(Shape** result, std::istream& input, size_t& size, point
       Shape* shape_ptr = parseShape(str, pos, ratio);
       if (shape_ptr)
       {
-        result[i++] = shape_ptr;
+        result[size++] = shape_ptr;
       }
     }
   }
@@ -34,7 +34,6 @@ void erohin::inputShape(Shape** result, std::istream& input, size_t& size, point
     delete[] str;
     throw;
   }
-  size = i;
   delete[] str;
   if (ratio <= 0.0)
   {
