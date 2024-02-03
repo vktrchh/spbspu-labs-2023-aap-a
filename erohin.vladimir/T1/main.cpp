@@ -5,7 +5,6 @@
 #include "parse.hpp"
 #include "geom_func.hpp"
 #include "shape.hpp"
-#include "triangle.hpp"
 
 int main()
 {
@@ -13,41 +12,48 @@ int main()
   size_t size = 0;
   point_t scale_pos = {0.0, 0.0};
   double scale_ratio = 0.0;
-  Shape** shape = nullptr;
+  Shape* shape[1000] {nullptr};
   try
   {
-    shape = inputShape(std::cin, size, scale_pos, scale_ratio);
+    inputShape(shape, std::cin, size, scale_pos, scale_ratio);
   }
   catch (const std::bad_alloc&)
   {
+    freeShape(shape, size);
     std::cerr << "Memory allocation fault\n";
     return 1;
   }
-  if (scale_ratio <= 0.0)
+  catch (const std::invalid_argument& e)
   {
-    freeShape(shape, size - 1);
-    std::cerr << "Wrong scale command\n";
+    freeShape(shape, size);
+    std::cerr << e.what() << "\n";
     return 2;
   }
-  outputShape(std::cout, shape, size - 1);
+  catch (const std::exception& e)
+  {
+    freeShape(shape, size);
+    std::cerr << e.what() << "\n";
+    return 3;
+  }
+  outputShape(std::cout, shape, size);
   bool isWrongCreation = false;
-  for (size_t i = 0; i < size - 1; ++i)
+  for (size_t i = 0; i < size; ++i)
   {
     if(shape[i])
     {
-      isoScale(*shape[i], scale_pos, scale_ratio);
+      isoScale(shape[i], scale_pos, scale_ratio);
     }
     else
     {
       isWrongCreation = true;
     }
   }
-  outputShape(std::cout, shape, size - 1);
-  freeShape(shape, size - 1);
+  outputShape(std::cout, shape, size);
+  freeShape(shape, size);
   if (isWrongCreation)
   {
     std::cerr << "Wrong parametres to create a figure\n";
-    return 3;
+    return 4;
   }
   else
   {

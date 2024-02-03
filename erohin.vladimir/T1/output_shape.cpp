@@ -10,14 +10,14 @@ void erohin::outputShape(std::ostream& output, const erohin::Shape* const* shape
   output << std::fixed;
   output.precision(1);
   double sumArea = 0.0;
-  for (size_t i = 0; i < size - 1; ++i)
+  for (size_t i = 0; i < size; ++i)
   {
     sumArea += (shape[i] && !isNullFrameRect(shape[i]->getFrameRect())) ? shape[i]->getArea() : 0.0;
   }
   output << sumArea << " ";
   bool isFirstOutput = true;
   erohin::rectangle_t frameRect{0.0, 0.0, {0.0, 0.0}};
-  for (size_t i = 0; i < size - 1; ++i)
+  for (size_t i = 0; i < size; ++i)
   {
     if (shape[i])
     {

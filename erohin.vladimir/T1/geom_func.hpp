@@ -5,7 +5,7 @@
 
 namespace erohin
 {
-  void isoScale(Shape& shape, point_t pos, double ratio);
+  void isoScale(Shape* shape, point_t pos, double ratio);
   double getDistance(point_t from, point_t to);
 }
 

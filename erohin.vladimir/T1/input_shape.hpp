@@ -7,8 +7,7 @@
 
 namespace erohin
 {
-  Shape** inputShape(std::istream& input, size_t& size, point_t& pos, double& ratio);
-  Shape** resize(Shape** str, size_t size, size_t shift);
+  void inputShape(Shape** result, std::istream& input, size_t& size, point_t& pos, double& ratio);
   void freeShape(Shape** shape, size_t size);
 }
 
