@@ -58,6 +58,7 @@ public:
     move(s);
     height_rect_ = height_rect_ * k;
     width_rect_ = width_rect_ * k;
+    std::cout << "IN RECT: HEIGHT: " << height_rect_ << "   WIDTH: " << width_rect_ << '\n';
     point_t new_pos{ pos_rect_.x_ - k * (pos_rect_.x_ - point.x_), pos_rect_.y_ - k * (pos_rect_.y_ - point.y_) };
     move(new_pos);
     rectangle_t newRect{ height_rect_, width_rect_, pos_rect_ };
@@ -73,9 +74,9 @@ private:
 class Square: public Shape
 {
 public:
-  Square(point_t a, point_t b, double side)
+  Square(point_t a, double side)
   {
-    side =
+    side_ = side;
     pos.x =
     pos.y =
   }
@@ -101,6 +102,10 @@ public:
   virtual rectangle_t scale(point_t s, double k)
   {
     point_t point{ pos.x_, pos.y_ };
+
+private:
+  double side_;
+  point_t pos_sq_;
 };
 */
 
@@ -115,7 +120,24 @@ int main()
   std::cout << first->getFrameRect().pos_.x_ << '\n';
   first->move(2.0, 1.0);
   std::cout << first->getFrameRect().pos_.x_ << '\n';
-  std::cout << first->scale({ 5.0, 2.0 }, 2.0).pos_.y_ << '\n' << "------\n";
+
+  std::cout << "TEST2:\n";
+  Shape *second = new Rectangle({ -1.0, -1.0 }, { 1.0, 1.0 });
+  std::cout << "Area: " << second->getArea() << '\n';
+  rectangle_t frame = second->getFrameRect();
+  std::cout << "Frame.x: " << frame.pos_.x_ << '\n';
+  std::cout << "Frame.y: " << frame.pos_.y_ << '\n';
+  rectangle_t sc = second->scale({ 0.0, 0.0 }, 2.0);
+  double scale_x = sc.pos_.x_;
+  double scale_y = sc.pos_.y_;
+  double height = sc.height_;
+  double width = sc.width_;
+  std::cout << "H: " << height << "  W: " << width << '\n';
+  std::cout << "Scale: x: " << scale_x << "  y: " << scale_y << '\n';
+  std::cout << (scale_x - (width / 2.0)) << ' ' << (scale_y - (height / 2.0)) << '\n';
+  std::cout << (scale_x + (width / 2.0)) << ' ' << (scale_y + (height / 2.0)) << '\n';
+
+  std::cout << "------\n";
 //-----------
   size_t counter = 0;
   while (counter != 1000)
