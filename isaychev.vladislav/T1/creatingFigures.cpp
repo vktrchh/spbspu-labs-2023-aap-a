@@ -55,10 +55,10 @@ int canBeReg(const double a, const double c)
   a1 = std::min(a, c);
   c1 = std::max(a, c);
   double angle = std::acos(a1 / c1);
-  double n = 3.1415926 / angle;
+  double n = 3.1415926535 / angle;
   double roundedN = std::round(n);
   int check = 0;
-  if (std::fabs(roundedN - n) < 0.001)
+  if (std::fabs(roundedN - n) < 0.00001)
   {
     check++;
   }
@@ -94,35 +94,34 @@ isaychev::Shape * isaychev::createFigure(char * str)
 {
   size_t numOfCurrFigure = determineShape(str);
   size_t numOfParameters = countWSpaces(str);
+  double * parameters = new double[numOfParameters]{};
+  parseParams(str, numOfParameters, parameters);
   isaychev::Shape * currFigure = nullptr;
   try
   {
     if (numOfCurrFigure == 1)
     {
-      double parameters[4] = {};
-      parseParams(str, numOfParameters, parameters);
       currFigure = createRectangle(parameters);
     }
     else if (numOfCurrFigure == 2)
     {
-      double parameters[3] = {};
-      parseParams(str, numOfParameters, parameters);
       currFigure = createCircle(parameters);
     }
     else if (numOfCurrFigure == 3)
     {
-      double parameters[6] = {};
-      parseParams(str, numOfParameters, parameters);
       currFigure = createRegular(parameters);
     }
   }
   catch (const std::bad_alloc &)
   {
+    delete [] parameters;
     throw;
   }
   catch (const std::logic_error &)
   {
+    delete [] parameters;
     throw;
   }
+  delete [] parameters;
   return currFigure;
 }
