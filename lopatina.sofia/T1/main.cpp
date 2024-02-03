@@ -15,6 +15,7 @@ struct rectangle_t
 
 class Shape
 {
+public:
   virtual double getArea() = 0;
   virtual rectangle_t getFrameRect() = 0;
   virtual void move(point_t s) = 0;
@@ -27,10 +28,56 @@ class Rectangle: public Shape
 public:
   Rectangle(point_t a, point_t b)
   {
-    height = b.y_ - a.y_;
-    width = b.x_ - a.x_;
-    pos.x_ = (a.x_ + b.x_) / 2.0;
-    pos.y_ = (a.y_ + b.y_) / 2.0;
+    height_rect_ = b.y_ - a.y_;
+    width_rect_ = b.x_ - a.x_;
+    pos_rect_.x_ = (a.x_ + b.x_) / 2.0;
+    pos_rect_.y_ = (a.y_ + b.y_) / 2.0;
+  }
+  virtual double getArea()
+  {
+    return height_rect_ * width_rect_;
+  }
+  virtual rectangle_t getFrameRect()
+  {
+    rectangle_t newRect{ height_rect_, width_rect_, pos_rect_ };
+    return newRect;
+  }
+  virtual void move(point_t s)
+  {
+    pos_rect_.x_ = s.x_;
+    pos_rect_.y_ = s.y_;
+  }
+  virtual void move(double x, double y)
+  {
+    pos_rect_.x_ += x;
+    pos_rect_.y_ += y;
+  }
+  virtual rectangle_t scale(point_t s, double k)
+  {
+    point_t point{ pos_rect_.x_, pos_rect_.y_ };
+    move(s);
+    height_rect_ = height_rect_ * k;
+    width_rect_ = width_rect_ * k;
+    point_t new_pos{ pos_rect_.x_ - k * (pos_rect_.x_ - point.x_), pos_rect_.y_ - k * (pos_rect_.y_ - point.y_) };
+    move(new_pos);
+    rectangle_t newRect{ height_rect_, width_rect_, pos_rect_ };
+    return newRect;
+  }
+private:
+  double height_rect_;
+  double width_rect_;
+  point_t pos_rect_;
+};
+
+/*
+class Square: public Shape
+{
+public:
+  Square(point_t a, point_t b, double side)
+  {
+    side =
+    pos.x =
+    pos.y =
   }
   virtual double getArea()
   {
@@ -54,38 +101,28 @@ public:
   virtual rectangle_t scale(point_t s, double k)
   {
     point_t point{ pos.x_, pos.y_ };
-    move(s);
-    height = height * k;
-    width = width * k;
-    point_t new_pos{ pos.x_ - k * (pos.x_ - point.x_), pos.y_ - k * (pos.y_ - point.y_) };
-    move(new_pos);
-    rectangle_t newRect{ height, width, pos };
-    return newRect;
-  }
-private:
-  double height;
-  double width;
-  point_t pos;
 };
+*/
 
 int main()
 {
   std::string array[1000] = {};
 //-----------
-  Rectangle* first = new Rectangle({ 1.0, 1.0 }, { 3.0, 4.0 });
+  std::cout << "TEST:\n";
+  Shape *first = new Rectangle({ 1.0, 1.0 }, { 3.0, 4.0 });
   std::cout << first->getArea() << '\n';
   first->move({ 3.0, 5.0 });
   std::cout << first->getFrameRect().pos_.x_ << '\n';
   first->move(2.0, 1.0);
   std::cout << first->getFrameRect().pos_.x_ << '\n';
-  std::cout << first->scale({ 5.0, 2.0 }, 2.0).pos_.y_ << '\n';
+  std::cout << first->scale({ 5.0, 2.0 }, 2.0).pos_.y_ << '\n' << "------\n";
 //-----------
   size_t counter = 0;
   while (counter != 1000)
   {
     std::string filler = "";
     std::cin >> filler;
-    array[counter] = filler;
+    //array[counter] = filler;
     std::cout << "Test: filler: " << filler << "  array: " << array[counter] << "  counter: " << counter << '\n';
     if (filler == "SCALE")
     {
@@ -96,6 +133,7 @@ int main()
       double low_left_x = 0, low_left_y = 0, up_right_x = 0, up_right_y = 0;
       std::cin >> low_left_x >> low_left_y >> up_right_x >> up_right_y;
       std::cout << "Test rect: " << low_left_x << ' ' << low_left_y << ' ' << up_right_x << ' ' << up_right_y;
+      Rectangle *first = new Rectangle({ low_left_x, low_left_y }, { up_right_x, up_right_y });
     }
     if (filler == "SQUARE")
     {
@@ -117,7 +155,6 @@ int main()
     }
     counter += 1;
   }
-  std::cout << array[counter] << '\n';
+  //std::cout << array[counter] << '\n';
   std::cout << counter << '\n';
-
 }
