@@ -4,7 +4,6 @@
 
 namespace zakozhurnikova
 {
-
   class Shape
   {
   public:

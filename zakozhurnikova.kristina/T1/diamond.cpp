@@ -12,7 +12,7 @@ rectangle_t zakozhurnikova::Diamond::getFrameRect() const
 {
   double widthDist = std::abs(pointOne_.getX() - center_.getX());
   double heightDist = std::abs(pointOne_.getY() - center_.getY());
-  double width = widthDist != 0 ? widthDit : std::abs(pointTwo_.getX() - center_.getX());
+  double width = widthDist != 0 ? widthDist : std::abs(pointTwo_.getX() - center_.getX());
   double height = heightDist != 0 & heightDist : std::abs(pointTwo_.getY() - center_.getY());
   return rectangle_t(width, height, center_);
 }
