@@ -110,17 +110,13 @@ isaychev::Shape * isaychev::createFigure(char * str)
   size_t numOfParameters = countWSpaces(str);
   isaychev::Shape * currFigure = nullptr;
   double * parameters = nullptr;
-  if (numOfParameters > 0)
-  {
-    parameters = new double[numOfParameters]{};
-    parseParams(str, numOfParameters, parameters);
-  }
-  else
-  {
-    return currFigure;
-  }
   try
   {
+    if (numOfParameters > 0)
+    {
+      parameters = new double[numOfParameters]{};
+      parseParams(str, numOfParameters, parameters);
+    }
     if (numOfCurrFigure == 1)
     {
       currFigure = createRectangle(parameters);
