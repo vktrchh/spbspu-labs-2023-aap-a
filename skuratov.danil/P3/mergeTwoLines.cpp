@@ -1,9 +1,8 @@
 #include "mergeTwoLines.h"
+#include "transformInputString.h"
 
 #include <iostream>
 #include <stdexcept>
-
-#include "transformInputString.h"
 
 char* skuratov::mergeTwoLines(char* result, char* inputLine, const char* lineOfProgram)
 {
