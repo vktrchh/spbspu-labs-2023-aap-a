@@ -70,44 +70,51 @@ private:
   point_t pos_rect_;
 };
 
-/*
 class Square: public Shape
 {
 public:
   Square(point_t a, double side)
   {
     side_ = side;
-    pos.x =
-    pos.y =
+    pos_sq_.x_ = a.x_ + (side_ / 2.0);
+    pos_sq_.y_ = a.y_ + (side_ / 2.0);
   }
   virtual double getArea()
   {
-    return height * width;
+    return side_ * side_;
   }
   virtual rectangle_t getFrameRect()
   {
-    rectangle_t newRect{ height, width, pos };
+    rectangle_t newRect{ side_, side_, pos_sq_ };
     return newRect;
   }
   virtual void move(point_t s)
   {
-    pos.x_ = s.x_;
-    pos.y_ = s.y_;
+    pos_sq_.x_ = s.x_;
+    pos_sq_.y_ = s.y_;
   }
   virtual void move(double x, double y)
   {
-    pos.x_ += x;
-    pos.y_ += y;
+    pos_sq_.x_ += x;
+    pos_sq_.y_ += y;
   }
   virtual rectangle_t scale(point_t s, double k)
   {
-    point_t point{ pos.x_, pos.y_ };
+    point_t point{ pos_sq_.x_, pos_sq_.y_ };
+    move(s);
+    side_ = side_ * k;
+    std::cout << "IN SQUARE: SIDE: " << side_ << '\n';
+    point_t new_pos{ pos_sq_.x_ - k * (pos_sq_.x_ - point.x_), pos_sq_.y_ - k * (pos_sq_.y_ - point.y_) };
+    move(new_pos);
+    rectangle_t newRect{ side_, side_, pos_sq_ };
+    return newRect;
+  }
 
 private:
   double side_;
   point_t pos_sq_;
 };
-*/
+
 
 int main()
 {
@@ -121,7 +128,7 @@ int main()
   first->move(2.0, 1.0);
   std::cout << first->getFrameRect().pos_.x_ << '\n';
 
-  std::cout << "TEST2:\n";
+  std::cout << "TEST_2:\n";
   Shape *second = new Rectangle({ -1.0, -1.0 }, { 1.0, 1.0 });
   std::cout << "Area: " << second->getArea() << '\n';
   rectangle_t frame = second->getFrameRect();
@@ -136,6 +143,22 @@ int main()
   std::cout << "Scale: x: " << scale_x << "  y: " << scale_y << '\n';
   std::cout << (scale_x - (width / 2.0)) << ' ' << (scale_y - (height / 2.0)) << '\n';
   std::cout << (scale_x + (width / 2.0)) << ' ' << (scale_y + (height / 2.0)) << '\n';
+
+  std::cout << "\nTEST_3:\n";
+  Shape *third = new Square({ -2.0, -2.0 }, 4.0);
+  std::cout << "Area: " << third->getArea() << '\n';
+  rectangle_t frame2 = third->getFrameRect();
+  std::cout << "Frame.x: " << frame2.pos_.x_ << '\n';
+  std::cout << "Frame.y: " << frame2.pos_.y_ << '\n';
+  rectangle_t sc2 = third->scale({ 0.0, 0.0 }, 2.0);
+  double scale2_x = sc2.pos_.x_;
+  double scale2_y = sc2.pos_.y_;
+  double side = sc2.height_;
+  std::cout << "S: " << side << '\n';
+  std::cout << "Scale: x: " << scale2_x << "  y: " << scale2_y << '\n';
+  std::cout << (scale2_x - (side / 2.0)) << ' ' << (scale2_y - (side / 2.0)) << '\n';
+  std::cout << (scale2_x + (side / 2.0)) << ' ' << (scale2_y + (side / 2.0)) << '\n';
+
 
   std::cout << "------\n";
 //-----------
