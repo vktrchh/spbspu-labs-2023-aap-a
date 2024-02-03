@@ -16,10 +16,6 @@ int main(int argc, char ** argv)
   int arr_type = 0;
   try
   {
-    if (argc != 2)
-    {
-      throw std::invalid_argument("Invalid argument count. Please provide one integer argument.");
-    }
     arr_type = std::stoi(argv[1]);
 
     if (arr_type != 1 && arr_type != 2)
