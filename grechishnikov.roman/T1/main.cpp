@@ -1,18 +1,21 @@
-#include "inputString.hpp"
 #include <stdexcept>
 #include <iostream>
+#include "inputString.hpp"
+#include "parametersLogic.hpp"
+#include "base-types.hpp"
 
 int main()
 {
   using namespace grechishnikov;
   size_t size = 0;
   const char* str = nullptr;
-
   double* db = nullptr;
+  point_t* points = nullptr;
   try
   {
     str = inputString(std::cin);
     db = parseValues(str, size);
+    points = makePairs(db, size);
   }
   catch (const std::bad_alloc &e)
   {
