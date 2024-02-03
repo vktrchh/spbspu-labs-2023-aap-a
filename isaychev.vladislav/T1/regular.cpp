@@ -57,28 +57,28 @@ isaychev::rectangle_t isaychev::Regular::getFrameRect() const
       maxY = currY;
     }
   }
-  double width = maxX - minX; //std::round((maxX - minX) * 10) / 10;
-  double height = maxY - minY; //std::round((maxY - minY) * 10) / 10;
-  point_t pos = {minX + (width / 2), minY + (height / 2)};//{std::round((minX + (width / 2)) * 10) / 10, std::round((minY + (height / 2)) * 10) / 10};
+  double width = maxX - minX;
+  double height = maxY - minY;
+  point_t pos = {minX + (width / 2), minY + (height / 2)};
   return {width, height, pos};
 }
 
 void isaychev::Regular::move(const double dX, const double dY)
 {
-  center_.x += dX; //std::round(dX * 10) / 10;
-  closePnt_.x += dX;//std::round(dX * 10) / 10;
-  distPnt_.x += dX;//std::round(dX * 10) / 10;
-  center_.y += dY;//std::round(dY * 10) / 10;
-  closePnt_.y += dY;//std::round(dY * 10) / 10;
-  distPnt_.y += dY;//std::round(dY * 10) /10;
+  center_.x += dX;
+  closePnt_.x += dX;
+  distPnt_.x += dX;
+  center_.y += dY;
+  closePnt_.y += dY;
+  distPnt_.y += dY;
 }
 
 void isaychev::Regular::move(const point_t & newPos)
 {
-  double dX = newPos.x - center_.x;//std::round((newPos.x - center_.x) * 10) / 10;
+  double dX = newPos.x - center_.x;
   closePnt_.x += dX;
   distPnt_.x += dX;
-  double dY = newPos.y - center_.y;//std::round((newPos.y - center_.y) * 10) / 10;
+  double dY = newPos.y - center_.y;
   closePnt_.y += dY;
   distPnt_.y += dY;
   center_ = {newPos.x, newPos.y};
