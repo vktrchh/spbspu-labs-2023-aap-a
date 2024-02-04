@@ -1,49 +1,57 @@
 #include "input_shape.hpp"
 #include <stdexcept>
+#include <string>
 #include <iostream>
 #include "triangle.hpp"
 #include "shape.hpp"
-#include "input_string.hpp"
 #include "parse.hpp"
 
 void erohin::inputShape(Shape** result, std::istream& input, size_t& size, point_t& pos, double& ratio)
 {
   Shape** temp = nullptr;
-  char* str = nullptr;
   size = 0;
   bool isWrongFigureCreation = false;
+  std::string str = "";
   try
   {
-    str = new char[20 + 1]{'0'};
+    char elem = 0;
     Shape* shape_ptr = nullptr;
-    while (!input.eof())
+    input >> std::noskipws;
+    while (input >> elem)
     {
-      if (!input)
+      if (elem == '\n')
       {
-        throw std::runtime_error("Wrong input");
+        try
+        {
+          shape_ptr = parseShape(str, pos, ratio);
+        }
+        catch (const std::invalid_argument&)
+        {
+          isWrongFigureCreation = true;
+        }
+        if (shape_ptr)
+        {
+          result[size++] = shape_ptr;
+        }
+        str = "";
       }
-      str = inputString(input, str);
-      try
+      else if (input && str.length() < str.max_size())
       {
-        shape_ptr = parseShape(str, pos, ratio);
+        str += elem;
       }
-      catch (const std::invalid_argument&)
+      else
       {
-        isWrongFigureCreation = true;
-      }
-      if (shape_ptr)
-      {
-        result[size++] = shape_ptr;
+        throw std::runtime_error("Input error");
       }
     }
+    input >> std::skipws;
   }
   catch (...)
   {
     freeShape(result, size);
-    delete[] str;
+    input >> std::skipws;
     throw;
   }
-  delete[] str;
   if (ratio <= 0.0)
   {
     throw std::logic_error("Scale command do not find");

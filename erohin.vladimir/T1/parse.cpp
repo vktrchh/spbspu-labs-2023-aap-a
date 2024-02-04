@@ -8,102 +8,72 @@
 #include "triangle.hpp"
 #include "diamond.hpp"
 #include "complexquad.hpp"
-#include "input_string.hpp"
 
-erohin::Shape* erohin::parseShape(const char* str, point_t& pos, double& ratio)
+erohin::Shape* erohin::parseShape(const std::string string, point_t& pos, double& ratio)
 {
   const char* type[] = { "RECTANGLE", "TRIANGLE", "DIAMOND", "COMPLEXQUAD", "SCALE" };
-  char* string = nullptr;
-  try
-  {
-    string = new char[30 + 1];
-  }
-  catch (const std::bad_alloc&)
-  {
-    return nullptr;
-  }
-  string[0] = '\0';
-  size_t i = 0;
-  while (str[i] != '\0' && str[i] != ' ' && i < 30)
-  {
-    string[i] = str[i];
-    string[i + 1] = '\0';
-    ++i;
-  }
-  size_t add_index = i + 1;
-  i = 0;
-  const size_t iter_size = 10;
-  size_t size = iter_size;
-  char* num = nullptr;
-  char* temp = nullptr;
+  const size_t par_max_size = 10;
   double* par = nullptr;
-  erohin::Shape* shape = nullptr;
   try
   {
-    num = new char[iter_size + 1];
-    double* par = new double[iter_size]{ 0.0 };
-    size_t j = 0;
-    while (str[add_index + i] != '\0')
+    par = new double[par_max_size]{ 0.0 };
+    size_t par_number = 0;
+    std::string str = "";
+    std::string name = "";
+    bool isFigureNameFull = false;
+    for (size_t i = 0; i <= string.length(); ++i)
     {
-      if (add_index + i == size)
+      if (i < string.length() && string[i] != ' ')
       {
-        temp = resize(num, size, iter_size);
-        size += iter_size;
-        delete[] num;
-        num = temp;
+        str += string[i];
       }
-      num[i] = str[add_index + i];
-      num[i + 1] = '\0';
-      ++i;
-      if (str[add_index + i] == ' ' || str[add_index + i] == '\0')
+      else if (isFigureNameFull)
       {
-        par[j] = std::stod(num, nullptr);
-        delete[] num;
-        num = new char[iter_size + 1];
-        add_index = i + add_index + 1;
-        i = 0;
-        ++j;
-        if (j == iter_size)
+        if (par_number == par_max_size)
         {
           throw std::length_error("Too many arguments");
         }
+        par[par_number++] = stod(str, nullptr);
+        str = "";
+      }
+      else
+      {
+        name = str;
+        str = "";
+        isFigureNameFull = true;
       }
     }
-    shape = createShape(string, par, j, pos, ratio);
-    delete[] num;
-    delete[] string;
+    erohin::Shape* shape = createShape(name, par, par_number, pos, ratio);
     delete[] par;
     return shape;
   }
   catch (...)
   {
-    delete[] string;
-    delete[] num;
     delete[] par;
     throw;
   }
 }
 
-erohin::Shape* erohin::createShape(const char* name, double* par, size_t par_size, point_t& pos, double& ratio)
+erohin::Shape* erohin::createShape(const std::string name, double* par, size_t par_size, point_t& pos, double& ratio)
 {
   Shape* shape = nullptr;
-  if (!strcmp(name, "RECTANGLE"))
+  if (name == "RECTANGLE")
   {
     shape = createRectangle(par, par_size);
   }
-  else if (!strcmp(name, "TRIANGLE"))
+  else if (name == "TRIANGLE")
   {
     shape = createTriangle(par, par_size);
   }
-  else if (!strcmp(name, "DIAMOND"))
+  else if (name == "DIAMOND")
   {
     shape = createDiamond(par, par_size);
   }
-  else if (!strcmp(name, "COMPLEXQUAD"))
+  else if (name == "COMPLEXQUAD")
   {
     shape = createComplexquad(par, par_size);
   }
-  else if (!strcmp(name, "SCALE"))
+  else if (name == "SCALE")
   {
     inputScaleParameteres(par, par_size, pos, ratio);
     return nullptr;
@@ -180,7 +150,7 @@ erohin::Shape* erohin::createDiamond(double* par, size_t par_size)
 
 void erohin::inputScaleParameteres(double* par, size_t par_size, point_t& pos, double& ratio)
 {
-  if (par_size != 3)
+  if (par_size != 3 || par[2] <= 0.0)
   {
     throw std::logic_error("Wrong scale comand parameteres");
   }
