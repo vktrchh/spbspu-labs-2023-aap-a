@@ -1,5 +1,4 @@
 #include "geom_func.hpp"
-#include <stdexcept>
 #include <cmath>
 
 void erohin::isoScale(Shape* shape, point_t pos, double ratio)

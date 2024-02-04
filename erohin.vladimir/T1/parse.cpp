@@ -1,5 +1,4 @@
 ﻿#include "parse.hpp"
-#include <cstring>
 #include <stdexcept>
 #include <iostream>
 #include "base-types.hpp"

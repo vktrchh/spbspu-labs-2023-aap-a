@@ -1,5 +1,4 @@
 ﻿#include <iostream>
-#include "complexquad.hpp"
 #include "input_shape.hpp"
 #include "output_shape.hpp"
 #include "parse.hpp"

@@ -2,7 +2,7 @@
 #define DIAMOND_HPP
 
 #include "base-types.hpp"
-#include "rectangle.hpp"
+#include "shape.hpp"
 
 namespace erohin
 {

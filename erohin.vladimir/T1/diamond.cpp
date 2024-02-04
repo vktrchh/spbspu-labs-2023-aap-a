@@ -1,7 +1,7 @@
 #include "diamond.hpp"
+#include <stdexcept>
 #include "base-types.hpp"
 #include "triangle.hpp"
-#include <stdexcept>
 
 erohin::Diamond::Diamond() :
   frameRect_ {0.0, 0.0, { 0.0, 0.0 } }

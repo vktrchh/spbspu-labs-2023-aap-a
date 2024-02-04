@@ -1,6 +1,6 @@
 ﻿#include "rectangle.hpp"
-#include "base-types.hpp"
 #include <stdexcept>
+#include "base-types.hpp"
 
 erohin::Rectangle::Rectangle() :
   frameRect_{ 0.0, 0.0, {0.0, 0.0} }

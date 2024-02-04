@@ -1,9 +1,9 @@
 #include "triangle.hpp"
+#include <stdexcept>
+#include <cmath>
 #include "base-types.hpp"
 #include "geom_func.hpp"
 #include "rectangle.hpp"
-#include <stdexcept>
-#include <cmath>
 
 erohin::Triangle::Triangle() :
   center_({ 0.0, 0.0 })

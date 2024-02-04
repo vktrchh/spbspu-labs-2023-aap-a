@@ -1,7 +1,6 @@
 #include "complexquad.hpp"
 #include <stdexcept>
 #include "base-types.hpp"
-#include "geom_func.hpp"
 #include "rectangle.hpp"
 #include "triangle.hpp"
 

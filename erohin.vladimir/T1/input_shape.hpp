@@ -1,9 +1,9 @@
 #ifndef IOSHAPE_HPP
 #define IOSHAPE_HPP
 
+#include <iosfwd>
 #include "base-types.hpp"
 #include "shape.hpp"
-#include <iosfwd>
 
 namespace erohin
 {
