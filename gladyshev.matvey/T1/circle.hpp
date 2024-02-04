@@ -9,7 +9,6 @@ namespace gladyshev
   {
     public:
       Circle(const point_t& p1, double radius);
-      virtual ~Circle();
       virtual double getArea() const;
       virtual rectangle_t getFrameRect() const;
       virtual void move(double dx, double dy);

@@ -9,7 +9,6 @@ namespace gladyshev
   {
     public:
       Rectangle(const point_t& p1, const point_t& p2);
-      virtual ~Rectangle();
       virtual double getArea() const;
       virtual rectangle_t getFrameRect() const;
       virtual void move(double dx, double dy);

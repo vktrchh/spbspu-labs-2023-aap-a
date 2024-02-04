@@ -10,9 +10,6 @@ gladyshev::Parallelogram::Parallelogram(const point_t& p1, const point_t& p2, co
   p2FramePar_{ std::max(p1.x, std::max(p2.x, std::max(p3.x, p1.x - p2.x + p3.x))), std::max(p1.y, p3.y) }
 {}
 
-gladyshev::Parallelogram::~Parallelogram()
-{}
-
 double gladyshev::Parallelogram::getArea() const
 {
   return std::abs((p1par_.y - p3par_.y) * (std::max(std::abs(p1par_.x - p2par_.x), std::abs(p2par_.x - p3par_.x))));

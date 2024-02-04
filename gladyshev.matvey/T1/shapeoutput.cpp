@@ -5,7 +5,7 @@
 
 namespace gladyshev
 {
-  std::ostream& outData(std::ostream& out, Shape** shapes, size_t counter, point_t pos, double factor)
+  std::ostream& outData(std::ostream& out, Shape ** shapes, size_t counter, point_t pos, double factor)
   {
     out << std::fixed;
     out.precision(1);

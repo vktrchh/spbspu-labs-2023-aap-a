@@ -13,9 +13,6 @@ double gladyshev::Circle::getArea() const
   return (radiuscircle_ * radiuscircle_ * 3.14);
 }
 
-gladyshev::Circle::~Circle()
-{}
-
 gladyshev::rectangle_t gladyshev::Circle::getFrameRect() const
 {
   rectangle_t frameRect;

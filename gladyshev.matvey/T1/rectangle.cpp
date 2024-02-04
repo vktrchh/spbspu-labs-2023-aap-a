@@ -12,9 +12,6 @@ double gladyshev::Rectangle::getArea() const
   return std::abs((p2FrameRec_.x - p1FrameRec_.x) * (p2FrameRec_.y - p1FrameRec_.y));
 }
 
-gladyshev::Rectangle::~Rectangle()
-{}
-
 void gladyshev::Rectangle::move(double dx, double dy)
 {
   p1FrameRec_.x += dx;
