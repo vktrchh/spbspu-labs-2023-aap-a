@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cmath>
+#include <iomanip>
 
 struct point_t
 {
@@ -159,8 +161,15 @@ int main()
   std::cout << (scale2_x - (side / 2.0)) << ' ' << (scale2_y - (side / 2.0)) << '\n';
   std::cout << (scale2_x + (side / 2.0)) << ' ' << (scale2_y + (side / 2.0)) << '\n';
 
-
+  std::cout << "TEST_4:\n";
+  std::cout << "3.46 -> " << round(3.46 * 10) / 10 << '\n';
+  std::cout << "3.44 -> " << round(3.44 * 10) / 10 << '\n';
+  std::cout << "3.45 -> " << round(3.45 * 10) / 10 << '\n';
+  std::cout << "3.4 -> " << round(3.4 * 10) / 10 << '\n';
+  double f = 3.0;
+  std::cout << "3.0 -> " << std::fixed << std::setprecision(1) << f << '\n';
   std::cout << "------\n";
+
 //-----------
   size_t counter = 0;
   while (counter != 1000)
