@@ -83,9 +83,9 @@ isaychev::Regular * createRegular(const double * params)
   isaychev::point_t p1 = {params[0], params[1]};
   isaychev::point_t p2 = {params[2], params[3]};
   isaychev::point_t p3 = {params[4], params[5]};
-  double side1 = pow((p1.x - p2.x), 2) + pow((p1.y - p2.y), 2);
-  double side2 = pow((p1.x - p3.x), 2) + pow((p1.y - p3.y), 2);
-  double bottom = pow((p2.x - p3.x), 2) + pow((p2.y - p3.y), 2);
+  double side1 = std::pow((p1.x - p2.x), 2) + std::pow((p1.y - p2.y), 2);
+  double side2 = std::pow((p1.x - p3.x), 2) + std::pow((p1.y - p3.y), 2);
+  double bottom = std::pow((p2.x - p3.x), 2) + std::pow((p2.y - p3.y), 2);
   int regCheck = canBeReg(side1, side2);
   int triangleCheck = isTriangle(side1, side2, bottom);
   isaychev::Regular * reg = nullptr;
