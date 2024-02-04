@@ -7,6 +7,9 @@ gladyshev::Rectangle::Rectangle(const point_t& p1, const point_t& p2):
   p2FrameRec_(p2)
 {}
 
+gladyshev::Rectangle::~Rectangle()
+{}
+
 double gladyshev::Rectangle::getArea() const
 {
   return std::abs((p2FrameRec_.x - p1FrameRec_.x) * (p2FrameRec_.y - p1FrameRec_.y));

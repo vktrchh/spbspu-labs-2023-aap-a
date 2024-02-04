@@ -8,6 +8,9 @@ gladyshev::Circle::Circle(const point_t& p1, double radius):
   p2FrameCir_{ p1.x + radius, p1.y + radius }
 {}
 
+gladyshev::Circle::~Circle()
+{}
+
 double gladyshev::Circle::getArea() const
 {
   return (radiuscircle_ * radiuscircle_ * 3.14);

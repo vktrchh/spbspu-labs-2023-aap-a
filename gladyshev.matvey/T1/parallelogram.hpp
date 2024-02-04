@@ -9,6 +9,7 @@ namespace gladyshev
   {
     public:
       Parallelogram(const point_t& p1, const point_t& p2, const point_t& p3);
+      virtual ~Parallelogram();
       virtual double getArea() const;
       virtual rectangle_t getFrameRect() const;
       virtual void move(double dx, double dy);
