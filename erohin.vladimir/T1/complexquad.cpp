@@ -45,7 +45,7 @@ erohin::Complexquad::Complexquad(point_t* corner)
     if ((x - vertex_[i].x) * (x - vertex_[i + 1].x) >= 0 || (y - vertex_[i].y) * (y - vertex_[i + 1].y) >= 0)
     {
       delete[] vertex_;
-      throw std::invalid_argument("Wrong figure creation");
+      throw std::invalid_argument("Complexquad sides does not intersect");
     }
   }
   center_ = {x, y};
