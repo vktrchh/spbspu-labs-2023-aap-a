@@ -1,7 +1,6 @@
 #include "output_shape.hpp"
 #include <iostream>
 #include <iomanip>
-#include <cstring>
 #include <stdexcept>
 #include "base-types.hpp"
 
