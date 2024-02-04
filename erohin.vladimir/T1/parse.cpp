@@ -10,7 +10,6 @@
 
 erohin::Shape* erohin::parseShape(const std::string string, point_t& pos, double& ratio)
 {
-  const char* type[] = { "RECTANGLE", "TRIANGLE", "DIAMOND", "COMPLEXQUAD", "SCALE" };
   const size_t par_max_size = 10;
   double* par = nullptr;
   try
