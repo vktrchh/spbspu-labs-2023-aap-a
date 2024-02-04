@@ -19,8 +19,6 @@ erohin::Complexquad::Complexquad(point_t* corner)
   {
     vertex_[i] = corner[i];
   }
-  double x = 0.0;
-  double y = 0.0;
   double dx[3]{ 0.0 };
   double dy[3]{ 0.0 };
   for (int i = 0; i < 3; ++i)
@@ -28,16 +26,27 @@ erohin::Complexquad::Complexquad(point_t* corner)
     dx[i] = vertex_[i + 1].x - vertex_[i].x;
     dy[i] = vertex_[i + 1].y - vertex_[i].y;
   }
-  if (vertex_[1].x != vertex_[0].x && vertex_[3].x != vertex_[2].x && dy[0] != dy[2])
+  double x = 0.0;
+  double y = 0.0;
+  if (dy[0] * dx[2] != dy[2] * dx[0] && dx[0] != 0.0)
   {
-    x = dx[0] * vertex_[0].y - dy[0] * vertex_[0].x + dy[2] * vertex_[2].x - dx[2] * vertex_[2].y;
-    x /= (dy[2] - dy[0]);
-    y = vertex_[1].y + dy[0] * (x - vertex_[2].x) / dx[0];
+    x = (vertex_[2].y * dx[2] - vertex_[2].x * dy[2]) * dx[0];
+    x -= (vertex_[0].y * dx[0] - vertex_[0].x * dy[0]) * dx[0];
+    x /= (dy[0] * dx[2] - dy[2] * dx[0]);
+    y = vertex_[0].y + (dy[0] / dx[0]) * (x - vertex_[0].x);
   }
   else
   {
     delete[] vertex_;
     throw std::invalid_argument("Wrong figure creation");
+  }
+  for (int i = 0; i < 3; i += 2)
+  {
+    if ((x - vertex_[i].x) * (x - vertex_[i + 1].x) >= 0 || (y - vertex_[i].y) * (y - vertex_[i + 1].y) >= 0)
+    {
+      delete[] vertex_;
+      throw std::invalid_argument("Wrong figure creation");
+    }
   }
   center_ = {x, y};
 }
