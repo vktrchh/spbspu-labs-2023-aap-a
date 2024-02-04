@@ -27,7 +27,7 @@ zaitsev::Parallelogram::Parallelogram(const point_t* vertices)
   }
   else
   {
-    memcpy(def_vertices_, vertices, 3 * sizeof(point_t));
+    std::memcpy(def_vertices_, vertices, 3 * sizeof(point_t));
   }
 }
 
