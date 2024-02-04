@@ -21,6 +21,7 @@ int main()
   {
     delete[] str;
     delete[] db;
+    delete[] points;
     std::cout << "bad_alloc" << '\n';
     return 1;
   }
@@ -28,6 +29,7 @@ int main()
   {
     delete[] str;
     delete[] db;
+    delete[] points;
     std::cout << e.what() << '\n';
     return 1;
   }
@@ -35,6 +37,7 @@ int main()
   {
     delete[] str;
     delete[] db;
+    delete[] points;
     std::cout << "AAAAA" << '\n';
     return 1;
   }
@@ -44,6 +47,13 @@ int main()
     std::cout << db[i] << ' ';
   }
   std::cout << '\n';
+  for (size_t i = 0; i < size / 2; ++i)
+  {
+    std::cout << points[i].x << ' ' << points[i].y << '\n';
+  }
+  std::cout << '\n';
+
+  delete[] points;
   delete[] str;
   delete[] db;
 }

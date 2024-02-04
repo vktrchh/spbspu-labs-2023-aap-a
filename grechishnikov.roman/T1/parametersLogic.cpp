@@ -23,7 +23,7 @@ double* grechishnikov::parseValues(const char* str, size_t& size)
         values = tempVal;
         len += 10;
       }
-      values[curValue] = readValue(str + pos, pos, endOfString);
+      values[curValue] = readValue(str, pos, endOfString);
       curValue++;
     }
   }
@@ -41,37 +41,39 @@ double* grechishnikov::parseValues(const char* str, size_t& size)
   return values;
 }
 
-grechishnikov::point_t* makePairs(const double* values, size_t size)
+grechishnikov::point_t* grechishnikov::makePairs(const double* values, size_t size)
 {
   if (size % 2 != 0)
   {
     throw std::logic_error("Odd number of elements");
   }
-  grechishnikov::point_t* pairs = new grechishnikov::point_t [size / 2];
-  for (size_t i = 0; i < size; i + 2)
+  grechishnikov::point_t* pairs = new grechishnikov::point_t [size / 2] { 0, 0 };
+  for (size_t i = 0; i < size / 2; i++)
   {
-    pairs[i] = { values[i], values[i + 1] };
+    pairs[i].x = values[i * 2];
+    pairs[i].y = values[i * 2 + 1];
   }
   return pairs;
 }
 
 double readValue(const char* str, size_t& pos, int& endOfString)
 {
-  size_t shift = 0;
   char* end = nullptr;
-  double val = std::strtod(str, &end);
-  if (*end == ' ')
+  for (size_t i = pos; str[i] == ' '; i++)
   {
-    for (size_t i = 0; str[i] != ' '; ++i)
-    {
-      shift = i + 2;
-    }
-    pos += shift;
-    return val;
+    pos++;
   }
-  if (*end == '\0')
+  if (std::isdigit(str[pos]))
   {
-    endOfString = 1;
+    double val = std::strtod(str + pos, &end);
+    for (size_t i = pos; str[i] != *end; i++)
+    {
+      pos++;
+    }
+    if (*end == '\0')
+    {
+      endOfString = 1;
+    }
     return val;
   }
   else
