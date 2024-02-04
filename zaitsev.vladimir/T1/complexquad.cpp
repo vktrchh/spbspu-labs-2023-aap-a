@@ -10,11 +10,11 @@
 
 zaitsev::Complexquad::Complexquad(const point_t* sections)
 {
- if (!checkIntersection(sections))
- {
-   throw std::invalid_argument("Lines are parallel");
- }
- std::memcpy(vertices_, sections, 4 * sizeof(point_t));
+  if (!checkIntersection(sections))
+  {
+    throw std::invalid_argument("Lines are parallel");
+  }
+  std::memcpy(vertices_, sections, 4 * sizeof(point_t));
 }
 
 double zaitsev::Complexquad::getArea() const

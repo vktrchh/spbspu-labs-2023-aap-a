@@ -4,7 +4,10 @@
 #include "base-types.hpp"
 #include "shape.hpp"
 
-double zaitsev::skewProduct(const point_t& vector1, const point_t& vector2)
+void setLineCoeff(const zaitsev::point_t& p1, const zaitsev::point_t& p2, double& a, double& b, double& c);
+double skewProduct(const zaitsev::point_t& vector1, const zaitsev::point_t& vector2);
+
+double skewProduct(const zaitsev::point_t& vector1, const zaitsev::point_t& vector2)
 {
   return vector1.x * vector2.y - vector1.y * vector2.x;
 }
@@ -65,7 +68,7 @@ zaitsev::point_t zaitsev::findIntersection(const point_t* sections)
   return { x,y };
 }
 
-void zaitsev::setLineCoeff(const point_t& p1, const point_t& p2, double& a, double& b, double& c)
+void setLineCoeff(const zaitsev::point_t& p1, const zaitsev::point_t& p2, double& a, double& b, double& c)
 {
   if (p1.x == p2.x)
   {
@@ -91,7 +94,7 @@ double zaitsev::getAreaOfTriangle(const point_t& p1, const point_t& p2, const po
 {
   point_t v1 = { p2.x - p1.x,p2.y - p1.y };
   point_t v2 = { p3.x - p1.x,p3.y - p1.y };
-  return fabs(skewProduct(v1, v2)) / 2;
+  return std::fabs(skewProduct(v1, v2)) / 2;
 }
 
 void zaitsev::scale(Shape* shape, double factor, const point_t& iso_center)

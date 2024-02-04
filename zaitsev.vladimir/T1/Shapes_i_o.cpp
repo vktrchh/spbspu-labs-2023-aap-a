@@ -14,7 +14,7 @@
 
 double zaitsev::readNextValue(char* param)
 {
-  char* pos = strtok(param, " ");
+  char* pos = std::strtok(param, " ");
   char* ptr = nullptr;
   double val = std::strtod(pos, std::addressof(ptr));
   if (val == 0 && ptr == pos)
@@ -129,7 +129,7 @@ void zaitsev::addShape(Shape*** shapes, size_t &size, size_t &capacity, Shape* n
   if (capacity == 0 || size >= capacity - 1)
   {
     Shape** resized = new Shape * [capacity + 10];
-    memcpy(resized, *shapes, size * sizeof(Shape*));
+    std::memcpy(resized, *shapes, size * sizeof(Shape*));
     delete[] *shapes;
     *shapes = resized;
     capacity += 10;
