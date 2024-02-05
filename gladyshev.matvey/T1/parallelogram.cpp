@@ -43,7 +43,7 @@ void gladyshev::Parallelogram::move(const point_t& newPos)
 
 void gladyshev::Parallelogram::scale(double factor)
 {
-  kf_ = kf * factor * factor;
+  kf_ = kf_ * factor * factor;
   rectangle_t frameRect = getFrameRect();
   p1FramePar_.x = p1FramePar_.x - (frameRect.pos.x - p1FramePar_.x) * (factor - 1);
   p1FramePar_.y = p1FramePar_.y - (frameRect.pos.y - p1FramePar_.y) * (factor - 1);
