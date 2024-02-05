@@ -1,4 +1,6 @@
+#include <exception>
 #include <iostream>
+#include <new>
 #include <stdexcept>
 #include "inputLine.hpp"
 #include "difLetters.hpp"
@@ -13,11 +15,12 @@ int main()
   {
     inputString = arakelyan::inputArray(std::cin);
   }
-  catch (const std::logic_error & e)
+  catch (const std::exception & e)
   {
     std::cerr << "Error: " << e.what() << "\n";
     return 1;
   }
+
 
   using namespace arakelyan;
   size_t answerTaskOne = countOfDifferentLetters(inputString);
