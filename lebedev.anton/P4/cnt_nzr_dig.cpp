@@ -67,6 +67,5 @@ size_t lebedev::countNotZeroDiags(const int matrix[], size_t rows, size_t cols)
   counter += upper_counter;
   below_counter = lebedev::countBelowMainDiag(matrix, rows, cols);
   counter += below_counter;
-  
   return counter;
 }
