@@ -13,7 +13,7 @@ erohin::Rectangle::Rectangle(point_t left_corner, point_t right_corner)
   {
     frameRect_.width = right_corner.x - left_corner.x;
     frameRect_.height = right_corner.y - left_corner.y;
-    frameRect_.pos = { left_corner.x + frameRect_.width / 2, left_corner.y + frameRect_.height / 2 };
+    frameRect_.pos = { left_corner.x + frameRect_.width / 2.0, left_corner.y + frameRect_.height / 2.0 };
   }
   else
   {
@@ -26,6 +26,11 @@ erohin::Rectangle::~Rectangle() = default;
 double erohin::Rectangle::getArea() const
 {
   return (frameRect_.width * frameRect_.height);
+}
+
+erohin::point_t erohin::Rectangle::getCenter() const
+{
+  return frameRect_.pos;
 }
 
 erohin::rectangle_t erohin::Rectangle::getFrameRect() const

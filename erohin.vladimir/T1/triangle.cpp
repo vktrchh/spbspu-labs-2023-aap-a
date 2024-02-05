@@ -14,7 +14,6 @@ erohin::Triangle::Triangle() :
 erohin::Triangle::Triangle(point_t* corner)
 {
   vertex_ = new point_t[3]{ {0.0, 0.0} };
-  center_ = { 0.0, 0.0 };
   for (int i = 0; i < 3; ++i)
   {
     vertex_[i] = corner[i];
@@ -38,10 +37,11 @@ erohin::Triangle::Triangle(point_t* corner)
     delete[] side;
     throw;
   }
+  center_ = {0.0, 0.0};
   for (int i = 0; i < 3; ++i)
   {
-    center_.x += corner[i].x / 3.0;
-    center_.y += corner[i].y / 3.0;
+    center_.x += vertex_[i].x / 3.0;
+    center_.y += vertex_[i].y / 3.0;
   }
 }
 
@@ -65,6 +65,11 @@ double erohin::Triangle::getArea() const
   }
   delete[] side;
   return std::sqrt(result);
+}
+
+erohin::point_t erohin::Triangle::getCenter() const
+{
+  return center_;
 }
 
 erohin::rectangle_t erohin::Triangle::getFrameRect() const

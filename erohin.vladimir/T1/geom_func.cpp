@@ -3,10 +3,10 @@
 
 void erohin::isoScale(Shape* shape, point_t pos, double ratio)
 {
-  rectangle_t init = shape->getFrameRect();
+  point_t init_pos = shape->getCenter();
   shape->move(pos);
   shape->scale(ratio);
-  shape->move(ratio * (init.pos.x - pos.x), ratio * (init.pos.y - pos.y));
+  shape->move(ratio * (init_pos.x - pos.x), ratio * (init_pos.y - pos.y));
 }
 
 double erohin::getDistance(point_t from, point_t to)

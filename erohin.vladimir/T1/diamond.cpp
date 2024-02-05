@@ -40,6 +40,11 @@ double erohin::Diamond::getArea() const
   return (frameRect_.width * frameRect_.height) / 2;
 }
 
+erohin::point_t erohin::Diamond::getCenter() const
+{
+  return frameRect_.pos;
+}
+
 erohin::rectangle_t erohin::Diamond::getFrameRect() const
 {
   return frameRect_;

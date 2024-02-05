@@ -69,6 +69,11 @@ double erohin::Complexquad::getArea() const
   return area;
 }
 
+erohin::point_t erohin::Complexquad::getCenter() const
+{
+  return center_;
+}
+
 erohin::rectangle_t erohin::Complexquad::getFrameRect() const
 {
   point_t left = vertex_[0];
