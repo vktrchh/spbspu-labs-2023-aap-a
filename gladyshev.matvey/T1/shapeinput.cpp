@@ -23,54 +23,44 @@ namespace gladyshev
         freeMemory(shapes, mainCounter);
         throw;
       }
-      if (inputName == "RECTANGLE" || inputName == "PARALLELOGRAM" || inputName == "CIRCLE")
+      try
       {
-        Shape * checkedShape = nullptr;
-        try
+        if (inputName == "RECTANGLE" || inputName == "PARALLELOGRAM" || inputName == "CIRCLE")
         {
-          checkedShape = identifyShape(inputName, rectangleData);
+          Shape * checkedShape = identifyShape(inputName, rectangleData);
+          if (checkedShape == nullptr)
+          {
+            incorFig = true;
+          }
+          else
+          {
+            shapes[mainCounter++] = checkedShape;
+          }
         }
-        catch (const std::logic_error& e)
+        else if (inputName == "SCALE")
         {
+          if (mainCounter == 0)
+          {
+            delete[] rectangleData;
+            throw std::logic_error("lack of supported data");
+          }
+          counter = mainCounter;
+          inputScale(rectangleData, pos, factor);
           delete[] rectangleData;
-          freeMemory(shapes, mainCounter);
-          throw;
-        }
-        if (checkedShape == nullptr)
-        {
-          incorFig = true;
+          return;
         }
         else
         {
-          shapes[mainCounter++] = checkedShape;
-        }
-      }
-      else if (inputName == "SCALE")
-      {
-        if (mainCounter == 0)
-        {
-          delete[] rectangleData;
-          throw std::logic_error("lack of supported data");
-        }
-        counter = mainCounter;
-        try
-        {
-          inputScale(rectangleData, pos, factor);
-        }
-        catch (const std::logic_error& e)
-        {
-          delete[] rectangleData;
-          freeMemory(shapes, mainCounter);
-          throw;
+          unsupFig = true;
         }
         delete[] rectangleData;
-        return;
       }
-      else
+      catch (const std::logic_error& e)
       {
-        unsupFig = true;
+        delete[] rectangleData;
+        freeMemory(shapes, mainCounter);
+        throw;
       }
-      delete[] rectangleData;
     }
     if (in.eof())
     {
