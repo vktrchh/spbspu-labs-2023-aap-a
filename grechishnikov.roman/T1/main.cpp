@@ -9,8 +9,8 @@ int main()
   using namespace grechishnikov;
   size_t size = 0;
   const char* str = nullptr;
-  double* db = nullptr;
-  point_t* points = nullptr;
+  const double* db = nullptr;
+  const point_t* points = nullptr;
   try
   {
     str = inputString(std::cin);
@@ -42,12 +42,12 @@ int main()
     return 1;
   }
 
-  for (size_t i = 0; i < size; ++i)
+  for (size_t i = 0; i < size; i++)
   {
     std::cout << db[i] << ' ';
   }
   std::cout << '\n';
-  for (size_t i = 0; i < size / 2; ++i)
+  for (size_t i = 0; i < size / 2; i++)
   {
     std::cout << points[i].x << ' ' << points[i].y << '\n';
   }

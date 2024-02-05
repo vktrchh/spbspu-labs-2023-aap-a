@@ -10,7 +10,7 @@ namespace grechishnikov
   class Polygon : public Shape
   {
   public:
-    Polygon(point_t* points, size_t size);
+    Polygon(const point_t* points, size_t size);
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t& pos);

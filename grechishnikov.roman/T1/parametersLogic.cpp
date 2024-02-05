@@ -1,10 +1,10 @@
 #include "parametersLogic.hpp"
 #include <stdexcept>
 
-double readValue(const char* str, size_t& pos, int& endOfString);
+const double readValue(const char* str, size_t& pos, int& endOfString);
 double* reallocateVal(const double* values, size_t lenF, size_t lenS);
 
-double* grechishnikov::parseValues(const char* str, size_t& size)
+const double* grechishnikov::parseValues(const char* str, size_t& size)
 {
   size_t len = 10;
   double* values = new double [len];
@@ -41,7 +41,7 @@ double* grechishnikov::parseValues(const char* str, size_t& size)
   return values;
 }
 
-grechishnikov::point_t* grechishnikov::makePairs(const double* values, size_t size)
+const grechishnikov::point_t* grechishnikov::makePairs(const double* values, size_t size)
 {
   if (size % 2 != 0)
   {
@@ -56,7 +56,7 @@ grechishnikov::point_t* grechishnikov::makePairs(const double* values, size_t si
   return pairs;
 }
 
-double readValue(const char* str, size_t& pos, int& endOfString)
+const double readValue(const char* str, size_t& pos, int& endOfString)
 {
   char* end = nullptr;
   for (size_t i = pos; str[i] == ' '; i++)
@@ -65,7 +65,7 @@ double readValue(const char* str, size_t& pos, int& endOfString)
   }
   if (std::isdigit(str[pos]))
   {
-    double val = std::strtod(str + pos, &end);
+    const double val = std::strtod(str + pos, &end);
     for (size_t i = pos; str[i] != *end; i++)
     {
       pos++;
@@ -85,12 +85,12 @@ double readValue(const char* str, size_t& pos, int& endOfString)
 double* reallocateVal(const double* values, size_t lenF, size_t lenS)
 {
   double* newVal = new double [lenS];
-  for (size_t i = 0; i < lenS; ++i)
+  for (size_t i = 0; i < lenS; i++)
   {
     newVal[i] = 0;
   }
   size_t min = (lenF < lenS) ? lenF : lenS;
-  for (size_t i = 0; i < min; ++i)
+  for (size_t i = 0; i < min; i++)
   {
     newVal[i] = values[i];
   }

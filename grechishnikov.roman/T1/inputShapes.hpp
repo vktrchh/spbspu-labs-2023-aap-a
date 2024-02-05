@@ -2,14 +2,16 @@
 #define INPUT_SHAPES_HPP
 
 #include <istream>
-#include "triangle.hpp"
+#include <cstddef>
+#include "shape.hpp"
+#include "base-types.hpp"
 
 namespace grechishnikov
 {
-  void inputShapes(std::istream &in);
-  Shape* inputRectangle(const double* values, size_t size);
-  Shape* inputTriangle(const double* values, size_t size);
-  Shape* inputPolygon(const double* values, size_t size);
+  Shape* inputShapes(const char* str);
+  Shape* inputRectangle(const grechishnikov::point_t* points, size_t size);
+  Shape* inputTriangle(const grechishnikov::point_t* points, size_t size);
+  Shape* inputPolygon(const grechishnikov::point_t* points, size_t size);
 }
 
 #endif
