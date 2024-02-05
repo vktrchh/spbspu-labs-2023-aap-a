@@ -76,6 +76,8 @@ rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name
 
     input.clear();
 
+    numOfVertexs -= 1;
+
     point_t bufferArr2[numOfVertexs];
 
     for (size_t i = 0; i < numOfVertexs; ++i)
