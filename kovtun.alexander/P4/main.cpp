@@ -64,23 +64,21 @@ int main(int argc, char * argv[])
   }
 
   int * matrix = nullptr;
-  int arr[10000] = {0};
+  int sArr[10000] = {0};
+  int * dArr = new int[size]();
   if (num == 1)
   {
-    matrix = arr;
+    matrix = sArr;
   }
   else
   {
-    matrix = new int[size]();
+    matrix = dArr;
   }
 
   size_t hasRead = kovtun::readToArray(input, matrix, size, size);
   if (hasRead < size)
   {
-    if (num == 2)
-    {
-      delete [] matrix;
-    }
+    delete [] dArr;
     std::cerr << "the matrix is invalid\n";
     return 2;
   }
@@ -95,10 +93,7 @@ int main(int argc, char * argv[])
   }
   output << "\n";
 
-  if (num == 2)
-  {
-    delete [] matrix;
-  }
+  delete [] dArr;
 
   return 0;
 }
