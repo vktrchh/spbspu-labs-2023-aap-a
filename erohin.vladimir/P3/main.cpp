@@ -8,14 +8,14 @@ int main()
 {
   using namespace erohin;
   char * first = nullptr;
-  const char * second = "abcdabcdabcdabcd";
+  const char * second = "abcdabcdabcd";
   try
   {
     first = inputString(std::cin);
   }
-  catch (const std::bad_alloc & e)
+  catch (const std::bad_alloc &)
   {
-    std::cerr << "Cannot allocate memory: " << e.what() << "\n";
+    std::cerr << "Cannot allocate memory\n";
     return 1;
   }
   if (*first == '\0')
@@ -28,8 +28,8 @@ int main()
   char * replaced = nullptr;
   try
   {
-    united = new char[128];
-    replaced = new char[128];
+    united = new char[256];
+    replaced = new char[256];
   }
   catch (const std::bad_alloc &)
   {
