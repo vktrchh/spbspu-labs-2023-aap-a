@@ -11,7 +11,7 @@ int main()
     std::string input_str = inputString(std::cin);
     char * not_input_chars = new char[26]{};
 
-    transformString(input_str.c_str(), nullptr, not_input_chars);
+    transformString(input_str.c_str(), not_input_chars);
 
     std::cout << not_input_chars << "\n";
 
