@@ -64,10 +64,7 @@ int main(int argc, char ** argv)
   catch (const std::invalid_argument & e)
   {
     std::cerr << "Error: " << e.what() << "\n";
-    if (dynamicMatrix != nullptr)
-    {
-      delete [] dynamicMatrix;
-    }
+    delete [] dynamicMatrix;
     return 2;
   }
 
@@ -76,8 +73,5 @@ int main(int argc, char ** argv)
   output << std::boolalpha << ishmuratov::lowerMatrixCheck(matrix, rows, cols) << "\n";
   output << ishmuratov::checkRow(matrix, rows, cols) << "\n";
 
-  if (dynamicMatrix != nullptr)
-  {
-    delete [] dynamicMatrix;
-  }
+  delete [] dynamicMatrix;
 }
