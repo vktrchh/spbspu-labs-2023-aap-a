@@ -24,10 +24,10 @@ rebdev::Concave::Concave(const point_t * vertexs):
 
       if (identicalSigns)
       {
-        for (int i = 0; i < 4; ++i)
-        {
-          vertexs_[i] = vertexs[i];
-        }
+        vertexs_[0] = vertexs[i];
+        vertexs_[1] = vertexs[(i + 1) % 4];
+        vertexs_[2] = vertexs[(i + 3) % 4];
+        vertexs_[3] = vertexs[(i + 2) % 4];
         isConcave = 1;
       }
     }
@@ -35,11 +35,6 @@ rebdev::Concave::Concave(const point_t * vertexs):
   if (!isConcave)
   {
     throw std::logic_error("concave error");
-  }
-
-  for (size_t i = 0; i < 4; ++i)
-  {
-    vertexs_[i] = vertexs[i];
   }
 };
 
