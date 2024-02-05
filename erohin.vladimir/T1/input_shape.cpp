@@ -15,7 +15,6 @@ void erohin::inputShape(Shape** result, std::istream& input, size_t& size, point
   try
   {
     char elem = 0;
-    Shape* shape_ptr = nullptr;
     input >> std::noskipws;
     while (input >> elem)
     {
@@ -23,15 +22,15 @@ void erohin::inputShape(Shape** result, std::istream& input, size_t& size, point
       {
         try
         {
-          shape_ptr = parseShape(str, pos, ratio);
+          Shape* shape_ptr = parseShape(str, pos, ratio);
+          if (shape_ptr)
+          {
+            result[size++] = shape_ptr;
+          }
         }
         catch (const std::invalid_argument&)
         {
           isWrongFigureCreation = true;
-        }
-        if (shape_ptr)
-        {
-          result[size++] = shape_ptr;
         }
         str = "";
       }
@@ -48,7 +47,6 @@ void erohin::inputShape(Shape** result, std::istream& input, size_t& size, point
   }
   catch (...)
   {
-    freeShape(result, size);
     input >> std::skipws;
     throw;
   }
