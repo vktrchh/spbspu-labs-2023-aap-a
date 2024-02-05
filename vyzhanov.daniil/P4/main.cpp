@@ -59,8 +59,8 @@ int main(int argc, char* argv[])
   try
   {
     vyzhanov::createMatrix(rows, cols, matrix, inputFile);
-    outputFile << vyzhanov::CountRowsWithoutRepeat(matrix, rows, cols) << "\n";
-    outputFile << std::boolalpha << vyzhanov::CheckLowerTriangle(matrix, rows, cols) << "\n";
+    outputFile << vyzhanov::countRowsWithoutRepeat(matrix, rows, cols) << "\n";
+    outputFile << std::boolalpha << vyzhanov::checkLowerTriangle(matrix, rows, cols) << "\n";
   }
   catch (const std::exception& e)
   {

@@ -5,7 +5,7 @@
 
 namespace vyzhanov
 {
-  size_t CountRowsWithoutRepeat(const int* matrix, size_t rows, size_t cols);
+  size_t countRowsWithoutRepeat(const int* matrix, size_t rows, size_t cols);
 }
 
 #endif

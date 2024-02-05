@@ -5,7 +5,7 @@
 
 namespace vyzhanov
 {
-  bool CheckLowerTriangle(const int* matrix, size_t rows, size_t cols);
+  bool checkLowerTriangle(const int* matrix, size_t rows, size_t cols);
 }
 
 #endif
