@@ -26,14 +26,19 @@ int main()
   size_t answerTaskOne = countOfDifferentLetters(inputString);
 
   size_t sizeOfAlphabet = 'z' - 'a' + 1;
-  char *answerTaskTwo = new char[sizeOfAlphabet + 1]{};
-  if (answerTaskTwo == nullptr)
+  char * answerTaskTwo = nullptr;
+
+  try
   {
-    std::cerr << "Cannot create a dynamic array for answer of second task!\n";
+    answerTaskTwo = new char[sizeOfAlphabet + 1]{};
+  }
+  catch (const std::bad_alloc &e)
+  {
+    std::cerr << "Cannot create a dynamic array for aswer of second task!\n";
     delete [] inputString;
     return 1;
   }
-
+  
   searchForDifferentLettersInTwoLines(inputString, defaultStringForTaskTwo, answerTaskTwo);
 
   std::cout << answerTaskOne << "\n" << answerTaskTwo << "\n";
