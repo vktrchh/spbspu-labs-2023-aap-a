@@ -10,14 +10,3 @@ char * erohin::resizeString(const char * str, size_t size, size_t difference)
   resized[size + difference] = '\0';
   return resized;
 }
-
-char * erohin::resizeString(const char * str, const char * source)
-{
-  size_t i = 0;
-  size_t j = 0;
-  while (str[i] != '\0' || source[j] != '\0')
-  {
-    (str[i] != '\0') ? ++i : ++j;
-  }
-  return resizeString(str, i, j);
-}

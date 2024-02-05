@@ -7,8 +7,6 @@
 int main()
 {
   using namespace erohin;
-  char old = 'c';
-  char change = 'b';
   char * first = nullptr;
   const char * second = "abcdabcdabcdabcd";
   try
@@ -30,19 +28,18 @@ int main()
   char * replaced = nullptr;
   try
   {
-    united = resizeString(first, second);
-    replaced = resizeString(first, "");
+    united = new char[128];
+    replaced = new char[128];
   }
-  catch (const std::bad_alloc & e)
+  catch (const std::bad_alloc &)
   {
     delete[] first;
     delete[] united;
-    delete[] replaced;
-    std::cerr << "Cannot create new strings: " << e.what() << "\n";
+    std::cerr << "Cannot create new strings\n";
     return 3;
   }
   united = uniteString(united, first, second);
-  replaced = replaceSymbol(replaced, first, old, change);
+  replaced = replaceSymbol(replaced, first, 'c', 'b');
   std::cout << united << "\n";
   std::cout << replaced << "\n";
   delete[] first;
