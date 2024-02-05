@@ -38,7 +38,7 @@ int main()
     delete [] inputString;
     return 1;
   }
-  
+
   searchForDifferentLettersInTwoLines(inputString, defaultStringForTaskTwo, answerTaskTwo);
 
   std::cout << answerTaskOne << "\n" << answerTaskTwo << "\n";
