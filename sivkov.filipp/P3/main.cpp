@@ -40,7 +40,6 @@ int main()
     }
     return 1;
   }
-
   std::cout << "\n[SPC-RMV]: " << string1 << '\n';
   std::cout << "[DGT-SND]: " << string2 << '\n';
 
