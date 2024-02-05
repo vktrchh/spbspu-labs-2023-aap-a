@@ -8,7 +8,6 @@
 
 void erohin::inputShape(Shape** result, std::istream& input, size_t& size, point_t& pos, double& ratio)
 {
-  Shape** temp = nullptr;
   size = 0;
   bool isWrongFigureCreation = false;
   std::string str = "";
