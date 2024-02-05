@@ -38,7 +38,7 @@ int main()
       if (shape_type == "RECTANGLE")
       {
         shape_param_copy = new char[shape_param.size() + 1];
-        memcpy(shape_param_copy, shape_param.c_str(), shape_param.size() + 1);
+        std::memcpy(shape_param_copy, shape_param.c_str(), shape_param.size() + 1);
         Shape* res = readRectangle(shape_param_copy);
         if (res)
         {
@@ -52,7 +52,7 @@ int main()
       else if (shape_type == "COMPLEXQUAD")
       {
         shape_param_copy = new char[shape_param.size() + 1];
-        memcpy(shape_param_copy, shape_param.c_str(), shape_param.size() + 1);
+        std::memcpy(shape_param_copy, shape_param.c_str(), shape_param.size() + 1);
         Shape* res = readComplexquad(shape_param_copy);
         if (res)
         {
@@ -66,7 +66,7 @@ int main()
       else if (shape_type == "PARALLELOGRAM")
       {
         shape_param_copy = new char[shape_param.size() + 1];
-        memcpy(shape_param_copy, shape_param.c_str(), shape_param.size() + 1);
+        std::memcpy(shape_param_copy, shape_param.c_str(), shape_param.size() + 1);
         Shape* res = readParallelogram(shape_param_copy);
         if (res)
         {
@@ -80,7 +80,7 @@ int main()
       else if (shape_type == "SCALE")
       {
         shape_param_copy = new char[shape_param.size() + 1];
-        memcpy(shape_param_copy, shape_param.c_str(), shape_param.size() + 1);
+        std::memcpy(shape_param_copy, shape_param.c_str(), shape_param.size() + 1);
         if (size == 0)
         {
           std::cerr << "Error: No shapes to scale\n";
