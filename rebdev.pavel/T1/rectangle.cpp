@@ -1,33 +1,16 @@
 #include "rectangle.hpp"
 #include <iostream>
 
-rebdev::Rectangle::Rectangle(const point_t * angles):
-  angles_(nullptr)
+rebdev::Rectangle::Rectangle(const point_t angles[2]):
+  angles_{{0.0, 0.0}, {0.0, 0.0}}
 {
   if ((angles[0].x >= angles[1].x) || (angles[0].y >= angles[1].y))
   {
     throw std::logic_error("rectangle error");
   }
-  try
-  {
-    angles_ = new point_t[2];
-  }
-  catch (const std::exception & e)
-  {
-    delete[] angles_;
-    throw;
-  }
-
-  for (size_t i = 0; i < 2; ++i)
-  {
-    angles_[i] = angles[i];
-  }
+  angles_[0] = angles[0];
+  angles_[1] = angles[1];
 }
-
-rebdev::Rectangle::~Rectangle()
-{
-  delete[] angles_;
-};
 
 double rebdev::Rectangle::getArea() const
 {

@@ -3,7 +3,7 @@
 #include <iostream>
 
 rebdev::Concave::Concave(const point_t * vertexs):
-  vertexs_(nullptr)
+  vertexs_{{0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}}
 {
   bool isConcave = 0;
   for (size_t i = 0; ((i < 4) && (!isConcave)); ++i)
@@ -24,16 +24,6 @@ rebdev::Concave::Concave(const point_t * vertexs):
 
       if (identicalSigns)
       {
-        try
-        {
-          vertexs_ = new point_t[4];
-        }
-        catch (const std::exception & e)
-        {
-          delete[] vertexs_;
-          throw;
-        }
-
         for (int i = 0; i < 4; ++i)
         {
           vertexs_[i] = vertexs[i];
@@ -51,11 +41,6 @@ rebdev::Concave::Concave(const point_t * vertexs):
   {
     vertexs_[i] = vertexs[i];
   }
-};
-
-rebdev::Concave::~Concave()
-{
-  delete[] vertexs_;
 };
 
 double rebdev::Concave::getArea() const

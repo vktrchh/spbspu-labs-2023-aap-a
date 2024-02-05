@@ -5,11 +5,10 @@
 
 rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name)
 {
-  Shape * figure = nullptr;
-
   if (name == "RECTANGLE")
   {
     point_t vertexs[2] = {{0.0, 0.0}, {0.0, 0.0}};
+
     input >> vertexs[0].x >> vertexs[0].y >> vertexs[1].x >> vertexs[1].y;
 
     if (!input)
@@ -17,7 +16,7 @@ rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name
       throw std::logic_error("input error");
     }
 
-    figure = new Rectangle(vertexs);
+    return (new Rectangle(vertexs));
   }
   else if (name == "CONCAVE")
   {
@@ -32,7 +31,7 @@ rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name
       }
     }
 
-    figure = new Concave(vertexs);
+    return (new Concave(vertexs));
   }
   else if (name == "POLYGON")
   {
@@ -77,40 +76,18 @@ rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name
 
     input.clear();
 
-    try
-    {
-      bufferArr = new point_t[numOfVertexs];
-    }
-    catch (const std::exception & e)
-    {
-      delete[] bufferArr;
-      delete[] vertexs;
-
-      throw e;
-    }
+    point_t bufferArr2[numOfVertexs];
 
     for (size_t i = 0; i < numOfVertexs; ++i)
     {
-      bufferArr[i] = vertexs[i];
+      bufferArr2[i] = vertexs[i];
     }
 
+    delete[] bufferArr;
     delete[] vertexs;
-    vertexs = bufferArr;
-    bufferArr = nullptr;
 
-    try
-    {
-      figure = new Polygon(vertexs, numOfVertexs);
-    }
-    catch (const std::exception & e)
-    {
-      delete[] vertexs;
-
-      throw e;
-    }
-
-    delete[] vertexs;
+    return (new Polygon(bufferArr2, numOfVertexs));
   }
 
-  return figure;
+  return nullptr;
 };
