@@ -42,7 +42,7 @@ namespace gladyshev
           if (mainCounter == 0)
           {
             delete[] rectangleData;
-            throw std::logic_error("lack of supported data");
+            throw std::runtime_error("lack of supported data");
           }
           counter = mainCounter;
           inputScale(rectangleData, pos, factor);
