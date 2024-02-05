@@ -21,6 +21,7 @@ namespace gladyshev
       point_t p3par_;
       point_t p1FramePar_;
       point_t p2FramePar_;
+      double kf_;
   };
 }
 
