@@ -6,7 +6,7 @@
 
 namespace belokurskaya
 {
-  char* resizeStringBuffer(const char* my_string, const size_t size, const size_t new_memory);
+  char* resizeStringBuffer(const char* my_string, size_t size, size_t new_memory);
 
   std::string inputString(std::istream& input);
 }
