@@ -7,7 +7,7 @@
 
 namespace gladyshev
 {
-  void makeString(std::istream& in, Shape ** shapes, bool& incorFig, bool& unsupFig, point_t& pos, size_t& counter, double& factor)
+  void shapeInput(std::istream& in, Shape ** shapes, bool& incorFig, bool& unsupFig, point_t& pos, size_t& counter, double& factor)
   {
     size_t mainCounter = 0;
     char * rectangleData = nullptr;

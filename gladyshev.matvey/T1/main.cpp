@@ -15,7 +15,7 @@ int main()
   bool unsupportedFigure = false;
   try
   {
-    makeString(std::cin, shapes, incorrectFigure, unsupportedFigure, pos, counter, factor);
+    shapeInput(std::cin, shapes, incorrectFigure, unsupportedFigure, pos, counter, factor);
     outData(std::cout, shapes, counter, pos, factor);
   }
   catch (const std::logic_error& e)
