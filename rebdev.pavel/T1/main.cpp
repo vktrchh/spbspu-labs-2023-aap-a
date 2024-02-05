@@ -38,7 +38,7 @@ int main()
       figureName.erase(0, 1);
     }
 
-    if (figureName == "SCALE")
+    if (figureName.find("SCALE") != std::string::npos)
     {
       rebdev::point_t isoPoint = {0.0, 0.0};
       double k = 0;

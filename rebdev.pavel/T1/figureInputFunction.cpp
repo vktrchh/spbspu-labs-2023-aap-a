@@ -5,7 +5,7 @@
 
 rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name)
 {
-  if (name == "RECTANGLE")
+  if (name.find("RECTANGLE") != std::string::npos)
   {
     point_t vertexs[2] = {{0.0, 0.0}, {0.0, 0.0}};
 
@@ -18,7 +18,7 @@ rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name
 
     return (new Rectangle(vertexs));
   }
-  else if (name == "CONCAVE")
+  else if (name.find("CONCAVE") != std::string::npos)
   {
     point_t vertexs[4] = {{0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}};
 
@@ -33,7 +33,7 @@ rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name
 
     return (new Concave(vertexs));
   }
-  else if (name == "POLYGON")
+  else if (name.find("POLYGON") != std::string::npos)
   {
     point_t * vertexs = new point_t[1];
     point_t * bufferArr = nullptr;
