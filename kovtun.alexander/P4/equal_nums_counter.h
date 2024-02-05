@@ -5,7 +5,7 @@
 
 namespace kovtun
 {
-  size_t countEqualInColumns(int *, size_t, size_t);
+  size_t countEqualInColumns(const int *, size_t, size_t);
 }
 
 #endif

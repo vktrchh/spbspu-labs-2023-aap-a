@@ -1,6 +1,6 @@
 #include "equal_nums_counter.h"
 
-size_t kovtun::countEqualInColumns(int * matrix, size_t rows, size_t cols)
+size_t kovtun::countEqualInColumns(const int * matrix, size_t rows, size_t cols)
 {
   size_t result = cols;
 
