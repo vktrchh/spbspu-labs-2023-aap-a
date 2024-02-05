@@ -39,5 +39,9 @@ std::string belokurskaya::inputString(std::istream& input)
   }
   input >> std::skipws;
 
+  if (!input)
+  {
+    throw std::logic_error("Invalid input");
+  }
   return input_str;
 }
