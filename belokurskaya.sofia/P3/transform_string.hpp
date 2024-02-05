@@ -6,7 +6,7 @@
 
 namespace belokurskaya
 {
-  void transformString(const char * input, char * result, char * not_input_chars);
+  void transformString(const char * input, char * not_input_chars);
 
   void toLowerCase(char * input);
 }
