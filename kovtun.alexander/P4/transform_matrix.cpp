@@ -1,6 +1,5 @@
 #include "transform_matrix.h"
 
-// size_t overflow will give incorrect values
 void kovtun::transformMatrix(int * matrix, size_t rows, size_t cols)
 {
   size_t top = 0;

@@ -5,7 +5,7 @@
 
 namespace kovtun
 {
-    size_t readToArray(std::istream &, int *, size_t, size_t);
+  size_t readToArray(std::istream &, int *, size_t, size_t);
 }
 
 #endif

@@ -6,7 +6,6 @@
 #include <fstream>
 #include <exception>
 
-
 int main(int argc, char * argv[])
 {
   if (argc != 4)
@@ -56,7 +55,7 @@ int main(int argc, char * argv[])
   }
 
   std::ofstream output(argv[3]);
-  // overflow
+
   size_t size = rows * cols;
   if (size == 0)
   {
@@ -68,7 +67,7 @@ int main(int argc, char * argv[])
   int arr[10000] = {0};
   if (num == 1)
   {
-      matrix = arr;
+    matrix = arr;
   }
   else
   {
