@@ -33,13 +33,13 @@ void erohin::inputShape(Shape** result, std::istream& input, size_t& size, point
         }
         str = "";
       }
-      else if (input && str.length() < str.max_size())
+      else if (str.length() < str.max_size())
       {
         str += elem;
       }
       else
       {
-        throw std::runtime_error("Input error");
+        throw std::runtime_error("Line is too long");
       }
     }
     input >> std::skipws;
@@ -53,7 +53,11 @@ void erohin::inputShape(Shape** result, std::istream& input, size_t& size, point
   {
     throw std::logic_error("Scale command do not find");
   }
-  if (isWrongFigureCreation)
+  else if (!result[0])
+  {
+    throw std::runtime_error("Nothing to scale");
+  }
+  else if (isWrongFigureCreation)
   {
     throw std::invalid_argument("Wrong figure creation");
   }

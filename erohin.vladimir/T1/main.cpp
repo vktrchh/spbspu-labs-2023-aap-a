@@ -49,10 +49,6 @@ int main()
   if (isWrongFigureCreation)
   {
     std::cerr << "Wrong parametres to create a figure\n";
-    return 4;
   }
-  else
-  {
-    return 0;
-  }
+  return 0;
 }
