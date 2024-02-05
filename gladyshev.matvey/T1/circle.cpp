@@ -1,11 +1,8 @@
-#include <cmath>
-
 #include "circle.hpp"
 
 gladyshev::Circle::Circle(const point_t& p1, double radius):
-  radiuscircle_{ radius },
-  p1FrameCir_{ p1.x - radius, p1.y - radius },
-  p2FrameCir_{ p1.x + radius, p1.y + radius }
+  radiusCircle_{ radius },
+  poscir_{ p1 }
 {}
 
 gladyshev::Circle::~Circle()
@@ -13,24 +10,22 @@ gladyshev::Circle::~Circle()
 
 double gladyshev::Circle::getArea() const
 {
-  return (radiuscircle_ * radiuscircle_ * 3.14);
+  return radiusCircle_ * radiusCircle_ * 3.14;
 }
 
 gladyshev::rectangle_t gladyshev::Circle::getFrameRect() const
 {
   rectangle_t frameRect;
-  frameRect.height = std::abs(p1FrameCir_.y - p2FrameCir_.y);
-  frameRect.width = std::abs(p1FrameCir_.x - p2FrameCir_.x);
-  frameRect.pos = { (p1FrameCir_.x + p2FrameCir_.x) / 2, (p1FrameCir_.y + p2FrameCir_.y) / 2 };
+  frameRect.height = 2 * radiusCircle_;
+  frameRect.width = 2 * radiusCircle_;
+  frameRect.pos = { poscir_.x, poscir_.y };
   return frameRect;
 }
 
 void gladyshev::Circle::move(double dx, double dy)
 {
-  p1FrameCir_.x += dx;
-  p2FrameCir_.x += dx;
-  p1FrameCir_.y += dy;
-  p2FrameCir_.y += dy;
+  poscir_.x += dx;
+  poscir_.y += dy;
 }
 void gladyshev::Circle::move(const point_t& newPos)
 {
@@ -39,9 +34,5 @@ void gladyshev::Circle::move(const point_t& newPos)
 
 void gladyshev::Circle::scale(double factor)
 {
-  rectangle_t frameRect = getFrameRect();
-  p1FrameCir_.x = p1FrameCir_.x - (frameRect.pos.x - p1FrameCir_.x) * (factor - 1);
-  p1FrameCir_.y = p1FrameCir_.y - (frameRect.pos.y - p1FrameCir_.y) * (factor - 1);
-  p2FrameCir_.x = p2FrameCir_.x - (frameRect.pos.x - p2FrameCir_.x) * (factor - 1);
-  p2FrameCir_.y = p2FrameCir_.y - (frameRect.pos.y - p2FrameCir_.y) * (factor - 1);
+  radiusCircle_ *= factor;
 }
