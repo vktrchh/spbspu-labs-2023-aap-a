@@ -8,6 +8,6 @@ void rebdev::isoScale(Shape ** shapes, const int & numOfShape, const point_t & s
     point_t centerPoint = shapes[i]->getFrameRect().pos;
     shapes[i]->move(scalePoint);
     shapes[i]->scale(k);
-    shapes[i]->move((centerPoint.x - scalePoint.x) * k, (centerPoint.y - scalePoint.y) * k);
+    shapes[i]->move((scalePoint.x - centerPoint.x) * k, (scalePoint.y - centerPoint.y) * k);
   }
 };
