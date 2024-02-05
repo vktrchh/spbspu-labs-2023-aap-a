@@ -88,11 +88,12 @@ int main(int argc, char * argv[])
   output << kovtun::countEqualInColumns(matrix, rows, cols) << "\n";
 
   kovtun::transformMatrix(matrix, rows, cols);
-  output << rows << " " << cols << " ";
+  output << rows << " " << cols;
   for (size_t i = 0; i < size; i++)
   {
-    output << matrix[i] << " ";
+    output << " " << matrix[i];
   }
+  output << "\n";
 
   if (num == 2)
   {
