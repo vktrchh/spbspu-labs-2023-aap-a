@@ -17,7 +17,7 @@ void rebdev::outputShapes(Shape ** shapes, size_t numOfShapes, std::ostream & ou
   {
     rebdev::rectangle_t rect = shapes[i]->getFrameRect();
     rebdev::point_t lowLeft = {rect.pos.x - rect.width / 2, rect.pos.y - rect.height / 2};
-    rebdev::point_t upRight = {lowLeft.x + rect.width / 2, lowLeft.y + rect.height / 2};
+    rebdev::point_t upRight = {rect.pos.x + rect.width / 2, rect.pos.y + rect.height / 2};
     out << ' ' << lowLeft.x << ' ' << lowLeft.y;
     out << ' ' << upRight.x << ' ' << upRight.y;
   }
