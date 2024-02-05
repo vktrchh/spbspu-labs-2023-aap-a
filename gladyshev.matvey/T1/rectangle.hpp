@@ -5,7 +5,7 @@
 
 namespace gladyshev
 {
-  class Rectangle : public Shape
+  class Rectangle: public Shape
   {
     public:
       Rectangle(const point_t& p1, const point_t& p2);
