@@ -9,7 +9,7 @@ namespace zakozhurnikova
   {
   public:
     Rectangle() = delete;
-    Rectangle(const point_t& downLeft, const point_t upRight) :
+    Rectangle(const point_t& downLeft, const point_t& upRight) :
       downLeft_(downLeft),
       upRight_(upRight)
     {}

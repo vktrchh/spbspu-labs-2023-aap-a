@@ -15,7 +15,7 @@ double zakozhurnikova::Complexquad::getArea() const
   double determinant = (x2 - x1) * (y4 - y3) - (x4 - x3) * (y2 - y1);
   double determinantX = (x2 - x1) * (y3 * (x4 - x3) - x3 * (y4 - y3)) - (x4 - x3) * (y1 * (x2 - x1) - x1 * (y2 - y1));
   double determinantY = (y2 - y1) * (y3 * (x4 - x3) - x3 * (y4 - y3)) - (y4 - y3) * (y1 * (x2 - x1) - x1 * (y2 - y1));
-  point_t center(determinantX / determinant, determinantY / determinant);
+  zakozhurnikova::point_t center(determinantX / determinant, determinantY / determinant);
 
   double a1 = p1_.getDistance(center);
   double b1 = p4_.getDistance(center);

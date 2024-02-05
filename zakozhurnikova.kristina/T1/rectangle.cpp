@@ -8,17 +8,17 @@ double zakozhurnikova::Rectangle::getArea() const
   return width * height;
 }
 
-rectangle_t zakozhurnikova::Rectangle::getFrameRect() const
+zakozhurnikova::rectangle_t zakozhurnikova::Rectangle::getFrameRect() const
 {
   double width = upRight_.getX() - downLeft_.getX();
   double height = upRight_.getY() - downLeft_.getY();
   point_t pos(width / 2, height / 2);
-  return rectangle_t(width, height, pos);
+  return zakozhurnikova::rectangle_t(width, height, pos);
 }
 
 void zakozhurnikova::Rectangle::move(const point_t& p)
 {
-  point_t center(downLeft_ + upRight_)  / 2.0;
+  zakozhurnikova::point_t center(downLeft_ + upRight_)  / 2.0;
   double shiftX = p.getX() - center.getX();
   double shiftY = p.getY() - center.getY();
   move(shiftX, shiftY);
@@ -26,7 +26,7 @@ void zakozhurnikova::Rectangle::move(const point_t& p)
 
 void zakozhurnikova::Rectangle::move(double dx, double dy)
 {
-  point_t shift(dx, dy);
+ zakozhurnikova::point_t shift(dx, dy);
   downLeft_ += shift;
   upRight_ += shift;
 }
@@ -37,7 +37,7 @@ void zakozhurnikova::Rectangle::scale(double k)
   {
     throw std::invalid_argument("Scale coefficient should be a positive real number.");
   }
-  point_t pos((downLeft_ + upRight_) / 2.0);
+  zakozhurnikova::point_t pos((downLeft_ + upRight_) / 2.0);
   downLeft_ = downLeft_.scaleShift(k, pos);
   upRight_ = upRight_.scaleShift(k, pos);
 }
