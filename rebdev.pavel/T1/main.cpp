@@ -28,7 +28,7 @@ int main()
     return 2;
   }
 
-  int numOfShape = 0;
+  size_t numOfShape = 0;
   bool isScale = 0, figureError = 0;
 
   while (std::getline(std::cin, figureName, ' '))
