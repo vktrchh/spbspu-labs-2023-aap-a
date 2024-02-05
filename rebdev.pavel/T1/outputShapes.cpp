@@ -21,6 +21,4 @@ void rebdev::outputShapes(Shape ** shapes, size_t numOfShapes, std::ostream & ou
     out << ' ' << lowLeft.x << ' ' << lowLeft.y;
     out << ' ' << upRight.x << ' ' << upRight.y;
   }
-
-  out << '\n';
 };

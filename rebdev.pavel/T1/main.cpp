@@ -50,6 +50,7 @@ int main()
       }
 
       rebdev::outputShapes(shapes, numOfShape, std::cout);
+      std::cout << '\n';
       rebdev::isoScale(shapes, numOfShape, isoPoint, k);
 
       isScale = 1;
@@ -60,7 +61,7 @@ int main()
       try
       {
         shapes[numOfShape] = rebdev::newFigure(std::cin, figureName);
-        numOfShape += 1;
+        numOfShape += (shapes[numOfShape] != nullptr);
       }
       catch (const std::exception & e)
       {
@@ -89,6 +90,8 @@ int main()
   }
 
   rebdev::outputShapes(shapes, numOfShape, std::cout);
+  std::cout << '\n';
+
   for (size_t i = 0; i < numOfShape; ++i)
   {
     delete shapes[i];
