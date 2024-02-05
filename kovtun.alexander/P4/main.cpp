@@ -65,13 +65,14 @@ int main(int argc, char * argv[])
 
   int * matrix = nullptr;
   int sArr[10000] = {0};
-  int * dArr = new int[size]();
+  int * dArr = nullptr;
   if (num == 1)
   {
     matrix = sArr;
   }
   else
   {
+    dArr = new int[size]();
     matrix = dArr;
   }
 
