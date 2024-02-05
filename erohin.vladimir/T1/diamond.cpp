@@ -30,6 +30,10 @@ erohin::Diamond::Diamond(point_t* corner)
     }
   }
   delete[] side;
+  if (frameRect_.width * frameRect_.height == 0.0)
+  {
+    throw std::invalid_argument("Diamond sides are not parallel to the axes");
+  }
   frameRect_.pos = corner[(max_ind + 2) % 3];
 }
 
