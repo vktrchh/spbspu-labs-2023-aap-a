@@ -1,6 +1,5 @@
 #include <fstream>
 #include <cstdlib>
-
 #include "matrix_input.hpp"
 #include "trimatrix_check.hpp"
 #include "numrow_check.hpp"
