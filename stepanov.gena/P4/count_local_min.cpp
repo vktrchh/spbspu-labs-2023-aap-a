@@ -1,7 +1,9 @@
 #include "count_local_min.hpp"
+#include "is_min.hpp"
 
 size_t stepanov::countLocalMin(int const matrix[], size_t rows, size_t cols)
 {
+  const int *ptr = matrix;
   size_t count = 0;
   if (rows != 0 && cols != 0)
   {
@@ -10,14 +12,7 @@ size_t stepanov::countLocalMin(int const matrix[], size_t rows, size_t cols)
       for (size_t j = 1; j < cols - 1; ++j)
       {
         size_t index = i * cols + j;
-        if (matrix[index] < matrix[index - cols] &&
-          matrix[index] < matrix[index + cols] &&
-          matrix[index] < matrix[index - 1] &&
-          matrix[index] < matrix[index + 1] &&
-          matrix[index] < matrix[index - cols - 1] &&
-          matrix[index] < matrix[index - cols + 1] &&
-          matrix[index] < matrix[index + cols - 1] &&
-          matrix[index] < matrix[index + cols + 1])
+        if (isMin(ptr, index, cols))
         {
           count++;
         }
