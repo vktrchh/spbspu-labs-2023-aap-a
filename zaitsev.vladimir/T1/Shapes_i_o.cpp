@@ -123,19 +123,3 @@ std::ostream& zaitsev::shapesOutput(std::ostream& output, const Shape* const* sh
   output.copyfmt(format_holder);
   return output;
 }
-
-void zaitsev::addShape(Shape*** shapes, size_t &size, size_t &capacity, Shape* new_shape)
-{
-  if (capacity == 0 || size >= capacity - 1)
-  {
-    Shape** resized = new Shape * [capacity + 10];
-    std::memcpy(resized, *shapes, size * sizeof(Shape*));
-    delete[] *shapes;
-    *shapes = resized;
-    capacity += 10;
-  }
-
-  (*shapes)[size] = new_shape;
-  ++size;
-  return;
-}

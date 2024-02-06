@@ -13,6 +13,5 @@ namespace zaitsev
   Shape* readParallelogram(char* param);
   void readScale(char* param, point_t& center, double& factor);
   std::ostream& shapesOutput(std::ostream& output, const Shape* const* shapes, size_t size);
-  void addShape(Shape*** shapes, size_t &size, size_t &capacity, Shape* new_shape);
 }
 #endif

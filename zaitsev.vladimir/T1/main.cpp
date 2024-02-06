@@ -15,8 +15,7 @@ int main()
   std::string shape_param;
   char* shape_param_copy = nullptr;
   size_t size = 0;
-  size_t capacity = 0;
-  Shape** shapes = nullptr;
+  Shape* shapes[10'000] = {};
   bool wrong_args = false;
 
   try
@@ -32,7 +31,6 @@ int main()
         {
           delete shapes[i];
         }
-        delete[] shapes;
         return 1;
       }
       if (shape_type == "RECTANGLE")
@@ -42,8 +40,8 @@ int main()
         Shape* res = readRectangle(shape_param_copy);
         if (res)
         {
-          addShape(std::addressof(shapes), size, capacity, res);
-        }
+          shapes[size] = res;
+          ++size;        }
         else
         {
           wrong_args = true;
@@ -56,7 +54,8 @@ int main()
         Shape* res = readComplexquad(shape_param_copy);
         if (res)
         {
-          addShape(std::addressof(shapes), size, capacity, res);
+          shapes[size] = res;
+          ++size;
         }
         else
         {
@@ -70,7 +69,8 @@ int main()
         Shape* res = readParallelogram(shape_param_copy);
         if (res)
         {
-          addShape(std::addressof(shapes), size, capacity, res);
+          shapes[size] = res;
+          ++size;
         }
         else
         {
@@ -85,7 +85,6 @@ int main()
         {
           std::cerr << "Error: No shapes to scale\n";
           delete[] shape_param_copy;
-          delete[] shapes;
           return 1;
         }
 
@@ -113,7 +112,6 @@ int main()
           {
             delete shapes[i];
           }
-          delete[] shapes;
           return 1;
         }
 
@@ -122,7 +120,6 @@ int main()
         {
           delete shapes[i];
         }
-        delete[] shapes;
         return 0;
       }
       delete[] shape_param_copy;
@@ -137,7 +134,6 @@ int main()
     {
       delete shapes[i];
     }
-    delete[] shapes;
   }
 
   return 1;
