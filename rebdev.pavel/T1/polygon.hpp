@@ -19,6 +19,7 @@ namespace rebdev
     private:
       point_t * vertexs_;
       size_t numOfVertexs_;
+      point_t getPolygonCenter();
   };
 }
 #endif
