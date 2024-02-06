@@ -4,6 +4,6 @@
 #include <fstream>
 namespace petuhov
 {
-  void fillMatrix(int * matrix, size_t rows, size_t cols, std::ifstream & input);
+  void fillMatrix(int * matrix, size_t rows, size_t cols, std::istream & input);
 }
 #endif

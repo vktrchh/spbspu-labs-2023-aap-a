@@ -16,9 +16,13 @@ int main(int argc, char ** argv)
   int arr_type = 0;
   try
   {
-    arr_type = std::stoi(argv[1]);
-
-    if (arr_type != 1 && arr_type != 2)
+    size_t pos;
+    arr_type = std::stoi(argv[1], &pos);
+    if (pos < std::string(argv[1]).length())
+    {
+      throw std::invalid_argument("Invalid argument: not a valid integer");
+    }
+    else if (arr_type != 1 && arr_type != 2)
     {
       throw std::out_of_range("Argument is out of range. Argument must be 1 or 2.");
     }

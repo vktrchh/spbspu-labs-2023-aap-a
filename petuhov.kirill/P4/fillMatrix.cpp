@@ -1,7 +1,7 @@
 #include "fillMatrix.hpp"
 #include <stdexcept>
 
-void petuhov::fillMatrix(int * matrix, size_t rows, size_t cols, std::ifstream & input)
+void petuhov::fillMatrix(int * matrix, size_t rows, size_t cols, std::istream & input)
 {
   for (size_t i = 0; i < rows; ++i)
   {
