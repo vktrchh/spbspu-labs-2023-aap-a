@@ -1,7 +1,6 @@
 #include "inputShapesSource.hpp"
 
 #include <string>
-#include <cctype>
 
 #include "rectangle.hpp"
 #include "circle.hpp"
@@ -52,7 +51,7 @@ namespace zhalilov
   {
     size_t length = 0;
     size_t size = 10;
-    double *nums = new double[size];
+    double *nums = new double[size]{};
     while (input >> nums[length])
     {
       if (length + 1 == size)
