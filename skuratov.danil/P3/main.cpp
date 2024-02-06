@@ -13,18 +13,20 @@ int main()
     try
     {
         char* inputLine = new char[size]{};
-        inputLine = readString(inputLine, size);
-
+        readString(inputLine, size);
+        
         if (inputLine[0] == '\0')
         {
             delete[] inputLine;
             throw std::invalid_argument("Empty input");
         }
 
-        char* mergedStrings = new char[size] {};
-        char* stringWithRemovedDuplicates = new char[size] {};
+        char* mergedStrings = new char[size * 2] {};
         std::cout << mergeTwoLines(mergedStrings, inputLine, lineOfProgram) << '\n';
+
+        char* stringWithRemovedDuplicates = new char[size] {};
         std::cout << removeDuplicate(stringWithRemovedDuplicates, lineOfProgram, inputLine, 3, size);
+
         delete[] inputLine;
         delete[] mergedStrings;
         delete[] stringWithRemovedDuplicates;
