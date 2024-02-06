@@ -1,6 +1,5 @@
 #include "inputShapesSource.hpp"
 
-#include <cstring>
 #include <string>
 #include <cctype>
 
@@ -92,9 +91,8 @@ namespace zhalilov
     }
   }
 
-  Shape *identifyShape(const std::string &srcString)
+  Shape *identifyShape(const std::string &name, std::istream &input)
   {
-    std::istringstream input(srcString);
     using shapeCreatingFunc = Shape *(*)(std::istream &input);
     size_t namesSize = 3;
     const std::string shapeNames[] = {"RECTANGLE", "CIRCLE", "POLYGON"};
@@ -102,8 +100,6 @@ namespace zhalilov
     functions[0] = inputRectangle;
     functions[1] = inputCircle;
     functions[2] = inputPolygon;
-    std::string name;
-    input >> name;
     for (size_t i = 0; i < namesSize; i++)
     {
       if (shapeNames[i] == name)
@@ -113,46 +109,37 @@ namespace zhalilov
     }
     return nullptr;
   }
-
-  bool identifyScale(point_t &point, double &ratio, const std::string &srcString)
-  {
-    std::istringstream input(srcString);
-    if (name == "SCALE")
-    {
-      if (nums[2] <= 0.0)
-      {
-        throw std::underflow_error("ratio scale should be greater than zero");
-      }
-      center = { nums[0], nums[1] };
-      ratio = nums[2];
-      return true;
-    }
-    return false;
-  }
 }
 
 void zhalilov::inputShapesSource(Shape **shapes, point_t &point, double &ratio, size_t &length, std::istream &input)
 {
   size_t shapeIndex = 0;
-  std::string srcString = "";
   bool hasIncorrectShapes = false;
-  while (std::getline(input, srcString))
+  while (true)
   {
     try
     {
-      shapes[shapeIndex] = identifyShape(srcString);
-      if (shapes[shapeIndex])
+      std::string name;
+      input >> name;
+      if (name == "SCALE")
       {
-        shapeIndex++;
-      }
-      else if (identifyScale(point, ratio, srcString))
-      {
+        input >> point.x >> point.y;
+        input >> ratio;
         length = shapeIndex;
+        if (ratio <= 0.0)
+        {
+          throw std::underflow_error("ratio scale should be greater than zero");
+        }
         if (hasIncorrectShapes)
         {
           throw std::invalid_argument("some shapes have incorrect source");
         }
         return;
+      }
+      shapes[shapeIndex] = identifyShape(name, input);
+      if (shapes[shapeIndex])
+      {
+        shapeIndex++;
       }
     }
     catch (const std::invalid_argument &e)
