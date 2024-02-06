@@ -1,0 +1,4 @@
+#ifndef REMOVING_VOWELS_HPP
+#define REMOVING_VOWELS_HPP
+
+#endif
