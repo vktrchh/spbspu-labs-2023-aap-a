@@ -12,7 +12,7 @@ char* skuratov::transformInputString(char* input, size_t size)
   std::cin >> std::noskipws;
   while (std::cin >> c)
   {
-    if (i == 0 && c == '\n')
+    if (i == 0 && c == '\0')
     {
       throw std::runtime_error("Error input");
     }
