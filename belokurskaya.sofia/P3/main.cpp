@@ -29,15 +29,7 @@ int main()
     toLowerCase(original_input_str);
     std::cout << original_input_str << "\n";
   }
-  catch (const std::bad_alloc& e)
-  {
-    std::cerr << "Error: " << e.what() << "\n";
-    delete[] input_str;
-    delete[] not_input_chars;
-    delete[] original_input_str;
-    return 1;
-  }
-  catch (const std::logic_error& e)
+  catch (const std::exception& e)
   {
     std::cerr << "Error: " << e.what() << "\n";
     delete[] input_str;

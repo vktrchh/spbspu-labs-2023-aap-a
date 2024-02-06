@@ -51,7 +51,6 @@ char* belokurskaya::inputString(std::istream& input)
 
   if (input_str[0] == '\0')
   {
-    delete[] input_str;
     throw std::logic_error("Invalid input");
   }
   return input_str;
