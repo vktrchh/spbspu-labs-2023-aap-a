@@ -1,5 +1,6 @@
 #include "mergeTwoLines.h"
 #include "removeDuplicate.h"
+#include "readString.hpp"
 
 #include <cstddef>
 #include <iostream>
@@ -8,52 +9,24 @@
 int main()
 {
   using namespace skuratov;
-  size_t size = 10;
-  char* inputLine = new char[size]{};
+  size_t size = 20;
   const char* lineOfProgram = "abc";
-
-  char c = 0;
-  size_t i = 0;
-
-  std::cin >> std::noskipws;
-  while (std::cin >> c)
+  try
   {
-    if (!std::cin)
-    {
-      std::cerr << "Error input\n";
-      return 1;
+        char* inputLine = new char[size]{};
+        inputLine = readString(inputLine, size);
+        char* mergedStrings = new char[size] {};
+        char* stringWithRemovedDuplicates = new char[size] {};
+        std::cout << mergeTwoLines(mergedStrings, inputLine, lineOfProgram) << '\n';
+        std::cout << removeDuplicate(stringWithRemovedDuplicates, lineOfProgram, inputLine, 3, size);
+        delete[] inputLine;
+        delete[] mergedStrings;
+        delete[] stringWithRemovedDuplicates;
     }
-    if (i < size)
+    catch (const std::exception& e)
     {
-      inputLine[i++] = c;
-      if (c == '\n')
-      {
-        inputLine[i - 1] = 0;
-        break;
-      }
+        std::cout << e.what() << '\n';
+        return 1;
     }
-    else
-    {
-      size *= 2;
-      char* oldInput = inputLine;
-      inputLine = new char[size]{};
-      for (size_t m = 0; m < i; m++)
-      {
-        inputLine[m] = oldInput[m];
-      }
-      inputLine[i++] = c;
-      if (c == '\n')
-      {
-        inputLine[i - 1] = 0;
-        break;
-      }
-    }
-  }
-  char* mergedStrings = new char[size] {};
-  char* stringWithRemovedDuplicates = new char[size] {};
-  std::cout << mergeTwoLines(mergedStrings, inputLine, lineOfProgram) << '\n';
-  std::cout << removeDuplicate(stringWithRemovedDuplicates, lineOfProgram, inputLine, 3, size);
-  delete[] inputLine;
-  delete[] mergedStrings;
-  delete[] stringWithRemovedDuplicates;
+  return 0;
 }
