@@ -57,24 +57,24 @@ double rebdev::Polygon::getArea() const
 
 rebdev::rectangle_t rebdev::Polygon::getFrameRect() const
 {
-  double xMin = std::numeric_limits< double >::max(), xMax = std::numeric_limits< double >::min();
-  double yMin = xMin, yMax = xMax;
+  double xMin = vertexs_[0].x, xMax = vertexs_[0].x;
+  double yMin = vertexs_[0].y, yMax = vertexs_[0].y;
   for (size_t i = 0; i < numOfVertexs_; ++i)
   {
-    xMin = ((xMin >= vertexs_[i].x) ? vertexs_[i].x : xMin);
-    yMin = ((yMin >= vertexs_[i].y) ? vertexs_[i].y : yMin);
-    xMax = ((xMax <= vertexs_[i].x) ? vertexs_[i].x : xMax);
-    yMax = ((yMax <= vertexs_[i].y) ? vertexs_[i].y : yMax);
+    xMin = ((xMin > vertexs_[i].x) ? vertexs_[i].x : xMin);
+    yMin = ((yMin > vertexs_[i].y) ? vertexs_[i].y : yMin);
+    xMax = ((xMax < vertexs_[i].x) ? vertexs_[i].x : xMax);
+    yMax = ((yMax < vertexs_[i].y) ? vertexs_[i].y : yMax);
   }
-  return rectangle_t{(xMax - xMin), (yMax - yMin), point_t{xMin + (xMax - xMin)/2, yMin + (yMax - yMin)/2}};
+  return rectangle_t{(xMax - xMin), (yMax - yMin), point_t{(xMax + xMin) / 2, (yMax + yMin)/2}};
 };
 
 void rebdev::Polygon::move(const point_t point)
 {
   point_t center = getPolygonCenter();
 
-  double xChange = center.x - point.x;
-  double yChange = center.y - point.y;
+  double xChange = point.x - center.x;
+  double yChange = point.y - center.y;
   for (size_t i = 0; i < numOfVertexs_; ++i)
   {
     vertexs_[i].x += xChange;
