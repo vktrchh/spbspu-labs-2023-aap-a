@@ -49,7 +49,7 @@ char* belokurskaya::inputString(std::istream& input)
 
   input_str[index] = '\0';
 
-  if (input_str[0] == '\0')
+  if (input_str[0] == 0)
   {
     throw std::logic_error("Invalid input");
   }
