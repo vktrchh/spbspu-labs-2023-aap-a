@@ -1,6 +1,5 @@
 #include "removeDuplicate.h"
 
-#include "transformInputString.h"
 #include <cstddef>
 
 char* skuratov::removeDuplicate(char* result, const char* lineOfProgram, char* lineOfInput, size_t len1, size_t len2)
