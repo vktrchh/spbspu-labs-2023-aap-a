@@ -17,6 +17,7 @@ int main()
 
   try
   {
+    delete[] input_str;
     input_str = inputString(std::cin);
     not_input_chars = new char[26]{};
     transformString(input_str, not_input_chars);
