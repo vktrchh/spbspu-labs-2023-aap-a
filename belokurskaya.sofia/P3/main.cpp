@@ -11,7 +11,7 @@ int main()
   const int initial_input_size = 100;
   const int new_memory = 10;
 
-  char* input_str = new char[initial_input_size + 1];
+  char* input_str = new char[initial_input_size + 1]{};
   char* not_input_chars = nullptr;
   char* original_input_str = nullptr;
 
@@ -27,9 +27,6 @@ int main()
 
     toLowerCase(original_input_str);
     std::cout << original_input_str << "\n";
-    delete[] input_str;
-    delete[] not_input_chars;
-    delete[] original_input_str;
   }
   catch (const std::bad_alloc& e)
   {
@@ -47,6 +44,9 @@ int main()
     delete[] original_input_str;
     return 1;
   }
+  delete[] input_str;
+  delete[] not_input_chars;
+  delete[] original_input_str;
 
   return 0;
 }

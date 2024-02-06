@@ -7,7 +7,7 @@ char* belokurskaya::resizeStringBuffer(const char* my_string, const size_t size,
 {
   try
   {
-    char* result = new char[new_memory + 1] {};
+    char* result = new char[new_memory + 1]{};
 
     std::copy(my_string, my_string + size, result);
     result[size] = '\0';
@@ -26,7 +26,7 @@ char* belokurskaya::inputString(std::istream& input)
   const int initial_size_of_memory = 20;
   const int new_memory = 10;
 
-  char* input_str = new char[initial_size_of_memory + 1];
+  char* input_str = new char[initial_size_of_memory + 1]{};
   char c = '\0';
   int index = 0;
   int size_of_memory = initial_size_of_memory;
@@ -38,7 +38,7 @@ char* belokurskaya::inputString(std::istream& input)
     input_str[index++] = c;
     if (index > size_of_memory)
     {
-      char* temp = new char[size_of_memory + new_memory + 1];
+      char* temp = new char[size_of_memory + new_memory + 1]{};
       std::copy(input_str, input_str + size_of_memory, temp);
       delete[] input_str;
       input_str = temp;
