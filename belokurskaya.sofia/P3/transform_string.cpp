@@ -45,3 +45,4 @@ void belokurskaya::toLowerCase(char* input)
     }
   }
 }
+
