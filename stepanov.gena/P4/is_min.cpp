@@ -1,7 +1,8 @@
 #include "is_min.hpp"
 
-bool stepanov::isMin(const int *matrix,size_t index, size_t cols)
+bool stepanov::findMin(const int *matrix, size_t index, size_t cols)
 {
+  size_t number = matrix[index];
   if (matrix[index] < matrix[index - cols] &&
           matrix[index] < matrix[index + cols] &&
           matrix[index] < matrix[index - 1] &&
