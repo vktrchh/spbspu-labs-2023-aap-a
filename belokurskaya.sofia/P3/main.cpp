@@ -23,6 +23,9 @@ int main()
 
     toLowerCase(original_input_str);
     std::cout << original_input_str << "\n";
+    delete[] input_str;
+    delete[] not_input_chars;
+    delete[] original_input_str;
   }
   catch (const std::exception& e)
   {
@@ -41,9 +44,5 @@ int main()
     }
     return 1;
   }
-  delete[] input_str;
-  delete[] not_input_chars;
-  delete[] original_input_str;
-
   return 0;
 }
