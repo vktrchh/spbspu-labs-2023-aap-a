@@ -1,7 +1,7 @@
 #include "reading_a_string.hpp"
 
+#include <iostream>
 #include <cstring>
-#include <algorithm>
 
 char* belokurskaya::resizeStringBuffer(const char* my_string, const size_t size, const size_t new_memory)
 {
@@ -21,26 +21,37 @@ char* belokurskaya::resizeStringBuffer(const char* my_string, const size_t size,
   }
 }
 
-std::string belokurskaya::inputString(std::istream& input)
+char* belokurskaya::inputString(std::istream& input)
 {
-  const size_t size_of_memory = 20;
-  std::string input_str;
-  char c;
+  const int initial_size_of_memory = 20;
+  const int new_memory = 10;
+
+  char* input_str = new char[initial_size_of_memory + 1];
+  char c = '\0';
+  int index = 0;
+  int size_of_memory = initial_size_of_memory;
 
   input >> std::noskipws;
 
   while ((input >> c) && c != '\n')
   {
-    input_str += c;
-    if (input_str.size() > size_of_memory)
+    input_str[index++] = c;
+    if (index > size_of_memory)
     {
-      input_str.resize(input_str.size() + size_of_memory);
+      char* temp = new char[size_of_memory + new_memory + 1];
+      std::copy(input_str, input_str + size_of_memory, temp);
+      delete[] input_str;
+      input_str = temp;
+      size_of_memory += new_memory;
     }
   }
   input >> std::skipws;
 
-  if (input_str[0] == 0)
+  input_str[index] = '\0';
+
+  if (input_str[0] == '\0')
   {
+    delete[] input_str;
     throw std::logic_error("Invalid input");
   }
   return input_str;
