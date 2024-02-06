@@ -14,13 +14,13 @@ int main()
     {
         char* inputLine = new char[size]{};
         inputLine = readString(inputLine, size);
-        
+
         if (inputLine[0] == '\0')
         {
             delete[] inputLine;
             throw std::invalid_argument("Empty input");
         }
-        
+
         char* mergedStrings = new char[size] {};
         char* stringWithRemovedDuplicates = new char[size] {};
         std::cout << mergeTwoLines(mergedStrings, inputLine, lineOfProgram) << '\n';
