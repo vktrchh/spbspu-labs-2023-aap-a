@@ -30,18 +30,9 @@ int main()
   catch (const std::exception& e)
   {
     std::cerr << "Error: " << e.what() << "\n";
-    if (input_str != nullptr)
-    {
-      delete[] input_str;
-    }
-    if (not_input_chars != nullptr)
-    {
-      delete[] not_input_chars;
-    }
-    if (original_input_str != nullptr)
-    {
-      delete[] original_input_str;
-    }
+    delete[] input_str;
+    delete[] not_input_chars;
+    delete[] original_input_str;
     return 1;
   }
   return 0;

@@ -5,20 +5,12 @@
 
 char* belokurskaya::resizeStringBuffer(const char* my_string, const size_t size, const size_t new_memory)
 {
-  try
-  {
-    char* result = new char[new_memory + 1]{};
+  char* result = new char[new_memory + 1]{};
 
-    std::copy(my_string, my_string + size, result);
-    result[size] = '\0';
+  std::copy(my_string, my_string + size, result);
+  result[size] = '\0';
 
-    return result;
-  }
-  catch (const std::bad_alloc& e)
-  {
-    std::cerr << "Error: " << e.what() << "\n";
-    throw;
-  }
+  return result;
 }
 
 char* belokurskaya::inputString(std::istream& input)
