@@ -1,7 +1,7 @@
 #include "count_local_min.hpp"
 #include "is_min.hpp"
 
-size_t stepanov::countLocalMin(int const matrix[], size_t rows, size_t cols)
+size_t stepanov::countLocalMin(const int *matrix, size_t rows, size_t cols)
 {
   const int *ptr = matrix;
   size_t count = 0;

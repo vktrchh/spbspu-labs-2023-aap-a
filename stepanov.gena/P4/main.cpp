@@ -74,6 +74,7 @@ int main(int argc, char* argv[])
     std::cerr << "The first number is neither 1 nor 2\n";
     return 1;
   }
+
   size_t check = inputArray(input, matrix, rows, cols);
   if (check != rows * cols)
   {

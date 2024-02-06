@@ -7,7 +7,6 @@ size_t stepanov::findMaxRow(const int matrix[], size_t rows, size_t cols)
   for (size_t i = 0; i < rows; ++i)
   {
     size_t currentLength = 1;
-
     for (size_t j = 1; j < cols; ++j)
     {
       size_t index = i * cols + j;
