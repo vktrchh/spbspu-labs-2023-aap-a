@@ -4,7 +4,7 @@
 #include <fstream>
 #include <stdexcept>
 
-void chernov::readMatrix(std::ifstream& input, int* matrix, const size_t& rows, const size_t& cols)
+void chernov::readMatrix(std::ifstream& input, int* matrix, size_t rows, size_t cols)
 {
   for (size_t i = 0; i < rows * cols; ++i)
   {
