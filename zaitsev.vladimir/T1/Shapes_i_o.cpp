@@ -14,7 +14,7 @@
 double zaitsev::readNextValue(char* param)
 {
   static char* strtok_context = nullptr;
-  char* pos = strtok_s(param, " ", std::addressof(strtok_context));
+  char* pos = std::strtok_r(param, " ", std::addressof(strtok_context));
   char* ptr = nullptr;
   double val = std::strtod(pos, std::addressof(ptr));
   if (val == 0 && ptr == pos)
