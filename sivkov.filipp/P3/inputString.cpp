@@ -10,6 +10,7 @@ char* sivkov::addString(std::istream& in)
   char c = 0;
   size_t i = 0;
 
+  in >> std::noskipws;
   while ((in >> c) && (c != '\n'))
   {
     if (i == (size - 1))
