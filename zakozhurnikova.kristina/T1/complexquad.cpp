@@ -4,18 +4,7 @@
 
 double zakozhurnikova::Complexquad::getArea() const
 {
-  double x1 = p1_.getX();
-  double y1 = p1_.getY();
-  double x2 = p2_.getX();
-  double y2 = p2_.getY();
-  double x3 = p3_.getX();
-  double y3 = p3_.getY();
-  double x4 = p4_.getX();
-  double y4 = p4_.getY();
-  double determinant = (x2 - x1) * (y4 - y3) - (x4 - x3) * (y2 - y1);
-  double determinantX = (x2 - x1) * (y3 * (x4 - x3) - x3 * (y4 - y3)) - (x4 - x3) * (y1 * (x2 - x1) - x1 * (y2 - y1));
-  double determinantY = (y2 - y1) * (y3 * (x4 - x3) - x3 * (y4 - y3)) - (y4 - y3) * (y1 * (x2 - x1) - x1 * (y2 - y1));
-  zakozhurnikova::point_t center(determinantX / determinant, determinantY / determinant);
+  zakozhurnikova::point_t center = getCenter();
 
   double a1 = p1_.getDistance(center);
   double b1 = p4_.getDistance(center);
@@ -54,19 +43,7 @@ zakozhurnikova::rectangle_t zakozhurnikova::Complexquad::getFrameRect() const
 
 void zakozhurnikova::Complexquad::move(const point_t& p)
 {
-  double x1 = p1_.getX();
-  double y1 = p1_.getY();
-  double x2 = p2_.getX();
-  double y2 = p2_.getY();
-  double x3 = p3_.getX();
-  double y3 = p3_.getY();
-  double x4 = p4_.getX();
-  double y4 = p4_.getY();
-  double determinant = (x2 - x1) * (y4 - y3) - (x4 - x3) * (y2 - y1);
-  double determinantX = (x2 - x1) * (y3 * (x4 - x3) - x3 * (y4 - y3)) - (x4 - x3) * (y1 * (x2 - x1) - x1 * (y2 - y1));
-  double determinantY = (y2 - y1) * (y3 * (x4 - x3) - x3 * (y4 - y3)) - (y4 - y3) * (y1 * (x2 - x1) - x1 * (y2 - y1));
-  zakozhurnikova::point_t center(determinantX / determinant, determinantY / determinant);
-
+  zakozhurnikova::point_t center = getCenter();
   zakozhurnikova::point_t shift(-(center - p));
   p1_ += shift;
   p2_ += shift;
@@ -88,6 +65,15 @@ void zakozhurnikova::Complexquad::scale(double k)
   {
     throw std::invalid_argument("Scale coefficient should be a positive real number.");
   }
+  zakozhurnikova::point_t center = getCenter();
+  p1_ = p1_.scaleShift(k, center);
+  p2_ = p2_.scaleShift(k, center);
+  p3_ = p3_.scaleShift(k, center);
+  p4_ = p4_.scaleShift(k, center);
+}
+
+zakozhurnikova::point_t zakozhurnikova::Complexquad::getCenter() const
+{
   double x1 = p1_.getX();
   double y1 = p1_.getY();
   double x2 = p2_.getX();
@@ -99,9 +85,6 @@ void zakozhurnikova::Complexquad::scale(double k)
   double determinant = (x2 - x1) * (y4 - y3) - (x4 - x3) * (y2 - y1);
   double determinantX = (x2 - x1) * (y3 * (x4 - x3) - x3 * (y4 - y3)) - (x4 - x3) * (y1 * (x2 - x1) - x1 * (y2 - y1));
   double determinantY = (y2 - y1) * (y3 * (x4 - x3) - x3 * (y4 - y3)) - (y4 - y3) * (y1 * (x2 - x1) - x1 * (y2 - y1));
-  zakozhurnikova::point_t center(determinantX / determinant, determinantY / determinant);
-  p1_ = p1_.scaleShift(k, center);
-  p2_ = p2_.scaleShift(k, center);
-  p3_ = p3_.scaleShift(k, center);
-  p4_ = p4_.scaleShift(k, center);
+  return zakozhurnikova::point_t(determinantX / determinant, determinantY / determinant);
 }
+

@@ -13,6 +13,7 @@ namespace zakozhurnikova
     void move(const point_t& p);
     void move(double dx, double dy);
     void scale(double k);
+    point_t getCenter() const;
   private:
     point_t p1_;
     point_t p2_;
