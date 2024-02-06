@@ -18,7 +18,7 @@ char* spiridonov::inputArray(std::istream& input, size_t& sizeOfStr)
 
     while (input >> character && character != '\n')
     {
-      if (i >= capacity)
+      if (i >= capacity - 1)
       {
         capacity += chunkSize;
         char* newArray = new char[capacity]();
@@ -37,17 +37,11 @@ char* spiridonov::inputArray(std::istream& input, size_t& sizeOfStr)
       throw;
     }
 
-    char* finalArray = new char[i + 1]();
-    std::copy(currentArray, currentArray + i, finalArray);
-    finalArray[i] = '\0';
-
-    delete[] currentArray;
-
     sizeOfStr = i;
+    currentArray[i] = '\0';
 
-    return finalArray;
+    return currentArray;
   }
-
   catch (const std::bad_alloc&)
   {
     delete[] currentArray;

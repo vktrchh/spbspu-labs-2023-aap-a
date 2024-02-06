@@ -1,6 +1,6 @@
 #include "manageResources.hpp"
 
-char * spiridonov::manageResources(const char* currentArray, const size_t strOld, size_t strNew)
+char * spiridonov::manageResources(const char* currentArray, size_t strOld, size_t strNew)
 {
   char* result = new char[strNew];
   for (size_t i = 0; i < strOld; ++i)
