@@ -29,8 +29,8 @@ void rebdev::Rectangle::move(const point_t point)
 {
   rectangle_t frameRectangle = getFrameRect();
 
-  double yChange = frameRectangle.pos.y - point.y;
-  double xChange = frameRectangle.pos.x - point.x;
+  double yChange = point.y - frameRectangle.pos.y;
+  double xChange = point.x - frameRectangle.pos.x;
 
   angles_[1].y += yChange;
   angles_[1].x += xChange;
