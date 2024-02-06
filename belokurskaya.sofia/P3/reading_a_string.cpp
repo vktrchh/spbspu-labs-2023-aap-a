@@ -32,26 +32,33 @@ char* belokurskaya::inputString(std::istream& input)
   int size_of_memory = initial_size_of_memory;
 
   input >> std::noskipws;
-
-  while ((input >> c) && c != '\n')
+  try
   {
-    input_str[index++] = c;
-    if (index > size_of_memory)
+    while ((input >> c) && c != '\n')
     {
-      char* temp = new char[size_of_memory + new_memory + 1]{};
-      std::copy(input_str, input_str + size_of_memory, temp);
-      delete[] input_str;
-      input_str = temp;
-      size_of_memory += new_memory;
+      input_str[index++] = c;
+      if (index > size_of_memory)
+      {
+        char* temp = new char[size_of_memory + new_memory + 1]{};
+        std::copy(input_str, input_str + size_of_memory, temp);
+        delete[] input_str;
+        input_str = temp;
+        size_of_memory += new_memory;
+      }
     }
+    input >> std::skipws;
+
+    input_str[index] = '\0';
+
+    if (input_str[0] == 0)
+    {
+      throw std::logic_error("Invalid input");
+    }
+    return input_str;
   }
-  input >> std::skipws;
-
-  input_str[index] = '\0';
-
-  if (input_str[0] == 0)
+  catch (...)
   {
-    throw std::logic_error("Invalid input");
+    delete[] input_str;
+    throw;
   }
-  return input_str;
 }
