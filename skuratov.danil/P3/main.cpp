@@ -11,10 +11,10 @@ int main()
   size_t size = 10;
   char* inputLine = new char[size]{};
   const char* lineOfProgram = "abc";
-  
+
   char c = 0;
   size_t i = 0;
-    
+
   std::cin >> std::noskipws;
   while (std::cin >> c)
   {
