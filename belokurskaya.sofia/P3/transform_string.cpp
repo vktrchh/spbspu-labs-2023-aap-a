@@ -1,11 +1,11 @@
 #include "transform_string.hpp"
 
-void transformString(const char * input, char * result, char * not_input_chars)
+void belokurskaya::transformString(const char* input, char* not_input_chars)
 {
   const int the_size_of_the_latin_alphabet = 26;
   int is_letter_present[the_size_of_the_latin_alphabet] = {0};
 
-  for (size_t i = 0; i < std::strlen(input); ++i)
+  for (size_t i = 0; input[i] != '\0'; ++i)
   {
     char c = std::tolower(input[i]);
     if (std::isalpha(c))
@@ -35,9 +35,9 @@ void transformString(const char * input, char * result, char * not_input_chars)
   }
 }
 
-void toLowerCase(char * input)
+void belokurskaya::toLowerCase(char* input)
 {
-  for (size_t i = 0; i < std::strlen(input); ++i)
+  for (size_t i = 0; input[i] != '\0'; ++i)
   {
     if (std::isalpha(input[i]) && std::isupper(input[i]))
     {
@@ -45,4 +45,3 @@ void toLowerCase(char * input)
     }
   }
 }
-
