@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-long long lebedev::findMinSumOverSubdiag(const int matrix[], size_t rows, size_t cols, long long min_sum)
+long long findMinSumOverSubdiag(const int matrix[], size_t rows, size_t cols, long long min_sum)
 {
   for (size_t i = 1; i < rows - 1; ++i)
   {
@@ -28,7 +28,7 @@ long long lebedev::findMinSumOverSubdiag(const int matrix[], size_t rows, size_t
   return min_sum;
 }
 
-long long lebedev::findMinSumBelowSubdiag(const int matrix[], size_t rows, size_t cols, long long min_sum)
+long long findMinSumBelowSubdiag(const int matrix[], size_t rows, size_t cols, long long min_sum)
 {
   for (size_t j = 1; j < cols; ++j)
   {
@@ -84,8 +84,8 @@ long long lebedev::findMinSumSubdiags(const int matrix[], size_t rows, size_t co
 
   long long upper_min_sum = 0;
   long long lower_min_sum = 0;
-  upper_min_sum = lebedev::findMinSumOverSubdiag(matrix, rows, cols, min_sum);
-  lower_min_sum = lebedev::findMinSumBelowSubdiag(matrix, rows, cols, min_sum);
+  upper_min_sum = findMinSumOverSubdiag(matrix, rows, cols, min_sum);
+  lower_min_sum = findMinSumBelowSubdiag(matrix, rows, cols, min_sum);
   if (upper_min_sum < lower_min_sum && upper_min_sum < min_sum)
   {
     return upper_min_sum;

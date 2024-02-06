@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-size_t lebedev::countOverMainDiag(const int matrix[], size_t rows, size_t cols)
+size_t countOverMainDiag(const int matrix[], size_t rows, size_t cols)
 {
   size_t upper_counter = 0;
   for (size_t j = 1; j < cols; ++j)
@@ -28,7 +28,7 @@ size_t lebedev::countOverMainDiag(const int matrix[], size_t rows, size_t cols)
   return upper_counter;
 }
 
-size_t lebedev::countBelowMainDiag(const int matrix[], size_t rows, size_t cols)
+size_t countBelowMainDiag(const int matrix[], size_t rows, size_t cols)
 {
   size_t below_counter = 0;
   for (size_t i = 1; i < rows; ++i)
@@ -63,9 +63,9 @@ size_t lebedev::countNotZeroDiags(const int matrix[], size_t rows, size_t cols)
   {
     return 0;
   }
-  upper_counter = lebedev::countOverMainDiag(matrix, rows, cols);
+  upper_counter = countOverMainDiag(matrix, rows, cols);
   counter += upper_counter;
-  below_counter = lebedev::countBelowMainDiag(matrix, rows, cols);
+  below_counter = countBelowMainDiag(matrix, rows, cols);
   counter += below_counter;
   return counter;
 }
