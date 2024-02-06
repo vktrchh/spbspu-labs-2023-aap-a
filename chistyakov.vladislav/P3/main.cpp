@@ -9,6 +9,7 @@ int main()
 {
   using namespace chistyakov;
   char* array = nullptr;
+  const size_t numOfCharsInASCII = 128;
 
   try
   {
@@ -25,8 +26,8 @@ int main()
     return 2;
   }
 
-  char dictChar[128]{};
-  size_t dictNumsOfChar[128]{};
+  char dictChar[numOfCharsInASCII]{};
+  size_t dictNumsOfChar[numOfCharsInASCII]{};
   sortByQuantity(array, dictChar, dictNumsOfChar);
 
   if (dictChar[1] == 0 || dictChar[2] == 0)
@@ -36,14 +37,10 @@ int main()
     return 1;
   }
 
-  char result[3]{};
-  sortCertainNumnerOfItems(dictChar, result, 3);
+  char result[] = "abc";
+  sortCertainNumberOfItems(dictChar, result, 3);
 
-  for (size_t i = 0; i < 3; ++i)
-  {
-    std::cout << result[i];
-  }
-  std::cout << "\n";
+  std::cout << result << "\n";
 
   delete[] array;
   return 0;

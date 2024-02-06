@@ -1,13 +1,13 @@
 #include "sort.hpp"
 #include "countNumOfOccurOfLetters.hpp"
 
-char* chistyakov::sortCertainNumnerOfItems(char* array, char* result, size_t lenght)
+char* chistyakov::sortCertainNumberOfItems(char* array, char* result, size_t length)
 {
-  for (size_t i = 1; i < lenght; ++i)
+  for (size_t i = 1; i < length; ++i)
   {
     char timeValue = 0;
     char isSort = 1;
-    for (size_t j = 0; j < lenght - i; ++j)
+    for (size_t j = 0; j < length - i; ++j)
     {
       if (array[j] > array[j + 1])
       {
@@ -23,7 +23,7 @@ char* chistyakov::sortCertainNumnerOfItems(char* array, char* result, size_t len
     }
   }
 
-  for (size_t i = 0; i < lenght; ++i)
+  for (size_t i = 0; i < length; ++i)
   {
     result[i] = array[i];
   }
@@ -35,18 +35,18 @@ void chistyakov::sortByQuantity(const char* array, char* chars, size_t* nums)
 {
   countNumOfOccurOfLetters(array, chars, nums);
 
-  size_t lenght = 0;
-  while (nums[lenght] != 0)
+  size_t length = 0;
+  while (nums[length] != 0)
   {
-    lenght++;
+    length++;
   }
 
-  for (size_t i = 1; i < lenght; ++i)
+  for (size_t i = 1; i < length; ++i)
   {
     size_t timeValueNum = 0;
     char timeValueChar = 0;
     char isSort = 1;
-    for (size_t j = 0; j < lenght - i; ++j)
+    for (size_t j = 0; j < length - i; ++j)
     {
       if (nums[j] < nums[j + 1] && nums[j + 1] != 0)
       {

@@ -3,6 +3,7 @@
 
 void chistyakov::countNumOfOccurOfLetters(const char* array, char* dictChar, size_t* dictNumsOfChar)
 {
+  const size_t numOfCharsInASCII = 128;
   char nowChar = 0;
   size_t i = 0;
 
@@ -12,7 +13,7 @@ void chistyakov::countNumOfOccurOfLetters(const char* array, char* dictChar, siz
     {
       nowChar = array[i];
 
-      for (size_t j = 0; j < 128; ++j)
+      for (size_t j = 0; j < numOfCharsInASCII; ++j)
       {
         if (dictChar[j] == 0)
         {
