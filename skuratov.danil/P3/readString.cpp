@@ -13,12 +13,12 @@ char* readString(char* inputLine, size_t size)
         {
             throw std::invalid_argument("Error input");
         }
-        if (i < size)
+        if (i < size - 1)
         {
             inputLine[i++] = c;
             if (c == '\n')
             {
-                inputLine[i - 1] = 0;
+                inputLine[i] = '\0';
                 break;
             }
         }
@@ -31,13 +31,13 @@ char* readString(char* inputLine, size_t size)
             {
                 inputLine[m] = oldInput[m];
             }
+            delete[] oldInput;
             inputLine[i++] = c;
             if (c == '\n')
             {
-                inputLine[i - 1] = 0;
+                inputLine[i] = '\0';
                 break;
             }
-            delete[] oldInput;
         }
     }
     return inputLine;
