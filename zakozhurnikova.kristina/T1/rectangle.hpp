@@ -18,7 +18,7 @@ namespace zakozhurnikova
       upRight_(rec.upRight_)
     {}
     Rectangle(Rectangle&& rec) = default;
-    ~Rectangle();
+    ~Rectangle()
     {}
     double getArea() const;
     rectangle_t getFrameRect() const;

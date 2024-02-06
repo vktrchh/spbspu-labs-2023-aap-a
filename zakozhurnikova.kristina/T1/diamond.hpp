@@ -1,7 +1,7 @@
 #ifndef DIAMOND_HPP
 #define DIAMOND_HPP
-#include "diamond.hpp"
-#include <exception>
+#include "shape.hpp"
+#include <stdexcept>
 
 namespace zakozhurnikova
 {
@@ -11,31 +11,31 @@ namespace zakozhurnikova
     Diamond() = delete;
     Diamond(const point_t& pointOne, const point_t& pointTwo, const point_t& pointThree)
     {
-      if (pointOne.getX() != pointTwo.getX() && pointOne.getY() != pointTwo.getY)
+      if (pointOne.getX() != pointTwo.getX() && pointOne.getY() != pointTwo.getY())
       {
-        center_(pointThree);
-        pointOne_(pointTone);
-        pointTwo_(pointTwo);
-      } else if (pointOne.getX() != pointThree.getX() && pointOne.getY() != pointThree.getY) {
-        center_(pointTwo);
-        pointOne_(pointOne);
-        pointTwo_(pointTwo);
-      } else if (pointThree.getX() != pointTwo.getX() && pointThree.getY() != pointTwo.getY) {
-        center_(pointOne);
-        pointOne_(pointTwo);
-        pointTwo_(pointThree);
+        center_ = pointThree;
+        pointOne_ = pointOne;
+        pointTwo_ = pointTwo;
+      } else if (pointOne.getX() != pointThree.getX() && pointOne.getY() != pointThree.getY()) {
+        center_ = pointTwo;
+        pointOne_ = pointOne;
+        pointTwo_ = pointTwo;
+      } else if (pointThree.getX() != pointTwo.getX() && pointThree.getY() != pointTwo.getY()) {
+        center_ = pointOne;
+        pointOne_ = pointTwo;
+        pointTwo_ = pointThree;
       } else {
         throw std::invalid_argument("These points do not define a diamond");
       }
 
     }
     Diamond(const Diamond& di) :
-      pointOne_(di.pointOne_);,
-      pointTwo_(di.pointTwo_);
-      center_(center_)
+      pointOne_(di.pointOne_),
+      pointTwo_(di.pointTwo_),
+      center_(di.center_)
     {}
-    Square(Square&& sq) = default;
-    ~Square()
+    Diamond(Diamond&& sq) = default;
+    ~Diamond()
     {}
     double getArea() const;
     rectangle_t getFrameRect() const;

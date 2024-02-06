@@ -28,6 +28,7 @@ namespace zakozhurnikova
     {
       return y_;
     }
+    point_t scaleShift(double k, const point_t& p);
     double getDistance(const point_t& p) const;
     void operator+=(const point_t& p);
     void operator-=(const point_t& p);
@@ -35,7 +36,9 @@ namespace zakozhurnikova
     point_t operator*(double k) const;
     point_t operator/(double k) const;
     point_t operator-(const point_t& p) const;
-    point_t operator-();
+    point_t& operator-();
+    point_t& operator=(const point_t& point);
+    point_t& operator=(point_t&& point);
 
     private:
       double x_;

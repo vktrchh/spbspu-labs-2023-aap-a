@@ -18,7 +18,7 @@ zakozhurnikova::rectangle_t zakozhurnikova::Rectangle::getFrameRect() const
 
 void zakozhurnikova::Rectangle::move(const point_t& p)
 {
-  zakozhurnikova::point_t center(downLeft_ + upRight_)  / 2.0;
+  zakozhurnikova::point_t center((downLeft_ + upRight_)  / 2.0);
   double shiftX = p.getX() - center.getX();
   double shiftY = p.getY() - center.getY();
   move(shiftX, shiftY);

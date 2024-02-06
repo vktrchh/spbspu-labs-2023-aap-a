@@ -32,7 +32,7 @@ double zakozhurnikova::Complexquad::getArea() const
   return area1 + area2;
 }
 
-rectangle_t zakozhurnikova::Complexquad::getFrameRect() const
+zakozhurnikova::rectangle_t zakozhurnikova::Complexquad::getFrameRect() const
 {
   double x1 = p1_.getX();
   double y1 = p1_.getY();
@@ -49,7 +49,7 @@ rectangle_t zakozhurnikova::Complexquad::getFrameRect() const
   double width = maxX - minX;
   double heihgt = maxY - maxY;
   point_t center((maxX + minX) / 2.0, (maxY + minY) / 2.0);
-  return rectangle_t(width, heihgt, center);
+  return zakozhurnikova::rectangle_t(width, heihgt, center);
 }
 
 void zakozhurnikova::Complexquad::move(const point_t& p)
@@ -65,9 +65,9 @@ void zakozhurnikova::Complexquad::move(const point_t& p)
   double determinant = (x2 - x1) * (y4 - y3) - (x4 - x3) * (y2 - y1);
   double determinantX = (x2 - x1) * (y3 * (x4 - x3) - x3 * (y4 - y3)) - (x4 - x3) * (y1 * (x2 - x1) - x1 * (y2 - y1));
   double determinantY = (y2 - y1) * (y3 * (x4 - x3) - x3 * (y4 - y3)) - (y4 - y3) * (y1 * (x2 - x1) - x1 * (y2 - y1));
-  point_t center(determinantX / determinant, determinantY / determinant);
+  zakozhurnikova::point_t center(determinantX / determinant, determinantY / determinant);
 
-  point_t shift(-(center - p));
+  zakozhurnikova::point_t shift(-(center - p));
   p1_ += shift;
   p2_ += shift;
   p3_ += shift;
@@ -76,10 +76,10 @@ void zakozhurnikova::Complexquad::move(const point_t& p)
 
 void zakozhurnikova::Complexquad::move(double dx, double dy)
 {
-  p1_ += point_t(dx, dy);
-  p2_ += point_t(dx, dy);
-  p3_ += point_t(dx, dy);
-  p4_ += point_t(dx, dy);
+  p1_ += zakozhurnikova::point_t(dx, dy);
+  p2_ += zakozhurnikova::point_t(dx, dy);
+  p3_ += zakozhurnikova::point_t(dx, dy);
+  p4_ += zakozhurnikova::point_t(dx, dy);
 }
 
 void zakozhurnikova::Complexquad::scale(double k)
@@ -99,10 +99,9 @@ void zakozhurnikova::Complexquad::scale(double k)
   double determinant = (x2 - x1) * (y4 - y3) - (x4 - x3) * (y2 - y1);
   double determinantX = (x2 - x1) * (y3 * (x4 - x3) - x3 * (y4 - y3)) - (x4 - x3) * (y1 * (x2 - x1) - x1 * (y2 - y1));
   double determinantY = (y2 - y1) * (y3 * (x4 - x3) - x3 * (y4 - y3)) - (y4 - y3) * (y1 * (x2 - x1) - x1 * (y2 - y1));
-  point_t center(determinantX / determinant, determinantY / determinant);
+  zakozhurnikova::point_t center(determinantX / determinant, determinantY / determinant);
   p1_ = p1_.scaleShift(k, center);
   p2_ = p2_.scaleShift(k, center);
   p3_ = p3_.scaleShift(k, center);
   p4_ = p4_.scaleShift(k, center);
 }
-
