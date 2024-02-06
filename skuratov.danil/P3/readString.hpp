@@ -3,6 +3,9 @@
 
 #include <cstddef>
 
-char* readString(char* inputLine, size_t size);
+namespace skuratov
+{
+  char* readString(char* inputLine, size_t size);
+}
 
 #endif
