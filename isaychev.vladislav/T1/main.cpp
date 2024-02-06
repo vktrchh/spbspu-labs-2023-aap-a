@@ -11,7 +11,16 @@ int main()
   const char * scaleStr = "SCALE ";
   char * currDesc = nullptr;
   size_t i = 0, figuresCount = 0, figDescMistakeCheck = 0, eofCheck = 0;
-  Shape ** figures = new Shape *[1000]{};
+  Shape ** figures = nullptr;
+  try
+  {
+    figures = new Shape *[1000]{};
+  }
+  catch(const std::bad_alloc &)
+  {
+    std::cerr << "can't allocate memory for figure array\n";
+    return 1;
+  }
   while (i < 1000)
   {
     try
@@ -32,7 +41,7 @@ int main()
       deleteFigures(figures, figuresCount);
       delete [] currDesc;
       std::cerr << "can't allocate memory for description of figure or a figure itself\n";
-      return 1;
+      return 2;
     }
     catch(const std::logic_error &)
     {
@@ -53,14 +62,14 @@ int main()
     delete [] figures;
     delete [] currDesc;
     std::cerr << "nothing to scale\n";
-    return 2;
+    return 3;
   }
   else if (eofCheck == 1 && checkString(currDesc, scaleStr) == 0)
   {
     deleteFigures(figures, figuresCount);
     delete [] currDesc;
     std::cerr << "input was finished with eof symbol; scale wasn't inputed\n";
-    return 3;
+    return 4;
   }
   else
   {
@@ -76,12 +85,12 @@ int main()
         delete [] currDesc;
         std::cerr << "input was finished with eof symbol; " << e.what() << "\n";
         deleteFigures(figures, figuresCount);
-        return 4;
+        return 5;
       }
       delete [] currDesc;
       std::cerr << e.what() << "\n";
       deleteFigures(figures, figuresCount);
-      return 5;
+      return 6;
     }
     outputResults(figures, figuresCount);
   }
