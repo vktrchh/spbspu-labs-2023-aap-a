@@ -1,4 +1,3 @@
-#define _CRT_SECURE_NO_WARNINGS
 #include "Shapes_i_o.h"
 #include <string>
 #include <cstdlib>
@@ -14,7 +13,8 @@
 
 double zaitsev::readNextValue(char* param)
 {
-  char* pos = std::strtok(param, " ");
+  static char* strtok_context = nullptr;
+  char* pos = strtok_s(param, " ", std::addressof(strtok_context));
   char* ptr = nullptr;
   double val = std::strtod(pos, std::addressof(ptr));
   if (val == 0 && ptr == pos)
