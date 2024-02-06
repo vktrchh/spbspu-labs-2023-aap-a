@@ -49,7 +49,8 @@ int main()
         break;
       }
 
-      rebdev::outputShapes(shapes, numOfShape, std::cout);
+      rebdev::printSum(shapes, numOfShape, std::cout);
+      rebdev::printShapes(shapes, numOfShape, std::cout);
       std::cout << '\n';
       rebdev::isoScale(shapes, numOfShape, isoPoint, k);
 
@@ -89,7 +90,8 @@ int main()
     return 1;
   }
 
-  rebdev::outputShapes(shapes, numOfShape, std::cout);
+  rebdev::printSum(shapes, numOfShape, std::cout);
+  rebdev::printShapes(shapes, numOfShape, std::cout);
   std::cout << '\n';
 
   for (size_t i = 0; i < numOfShape; ++i)
