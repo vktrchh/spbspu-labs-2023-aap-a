@@ -7,24 +7,19 @@
 int main()
 {
   using namespace belokurskaya;
-
-  const int initial_input_size = 100;
-  const int new_memory = 10;
-
-  char* input_str = new char[initial_input_size + 1]{};
+  char* input_str = nullptr;
   char* not_input_chars = nullptr;
   char* original_input_str = nullptr;
 
   try
   {
-    delete[] input_str;
     input_str = inputString(std::cin);
     not_input_chars = new char[26]{};
     transformString(input_str, not_input_chars);
 
     std::cout << not_input_chars << "\n";
 
-    original_input_str = resizeStringBuffer(input_str, strlen(input_str), strlen(input_str) + new_memory + 1);
+    original_input_str = resizeStringBuffer(input_str, strlen(input_str), strlen(input_str) + 1);
 
     toLowerCase(original_input_str);
     std::cout << original_input_str << "\n";
