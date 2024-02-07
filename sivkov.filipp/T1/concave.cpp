@@ -147,7 +147,6 @@ bool Concave::isInsideTriangle(const point_t& A, const point_t& B, const point_t
   double ABC = 0.5 * ((B.x - A.x) * (C.y - A.y) - (C.x - A.x) * (B.y - A.y));
   double ABP = 0.5 * ((B.x - A.x) * (P.y - A.y) - (P.x - A.x) * (B.y - A.y));
   double ACP = 0.5 * ((C.x - A.x) * (P.y - A.y) - (P.x - A.x) * (C.y - A.y));
-  double BCP = 0.5 * ((C.x - B.x) * (P.y - B.y) - (P.x - B.x) * (C.y - B.y));
 
   return (ABC > 0 && ABP > 0 && ACP > 0) || (ABC < 0 && (ABP < 0 || ACP < 0));
 }
