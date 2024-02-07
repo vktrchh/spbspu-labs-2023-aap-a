@@ -14,7 +14,7 @@ belokurskaya::Triangle::Triangle(const point_t& vertex1, const point_t& vertex2,
         throw std::invalid_argument("Invalid triangle: degenerate triangle (zero area).");
     }
 
-    if (vertex1_ == vertex2_  vertex1_ == vertex3_  vertex2_ == vertex3_)
+    if (vertex1_ == vertex2_ || vertex1_ == vertex3_ || vertex2_ == vertex3_)
     {
         throw std::invalid_argument("Invalid triangle: vertices cannot be equal.");
     }
@@ -29,7 +29,7 @@ double belokurskaya::Triangle::getArea() const
   return std::sqrt(s * (s - a) * (s - b) * (s - c));
 }
 
-belkurskaya::rectangle_t Triangle::getFrameRect() const
+rectangle_t belokurskaya::Triangle::getFrameRect() const
 {
   double min_x = std::min({vertex1_.x, vertex2_.x, vertex3_.x});
   double max_x = std::max({vertex1_.x, vertex2_.x, vertex3_.x});
@@ -60,6 +60,12 @@ void belokurskaya::Triangle::move(const point_t& new_pos)
 
 void belokurskaya::Triangle::move(double dx, double dy)
 {
+  vertex1_.x += dx;
+  vertex1_.y += dy;
+  vertex2_.x += dx;
+  vertex2_.y += dy;
+  vertex3_.x += dx;
+  vertex3_.y += dy;
 }
 
 void belokurskaya::Triangle::scale(double factor)

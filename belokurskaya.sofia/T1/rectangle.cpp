@@ -1,4 +1,5 @@
 #include "rectangle.hpp"
+#include "base-types.hpp"
 
 #include <stdexcept>
 
@@ -15,7 +16,7 @@ double belokurskaya::Rectangle::getArea() const
   return width_ * height_;
 }
 
-belokurskaya::rectangle_t Rectangle::getFrameRect() const
+rectangle_t belokurskaya::Rectangle::getFrameRect() const
 {
   return {pos_, width_, height_};
 }

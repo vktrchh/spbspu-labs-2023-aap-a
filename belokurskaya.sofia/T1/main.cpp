@@ -4,6 +4,7 @@
 #include <cmath>
 
 #include "rectangle.hpp"
+#include "triangle.hpp"
 
 int main()
 {
@@ -27,6 +28,12 @@ int main()
       double center_x = (lower_left_x + upper_right_x) / 2.0;
       double center_y = (lower_left_y + upper_right_y) / 2.0;
       shapes[shape_count++] = new belokurskaya::Rectangle({ center_x, center_y }, width, height);
+    }
+    else if (command == "TRIANGLE" && shape_count < max_shapes)
+    {
+      double vertex1_x, vertex1_y, vertex2_x, vertex2_y, vertex3_x, vertex3_y;
+      inputStream >> vertex1_x >> vertex1_y >> vertex2_x >> vertex2_y >> vertex3_x >> vertex3_y;
+      shapes[shape_count++] = new belokurskaya::Triangle({vertex1_x, vertex1_y}, {vertex2_x, vertex2_y}, {vertex3_x, vertex3_y});
     }
     else if (command == "SCALE")
     {
