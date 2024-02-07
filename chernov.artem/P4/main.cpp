@@ -77,6 +77,10 @@ int main(int argc, char* argv[])
   }
   catch (const std::exception& e)
   {
+    if (num == 1)
+    {
+      delete[] matrix;
+    }
     std::cerr << e.what() << '\n';
     return 1;
   }
