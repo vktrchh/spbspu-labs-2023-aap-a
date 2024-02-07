@@ -8,7 +8,7 @@
 int main()
 {
   const int max_shapes = 1000;
-  Shape* shapes[max_shapes];
+  belokurskaya::Shape* shapes[max_shapes];
   int shape_count = 0;
 
   std::string input;
@@ -26,7 +26,7 @@ int main()
       double height = std::abs(upper_right_y - lower_left_y);
       double center_x = (lower_left_x + upper_right_x) / 2.0;
       double center_y = (lower_left_y + upper_right_y) / 2.0;
-      shapes[shape_count++] = new Rectangle({ center_x, center_y }, width, height);
+      shapes[shape_count++] = new belokurskaya::Rectangle({ center_x, center_y }, width, height);
     }
     else if (command == "SCALE")
     {
@@ -61,7 +61,7 @@ int main()
     std::cout << std::fixed;
     std::cout.precision(1);
     std::cout << shapes[i]->getArea() << " ";
-    rectangle_t frameRect = shapes[i]->getFrameRect();
+    belokurskaya::rectangle_t frameRect = shapes[i]->getFrameRect();
     double scale_lower_left_x = frameRect.pos.x - frameRect.width / 2.0;
     double scale_lower_left_y = frameRect.pos.y - frameRect.height / 2.0;
     double scale_upper_right_x = frameRect.pos.x + frameRect.width / 2.0;

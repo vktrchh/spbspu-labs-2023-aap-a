@@ -2,7 +2,7 @@
 
 #include <stdexcept>
 
-Rectangle::Rectangle(const point_t & pos, double width, double height):pos_(pos), width_(width), height_(height)
+belokurskaya::Rectangle::Rectangle(const point_t & pos, double width, double height):pos_(pos), width_(width), height_(height)
 {
   if (width <= 0 || height <= 0)
   {
@@ -10,28 +10,28 @@ Rectangle::Rectangle(const point_t & pos, double width, double height):pos_(pos)
   }
 }
 
-double Rectangle::getArea() const
+double belokurskaya::Rectangle::getArea() const
 {
   return width_ * height_;
 }
 
-rectangle_t Rectangle::getFrameRect() const
+belokurskaya::rectangle_t Rectangle::getFrameRect() const
 {
   return {pos_, width_, height_};
 }
 
-void Rectangle::move(const point_t & new_pos)
+void belokurskaya::Rectangle::move(const point_t & new_pos)
 {
   pos_ = new_pos;
 }
 
-void Rectangle::move(double dx, double dy)
+void belokurskaya::Rectangle::move(double dx, double dy)
 {
   pos_.x += dx;
   pos_.y += dy;
 }
 
-void Rectangle::scale(double factor)
+void belokurskaya::Rectangle::scale(double factor)
 {
   if (factor <= 0)
   {
