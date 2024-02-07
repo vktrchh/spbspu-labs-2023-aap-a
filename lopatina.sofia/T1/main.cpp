@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include <iomanip>
+#include <algorithm>
 
 struct point_t
 {
@@ -117,6 +118,61 @@ private:
   point_t pos_sq_;
 };
 
+class Triangle: public Shape
+{
+public:
+  Triangle(point_t point1, point_t point2, point_t point3)
+  {
+    pos_tri_.x_ = (point1.x_ + point2.x_ + point3.x_) / 3.0;
+    pos_tri_.y_ = (point1.y_ + point2.y_ + point3.y_) / 3.0;
+    double max_x = std::max({point1.x_, point2.x_, point3.x_});
+    double min_x = std::min({point1.x_, point2.x_, point3.x_});
+    double max_y = std::max({point1.y_, point2.y_, point3.y_});
+    double min_y = std::min({point1.y_, point2.y_, point3.y_});
+    std::cout << "MAX: x: " << max_x << " y: " << max_y << " MIN: x: " << min_x << " MIN: y: " << min_y << '\n';
+    height_tri_ = max_y - min_y;
+    width_tri_ = max_x - min_x;
+    std::cout << "HEIGHT: " << height_tri_ << " WIDTH: " << width_tri_ << '\n';
+    pos_.x_ = min_x + (width_tri_ / 2.0);
+    pos_.y_ = min_y + (height_tri_ / 2.0);
+  }
+  virtual double getArea()
+  {
+    return height_tri_ * width_tri_;
+  }
+  virtual rectangle_t getFrameRect()
+  {
+    rectangle_t newRect{ height_tri_, width_tri_, pos_ };
+    return newRect;
+  }
+  virtual void move(point_t s)
+  {
+    pos_tri_.x_ = s.x_;
+    pos_tri_.y_ = s.y_;
+  }
+  virtual void move(double x, double y)
+  {
+    pos_tri_.x_ += x;
+    pos_tri_.y_ += y;
+  }
+  virtual rectangle_t scale(point_t s, double k)
+  {
+    point_t point{ pos_tri_.x_, pos_tri_.y_ };
+    move(s);
+    height_tri_ = height_tri_ * k;
+    width_tri_ = width_tri_ * k;
+    std::cout << "IN TRI: HEIGHT: " << height_tri_ << "   WIDTH: " << width_tri_ << '\n';
+    point_t new_pos{ pos_tri_.x_ - k * (pos_tri_.x_ - point.x_), pos_tri_.y_ - k * (pos_tri_.y_ - point.y_) };
+    move(new_pos);
+    rectangle_t newRect{ height_tri_, width_tri_, pos_tri_ };
+    return newRect;
+  }
+private:
+  double height_tri_;
+  double width_tri_;
+  point_t pos_tri_;
+  point_t pos_;
+};
 
 int main()
 {
@@ -161,7 +217,23 @@ int main()
   std::cout << (scale2_x - (side / 2.0)) << ' ' << (scale2_y - (side / 2.0)) << '\n';
   std::cout << (scale2_x + (side / 2.0)) << ' ' << (scale2_y + (side / 2.0)) << '\n';
 
-  std::cout << "TEST_4:\n";
+  std::cout << "\nTEST_4:\n";
+  Shape *four = new Triangle({ -2.0, 0.0 }, {-1.5, 2.5}, {-1.0, -2.0});
+  std::cout << "Area: " << four->getArea() << '\n';
+  rectangle_t frame3 = four->getFrameRect();
+  std::cout << "Frame.x: " << frame3.pos_.x_ << '\n';
+  std::cout << "Frame.y: " << frame3.pos_.y_ << '\n';
+  rectangle_t sc3 = four->scale({ 0.0, 0.0 }, 2.0);
+  double scale3_x = sc3.pos_.x_;
+  double scale3_y = sc3.pos_.y_;
+  double h4 = sc3.height_;
+  double w4 = sc3.width_;
+  std::cout << "H: " << h4 << " W: " << w4 << '\n';
+  std::cout << "Scale: x: " << scale3_x << "  y: " << scale3_y << '\n';
+  std::cout << (scale3_x - (w4 / 2.0)) << ' ' << (scale3_y - (h4 / 2.0)) << '\n';
+  std::cout << (scale3_x + (w4 / 2.0)) << ' ' << (scale3_y + (h4 / 2.0)) << '\n';
+
+  std::cout << "\nTEST_NUMBERS:\n";
   std::cout << "3.46 -> " << round(3.46 * 10) / 10 << '\n';
   std::cout << "3.44 -> " << round(3.44 * 10) / 10 << '\n';
   std::cout << "3.45 -> " << round(3.45 * 10) / 10 << '\n';
