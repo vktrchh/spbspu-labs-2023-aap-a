@@ -2,7 +2,7 @@
 
 #include <cstddef>
 
-size_t chernov::countNonZeroDiagonals(int* matrix, size_t cols, size_t rows)
+size_t chernov::countNonZeroDiagonals(const int* matrix, size_t cols, size_t rows)
 {
   size_t counter = (rows - 1) * 2;
   for (size_t i = 1; i < rows; i++)

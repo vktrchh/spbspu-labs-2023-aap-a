@@ -5,6 +5,6 @@
 
 namespace chernov
 {
-  size_t countNonZeroDiagonals(int* matrix, size_t cols, size_t rows);
+  size_t countNonZeroDiagonals(const int* matrix, size_t cols, size_t rows);
 }
 #endif

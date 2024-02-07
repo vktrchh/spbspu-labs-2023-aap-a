@@ -9,7 +9,14 @@ void chernov::writeMatrix(std::ofstream& out, int* matrix, size_t rows, size_t c
   {
     for (size_t j = 0; j < cols; j++)
     {
-      out << matrix[i * cols + j] << " ";
+      if (i == rows && j == cols)
+      {
+        out << matrix[i * cols + j];
+      }
+      else
+      {
+        out << matrix[i * cols + j] << " ";
+      }
       if (!out)
       {
         throw std::invalid_argument("Error output matrix");
