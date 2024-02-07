@@ -8,27 +8,33 @@
 
 int main()
 {
-  const size_t size = 10;
+  size_t size = 10;
+  char* inputLine = new char[size];
+  std::fill(inputLine, inputLine + size, '\0');
   const char* lineOfProgram = "abc";
 
   try
   {
+    inputLine = skuratov::transformInputString(inputLine, size);
 
     size_t size1 = 0;
-    char* inputLine = new char[size];
-    inputLine = skuratov::transformInputString(inputLine, size);
     char* inputLinePtr = inputLine;
     if (inputLine[0] == '\0')
     {
-        delete[] inputLine;
-        throw std::invalid_argument("Empty input");
+      delete[] inputLine;
+      throw std::invalid_argument("Empty input");
     }
-    while (*inputLinePtr != '\0')
+    for (size_t i = 0; i != size; ++i)
     {
-      size1++;
-      inputLinePtr++;
+      if (inputLine[i] != '\0')
+      {
+        size1++;
+      }
+      else
+      {
+        break;
+      }
     }
-
     size_t size2 = 0;
     while (*lineOfProgram != '\0')
     {
