@@ -52,31 +52,38 @@ namespace zhalilov
     size_t length = 0;
     size_t size = 10;
     double *nums = new double[size]{};
-    while (input >> nums[length])
+    point_t *points = nullptr;
+    try
     {
-      if (length + 1 == size)
+      while (true)
       {
-        double *newNums = nullptr;
-        newNums = new double[size + 4]{};
-        for (size_t j = 0; j < size; j++)
+        double hui;
+        input >> hui;
+        if (input.fail())
         {
-          newNums[j] = nums[j];
+          std::cout << "pizda";
+          input.clear();
+          break;
         }
-        delete[] nums;
-        nums = newNums;
-        size += 4;
+        length++;
       }
-      length++;
+      if (length % 2 != 0 || length < 6)
+      {
+        delete[] nums;
+        throw std::invalid_argument("incorrect polygon src's nums of args");
+      }
+      point_t *points = new point_t[length / 2];
+      for (size_t i = 0; i < length; i += 2)
+      {
+        points[i / 2] = { nums[i], nums[i + 1] };
+      }
     }
-    if (length % 2 != 0 || length < 6)
+    catch (const std::bad_alloc &e)
     {
-      throw std::invalid_argument("incorrect polygon src's nums of args");
+      delete[] nums;
+      delete[] points;
     }
-    point_t *points = new point_t[length / 2];
-    for (size_t i = 0; i < length; i += 2)
-    {
-      points[i / 2] = { nums[i], nums[i + 1] };
-    }
+    delete[] nums;
     try
     {
       Shape *shape = new Polygon(points, length / 2);
@@ -122,18 +129,11 @@ void zhalilov::inputShapesSource(Shape **shapes, point_t &point, double &ratio, 
       input >> name;
       if (name == "SCALE")
       {
+        std::cout << "SCLAE";
         input >> point.x >> point.y;
         input >> ratio;
         length = shapeIndex;
-        if (ratio <= 0.0)
-        {
-          throw std::underflow_error("ratio scale should be greater than zero");
-        }
-        if (hasIncorrectShapes)
-        {
-          throw std::invalid_argument("some shapes have incorrect source");
-        }
-        return;
+        break;
       }
       shapes[shapeIndex] = identifyShape(name, input);
       if (shapes[shapeIndex])
@@ -151,4 +151,14 @@ void zhalilov::inputShapesSource(Shape **shapes, point_t &point, double &ratio, 
       throw;
     }
   }
+
+  if (ratio <= 0.0)
+  {
+    throw std::underflow_error("ratio scale should be greater than zero");
+  }
+  if (hasIncorrectShapes)
+  {
+    throw std::invalid_argument("some shapes have incorrect source");
+  }
+  return;
 }
