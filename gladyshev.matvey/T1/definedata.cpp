@@ -54,7 +54,7 @@ namespace gladyshev
 
   Shape * inputCircle(std::istream& in)
   {
-    double p[3] = { 0 };
+    double p[3]{};
     for (size_t i = 0; i < 3; ++i)
     {
       in >> p[i];
@@ -76,7 +76,7 @@ namespace gladyshev
 
   Shape * inputParallelogram(std::istream& in)
   {
-    double p[6] = { 0 };
+    double p[6]{};
     for (size_t i = 0; i < 6; ++i)
     {
       in >> p[i];
