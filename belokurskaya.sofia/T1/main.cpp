@@ -1,35 +1,46 @@
-#include "utilities.hpp"
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <cmath>
+
+#include "rectangle.hpp"
 
 int main()
 {
-  Shape* shape = nullptr;
+  const int max_shapes = 1000;
+  Shape* shapes[max_shapes];
+  int shape_count = 0;
 
-  std::string command;
-  while (std::cin >> command)
+  std::string input;
+  while (std::getline(std::cin, input))
   {
-    if (command == "RECTANGLE")
+    std::istringstream inputStream(input);
+    std::string command;
+    inputStream >> command;
+
+    if (command == "RECTANGLE" && shape_count < max_shapes)
     {
-      if (shape != nullptr)
-      {
-        delete shape;
-      }
-      shape = readShape();
+      double lower_left_x, lower_left_y, upper_right_x, upper_right_y;
+      inputStream >> lower_left_x >> lower_left_y >> upper_right_x >> upper_right_y;
+      double width = std::abs(upper_right_x - lower_left_x);
+      double height = std::abs(upper_right_y - lower_left_y);
+      double center_x = (lower_left_x + upper_right_x) / 2.0;
+      double center_y = (lower_left_y + upper_right_y) / 2.0;
+      shapes[shape_count++] = new Rectangle({ center_x, center_y }, width, height);
     }
     else if (command == "SCALE")
     {
-      if (shape == nullptr)
+      double scale_point_x, scale_point_y, scale_factor;
+      inputStream >> scale_point_x >> scale_point_y >> scale_factor;
+      for (int i = 0; i < shape_count; ++i)
       {
-        std::cerr << "No shape to scale\n";
-      }
-      else
-      {
-        float centerX, centerY, scale_factor;
-        std::cin >> centerX >> centerY >> scale_factor;
         try
         {
-          shape->move({0.0, 0.0});
-          shape->scale(scale_factor);
-          shape->move({centerX, centerY});
+          double dx = (shapes[i]->getFrameRect().pos.x - scale_point_x) * scale_factor;
+          double dy = (shapes[i]->getFrameRect().pos.y - scale_point_y) * scale_factor;
+          shapes[i]->move({ scale_point_x, scale_point_y});
+          shapes[i]->scale(scale_factor);
+          shapes[i]->move({ -dx, -dy});
         }
         catch (const std::invalid_argument& e)
         {
@@ -39,14 +50,22 @@ int main()
     }
     else
     {
-      std::cerr << "Error: Unknown command.\n";
+      std::cerr << "Unknown command.\n";
     }
   }
 
-  if (shape != nullptr)
+  for (int i = 0; i < shape_count; ++i)
   {
-    printShapeInfo(*shape);
-    delete shape;
+    std::cout << shapes[i]->getArea() << " ";
+    rectangle_t frameRect = shapes[i]->getFrameRect();
+    double scale_lower_left_x = frameRect.pos.x - frameRect.width / 2.0;
+    double scale_lower_left_y = frameRect.pos.y - frameRect.height / 2.0;
+    double scale_upper_right_x = frameRect.pos.x + frameRect.width / 2.0;
+    double scale_upper_right_y = frameRect.pos.y + frameRect.height / 2.0;
+    std::cout << scale_lower_left_x << " " << scale_lower_left_y << " " << scale_upper_right_x << " " << scale_upper_right_y << " ";
+    std::cout << "\n";
+
+    delete shapes[i];
   }
   return 0;
 }
