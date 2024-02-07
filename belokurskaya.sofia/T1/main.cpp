@@ -27,7 +27,6 @@ int main()
       double center_x = (lower_left_x + upper_right_x) / 2.0;
       double center_y = (lower_left_y + upper_right_y) / 2.0;
       shapes[shape_count++] = new Rectangle({ center_x, center_y }, width, height);
-      std::cout << width * height << " " << lower_left_x << " " << lower_left_y << " " << upper_right_x << " " << upper_right_y << "\n";
     }
     else if (command == "SCALE")
     {
@@ -59,6 +58,8 @@ int main()
 
   for (int i = 0; i < shape_count; ++i)
   {
+    std::cout << std::fixed;
+    std::cout.precision(1);
     std::cout << shapes[i]->getArea() << " ";
     rectangle_t frameRect = shapes[i]->getFrameRect();
     double scale_lower_left_x = frameRect.pos.x - frameRect.width / 2.0;
