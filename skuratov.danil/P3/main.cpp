@@ -10,6 +10,7 @@ int main()
     using namespace skuratov;
     size_t size = 20;
     const char* lineOfProgram = "abc";
+    
     try
     {
         char* inputLine = new char[size]{};
