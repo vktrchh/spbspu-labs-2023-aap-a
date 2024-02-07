@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
 
   std::ifstream in(argv[2]);
   std::ofstream out(argv[3]);
-  
+
   if (!in.is_open())
   {
     std::cerr << "Cannot open file!" << '\n';
@@ -87,7 +87,7 @@ int main(int argc, char* argv[])
   size_t res1 = 0;
   size_t res2 = 0;
   size_t res3 = 0;
-  
+
   try
   {
     readArray(in, matrix, rows, cols);
