@@ -9,13 +9,11 @@
 int main()
 {
   size_t size = 10;
-  char* inputLine = new char[size];
-  std::fill(inputLine, inputLine + size, '\0');
   const char* lineOfProgram = "abc";
 
   try
   {
-    inputLine = skuratov::transformInputString(inputLine, size);
+    char* inputLine = skuratov::transformInputString(size);
 
     size_t size1 = 0;
     char* inputLinePtr = inputLine;

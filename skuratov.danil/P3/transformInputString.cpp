@@ -5,8 +5,9 @@
 #include <stdexcept>
 #include <cstddef>
 
-char* skuratov::transformInputString(char* input, size_t& size)
+char* skuratov::transformInputString(size_t& size)
 {
+  char* input = new char[size] {};
   char c = 0;
   size_t i = 0;
   std::cin >> std::noskipws;
@@ -19,7 +20,7 @@ char* skuratov::transformInputString(char* input, size_t& size)
     if (i == size - 1)
     {
       size += 10;
-      char* newInput = new char[size];
+      char* newInput = new char[size] {};
       for (size_t j = 0; j < i; j++)
       {
         newInput[j] = input[j];

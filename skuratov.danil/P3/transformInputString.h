@@ -5,7 +5,7 @@
 
 namespace skuratov
 {
-  char* transformInputString(char* input, size_t& size);
+  char* transformInputString(size_t& size);
 }
 
 #endif
