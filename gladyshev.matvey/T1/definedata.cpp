@@ -20,7 +20,7 @@ namespace gladyshev
     }
     if (in.get() != '\n')
     {
-      throw std::invalid_argument("too many args for rectangle");
+      throw std::logic_error("too many args for rectangle");
     }
     if ((p[0] == p[2]) || (p[1] == p[3]) || (p[2] < p[0]) || (p[3] < p[1]))
     {
@@ -42,7 +42,7 @@ namespace gladyshev
     }
     if (in.get() != '\n')
     {
-      throw std::invalid_argument("too many args for scale");
+      throw std::logic_error("too many args for scale");
     }
     if (dataScale[2] <= 0)
     {
@@ -65,7 +65,7 @@ namespace gladyshev
     }
      if (in.get() != '\n')
     {
-      throw std::invalid_argument("too many args for circle");
+      throw std::logic_error("too many args for circle");
     }
     if (p[2] <= 0)
     {
@@ -87,7 +87,7 @@ namespace gladyshev
     }
     if (in.get() != '\n')
     {
-      throw std::invalid_argument("too many args for scale");
+      throw std::logic_error("too many args for scale");
     }
     if (!(((p[1] == p[3]) && (p[3] != p[5]) && (p[0] != p[2])) || ((p[3] == p[5]) && (p[5] != p[1]) && (p[2] != p[4]))))
     {
