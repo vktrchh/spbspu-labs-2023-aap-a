@@ -1,6 +1,7 @@
 #include "complexquad.hpp"
 #include <stdexcept>
 #include "base-types.hpp"
+#include "geom_func.hpp"
 #include "rectangle.hpp"
 #include "triangle.hpp"
 
@@ -13,41 +14,26 @@ erohin::Complexquad::Complexquad() :
 erohin::Complexquad::Complexquad(point_t* corner)
 {
   vertex_ = new point_t[4]{ {0.0, 0.0} };
-  center_ = { 0.0, 0.0 };
   for (int i = 0; i < 4; ++i)
   {
     vertex_[i] = corner[i];
   }
-  double dx[3]{ 0.0 };
-  double dy[3]{ 0.0 };
-  for (int i = 0; i < 3; ++i)
+  try
   {
-    dx[i] = vertex_[i + 1].x - vertex_[i].x;
-    dy[i] = vertex_[i + 1].y - vertex_[i].y;
-  }
-  double x = 0.0;
-  double y = 0.0;
-  if (dy[0] * dx[2] != dy[2] * dx[0] && dx[0] != 0.0)
-  {
-    x = (vertex_[2].y * dx[2] - vertex_[2].x * dy[2]) * dx[0];
-    x -= (vertex_[0].y * dx[0] - vertex_[0].x * dy[0]) * dx[0];
-    x /= (dy[0] * dx[2] - dy[2] * dx[0]);
-    y = vertex_[0].y + (dy[0] / dx[0]) * (x - vertex_[0].x);
-  }
-  else
-  {
-    delete[] vertex_;
-    throw std::invalid_argument("Wrong figure creation");
-  }
-  for (int i = 0; i < 3; i += 2)
-  {
-    if ((x - vertex_[i].x) * (x - vertex_[i + 1].x) >= 0 || (y - vertex_[i].y) * (y - vertex_[i + 1].y) >= 0)
+    center_ = findIntersectionPoint(vertex_);
+    for (int i = 0; i < 3; i += 2)
     {
-      delete[] vertex_;
-      throw std::invalid_argument("Complexquad sides does not intersect");
+      if (!isPointOnSegment(center_, vertex_[i], vertex_[i + 1]))
+      {
+        throw std::invalid_argument("Cannot create figure");
+      }
     }
   }
-  center_ = {x, y};
+  catch (const std::invalid_argument&)
+  {
+    delete[] vertex_;
+    throw;
+  }
 }
 
 erohin::Complexquad::~Complexquad()
@@ -67,11 +53,6 @@ double erohin::Complexquad::getArea() const
     area += Triangle(point).getArea();
   }
   return area;
-}
-
-erohin::point_t erohin::Complexquad::getCenter() const
-{
-  return center_;
 }
 
 erohin::rectangle_t erohin::Complexquad::getFrameRect() const

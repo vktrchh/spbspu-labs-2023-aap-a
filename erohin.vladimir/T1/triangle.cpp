@@ -21,7 +21,7 @@ erohin::Triangle::Triangle(point_t* corner)
   double* side = nullptr;
   try
   {
-    side = getSide();
+    side = getSides(vertex_, 3);
     for (int i = 0; i < 3; ++i)
     {
       if (side[i % 3] >= side[(i + 1) % 3] + side[(i + 2) % 3])
@@ -29,7 +29,6 @@ erohin::Triangle::Triangle(point_t* corner)
         throw std::invalid_argument("Wrong figure creation");
       }
     }
-    delete[] side;
   }
   catch (...)
   {
@@ -37,6 +36,7 @@ erohin::Triangle::Triangle(point_t* corner)
     delete[] side;
     throw;
   }
+  delete[] side;
   center_ = {0.0, 0.0};
   for (int i = 0; i < 3; ++i)
   {
@@ -52,7 +52,7 @@ erohin::Triangle::~Triangle()
 
 double erohin::Triangle::getArea() const
 {
-  double* side = getSide();
+  double* side = getSides(vertex_, 3);
   double p = 0.0;
   for (int i = 0; i < 3; ++i)
   {
@@ -65,11 +65,6 @@ double erohin::Triangle::getArea() const
   }
   delete[] side;
   return std::sqrt(result);
-}
-
-erohin::point_t erohin::Triangle::getCenter() const
-{
-  return center_;
 }
 
 erohin::rectangle_t erohin::Triangle::getFrameRect() const
@@ -127,14 +122,4 @@ void erohin::Triangle::scale(double ratio)
     vertex_[i].x = center_.x + (vertex_[i].x - center_.x) * ratio;
     vertex_[i].y = center_.y + (vertex_[i].y - center_.y) * ratio;
   }
-}
-
-double* erohin::Triangle::getSide() const
-{
-  double* side = new double[3] { 0.0 };
-  for (int i = 0; i < 3; ++i)
-  {
-    side[i] = getDistance(vertex_[i], vertex_[(i + 1) % 3]);
-  }
-  return side;
 }

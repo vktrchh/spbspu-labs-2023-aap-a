@@ -13,7 +13,6 @@ namespace erohin
     Diamond(point_t* corner);
     virtual ~Diamond();
     virtual double getArea() const;
-    virtual point_t getCenter() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(double dx, double dy);
     virtual void move(point_t point);

@@ -53,13 +53,13 @@ void erohin::inputShape(Shape** result, std::istream& input, size_t& size, point
   {
     throw std::logic_error("Scale command do not find");
   }
-  else if (!result[0])
-  {
-    throw std::runtime_error("Nothing to scale");
-  }
   else if (isWrongFigureCreation)
   {
     throw std::invalid_argument("Wrong figure creation");
+  }
+  else if (!result[0])
+  {
+    throw std::runtime_error("Nothing to scale");
   }
 }
 

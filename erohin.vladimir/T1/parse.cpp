@@ -25,13 +25,10 @@ erohin::Shape* erohin::parseShape(const std::string string, point_t& pos, double
       {
         str += string[i];
       }
-      else if (isFigureNameFull)
+      else if (isFigureNameFull && par_number < par_max_size)
       {
-        if (par_number < par_max_size)
-        {
-          par[par_number++] = stod(str, nullptr);
-          str = "";
-        }
+        par[par_number++] = stod(str, nullptr);
+        str = "";
       }
       else
       {

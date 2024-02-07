@@ -13,7 +13,6 @@ namespace erohin
     Rectangle(point_t left_corner, point_t right_corner);
     virtual ~Rectangle();
     virtual double getArea() const;
-    virtual point_t getCenter() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(double dx, double dy);
     virtual void move(point_t point);

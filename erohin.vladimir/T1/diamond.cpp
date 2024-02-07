@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include "base-types.hpp"
 #include "triangle.hpp"
+#include "geom_func.hpp"
 
 erohin::Diamond::Diamond() :
   frameRect_ {0.0, 0.0, { 0.0, 0.0 } }
@@ -10,10 +11,8 @@ erohin::Diamond::Diamond() :
 erohin::Diamond::Diamond(point_t* corner)
 {
   frameRect_ = { 0.0, 0.0, { 0.0, 0.0 } };
-  double * side = Triangle(corner).getSide();
+  double * side = getSides(corner, 3);
   int max_ind = 0;
-  frameRect_.width = 0.0;
-  frameRect_.height = 0.0;
   for (int i = 0; i < 3; ++i)
   {
     if (side[i] >= side[max_ind])
@@ -30,11 +29,11 @@ erohin::Diamond::Diamond(point_t* corner)
     }
   }
   delete[] side;
+  frameRect_.pos = corner[(max_ind + 2) % 3];
   if (frameRect_.width * frameRect_.height == 0.0)
   {
     throw std::invalid_argument("Diamond sides are not parallel to the axes");
   }
-  frameRect_.pos = corner[(max_ind + 2) % 3];
 }
 
 erohin::Diamond::~Diamond() = default;
@@ -42,11 +41,6 @@ erohin::Diamond::~Diamond() = default;
 double erohin::Diamond::getArea() const
 {
   return (frameRect_.width * frameRect_.height) / 2;
-}
-
-erohin::point_t erohin::Diamond::getCenter() const
-{
-  return frameRect_.pos;
 }
 
 erohin::rectangle_t erohin::Diamond::getFrameRect() const

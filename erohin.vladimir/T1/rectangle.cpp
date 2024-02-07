@@ -28,11 +28,6 @@ double erohin::Rectangle::getArea() const
   return (frameRect_.width * frameRect_.height);
 }
 
-erohin::point_t erohin::Rectangle::getCenter() const
-{
-  return frameRect_.pos;
-}
-
 erohin::rectangle_t erohin::Rectangle::getFrameRect() const
 {
   return frameRect_;
