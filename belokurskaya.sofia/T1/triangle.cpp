@@ -64,6 +64,16 @@ void belokurskaya::Triangle::move(double dx, double dy)
 
 void belokurskaya::Triangle::scale(double factor)
 {
+  point_t centroid = calculateCentroid();
+
+  vertex1_.x = centroid.x + (vertex1_.x - centroid.x) * factor;
+  vertex1_.y = centroid.y + (vertex1_.y - centroid.y) * factor;
+
+  vertex2_.x = centroid.x + (vertex2_.x - centroid.x) * factor;
+  vertex2_.y = centroid.y + (vertex2_.y - centroid.y) * factor;
+
+  vertex3_.x = centroid.x + (vertex3_.x - centroid.x) * factor;
+  vertex3_.y = centroid.y + (vertex3_.y - centroid.y) * factor;
 }
 
 point_t belokurskaya::Triangle::calculateCentroid() const
