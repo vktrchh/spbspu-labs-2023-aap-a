@@ -11,13 +11,13 @@ Concave::Concave(const point_t ver1, const point_t ver2, const point_t ver3, con
   {
     throw std::invalid_argument("The first three points do not form a triangle.");
   }
-  if (!isInsideTriangle(ver1_, ver2_, ver3_, ver4_)) 
+  if (!isInsideTriangle(ver1_, ver2_, ver3_, ver4_))
   {
     throw std::invalid_argument("The fourth point is not inside the triangle formed by the first three points.");
   }
 }
 
-Concave::~Concave() 
+Concave::~Concave()
 {}
 
 double Concave::getArea() const
