@@ -52,31 +52,30 @@ int main(int argc, char ** argv)
 
   int res1 = 0;
   size_t res2 = 0;
+  int matrix_fix[10000] = {};
+  int * matrix = nullptr;
   if (num == 1)
   {
-    int matrix[10000] = {};
-    size_t result = inputArray(input, matrix, rows * cols, rows * cols);
-    if (result != rows * cols)
-    {
-      std::cerr << "Invalid input array\n";
-      return 2;
-    }
-    res1 = isLowerTriMatrix(matrix, rows, cols);
-    res2 = countDiagWithoutZero(matrix, rows, cols);
+    matrix = matrix_fix;
   }
-
+  else if (num == 2)
+  {
+    matrix = new int[rows * cols];
+  }
+  size_t result = inputArray(input, matrix, rows * cols, rows * cols);
+  if (result != rows * cols)
+  {
+    std::cerr << "Invalid input array\n";
+    if (num == 2)
+    {
+      delete[] matrix;
+    }
+    return 2;
+  }
+  res1 = isLowerTriMatrix(matrix, rows, cols);
+  res2 = countDiagWithoutZero(matrix, rows, cols);
   if (num == 2)
   {
-    int * matrix = new int[rows * cols];
-    size_t result = inputArray(input, matrix, rows * cols, rows * cols);
-    if (result != rows * cols)
-    {
-      std::cerr << "Invalid input array\n";
-      delete[] matrix;
-      return 2;
-    }
-    res1 = isLowerTriMatrix(matrix, rows, cols);
-    res2 = countDiagWithoutZero(matrix, rows, cols);
     delete[] matrix;
   }
 
