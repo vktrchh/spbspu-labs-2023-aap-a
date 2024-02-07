@@ -1,7 +1,7 @@
 #include "triangle.hpp"
 #include <stdexcept>
 
-Triangle::Triangle(const point_t& vertex1, const point_t& vertex2, const point_t& vertex3) : vertex1_(vertex1), vertex2_(vertex2), vertex3_(vertex3)
+belokurskaya::Triangle::Triangle(const point_t& vertex1, const point_t& vertex2, const point_t& vertex3) : vertex1_(vertex1), vertex2_(vertex2), vertex3_(vertex3)
 {
     double a = std::hypot(vertex1_.x - vertex2_.x, vertex1_.y - vertex2_.y);
     double b = std::hypot(vertex2_.x - vertex3_.x, vertex2_.y - vertex3_.y);
@@ -20,26 +20,31 @@ Triangle::Triangle(const point_t& vertex1, const point_t& vertex2, const point_t
     }
 }
 
-double Triangle::getArea() const
+double belokurskaya::Triangle::getArea() const
+{
+  double a = std::hypot(vertex1_.x - vertex2_.x, vertex1_.y - vertex2_.y);
+  double b = std::hypot(vertex2_.x - vertex3_.x, vertex2_.y - vertex3_.y);
+  double c = std::hypot(vertex3_.x - vertex1_.x, vertex3_.y - vertex1_.y);
+  double s = (a + b + c) / 2.0;
+  return std::sqrt(s * (s - a) * (s - b) * (s - c));
+}
+
+belkurskaya::rectangle_t Triangle::getFrameRect() const
 {
 }
 
-rectangle_t Triangle::getFrameRect() const
+void belokurskaya::Triangle::move(const point_t& new_pos)
 {
 }
 
-void Triangle::move(const point_t& new_pos)
+void belokurskaya::Triangle::move(double dx, double dy)
 {
 }
 
-void Triangle::move(double dx, double dy)
+void belokurskaya::Triangle::scale(double factor)
 {
 }
 
-void Triangle::scale(double factor)
-{
-}
-
-point_t Triangle::calculateCentroid() const
+point_t belokurskaya::Triangle::calculateCentroid() const
 {
 }
