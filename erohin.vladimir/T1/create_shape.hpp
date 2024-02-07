@@ -1,5 +1,5 @@
-#ifndef PARSE_HPP
-#define PARSE_HPP
+#ifndef CREATE_SHAPE_HPP
+#define CREATE_SHAPE_HPP
 
 #include <cstddef>
 #include <string>
@@ -7,8 +7,7 @@
 
 namespace erohin
 {
-  Shape* parseShape(const std::string string, point_t& pos, double& ratio);
-  Shape* createShape(const std::string name, double* par, size_t par_size, point_t& pos, double& ratio);
+  Shape* createShape(const std::string name, double* par, size_t par_size);
   Shape* createRectangle(double* par, size_t par_size);
   Shape* createTriangle(double* par, size_t par_size);
   Shape* createComplexquad(double* par, size_t par_size);

@@ -1,7 +1,6 @@
 ﻿#include <iostream>
 #include "input_shape.hpp"
 #include "output_shape.hpp"
-#include "parse.hpp"
 #include "geom_func.hpp"
 #include "shape.hpp"
 

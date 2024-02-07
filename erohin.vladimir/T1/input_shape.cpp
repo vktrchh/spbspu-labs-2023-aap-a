@@ -4,62 +4,72 @@
 #include <iostream>
 #include "triangle.hpp"
 #include "shape.hpp"
-#include "parse.hpp"
+#include "create_shape.hpp"
 
 void erohin::inputShape(Shape** result, std::istream& input, size_t& size, point_t& pos, double& ratio)
 {
   size = 0;
-  bool isWrongFigureCreation = false;
-  std::string str = "";
-  try
+  bool isFigureCreationFullSuccesful = true;
+  bool isScaleCommandEntered = false;
+  std::string name;
+  double current_par = 0.0;
+  const size_t par_max_size = 10;
+  size_t par_size = 0;
+  double* par = new double[par_max_size]{ 0.0 };
+  while (!input.eof() && !isScaleCommandEntered)
   {
-    char elem = 0;
-    input >> std::noskipws;
-    while (input >> elem)
+    input.clear();
+    input >> name;
+    while ((input >> current_par) && (par_size != par_max_size))
     {
-      if (elem == '\n')
+      par[par_size++] = current_par;
+      if (input.peek() == '\n')
       {
-        try
-        {
-          Shape* shape_ptr = parseShape(str, pos, ratio);
-          if (shape_ptr)
-          {
-            result[size++] = shape_ptr;
-          }
-        }
-        catch (const std::invalid_argument&)
-        {
-          isWrongFigureCreation = true;
-        }
-        str = "";
-      }
-      else if (str.length() < str.max_size())
-      {
-        str += elem;
-      }
-      else
-      {
-        throw std::runtime_error("Line is too long");
+        break;
       }
     }
-    input >> std::skipws;
+    if (name == "SCALE")
+    {
+      try
+      {
+        inputScaleParameteres(par, par_size, pos, ratio);
+      }
+      catch (const std::logic_error&)
+      {
+        delete[] par;
+        throw;
+      }
+      isScaleCommandEntered = true;
+    }
+    else
+    {
+      try
+      {
+        Shape* shape_ptr = createShape(name, par, par_size);
+        if (shape_ptr)
+        {
+          result[size++] = shape_ptr;
+        }
+      }
+      catch (const std::invalid_argument&)
+      {
+        isFigureCreationFullSuccesful = false;
+      }
+    }
+    par_size = 0;
   }
-  catch (...)
-  {
-    input >> std::skipws;
-    throw;
-  }
-  if (ratio <= 0.0)
+  delete[] par;
+  if (!isScaleCommandEntered)
   {
     throw std::logic_error("Scale command do not find");
-  }
-  else if (isWrongFigureCreation)
-  {
-    throw std::invalid_argument("Wrong figure creation");
   }
   else if (!result[0])
   {
     throw std::runtime_error("Nothing to scale");
+  }
+  else if (!isFigureCreationFullSuccesful)
+  {
+    throw std::invalid_argument("Wrong figure creation");
   }
 }
 
