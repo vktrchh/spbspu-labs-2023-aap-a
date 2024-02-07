@@ -1,5 +1,4 @@
 #include "mergeTwoLines.h"
-#include "transformInputString.h"
 
 #include <iostream>
 #include <stdexcept>

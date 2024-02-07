@@ -5,7 +5,7 @@
 #include <stdexcept>
 #include <cstddef>
 
-char* skuratov::transformInputString(char* input, size_t& size)
+char* skuratov::transformInputString(char* input, size_t size)
 {
   char c = 0;
   size_t i = 0;
