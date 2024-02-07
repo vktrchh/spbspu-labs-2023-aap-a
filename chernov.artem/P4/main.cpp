@@ -51,16 +51,17 @@ int main(int argc, char* argv[])
 
   size_t sizeOfArray = rows * cols;
 
-  if (num == 1)
-  {
-    int* matrix = new int[sizeOfArray];
-  }
-  else if (num == 2)
-  {
-    int matrix[10000] = {};
-  }
   try
   {
+    if (num == 1)
+    {
+      int* matrix = new int[sizeOfArray];
+    }
+    else if (num == 2)
+    {
+      int matrix[10000] = {};
+    }
+
     readMatrix(input, matrix, rows, cols);
     int result = countNonZeroDiagonals(matrix, rows, cols);
     incrementCirclesInMatrix(matrix, rows, cols);
