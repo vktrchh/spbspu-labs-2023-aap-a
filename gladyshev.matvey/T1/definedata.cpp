@@ -7,18 +7,20 @@
 
 namespace gladyshev
 {
-  Shape * inputRectangle(const char * string)
+  Shape * inputRectangle(std::istream& in)
   {
-    double p[4] = { 0 };
-    size_t counter = 0;
+    double p[4]{};
     for (size_t i = 0; i < 4; i++)
     {
-      p[i] = std::stod(string, std::addressof(counter));
-      string += counter;
+      in >> p[i];
+      if (!in)
+      {
+        throw std::logic_error("bad input of rectangle`s coords");
+      }
     }
-    if (*string != '\0')
+    if (in.get() != '\n')
     {
-      throw std::logic_error("too many args for rectangle");
+      throw std::invalid_argument("too many args for rectangle");
     }
     if ((p[0] == p[2]) || (p[1] == p[3]) || (p[2] < p[0]) || (p[3] < p[1]))
     {
@@ -27,18 +29,20 @@ namespace gladyshev
     return new Rectangle({ p[0], p[1] }, { p[2], p[3] });
   }
 
-  void inputScale(const char * string, point_t& pos, double& factor)
+  void inputScale(std::istream& in, point_t& pos, double& factor)
   {
-    double dataScale[3] = { 0 };
-    size_t counter = 0;
+    double dataScale[3]{};
     for (size_t i = 0; i < 3; ++i)
     {
-      dataScale[i] = std::stod(string, std::addressof(counter));
-      string += counter;
+      in >> dataScale[i];
+      if (!in)
+      {
+        throw std::logic_error("bad input of scale`s coods");
+      }
     }
-    if (*string != '\0')
+    if (in.get() != '\n')
     {
-      throw std::logic_error("too many arguments for scale");
+      throw std::invalid_argument("too many args for scale");
     }
     if (dataScale[2] <= 0)
     {
@@ -48,18 +52,20 @@ namespace gladyshev
     factor = dataScale[2];
   }
 
-  Shape * inputCircle(const char * string)
+  Shape * inputCircle(std::istream& in)
   {
     double p[3] = { 0 };
-    size_t counter = 0;
     for (size_t i = 0; i < 3; ++i)
     {
-      p[i] = std::stod(string, std::addressof(counter));
-      string += counter;
+      in >> p[i];
+      if (!in)
+      {
+        throw std::logic_error("bad input of circle`s coords");
+      }
     }
-    if (*string != '\0')
+     if (in.get() != '\n')
     {
-      throw std::logic_error("too many arguments for circle");
+      throw std::invalid_argument("too many args for circle");
     }
     if (p[2] <= 0)
     {
@@ -68,18 +74,20 @@ namespace gladyshev
     return new Circle({ p[0], p[1] }, p[2]);
   }
 
-  Shape * inputParallelogram(const char * string)
+  Shape * inputParallelogram(std::istream& in)
   {
     double p[6] = { 0 };
-    size_t counter = 0;
     for (size_t i = 0; i < 6; ++i)
     {
-      p[i] = std::stod(string, std::addressof(counter));
-      string += counter;
+      in >> p[i];
+      if (!in)
+      {
+        throw std::logic_error("bad input of parallelogram`s coords");
+      }
     }
-    if (*string != '\0')
+    if (in.get() != '\n')
     {
-      throw std::logic_error("too many arguments for parallelogram");
+      throw std::invalid_argument("too many args for scale");
     }
     if (!(((p[1] == p[3]) && (p[3] != p[5]) && (p[0] != p[2])) || ((p[3] == p[5]) && (p[5] != p[1]) && (p[2] != p[4]))))
     {
@@ -95,7 +103,7 @@ namespace gladyshev
     }
   }
 
-  Shape * identifyShape(std::string inputName, const char * string)
+  Shape * identifyShape(std::string inputName, std::istream& in)
   {
     const char * names[] = { "RECTANGLE", "PARALLELOGRAM", "CIRCLE" };
     for (size_t i = 0; i < 3; ++i)
@@ -105,11 +113,11 @@ namespace gladyshev
         switch (i)
         {
           case 0:
-            return inputRectangle(string);
+            return inputRectangle(in);
           case 1:
-            return inputParallelogram(string);
+            return inputParallelogram(in);
           case 2:
-            return inputCircle(string);
+            return inputCircle(in);
         }
       }
     }
