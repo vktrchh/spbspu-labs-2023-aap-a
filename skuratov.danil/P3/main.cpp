@@ -13,7 +13,7 @@ int main()
   const char* lineOfProgram = "abc";
   try
   {
-    char* inputLine = new char[size]{};
+    char* inputLine = new char[size] {};
     inputLine = readString(inputLine, size);
     if (inputLine[0] == '\0')
     {
