@@ -9,7 +9,7 @@
 int main()
 {
   size_t size = 10;
-  char* inputLine = new char[size];
+  char* inputLine = new char[size] {};
   std::fill(inputLine, inputLine + size, '\0');
   const char* lineOfProgram = "abc";
 
