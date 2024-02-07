@@ -51,7 +51,6 @@ int main(int argc, char* argv[])
   }
 
   in >> rows >> cols;
-  size_t sizeOfArray = rows * cols;
 
   if (rows == 0 && cols == 0)
   {
