@@ -13,6 +13,8 @@ int main(int argc, char* argv[])
 {
   using namespace chernov;
   int num = 0;
+  int staticMatrix[10000] = {};
+  int* matrix = nullptr;
 
   if (argc != 4)
   {
@@ -55,11 +57,11 @@ int main(int argc, char* argv[])
   {
     if (num == 1)
     {
-      int* matrix = new int[sizeOfArray];
+      matrix = new int[sizeOfArray];
     }
     else if (num == 2)
     {
-      int matrix[10000] = {};
+      matrix = staticMatrix;
     }
 
     readMatrix(input, matrix, rows, cols);
