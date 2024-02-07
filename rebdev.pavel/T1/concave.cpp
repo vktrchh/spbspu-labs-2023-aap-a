@@ -1,4 +1,5 @@
 #include "concave.hpp"
+
 #include <cstddef>
 #include <iostream>
 
@@ -52,22 +53,26 @@ double rebdev::Concave::getArea() const
 
 rebdev::rectangle_t rebdev::Concave::getFrameRect() const
 {
-  double xMin = vertexs_[0].x, xMax = vertexs_[0].y;
-  double yMin = xMin, yMax = xMax;
+  double xMin = vertexs_[0].x, xMax = vertexs_[0].x;
+  double yMin = vertexs_[0].y, yMax = vertexs_[0].y;
+
   for (int i = 0; i < 4; ++i)
   {
-    xMin = ((xMin >= vertexs_[i].x) ? vertexs_[i].x : xMin);
-    yMin = ((yMin >= vertexs_[i].y) ? vertexs_[i].y : yMin);
-    xMax = ((xMax <= vertexs_[i].x) ? vertexs_[i].x : xMax);
-    yMax = ((yMax <= vertexs_[i].y) ? vertexs_[i].y : yMax);
+    xMin = ((xMin > vertexs_[i].x) ? vertexs_[i].x : xMin);
+    yMin = ((yMin > vertexs_[i].y) ? vertexs_[i].y : yMin);
+    xMax = ((xMax < vertexs_[i].x) ? vertexs_[i].x : xMax);
+    yMax = ((yMax < vertexs_[i].y) ? vertexs_[i].y : yMax);
   }
-  return rectangle_t{(xMax - xMin), (yMax - yMin), point_t{xMin + (xMax - xMin)/2, yMin + (yMax - yMin)/2}};
+
+  return rectangle_t{(xMax - xMin), (yMax - yMin), point_t{(xMax + xMin) / 2, (yMax + yMin) / 2}};
 };
 
 void rebdev::Concave::move(const point_t point)
 {
-  double yChange = vertexs_[2].y - point.y;
-  double xChange = vertexs_[2].x - point.x;
+  point_t center = getFrameRect().pos;
+  double yChange = point.y - center.y;
+  double xChange = point.x - center.x;
+
   for (int i = 0; i < 4; ++i)
   {
     vertexs_[i].x += xChange;
@@ -86,9 +91,10 @@ void rebdev::Concave::move(const double x, const double y)
 
 void rebdev::Concave::scale(const double k)
 {
-  vertexs_[0] = scalePoint(vertexs_[0], vertexs_[2], k);
-  vertexs_[1] = scalePoint(vertexs_[1], vertexs_[2], k);
-  vertexs_[3] = scalePoint(vertexs_[3], vertexs_[2], k);
+  point_t center = getFrameRect().pos;
+  vertexs_[0] = scalePoint(vertexs_[0], center, k);
+  vertexs_[1] = scalePoint(vertexs_[1], center, k);
+  vertexs_[3] = scalePoint(vertexs_[3], center, k);
 };
 
 rebdev::point_t rebdev::Concave::scalePoint(const point_t & pointToScale, const point_t & centerPoint, const double k)
