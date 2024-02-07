@@ -1,7 +1,8 @@
 #include "triangle.hpp"
 #include <stdexcept>
 
-belokurskaya::Triangle::Triangle(const point_t& vertex1, const point_t& vertex2, const point_t& vertex3) : vertex1_(vertex1), vertex2_(vertex2), vertex3_(vertex3)
+belokurskaya::Triangle::Triangle(const point_t& vertex1, const point_t& vertex2, const point_t& vertex3):
+vertex1_(vertex1), vertex2_(vertex2), vertex3_(vertex3)
 {
     double a = std::hypot(vertex1_.x - vertex2_.x, vertex1_.y - vertex2_.y);
     double b = std::hypot(vertex2_.x - vertex3_.x, vertex2_.y - vertex3_.y);
