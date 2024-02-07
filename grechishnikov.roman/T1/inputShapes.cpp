@@ -12,10 +12,10 @@ grechishnikov::Shape* grechishnikov::inputPolygon(const grechishnikov::point_t* 
 const char* parseName(const char* str);
 bool isEqualStr(const char* fStr, const char* sStr);
 
-grechishnikov::Shape* grechishnikov::inputShapes(const char* str)
+grechishnikov::Shape* grechishnikov::inputShape(const char* str)
 {
   const size_t legalNameCount = 3;
-  const char* legalName[] = { "RECTANGLE", "TRIANGLE", "POLYGON" };
+  const char* legalName[] = { "RECTANGLE\0", "TRIANGLE\0", "POLYGON\0" };
 
   const char* name = nullptr;
   const double* values = nullptr;
@@ -25,7 +25,7 @@ grechishnikov::Shape* grechishnikov::inputShapes(const char* str)
   {
     name = parseName(str);
     size_t pos = 0;
-    for (size_t i = 0; str[i] != 0; i++)
+    for (size_t i = 0; str[i] != ' '; i++)
     {
       pos++;
     }

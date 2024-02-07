@@ -8,7 +8,7 @@
 
 namespace grechishnikov
 {
-  Shape* inputShapes(const char* str);
+  Shape* inputShape(const char* str);
   Shape* inputRectangle(const grechishnikov::point_t* points, size_t size);
   Shape* inputTriangle(const grechishnikov::point_t* points, size_t size);
   Shape* inputPolygon(const grechishnikov::point_t* points, size_t size);
