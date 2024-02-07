@@ -1,6 +1,7 @@
 #include "readString.h"
 
 #include <iostream>
+#include <cstring>
 #include <cstddef>
 
 char* skuratov::readString(char* inputLine, size_t size)
