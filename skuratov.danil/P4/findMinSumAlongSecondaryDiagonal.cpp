@@ -14,7 +14,7 @@ size_t skuratov::findMinSumAlongSecondaryDiagonal(const int* array, size_t rows,
   size_t minSum = std::numeric_limits< int >::max();
   for (size_t startCol = cols - 1; startCol > 0; --startCol)
   {
-    int currentSum = 0;
+    size_t currentSum = 0;
     size_t row = 0;
     size_t col = startCol;
     while (col < cols && row < rows)
@@ -30,7 +30,7 @@ size_t skuratov::findMinSumAlongSecondaryDiagonal(const int* array, size_t rows,
   }
   for (size_t startRow = 1; startRow < rows - 1; ++startRow)
   {
-    int currentSum = 0;
+    size_t currentSum = 0;
     size_t row = startRow;
     size_t col = 0;
     while (col < cols && row < rows)

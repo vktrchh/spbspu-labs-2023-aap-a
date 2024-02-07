@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
   int taskNumber = 0;
   try
   {
-    int taskNumber = std::stoi(argv[1]);
+    taskNumber = std::stoi(argv[1]);
   }
   catch (const std::out_of_range&)
   {
