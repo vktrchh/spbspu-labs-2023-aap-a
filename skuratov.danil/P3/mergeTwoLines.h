@@ -3,7 +3,7 @@
 
 namespace skuratov
 {
-  char* mergeTwoLines(char* result, const char* inputLine, const char* lineOfProgram);
+  char* mergeTwoLines(char* result, char* inputLine, const char* lineOfProgram);
 }
 
 #endif
