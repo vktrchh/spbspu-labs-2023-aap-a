@@ -31,6 +31,17 @@ double belokurskaya::Triangle::getArea() const
 
 belkurskaya::rectangle_t Triangle::getFrameRect() const
 {
+  double min_x = std::min({vertex1_.x, vertex2_.x, vertex3_.x});
+  double max_x = std::max({vertex1_.x, vertex2_.x, vertex3_.x});
+  double min_y = std::min({vertex1_.y, vertex2_.y, vertex3_.y});
+  double max_y = std::max({vertex1_.y, vertex2_.y, vertex3_.y});
+
+  double width = max_x - min_x;
+  double height = max_y - min_y;
+
+  point_t center{(min_x + max_x) / 2.0, (min_y + max_y) / 2.0};
+
+  return {center, width, height};
 }
 
 void belokurskaya::Triangle::move(const point_t& new_pos)
