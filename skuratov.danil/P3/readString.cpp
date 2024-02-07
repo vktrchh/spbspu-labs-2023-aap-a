@@ -1,7 +1,6 @@
 #include "readString.hpp"
-#include <cstddef>
 #include <iostream>
-
+#include <cstddef>
 char* readString(char* inputLine, size_t size)
 {
     char c = 0;
@@ -27,10 +26,7 @@ char* readString(char* inputLine, size_t size)
             size *= 2;
             char* oldInput = inputLine;
             inputLine = new char[size]{};
-            for (size_t m = 0; m < i; m++)
-            {
-                inputLine[m] = oldInput[m];
-            }
+            strcpy(inputLine, oldInput);
             delete[] oldInput;
             inputLine[i++] = c;
             if (c == '\n')
