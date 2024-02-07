@@ -19,6 +19,11 @@ int main()
 
     size_t size1 = 0;
     char* inputLinePtr = inputLine;
+    if (inputLine[0] == '\0')
+    {
+        delete[] inputLine;
+        throw std::invalid_argument("Empty input");
+    }
     while (*inputLinePtr != '\0')
     {
       size1++;
@@ -47,7 +52,6 @@ int main()
   catch (const std::exception& e)
   {
     std::cerr << e.what() << '\n';
-    delete[] inputLine;
     return 1;
   }
   return 0;
