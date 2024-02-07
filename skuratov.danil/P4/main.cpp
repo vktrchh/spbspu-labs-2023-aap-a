@@ -8,7 +8,6 @@
 #include "findLongestSeriesRow.h"
 #include "findMinSumAlongSecondaryDiagonal.h"
 #include "readArray.h"
-#include "doTasks.h"
 
 int main(int argc, char* argv[])
 {
@@ -25,9 +24,20 @@ int main(int argc, char* argv[])
     std::cerr << "Too many arguments" << '\n';
     return 1;
   }
-  int taskNumber = std::atoi(argv[1]);
+  int taskNumber = 0;
+  try
+  {
+    int taskNumber = std::atoi(argv[1]);
+  }
+  catch (const std::out_of_range&)
+  {
+    std::cerr << "Value of first CLA is too large\n";
+    return 1;
+  }
+
   std::ifstream in(argv[2]);
   std::ofstream out(argv[3]);
+  
   if (!in.is_open())
   {
     std::cerr << "Cannot open file!" << '\n';
@@ -38,47 +48,68 @@ int main(int argc, char* argv[])
     std::cerr << "Cannot read numbers!" << '\n';
     return 2;
   }
+
   in >> rows >> cols;
   size_t sizeOfArray = rows * cols;
+
   if (rows == 0 && cols == 0)
   {
     return 0;
   }
+
   if (in.eof())
   {
     std::cerr << "Error data!" << '\n';
     return 2;
   }
-  if ((sizeOfArray < 10000) && (rows != 0 || cols != 0))
+  int nonDynamicArray[10000] = {};
+  int* dynamicArray = nullptr;
+  int* matrix = nullptr;
+
+  if (taskNumber == 1)
   {
-    if (taskNumber == 1)
+    matrix = nonDynamicArray;
+  }
+  else
+  {
+    try
     {
-      int nonDynamicArray[10000] = {};
-      try
-      {
-        doTasks(out, in, nonDynamicArray, cols, rows);
-      }
-      catch (const std::exception& e)
-      {
-        std::cerr << e.what() << '\n';
-        return 1;
-      }
+      dynamicArray = new int[rows * cols];
+      matrix = dynamicArray;
     }
-    else if (taskNumber == 2)
+    catch (const std::bad_alloc&)
     {
-      int* dynamicArray = new int[sizeOfArray];
-      try
-      {
-        doTasks(out, in, dynamicArray, cols, rows);
-        delete[] dynamicArray;
-      }
-      catch (const std::exception& e)
-      {
-        std::cerr << e.what() << '\n';
-        delete[] dynamicArray;
-        return 1;
-      }
+      std::cerr << "error array\n";
+      delete[] dynamicArray;
+      return 2;
     }
+  }
+  size_t res1 = 0;
+  size_t res2 = 0;
+  size_t res3 = 0;
+  
+  try
+  {
+    readArray(in, matrix, rows, cols);
+    res1 = findLongestSeriesRow(matrix, rows, cols);
+    res2 = findMinSumAlongSecondaryDiagonal(matrix, rows, cols);
+    res3 = countSaddlePoints(matrix, rows, cols);
+  }
+  catch (const std::logic_error&)
+  {
+    std::cerr << "bad data\n";
+    if (taskNumber == 2)
+    {
+      delete[] matrix;
+    }
+    return 2;
+  }
+
+  out << res1 << ' ' << res2 << ' ' << res3 << '\n';
+
+  if (taskNumber == 2)
+  {
+    delete[] matrix;
   }
   return 0;
 }
