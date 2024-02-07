@@ -6,19 +6,16 @@ erohin::Rectangle::Rectangle() :
   frameRect_{ 0.0, 0.0, {0.0, 0.0} }
 {}
 
-erohin::Rectangle::Rectangle(point_t left_corner, point_t right_corner)
+erohin::Rectangle::Rectangle(point_t left_lower_corner, point_t right_upper_corner)
 {
-  frameRect_ = { 0.0, 0.0, {0.0, 0.0} };
-  if (left_corner.x < right_corner.x && left_corner.y < right_corner.y)
-  {
-    frameRect_.width = right_corner.x - left_corner.x;
-    frameRect_.height = right_corner.y - left_corner.y;
-    frameRect_.pos = { left_corner.x + frameRect_.width / 2.0, left_corner.y + frameRect_.height / 2.0 };
-  }
-  else
+  if (left_lower_corner.x >= right_upper_corner.x || left_lower_corner.y >= right_upper_corner.y)
   {
     throw std::invalid_argument("Wrong figure creation");
   }
+  frameRect_.width = right_upper_corner.x - left_lower_corner.x;
+  frameRect_.height = right_upper_corner.y - left_lower_corner.y;
+  frameRect_.pos.x = left_lower_corner.x + frameRect_.width / 2.0;
+  frameRect_.pos.y = left_lower_corner.y + frameRect_.height / 2.0;
 }
 
 erohin::Rectangle::~Rectangle() = default;
@@ -46,7 +43,7 @@ void erohin::Rectangle::move(point_t point)
 
 void erohin::Rectangle::scale(double ratio)
 {
-  if (ratio <= 0)
+  if (ratio <= 0.0)
   {
     throw std::invalid_argument("Wrong scale ratio");
   }

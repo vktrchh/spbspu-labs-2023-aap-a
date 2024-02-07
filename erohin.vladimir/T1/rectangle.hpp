@@ -10,7 +10,7 @@ namespace erohin
   {
   public:
     Rectangle();
-    Rectangle(point_t left_corner, point_t right_corner);
+    Rectangle(point_t left_lower_corner, point_t right_upper_corner);
     virtual ~Rectangle();
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;

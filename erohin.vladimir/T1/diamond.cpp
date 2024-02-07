@@ -12,12 +12,12 @@ erohin::Diamond::Diamond(point_t* corner)
 {
   frameRect_ = { 0.0, 0.0, { 0.0, 0.0 } };
   double * side = getSides(corner, 3);
-  int max_ind = 0;
+  int center_index = 0;
   for (int i = 0; i < 3; ++i)
   {
-    if (side[i] >= side[max_ind])
+    if (side[i] >= side[(center_index + 1) % 3])
     {
-      max_ind = i;
+      center_index = (i + 2) % 3;
     }
     if (corner[i].x == corner[(i + 1) % 3].x && corner[i].y != corner[(i + 1) % 3].y)
     {
@@ -29,7 +29,7 @@ erohin::Diamond::Diamond(point_t* corner)
     }
   }
   delete[] side;
-  frameRect_.pos = corner[(max_ind + 2) % 3];
+  frameRect_.pos = corner[center_index];
   if (frameRect_.width * frameRect_.height == 0.0)
   {
     throw std::invalid_argument("Diamond sides are not parallel to the axes");
@@ -61,7 +61,7 @@ void erohin::Diamond::move(point_t point)
 
 void erohin::Diamond::scale(double ratio)
 {
-  if (ratio <= 0)
+  if (ratio <= 0.0)
   {
     throw std::invalid_argument("Wrong scale ratio");
   }

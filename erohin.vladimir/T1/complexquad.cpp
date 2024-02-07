@@ -6,10 +6,9 @@
 #include "triangle.hpp"
 
 erohin::Complexquad::Complexquad() :
+  vertex_(new point_t[4]{ {0.0, 0.0} }),
   center_({ 0.0, 0.0 })
-{
-  vertex_ = new point_t[4]{ {0.0, 0.0} };
-}
+{}
 
 erohin::Complexquad::Complexquad(point_t* corner)
 {
@@ -25,7 +24,7 @@ erohin::Complexquad::Complexquad(point_t* corner)
     {
       if (!isPointOnSegment(center_, vertex_[i], vertex_[i + 1]))
       {
-        throw std::invalid_argument("Cannot create figure");
+        throw std::invalid_argument("Complexquad vertexes are same points");
       }
     }
   }
@@ -57,28 +56,7 @@ double erohin::Complexquad::getArea() const
 
 erohin::rectangle_t erohin::Complexquad::getFrameRect() const
 {
-  point_t left = vertex_[0];
-  point_t right = vertex_[0];
-  for (int i = 1; i < 4; ++i)
-  {
-    if (vertex_[i].x < left.x)
-    {
-      left.x = vertex_[i].x;
-    }
-    if (vertex_[i].y < left.y)
-    {
-      left.y = vertex_[i].y;
-    }
-    if (vertex_[i].x > right.x)
-    {
-      right.x = vertex_[i].x;
-    }
-    if (vertex_[i].y > right.y)
-    {
-      right.y = vertex_[i].y;
-    }
-  }
-  return Rectangle(left, right).getFrameRect();
+  return findPolygonFrameRect(vertex_, 4);
 }
 
 void erohin::Complexquad::move(double dx, double dy)
@@ -101,7 +79,7 @@ void erohin::Complexquad::move(point_t point)
 
 void erohin::Complexquad::scale(double ratio)
 {
-  if (ratio <= 0)
+  if (ratio <= 0.0)
   {
     throw std::invalid_argument("Wrong scale ratio");
   }

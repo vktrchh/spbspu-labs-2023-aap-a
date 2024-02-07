@@ -3,13 +3,11 @@
 #include <cmath>
 #include "base-types.hpp"
 #include "geom_func.hpp"
-#include "rectangle.hpp"
 
 erohin::Triangle::Triangle() :
+  vertex_(new point_t[3]{ {0.0, 0.0} }),
   center_({ 0.0, 0.0 })
-{
-  vertex_ = new point_t[3]{ {0.0, 0.0} };
-}
+{}
 
 erohin::Triangle::Triangle(point_t* corner)
 {
@@ -53,15 +51,15 @@ erohin::Triangle::~Triangle()
 double erohin::Triangle::getArea() const
 {
   double* side = getSides(vertex_, 3);
-  double p = 0.0;
+  double perimeter = 0.0;
   for (int i = 0; i < 3; ++i)
   {
-    p += side[i];
+    perimeter += side[i];
   }
-  double result = p / 2.0;
+  double result = perimeter / 2.0;
   for (int i = 0; i < 3; ++i)
   {
-    result *= (p / 2.0 - side[i]);
+    result *= (perimeter / 2.0 - side[i]);
   }
   delete[] side;
   return std::sqrt(result);
@@ -69,28 +67,7 @@ double erohin::Triangle::getArea() const
 
 erohin::rectangle_t erohin::Triangle::getFrameRect() const
 {
-  point_t left = vertex_[0];
-  point_t right = vertex_[0];
-  for (int i = 1; i < 3; ++i)
-  {
-    if (vertex_[i].x < left.x)
-    {
-      left.x = vertex_[i].x;
-    }
-    if (vertex_[i].y < left.y)
-    {
-      left.y = vertex_[i].y;
-    }
-    if (vertex_[i].x > right.x)
-    {
-      right.x = vertex_[i].x;
-    }
-    if (vertex_[i].y > right.y)
-    {
-      right.y = vertex_[i].y;
-    }
-  }
-  return Rectangle(left, right).getFrameRect();
+  return findPolygonFrameRect(vertex_, 3);
 }
 
 void erohin::Triangle::move(double dx, double dy)
@@ -113,7 +90,7 @@ void erohin::Triangle::move(point_t point)
 
 void erohin::Triangle::scale(double ratio)
 {
-  if (ratio <= 0)
+  if (ratio <= 0.0)
   {
     throw std::invalid_argument("Wrong scale ratio");
   }

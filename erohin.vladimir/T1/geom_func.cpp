@@ -53,3 +53,31 @@ erohin::point_t erohin::findIntersectionPoint(const point_t* point)
   result.y = point[0].y + (dy[0] / dx[0]) * (result.x - point[0].x);
   return result;
 }
+
+erohin::rectangle_t erohin::findPolygonFrameRect(const point_t* point, unsigned int number)
+{
+  point_t left_lower = point[0];
+  point_t right_upper = point[0];
+  for (unsigned int i = 1; i < number; ++i)
+  {
+    if (point[i].x < left_lower.x)
+    {
+      left_lower.x = point[i].x;
+    }
+    if (point[i].y < left_lower.y)
+    {
+      left_lower.y = point[i].y;
+    }
+    if (point[i].x > right_upper.x)
+    {
+      right_upper.x = point[i].x;
+    }
+    if (point[i].y > right_upper.y)
+    {
+      right_upper.y = point[i].y;
+    }
+  }
+  double width = right_upper.x - left_lower.x;
+  double height = right_upper.y - left_lower.y;
+  return { width, height, {left_lower.x + width / 2.0, left_lower.y + height / 2.0} };
+}
