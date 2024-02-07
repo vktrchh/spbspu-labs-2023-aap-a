@@ -27,6 +27,7 @@ int main()
       double center_x = (lower_left_x + upper_right_x) / 2.0;
       double center_y = (lower_left_y + upper_right_y) / 2.0;
       shapes[shape_count++] = new Rectangle({ center_x, center_y }, width, height);
+      std::cout << width * height << " " << lower_left_x << " " << lower_left_y << " " << upper_right_x << " " << upper_right_y << "\n";
     }
     else if (command == "SCALE")
     {
@@ -40,17 +41,19 @@ int main()
           double dy = (shapes[i]->getFrameRect().pos.y - scale_point_y) * scale_factor;
           shapes[i]->move({ scale_point_x, scale_point_y});
           shapes[i]->scale(scale_factor);
-          shapes[i]->move({ -dx, -dy});
+          shapes[i]->move({ -dx, -dy });
         }
         catch (const std::invalid_argument& e)
         {
           std::cerr << "Error: " << e.what() << "\n";
         }
       }
+      break;
     }
     else
     {
       std::cerr << "Unknown command.\n";
+      return 1;
     }
   }
 
@@ -62,8 +65,7 @@ int main()
     double scale_lower_left_y = frameRect.pos.y - frameRect.height / 2.0;
     double scale_upper_right_x = frameRect.pos.x + frameRect.width / 2.0;
     double scale_upper_right_y = frameRect.pos.y + frameRect.height / 2.0;
-    std::cout << scale_lower_left_x << " " << scale_lower_left_y << " " << scale_upper_right_x << " " << scale_upper_right_y << " ";
-    std::cout << "\n";
+    std::cout << scale_lower_left_x << " " << scale_lower_left_y << " " << scale_upper_right_x << " " << scale_upper_right_y << "\n";
 
     delete shapes[i];
   }
