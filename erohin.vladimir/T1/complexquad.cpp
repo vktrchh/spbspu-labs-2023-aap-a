@@ -79,10 +79,6 @@ void erohin::Complexquad::move(point_t point)
 
 void erohin::Complexquad::scale(double ratio)
 {
-  if (ratio <= 0.0)
-  {
-    throw std::invalid_argument("Wrong scale ratio");
-  }
   for (int i = 0; i < 4; ++i)
   {
     vertex_[i].x = center_.x + (vertex_[i].x - center_.x) * ratio;

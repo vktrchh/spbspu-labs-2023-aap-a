@@ -61,10 +61,6 @@ void erohin::Diamond::move(point_t point)
 
 void erohin::Diamond::scale(double ratio)
 {
-  if (ratio <= 0.0)
-  {
-    throw std::invalid_argument("Wrong scale ratio");
-  }
   frameRect_.width *= ratio;
   frameRect_.height *= ratio;
 }
