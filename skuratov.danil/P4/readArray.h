@@ -6,6 +6,7 @@
 
 namespace skuratov
 {
-  int* readArray(std::istream& in, int* array, size_t rows, size_t cols);
+  void readArray(std::istream& in, int* array, size_t rows, size_t cols);
+
 }
 #endif

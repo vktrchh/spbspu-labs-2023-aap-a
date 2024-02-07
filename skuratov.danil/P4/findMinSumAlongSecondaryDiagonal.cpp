@@ -5,13 +5,13 @@
 #include <cstddef>
 #include <stdexcept>
 
-int skuratov::findMinSumAlongSecondaryDiagonal(const int* array, size_t rows, size_t cols)
+size_t skuratov::findMinSumAlongSecondaryDiagonal(const int* array, size_t rows, size_t cols)
 {
   if (rows != cols)
   {
     throw std::runtime_error("Matrix is not square");
   }
-  int minSum = std::numeric_limits< int >::max();
+  size_t minSum = std::numeric_limits< int >::max();
   for (size_t startCol = cols - 1; startCol > 0; --startCol)
   {
     int currentSum = 0;

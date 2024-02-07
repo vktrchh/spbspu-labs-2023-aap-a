@@ -5,7 +5,7 @@
 
 namespace skuratov
 {
-  int findLongestSeriesRow(const int* array, size_t rows, size_t cols);
+  size_t findLongestSeriesRow(const int* array, size_t rows, size_t cols);
 }
 
 #endif

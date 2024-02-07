@@ -1,4 +1,5 @@
 #include <cctype>
+#include <string>
 #include <cstddef>
 #include <fstream>
 #include <iostream>
@@ -27,7 +28,7 @@ int main(int argc, char* argv[])
   int taskNumber = 0;
   try
   {
-    int taskNumber = std::atoi(argv[1]);
+    int taskNumber = std::stoi(argv[1]);
   }
   catch (const std::out_of_range&)
   {

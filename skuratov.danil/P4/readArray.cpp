@@ -5,20 +5,14 @@
 #include <iostream>
 #include <stdexcept>
 
-int* readArray(std::istream& in, int* array, size_t rows, size_t cols)
+void skuratov::readArray(std::istream& in, int* array, size_t rows, size_t cols)
 {
-  size_t count = 0;
-  for (size_t i = 0; i < rows * cols; ++i)
+  size_t size = rows * cols;
+  for (size_t i = 0; i < size; i++)
   {
     if (!(in >> array[i]))
     {
-      throw std::runtime_error("Error reading element at index");
+      throw std::logic_error("Cannot read numbers\n");
     }
-    count++;
   }
-  if (count != rows * cols)
-  {
-    throw std::runtime_error("Error");
-  }
-  return array;
 }
