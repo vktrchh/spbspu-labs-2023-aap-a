@@ -81,7 +81,7 @@ int main(int argc, char **argv)
       petuhov::fillMatrix(matrix, rows, cols, inputFile);
 
       isLowerTriangular = petuhov::isLowerTriangular(matrix, rows, cols);
-      delete[] matrix; 
+      delete[] matrix;
     }
     catch (const std::bad_alloc &)
     {
