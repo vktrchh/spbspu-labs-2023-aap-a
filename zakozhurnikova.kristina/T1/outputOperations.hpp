@@ -5,6 +5,6 @@
 
 namespace zakozhurnikova
 {
-  void printShapes(std::ostream& output, Shape** shapes, size_t size);
+  void printShapes(std::ostream& output, const Shape* const* shapes, size_t size);
 }
 #endif

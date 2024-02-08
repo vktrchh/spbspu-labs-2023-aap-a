@@ -2,7 +2,7 @@
 #include "shape.hpp"
 #include "square.hpp"
 
-double getFullArea(zakozhurnikova::Shape** shapes, size_t size)
+double getFullArea(const zakozhurnikova::Shape* const* shapes, size_t size)
 {
   double result = 0.0;
   for (size_t i = 0; i < size; ++i)
@@ -11,7 +11,7 @@ double getFullArea(zakozhurnikova::Shape** shapes, size_t size)
   }
   return result;
 }
-void zakozhurnikova::printShapes(std::ostream& output, Shape** shapes, size_t size)
+void zakozhurnikova::printShapes(std::ostream& output, const Shape* const* shapes, size_t size)
 {
   output << std::fixed;
   output.precision(1);
@@ -19,7 +19,7 @@ void zakozhurnikova::printShapes(std::ostream& output, Shape** shapes, size_t si
   output << getFullArea(shapes, size) << ' ';
   for (size_t i = 0; i < size; ++i)
   {
-    if (dynamic_cast<zakozhurnikova::Square*>(shapes[i]))
+    if (dynamic_cast<const zakozhurnikova::Square*>(shapes[i]))
     {
       shapes[i]->getFrameRect().showSquareCoords();
     }
