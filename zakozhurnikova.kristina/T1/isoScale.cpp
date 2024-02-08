@@ -1,6 +1,6 @@
 #include "isoScale.hpp"
 
-void zakozhurnikova::isoScale(Shape* shape, const point_t& scalePoint, double k) 
+void zakozhurnikova::isoScale(Shape* shape, const point_t& scalePoint, double k)
 {
   point_t originPoint = shape->getFrameRect().getCenter();
   shape->move(scalePoint);
