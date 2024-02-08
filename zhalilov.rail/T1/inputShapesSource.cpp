@@ -178,6 +178,10 @@ void zhalilov::inputShapesSource(Shape **shapes, point_t &point, double &ratio, 
     }
   }
 
+  if (!input)
+  {
+    throw std::invalid_argument("input interrupted");
+  }
   if (ratio <= 0.0)
   {
     throw std::underflow_error("ratio scale should be greater than zero");
@@ -185,10 +189,6 @@ void zhalilov::inputShapesSource(Shape **shapes, point_t &point, double &ratio, 
   if (hasIncorrectShapes)
   {
     throw std::invalid_argument("some shapes have incorrect source");
-  }
-  if (!input)
-  {
-    throw std::invalid_argument("input interrupted");
   }
   return;
 }
