@@ -1,34 +1,34 @@
 #include <iostream>
 #include <stdexcept>
 
-#include "countChars.hpp"
+#include "countNumOfOccurOfLetters.hpp"
 #include "sort.hpp"
 #include "inputArray.hpp"
-#include "sortingByQuantity.hpp"
 
 int main()
 {
   using namespace chistyakov;
   char* array = nullptr;
+  const size_t numOfCharsInASCII = 128;
 
   try
   {
     array = inputArray(std::cin);
   }
-  catch(const std::bad_alloc & e)
+  catch (const std::bad_alloc & e)
   {
-    std::cout << "Error: " << e.what();
+    std::cerr << "Error: " << e.what() << "\n";
     return 1;
   }
-  catch(const std::invalid_argument & e)
+  catch (const std::invalid_argument & e)
   {
-    std::cout << "Error: " << e.what();
+    std::cerr << "Error: " << e.what() << "\n";
     return 2;
   }
 
-  char dictChar[52]{};
-  size_t dictNumsOfChar[52]{};
-  countChars(array, dictChar, dictNumsOfChar);
+  char dictChar[numOfCharsInASCII]{};
+  size_t dictNumsOfChar[numOfCharsInASCII]{};
+  sortByQuantity(array, dictChar, dictNumsOfChar);
 
   if (dictChar[1] == 0 || dictChar[2] == 0)
   {
@@ -37,16 +37,10 @@ int main()
     return 1;
   }
 
-  sortingByQuantity(dictChar, dictNumsOfChar);
+  char result[] = "abc";
+  sortCertainNumberOfItems(dictChar, result, 3);
 
-  char result[3]{};
-  sort(dictChar, result, 3);
-
-  for (size_t i = 0; i < 3; ++i)
-  {
-    std::cout << result[i];
-  }
-  std::cout << "\n";
+  std::cout << result << "\n";
 
   delete[] array;
   return 0;
