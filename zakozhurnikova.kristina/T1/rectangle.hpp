@@ -1,6 +1,7 @@
 #ifndef RECTANGLE_HPP
 #define RECTANGLE_HPP
 #include "shape.hpp"
+#include <stdexcept>
 
 namespace zakozhurnikova
 {
@@ -13,7 +14,7 @@ namespace zakozhurnikova
       downLeft_(pointOne),
       upRight_(pointTwo)
     {
-     if (pointOne.x >= pointTwo.x || pointOne.y >= pointTwo.y)
+     if (pointOne.getX() >= pointTwo.getX() || pointOne.getY() >= pointTwo.getY())
   {
     throw std::invalid_argument("Invalid rectangle parameters");
   }
