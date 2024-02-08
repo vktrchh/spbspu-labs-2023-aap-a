@@ -51,9 +51,7 @@ zaitsev::rectangle_t zaitsev::Parallelogram::getFrameRect() const
     right = std::max(right, def_vertices_[i].x);
   }
 
-  point_t vertex4 = { def_vertices_[0].x + def_vertices_[2].x - def_vertices_[1].x,
-    def_vertices_[0].y + def_vertices_[2].y - def_vertices_[1].y };
-
+  point_t vertex4 = def_vertices_[0] + def_vertices_[2] - def_vertices_[1];
   lower = std::min(lower, vertex4.y);
   upper = std::max(upper, vertex4.y);
   left = std::min(left, vertex4.x);
@@ -68,15 +66,15 @@ zaitsev::rectangle_t zaitsev::Parallelogram::getFrameRect() const
 void zaitsev::Parallelogram::move(const point_t& dest_pos)
 {
   point_t pos = getCenter();
-  this->move(dest_pos.x - pos.x, dest_pos.y - pos.y);
+  move(dest_pos.x - pos.x, dest_pos.y - pos.y);
 }
 
 void zaitsev::Parallelogram::move(double x_shift, double y_shift)
 {
+  point_t shift = { x_shift, y_shift };
   for (size_t i = 0; i < 3; ++i)
   {
-    def_vertices_[i].x += x_shift;
-    def_vertices_[i].y += y_shift;
+    def_vertices_[i] += shift;
   }
 }
 
@@ -89,14 +87,11 @@ void zaitsev::Parallelogram::scale(double factor)
   point_t center = getCenter();
   for (size_t i = 0; i < 3; ++i)
   {
-    def_vertices_[i].x = center.x + (def_vertices_[i].x - center.x) * factor;
-    def_vertices_[i].y = center.y + (def_vertices_[i].y - center.y) * factor;
+    def_vertices_[i] = center + (def_vertices_[i] - center) * factor;
   }
-  }
+}
 
 zaitsev::point_t zaitsev::Parallelogram::getCenter() const
 {
-  double x = (def_vertices_[0].x + def_vertices_[2].x) / 2;
-  double y = (def_vertices_[0].y + def_vertices_[2].y) / 2;
-  return { x,y };
+  return (def_vertices_[0] + def_vertices_[2]) / 2;
 }
