@@ -49,52 +49,67 @@ namespace zhalilov
 
   Shape *inputPolygon(std::istream &input)
   {
-    size_t length = 0;
+    size_t index = 0;
     size_t size = 10;
     double *nums = new double[size]{};
-    point_t *points = nullptr;
-    try
+    while (true)
     {
-      while (true)
+      double num;
+      input >> num;
+      if (input.fail())
       {
-        double hui;
-        input >> hui;
-        if (input.fail())
+        input.clear();
+        break;
+      }
+      if (index + 1 == size)
+      {
+        try
         {
-          std::cout << "pizda";
-          input.clear();
-          break;
+          double *newNums = new double[size + 4];
+          for (size_t i = 0; i < size; i++)
+          {
+            newNums[i] = nums[i];
+          }
+          delete[] nums;
+          nums = newNums;
+          size += 4;
         }
-        length++;
+        catch (const std::bad_alloc &e)
+        {
+          delete[] nums;
+          throw;
+        }
       }
-      if (length % 2 != 0 || length < 6)
-      {
-        delete[] nums;
-        throw std::invalid_argument("incorrect polygon src's nums of args");
-      }
-      point_t *points = new point_t[length / 2];
-      for (size_t i = 0; i < length; i += 2)
-      {
-        points[i / 2] = { nums[i], nums[i + 1] };
-      }
+      nums[index] = num;
+      index++;
     }
-    catch (const std::bad_alloc &e)
+
+    if (index % 2 != 0 || index < 6)
     {
       delete[] nums;
-      delete[] points;
+      throw std::invalid_argument("incorrect polygon src's nums of args");
     }
-    delete[] nums;
+
+    point_t *points = nullptr;
+    Shape *polygon = nullptr;
     try
     {
-      Shape *shape = new Polygon(points, length / 2);
-      delete[] points;
-      return shape;
+      points = new point_t[index / 2];
+      for (size_t i = 0; i < index / 2; i++)
+      {
+        points[i] = { nums[i * 2], nums[i * 2 + 1] };
+      }
+      polygon = new Polygon(points, index / 2);
     }
     catch (const std::exception &e)
     {
+      delete[] nums;
       delete[] points;
       throw;
     }
+    delete[] nums;
+    delete[] points;
+    return polygon;
   }
 
   Shape *identifyShape(const std::string &name, std::istream &input)
@@ -129,7 +144,6 @@ void zhalilov::inputShapesSource(Shape **shapes, point_t &point, double &ratio, 
       input >> name;
       if (name == "SCALE")
       {
-        std::cout << "SCLAE";
         input >> point.x >> point.y;
         input >> ratio;
         length = shapeIndex;

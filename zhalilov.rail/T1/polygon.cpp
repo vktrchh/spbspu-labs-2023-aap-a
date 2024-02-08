@@ -15,7 +15,7 @@ zhalilov::Polygon::Polygon(point_t *points, const size_t size):
   {
     for (size_t j = i + 1; j < size; j++)
     {
-      if ((m_points[i].x == m_points[j].x) && (m_points[i].y == m_points[j].y))
+      if ((points[i].x == points[j].x) && (points[i].y == points[j].y))
       {
         throw std::invalid_argument("some points are equal");
       }
