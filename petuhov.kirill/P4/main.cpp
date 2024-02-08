@@ -5,7 +5,7 @@
 #include "createMatrix.hpp"
 #include "fillMatrix.hpp"
 
-int main(int argc, char ** argv)
+int main(int argc, char **argv)
 {
   if (argc != 4)
   {
@@ -26,7 +26,7 @@ int main(int argc, char ** argv)
       throw std::out_of_range("Argument is out of range. Argument must be 1 or 2.");
     }
   }
-  catch (const std::exception & e)
+  catch (const std::exception &e)
   {
     std::cerr << e.what() << "\n";
     return 1;
@@ -40,6 +40,8 @@ int main(int argc, char ** argv)
     std::cerr << "Cannot read a number\n";
     return 2;
   }
+
+  int *matrix = nullptr;
   bool isLowerTriangularMatrix = true;
 
   if (arr_type == 1)
@@ -58,26 +60,9 @@ int main(int argc, char ** argv)
         }
       }
     }
-    for (size_t i = 0; i < rows; ++i)
-    {
-      for (size_t j = i + 1; j < cols; ++j)
-      {
-        if (!isLowerTriangularMatrix)
-        {
-          break;
-        }
-        if (matrix[i * cols + j] != 0)
-        {
-          isLowerTriangularMatrix = false;
-          break;
-        }
-      }
-    }
   }
   else if (arr_type == 2)
   {
-    int * matrix = nullptr;
-
     try
     {
       matrix = petuhov::createMatrix(rows, cols);
@@ -85,7 +70,7 @@ int main(int argc, char ** argv)
       {
         petuhov::fillMatrix(matrix, cols, rows, inputFile);
       }
-      catch(const std::runtime_error & e)
+      catch (const std::runtime_error &e)
       {
         std::cerr << e.what() << '\n';
         delete[] matrix;
@@ -97,26 +82,41 @@ int main(int argc, char ** argv)
       std::cerr << "Not enough memory\n";
       return 4;
     }
-    for (size_t i = 0; i < rows; ++i)
+  }
+  for (size_t i = 0; i < rows; ++i)
+  {
+    for (size_t j = i + 1; j < cols; ++j)
     {
-      for (size_t j = i + 1; j < cols; ++j)
+      if (arr_type == 1)
       {
-        if (matrix[i*cols+j] != 0)
+        if (matrix[i * cols + j] != 0)
         {
           isLowerTriangularMatrix = false;
           break;
         }
       }
-      if (!isLowerTriangularMatrix)
+      else if (arr_type == 2)
       {
-        break;
+        if (matrix[i * cols + j] != 0)
+        {
+          isLowerTriangularMatrix = false;
+          break;
+        }
       }
     }
+    if (!isLowerTriangularMatrix)
+    {
+      break;
+    }
+  }
+  if (arr_type == 2)
+  {
     delete[] matrix;
   }
 
   std::ofstream outputFile(argv[3]);
-  if (!outputFile) {
+  if (!outputFile)
+  {
     std::cerr << "Cannot write output\n";
     outputFile.close();
     return 5;
