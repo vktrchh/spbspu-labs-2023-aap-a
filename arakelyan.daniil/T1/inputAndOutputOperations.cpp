@@ -86,10 +86,10 @@ char * arakelyan::inputString(std::istream &input)
     i++;
   }
   string[i] = '\0';
-  if (*string == EOF)
+  if (!input)
   {
     delete [] string;
-    throw std::logic_error("EOF here!");
+    throw std::logic_error("Error input!");
   }
   input >> std::skipws;
   return string;

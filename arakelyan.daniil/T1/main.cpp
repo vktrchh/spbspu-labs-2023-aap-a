@@ -45,6 +45,20 @@ int main()
     {
       inputScaleParam(string, scalePoint, scaleK);
       delete [] string;
+      try
+      {
+        scaleFunction(myShapes, currentShapesCount, scalePoint, scaleK);
+      }
+      catch (const std::logic_error & e)
+      {
+        for (size_t i = 0; i < currentShapesCount; i++)
+        {
+          delete myShapes[i];
+        }
+        delete [] myShapes;
+        std::cout << "Error: " << e.what() << "\n";
+        return 1;
+      }
       break;
     }
     else
@@ -72,20 +86,20 @@ int main()
     delete [] string;
   }
 
-  try
-  {
-    scaleFunction(myShapes, currentShapesCount, scalePoint, scaleK);
-  }
-  catch (const std::logic_error & e)
-  {
-    for (size_t i = 0; i < currentShapesCount; i++)
-    {
-      delete myShapes[i];
-    }
-    delete [] myShapes;
-    std::cout << "Error: " << e.what() << "\n";
-    return 1;
-  }
+  // try
+  // {
+  //   scaleFunction(myShapes, currentShapesCount, scalePoint, scaleK);
+  // }
+  // catch (const std::logic_error & e)
+  // {
+  //   for (size_t i = 0; i < currentShapesCount; i++)
+  //   {
+  //     delete myShapes[i];
+  //   }
+  //   delete [] myShapes;
+  //   std::cout << "Error: " << e.what() << "\n";
+  //   return 1;
+  // }
 
 
   for (size_t i = 0; i < currentShapesCount; i++)
