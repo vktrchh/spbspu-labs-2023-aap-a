@@ -55,6 +55,10 @@ void erohin::inputShape(Shape** result, std::istream& input, size_t& size, point
       {
         isFigureCreationFullSuccesful = false;
       }
+      catch (const std::bad_alloc&)
+      {
+        result[size++] = nullptr;
+      }
     }
     par_size = 0;
   }

@@ -9,9 +9,18 @@ void erohin::outputShape(std::ostream& output, const erohin::Shape* const* shape
   output << std::fixed;
   output.precision(1);
   double sumArea = 0.0;
+  double area = 0.0;
   for (size_t i = 0; i < size; ++i)
   {
-    sumArea += shape[i] ? shape[i]->getArea() : 0.0;
+    try
+    {
+      area = shape[i] ? shape[i]->getArea() : 0.0;
+    }
+    catch (...)
+    {
+      area = 0.0;
+    }
+    sumArea += area;
   }
   output << sumArea << " ";
   bool isFirstOutput = true;
