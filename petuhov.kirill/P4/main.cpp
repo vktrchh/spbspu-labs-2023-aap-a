@@ -86,7 +86,6 @@ int main(int argc, char **argv)
     }
     catch (const std::bad_alloc &)
     {
-      delete[] matrix;
       std::cerr << "Not enough memory\n";
       return 4;
     }
