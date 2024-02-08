@@ -30,7 +30,7 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
     }
     else
     {
-      for (auto now : possibleShapes)
+      for (auto now: possibleShapes)
       {
         std::string shapeName = now.first;
         size_t possibleSize = now.second;
@@ -124,15 +124,10 @@ std::ostream & namestnikov::outputShapes(std::ostream & out, Shape ** shapes, si
   {
     throw std::invalid_argument("Nothing to output\n");
   }
-  out << std::fixed;
-  out.precision(1);
   double square = 0.0;
   for (size_t i = 0; i < count; ++i)
   {
-    if (shapes[i])
-    {
-      square += shapes[i]->getArea();
-    }
+    square += shapes[i]->getArea();
   }
   out << square;
   for (size_t i = 0; i < count; ++i)
@@ -144,10 +139,8 @@ std::ostream & namestnikov::outputShapes(std::ostream & out, Shape ** shapes, si
       point_t position = shapes[i]->getFrameRect().pos;
       double positionX = position.x;
       double positionY = position.y;
-      out << " " << positionX - (width / 2.0) << " " << positionY - (height / 2.0) << " "
-           << positionX + (width / 2.0) << " " << positionY + (height / 2.0);
+      out << " " << positionX - (width / 2.0) << " " << positionY - (height / 2.0) << " " << positionX + (width / 2.0) << " " << positionY + (height / 2.0);
     }
   }
-  out << "\n";
   return out;
 }

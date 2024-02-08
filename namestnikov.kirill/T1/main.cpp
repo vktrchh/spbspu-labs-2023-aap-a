@@ -13,7 +13,10 @@ int main()
   try
   {
     shapes = inputShapes(std::cin, count);
+    std::cout << std::fixed;
+    std::cout.precision(1);
     outputShapes(std::cout, shapes, count);
+    std::cout << "\n";
     point_t scalePoint;
     double scaleCoefficient = 0.0;
     std::cin >> scalePoint.x >> scalePoint.y >> scaleCoefficient;
@@ -31,6 +34,9 @@ int main()
       isoScale(shapes[i], scalePoint, scaleCoefficient);
     }
     outputShapes(std::cout, shapes, count);
+    std::cout << std::fixed;
+    std::cout.precision(1);
+    std::cout << "\n";
   }
   catch (const std::bad_alloc &)
   {

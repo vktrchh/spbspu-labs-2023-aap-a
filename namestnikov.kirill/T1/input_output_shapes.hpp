@@ -1,8 +1,9 @@
 #ifndef INPUT_OUTPUT_SHAPES_HPP
 #define INPUT_OUTPUT_SHAPES_HPP
-#include "shape.hpp"
+
 #include <iostream>
 #include <cstddef>
+#include "shape.hpp"
 
 namespace namestnikov
 {
