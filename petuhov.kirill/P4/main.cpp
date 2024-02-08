@@ -55,28 +55,19 @@ int main(int argc, char **argv)
         if (!(inputFile >> static_matrix[i * cols + j]))
         {
           std::cerr << "Error reading matrix element at row " << i << " and column " << j << "\n";
-          delete[] static_matrix;
           return 4;
         }
       }
+      petuhov::fillMatrix(static_matrix, rows, cols, inputFile);
+      matrix = static_matrix;
     }
-    matrix = static_matrix;
   }
   else if (arr_type == 2)
   {
     try
     {
       matrix = petuhov::createMatrix(rows, cols);
-      try
-      {
-        petuhov::fillMatrix(matrix, cols, rows, inputFile);
-      }
-      catch (const std::runtime_error &e)
-      {
-        std::cerr << e.what() << '\n';
-        delete[] matrix;
-        return 4;
-      }
+      petuhov::fillMatrix(matrix, rows, cols, inputFile);
     }
     catch (const std::bad_alloc &)
     {
