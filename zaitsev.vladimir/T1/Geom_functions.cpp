@@ -14,17 +14,17 @@ double skewProduct(const zaitsev::point_t& vector1, const zaitsev::point_t& vect
 
 bool zaitsev::checkIntersection(const point_t* sections)
 {
-  point_t vec10 = { sections[1].x - sections[0].x,sections[1].y - sections[0].y };
-  point_t vec20 = { sections[2].x - sections[0].x,sections[2].y - sections[0].y };
-  point_t vec30 = { sections[3].x - sections[0].x,sections[3].y - sections[0].y };
+  point_t vec10 = sections[1] - sections[0];
+  point_t vec20 = sections[2] - sections[0];
+  point_t vec30 = sections[3] - sections[0];
   if (skewProduct(vec10, vec20) * skewProduct(vec10, vec30) >= 0)
   {
     return false;
   }
 
-  vec10 = { sections[3].x - sections[2].x,sections[3].y - sections[2].y };
-  vec20 = { sections[0].x - sections[2].x,sections[0].y - sections[2].y };
-  vec30 = { sections[1].x - sections[2].x,sections[1].y - sections[2].y };
+  vec10 = sections[3] - sections[2];
+  vec20 = sections[0] - sections[2];
+  vec30 = sections[1] - sections[2];
   if (skewProduct(vec10, vec20) * skewProduct(vec10, vec30) >= 0)
   {
     return false;
@@ -65,7 +65,7 @@ zaitsev::point_t zaitsev::findIntersection(const point_t* sections)
     x = -y * b2 - c2;
   }
 
-  return { x,y };
+  return { x, y };
 }
 
 void setLineCoeff(const zaitsev::point_t& p1, const zaitsev::point_t& p2, double& a, double& b, double& c)
@@ -92,9 +92,7 @@ void setLineCoeff(const zaitsev::point_t& p1, const zaitsev::point_t& p2, double
 
 double zaitsev::getAreaOfTriangle(const point_t& p1, const point_t& p2, const point_t& p3)
 {
-  point_t v1 = { p2.x - p1.x,p2.y - p1.y };
-  point_t v2 = { p3.x - p1.x,p3.y - p1.y };
-  return std::fabs(skewProduct(v1, v2)) / 2;
+  return std::fabs(skewProduct(p2 - p1, p3 - p1)) / 2;
 }
 
 void zaitsev::scale(Shape* shape, double factor, const point_t& iso_center)

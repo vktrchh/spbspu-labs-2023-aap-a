@@ -22,8 +22,7 @@ zaitsev::rectangle_t zaitsev::Rectangle::getFrameRect() const
 {
   double width = right_corner_.x - left_corner_.x;
   double height = right_corner_.y - left_corner_.y;
-  point_t pos = { left_corner_.x + width / 2, left_corner_.y + height / 2 };
-  return { width, height, pos };
+  return { width, height, getCenter()};
 }
 
 void zaitsev::Rectangle::move(const point_t& dest_pos)
@@ -34,17 +33,14 @@ void zaitsev::Rectangle::move(const point_t& dest_pos)
 
 void zaitsev::Rectangle::move(double x_shift, double y_shift)
 {
-  left_corner_.x += x_shift;
-  left_corner_.y += y_shift;
-  right_corner_.x += x_shift;
-  right_corner_.y += y_shift;
+  point_t shift = { x_shift, y_shift };
+  left_corner_ += shift;
+  right_corner_ += shift;
 }
 
 zaitsev::point_t zaitsev::Rectangle::getCenter() const
 {
-  double width = right_corner_.x - left_corner_.x;
-  double height = right_corner_.y - left_corner_.y;
-  return { left_corner_.x + width / 2, left_corner_.y + height / 2 };
+  return (right_corner_ + left_corner_) / 2;
 }
 
 void zaitsev::Rectangle::scale(double factor)
@@ -54,8 +50,6 @@ void zaitsev::Rectangle::scale(double factor)
     throw std::invalid_argument("Scale factor must be positive");
   }
   point_t center = getCenter();
-  left_corner_.x = center.x + (left_corner_.x - center.x) * factor;
-  right_corner_.x = center.x + (right_corner_.x - center.x) * factor;
-  left_corner_.y = center.y + (left_corner_.y - center.y) * factor;
-  right_corner_.y = center.y + (right_corner_.y - center.y) * factor;
+  left_corner_ = center + (left_corner_ - center) * factor;
+  right_corner_ = center + (right_corner_ - center) * factor;
 }

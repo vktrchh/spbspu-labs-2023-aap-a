@@ -9,6 +9,13 @@ namespace zaitsev
     double y;
   };
 
+  point_t operator+(const point_t& a, const point_t& b);
+  point_t& operator+=(point_t& a, const point_t& b);
+  point_t operator-(const point_t& a, const point_t& b);
+  point_t& operator-=(point_t& a, const point_t& b);
+  point_t operator*(const point_t& a, double b);
+  point_t operator/(const point_t& a, double b);
+
   struct rectangle_t
   {
     double width;

@@ -4,6 +4,8 @@
 #include <cstring>
 #include <stdexcept>
 #include <cstddef>
+#include <istream>
+#include <string>
 #include "base-types.hpp"
 #include "shape.hpp"
 #include "rectangle.hpp"
@@ -11,87 +13,55 @@
 #include "parallelogram.hpp"
 #include "Geom_functions.h"
 
-double zaitsev::readNextValue(char* param)
+double zaitsev::readNextValue(std::istream& input)
 {
-  static char* strtok_context = nullptr;
-  char* pos = strtok_r(param, " ", std::addressof(strtok_context));
-  char* ptr = nullptr;
-  double val = std::strtod(pos, std::addressof(ptr));
-  if (val == 0 && ptr == pos)
-  {
-    throw std::invalid_argument("Read value is not a number");
-  }
-  return val;
+  std::string s;
+  input >> s;
+  return stod(s);
 }
 
-zaitsev::Shape* zaitsev::readRectangle(char* param)
+zaitsev::Shape* zaitsev::readRectangle(std::istream& input)
 {
   point_t left = { 0,0 };
   point_t right = { 0,0 };
-  Shape* res = nullptr;
-  try
-  {
-    left.x = readNextValue(param);
-    left.y = readNextValue(nullptr);
-    right.x = readNextValue(nullptr);
-    right.y = readNextValue(nullptr);
-    res = new Rectangle(left, right);
-  }
-  catch (std::invalid_argument&)
-  {
-    return nullptr;
-  }
+  std::string s = "";
+  left.x = readNextValue(input);
+  left.y = readNextValue(input);
+  right.x = readNextValue(input);
+  right.y = readNextValue(input);
 
-  return res;
+  return new Rectangle(left, right);;
 }
 
-zaitsev::Shape* zaitsev::readComplexquad(char* param)
+zaitsev::Shape* zaitsev::readComplexquad(std::istream& input)
 {
   point_t vertices[4] = {};
-  Shape* res = nullptr;
-  try
+  for (size_t i = 0; i < 4; ++i)
   {
-    for (size_t i = 0; i < 4; ++i)
-    {
-      vertices[i].x = readNextValue(i == 0 ? param : nullptr);
-      vertices[i].y = readNextValue(nullptr);
-    }
-    res = new Complexquad(vertices);
-  }
-  catch (std::invalid_argument&)
-  {
-    return nullptr;
+    vertices[i].x = readNextValue(input);
+    vertices[i].y = readNextValue(input);
   }
 
-  return res;
+  return new Complexquad(vertices);
 }
 
-zaitsev::Shape* zaitsev::readParallelogram(char* param)
+zaitsev::Shape* zaitsev::readParallelogram(std::istream& input)
 {
   point_t vertices[3] = {};
-  Shape* res = nullptr;
-  try
+  for (size_t i = 0; i < 3; ++i)
   {
-    for (size_t i = 0; i < 3; ++i)
-    {
-      vertices[i].x = readNextValue(i == 0 ? param : nullptr);
-      vertices[i].y = readNextValue(nullptr);
-    }
-    res = new Parallelogram(vertices);
-  }
-  catch (std::invalid_argument&)
-  {
-    return nullptr;
+    vertices[i].x = readNextValue(input);
+    vertices[i].y = readNextValue(input);
   }
 
-  return res;
+  return new Parallelogram(vertices);
 }
 
-void zaitsev::readScale(char* param, point_t& center, double& factor)
+void zaitsev::readScale(std::istream& input, point_t& center, double& factor)
 {
-  double x = readNextValue(param);
-  double y = readNextValue(nullptr);
-  double read_factor = readNextValue(nullptr);
+  double x = readNextValue(input);
+  double y = readNextValue(input);
+  double read_factor = readNextValue(input);
 
   factor = read_factor;
   center.x = x;
@@ -122,4 +92,18 @@ std::ostream& zaitsev::shapesOutput(std::ostream& output, const Shape* const* sh
   output << "\n";
   output.copyfmt(format_holder);
   return output;
+}
+
+void zaitsev::freeMemory(Shape** shapes, size_t size)
+{
+  for (size_t i = 0; i < size; ++i)
+  {
+    delete shapes[i];
+  }
+}
+
+void zaitsev::processShapeInput(std::istream& input, Shape** shapes, size_t& size, Shape* (*handler)(std::istream&))
+{
+  shapes[size] = handler(input);
+  ++size;
 }

@@ -11,8 +11,6 @@ int main()
   using namespace zaitsev;
 
   std::string shape_type;
-  std::string shape_param;
-  char* shape_param_copy = nullptr;
   size_t size = 0;
   Shape* shapes[10'000] = {};
   bool wrong_args = false;
@@ -22,117 +20,78 @@ int main()
     while (1)
     {
       std::cin >> shape_type;
-      std::getline(std::cin, shape_param);
-      if (!std::cin)
+      try
       {
-        std::cerr << "No scale command entered\n";
-        for (size_t i = 0; i < size; ++i)
+        if (!std::cin)
         {
-          delete shapes[i];
-        }
-        return 1;
-      }
-      if (shape_type == "RECTANGLE")
-      {
-        shape_param_copy = new char[shape_param.size() + 1];
-        std::memcpy(shape_param_copy, shape_param.c_str(), shape_param.size() + 1);
-        Shape* res = readRectangle(shape_param_copy);
-        if (res)
-        {
-          shapes[size] = res;
-          ++size;        }
-        else
-        {
-          wrong_args = true;
-        }
-      }
-      else if (shape_type == "COMPLEXQUAD")
-      {
-        shape_param_copy = new char[shape_param.size() + 1];
-        std::memcpy(shape_param_copy, shape_param.c_str(), shape_param.size() + 1);
-        Shape* res = readComplexquad(shape_param_copy);
-        if (res)
-        {
-          shapes[size] = res;
-          ++size;
-        }
-        else
-        {
-          wrong_args = true;
-        }
-      }
-      else if (shape_type == "PARALLELOGRAM")
-      {
-        shape_param_copy = new char[shape_param.size() + 1];
-        std::memcpy(shape_param_copy, shape_param.c_str(), shape_param.size() + 1);
-        Shape* res = readParallelogram(shape_param_copy);
-        if (res)
-        {
-          shapes[size] = res;
-          ++size;
-        }
-        else
-        {
-          wrong_args = true;
-        }
-      }
-      else if (shape_type == "SCALE")
-      {
-        shape_param_copy = new char[shape_param.size() + 1];
-        std::memcpy(shape_param_copy, shape_param.c_str(), shape_param.size() + 1);
-        if (size == 0)
-        {
-          std::cerr << "Error: No shapes to scale\n";
-          delete[] shape_param_copy;
+          std::cerr << "No scale command entered\n";
+          freeMemory(shapes, size);
           return 1;
         }
+        if (shape_type == "RECTANGLE")
+        {
+          shapes[size] = readRectangle(std::cin);
+          ++size;
+        }
+        else if (shape_type == "COMPLEXQUAD")
+        {
+          shapes[size] = readComplexquad(std::cin);
+          ++size;
+        }
+        else if (shape_type == "PARALLELOGRAM")
+        {
+          shapes[size] = readParallelogram(std::cin);
+          ++size;
+        }
+        else if (shape_type == "SCALE")
+        {
+          if (size == 0)
+          {
+            std::cerr << "Error: No shapes to scale\n";
+            return 1;
+          }
 
-        double factor = 0;
-        point_t center = { 0,0 };
-        try
-        {
-          readScale(shape_param_copy, center, factor);
-          shapesOutput(std::cout, shapes, size);
-          for (size_t i = 0; i < size; ++i)
+          double factor = 0;
+          point_t center = { 0,0 };
+          try
           {
-            scale(shapes[i], factor, center);
+            readScale(std::cin, center, factor);
+            shapesOutput(std::cout, shapes, size);
+            for (size_t i = 0; i < size; ++i)
+            {
+              scale(shapes[i], factor, center);
+            }
+            shapesOutput(std::cout, shapes, size);
+            if (wrong_args)
+            {
+              std::cerr << "Warning: Some shapes were set incorrectly\n";
+            }
           }
-          shapesOutput(std::cout, shapes, size);
-          if (wrong_args)
+          catch (std::invalid_argument& e)
           {
-            std::cerr << "Warning: Some shapes were set incorrectly\n";
+            std::cerr << "Error: " << e.what() << "\n";
+            freeMemory(shapes, size);
+            return 1;
           }
-        }
-        catch (std::invalid_argument& e)
-        {
-          std::cerr << "Error: " << e.what() << "\n";
-          delete[] shape_param_copy;
-          for (size_t i = 0; i < size; ++i)
-          {
-            delete shapes[i];
-          }
-          return 1;
-        }
 
-        delete[] shape_param_copy;
-        for (size_t i = 0; i < size; ++i)
-        {
-          delete shapes[i];
+          freeMemory(shapes, size);
+          return 0;
         }
-        return 0;
+        else
+        {
+          std::getline(std::cin, shape_type);
+        }
       }
-      delete[] shape_param_copy;
-      shape_param_copy = nullptr;
+      catch (const std::exception&) 
+      {
+        wrong_args = true;
+      }
     }
   }
   catch (std::bad_alloc&)
   {
     std::cerr << "Error: Failed to allocate memory\n";
-    delete[] shape_param_copy;
-    for (size_t i = 0; i < size; ++i)
-    {
-      delete shapes[i];
-    }
+    freeMemory(shapes, size);
   }
 
   return 1;
