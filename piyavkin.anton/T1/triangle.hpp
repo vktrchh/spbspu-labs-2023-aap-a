@@ -1,6 +1,5 @@
 #ifndef TRIANGLE_HPP
 #define TRIANGLE_HPP
-#include <iostream>
 #include "shape.hpp"
 #include "base-types.hpp"
 namespace piyavkin

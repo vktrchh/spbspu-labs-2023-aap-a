@@ -2,7 +2,7 @@
 
 namespace piyavkin
 {
-  void output(std::ostream& out, Shape** shapes, size_t shapeCount)
+  void output(std::ostream& out, const Shape* const * shapes, size_t shapeCount)
   {
     if (shapeCount == 0)
     {
@@ -13,8 +13,6 @@ namespace piyavkin
     {
       sum += shapes[i]->getArea();
     }
-    out << std::fixed;
-    out.precision(1);
     out << sum;
     for (size_t i = 0; i < shapeCount; ++i)
     {

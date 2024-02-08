@@ -1,4 +1,5 @@
 #include "parallelogram.hpp"
+#include "base-function.hpp"
 
 namespace piyavkin
 {
@@ -7,9 +8,9 @@ namespace piyavkin
     b_(p2),
     c_(p3)
   {
-    double ab = std::sqrt((a_.x - b_.x) * (a_.x - b_.x) + (a_.y - b_.y) * (a_.y - b_.y));
-    double ac = std::sqrt((a_.x - c_.x) * (a_.x - c_.x) + (a_.y - c_.y) * (a_.y - c_.y));
-    double bc = std::sqrt((b_.x - c_.x) * (b_.x - c_.x) + (b_.y - c_.y) * (b_.y - c_.y));
+    double ab = getLength(a_, b_);
+    double ac = getLength(a_, c_);
+    double bc = getLength(c_, b_);
     if ((a_.y != c_.y && a_.y != b_.y && b_.y != c_.y) || ab >= ac + bc || bc >= ab + ac || ac >= ab + bc)
     {
       throw std::logic_error("It is not parallelogram");
@@ -63,21 +64,19 @@ namespace piyavkin
   }
   void piyavkin::Parallelogram::move(double dx, double dy)
   {
-    a_.x += dx;
-    a_.y += dy;
-    b_.x += dx;
-    b_.y += dy;
-    c_.x += dx;
-    c_.y += dy;
+    addMovement(a_, dx, dy);
+    addMovement(b_, dx, dy);
+    addMovement(c_, dx, dy);
   }
   void piyavkin::Parallelogram::scale(double k)
   {
+    if (k < 0)
+    {
+      throw std::logic_error("Сoefficient less than 0");
+    }
     point_t pos = {(b_.x + c_.x) / 2, (b_.y + c_.y) / 2};
-    a_.x = k * (a_.x - pos.x) + pos.x;
-    a_.y = k * (a_.y - pos.y) + pos.y;
-    b_.x = k * (b_.x - pos.x) + pos.x;
-    b_.y = k * (b_.y - pos.y) + pos.y;
-    c_.x = k * (c_.x - pos.x) + pos.x;
-    c_.y = k * (c_.y - pos.y) + pos.y;
+    a_ = scalePoint(a_, pos, k);
+    b_ = scalePoint(b_, pos, k);
+    c_ = scalePoint(c_, pos, k);
   }
 }

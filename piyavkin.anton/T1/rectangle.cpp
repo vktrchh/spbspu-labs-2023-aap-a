@@ -1,5 +1,6 @@
 #include "rectangle.hpp"
 #include <iostream>
+#include "base-function.hpp"
 
 namespace piyavkin
 {
@@ -28,17 +29,19 @@ namespace piyavkin
   }
   void Rectangle::move(double dx, double dy)
   {
-    lowerLeftCorner_.x += dx;
-    lowerLeftCorner_.y += dy;
-    topRightCorner_.x += dx;
-    topRightCorner_.y += dy;
+    addMovement(lowerLeftCorner_, dx, dy);
+    addMovement(topRightCorner_, dx, dy);
   }
   void piyavkin::Rectangle::scale(double k)
   {
+    if (k < 0)
+    {
+      throw std::logic_error("Сoefficient less than 0");
+    }
     point_t pos = {(lowerLeftCorner_.x + topRightCorner_.x) / 2, (lowerLeftCorner_.y + topRightCorner_.y) / 2};
-    lowerLeftCorner_.x = k * (pos.x - lowerLeftCorner_.x) + pos.x;
-    topRightCorner_.x = k * (pos.x - topRightCorner_.x) + pos.x;
-    lowerLeftCorner_.y = k * (pos.y - lowerLeftCorner_.y) + pos.y;
-    topRightCorner_.y = k * (pos.y - topRightCorner_.y) + pos.y;
+//    scalePoint(lowerLeftCorner_, pos, k);
+//    scalePoint(topRightCorner_, pos, k);
+    lowerLeftCorner_ = scalePoint(lowerLeftCorner_, pos, k);
+    topRightCorner_ = scalePoint(topRightCorner_, pos, k);
   }
 }
