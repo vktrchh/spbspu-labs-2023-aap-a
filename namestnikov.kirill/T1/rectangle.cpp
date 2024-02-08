@@ -7,7 +7,7 @@ namestnikov::Rectangle::Rectangle(const point_t & leftCornerPoint, const point_t
 {
   if ((leftCornerPoint.x >= rightCornerPoint.x) || (leftCornerPoint.y >= rightCornerPoint.y))
   {
-    throw std::invalid_argument("Wrong rectangle points\n");
+    throw std::invalid_argument("Wrong rectangle points");
   }
 }
 
@@ -50,7 +50,7 @@ void namestnikov::Rectangle::scale(const double coefficient)
 {
   if (coefficient <= 0.0)
   {
-    throw std::invalid_argument("Coefficient must be greater than zero\n");
+    throw std::invalid_argument("Coefficient must be greater than zero");
   }
   else
   {

@@ -12,7 +12,7 @@ namestnikov::Complexquad::Complexquad(const point_t & p1, const point_t & p2, co
 {
   if (!checkIntersectionOfTwoLines(point1_, point2_, point3_, point4_))
   {
-    throw std::invalid_argument("Lines are parallel in complexquad\n");
+    throw std::invalid_argument("Lines are parallel in complexquad");
   }
   namestnikov::point_t points[4] = {point1_, point2_, point3_, point4_};
   for (size_t i = 0; i < 4; ++i)
@@ -21,7 +21,7 @@ namestnikov::Complexquad::Complexquad(const point_t & p1, const point_t & p2, co
     {
       if ((points[i].x == points[j].x) && (points[i].y == points[j].y))
       {
-        throw std::invalid_argument("There shouldn't be 2 same points in complexquad\n");
+        throw std::invalid_argument("There shouldn't be 2 same points in complexquad");
       }
     }
   }
@@ -85,7 +85,7 @@ void namestnikov::Complexquad::scale(const double coefficient)
 {
   if (coefficient <= 0.0)
   {
-    throw std::invalid_argument("Scaling coefficient must be greater than zero\n");
+    throw std::invalid_argument("Scaling coefficient must be greater than zero");
   }
   else
   {

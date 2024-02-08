@@ -59,7 +59,7 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
               namestnikov::deleteShapes(currentShapes, count);
             }
             delete [] currentParameters;
-            throw std::invalid_argument("Error in input\n");
+            throw std::invalid_argument("Error in input");
           }
           oldShapes = currentShapes;
           currentShapes = new Shape * [count + 1];
@@ -122,7 +122,7 @@ std::ostream & namestnikov::outputShapes(std::ostream & out, Shape ** shapes, si
 {
   if (count == 0)
   {
-    throw std::invalid_argument("Nothing to output\n");
+    throw std::invalid_argument("Nothing to output");
   }
   double square = 0.0;
   for (size_t i = 0; i < count; ++i)

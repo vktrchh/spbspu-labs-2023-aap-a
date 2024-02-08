@@ -7,7 +7,7 @@ namestnikov::Circle::Circle(const point_t & center, const double radius):
 {
   if (circleRadius_ <= 0.0)
   {
-    throw std::invalid_argument("Circle's radius must be greater than zero\n");
+    throw std::invalid_argument("Circle's radius must be greater than zero");
   }
 }
 
@@ -42,7 +42,7 @@ void namestnikov::Circle::scale(const double coefficient)
 {
   if (coefficient <= 0.0)
   {
-    throw std::invalid_argument("Scaling coefficient must be greater than zero\n");
+    throw std::invalid_argument("Scaling coefficient must be greater than zero");
   }
   else
   {

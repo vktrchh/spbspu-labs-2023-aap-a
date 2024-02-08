@@ -27,7 +27,7 @@ namestnikov::point_t namestnikov::getIntersectionOfTwoLines(const point_t & p1, 
   fillLineCoefficients(p3, p4, a2, b2, c2);
   if (a1 / a2 == b1 / b2)
   {
-    throw std::invalid_argument("There is no intersection\n");
+    throw std::invalid_argument("There is no intersection");
   }
   else
   {
@@ -80,7 +80,7 @@ void namestnikov::isoScale(Shape * shape, const point_t & point, double coeffici
 {
   if (coefficient <= 0.0)
   {
-    throw std::invalid_argument("Scaling coefficient must be greater than zero\n");
+    throw std::invalid_argument("Scaling coefficient must be greater than zero");
   }
   else
   {

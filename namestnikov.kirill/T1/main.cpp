@@ -22,12 +22,12 @@ int main()
     std::cin >> scalePoint.x >> scalePoint.y >> scaleCoefficient;
     if (!std::cin)
     {
-      throw std::invalid_argument("Error in input\n");
+      throw std::invalid_argument("Error in input");
       return 1;
     }
     if (scaleCoefficient < 0)
     {
-      throw std::invalid_argument("Scaling coefficient must be greater than zero\n");
+      throw std::invalid_argument("Scaling coefficient must be greater than zero");
     }
     for (size_t i = 0; i < count; ++i)
     {
