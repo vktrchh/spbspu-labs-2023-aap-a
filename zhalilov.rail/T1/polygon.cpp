@@ -85,7 +85,7 @@ zhalilov::rectangle_t zhalilov::Polygon::getFrameRect() const
   return frameRect;
 }
 
-void zhalilov::Polygon::move(const point_t &point)
+zhalilov::point_t zhalilov::Polygon::getCenter()
 {
   double posX = 0.0;
   double posY = 0.0;
@@ -96,11 +96,16 @@ void zhalilov::Polygon::move(const point_t &point)
   }
   posX = posX / m_size;
   posY = posY / m_size;
+  return { posX, posY };
+}
 
+void zhalilov::Polygon::move(const point_t &point)
+{
+  point_t center = getCenter();
   for (size_t i = 0; i < m_size; i++)
   {
-    m_points[i].x += point.x - posX;
-    m_points[i].y += point.y - posY;
+    m_points[i].x += point.x - center.x;
+    m_points[i].y += point.y - center.y;
   }
 }
 
@@ -120,23 +125,14 @@ void zhalilov::Polygon::scale(const double ratio)
     throw std::invalid_argument("ratio should be greater than zero");
   }
 
-  double posX = 0.0;
-  double posY = 0.0;
-  for (size_t i = 0; i < m_size; i++)
-  {
-    posX += m_points[i].x;
-    posY += m_points[i].y;
-  }
-  posX = posX / m_size;
-  posY = posY / m_size;
-
   double deltaX = 0.0;
   double deltaY = 0.0;
+  point_t center = getCenter();
   for (size_t i = 0; i < m_size; i++)
   {
-    deltaX = m_points[i].x - posX;
-    deltaY = m_points[i].y - posY;
-    m_points[i].x = posX + deltaX * ratio;
-    m_points[i].y = posY + deltaY * ratio;
+    deltaX = m_points[i].x - center.x;
+    deltaY = m_points[i].y - center.y;
+    m_points[i].x = center.x + deltaX * ratio;
+    m_points[i].y = center.y + deltaY * ratio;
   }
 }

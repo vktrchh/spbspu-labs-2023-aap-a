@@ -20,6 +20,8 @@ namespace zhalilov
   private:
     point_t *m_points;
     size_t m_size;
+
+    point_t getCenter();
   };
 }
 
