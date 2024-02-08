@@ -9,6 +9,7 @@
 namespace zhalilov
 {
   void inputShapesSource(Shape **shapes, point_t &point, double &ratio, size_t &length, std::istream &input);
+  void freeShapes(Shape shapes[], size_t length);
 }
 
 #endif

@@ -132,6 +132,14 @@ namespace zhalilov
   }
 }
 
+void zhalilov::freeShapes(Shape shapes[], size_t length)
+{
+  for (size_t i = 0; i < length; i++)
+  {
+    delete shapes[i];
+  }
+}
+
 void zhalilov::inputShapesSource(Shape **shapes, point_t &point, double &ratio, size_t &length, std::istream &input)
 {
   size_t shapeIndex = 0;

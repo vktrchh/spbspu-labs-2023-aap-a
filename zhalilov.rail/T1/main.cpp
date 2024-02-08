@@ -22,12 +22,14 @@ int main()
   catch (const std::exception &e)
   {
     std::cerr << "An error has occured: " << e.what();
+    freeShapes(shapes, length);
     return 1;
   }
 
   if (length == 0)
   {
     std::cerr << "An error has occured: nothing to scale\n";
+    freeShapes(shapes, length);
     return 1;
   }
 
@@ -41,8 +43,5 @@ int main()
   }
   outputShapesSource(shapes, length, std::cout);
 
-  for (size_t i = 0; i < length; i++)
-  {
-    delete shapes[i];
-  }
+  freeShapes(shapes, length);
 }
