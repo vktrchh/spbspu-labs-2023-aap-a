@@ -27,8 +27,7 @@ namestnikov::rectangle_t namestnikov::Rectangle::getFrameRect() const
 
 namestnikov::point_t namestnikov::Rectangle::getCenter() const
 {
-  point_t center = getFrameRect().pos;
-  return center;
+  return getFrameRect().pos;
 }
 
 void namestnikov::Rectangle::move(const point_t & p)

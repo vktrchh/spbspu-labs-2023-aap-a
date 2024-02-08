@@ -58,8 +58,7 @@ namestnikov::rectangle_t namestnikov::Complexquad::getFrameRect() const
 
 namestnikov::point_t namestnikov::Complexquad::getCenter() const
 {
-  point_t center = getIntersectionOfTwoLines(point1_, point2_, point3_, point4_);
-  return center;
+  return getIntersectionOfTwoLines(point1_, point2_, point3_, point4_);
 }
 
 void namestnikov::Complexquad::move(const point_t & p)
