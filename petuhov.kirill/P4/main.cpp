@@ -44,7 +44,6 @@ int main(int argc, char **argv)
   int *matrix = nullptr;
   bool isLowerTriangularMatrix = true;
 
-  // Заполнение и проверка для массива типа 1
   if (arr_type == 1)
   {
     int static_matrix[10000] = {};
