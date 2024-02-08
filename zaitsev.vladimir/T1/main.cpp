@@ -1,7 +1,5 @@
 #include <iostream>
 #include <string>
-#include <cstring>
-#include <cstdlib>
 #include "base-types.hpp"
 #include "Geom_functions.h"
 #include "Shapes_i_o.h"
@@ -82,7 +80,7 @@ int main()
           std::getline(std::cin, shape_type);
         }
       }
-      catch (const std::exception&) 
+      catch (const std::exception&)
       {
         wrong_args = true;
       }
