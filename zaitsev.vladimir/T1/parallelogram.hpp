@@ -5,7 +5,7 @@
 
 namespace zaitsev
 {
-  class Parallelogram : public Shape
+  class Parallelogram: public Shape
   {
   public:
     Parallelogram(const point_t* vertices_);

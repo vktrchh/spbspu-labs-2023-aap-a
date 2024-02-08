@@ -5,7 +5,7 @@
 
 namespace zaitsev
 {
-  class Complexquad : public Shape
+  class Complexquad: public Shape
   {
   public:
     Complexquad(const point_t* sections);

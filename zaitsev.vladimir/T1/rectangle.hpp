@@ -5,7 +5,7 @@
 
 namespace zaitsev
 {
-  class Rectangle : public Shape
+  class Rectangle: public Shape
   {
   public:
     Rectangle(const point_t& left_corner, const point_t& right_corner);
