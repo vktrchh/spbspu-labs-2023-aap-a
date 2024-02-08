@@ -41,6 +41,7 @@ int main()
       isoScale(shapes[i], point, ratio);
     }
   }
+  std::cout << '\n';
   outputShapesSource(shapes, length, std::cout);
 
   freeShapes(shapes, length);

@@ -179,7 +179,7 @@ void zhalilov::inputShapesSource(Shape **shapes, point_t &point, double &ratio, 
 
   if (!input)
   {
-    throw std::invalid_argument("input interrupted");
+    throw std::ios_base::failure("input interrupted");
   }
   if (ratio <= 0.0)
   {
