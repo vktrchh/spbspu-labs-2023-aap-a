@@ -1,11 +1,8 @@
 #include "Shapes_i_o.h"
 #include <string>
-#include <cstdlib>
-#include <cstring>
 #include <stdexcept>
 #include <cstddef>
-#include <istream>
-#include <string>
+#include <iostream>
 #include "base-types.hpp"
 #include "shape.hpp"
 #include "rectangle.hpp"
@@ -24,12 +21,10 @@ zaitsev::Shape* zaitsev::readRectangle(std::istream& input)
 {
   point_t left = { 0,0 };
   point_t right = { 0,0 };
-  std::string s = "";
   left.x = readNextValue(input);
   left.y = readNextValue(input);
   right.x = readNextValue(input);
   right.y = readNextValue(input);
-
   return new Rectangle(left, right);;
 }
 
@@ -41,7 +36,6 @@ zaitsev::Shape* zaitsev::readComplexquad(std::istream& input)
     vertices[i].x = readNextValue(input);
     vertices[i].y = readNextValue(input);
   }
-
   return new Complexquad(vertices);
 }
 
@@ -53,19 +47,14 @@ zaitsev::Shape* zaitsev::readParallelogram(std::istream& input)
     vertices[i].x = readNextValue(input);
     vertices[i].y = readNextValue(input);
   }
-
   return new Parallelogram(vertices);
 }
 
 void zaitsev::readScale(std::istream& input, point_t& center, double& factor)
 {
-  double x = readNextValue(input);
-  double y = readNextValue(input);
-  double read_factor = readNextValue(input);
-
-  factor = read_factor;
-  center.x = x;
-  center.y = y;
+  center.x = readNextValue(input);
+  center.y = readNextValue(input);
+  factor = readNextValue(input);
 }
 
 std::ostream& zaitsev::shapesOutput(std::ostream& output, const Shape* const* shapes, size_t size)
@@ -80,9 +69,7 @@ std::ostream& zaitsev::shapesOutput(std::ostream& output, const Shape* const* sh
   {
     area+=shapes[i]->getArea();
   }
-
   output << area;
-
   for (size_t i = 0; i < size; ++i)
   {
     rectangle_t frame = shapes[i]->getFrameRect();
@@ -94,16 +81,10 @@ std::ostream& zaitsev::shapesOutput(std::ostream& output, const Shape* const* sh
   return output;
 }
 
-void zaitsev::freeMemory(Shape** shapes, size_t size)
+void zaitsev::freeShapes(Shape** shapes, size_t size)
 {
   for (size_t i = 0; i < size; ++i)
   {
     delete shapes[i];
   }
-}
-
-void zaitsev::processShapeInput(std::istream& input, Shape** shapes, size_t& size, Shape* (*handler)(std::istream&))
-{
-  shapes[size] = handler(input);
-  ++size;
 }

@@ -23,9 +23,10 @@ int main()
         if (!std::cin)
         {
           std::cerr << "No scale command entered\n";
-          freeMemory(shapes, size);
+          freeShapes(shapes, size);
           return 1;
         }
+
         if (shape_type == "RECTANGLE")
         {
           shapes[size] = readRectangle(std::cin);
@@ -68,11 +69,11 @@ int main()
           catch (std::invalid_argument& e)
           {
             std::cerr << "Error: " << e.what() << "\n";
-            freeMemory(shapes, size);
+            freeShapes(shapes, size);
             return 1;
           }
 
-          freeMemory(shapes, size);
+          freeShapes(shapes, size);
           return 0;
         }
         else
@@ -89,8 +90,7 @@ int main()
   catch (std::bad_alloc&)
   {
     std::cerr << "Error: Failed to allocate memory\n";
-    freeMemory(shapes, size);
+    freeShapes(shapes, size);
   }
-
   return 1;
 }

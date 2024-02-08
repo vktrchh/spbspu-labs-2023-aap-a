@@ -52,10 +52,10 @@ void zaitsev::Complexquad::move(const point_t& dest_pos)
 
 void zaitsev::Complexquad::move(double x_shift, double y_shift)
 {
+  point_t shift = { x_shift, y_shift };
   for (size_t i = 0; i < 4; ++i)
   {
-    vertices_[i].x += x_shift;
-    vertices_[i].y += y_shift;
+    vertices_[i] += shift;
   }
 }
 
@@ -73,8 +73,7 @@ void zaitsev::Complexquad::scale(double factor)
   point_t center = getCenter();
   for (size_t i = 0; i < 4; ++i)
   {
-    vertices_[i].x = center.x + (vertices_[i].x - center.x) * factor;
-    vertices_[i].y = center.y + (vertices_[i].y - center.y) * factor;
+    vertices_[i] = center + (vertices_[i] - center) * factor;
   }
   return;
 }
