@@ -3,14 +3,22 @@
 
 void petuhov::fillMatrix(int * matrix, size_t rows, size_t cols, std::istream & input)
 {
-  for (size_t i = 0; i < rows; ++i)
+  try
   {
-    for (size_t j = 0; j < cols; ++j)
+    for (size_t i = 0; i < rows; ++i)
     {
-      if (!(input >> matrix[i * cols + j]))
+      for (size_t j = 0; j < cols; ++j)
       {
-        throw std::runtime_error("Error reading matrix");
+        if (!(input >> matrix[i * cols + j]))
+        {
+          throw std::runtime_error("Error reading matrix");
+        }
       }
     }
+  }
+  catch (const std::runtime_error&)
+  {
+    delete[] matrix;
+    throw;
   }
 }
