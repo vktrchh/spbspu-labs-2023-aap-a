@@ -5,7 +5,6 @@
 #include "rectangle.hpp"
 #include "circle.hpp"
 #include "polygon.hpp"
-#include "inputString.hpp"
 
 namespace zhalilov
 {
@@ -132,7 +131,7 @@ namespace zhalilov
   }
 }
 
-void zhalilov::freeShapes(Shape shapes[], size_t length)
+void zhalilov::freeShapes(Shape *shapes[], size_t length)
 {
   for (size_t i = 0; i < length; i++)
   {
