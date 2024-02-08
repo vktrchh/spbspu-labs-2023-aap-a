@@ -1,4 +1,4 @@
-#include "islowertriangularmatrix.hpp"
+#include "islowertriangular.hpp"
 
 bool petuhov::isLowerTriangular(const int* matrix, size_t rows, size_t cols)
 {
