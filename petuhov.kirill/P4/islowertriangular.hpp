@@ -1,6 +1,6 @@
 #ifndef LOWER_TRIANGULAR_HPP
 #define LOWER_TRIANGULAR_HPP
-#include <cstddef> 
+#include <cstddef>
 
 namespace petuhov
 {
