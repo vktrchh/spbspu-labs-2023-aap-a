@@ -17,6 +17,9 @@ int main()
   size_t currentShapesCount = 0;
   Shape ** myShapes = new Shape * [maxShapesCount]{nullptr};
 
+  bool errorsFlagShapes = false;
+  bool errorsFlagScale = false;
+
   point_t scalePoint = {0.0, 0.0};
   double scaleK = 0;
   const char * targetWordScale = "SCALE";
@@ -51,13 +54,14 @@ int main()
       }
       catch (const std::logic_error & e)
       {
-        for (size_t i = 0; i < currentShapesCount; i++)
-        {
-          delete myShapes[i];
-        }
-        delete [] myShapes;
-        std::cout << "Error: " << e.what() << "\n";
-        return 1;
+        // for (size_t i = 0; i < currentShapesCount; i++)
+        // {
+        //   delete myShapes[i];
+        // }
+        // delete [] myShapes;
+        // std::cout << "Error: " << e.what() << "\n";
+        // return 1;
+        errorsFlagScale = true;
       }
       break;
     }
@@ -69,14 +73,15 @@ int main()
       }
       catch (const std::logic_error & e)
       {
-        delete [] string;
-        for (size_t i = 0; i < currentShapesCount; i++)
-        {
-          delete myShapes[i];
-        }
-        delete [] myShapes;
-        std::cerr << "Error: " << e.what() << "\n";
-        return 1;
+        // delete [] string;
+        // for (size_t i = 0; i < currentShapesCount; i++)
+        // {
+        //   delete myShapes[i];
+        // }
+        // delete [] myShapes;
+        // std::cerr << "Error: " << e.what() << "\n";
+        // return 1;
+        errorsFlagShapes = true;
       }
       if (myShapes[currentShapesCount] != nullptr)
       {
@@ -101,6 +106,14 @@ int main()
   //   return 1;
   // }
 
+  if (errorsFlagShapes)
+  {
+    std::cerr << "Something went wrong witch shapes creation!\n";
+  }
+  if (errorsFlagScale)
+  {
+    std::cerr << "Something went wrong with scale process!\n";
+  }
 
   for (size_t i = 0; i < currentShapesCount; i++)
   {
