@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
@@ -10,7 +11,7 @@ int main(int argc, char **argv)
 {
   if (argc != 4)
   {
-    std::cerr << "Not enough arguments\n";
+    std::cerr << "Not enough arguments";
     return 1;
   }
   int arr_type = 0;
@@ -43,61 +44,40 @@ int main(int argc, char **argv)
   }
 
   int *matrix = nullptr;
-  bool isLowerTriangular = true;
+  bool isLowerTriangular = false;
 
-  if (arr_type == 1)
+  try
   {
-    int static_matrix[10000] = {};
-
-    for (size_t i = 0; i < rows; ++i)
-    {
-      for (size_t j = 0; j < cols; ++j)
+      if (arr_type == 1)
       {
-        if (!(inputFile >> static_matrix[i * cols + j]))
-        {
-          std::cerr << "Error reading matrix element at row " << i << " and column " << j << "\n";
-          return 4;
-        }
+        int static_matrix[10000] = {};
+        matrix = static_matrix;
+        petuhov::fillMatrix(matrix, rows, cols, inputFile);
+        isLowerTriangular = petuhov::isLowerTriangular(matrix, rows, cols);
       }
-    }
-
-    try
-    {
-      petuhov::fillMatrix(static_matrix, rows, cols, inputFile);
-    }
-    catch (const std::runtime_error& e)
-    {
-      std::cerr << "Error while filling static matrix" << e.what() << std::endl;
-      return 4;
-    }
-    matrix = static_matrix;
-    isLowerTriangular = petuhov::isLowerTriangular(matrix, rows, cols);
+      else if (arr_type == 2)
+      {
+        matrix = petuhov::createMatrix(rows, cols);
+        petuhov::fillMatrix(matrix, rows, cols, inputFile);
+        isLowerTriangular = petuhov::isLowerTriangular(matrix, rows, cols);
+        delete[] matrix;
+      }
   }
-  else if (arr_type == 2)
+  catch (const std::exception& e)
   {
-    try
-    {
-      matrix = petuhov::createMatrix(rows, cols);
-      petuhov::fillMatrix(matrix, rows, cols, inputFile);
-
-      isLowerTriangular = petuhov::isLowerTriangular(matrix, rows, cols);
-      delete[] matrix;
-    }
-    catch (const std::bad_alloc &)
-    {
-      std::cerr << "Not enough memory\n";
+      std::cerr << "An error occurred: " << e.what() << "\n";
+      if (arr_type == 2 && matrix != nullptr) {
+          delete[] matrix;
+      }
       return 4;
-    }
   }
 
   std::ofstream outputFile(argv[3]);
   if (!outputFile)
   {
     std::cerr << "Cannot write output\n";
-    outputFile.close();
     return 5;
   }
   outputFile << isLowerTriangular << "\n";
-  outputFile.close();
   return 0;
 }
