@@ -3,7 +3,6 @@
 #include <fstream>
 #include <stdexcept>
 #include "createMatrix.hpp"
-#include "destroyMatrix.hpp"
 #include "fillMatrix.hpp"
 
 int main(int argc, char ** argv)
@@ -67,7 +66,7 @@ int main(int argc, char ** argv)
         {
           break;
         }
-        if(matrix[i * cols + j] != 0)
+        if (matrix[i * cols + j] != 0)
         {
           isLowerTriangularMatrix = false;
           break;
@@ -89,7 +88,7 @@ int main(int argc, char ** argv)
       catch(const std::runtime_error & e)
       {
         std::cerr << e.what() << '\n';
-        petuhov::destroyMatrix(matrix);
+        delete[] matrix;
         return 4;
       }
     }
@@ -113,7 +112,7 @@ int main(int argc, char ** argv)
         break;
       }
     }
-    petuhov::destroyMatrix(matrix);
+    delete[] matrix;
   }
 
   std::ofstream outputFile(argv[3]);
