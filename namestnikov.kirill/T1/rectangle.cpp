@@ -1,11 +1,11 @@
 #include "rectangle.hpp"
 #include <stdexcept>
 
-namestnikov::Rectangle::Rectangle(const point_t & leftAnglePoint, const point_t & rightAnglePoint):
-  leftAnglePoint_(leftAnglePoint),
-  rightAnglePoint_(rightAnglePoint)
+namestnikov::Rectangle::Rectangle(const point_t & leftCornerPoint, const point_t & rightCornerPoint):
+  leftCornerPoint_(leftCornerPoint),
+  rightCornerPoint_(rightCornerPoint)
 {
-  if ((leftAnglePoint.x >= rightAnglePoint.x) || (leftAnglePoint.y >= rightAnglePoint.y))
+  if ((leftCornerPoint.x >= rightCornerPoint.x) || (leftCornerPoint.y >= rightCornerPoint.y))
   {
     throw std::invalid_argument("Wrong rectangle points\n");
   }
@@ -19,15 +19,15 @@ double namestnikov::Rectangle::getArea() const
 
 namestnikov::rectangle_t namestnikov::Rectangle::getFrameRect() const
 {
-  double width = rightAnglePoint_.x - leftAnglePoint_.x;
-  double height = rightAnglePoint_.y - leftAnglePoint_.y;
-  point_t position = {rightAnglePoint_.x - (width / 2), rightAnglePoint_.y - (height / 2)};
+  double width = rightCornerPoint_.x - leftCornerPoint_.x;
+  double height = rightCornerPoint_.y - leftCornerPoint_.y;
+  point_t position = {rightCornerPoint_.x - (width / 2), rightCornerPoint_.y - (height / 2)};
   return {width, height, position};
 }
 
 namestnikov::point_t namestnikov::Rectangle::getCenter() const
 {
-  point_t center = this->getFrameRect().pos;
+  point_t center = getFrameRect().pos;
   return center;
 }
 
@@ -41,10 +41,10 @@ void namestnikov::Rectangle::move(const point_t & p)
 
 void namestnikov::Rectangle::move(const double dx, const double dy)
 {
-  leftAnglePoint_.x += dx;
-  leftAnglePoint_.y += dy;
-  rightAnglePoint_.x += dx;
-  rightAnglePoint_.y += dy;
+  leftCornerPoint_.x += dx;
+  leftCornerPoint_.y += dy;
+  rightCornerPoint_.x += dx;
+  rightCornerPoint_.y += dy;
 }
 
 void namestnikov::Rectangle::scale(const double coefficient)
@@ -56,13 +56,13 @@ void namestnikov::Rectangle::scale(const double coefficient)
   else
   {
     rectangle_t rect = getFrameRect();
-    double dx1 = (rect.pos.x - leftAnglePoint_.x) * coefficient;
-    double dy1 = (rect.pos.y - leftAnglePoint_.y) * coefficient;
-    double dx2 = (rightAnglePoint_.x - rect.pos.x) * coefficient;
-    double dy2 = (rightAnglePoint_.y - rect.pos.y) * coefficient;
-    leftAnglePoint_.x = rect.pos.x - dx1;
-    leftAnglePoint_.y = rect.pos.y - dy1;
-    rightAnglePoint_.x = rect.pos.x + dx2;
-    rightAnglePoint_.y = rect.pos.y + dy2;
+    double dx1 = (rect.pos.x - leftCornerPoint_.x) * coefficient;
+    double dy1 = (rect.pos.y - leftCornerPoint_.y) * coefficient;
+    double dx2 = (rightCornerPoint_.x - rect.pos.x) * coefficient;
+    double dy2 = (rightCornerPoint_.y - rect.pos.y) * coefficient;
+    leftCornerPoint_.x = rect.pos.x - dx1;
+    leftCornerPoint_.y = rect.pos.y - dy1;
+    rightCornerPoint_.x = rect.pos.x + dx2;
+    rightCornerPoint_.y = rect.pos.y + dy2;
   }
 }
