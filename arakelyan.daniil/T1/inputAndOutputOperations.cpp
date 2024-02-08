@@ -97,6 +97,8 @@ char * arakelyan::inputString(std::istream &input)
 
 void arakelyan::shapeOutput(std::ostream &output, arakelyan::Shape **shapes, const size_t shapesCount)
 {
+  output << std::fixed;
+  output.precision(1);
   double totalArea = 0;
   for (size_t i = 0; i < shapesCount; i++)
   {

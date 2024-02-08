@@ -115,6 +115,18 @@ int main()
     std::cerr << "Something went wrong with scale process!\n";
   }
 
+  if (currentShapesCount == 0)
+  {
+    std::cerr << "Nothing to scale!\n";
+    delete [] string;
+    for (size_t i = 0; i < currentShapesCount; i++)
+    {
+      delete myShapes[i];
+    }
+    delete [] myShapes;
+    return 1;
+  }
+
   for (size_t i = 0; i < currentShapesCount; i++)
   {
     delete myShapes[i];
