@@ -33,15 +33,27 @@ grechishnikov::Shape* grechishnikov::inputShape(const char* str)
     points = grechishnikov::makePairs(values, size);
     if (isEqualStr(legalName[0], name))
     {
-      return grechishnikov::inputRectangle(points, size / 2);
+      Shape* rect = grechishnikov::inputRectangle(points, size / 2);
+      delete[] name;
+      delete[] values;
+      delete[] points;
+      return rect;
     }
     if (isEqualStr(legalName[1], name))
     {
-      return grechishnikov::inputTriangle(points, size / 2);
+      Shape* tri = grechishnikov::inputTriangle(points, size / 2);
+      delete[] name;
+      delete[] values;
+      delete[] points;
+      return tri;
     }
     if (isEqualStr(legalName[2], name))
     {
-      return grechishnikov::inputPolygon(points, size / 2);
+      Shape* poly = grechishnikov::inputPolygon(points, size / 2);
+      delete[] name;
+      delete[] values;
+      delete[] points;
+      return poly;
     }
   }
   catch (const std::logic_error& e)
@@ -51,6 +63,9 @@ grechishnikov::Shape* grechishnikov::inputShape(const char* str)
     delete[] points;
     throw;
   }
+  delete[] name;
+  delete[] values;
+  delete[] points;
   throw std::logic_error("Incorrect name");
 }
 
@@ -79,6 +94,14 @@ grechishnikov::Shape* grechishnikov::inputPolygon(const grechishnikov::point_t* 
     throw std::logic_error("Incorrect number of parameters");
   }
   return new grechishnikov::Polygon(points, size);
+}
+
+void grechishnikov::freeShapes(Shape** shapes, size_t size)
+{
+  for (size_t i = 0; i < size; i++)
+  {
+    delete shapes[i];
+  }
 }
 
 const char* parseName(const char* str)

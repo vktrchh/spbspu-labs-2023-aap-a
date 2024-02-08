@@ -18,6 +18,11 @@ grechishnikov::Polygon::Polygon(const grechishnikov::point_t* points, size_t siz
   }
 }
 
+grechishnikov::Polygon::~Polygon()
+{
+  delete[] points_;
+}
+
 double grechishnikov::Polygon::getArea() const
 {
   Triangle pTri[size_ - 2];

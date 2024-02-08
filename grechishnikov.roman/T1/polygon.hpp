@@ -11,6 +11,7 @@ namespace grechishnikov
   {
   public:
     Polygon(const point_t* points, size_t size);
+    ~Polygon();
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t& pos);

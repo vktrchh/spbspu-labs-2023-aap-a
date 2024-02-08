@@ -12,6 +12,7 @@ namespace grechishnikov
   Shape* inputRectangle(const grechishnikov::point_t* points, size_t size);
   Shape* inputTriangle(const grechishnikov::point_t* points, size_t size);
   Shape* inputPolygon(const grechishnikov::point_t* points, size_t size);
+  void freeShapes(Shape** shapes, size_t size);
 }
 
 #endif
