@@ -3,6 +3,7 @@
 #include <fstream>
 #include <stdexcept>
 #include "createMatrix.hpp"
+#include "islowertriangularmatrix.hpp"
 #include "fillMatrix.hpp"
 
 int main(int argc, char **argv)
@@ -15,9 +16,9 @@ int main(int argc, char **argv)
   int arr_type = 0;
   try
   {
-    size_t pos;
+    size_t pos = 0;
     arr_type = std::stoi(argv[1], &pos);
-    if (pos < std::string(argv[1]).length())
+    if (argv[1][pos] != '\0')
     {
       throw std::invalid_argument("Invalid argument: not a valid integer");
     }
@@ -42,7 +43,6 @@ int main(int argc, char **argv)
   }
 
   int *matrix = nullptr;
-  bool isLowerTriangularMatrix = true;
 
   if (arr_type == 1)
   {
@@ -55,7 +55,7 @@ int main(int argc, char **argv)
         if (!(inputFile >> static_matrix[i * cols + j]))
         {
           std::cerr << "Error reading matrix element at row " << i << " and column " << j << "\n";
-          inputFile.close();
+          delete[] static_matrix;
           return 4;
         }
       }
@@ -84,32 +84,7 @@ int main(int argc, char **argv)
       return 4;
     }
   }
-  for (size_t i = 0; i < rows; ++i)
-  {
-    for (size_t j = i + 1; j < cols; ++j)
-    {
-      if (arr_type == 1)
-      {
-        if (matrix[i * cols + j] != 0)
-        {
-          isLowerTriangularMatrix = false;
-          break;
-        }
-      }
-      else if (arr_type == 2)
-      {
-        if (matrix[i * cols + j] != 0)
-        {
-          isLowerTriangularMatrix = false;
-          break;
-        }
-      }
-    }
-    if (!isLowerTriangularMatrix)
-    {
-      break;
-    }
-  }
+  bool isLowerTriangular = petuhov::isLowerTriangular(matrix, rows, cols);
   if (arr_type == 2)
   {
     delete[] matrix;
@@ -122,7 +97,7 @@ int main(int argc, char **argv)
     outputFile.close();
     return 5;
   }
-  outputFile << isLowerTriangularMatrix << "\n";
+  outputFile << isLowerTriangular << "\n";
   outputFile.close();
   return 0;
 }
