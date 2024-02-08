@@ -29,11 +29,7 @@ zaitsev::rectangle_t zaitsev::Rectangle::getFrameRect() const
 void zaitsev::Rectangle::move(const point_t& dest_pos)
 {
   point_t center = getCenter();
-  point_t diff = { dest_pos.x - center.x, dest_pos.y - center.y };
-  left_corner_.x += diff.x;
-  left_corner_.y += diff.y;
-  right_corner_.x += diff.x;
-  right_corner_.y += diff.y;
+  move(dest_pos.x - center.x, dest_pos.y - center.y);
 }
 
 void zaitsev::Rectangle::move(double x_shift, double y_shift)

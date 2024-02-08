@@ -47,7 +47,7 @@ zaitsev::rectangle_t zaitsev::Complexquad::getFrameRect() const
 void zaitsev::Complexquad::move(const point_t& dest_pos)
 {
   point_t pos = getCenter();
-  this->move(dest_pos.x - pos.x, dest_pos.y - pos.y);
+  move(dest_pos.x - pos.x, dest_pos.y - pos.y);
 }
 
 void zaitsev::Complexquad::move(double x_shift, double y_shift)
