@@ -43,6 +43,7 @@ int main(int argc, char **argv)
   }
 
   int *matrix = nullptr;
+  bool isLowerTriangular = true;
 
   if (arr_type == 1)
   {
@@ -58,9 +59,12 @@ int main(int argc, char **argv)
           return 4;
         }
       }
-      petuhov::fillMatrix(static_matrix, rows, cols, inputFile);
-      matrix = static_matrix;
     }
+
+    petuhov::fillMatrix(static_matrix, rows, cols, inputFile);
+    matrix = static_matrix;
+
+    isLowerTriangular = petuhov::isLowerTriangular(matrix, rows, cols);
   }
   else if (arr_type == 2)
   {
@@ -68,17 +72,16 @@ int main(int argc, char **argv)
     {
       matrix = petuhov::createMatrix(rows, cols);
       petuhov::fillMatrix(matrix, rows, cols, inputFile);
+
+      isLowerTriangular = petuhov::isLowerTriangular(matrix, rows, cols);
+
+      delete[] matrix;
     }
     catch (const std::bad_alloc &)
     {
       std::cerr << "Not enough memory\n";
       return 4;
     }
-  }
-  bool isLowerTriangular = petuhov::isLowerTriangular(matrix, rows, cols);
-  if (arr_type == 2)
-  {
-    delete[] matrix;
   }
 
   std::ofstream outputFile(argv[3]);
