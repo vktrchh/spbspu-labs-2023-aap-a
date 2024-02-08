@@ -69,9 +69,8 @@ rebdev::rectangle_t rebdev::Concave::getFrameRect() const
 
 void rebdev::Concave::move(const point_t point)
 {
-  point_t center = getFrameRect().pos;
-  double yChange = point.y - center.y;
-  double xChange = point.x - center.x;
+  double yChange = point.y - vertexs_[2].y;
+  double xChange = point.x - vertexs_[2].x;
 
   for (int i = 0; i < 4; ++i)
   {
@@ -91,10 +90,9 @@ void rebdev::Concave::move(const double x, const double y)
 
 void rebdev::Concave::scale(const double k)
 {
-  point_t center = getFrameRect().pos;
-  vertexs_[0] = scalePoint(vertexs_[0], center, k);
-  vertexs_[1] = scalePoint(vertexs_[1], center, k);
-  vertexs_[3] = scalePoint(vertexs_[3], center, k);
+  vertexs_[0] = scalePoint(vertexs_[0], vertexs_[2], k);
+  vertexs_[1] = scalePoint(vertexs_[1], vertexs_[2], k);
+  vertexs_[3] = scalePoint(vertexs_[3], vertexs_[2], k);
 };
 
 rebdev::point_t rebdev::Concave::scalePoint(const point_t & pointToScale, const point_t & centerPoint, const double k)
