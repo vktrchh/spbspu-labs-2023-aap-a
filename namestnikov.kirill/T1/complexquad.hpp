@@ -20,10 +20,10 @@ namespace namestnikov
     virtual void move(const double dx, const double dy);
     virtual void scale(const double coefficient);
   private:
-    point_t complexquadP1_;
-    point_t complexquadP2_;
-    point_t complexquadP3_;
-    point_t complexquadP4_;
+    point_t point1_;
+    point_t point2_;
+    point_t point3_;
+    point_t point4_;
   };
 }
 
