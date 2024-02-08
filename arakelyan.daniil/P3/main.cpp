@@ -1,8 +1,10 @@
+#include <exception>
 #include <iostream>
+#include <new>
 #include <stdexcept>
-#include "inputArray.hpp"
+#include "inputLine.hpp"
 #include "difLetters.hpp"
-#include "difLettersInTwoStrings.hpp"
+#include "difLettersInTwoLines.hpp"
 
 int main()
 {
@@ -13,33 +15,31 @@ int main()
   {
     inputString = arakelyan::inputArray(std::cin);
   }
-  catch (const std::logic_error & e)
+  catch (const std::exception & e)
   {
     std::cerr << "Error: " << e.what() << "\n";
     return 1;
   }
-  catch (const std::bad_alloc & e)
-  {
-    std::cerr << "Memory cannot be allocated in input process!\n";
-    return 1;
-  }
+
 
   using namespace arakelyan;
-  size_t answerTaskOne = countOfdifferentLetters(inputString);
+  size_t answerTaskOne = countOfDifferentLetters(inputString);
 
-  char *answerTaskTwo = nullptr;
+  size_t sizeOfAlphabet = 'z' - 'a' + 1;
+  char * answerTaskTwo = nullptr;
+
   try
   {
-    answerTaskTwo = new char[26 + 1];
+    answerTaskTwo = new char[sizeOfAlphabet + 1]{};
   }
-  catch (const std::bad_alloc & e)
+  catch (const std::bad_alloc &e)
   {
-    std::cerr << "Cannot create a dynamic array for answer of second task!\n";
+    std::cerr << "Cannot create a dynamic array for aswer of second task!\n";
     delete [] inputString;
     return 1;
   }
 
-  differentLettersInTwoStrings(inputString, defaultStringForTaskTwo, answerTaskTwo);
+  searchForDifferentLettersInTwoLines(inputString, defaultStringForTaskTwo, answerTaskTwo);
 
   std::cout << answerTaskOne << "\n" << answerTaskTwo << "\n";
 

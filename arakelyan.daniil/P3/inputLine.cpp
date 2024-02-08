@@ -1,4 +1,4 @@
-#include "inputArray.hpp"
+#include "inputLine.hpp"
 #include <cstddef>
 #include <stdexcept>
 
@@ -9,12 +9,7 @@ char * arakelyan::inputArray(std::istream &input)
   size_t i = 0;
   char sym = 0;
 
-  char * mainBuffer = nullptr;
-  mainBuffer = new char[arrSize];
-  if (mainBuffer == nullptr)
-  {
-    throw std::bad_alloc();
-  }
+  char * mainBuffer = new char[arrSize];
 
   input >> std::noskipws;
   while ((input >> sym) && (sym != '\n'))
@@ -29,23 +24,24 @@ char * arakelyan::inputArray(std::istream &input)
     {
       arrSize *= 2;
 
-      char * tempBuffer = nullptr;
+      try
+      {
+        char * tempBuffer = new char[arrSize];
 
-      tempBuffer = new char[arrSize];
-      if (tempBuffer == nullptr)
+        for (size_t j = 0; j < i; j++)
+        {
+          tempBuffer[j] = mainBuffer[j];
+        }
+
+        delete [] mainBuffer;
+
+        mainBuffer = tempBuffer;
+      }
+      catch (const std::bad_alloc &e)
       {
         delete [] mainBuffer;
-        throw std::bad_alloc();
+        throw;
       }
-
-      for (size_t j = 0; j < i; j++)
-      {
-        tempBuffer[j] = mainBuffer[j];
-      }
-
-      delete [] mainBuffer;
-
-      mainBuffer = tempBuffer;
     }
     mainBuffer[i] = sym;
     i++;

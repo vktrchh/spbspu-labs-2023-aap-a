@@ -1,8 +1,11 @@
 #ifndef INPUTARRAY_HPP
 #define INPUTARRAY_HPP
+
 #include <iostream>
-namespace arakelyan
+
+namespace chistyakov
 {
-  char * inputArray(std::istream &input);
+  char* inputArray(std::istream & in);
 }
+
 #endif
