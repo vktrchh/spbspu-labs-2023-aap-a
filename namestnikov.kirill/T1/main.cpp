@@ -17,7 +17,7 @@ int main()
     std::cout.precision(1);
     outputShapes(std::cout, shapes, count);
     std::cout << "\n";
-    point_t scalePoint;
+    point_t scalePoint = {0.0, 0.0};
     double scaleCoefficient = 0.0;
     std::cin >> scalePoint.x >> scalePoint.y >> scaleCoefficient;
     if (!std::cin)
