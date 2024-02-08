@@ -103,19 +103,19 @@ zakozhurnikova::Shape* readComplexquad(const char* string)
 
 zakozhurnikova::Shape* zakozhurnikova::readShape(const char* string)
 {
-  if (std::strncmp(string, "RECTANGLE", 9) == 0)
+  if (string && std::strncmp(string, "RECTANGLE", 9) == 0)
   {
     return readRectangle(string);
   }
-  else if (std::strncmp(string, "SQUARE", 6) == 0)
+  else if (string && std::strncmp(string, "SQUARE", 6) == 0)
   {
     return readSquare(string);
   }
-  else if (std::strncmp(string, "DIAMOND", 7) == 0)
+  else if (string && std::strncmp(string, "DIAMOND", 7) == 0)
   {
     return readDiamond(string);
   }
-  else if (std::strncmp(string, "COMPLEXQUAD", 11) == 0)
+  else if (string && std::strncmp(string, "COMPLEXQUAD", 11) == 0)
   {
     return readComplexquad(string);
   }
@@ -161,7 +161,7 @@ void zakozhurnikova::inputShapesArray(std::istream& in, Shape** shapes, size_t& 
     try
     {
       string = zakozhurnikova::readString(in);
-      if (strncmp(string, "SCALE", 5) == 0)
+      if (string && strncmp(string, "SCALE", 5) == 0)
       {
         readScale(string, scalePoint, k);
         delete[] string;
@@ -170,6 +170,11 @@ void zakozhurnikova::inputShapesArray(std::istream& in, Shape** shapes, size_t& 
       shapes[size] = zakozhurnikova::readShape(string);
       ++size;
       delete[] string;
+    }
+    catch(const std::invalid_argument& e)
+    {
+      delete[] string;
+      throw std::invalid_argument(e.what());
     }
     catch (const std::runtime_error& e)
     {

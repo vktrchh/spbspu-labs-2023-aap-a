@@ -3,6 +3,10 @@
 
 char* extendBuffer(const char* string, size_t newSize)
 {
+  if (!string)
+  {
+    return new char[newSize]{};
+  }
   char* result = new char[newSize] {};
   size_t i = 0;
   for (; string[i] != '\0'; ++i)
