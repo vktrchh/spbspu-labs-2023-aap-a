@@ -1,4 +1,4 @@
-#include "isoscale.hpp"
+#include "isoScale.hpp"
 
 void zakozhurnikova::isoScale(Shape* shape, const point_t& scalePoint, double k) 
 {

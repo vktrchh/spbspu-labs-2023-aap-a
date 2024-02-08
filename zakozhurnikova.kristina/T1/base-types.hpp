@@ -62,6 +62,7 @@ namespace zakozhurnikova
     ~rectangle_t()
     {}
     void showCoordinates() const;
+    void showSquareCoords() const;
     point_t getCenter() const;
   private:
     double width_;

@@ -1,6 +1,6 @@
 #include "rectangle.hpp"
 #include "square.hpp"
-#include "isoscale.hpp"
+#include "isoScale.hpp"
 #include "shapesArrayOperations.hpp"
 #include "outputOperations.hpp"
 #include "inputOperations.hpp"

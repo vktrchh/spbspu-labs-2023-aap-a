@@ -25,7 +25,7 @@ void zakozhurnikova::printShapes(std::ostream& output, Shape** shapes, size_t si
     }
     else
     {
-      shapes[i]->getFrameRect().showCoordinates(output);
+      shapes[i]->getFrameRect().showCoordinates();
     }
     output << '\n';
   }

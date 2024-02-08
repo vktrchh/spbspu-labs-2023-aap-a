@@ -5,7 +5,7 @@ char* extendBuffer(const char* string, size_t newSize)
 {
   char* result = new char[newSize] {};
   size_t i = 0;
-  for (i; string[i] != '\0'; ++i)
+  for (; string[i] != '\0'; ++i)
   {
     result[i] = string[i];
   }

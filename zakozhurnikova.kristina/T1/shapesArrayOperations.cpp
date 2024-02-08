@@ -3,6 +3,7 @@
 #include "rectangle.hpp"
 #include "square.hpp"
 #include "diamond.hpp"
+#include "complexquad.hpp"
 #include <string>
 #include <iostream>
 #include <cstring>
