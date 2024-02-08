@@ -1,9 +1,9 @@
 #ifndef GEOMETRIC_FUNCTIONS_H
 #define GEOMETRIC_FUNCTIONS_H
 
+#include <cstddef>
 #include "base-types.hpp"
 #include "shape.hpp"
-#include <cstddef>
 
 namespace namestnikov
 {

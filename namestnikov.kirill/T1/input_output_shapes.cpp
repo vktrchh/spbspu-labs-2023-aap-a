@@ -137,9 +137,9 @@ std::ostream & namestnikov::outputShapes(std::ostream & out, Shape ** shapes, si
       double width = shapes[i]->getFrameRect().width;
       double height = shapes[i]->getFrameRect().height;
       point_t position = shapes[i]->getFrameRect().pos;
-      double positionX = position.x;
-      double positionY = position.y;
-      out << " " << positionX - (width / 2.0) << " " << positionY - (height / 2.0) << " " << positionX + (width / 2.0) << " " << positionY + (height / 2.0);
+      point_t leftCornerPoint = {position.x - (width / 2.0), position.y - (height / 2.0)};
+      point_t rightCornerPoint = {position.x + (width / 2.0), position.y + (height / 2.0)};
+      out << " " << leftCornerPoint.x << " " << leftCornerPoint.y << " " << rightCornerPoint.x << " " << rightCornerPoint.y;
     }
   }
   return out;
