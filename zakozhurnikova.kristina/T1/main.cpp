@@ -22,7 +22,7 @@ int main()
   {
     std::cerr << "Error: " << e.what() << '\n';
     freeShapesArray(shapes, size);
-    return 1;
+    return 0;
   }
 
   printShapes(std::cout, shapes, size);
