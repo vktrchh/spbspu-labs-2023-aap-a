@@ -90,7 +90,6 @@ int main(int argc, char **argv)
       std::cerr << "Not enough memory\n";
       return 4;
     }
-    delete[] matrix;
   }
 
   std::ofstream outputFile(argv[3]);
