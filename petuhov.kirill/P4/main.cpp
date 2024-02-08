@@ -44,15 +44,16 @@ int main(int argc, char **argv)
   int *matrix = nullptr;
   bool isLowerTriangularMatrix = true;
 
+  // Заполнение и проверка для массива типа 1
   if (arr_type == 1)
   {
-    int matrix[10000] = {};
+    int static_matrix[10000] = {};
 
     for (size_t i = 0; i < rows; ++i)
     {
       for (size_t j = 0; j < cols; ++j)
       {
-        if (!(inputFile >> matrix[i * cols + j]))
+        if (!(inputFile >> static_matrix[i * cols + j]))
         {
           std::cerr << "Error reading matrix element at row " << i << " and column " << j << "\n";
           inputFile.close();
@@ -60,6 +61,7 @@ int main(int argc, char **argv)
         }
       }
     }
+    matrix = static_matrix;
   }
   else if (arr_type == 2)
   {
