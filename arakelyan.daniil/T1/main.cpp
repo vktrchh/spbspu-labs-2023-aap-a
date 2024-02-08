@@ -113,18 +113,23 @@ int main()
   if (errorsFlagScale)
   {
     std::cerr << "Something went wrong with scale process!\n";
-  }
-
-  if (currentShapesCount == 0)
-  {
-    std::cerr << "Nothing to scale!\n";
-    delete [] string;
     for (size_t i = 0; i < currentShapesCount; i++)
     {
       delete myShapes[i];
     }
     delete [] myShapes;
-    return 1;
+    return 2;
+  }
+
+  if (currentShapesCount == 0)
+  {
+    std::cerr << "Nothing to scale!\n";
+    for (size_t i = 0; i < currentShapesCount; i++)
+    {
+      delete myShapes[i];
+    }
+    delete [] myShapes;
+    return 2;
   }
 
   for (size_t i = 0; i < currentShapesCount; i++)
