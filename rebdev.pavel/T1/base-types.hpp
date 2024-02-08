@@ -1,5 +1,6 @@
 #ifndef BASE_TYPES_HPP
 #define BASE_TYPES_HPP
+
 namespace rebdev
 {
   struct point_t
@@ -15,4 +16,5 @@ namespace rebdev
     point_t pos;
   };
 }
+
 #endif

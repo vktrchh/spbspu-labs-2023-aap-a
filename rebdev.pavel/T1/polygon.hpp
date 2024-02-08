@@ -1,8 +1,10 @@
 #ifndef POLYGON_HPP
 #define POLYGON_HPP
+
 #include "base-types.hpp"
 #include "shape.hpp"
 #include <cstddef>
+
 namespace rebdev
 {
   class Polygon: public Shape
@@ -19,7 +21,9 @@ namespace rebdev
     private:
       point_t * vertexs_;
       size_t numOfVertexs_;
+
       point_t getPolygonCenter();
   };
 }
+
 #endif

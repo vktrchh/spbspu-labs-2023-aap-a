@@ -1,7 +1,9 @@
 #ifndef CONCAVE_HPP
 #define CONCAVE_HPP
+
 #include "base-types.hpp"
 #include "shape.hpp"
+
 namespace rebdev
 {
   class Concave: public Shape
@@ -21,4 +23,5 @@ namespace rebdev
       bool isTriangle(point_t f, point_t s, point_t t);
   };
 }
+
 #endif

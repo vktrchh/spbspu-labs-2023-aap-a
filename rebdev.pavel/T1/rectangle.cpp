@@ -1,4 +1,5 @@
 #include "rectangle.hpp"
+
 #include <iostream>
 
 rebdev::Rectangle::Rectangle(const point_t angles[2]):

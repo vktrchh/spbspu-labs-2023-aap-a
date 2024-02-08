@@ -1,6 +1,5 @@
 #include "polygon.hpp"
-#include <cstddef>
-#include <limits>
+
 #include <iostream>
 
 rebdev::Polygon::Polygon(const point_t * vertexs, const size_t numOfVertexs):

@@ -1,5 +1,4 @@
 #include "isoScale.hpp"
-#include <iostream>
 
 void rebdev::isoScale(Shape ** shapes, const int & numOfShape, const point_t & scalePoint, const double & k)
 {

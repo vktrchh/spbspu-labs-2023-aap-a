@@ -1,6 +1,8 @@
 #ifndef SHAPE_HPP
 #define SHAPE_HPP
+
 #include "base-types.hpp"
+
 namespace rebdev
 {
   class Shape
@@ -14,4 +16,5 @@ namespace rebdev
     virtual void scale(double k) = 0;
   };
 }
+
 #endif

@@ -1,7 +1,9 @@
 #ifndef RECTANGLE_HPP
 #define RECTANGLE_HPP
+
 #include "shape.hpp"
 #include "base-types.hpp"
+
 namespace rebdev
 {
   class Rectangle: public Shape
@@ -19,4 +21,5 @@ namespace rebdev
       point_t angles_[2];
   };
 }
+
 #endif
