@@ -177,6 +177,7 @@ void zhalilov::inputShapesSource(Shape **shapes, point_t &point, double &ratio, 
     }
   }
 
+  length = shapeIndex;
   if (!input)
   {
     throw std::ios_base::failure("input interrupted");
