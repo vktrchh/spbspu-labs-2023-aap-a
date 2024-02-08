@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <iomanip>
 #include "input_shape.hpp"
 #include "output_shape.hpp"
 #include "geom_func.hpp"
@@ -20,30 +21,21 @@ int main()
   {
     isWrongFigureCreation = true;
   }
-  catch (const std::bad_alloc&)
-  {
-    freeShape(shape, size);
-    std::cerr << "Memory allocation fault\n";
-    return 1;
-  }
-  catch (const std::logic_error& e)
-  {
-    freeShape(shape, size);
-    std::cerr << e.what() << "\n";
-    return 2;
-  }
   catch (const std::exception& e)
   {
     freeShape(shape, size);
     std::cerr << e.what() << "\n";
-    return 3;
+    return 1;
   }
+  std::cout << std::fixed;
+  std::cout.precision(1);
   outputShape(std::cout, shape, size);
   for (size_t i = 0; i < size; ++i)
   {
     isoScale(shape[i], scale_pos, scale_ratio);
   }
-  outputShape(std::cout, shape, size);
+  outputShape(std::cout << "\n", shape, size);
+  std::cout << "\n";
   freeShape(shape, size);
   if (isWrongFigureCreation)
   {
