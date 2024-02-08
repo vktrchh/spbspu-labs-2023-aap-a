@@ -5,7 +5,7 @@
 
 namespace namestnikov
 {
-  class Rectangle : public Shape
+  class Rectangle: public Shape
   {
   public:
     Rectangle(const point_t & leftCornerPoint, const point_t & rightCornerPoint);
