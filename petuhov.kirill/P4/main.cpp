@@ -64,13 +64,13 @@ int main(int argc, char **argv)
     try
     {
       petuhov::fillMatrix(static_matrix, rows, cols, inputFile);
-      matrix = static_matrix;
     }
     catch (const std::runtime_error& e)
     {
       std::cerr << "Error while filling static matrix" << e.what() << std::endl;
       return 4;
     }
+    matrix = static_matrix;
     isLowerTriangular = petuhov::isLowerTriangular(matrix, rows, cols);
   }
   else if (arr_type == 2)
