@@ -18,7 +18,6 @@ void petuhov::fillMatrix(int * matrix, size_t rows, size_t cols, std::istream & 
   }
   catch (const std::runtime_error&)
   {
-    delete[] matrix;
     throw;
   }
 }
