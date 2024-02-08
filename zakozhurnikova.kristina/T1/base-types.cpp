@@ -69,8 +69,8 @@ zakozhurnikova::point_t& zakozhurnikova::point_t::operator=(point_t&& point)
 
 zakozhurnikova::point_t zakozhurnikova::point_t::scaleShift(double k, const point_t& p)
 {
-  double shiftX = p.x_ + k * (x_ - p.x_);
-  double shiftY = p.y_ + k * (y_ - p.y_);
+  double shiftX = p.x_ + k * std::abs((x_ - p.x_));
+  double shiftY = p.y_ + k * std::abs((y_ - p.y_));
   return zakozhurnikova::point_t(shiftX, shiftY);
 }
 

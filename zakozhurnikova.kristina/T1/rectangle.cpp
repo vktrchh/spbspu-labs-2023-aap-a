@@ -12,7 +12,7 @@ zakozhurnikova::rectangle_t zakozhurnikova::Rectangle::getFrameRect() const
 {
   double width = upRight_.getX() - downLeft_.getX();
   double height = upRight_.getY() - downLeft_.getY();
-  point_t pos(width / 2, height / 2);
+  point_t pos((upRight_ + downLeft_) / 2.0);
   return zakozhurnikova::rectangle_t(width, height, pos);
 }
 
