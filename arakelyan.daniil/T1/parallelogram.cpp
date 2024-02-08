@@ -19,7 +19,7 @@ double arakelyan::Parallelogram::getArea() const
   return std::abs((p2_.x - p1_.x) * (p1_.y - p3_.y));
 }
 
-rectangle_t arakelyan::Parallelogram::getFrameRect()
+arakelyan::rectangle_t arakelyan::Parallelogram::getFrameRect()
 {
   double width = std::abs(p3_.x - p1_.x);
   double height = std::abs(p1_.y - p3_.y);

@@ -23,7 +23,7 @@ double arakelyan::Rectangle::getArea() const
   return width * height;
 }
 
-rectangle_t arakelyan::Rectangle::getFrameRect()
+arakelyan::rectangle_t arakelyan::Rectangle::getFrameRect()
 {
   double width = std::abs(pointRightUp_.x - pointLeftDown_.x);
   double height = std::abs(pointRightUp_.y - pointLeftDown_.y);
