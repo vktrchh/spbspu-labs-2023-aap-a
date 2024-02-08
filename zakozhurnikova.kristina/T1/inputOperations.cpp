@@ -23,7 +23,7 @@ char* zakozhurnikova::readString(std::istream& input)
   char* string = nullptr;
   try
   {
-    string = new char[stringSize];
+    string = new char[stringSize]{};
     while (input >> c)
     {
       if (counter == stringSize - 1)
