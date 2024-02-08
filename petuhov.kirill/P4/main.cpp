@@ -3,7 +3,7 @@
 #include <fstream>
 #include <stdexcept>
 #include "createMatrix.hpp"
-#include "islowertriangularmatrix.hpp"
+#include "islowertriangular.hpp"
 #include "fillMatrix.hpp"
 
 int main(int argc, char **argv)
