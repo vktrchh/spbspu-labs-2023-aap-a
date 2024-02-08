@@ -43,6 +43,6 @@ int main()
   }
   std::cout << '\n';
   outputShapesSource(shapes, length, std::cout);
-
+  std::cout << '\n';
   freeShapes(shapes, length);
 }
