@@ -3,7 +3,7 @@
 #include "base-types.hpp"
 
 
-zaitsev::Rectangle::Rectangle(const point_t& left_corner, const point_t& right_corner) :
+zaitsev::Rectangle::Rectangle(const point_t& left_corner, const point_t& right_corner):
   left_corner_(left_corner),
   right_corner_(right_corner)
 {
