@@ -71,12 +71,14 @@ void namestnikov::Complexquad::move(const point_t & p)
 
 void namestnikov::Complexquad::move(const double dx, const double dy)
 {
-  namestnikov::point_t points[4] = {point1_, point2_, point3_, point4_};
-  for (size_t i = 0; i < 4; ++i)
-  {
-    points[i].x += dx;
-    points[i].y += dy;
-  }
+  point1_.x += dx;
+  point1_.y += dy;
+  point2_.x += dx;
+  point2_.y += dy;
+  point3_.x += dx;
+  point3_.y += dy;
+  point4_.x += dx;
+  point4_.y += dy;
 }
 
 void namestnikov::Complexquad::scale(const double coefficient)
