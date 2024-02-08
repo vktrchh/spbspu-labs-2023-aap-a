@@ -26,23 +26,23 @@ int main()
       return 2;
     }
   }
-  catch(std::invalid_argument& e)
+  catch (std::invalid_argument& e)
   {
     std::cerr << e.what() << '\n';
     freeArray(figures, nFigures);
     return 2;
   }
-  catch(std::length_error& e)
+  catch (std::length_error& e)
   {
     std::cerr << e.what() << '\n';
     return 1;
   }
-  catch(std::logic_error& e)
+  catch (std::logic_error& e)
   {
     std::cerr << e.what() << '\n';
     return 1;
   }
-  catch(std::bad_alloc&)
+  catch (std::bad_alloc&)
   {
     std::cerr << "Error: Not enough memory\n";
     return 3;

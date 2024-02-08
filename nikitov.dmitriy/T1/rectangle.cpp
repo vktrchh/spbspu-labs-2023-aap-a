@@ -1,7 +1,7 @@
 #include "rectangle.hpp"
 #include <stdexcept>
 
-nikitov::Rectangle::Rectangle(point_t& leftCorner, point_t& rightCorner):
+nikitov::Rectangle::Rectangle(const point_t& leftCorner, const point_t& rightCorner):
   leftCorner_(leftCorner),
   rightCorner_(rightCorner)
 {

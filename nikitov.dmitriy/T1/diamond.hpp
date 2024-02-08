@@ -8,7 +8,7 @@ namespace nikitov
   class Diamond: public Shape
   {
   public:
-    Diamond(point_t& firstPoint, point_t& secondPoint, point_t& thirdPoint);
+    Diamond(const point_t& firstPoint, const point_t& secondPoint, const point_t& thirdPoint);
     virtual ~Diamond();
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;

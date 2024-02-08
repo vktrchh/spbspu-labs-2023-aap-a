@@ -8,7 +8,7 @@ namespace nikitov
   class Rectangle: public Shape
   {
   public:
-    Rectangle(point_t& leftCorner, point_t& rightCorner);
+    Rectangle(const point_t& leftCorner, const point_t& rightCorner);
     virtual ~Rectangle();
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;

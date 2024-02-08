@@ -8,7 +8,7 @@ namespace nikitov
   class Regular: public Shape
   {
   public:
-    Regular(point_t& firstPoint, point_t& secondPoint, point_t& thirdPoint);
+    Regular(const point_t& firstPoint, const point_t& secondPoint, const point_t& thirdPoint);
     virtual ~Regular();
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;

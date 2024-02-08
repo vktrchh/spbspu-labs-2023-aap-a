@@ -2,7 +2,7 @@
 #include <cmath>
 #include <stdexcept>
 
-nikitov::Diamond::Diamond(point_t& firstPoint, point_t& secondPoint, point_t& thirdPoint):
+nikitov::Diamond::Diamond(const point_t& firstPoint, const point_t& secondPoint, const point_t& thirdPoint):
   firstPoint_(firstPoint),
   secondPoint_(secondPoint),
   thirdPoint_(thirdPoint)

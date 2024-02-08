@@ -61,7 +61,7 @@ nikitov::Shape** nikitov::inputArray(std::string& line, bool& isErrorInProgram, 
           isErrorInIteration = true;
         }
       }
-      catch(std::invalid_argument&)
+      catch (std::invalid_argument&)
       {
         isErrorInIteration = true;
         isErrorInProgram = true;
@@ -69,20 +69,14 @@ nikitov::Shape** nikitov::inputArray(std::string& line, bool& isErrorInProgram, 
 
       if (!isErrorInIteration)
       {
-        size_t maxLim = std::numeric_limits< size_t >::max();
-        if (nFigures > maxLim - 1)
-        {
-          throw std::length_error("Error: Array size out of range");
-        }
         ++nFigures;
-
         Shape** tempFigures = increaseArray(figures, nFigures);
         delete[] figures;
         figures = tempFigures;
       }
     }
   }
-  catch(...)
+  catch (...)
   {
     freeArray(figures, nFigures);
     throw;

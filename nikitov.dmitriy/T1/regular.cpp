@@ -4,7 +4,7 @@
 #include <limits>
 #include <stdexcept>
 
-nikitov::Regular::Regular(point_t& firstPoint, point_t& secondPoint, point_t& thirdPoint):
+nikitov::Regular::Regular(const point_t& firstPoint, const point_t& secondPoint, const point_t& thirdPoint):
   firstPoint_(firstPoint),
   secondPoint_(secondPoint),
   thirdPoint_(thirdPoint)
@@ -45,9 +45,10 @@ nikitov::rectangle_t nikitov::Regular::getFrameRect() const
   size_t n = round(-2 * M_PI / (asin(inRadius / circumRadius) * 2 - M_PI));
   double a = 2 * circumRadius * sin(M_PI / n);
 
-  double maxX, maxY, minX, minY;
-  maxX = maxY = std::numeric_limits < double >::min();
-  minX = minY = std::numeric_limits < double >::max();
+  double maxX = std::numeric_limits < double >::min();
+  double maxY = maxX;
+  double minX = std::numeric_limits < double >::max();
+  double minY = minX;
 
   point_t point;
   if (circumRadius == firstLine)
