@@ -13,9 +13,9 @@ void erohin::inputShape(Shape** result, std::istream& input, size_t& size, point
   bool isScaleCommandEntered = false;
   std::string name;
   double current_par = 0.0;
-  const size_t par_max_size = 10;
+  constexpr size_t par_max_size = 10;
   size_t par_size = 0;
-  double* par = new double[par_max_size]{ 0.0 };
+  double par[par_max_size]{ 0.0 };
   while (!input.eof() && !isScaleCommandEntered)
   {
     input.clear();
@@ -30,15 +30,7 @@ void erohin::inputShape(Shape** result, std::istream& input, size_t& size, point
     }
     if (name == "SCALE")
     {
-      try
-      {
-        inputScaleParameteres(par, par_size, pos, ratio);
-      }
-      catch (const std::logic_error&)
-      {
-        delete[] par;
-        throw;
-      }
+      inputScaleParameteres(par, par_size, pos, ratio);
       isScaleCommandEntered = true;
     }
     else
@@ -62,7 +54,6 @@ void erohin::inputShape(Shape** result, std::istream& input, size_t& size, point
     }
     par_size = 0;
   }
-  delete[] par;
   if (!isScaleCommandEntered)
   {
     throw std::logic_error("Scale command do not find");

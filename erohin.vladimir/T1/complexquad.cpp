@@ -5,53 +5,38 @@
 #include "rectangle.hpp"
 #include "triangle.hpp"
 
-erohin::Complexquad::Complexquad(point_t* corner)
+erohin::Complexquad::Complexquad(point_t corner1, point_t corner2, point_t corner3, point_t corner4) :
+  vertex_{ corner1, corner2, corner3, corner4 }
 {
-  vertex_ = new point_t[4]{ {0.0, 0.0} };
-  for (int i = 0; i < 4; ++i)
+  point_t center = findIntersectionPoint(vertex_);
+  for (int i = 0; i < 3; i += 2)
   {
-    vertex_[i] = corner[i];
-  }
-  try
-  {
-    point_t center = getCenter();
-    for (int i = 0; i < 3; i += 2)
+    if (!isPointOnSegment(center, vertex_[i], vertex_[i + 1]))
     {
-      if (!isPointOnSegment(center, vertex_[i], vertex_[i + 1]))
-      {
-        throw std::invalid_argument("Complexquad vertexes are same points");
-      }
+      throw std::invalid_argument("Complexquad vertexes are same points");
     }
-  }
-  catch (const std::invalid_argument&)
-  {
-    delete[] vertex_;
-    throw;
   }
 }
 
-erohin::Complexquad::~Complexquad()
-{
-  delete[] vertex_;
-}
+erohin::Complexquad::~Complexquad() = default;
 
 double erohin::Complexquad::getArea() const
 {
   double area = 0.0;
-  point_t point[3]{ {0.0, 0.0} };
+  point_t point[3]{ 0.0, 0.0 };
   point[0] = getCenter();
   for (int i = 0; i < 2; ++i)
   {
     point[1] = vertex_[i];
     point[2] = vertex_[3 - i];
-    area += Triangle(point).getArea();
+    area += Triangle(point[0], point[1], point[2]).getArea();
   }
   return area;
 }
 
 erohin::rectangle_t erohin::Complexquad::getFrameRect() const
 {
-  return findPolygonFrameRect(vertex_, 4);
+  return findPointsFrameRect(vertex_, 4);
 }
 
 erohin::point_t erohin::Complexquad::getCenter() const

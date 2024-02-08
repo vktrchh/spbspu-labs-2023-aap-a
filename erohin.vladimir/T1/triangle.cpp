@@ -4,42 +4,26 @@
 #include "base-types.hpp"
 #include "geom_func.hpp"
 
-erohin::Triangle::Triangle(point_t* corner)
+erohin::Triangle::Triangle(point_t corner1, point_t corner2, point_t corner3) :
+  vertex_{ corner1, corner2, corner3 }
 {
-  vertex_ = new point_t[3]{ {0.0, 0.0} };
+  double side[3]{ 0.0 };
+  getSides(side, vertex_, 3);
   for (int i = 0; i < 3; ++i)
   {
-    vertex_[i] = corner[i];
-  }
-  double* side = nullptr;
-  try
-  {
-    side = getSides(vertex_, 3);
-    for (int i = 0; i < 3; ++i)
+    if (side[i % 3] >= side[(i + 1) % 3] + side[(i + 2) % 3])
     {
-      if (side[i % 3] >= side[(i + 1) % 3] + side[(i + 2) % 3])
-      {
-        throw std::invalid_argument("Wrong figure creation");
-      }
+      throw std::invalid_argument("Wrong figure creation");
     }
   }
-  catch (...)
-  {
-    delete[] vertex_;
-    delete[] side;
-    throw;
-  }
-  delete[] side;
 }
 
-erohin::Triangle::~Triangle()
-{
-  delete[] vertex_;
-}
+erohin::Triangle::~Triangle() = default;
 
 double erohin::Triangle::getArea() const
 {
-  double* side = getSides(vertex_, 3);
+  double side[3]{ 0.0 };
+  getSides(side, vertex_, 3);
   double perimeter = 0.0;
   for (int i = 0; i < 3; ++i)
   {
@@ -50,13 +34,12 @@ double erohin::Triangle::getArea() const
   {
     result *= (perimeter / 2.0 - side[i]);
   }
-  delete[] side;
   return std::sqrt(result);
 }
 
 erohin::rectangle_t erohin::Triangle::getFrameRect() const
 {
-  return findPolygonFrameRect(vertex_, 3);
+  return findPointsFrameRect(vertex_, 3);
 }
 
 void erohin::Triangle::move(double dx, double dy)

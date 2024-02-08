@@ -10,7 +10,7 @@ namespace erohin
   {
   public:
     Diamond() = delete;
-    Diamond(point_t* corner);
+    Diamond(point_t corner1, point_t corner2, point_t corner3);
     virtual ~Diamond();
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;

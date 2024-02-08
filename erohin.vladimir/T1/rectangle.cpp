@@ -3,14 +3,13 @@
 #include "base-types.hpp"
 #include "geom_func.hpp"
 
-erohin::Rectangle::Rectangle(point_t left_lower_corner, point_t right_upper_corner)
+erohin::Rectangle::Rectangle(point_t left_lower_corner, point_t right_upper_corner) :
+  frameRect_{ findRectangleFrameRect(left_lower_corner, right_upper_corner) }
 {
   if (left_lower_corner.x >= right_upper_corner.x || left_lower_corner.y >= right_upper_corner.y)
   {
     throw std::invalid_argument("Wrong figure creation");
   }
-  point_t corner[2] = {left_lower_corner, right_upper_corner};
-  frameRect_ = findPolygonFrameRect(corner, 2);
 }
 
 erohin::Rectangle::~Rectangle() = default;

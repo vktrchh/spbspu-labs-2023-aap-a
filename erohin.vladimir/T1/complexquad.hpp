@@ -10,7 +10,7 @@ namespace erohin
   {
   public:
     Complexquad() = delete;
-    Complexquad(point_t* corner);
+    Complexquad(point_t corner1, point_t corner2, point_t corner3, point_t corner4);
     virtual ~Complexquad();
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
@@ -19,7 +19,7 @@ namespace erohin
     virtual void move(point_t point);
     virtual void scale(double ratio);
   private:
-    point_t* vertex_;
+    point_t vertex_[4];
   };
 }
 

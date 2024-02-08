@@ -18,14 +18,13 @@ double erohin::getDistance(const point_t& from, const point_t& to)
   return std::sqrt(dx * dx + dy * dy);
 }
 
-double* erohin::getSides(const point_t* point, unsigned int side_number)
+double* erohin::getSides(double* result, const point_t* point, size_t side_number)
 {
-  double* side = new double[side_number] { 0.0 };
-  for (unsigned int i = 0; i < side_number; ++i)
+  for (size_t i = 0; i < side_number; ++i)
   {
-    side[i] = getDistance(point[i], point[(i + 1) % side_number]);
+    result[i] = getDistance(point[i], point[(i + 1) % side_number]);
   }
-  return side;
+  return result;
 }
 
 bool erohin::isPointOnSegment(const point_t& point, const point_t& begin, const point_t& end)
@@ -54,11 +53,11 @@ erohin::point_t erohin::findIntersectionPoint(const point_t* point)
   return result;
 }
 
-erohin::rectangle_t erohin::findPolygonFrameRect(const point_t* point, unsigned int number)
+erohin::rectangle_t erohin::findPointsFrameRect(const point_t* point, size_t number)
 {
   point_t left_lower = point[0];
   point_t right_upper = point[0];
-  for (unsigned int i = 1; i < number; ++i)
+  for (size_t i = 1; i < number; ++i)
   {
     if (point[i].x < left_lower.x)
     {
@@ -80,4 +79,40 @@ erohin::rectangle_t erohin::findPolygonFrameRect(const point_t* point, unsigned 
   double width = right_upper.x - left_lower.x;
   double height = right_upper.y - left_lower.y;
   return { width, height, {left_lower.x + width / 2.0, left_lower.y + height / 2.0} };
+}
+
+erohin::rectangle_t erohin::findRectangleFrameRect(point_t left_lower_corner, point_t right_upper_corner)
+{
+  rectangle_t result = { 0.0, 0.0, { 0.0, 0.0 } };
+  result.width = right_upper_corner.x - left_lower_corner.x;
+  result.height = right_upper_corner.y - left_lower_corner.y;
+  result.pos.x = left_lower_corner.x + result.width / 2.0;
+  result.pos.y = left_lower_corner.y + result.height / 2.0;
+  return result;
+}
+
+erohin::rectangle_t erohin::findDiamondFrameRect(point_t corner1, point_t corner2, point_t corner3)
+{
+  rectangle_t result = { 0.0, 0.0, { 0.0, 0.0 } };
+  point_t corner[3]{ corner1, corner2, corner3 };
+  double side[3]{ 0.0 };
+  getSides(side, corner, 3);
+  int center_index = 0;
+  for (int i = 0; i < 3; ++i)
+  {
+    if (side[i] >= side[(center_index + 1) % 3])
+    {
+      center_index = (i + 2) % 3;
+    }
+    if (corner[i].x == corner[(i + 1) % 3].x && corner[i].y != corner[(i + 1) % 3].y)
+    {
+      result.height = 2 * side[i];
+    }
+    if (corner[i].y == corner[(i + 1) % 3].y && corner[i].x != corner[(i + 1) % 3].x)
+    {
+      result.width = 2 * side[i];
+    }
+  }
+  result.pos = corner[center_index];
+  return result;
 }

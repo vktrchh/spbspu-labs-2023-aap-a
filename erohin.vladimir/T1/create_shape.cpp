@@ -51,7 +51,7 @@ erohin::Shape* erohin::createTriangle(double* par, size_t par_size)
   {
     point[i] = { par[2 * i], par[2 * i + 1] };
   }
-  Shape* shape = new Triangle(point);
+  Shape* shape = new Triangle(point[0], point[1], point[2]);
   return shape;
 }
 
@@ -61,12 +61,12 @@ erohin::Shape* erohin::createComplexquad(double* par, size_t par_size)
   {
     throw std::invalid_argument("Wrong figure parameteres number");
   }
-  point_t point[4]{ {0.0, 0.0} };
+  point_t point[4]{ 0.0, 0.0 };
   for (int i = 0; i < 4; ++i)
   {
     point[i] = { par[2 * i], par[2 * i + 1] };
   }
-  Shape* shape = new Complexquad(point);
+  Shape* shape = new Complexquad(point[0], point[1], point[2], point[3]);
   return shape;
 }
 
@@ -81,7 +81,7 @@ erohin::Shape* erohin::createDiamond(double* par, size_t par_size)
   {
     point[i] = { par[2 * i], par[2 * i + 1] };
   }
-  Shape* shape = new Diamond(point);
+  Shape* shape = new Diamond(point[0], point[1], point[2]);
   return shape;
 }
 
