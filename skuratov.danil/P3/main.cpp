@@ -8,9 +8,9 @@
 
 int main()
 {
+  using namespace skuratov;
   size_t size = 10;
   const char* lineOfProgram = "abc";
-
   try
   {
     char* inputLine = skuratov::transformInputString(size);
