@@ -9,7 +9,7 @@ erohin::Triangle::Triangle(point_t corner1, point_t corner2, point_t corner3) :
 {
   double side[3]{ 0.0 };
   getSides(side, vertex_, 3);
-  for (int i = 0; i < 3; ++i)
+  for (size_t i = 0; i < 3; ++i)
   {
     if (side[i % 3] >= side[(i + 1) % 3] + side[(i + 2) % 3])
     {
@@ -25,12 +25,12 @@ double erohin::Triangle::getArea() const
   double side[3]{ 0.0 };
   getSides(side, vertex_, 3);
   double perimeter = 0.0;
-  for (int i = 0; i < 3; ++i)
+  for (size_t i = 0; i < 3; ++i)
   {
     perimeter += side[i];
   }
   double result = perimeter / 2.0;
-  for (int i = 0; i < 3; ++i)
+  for (size_t i = 0; i < 3; ++i)
   {
     result *= (perimeter / 2.0 - side[i]);
   }
@@ -44,7 +44,7 @@ erohin::rectangle_t erohin::Triangle::getFrameRect() const
 
 void erohin::Triangle::move(double dx, double dy)
 {
-  for (int i = 0; i < 3; ++i)
+  for (size_t i = 0; i < 3; ++i)
   {
     vertex_[i].x += dx;
     vertex_[i].y += dy;
@@ -54,7 +54,7 @@ void erohin::Triangle::move(double dx, double dy)
 erohin::point_t erohin::Triangle::getCenter() const
 {
   point_t center = {0.0, 0.0};
-  for (int i = 0; i < 3; ++i)
+  for (size_t i = 0; i < 3; ++i)
   {
     center.x += vertex_[i].x / 3.0;
     center.y += vertex_[i].y / 3.0;
@@ -77,7 +77,7 @@ void erohin::Triangle::scale(double ratio)
     throw std::invalid_argument("Wrong figure creation");
   }
   point_t center = getCenter();
-  for (int i = 0; i < 3; ++i)
+  for (size_t i = 0; i < 3; ++i)
   {
     vertex_[i].x = center.x + (vertex_[i].x - center.x) * ratio;
     vertex_[i].y = center.y + (vertex_[i].y - center.y) * ratio;

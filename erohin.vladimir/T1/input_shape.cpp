@@ -23,10 +23,6 @@ void erohin::inputShape(Shape** result, std::istream& input, size_t& size, point
     while ((input >> current_par) && (par_size != par_max_size))
     {
       par[par_size++] = current_par;
-      if (input.peek() == '\n')
-      {
-        break;
-      }
     }
     if (name == "SCALE")
     {
