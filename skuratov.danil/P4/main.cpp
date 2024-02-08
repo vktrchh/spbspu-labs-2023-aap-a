@@ -32,7 +32,7 @@ int main(int argc, char* argv[])
   }
   catch (const std::out_of_range&)
   {
-    std::cerr << "Value of first CLA is too large\n";
+    std::cerr << "Value of first CLA is too large" << '\n';
     return 1;
   }
 
@@ -79,7 +79,7 @@ int main(int argc, char* argv[])
     }
     catch (const std::bad_alloc&)
     {
-      std::cerr << "error array\n";
+      std::cerr << "error array" << '\n';
       delete[] dynamicArray;
       return 2;
     }
@@ -97,7 +97,7 @@ int main(int argc, char* argv[])
   }
   catch (const std::logic_error&)
   {
-    std::cerr << "bad data\n";
+    std::cerr << "bad data" << '\n';
     if (taskNumber == 2)
     {
       delete[] matrix;

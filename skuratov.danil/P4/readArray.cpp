@@ -12,7 +12,7 @@ void skuratov::readArray(std::istream& in, int* array, size_t rows, size_t cols)
   {
     if (!(in >> array[i]))
     {
-      throw std::logic_error("Cannot read numbers\n");
+      throw std::logic_error("Cannot read numbers");
     }
   }
 }

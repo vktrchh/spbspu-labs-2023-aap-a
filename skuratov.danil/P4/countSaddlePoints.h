@@ -5,7 +5,7 @@
 
 namespace skuratov
 {
-  size_t countSaddlePoints(int* array, size_t rows, size_t cols);
+  size_t countSaddlePoints(const int* array, size_t rows, size_t cols);
 }
 
 #endif
