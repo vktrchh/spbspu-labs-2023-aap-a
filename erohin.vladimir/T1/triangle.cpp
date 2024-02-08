@@ -4,11 +4,6 @@
 #include "base-types.hpp"
 #include "geom_func.hpp"
 
-erohin::Triangle::Triangle() :
-  vertex_(new point_t[3]{ {0.0, 0.0} }),
-  center_({ 0.0, 0.0 })
-{}
-
 erohin::Triangle::Triangle(point_t* corner)
 {
   vertex_ = new point_t[3]{ {0.0, 0.0} };
@@ -35,12 +30,6 @@ erohin::Triangle::Triangle(point_t* corner)
     throw;
   }
   delete[] side;
-  center_ = {0.0, 0.0};
-  for (int i = 0; i < 3; ++i)
-  {
-    center_.x += vertex_[i].x / 3.0;
-    center_.y += vertex_[i].y / 3.0;
-  }
 }
 
 erohin::Triangle::~Triangle()
@@ -72,8 +61,6 @@ erohin::rectangle_t erohin::Triangle::getFrameRect() const
 
 void erohin::Triangle::move(double dx, double dy)
 {
-  center_.x += dx;
-  center_.y += dy;
   for (int i = 0; i < 3; ++i)
   {
     vertex_[i].x += dx;
@@ -81,18 +68,35 @@ void erohin::Triangle::move(double dx, double dy)
   }
 }
 
+erohin::point_t erohin::Triangle::getCenter() const
+{
+  point_t center = {0.0, 0.0};
+  for (int i = 0; i < 3; ++i)
+  {
+    center.x += vertex_[i].x / 3.0;
+    center.y += vertex_[i].y / 3.0;
+  }
+  return center;
+}
+
 void erohin::Triangle::move(point_t point)
 {
-  double dx = point.x - center_.x;
-  double dy = point.y - center_.y;
+  point_t center = getCenter();
+  double dx = point.x - center.x;
+  double dy = point.y - center.y;
   move(dx, dy);
 }
 
 void erohin::Triangle::scale(double ratio)
 {
+  if (ratio <= 0.0)
+  {
+    throw std::invalid_argument("Wrong figure creation");
+  }
+  point_t center = getCenter();
   for (int i = 0; i < 3; ++i)
   {
-    vertex_[i].x = center_.x + (vertex_[i].x - center_.x) * ratio;
-    vertex_[i].y = center_.y + (vertex_[i].y - center_.y) * ratio;
+    vertex_[i].x = center.x + (vertex_[i].x - center.x) * ratio;
+    vertex_[i].y = center.y + (vertex_[i].y - center.y) * ratio;
   }
 }

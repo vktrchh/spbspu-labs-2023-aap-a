@@ -9,7 +9,7 @@ namespace erohin
   class Rectangle: public Shape
   {
   public:
-    Rectangle();
+    Rectangle() = delete;
     Rectangle(point_t left_lower_corner, point_t right_upper_corner);
     virtual ~Rectangle();
     virtual double getArea() const;

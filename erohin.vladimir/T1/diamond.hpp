@@ -6,10 +6,10 @@
 
 namespace erohin
 {
-  class Diamond : public Shape
+  class Diamond: public Shape
   {
   public:
-    Diamond();
+    Diamond() = delete;
     Diamond(point_t* corner);
     virtual ~Diamond();
     virtual double getArea() const;

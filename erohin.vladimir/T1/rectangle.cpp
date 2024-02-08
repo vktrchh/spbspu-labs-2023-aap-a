@@ -1,10 +1,7 @@
 ﻿#include "rectangle.hpp"
 #include <stdexcept>
 #include "base-types.hpp"
-
-erohin::Rectangle::Rectangle() :
-  frameRect_{ 0.0, 0.0, {0.0, 0.0} }
-{}
+#include "geom_func.hpp"
 
 erohin::Rectangle::Rectangle(point_t left_lower_corner, point_t right_upper_corner)
 {
@@ -12,10 +9,8 @@ erohin::Rectangle::Rectangle(point_t left_lower_corner, point_t right_upper_corn
   {
     throw std::invalid_argument("Wrong figure creation");
   }
-  frameRect_.width = right_upper_corner.x - left_lower_corner.x;
-  frameRect_.height = right_upper_corner.y - left_lower_corner.y;
-  frameRect_.pos.x = left_lower_corner.x + frameRect_.width / 2.0;
-  frameRect_.pos.y = left_lower_corner.y + frameRect_.height / 2.0;
+  point_t corner[2] = {left_lower_corner, right_upper_corner};
+  frameRect_ = findPolygonFrameRect(corner, 2);
 }
 
 erohin::Rectangle::~Rectangle() = default;
@@ -43,6 +38,10 @@ void erohin::Rectangle::move(point_t point)
 
 void erohin::Rectangle::scale(double ratio)
 {
+  if (ratio <= 0.0)
+  {
+    throw std::invalid_argument("Wrong figure creation");
+  }
   frameRect_.width *= ratio;
   frameRect_.height *= ratio;
 }
