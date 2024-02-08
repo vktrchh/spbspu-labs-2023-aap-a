@@ -29,8 +29,8 @@ namespace piyavkin
   }
   void Rectangle::move(double dx, double dy)
   {
-    addMovement(lowerLeftCorner_, dx, dy);
-    addMovement(topRightCorner_, dx, dy);
+    lowerLeftCorner_ = addMovement(lowerLeftCorner_, dx, dy);
+    topRightCorner_ = addMovement(topRightCorner_, dx, dy);
   }
   void piyavkin::Rectangle::scale(double k)
   {
@@ -39,8 +39,6 @@ namespace piyavkin
       throw std::logic_error("Сoefficient less than 0");
     }
     point_t pos = {(lowerLeftCorner_.x + topRightCorner_.x) / 2, (lowerLeftCorner_.y + topRightCorner_.y) / 2};
-//    scalePoint(lowerLeftCorner_, pos, k);
-//    scalePoint(topRightCorner_, pos, k);
     lowerLeftCorner_ = scalePoint(lowerLeftCorner_, pos, k);
     topRightCorner_ = scalePoint(topRightCorner_, pos, k);
   }
