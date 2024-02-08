@@ -9,7 +9,10 @@ namespace zakozhurnikova
   {
   public:
     Diamond() = delete;
-    Diamond(const point_t& pointOne, const point_t& pointTwo, const point_t& pointThree)
+    Diamond(const point_t& pointOne, const point_t& pointTwo, const point_t& pointThree) :
+      pointOne_(point_t()),
+      pointTwo_(point_t()),
+      center_(point_t())
     {
       if (pointOne.getX() != pointTwo.getX() && pointOne.getY() != pointTwo.getY())
       {
