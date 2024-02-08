@@ -1,5 +1,4 @@
 #include "regular.hpp"
-#define _USE_MATH_DEFINES
 #include <cmath>
 #include <limits>
 #include <stdexcept>
@@ -19,31 +18,30 @@ nikitov::Regular::Regular(const point_t& firstPoint, const point_t& secondPoint,
   }
 }
 
-nikitov::Regular::~Regular()
-{}
-
 double nikitov::Regular::getArea() const
 {
+  const double PI = 3.141592653589793;
   double firstLine = sqrt(pow(firstPoint_.x - secondPoint_.x, 2) + pow(firstPoint_.y - secondPoint_.y, 2));
   double thirdLine = sqrt(pow(firstPoint_.x - thirdPoint_.x, 2) + pow(firstPoint_.y - thirdPoint_.y, 2));
 
   double circumRadius = std::max(firstLine, thirdLine);
   double inRadius = std::min(firstLine, thirdLine);
-  int n = round(-2 * M_PI / (asin(inRadius / circumRadius) * 2 - M_PI));
+  int n = round(-2 * PI / (asin(inRadius / circumRadius) * 2 - PI));
 
-  double a = 2 * circumRadius * sin(M_PI / n);
+  double a = 2 * circumRadius * sin(PI / n);
   return 0.5 * n * a * inRadius;
 }
 
 nikitov::rectangle_t nikitov::Regular::getFrameRect() const
 {
+  const double PI = 3.141592653589793;
   double firstLine = sqrt(pow(firstPoint_.x - secondPoint_.x, 2) + pow(firstPoint_.y - secondPoint_.y, 2));
   double thirdLine = sqrt(pow(firstPoint_.x - thirdPoint_.x, 2) + pow(firstPoint_.y - thirdPoint_.y, 2));
 
   double circumRadius = std::max(firstLine, thirdLine);
   double inRadius = std::min(firstLine, thirdLine);
-  size_t n = round(-2 * M_PI / (asin(inRadius / circumRadius) * 2 - M_PI));
-  double a = 2 * circumRadius * sin(M_PI / n);
+  size_t n = round(-2 * PI / (asin(inRadius / circumRadius) * 2 - PI));
+  double a = 2 * circumRadius * sin(PI / n);
 
   double maxX = std::numeric_limits < double >::min();
   double maxY = maxX;

@@ -16,9 +16,6 @@ nikitov::Diamond::Diamond(const point_t& firstPoint, const point_t& secondPoint,
   }
 }
 
-nikitov::Diamond::~Diamond()
-{}
-
 double nikitov::Diamond::getArea() const
 {
   rectangle_t frame = getFrameRect();

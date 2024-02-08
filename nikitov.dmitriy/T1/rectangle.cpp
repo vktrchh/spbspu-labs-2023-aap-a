@@ -11,9 +11,6 @@ nikitov::Rectangle::Rectangle(const point_t& leftCorner, const point_t& rightCor
   }
 }
 
-nikitov::Rectangle::~Rectangle()
-{}
-
 double nikitov::Rectangle::getArea() const
 {
   return (rightCorner_.x - leftCorner_.x) * (rightCorner_.y - leftCorner_.y);
