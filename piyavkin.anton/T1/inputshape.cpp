@@ -13,13 +13,56 @@ void piyavkin::clearMemory(Shape** shapes, size_t shapeCount)
   delete[] shapes;
 }
 
+void piyavkin::inputRectangle(std::istream& in, Shape** shapes, size_t shapeCount)
+{
+  constexpr size_t parametersCount = 4;
+  double parameters[parametersCount] = {};
+  for (size_t j = 0; j < parametersCount; ++j)
+  {
+    in >> parameters[j];
+  }
+  if (!in)
+  {
+    throw std::logic_error("Invalid arguments");
+  }
+  shapes[shapeCount] = new Rectangle({parameters[0], parameters[1]}, {parameters[2], parameters[3]});
+}
+
+void piyavkin::inputTriangle(std::istream& in, Shape** shapes, size_t shapeCount)
+{
+  constexpr size_t parametersCount = 6;
+  double parameters[parametersCount] = {};
+  for (size_t j = 0; j < parametersCount; ++j)
+  {
+    in >> parameters[j];
+  }
+  if (!in)
+  {
+    throw std::logic_error("Invalid arguments");
+  }
+  shapes[shapeCount] = new Triangle({parameters[0], parameters[1]}, {parameters[2], parameters[3]}, {parameters[4], parameters[5]});
+}
+
+void piyavkin::inputParallelogram(std::istream& in, Shape** shapes, size_t shapeCount)
+{
+  constexpr size_t parametersCount = 6;
+  double parameters[parametersCount] = {};
+  for (size_t j = 0; j < parametersCount; ++j)
+  {
+    in >> parameters[j];
+  }
+  if (!in)
+  {
+    throw std::logic_error("Invalid arguments");
+  }
+  shapes[shapeCount] = new Parallelogram({parameters[0], parameters[1]}, {parameters[2], parameters[3]}, {parameters[4], parameters[5]});
+}
+
 piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
 {
   std::string name = "";
-  double* parameters = nullptr;
   const size_t numbersFigures = 3;
   std::string shapeNames[numbersFigures] = {"RECTANGLE", "TRIANGLE", "PARALLELOGRAM"};
-  size_t shapeParametersCount[numbersFigures] = {4, 6, 6};
   Shape** shapeArray = nullptr;
   Shape** oldShapeArray = nullptr;
   char symbol = 0;
@@ -29,17 +72,6 @@ piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
     {
       if (name == shapeNames[i])
       {
-        parameters = new double[shapeParametersCount[i]] {};
-        for (size_t j = 0; j < shapeParametersCount[i]; ++j)
-        {
-          in >> parameters[j];
-        }
-        if (!in)
-        {
-          delete[] parameters;
-          clearMemory(shapeArray, shapeCount);
-          throw std::logic_error("Invalid arguments");
-        }
         oldShapeArray = shapeArray;
         shapeArray = new Shape* [shapeCount + 1] {};
         if (oldShapeArray)
@@ -54,33 +86,27 @@ piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
         {
           if (name == "RECTANGLE")
           {
-            shapeArray[shapeCount] = new Rectangle({parameters[0], parameters[1]},
-                {parameters[2], parameters[3]});
+            inputRectangle(in, shapeArray, shapeCount);
           }
           else if (name == "TRIANGLE")
           {
-            shapeArray[shapeCount] = new Triangle({parameters[0], parameters[1]},
-                {parameters[2], parameters[3]}, {parameters[4], parameters[5]});
+            inputTriangle(in, shapeArray, shapeCount);
           }
           else if (name == "PARALLELOGRAM")
           {
-            shapeArray[shapeCount] = new Parallelogram({parameters[0], parameters[1]},
-                {parameters[2], parameters[3]}, {parameters[4], parameters[5]});
+            inputParallelogram(in, shapeArray, shapeCount);
           }
         }
         catch (const std::logic_error& e)
         {
           std::cerr << e.what() << '\n';
-          delete[] parameters;
           continue;
         }
         catch (const std::bad_alloc& e)
         {
-          delete[] parameters;
           clearMemory(shapeArray, shapeCount);
           throw;
         }
-        delete[] parameters;
         ++shapeCount;
       }
     }
