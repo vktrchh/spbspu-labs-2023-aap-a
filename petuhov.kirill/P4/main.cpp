@@ -43,33 +43,45 @@ int main(int argc, char **argv)
     return 2;
   }
 
+  if (rows == 0 || cols == 0)
+  {
+    std::ofstream outputFile(argv[3]);
+    if (!outputFile)
+    {
+      std::cerr << "Cannot write output\n";
+      return 5;
+    }
+    return 0;
+  }
+
   int *matrix = nullptr;
   bool isLowerTriangular = false;
 
   try
   {
-      if (arr_type == 1)
-      {
-        int static_matrix[10000] = {};
-        matrix = static_matrix;
-        petuhov::fillMatrix(matrix, rows, cols, inputFile);
-        isLowerTriangular = petuhov::isLowerTriangular(matrix, rows, cols);
-      }
-      else if (arr_type == 2)
-      {
-        matrix = petuhov::createMatrix(rows, cols);
-        petuhov::fillMatrix(matrix, rows, cols, inputFile);
-        isLowerTriangular = petuhov::isLowerTriangular(matrix, rows, cols);
-        delete[] matrix;
-      }
+    if (arr_type == 1)
+    {
+      int static_matrix[10000] = {};
+      matrix = static_matrix;
+      petuhov::fillMatrix(matrix, rows, cols, inputFile);
+      isLowerTriangular = petuhov::isLowerTriangular(matrix, rows, cols);
+    }
+    else if (arr_type == 2)
+    {
+      matrix = petuhov::createMatrix(rows, cols);
+      petuhov::fillMatrix(matrix, rows, cols, inputFile);
+      isLowerTriangular = petuhov::isLowerTriangular(matrix, rows, cols);
+      delete[] matrix;
+    }
   }
-  catch (const std::exception& e)
+  catch (const std::exception &e)
   {
-      std::cerr << "An error occurred: " << e.what() << "\n";
-      if (arr_type == 2 && matrix != nullptr) {
-          delete[] matrix;
-      }
-      return 4;
+    std::cerr << "An error occurred: " << e.what() << "\n";
+    if (arr_type == 2 && matrix != nullptr)
+    {
+      delete[] matrix;
+    }
+    return 4;
   }
 
   std::ofstream outputFile(argv[3]);
