@@ -3,13 +3,10 @@
 
 int * petuhov::createMatrix(size_t rows, size_t cols)
 {
-  try
+  int *matrix = new int[rows * cols];
+  if (!matrix)
   {
-    int * matrix = new int[rows * cols];
-    return matrix;
+    throw std::bad_alloc();
   }
-  catch (const std::bad_alloc &)
-  {
-    throw;
-  }
+  return matrix;
 }

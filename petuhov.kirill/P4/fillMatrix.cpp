@@ -1,15 +1,19 @@
 #include "fillMatrix.hpp"
+#include <iostream>
 #include <stdexcept>
 
-void petuhov::fillMatrix(int * matrix, size_t rows, size_t cols, std::istream & input)
+namespace petuhov
 {
-  for (size_t i = 0; i < rows; ++i)
+  void fillMatrix(int *matrix, size_t rows, size_t cols, std::istream &input)
   {
-    for (size_t j = 0; j < cols; ++j)
+    for (size_t i = 0; i < rows; ++i)
     {
-      if (!(input >> matrix[i * cols + j]))
+      for (size_t j = 0; j < cols; ++j)
       {
-        throw std::runtime_error("Error reading matrix");
+        if (!(input >> matrix[i * cols + j]))
+        {
+          throw std::runtime_error("Error reading matrix");
+        }
       }
     }
   }
