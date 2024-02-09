@@ -8,11 +8,11 @@ nikitov::Regular::Regular(const point_t& first, const point_t& second, const poi
   second_(second),
   third_(third)
 {
-  double firstLine = pow(first_.x - second_.x, 2) + pow(first_.y - second_.y, 2);
-  double secondLine = pow(third_.x - second_.x, 2) + pow(third_.y - second_.y, 2);
-  double thirdLine = pow(first_.x - third_.x, 2) + pow(first_.y - third_.y, 2);
+  double firstLine = std::pow(first_.x - second_.x, 2) + std::pow(first_.y - second_.y, 2);
+  double secondLine = std::pow(third_.x - second_.x, 2) + std::pow(third_.y - second_.y, 2);
+  double thirdLine = std::pow(first_.x - third_.x, 2) + std::pow(first_.y - third_.y, 2);
   if (!(firstLine + secondLine == thirdLine || secondLine + thirdLine == firstLine)
-    || std::max(sqrt(firstLine), sqrt(thirdLine)) > sqrt(secondLine) * 2)
+    || std::max(sqrt(firstLine), std::sqrt(thirdLine)) > std::sqrt(secondLine) * 2)
   {
     throw std::invalid_argument("Error: invalid regular agrugments");
   }
@@ -21,27 +21,27 @@ nikitov::Regular::Regular(const point_t& first, const point_t& second, const poi
 double nikitov::Regular::getArea() const
 {
   const double PI = 3.141592653589793;
-  double firstLine = sqrt(pow(first_.x - second_.x, 2) + pow(first_.y - second_.y, 2));
-  double thirdLine = sqrt(pow(first_.x - third_.x, 2) + pow(first_.y - third_.y, 2));
+  double firstLine = std::sqrt(pow(first_.x - second_.x, 2) + std::pow(first_.y - second_.y, 2));
+  double thirdLine = std::sqrt(pow(first_.x - third_.x, 2) + std::pow(first_.y - third_.y, 2));
 
   double circumRadius = std::max(firstLine, thirdLine);
   double inRadius = std::min(firstLine, thirdLine);
-  int n = round(-2 * PI / (asin(inRadius / circumRadius) * 2 - PI));
+  int n = std::round(-2 * PI / (std::asin(inRadius / circumRadius) * 2 - PI));
 
-  double a = 2 * circumRadius * sin(PI / n);
+  double a = 2 * circumRadius * std::sin(PI / n);
   return 0.5 * n * a * inRadius;
 }
 
 nikitov::rectangle_t nikitov::Regular::getFrameRect() const
 {
   const double PI = 3.141592653589793;
-  double firstLine = sqrt(pow(first_.x - second_.x, 2) + pow(first_.y - second_.y, 2));
-  double thirdLine = sqrt(pow(first_.x - third_.x, 2) + pow(first_.y - third_.y, 2));
+  double firstLine = std::sqrt(pow(first_.x - second_.x, 2) + std::pow(first_.y - second_.y, 2));
+  double thirdLine = std::sqrt(pow(first_.x - third_.x, 2) + std::pow(first_.y - third_.y, 2));
 
   double circumRadius = std::max(firstLine, thirdLine);
   double inRadius = std::min(firstLine, thirdLine);
-  size_t n = round(-2 * PI / (asin(inRadius / circumRadius) * 2 - PI));
-  double a = 2 * circumRadius * sin(PI / n);
+  size_t n = std::round(-2 * PI / (std::asin(inRadius / circumRadius) * 2 - PI));
+  double a = 2 * circumRadius * std::sin(PI / n);
 
   double maxX = std::numeric_limits < double >::min();
   double maxY = maxX;
@@ -65,8 +65,8 @@ nikitov::rectangle_t nikitov::Regular::getFrameRect() const
   {
     double x = point.x;
     double y = point.y;
-    point.x = x * cos(angle) - y * sin(angle);
-    point.y = y * cos(angle) + x * sin(angle);
+    point.x = x * std::cos(angle) - y * std::sin(angle);
+    point.y = y * std::cos(angle) + x * std::sin(angle);
     maxX = std::max(maxX, point.x);
     minX = std::min(minX, point.x);
     maxY = std::max(maxY, point.y);
