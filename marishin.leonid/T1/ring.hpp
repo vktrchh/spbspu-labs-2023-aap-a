@@ -3,7 +3,6 @@
 
 #include "shape.hpp"
 #include <stdexcept>
-#include <cmath>
 
 namespace marishin
 {

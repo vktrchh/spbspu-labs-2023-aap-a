@@ -13,7 +13,8 @@ marishin::Ring::Ring(const point_t center, double outerRadius, double innerRadiu
 
 double marishin::Ring::getArea() const
 {
-  return ((3.141592 * pow(outerRadius_, 2)) - (3.141592 * pow(innerRadius_, 2)));
+  const double PI = 3.141592;
+  return PI * (outerRadius_ * outerRadius_ - innerRadius_ * innerRadius_);
 }
 
 marishin::rectangle_t marishin::Ring::getFrameRect() const
