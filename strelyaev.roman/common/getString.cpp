@@ -47,3 +47,4 @@ char * strelyaev::inputString(std::istream & in)
   }
   return string;
 }
+
