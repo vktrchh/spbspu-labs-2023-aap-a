@@ -12,11 +12,10 @@ int main()
   size_t nFigures = 0;
   point_t isoScaleCenter = {};
   double ratio = 0;
-  bool isErrorInProgram = false;
   Shape** figures = nullptr;
   try
   {
-    figures = inputArray(line, isErrorInProgram, nFigures, isoScaleCenter, ratio, std::cin);
+    figures = inputArray(line, nFigures, isoScaleCenter, ratio, std::cin);
     if (nFigures != 0)
     {
       scaleFigures(figures, nFigures, isoScaleCenter, ratio, std::cout);
@@ -41,10 +40,5 @@ int main()
   }
 
   freeArray(figures, nFigures);
-
-  if (isErrorInProgram)
-  {
-    std::cerr << "Error: Wrong coordinates for figure\n";
-  }
   return 0;
 }

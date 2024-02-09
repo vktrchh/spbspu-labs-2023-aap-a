@@ -23,6 +23,16 @@ void outputFrame(nikitov::Shape* figure, std::ostream& output)
   output << ' ' << frame.pos.y + frame.height / 2;
 }
 
+void scaleFigure(nikitov::Shape* figure, const nikitov::point_t& isoScaleCenter, double ratio)
+{
+  nikitov::point_t center = figure->getFrameRect().pos;
+  figure->move({ isoScaleCenter.x, isoScaleCenter.y });
+  figure->scale(ratio);
+  double dx = (isoScaleCenter.x - center.x) * ratio;
+  double dy = (isoScaleCenter.y - center.y) * ratio;
+  figure->move(-dx, -dy);
+}
+
 void nikitov::scaleFigures(Shape** figures, size_t nFigures, const point_t& isoScaleCenter, double ratio, std::ostream& output)
 {
   output << std::fixed << std::setprecision(1);
@@ -38,12 +48,7 @@ void nikitov::scaleFigures(Shape** figures, size_t nFigures, const point_t& isoS
 
     for(size_t i = 0; i != nFigures; ++i)
     {
-      point_t center = figures[i]->getFrameRect().pos;
-      figures[i]->move({ isoScaleCenter.x, isoScaleCenter.y });
-      figures[i]->scale(ratio);
-      double dx = (isoScaleCenter.x - center.x) * ratio;
-      double dy = (isoScaleCenter.y - center.y) * ratio;
-      figures[i]->move(-dx, -dy);
+      scaleFigure(figures[i], isoScaleCenter, ratio);
     }
 
     output << countAreasSum(figures, nFigures);
