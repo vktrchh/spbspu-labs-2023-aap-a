@@ -44,10 +44,10 @@ void baranov::Rectangle::scale(const double ratio)
   {
     throw std::invalid_argument("Invalid scale ratio");
   }
-  rectangle_t frameRect = getFrameRect();
-  ruCorner_.x = frameRect.pos.x + ratio * (frameRect.width / 2);
-  ruCorner_.y = frameRect.pos.y + ratio * (frameRect.height / 2);
-  ldCorner_.x = frameRect.pos.x - ratio * (frameRect.width / 2);
-  ldCorner_.y = frameRect.pos.y - ratio * (frameRect.height / 2);
+  point_t center = getFrameRect().pos;
+  ruCorner_.x += (ratio - 1) * (ruCorner_.x - center.x);
+  ruCorner_.y += (ratio - 1) * (ruCorner_.y - center.y);
+  ldCorner_.x += (ratio - 1) * (ldCorner_.x - center.x);
+  ldCorner_.y += (ratio - 1) * (ldCorner_.y - center.y);
 }
 
