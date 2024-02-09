@@ -56,7 +56,7 @@ rebdev::rectangle_t rebdev::Concave::getFrameRect() const
   double xMin = vertexs_[0].x, xMax = vertexs_[0].x;
   double yMin = vertexs_[0].y, yMax = vertexs_[0].y;
 
-  for (int i = 0; i < 4; ++i)
+  for (size_t i = 0; i < 4; ++i)
   {
     xMin = ((xMin > vertexs_[i].x) ? vertexs_[i].x : xMin);
     yMin = ((yMin > vertexs_[i].y) ? vertexs_[i].y : yMin);
