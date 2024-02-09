@@ -1,5 +1,5 @@
 #include "input_string.hpp"
-#include <iostream>
+#include <stdexcept>
 
 char * ishmuratov::inputString(std::istream& input)
 {
@@ -18,7 +18,7 @@ char * ishmuratov::inputString(std::istream& input)
       {
         str_size += 10;
         char * newArray = new char[str_size];
-        for (size_t i = 0; i < str_size; ++i)
+        for (size_t i = 0; i < str_size - 10; ++i)
         {
           newArray[i] = initialArray[i];
         }
