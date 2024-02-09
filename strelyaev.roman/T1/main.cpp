@@ -5,7 +5,7 @@
 #include <cstring>
 #include "rectangle.hpp"
 #include "triangle.hpp"
-#include "Parallelogram.hpp"
+#include "parallelogram.hpp"
 #include "inputShapes.hpp"
 #include "stringProc.hpp"
 

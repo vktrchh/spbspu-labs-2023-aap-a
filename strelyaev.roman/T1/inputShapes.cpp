@@ -2,6 +2,9 @@
 #include <cstddef>
 #include <stdexcept>
 #include <string>
+#include "rectangle.hpp"
+#include "triangle.hpp"
+#include "parallelogram.hpp"
 
 strelyaev::Shape * strelyaev::inputRectangle(const char string[])
 {
