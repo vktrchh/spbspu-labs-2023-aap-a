@@ -5,8 +5,8 @@
 
 namespace baranov
 {
-  double getSumArea(Shape ** shapes, size_t count);
-  void outputShapes(std::ostream & output, Shape ** shapes, size_t count);
+  double getSumArea(Shape ** const shapes, size_t count);
+  void outputShapes(std::ostream & output, Shape ** const shapes, size_t count);
 }
 
 #endif

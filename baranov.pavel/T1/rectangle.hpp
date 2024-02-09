@@ -4,7 +4,7 @@
 
 namespace baranov
 {
-  class Rectangle : public Shape
+  class Rectangle: public Shape
   {
   public:
     Rectangle(const point_t & ldCorner, const point_t & ruCorner);

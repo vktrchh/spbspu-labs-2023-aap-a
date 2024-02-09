@@ -1,9 +1,5 @@
 #include "ring.hpp"
-
 #include <stdexcept>
-
-#define _USE_MATH_DEFINES
-#include <cmath>
 
 baranov::Ring::Ring(const point_t & center, const double outRadius, const double inRadius):
   center_(center),
@@ -18,7 +14,8 @@ baranov::Ring::Ring(const point_t & center, const double outRadius, const double
 
 double baranov::Ring::getArea() const
 {
-  return M_PI * (outRadius_ * outRadius_ - inRadius_ * inRadius_);
+  const double pi = 3.141593;
+  return pi * (outRadius_ * outRadius_ - inRadius_ * inRadius_);
 }
 
 baranov::rectangle_t baranov::Ring::getFrameRect() const

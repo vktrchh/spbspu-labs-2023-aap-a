@@ -4,7 +4,7 @@
 
 namespace baranov
 {
-  class Ring : public Shape
+  class Ring: public Shape
   {
     public:
       Ring(const point_t & center, double outRadius, double inRadius);

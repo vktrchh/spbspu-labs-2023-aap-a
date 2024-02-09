@@ -88,10 +88,10 @@ void baranov::parseScale(const char * string, point_t & scalePoint, size_t & sca
   scaleRatio = scaleParameters[2];
 }
 
-baranov::Shape * baranov::parseShape(char * string)
+baranov::Shape * baranov::parseShape(const char * string)
 {
   const size_t shapeCount = 3;
-  const char * shapeNames[] = { "RECTANGLE", "RING", "ELLIPSE" };
+  const char * shapeNames[] = {"RECTANGLE", "RING", "ELLIPSE"};
   for (size_t i = 0; i < shapeCount; ++i)
   {
     size_t nameSize = strlen(shapeNames[i]);
