@@ -18,9 +18,10 @@ int main ()
   size_t current_index = 0;
   Shape * list[maxshapes] = {nullptr};
   bool errors = false;
+  bool scale_entered = false;
 
   std::cin >> std::noskipws;
-  while (std::cin.good())
+  while (!scale_entered)
   {
     if (!std::cin.good())
     {
@@ -48,6 +49,7 @@ int main ()
     }
     if (strncmp("SCALE", string, 5) == 0)
     {
+      scale_entered = true;
       size_t pos = 0;
       const char * argument_string = string + 6;
       double arguments[3]{};
