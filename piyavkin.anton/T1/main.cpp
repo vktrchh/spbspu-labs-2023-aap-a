@@ -31,15 +31,13 @@ int main()
     std::cout << '\n';
     clearMemory(shapes, shapeCount);
   }
-  catch (const std::invalid_argument& e)
-  {
-    std::cerr << e.what() << "\n";
-    clearMemory(shapes, shapeCount);
-    return 1;
-  }
   catch (const std::exception& e)
   {
     std::cerr << e.what() << "\n";
+    if (shapes)
+    {
+      clearMemory(shapes, shapeCount);
+    }
     return 1;
   }
 }
