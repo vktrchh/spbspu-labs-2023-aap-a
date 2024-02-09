@@ -1,7 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <cstring>
-//#include <getString.hpp>
+#include <getString.hpp>
 #include "base-types.hpp"
 #include "shape.hpp"
 #include "rectangle.hpp"
