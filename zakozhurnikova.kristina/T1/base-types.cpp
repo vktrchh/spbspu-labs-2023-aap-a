@@ -79,7 +79,7 @@ void zakozhurnikova::rectangle_t::showCoordinates() const
   zakozhurnikova::point_t downLeft(pos_.getX() - width_ / 2.0, pos_.getY() - height_ / 2.0);
   zakozhurnikova::point_t upRight(pos_.getX() + width_ / 2.0, pos_.getY() + height_ / 2.0);
   std::cout << downLeft.getX() << ' ' << downLeft.getY() <<
-    ' ' << upRight.getX() << ' ' << upRight.getY() << '\n';
+    ' ' << upRight.getX() << ' ' << upRight.getY();
 }
 
 void zakozhurnikova::rectangle_t::showSquareCoords() const
