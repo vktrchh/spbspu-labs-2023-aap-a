@@ -12,23 +12,15 @@ double baranov::getSumArea(Shape ** const shapes, const size_t count)
 
 void baranov::outputShapes(std::ostream & output, Shape ** const shapes, const size_t count)
 {
-  output << std::fixed;
-  output.precision(1);
-
-  output << getSumArea(shapes, count) << ' ';
+  output << getSumArea(shapes, count);
   for (size_t i = 0; i < count; ++i)
   {
     rectangle_t frameRect = shapes[i]->getFrameRect();
     point_t pos = frameRect.pos;
     double width = frameRect.width;
     double height = frameRect.height;
-    output << pos.x - width / 2 << ' ' << pos.y - height / 2  << ' ';
-    output << pos.x + width / 2 << ' ' << pos.y + height / 2;
-    if (i != count - 1)
-    {
-      output << ' ';
-    }
+    output << ' ' << pos.x - width / 2 << ' ' << pos.y - height / 2;
+    output << ' ' << pos.x + width / 2 << ' ' << pos.y + height / 2;
   }
-  output << '\n';
 }
 

@@ -29,7 +29,10 @@ int main()
     return 2;
   }
 
+  std::cout << std::fixed;
+  std::cout.precision(1);
   outputShapes(std::cout, shapes, count);
+  std::cout << '\n';
 
   for (size_t i = 0; i < count; ++i)
   {
@@ -37,6 +40,7 @@ int main()
   }
 
   outputShapes(std::cout, shapes, count);
+  std::cout << '\n';
 
   freeShapes(shapes, count);
 }
