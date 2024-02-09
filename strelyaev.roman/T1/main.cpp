@@ -36,7 +36,7 @@ int main ()
     string = nullptr;
     try
     {
-      string = inputString(std::cin);
+      string = getString(std::cin);
     }
     catch (const std::logic_error& e)
     {

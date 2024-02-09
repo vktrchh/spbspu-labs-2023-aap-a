@@ -3,6 +3,6 @@
 #include <istream>
 namespace strelyaev
 {
-  char * inputString(std::istream & in);
+  char * getString(std::istream & in);
 }
 #endif
