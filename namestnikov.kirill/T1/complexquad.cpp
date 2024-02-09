@@ -85,8 +85,7 @@ void namestnikov::Complexquad::scale(const double coefficient)
     point_t centerPoint = getIntersectionOfTwoLines(points_[0], points_[1], points_[2], points_[3]);
     for (size_t i = 0; i < 4; ++i)
     {
-      points_[i].x = centerPoint.x + (points_[i].x - centerPoint.x) * coefficient;
-      points_[i].y = centerPoint.y + (points_[i].y - centerPoint.y) * coefficient;
+      scalePoint(points_[i], centerPoint, coefficient);
     }
   }
 }
