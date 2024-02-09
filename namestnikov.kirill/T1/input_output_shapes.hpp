@@ -8,7 +8,7 @@
 namespace namestnikov
 {
   Shape ** inputShapes(std::istream & in, size_t & count);
-  std::ostream & outputShapes(std::ostream & out, Shape ** shapes, size_t count);
+  std::ostream & outputShapes(std::ostream & out, const Shape * const * shapes, size_t count);
 }
 
 #endif

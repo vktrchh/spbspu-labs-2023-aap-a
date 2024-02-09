@@ -16,8 +16,8 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
   possibleShapes["COMPLEXQUAD"] = 8;
   double * currentParameters = nullptr;
   std::string currentShapeName = "";
-  namestnikov::Shape ** currentShapes = nullptr;
-  namestnikov::Shape ** oldShapes = nullptr;
+  Shape ** currentShapes = nullptr;
+  Shape ** oldShapes = nullptr;
   while (in >> currentShapeName)
   {
     if (currentShapeName == "SCALE")
@@ -106,19 +106,14 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
           delete [] currentParameters;
         }
       }
-      in >> std::noskipws;
-      char sym = 0;
-      while (sym != '\n')
-      {
-        in >> sym;
-      }
-      in >> std::skipws;
+      std::string s = "";
+      getline(in, s);
     }
   }
   return currentShapes;
 }
 
-std::ostream & namestnikov::outputShapes(std::ostream & out, Shape ** shapes, size_t count)
+std::ostream & namestnikov::outputShapes(std::ostream & out, const Shape * const * shapes, size_t count)
 {
   if (count == 0)
   {
@@ -132,15 +127,12 @@ std::ostream & namestnikov::outputShapes(std::ostream & out, Shape ** shapes, si
   out << square;
   for (size_t i = 0; i < count; ++i)
   {
-    if (shapes[i])
-    {
-      double width = shapes[i]->getFrameRect().width;
-      double height = shapes[i]->getFrameRect().height;
-      point_t position = shapes[i]->getFrameRect().pos;
-      point_t leftCornerPoint = {position.x - (width / 2.0), position.y - (height / 2.0)};
-      point_t rightCornerPoint = {position.x + (width / 2.0), position.y + (height / 2.0)};
-      out << " " << leftCornerPoint.x << " " << leftCornerPoint.y << " " << rightCornerPoint.x << " " << rightCornerPoint.y;
-    }
+    double width = shapes[i]->getFrameRect().width;
+    double height = shapes[i]->getFrameRect().height;
+    point_t position = shapes[i]->getFrameRect().pos;
+    point_t leftCornerPoint = {position.x - (width / 2.0), position.y - (height / 2.0)};
+    point_t rightCornerPoint = {position.x + (width / 2.0), position.y + (height / 2.0)};
+    out << " " << leftCornerPoint.x << " " << leftCornerPoint.y << " " << rightCornerPoint.x << " " << rightCornerPoint.y;
   }
   return out;
 }
