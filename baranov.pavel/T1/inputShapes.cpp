@@ -3,7 +3,7 @@
 #include "rectangle.hpp"
 #include "ring.hpp"
 #include "ellipse.hpp"
-#include <inputString.hpp>
+#include <readString.hpp>
 #include <cstring>
 #include <stdexcept>
 

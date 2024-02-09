@@ -1,4 +1,4 @@
-#include "inputString.hpp"
+#include "readString.hpp"
 
 char * baranov::expandString(const char * string, const size_t newSize)
 {
