@@ -34,8 +34,6 @@ int main()
       isoScale(shapes[i], scalePoint, scaleCoefficient);
     }
     outputShapes(std::cout, shapes, count);
-    std::cout << std::fixed;
-    std::cout.precision(1);
     std::cout << "\n";
   }
   catch (const std::bad_alloc &)

@@ -1,18 +1,16 @@
+#include "input_output_shapes.hpp"
 #include <string>
 #include <map>
-#include "input_output_shapes.hpp"
 #include "rectangle.hpp"
 #include "base-types.hpp"
 #include "circle.hpp"
 #include "complexquad.hpp"
 #include "geometric_functions.hpp"
 
-
 namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count)
 {
   std::string possibleShapesNames[3] = {"RECTANGLE", "CIRCLE", "COMPLEXQUAD"};
   size_t shapesParametersCount[3] = {4, 3, 8};
-  double * currentParameters = nullptr;
   std::string currentShapeName = "";
   Shape ** currentShapes = nullptr;
   Shape ** oldShapes = nullptr;
