@@ -33,9 +33,9 @@ double marishin::getAreaTriangle(const point_t& first, const point_t& second, co
 
 marishin::rectangle_t marishin::getFrameRectTriangle(const point_t& first, const point_t& second, const point_t& third)
 {
-  const point_t& p1 = firstPoint;
-  const point_t& p2 = secondPoint;
-  const point_t& p3 = thirdPoint;
+  const point_t& p1 = first;
+  const point_t& p2 = second;
+  const point_t& p3 = third;
 
   double height = (std::max(p1.y, (std::max(p2.y, p3.y))) - (std::min(p1.y, (std::min(p2.y, p3.y)))));
   double width = (std::max(p1.x, (std::max(p2.x, p3.x))) - (std::min(p1.x, (std::min(p2.x, p3.x)))));
