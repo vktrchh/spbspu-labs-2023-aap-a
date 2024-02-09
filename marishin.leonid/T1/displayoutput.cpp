@@ -13,27 +13,21 @@ void marishin::outputShapesInfo(std::ostream& out, const Shape* const* shapes, s
 
   for (size_t i = 0; i < shapeCount; i++)
   {
-    if (shapes[i])
-    {
-      totalArea += shapes[i]->getArea();
-    }
+    totalArea += shapes[i]->getArea();
   }
 
   out << totalArea;
 
   for (size_t i = 0; i < shapeCount; ++i)
   {
-    if (shapes[i])
-    {
-      double width = shapes[i]->getFrameRect().width;
-      double height = shapes[i]->getFrameRect().height;
-      point_t point = shapes[i]->getFrameRect().pos;
+    double width = shapes[i]->getFrameRect().width;
+    double height = shapes[i]->getFrameRect().height;
+    point_t point = shapes[i]->getFrameRect().pos;
 
-      point_t lowerLeftCorner = { point.x - width / 2.0, point.y - height / 2.0 };
-      point_t topRightCorner = { point.x + width / 2.0, point.y + height / 2.0 };
+    point_t lowerLeftCorner = { point.x - width / 2.0, point.y - height / 2.0 };
+    point_t topRightCorner = { point.x + width / 2.0, point.y + height / 2.0 };
 
-      out << " " << lowerLeftCorner.x << " " << lowerLeftCorner.y << " " << topRightCorner.x << " " << topRightCorner.y;
-    }
+    out << " " << lowerLeftCorner.x << " " << lowerLeftCorner.y << " " << topRightCorner.x << " " << topRightCorner.y;
   }
 
   out << "\n";
