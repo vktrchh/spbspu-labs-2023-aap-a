@@ -1,6 +1,6 @@
-#include "readString.hpp"
+#include "inputString.hpp"
 
-char * baranov::expandString(const char * string, const size_t newSize)
+char * baranov::enlargeString(const char * string, const size_t newSize)
 {
   char * result = new char[newSize]{};
   size_t i = 0;
@@ -27,9 +27,9 @@ char * baranov::inputString(std::istream & input)
     {
       try
       {
-        char * expandedString = expandString(string, stringSize + bufferSize);
+        char * enlargedString = enlargeString(string, stringSize + bufferSize);
         delete[] string;
-        string = expandedString;
+        string = enlargedString;
       }
       catch (const std::bad_alloc & e)
       {
