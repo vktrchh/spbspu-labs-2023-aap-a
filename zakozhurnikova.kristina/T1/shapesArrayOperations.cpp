@@ -90,7 +90,7 @@ zakozhurnikova::Shape* readComplexquad(const char* string)
   }
   if (*string != '\0')
   {
-    throw std::invalid_argument("Invalid diamond parameters");
+    throw std::invalid_argument("Invalid complexquad parameters");
   }
 
   zakozhurnikova::point_t pointOne = { complexquadData[0], complexquadData[1] };
@@ -174,7 +174,7 @@ void zakozhurnikova::inputShapesArray(std::istream& in, Shape** shapes, size_t& 
     catch (const std::invalid_argument& e)
     {
       delete[] string;
-      std::cerr << e.what() << '\n';
+      throw std::invalid_argument(e.what());
     }
     catch (const std::logic_error& e)
     {

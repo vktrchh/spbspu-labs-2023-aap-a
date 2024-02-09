@@ -14,20 +14,25 @@ namespace zakozhurnikova
       pointTwo_(point_t()),
       center_(point_t())
     {
-      if (pointOne.x != pointTwo.x && pointOne.y != pointTwo.y)
-      {
-        center_ = pointThree;
-        pointOne_ = pointOne;
-        pointTwo_ = pointTwo;
-      } else if (pointOne.x != pointThree.x && pointOne.y != pointThree.y) {
-        center_ = pointTwo;
-        pointOne_ = pointOne;
-        pointTwo_ = pointTwo;
-      } else if (pointThree.x != pointTwo.x && pointThree.y != pointTwo.y) {
-        center_ = pointOne;
-        pointOne_ = pointTwo;
-        pointTwo_ = pointThree;
-      } else {
+      const bool CONDITION = pointOne.x - pointThree.x == 0 ||
+         pointOne.y - pointThree.y == 0 || pointTwo.x - pointThree.x == 0 ||
+         pointTwo.y - pointThree.y == 0;
+      if (CONDITION) {
+        if (pointOne.x != pointTwo.x && pointOne.y != pointTwo.y) {
+          center_ = pointThree;
+          pointOne_ = pointOne;
+          pointTwo_ = pointTwo;
+        } else if (pointOne.x != pointThree.x && pointOne.y != pointThree.y) {
+          center_ = pointTwo;
+          pointOne_ = pointOne;
+          pointTwo_ = pointTwo;
+        } else if (pointThree.x != pointTwo.x && pointThree.y != pointTwo.y) {
+          center_ = pointOne;
+          pointOne_ = pointTwo;
+          pointTwo_ = pointThree;
+         }
+      }
+      else {
         throw std::invalid_argument("These points do not define a diamond");
       }
 
