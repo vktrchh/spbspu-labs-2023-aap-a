@@ -174,11 +174,11 @@ void zakozhurnikova::inputShapesArray(std::istream& in, Shape** shapes, size_t& 
     catch(const std::invalid_argument& e)
     {
       delete[] string;
-      std::cerr << e.what() << '\n';
+      throw std::invalid_argument(e.what());
     }
     catch (const std::runtime_error& e)
     {
-      std::cerr << e.what() << '\n';
+      throw std::runtime_error(e.what());
       delete[] string;
     }
   }
