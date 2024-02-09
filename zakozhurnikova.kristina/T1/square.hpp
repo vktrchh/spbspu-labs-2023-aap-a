@@ -1,6 +1,7 @@
 #ifndef SQUARE_HPP
 #define SQUARE_HPP
 #include "shape.hpp"
+#include <stdexcept>
 
 namespace zakozhurnikova
 {
@@ -12,7 +13,12 @@ namespace zakozhurnikova
     Square(const point_t& downLeft, double length) :
       downLeft_(downLeft),
       length_(length)
-    {}
+    {
+      if (length <= 0.0)
+      {
+        throw std::invalid_argument("Invalid square parameters");
+      }
+    }
     Square(const Square& sq) :
       downLeft_(sq.downLeft_),
       length_(sq.length_)

@@ -1,6 +1,9 @@
 #ifndef COMPLEXQUAD_HPP
 #define COMPLEXQUAD_HPP
+
 #include "shape.hpp"
+#include "geometryFunc.hpp"
+#include <stdexcept>
 
 namespace zakozhurnikova
 {
@@ -13,7 +16,13 @@ namespace zakozhurnikova
       p2_(p2),
       p3_(p3),
       p4_(p4)
-    {}
+    {
+      point_t points[4] {p1, p2, p3, p4};
+      if (!hasIntersection(points))
+      {
+        throw std::invalid_argument("Incorrect complexquad parameters");
+      }
+    }
     Complexquad(const Complexquad& comp) :
       p1_(comp.p1_),
       p2_(comp.p2_),
@@ -28,7 +37,6 @@ namespace zakozhurnikova
     void move(const point_t& p);
     void move(double dx, double dy);
     void scale(double k);
-    point_t getCenter() const;
   private:
     point_t p1_;
     point_t p2_;
