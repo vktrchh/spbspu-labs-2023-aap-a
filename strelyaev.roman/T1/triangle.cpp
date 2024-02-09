@@ -6,17 +6,13 @@
 strelyaev::Triangle::Triangle(point_t p1, point_t p2, point_t p3):
   p1_(p1),
   p2_(p2),
-  p3_(p3),
-  center_({0, 0})
+  p3_(p3)
 {
   double determinant = p1_.x * (p2_.y - p3_.y) - p2_.x * (p1_.y - p3_.y) + p3_.x * (p1_.y - p2_.y);
   if (determinant == 0)
   {
     throw std::invalid_argument("Invalid points for TRIANGLE");
   }
-  double center_x = (p1_.x + p2_.x + p3_.x) / 3;
-  double center_y = (p1_.y + p2_.y + p3_.y) / 3;
-  center_ = {center_x, center_y};
 }
 
 double strelyaev::Triangle::getDistance(const point_t p1, const point_t p2) const
@@ -56,11 +52,19 @@ strelyaev::rectangle_t strelyaev::Triangle::getFrameRect() const
 
 void strelyaev::Triangle::move(const point_t point)
 {
-  double dx = point.x - center_.x;
-  double dy = point.y - center_.y;
-
-  center_.x = point.x;
-  center_.y = point.y;
+  double center_x = (p1_.x + p2_.x + p3_.x) / 3;
+  double center_y = (p1_.y + p2_.y + p3_.y) / 3;
+  point_t center = {center_x, center_y};
+  double dx = point.x - center.x;
+  double dy = point.y - center.y;
+  p1_.x += dx;
+  p2_.x += dx;
+  p3_.x += dx;
+  p1_.y += dy;
+  p2_.y += dy;
+  p3_.y += dy;
+  center.x = point.x;
+  center.y = point.y;
 }
 
 
@@ -77,11 +81,14 @@ void strelyaev::Triangle::move(double offset_x, double offset_y)
 
 void strelyaev::Triangle::scale(double k)
 {
-  p1_.x = center_.x + (p1_.x - center_.x) * k;
-  p1_.y = center_.y + (p1_.y - center_.y) * k;
-  p2_.x = center_.x + (p2_.x - center_.x) * k;
-  p2_.y = center_.y + (p2_.y - center_.y) * k;
-  p3_.x = center_.x + (p3_.x - center_.x) * k;
-  p3_.y = center_.y + (p3_.y - center_.y) * k;
+  double center_x = (p1_.x + p2_.x + p3_.x) / 3;
+  double center_y = (p1_.y + p2_.y + p3_.y) / 3;
+  point_t center = {center_x, center_y};
+  p1_.x = center.x + (p1_.x - center.x) * k;
+  p1_.y = center.y + (p1_.y - center.y) * k;
+  p2_.x = center.x + (p2_.x - center.x) * k;
+  p2_.y = center.y + (p2_.y - center.y) * k;
+  p3_.x = center.x + (p3_.x - center.x) * k;
+  p3_.y = center.y + (p3_.y - center.y) * k;
 }
 
