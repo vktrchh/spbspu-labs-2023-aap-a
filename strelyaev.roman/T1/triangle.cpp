@@ -57,14 +57,13 @@ void strelyaev::Triangle::move(const point_t point)
   point_t center = {center_x, center_y};
   double dx = point.x - center.x;
   double dy = point.y - center.y;
-  p1_.x += dx;
-  p2_.x += dx;
-  p3_.x += dx;
-  p1_.y += dy;
-  p2_.y += dy;
-  p3_.y += dy;
-  center.x = point.x;
-  center.y = point.y;
+
+  point_t * points[] = {&p1_, &p2_, &p3_};
+  for (size_t i = 0; i < 3; i++)
+  {
+    points[i]->x += dx;
+    points[i]->y += dy;
+  }
 }
 
 
@@ -84,11 +83,11 @@ void strelyaev::Triangle::scale(double k)
   double center_x = (p1_.x + p2_.x + p3_.x) / 3;
   double center_y = (p1_.y + p2_.y + p3_.y) / 3;
   point_t center = {center_x, center_y};
-  p1_.x = center.x + (p1_.x - center.x) * k;
-  p1_.y = center.y + (p1_.y - center.y) * k;
-  p2_.x = center.x + (p2_.x - center.x) * k;
-  p2_.y = center.y + (p2_.y - center.y) * k;
-  p3_.x = center.x + (p3_.x - center.x) * k;
-  p3_.y = center.y + (p3_.y - center.y) * k;
+  point_t * points[] = {&p1_, &p2_, &p3_};
+  for (size_t i = 0; i < 3; i++)
+  {
+    points[i]->x = center.x + (points[i]->x - center.x) * k;
+    points[i]->y = center.y + (points[i]->y - center.y) * k;
+  }
 }
 
