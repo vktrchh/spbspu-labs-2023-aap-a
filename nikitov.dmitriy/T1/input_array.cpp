@@ -24,7 +24,7 @@ void nikitov::freeArray(Shape** figures, size_t nFigures)
   delete[] figures;
 }
 
-nikitov::Shape** nikitov::inputArray(std::string& line, bool& isErrorInProgram, size_t& nFigures, std::istream& input)
+nikitov::Shape** nikitov::inputArray(std::string& line, bool& isErrorInProgram, size_t& nFigures, point_t& isoScaleCenter, double& ratio, std::istream& input)
 {
   Shape** figures = new Shape*[1];
   try
@@ -42,6 +42,18 @@ nikitov::Shape** nikitov::inputArray(std::string& line, bool& isErrorInProgram, 
       {
         if (line.find("SCALE") == 0)
         {
+          std::string name = "SCALE";
+          line = line.substr(name.length());
+          const char* cLine = line.c_str();
+          size_t coordinatePointer = 0;
+          double coordinates[3] = {};
+          for (size_t i = 0; i != 3; ++i)
+          {
+            coordinates[i] = std::stod(cLine, &coordinatePointer);
+            cLine += coordinatePointer;
+          }
+          isoScaleCenter = { coordinates[0], coordinates[1] };
+          ratio = coordinates[2];
           return figures;
         }
         else if (line.find("RECTANGLE") == 0)
@@ -83,5 +95,3 @@ nikitov::Shape** nikitov::inputArray(std::string& line, bool& isErrorInProgram, 
   }
   return figures;
 }
-
-

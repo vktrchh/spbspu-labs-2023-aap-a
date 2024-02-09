@@ -10,14 +10,16 @@ int main()
   using namespace nikitov;
   std::string line;
   size_t nFigures = 0;
+  point_t isoScaleCenter = {};
+  double ratio = 0;
   bool isErrorInProgram = false;
   Shape** figures = nullptr;
   try
   {
-    figures = inputArray(line, isErrorInProgram, nFigures, std::cin);
+    figures = inputArray(line, isErrorInProgram, nFigures, isoScaleCenter, ratio, std::cin);
     if (nFigures != 0)
     {
-      scaleFigures(figures, line, nFigures, std::cout);
+      scaleFigures(figures, nFigures, isoScaleCenter, ratio, std::cout);
     }
     else
     {
