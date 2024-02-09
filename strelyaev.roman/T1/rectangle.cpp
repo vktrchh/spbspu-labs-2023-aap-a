@@ -33,10 +33,12 @@ void strelyaev::Rectangle::move(point_t new_center)
   point_t center({(p1_.x + p2_.x) / 2, (p1_.y + p2_.y) / 2});
   double offset_x = new_center.x - center.x;
   double offset_y = new_center.y - center.y;
-  p1_.x += offset_x;
-  p1_.y += offset_y;
-  p2_.x += offset_x;
-  p2_.y += offset_y;
+  point_t * points[] = {&p1_, &p2_};
+  for (size_t i = 0; i < 2; i++)
+  {
+    points[i]->x += offset_x;
+    points[i]->y += offset_y;
+  }
 }
 
 
@@ -46,10 +48,12 @@ void strelyaev::Rectangle::move(double dx, double dy)
   point_t center({(p1_.x + p2_.x) / 2, (p1_.y + p2_.y) / 2});
   center.x += dx;
   center.y += dy;
-  p1_.x += dx;
-  p1_.y += dy;
-  p2_.x += dx;
-  p2_.y += dy;
+  point_t * points[] = {&p1_, &p2_};
+  for (size_t i = 0; i < 2; i++)
+  {
+    points[i]->x += dx;
+    points[i]->y += dy;
+  }
 }
 
 void strelyaev::Rectangle::scale(double k)
@@ -62,8 +66,10 @@ void strelyaev::Rectangle::scale(double k)
 
   double offset_x = (new_width - width) / 2.0;
   double offset_y = (new_height - height) / 2.0;
-  p1_.x -= offset_x;
-  p1_.y -= offset_y;
-  p2_.x += offset_x;
-  p2_.y += offset_y;
+  point_t * points[] = {&p1_, &p2_};
+  for (size_t i = 0; i < 2; i++)
+  {
+    points[i]->x += offset_x;
+    points[i]->y += offset_y;
+  }
 }
