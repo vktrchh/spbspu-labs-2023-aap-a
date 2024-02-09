@@ -1,9 +1,9 @@
 #include "writeMatrix.hpp"
 
+#include <iostream>
 #include <cstddef>
-#include <fstream>
 
-void chernov::writeMatrix(std::ofstream& out, int* matrix, size_t rows, size_t cols)
+void chernov::writeMatrix(std::ostream& out, int* matrix, size_t rows, size_t cols)
 {
   for (size_t i = 0; i < rows; i++)
   {
