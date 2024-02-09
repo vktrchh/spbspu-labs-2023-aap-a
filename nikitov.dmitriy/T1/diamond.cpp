@@ -14,6 +14,38 @@ nikitov::Diamond::Diamond(const point_t& firstPoint, const point_t& secondPoint,
   {
     throw std::invalid_argument("Error: invalid diamond arguments");
   }
+
+  point_t temp = firstPoint_;
+  if (firstPoint_.x - secondPoint_.x == 0)
+  {
+    if (firstPoint_.y - thirdPoint_.y != 0)
+    {
+      firstPoint_ = secondPoint_;
+      secondPoint_ = temp;
+    }
+  }
+  else if (firstPoint_.x - thirdPoint_.x == 0)
+  {
+    if (firstPoint_.y - secondPoint_.x != 0)
+    {
+      firstPoint_ = thirdPoint_;
+      thirdPoint_ = secondPoint_;
+      secondPoint_ = temp;
+    }
+  }
+  else
+  {
+    if (secondPoint_.y - firstPoint_.y == 0)
+    {
+      firstPoint_ = secondPoint_;
+      secondPoint_ = thirdPoint_;
+      thirdPoint_ = temp;
+    }
+    else
+    {
+      firstPoint_ = thirdPoint_;
+      thirdPoint_ = temp;
+    }
 }
 
 double nikitov::Diamond::getArea() const
@@ -24,49 +56,9 @@ double nikitov::Diamond::getArea() const
 
 nikitov::rectangle_t nikitov::Diamond::getFrameRect() const
 {
-  double width = 0;
-  double height = 0;
-  point_t center;
-  if (firstPoint_.x - secondPoint_.x == 0)
-  {
-    height = abs(firstPoint_.y - secondPoint_.y) * 2;
-    width = abs(firstPoint_.x - thirdPoint_.x) * 2;
-    if (firstPoint_.y - thirdPoint_.y == 0)
-    {
-      center = firstPoint_;
-    }
-    else
-    {
-      center = secondPoint_;
-    }
-  }
-  else if (firstPoint_.x - thirdPoint_.x == 0)
-  {
-    height = abs(firstPoint_.y - thirdPoint_.y) * 2;
-    width = abs(firstPoint_.x - secondPoint_.x) * 2;
-    if (firstPoint_.y - secondPoint_.y == 0)
-    {
-      center = firstPoint_;
-    }
-    else
-    {
-      center = thirdPoint_;
-    }
-  }
-  else
-  {
-    height = abs(secondPoint_.y - thirdPoint_.y) * 2;
-    width = abs(firstPoint_.x - secondPoint_.x) * 2;
-    if (secondPoint_.y - firstPoint_.y == 0)
-    {
-      center = secondPoint_;
-    }
-    else
-    {
-      center = thirdPoint_;
-    }
-  }
-  return { width, height, center };
+  double width = abs(firstPoint_.x - secondPoint_.x) * 2;
+  double height = abs(firstPoint_.y - thirdPoint_.y) * 2;
+  return { width, height, firstPoint_ };
 }
 
 void nikitov::Diamond::move(const point_t& point)
@@ -89,26 +81,8 @@ void nikitov::Diamond::move(double dx, double dy)
 
 void nikitov::Diamond::scale(double ratio)
 {
-  point_t center = getFrameRect().pos;
-  if (firstPoint_.x == center.x && firstPoint_.y == center.y)
-  {
-    secondPoint_.x = center.x - (center.x - secondPoint_.x) * ratio;
-    secondPoint_.y = center.y - (center.y - secondPoint_.y) * ratio;
-    thirdPoint_.x = center.x - (center.x - thirdPoint_.x) * ratio;
-    thirdPoint_.y = center.y - (center.y - thirdPoint_.y) * ratio;
-  }
-  else if (secondPoint_.x == center.x && secondPoint_.y == center.y)
-  {
-    firstPoint_.x = center.x - (center.x - firstPoint_.x) * ratio;
-    firstPoint_.y = center.y - (center.y - firstPoint_.y) * ratio;
-    thirdPoint_.x = center.x - (center.x - thirdPoint_.x) * ratio;
-    thirdPoint_.y = center.y - (center.y - thirdPoint_.y) * ratio;
-  }
-  else if (thirdPoint_.x == center.x && thirdPoint_.y == center.y)
-  {
-    secondPoint_.x = center.x - (center.x - secondPoint_.x) * ratio;
-    secondPoint_.y = center.y - (center.y - secondPoint_.y) * ratio;
-    firstPoint_.x = center.x - (center.x - firstPoint_.x) * ratio;
-    firstPoint_.y = center.y - (center.y - firstPoint_.y) * ratio;
-  }
+  secondPoint_.x = center.x - (center.x - secondPoint_.x) * ratio;
+  secondPoint_.y = center.y - (center.y - secondPoint_.y) * ratio;
+  thirdPoint_.x = center.x - (center.x - thirdPoint_.x) * ratio;
+  thirdPoint_.y = center.y - (center.y - thirdPoint_.y) * ratio;
 }
