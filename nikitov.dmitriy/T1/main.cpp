@@ -30,21 +30,11 @@ int main()
   {
     std::cerr << e.what() << '\n';
     freeArray(figures, nFigures);
-    return 2;
-  }
-  catch (std::length_error& e)
-  {
-    std::cerr << e.what() << '\n';
     return 1;
   }
-  catch (std::logic_error& e)
+  catch (std::exception& e)
   {
     std::cerr << e.what() << '\n';
-    return 1;
-  }
-  catch (std::bad_alloc&)
-  {
-    std::cerr << "Error: Not enough memory\n";
     return 3;
   }
 
