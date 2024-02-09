@@ -48,43 +48,33 @@ void strelyaev::Parallelogram::move(point_t new_center)
   point_t center = {(p1_.x + p2_.x + p3_.x) / 3, (p1_.y + p2_.y + p3_.y) / 3};
   double offset_x = new_center.x - center.x;
   double offset_y = new_center.y - center.y;
-
-  p1_.x += offset_x;
-  p1_.y += offset_y;
-  p2_.x += offset_x;
-  p2_.y += offset_y;
-  p3_.x += offset_x;
-  p3_.y += offset_y;
-  p4_.x += offset_x;
-  p4_.y += offset_y;
+  point_t * points[] = {&p1_, &p2_, &p3_, &p4_};
+  for (size_t i = 0; i < 4; i++)
+  {
+    points[i]->x += offset_x;
+    points[i]->y += offset_y;
+  }
 }
 
 void strelyaev::Parallelogram::move(double dx, double dy)
 {
-  p1_.x += dx;
-  p1_.y += dy;
-  p2_.x += dx;
-  p2_.y += dy;
-  p3_.x += dx;
-  p3_.y += dy;
-  p4_.x += dx;
-  p4_.y += dy;
+  point_t * points[] = {&p1_, &p2_, &p3_, &p4_};
+  for (size_t i = 0; i < 4; i++)
+  {
+    points[i]->x += dx;
+    points[i]->y += dy;
+  }
 }
 
 void strelyaev::Parallelogram::scale(double k)
 {
   point_t center = {(p1_.x + p2_.x + p3_.x) / 3, (p1_.y + p2_.y + p3_.y) / 3};
-  p1_.x = center.x + (p1_.x - center.x) * k;
-  p1_.y = center.y + (p1_.y - center.y) * k;
-
-  p2_.x = center.x + (p2_.x - center.x) * k;
-  p2_.y = center.y + (p2_.y - center.y) * k;
-
-  p3_.x = center.x + (p3_.x - center.x) * k;
-  p3_.y = center.y + (p3_.y - center.y) * k;
-
-  p4_.x = center.x + (p4_.x - center.x) * k;
-  p4_.y = center.y + (p4_.y - center.y) * k;
+  point_t * points[] = {&p1_, &p2_, &p3_, &p4_};
+  for (size_t i = 0; i < 4; i++)
+  {
+    points[i]->x = center.x + (points[i]->x - center.x) * k;
+    points[i]->y = center.y + (points[i]->y - center.y) * k;
+  }
 }
 
 
