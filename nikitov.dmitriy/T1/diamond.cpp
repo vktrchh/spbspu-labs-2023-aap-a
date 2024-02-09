@@ -57,8 +57,8 @@ double nikitov::Diamond::getArea() const
 
 nikitov::rectangle_t nikitov::Diamond::getFrameRect() const
 {
-  double width = abs(firstPoint_.x - secondPoint_.x) * 2;
-  double height = abs(firstPoint_.y - thirdPoint_.y) * 2;
+  double width = abs(firstPoint_.x - thirdPoint_.x) * 2;
+  double height = abs(firstPoint_.y - secondPoint_.y) * 2;
   return { width, height, firstPoint_ };
 }
 
