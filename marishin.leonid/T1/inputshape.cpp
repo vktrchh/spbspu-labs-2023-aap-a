@@ -6,7 +6,6 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
   std::string shapeNames[numShapes] = { "RECTANGLE", "TRIANGLE", "RING" };
   size_t shapeParametersCount[numShapes] = { 4, 6, 4 };
   std::string currentName = "";
-  double* parameters = nullptr;
   marishin::Shape** currentShapes = nullptr;
   marishin::Shape** oldShapes = nullptr;
   char symbol = 0;
@@ -16,15 +15,7 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
     {
       if (currentName == shapeNames[i])
       {
-        try
-        {
-          parameters = new double[shapeParametersCount[i]];
-        }
-        catch (const std::bad_alloc& e)
-        {
-          cleanupShapes(currentShapes, shapeCount);
-          throw;
-        }
+        double parameters[shapeParametersCount[i]];
 
         for (size_t j = 0; j < shapeParametersCount[i]; j++)
         {
@@ -34,7 +25,6 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
         if (!in)
         {
           cleanupShapes(currentShapes, shapeCount);
-          delete[] parameters;
           throw std::invalid_argument("Invalid arguments");
         }
 
@@ -71,7 +61,6 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
         }
         catch (const std::bad_alloc& e)
         {
-          delete[] parameters;
           cleanupShapes(currentShapes, shapeCount);
           throw;
         }
@@ -79,7 +68,6 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
         {
           std::cerr << e.what() << '\n';
         }
-        delete[] parameters;
       }
     }
 
