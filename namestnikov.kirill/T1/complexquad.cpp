@@ -75,16 +75,9 @@ void namestnikov::Complexquad::move(const double dx, const double dy)
 
 void namestnikov::Complexquad::scale(const double coefficient)
 {
-  if (coefficient <= 0.0)
+  point_t centerPoint = getIntersectionOfTwoLines(points_[0], points_[1], points_[2], points_[3]);
+  for (size_t i = 0; i < 4; ++i)
   {
-    throw std::invalid_argument("Scaling coefficient must be greater than zero");
-  }
-  else
-  {
-    point_t centerPoint = getIntersectionOfTwoLines(points_[0], points_[1], points_[2], points_[3]);
-    for (size_t i = 0; i < 4; ++i)
-    {
-      scalePoint(points_[i], centerPoint, coefficient);
-    }
+    scalePoint(points_[i], centerPoint, coefficient);
   }
 }

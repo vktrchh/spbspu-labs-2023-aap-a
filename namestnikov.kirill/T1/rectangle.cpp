@@ -48,20 +48,13 @@ void namestnikov::Rectangle::move(const double dx, const double dy)
 
 void namestnikov::Rectangle::scale(const double coefficient)
 {
-  if (coefficient <= 0.0)
-  {
-    throw std::invalid_argument("Coefficient must be greater than zero");
-  }
-  else
-  {
-    rectangle_t rect = getFrameRect();
-    double dx1 = (rect.pos.x - leftCornerPoint_.x) * coefficient;
-    double dy1 = (rect.pos.y - leftCornerPoint_.y) * coefficient;
-    double dx2 = (rightCornerPoint_.x - rect.pos.x) * coefficient;
-    double dy2 = (rightCornerPoint_.y - rect.pos.y) * coefficient;
-    leftCornerPoint_.x = rect.pos.x - dx1;
-    leftCornerPoint_.y = rect.pos.y - dy1;
-    rightCornerPoint_.x = rect.pos.x + dx2;
-    rightCornerPoint_.y = rect.pos.y + dy2;
-  }
+  rectangle_t rect = getFrameRect();
+  double dx1 = (rect.pos.x - leftCornerPoint_.x) * coefficient;
+  double dy1 = (rect.pos.y - leftCornerPoint_.y) * coefficient;
+  double dx2 = (rightCornerPoint_.x - rect.pos.x) * coefficient;
+  double dy2 = (rightCornerPoint_.y - rect.pos.y) * coefficient;
+  leftCornerPoint_.x = rect.pos.x - dx1;
+  leftCornerPoint_.y = rect.pos.y - dy1;
+  rightCornerPoint_.x = rect.pos.x + dx2;
+  rightCornerPoint_.y = rect.pos.y + dy2;
 }

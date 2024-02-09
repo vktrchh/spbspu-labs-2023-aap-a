@@ -40,12 +40,5 @@ void namestnikov::Circle::move(const double dx, const double dy)
 
 void namestnikov::Circle::scale(const double coefficient)
 {
-  if (coefficient <= 0.0)
-  {
-    throw std::invalid_argument("Scaling coefficient must be greater than zero");
-  }
-  else
-  {
-    circleRadius_ *= coefficient;
-  }
+  circleRadius_ *= coefficient;
 }
