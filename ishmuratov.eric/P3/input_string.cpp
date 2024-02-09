@@ -18,12 +18,12 @@ char * ishmuratov::inputString(std::istream& input)
       {
         str_size += 10;
         char * newArray = new char[str_size];
-	for (size_t i = 0; i < str_size; ++i)
-	{
-	  newArray[i] = initialArray[i];
-	}
-	delete [] initialArray;
-	initialArray = newArray;
+        for (size_t i = 0; i < str_size; ++i)
+        {
+          newArray[i] = initialArray[i];
+        }
+        delete [] initialArray;
+        initialArray = newArray;
       }
       catch (const std::bad_alloc& e)
       {
