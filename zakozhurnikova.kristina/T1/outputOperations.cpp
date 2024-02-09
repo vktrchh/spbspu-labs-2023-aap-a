@@ -36,4 +36,5 @@ void zakozhurnikova::printShapes(std::ostream& output, const Shape* const* shape
       output << ' ';
     }
   }
+  std::cout << '\n';
 }

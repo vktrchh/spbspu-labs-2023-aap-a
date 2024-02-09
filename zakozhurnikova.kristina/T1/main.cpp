@@ -18,7 +18,6 @@ int main()
   {
     inputShapesArray(std::cin, shapes, size, scalePoint, k);
     printShapes(std::cout, shapes, size);
-
     for (size_t i = 0; i < size; ++i)
     {
       isoScale(shapes[i], scalePoint, k);
