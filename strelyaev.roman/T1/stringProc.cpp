@@ -53,13 +53,17 @@ void strelyaev::outputShapes(std::ostream & out, Shape ** list, size_t current_i
   out << "\n";
 }
 
-void strelyaev::scaleShapes(Shape ** list, size_t current_index, const double arguments[3], std::ostream & out)
+void strelyaev::scaleShapes(Shape ** list, size_t current_index, const double * arguments, std::ostream & out)
 {
   if (current_index == 0)
   {
     throw std::logic_error("Nothing to scale");
   }
   const point_t center = {arguments[0], arguments[1]};
+  if (arguments[2] < 0)
+  {
+    throw std::logic_error("Invalid SCALE argument");
+  }
   outputShapes(out, list, current_index);
   for (size_t i = 0; i < current_index; i++)
   {

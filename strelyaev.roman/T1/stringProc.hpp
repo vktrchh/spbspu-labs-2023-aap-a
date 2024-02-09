@@ -6,8 +6,8 @@
 namespace strelyaev
 {
   void scaleCommand(const char *, Shape **, size_t, std::ostream&);
-  void isotrScale(Shape * shape, const point_t point, const double k);
-  void scaleShapes(Shape ** list, size_t current_index, const double *, std::ostream & out);
-  void outputShapes(std::ostream & out, Shape ** list, size_t current_index);
+  void isotrScale(Shape *, const point_t, const double);
+  void scaleShapes(Shape **, size_t, const double *, std::ostream&);
+  void outputShapes(std::ostream &, Shape **, size_t);
 }
 #endif

@@ -3,8 +3,8 @@
 #include "shape.hpp"
 namespace strelyaev
 {
-  Shape * inputRectangle(const char string[]);
-  Shape * inputTriangle(const char string[]);
-  Shape * inputParallelogram(const char string[]);
+  Shape * inputRectangle(const char *);
+  Shape * inputTriangle(const char *);
+  Shape * inputParallelogram(const char *);
 }
 #endif

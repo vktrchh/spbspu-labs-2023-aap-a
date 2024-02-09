@@ -1,7 +1,8 @@
 #include <iostream>
 #include <iomanip>
 #include <cstring>
-#include <getString.hpp>
+//#include <getString.hpp>
+#include "../common/getString.hpp" /////////////////////
 #include "base-types.hpp"
 #include "shape.hpp"
 #include "rectangle.hpp"
@@ -96,6 +97,10 @@ int main()
     catch(const std::logic_error& e)
     {
       std::cerr << e.what() << "\n";
+      for (size_t i = 0; i < current_index; i++)
+      {
+        delete list[i];
+      }
       return 1;
     }
     delete [] string;
