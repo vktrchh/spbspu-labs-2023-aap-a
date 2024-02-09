@@ -2,39 +2,43 @@
 #include <cmath>
 #include <stdexcept>
 
-void marishin::checkTriangle(const point_t& firstPoint_, const point_t& secondPoint_, const point_t& thirdPoint_)
+void marishin::checkTriangle(const point_t& firstPoint, const point_t& secondPoint, const point_t& thirdPoint)
 {
-  double ab = std::sqrt((firstPoint_.x - secondPoint_.x) * (firstPoint_.x - secondPoint_.x)
-    + (firstPoint_.y - secondPoint_.y) * (firstPoint_.y - secondPoint_.y));
-  double ac = std::sqrt((firstPoint_.x - thirdPoint_.x) * (firstPoint_.x - thirdPoint_.x)
-    + (firstPoint_.y - thirdPoint_.y) * (firstPoint_.y - thirdPoint_.y));
-  double bc = std::sqrt((secondPoint_.x - thirdPoint_.x) * (secondPoint_.x - thirdPoint_.x)
-    + (secondPoint_.y - thirdPoint_.y) * (secondPoint_.y - thirdPoint_.y));
+  const point_t& p1 = firstPoint;
+  const point_t& p2 = secondPoint;
+  const point_t& p3 = thirdPoint;
+
+  double ab = std::sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
+  double ac = std::sqrt((p1.x - p3.x) * (p1.x - p3.x) + (p1.y - p3.y) * (p1.y - p3.y));
+  double bc = std::sqrt((p2.x - p3.x) * (p2.x - p3.x) + (p2.y - p3.y) * (p2.y - p3.y));
+
   if (ab >= ac + bc || bc >= ab + ac || ac >= ab + bc)
   {
     throw std::invalid_argument("Irregular triangle");
   }
 }
 
-double marishin::getAreaTriangle(const point_t& firstPoint_, const point_t& secondPoint_, const point_t& thirdPoint_)
+double marishin::getAreaTriangle(const point_t& firstPoint, const point_t& secondPoint, const point_t& thirdPoint)
 {
-  double ab_ = std::sqrt((firstPoint_.x - secondPoint_.x) * (firstPoint_.x - secondPoint_.x)
-    + (firstPoint_.y - secondPoint_.y) * (firstPoint_.y - secondPoint_.y));
-  double ac_ = std::sqrt((firstPoint_.x - thirdPoint_.x) * (firstPoint_.x - thirdPoint_.x)
-    + (firstPoint_.y - thirdPoint_.y) * (firstPoint_.y - thirdPoint_.y));
-  double bc_ = std::sqrt((secondPoint_.x - thirdPoint_.x) * (secondPoint_.x - thirdPoint_.x)
-    + (secondPoint_.y - thirdPoint_.y) * (secondPoint_.y - thirdPoint_.y));
-  double abc = (ab_ + bc_ + ac_) / 2;
-  return std::sqrt(abc * (abc - ab_) * (abc - bc_) * (abc - ac_));
+  const point_t& p1 = firstPoint;
+  const point_t& p2 = secondPoint;
+  const point_t& p3 = thirdPoint;
+
+  double ab = std::sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
+  double ac = std::sqrt((p1.x - p3.x) * (p1.x - p3.x) + (p1.y - p3.y) * (p1.y - p3.y));
+  double bc = std::sqrt((p2.x - p3.x) * (p2.x - p3.x) + (p2.y - p3.y) * (p2.y - p3.y));
+  double abc = (ab + bc + ac) / 2;
+  return std::sqrt(abc * (abc - ab) * (abc - bc) * (abc - ac));
 }
 
-marishin::rectangle_t marishin::getFrameRectTriangle(const point_t& firstPoint_, const point_t& secondPoint_, const point_t& thirdPoint_)
+marishin::rectangle_t marishin::getFrameRectTriangle(const point_t& firstPoint, const point_t& secondPoint, const point_t& thirdPoint)
 {
-  double height = (std::max(firstPoint_.y, (std::max(secondPoint_.y, thirdPoint_.y)))
-    - (std::min(firstPoint_.y, (std::min(secondPoint_.y, thirdPoint_.y)))));
-  double width = (std::max(firstPoint_.x, (std::max(secondPoint_.x, thirdPoint_.x)))
-    - (std::min(firstPoint_.x, (std::min(secondPoint_.x, thirdPoint_.x)))));
-  point_t pos = { (std::min(firstPoint_.x, (std::min(secondPoint_.x, thirdPoint_.x)))) + width / 2,
-    (std::min(firstPoint_.y, (std::min(secondPoint_.y, thirdPoint_.y)))) + height / 2  };
+  const point_t& p1 = firstPoint;
+  const point_t& p2 = secondPoint;
+  const point_t& p3 = thirdPoint;
+
+  double height = (std::max(p1.y, (std::max(p2.y, p3.y))) - (std::min(p1.y, (std::min(p2.y, p3.y)))));
+  double width = (std::max(p1.x, (std::max(p2.x, p3.x))) - (std::min(p1.x, (std::min(p2.x, p3.x)))));
+  point_t pos = { (std::min(p1.x, (std::min(p2.x, p3.x)))) + width / 2, (std::min(p1.y, (std::min(p2.y, p3.y)))) + height / 2 };
   return { pos, width, height };
 }
