@@ -1,5 +1,6 @@
 #include "triangle.hpp"
 #include "checkTriangle.hpp"
+#include <stdexcept>
 
 marishin::Triangle::Triangle(point_t firstPoint, point_t secondPoint, point_t thirdPoint):
   firstPoint_(firstPoint),
@@ -40,6 +41,10 @@ void marishin::Triangle::move(double dx, double dy)
 
 void marishin::Triangle::scale(double factor)
 {
+  if (factor < 0)
+  {
+    throw std::logic_error("Coefficient is less than zero");
+  }
   point_t pos = { (firstPoint_.x + secondPoint_.x + thirdPoint_.x) / 3,
     (firstPoint_.y + secondPoint_.y + thirdPoint_.y) / 3 };
 
