@@ -69,8 +69,7 @@ void namestnikov::Complexquad::move(const double dx, const double dy)
 {
   for (size_t i = 0; i < 4; ++i)
   {
-    points_[i].x += dx;
-    points_[i].y += dy;
+    movePoint(points_[i], dx, dy);
   }
 }
 

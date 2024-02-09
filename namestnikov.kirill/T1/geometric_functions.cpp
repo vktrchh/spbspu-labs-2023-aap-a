@@ -103,6 +103,12 @@ void namestnikov::deleteShapes(Shape ** shapes, size_t size)
   delete [] shapes;
 }
 
+void namestnikov::movePoint(point_t & point, const double dx, const double dy)
+{
+  point.x += dx;
+  point.y += dy;
+}
+
 void namestnikov::scalePoint(point_t & point, const point_t & center, const double coefficient)
 {
   point.x = center.x + (point.x - center.x) * coefficient;
