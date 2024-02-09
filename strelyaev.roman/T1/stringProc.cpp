@@ -5,7 +5,7 @@
 #include <ostream>
 #include "inputShapes.hpp"
 
-void strelyaev::scaleCommand(const char string[], Shape ** list, size_t current_index, std::ostream& out)
+void strelyaev::scaleCommand(const char * string, Shape * const * list, size_t current_index, std::ostream& out)
 {
   size_t pos = 0;
   const char * argument_string = string + 6;
@@ -18,7 +18,7 @@ void strelyaev::scaleCommand(const char string[], Shape ** list, size_t current_
   scaleShapes(list, current_index, arguments, out);
 }
 
-void strelyaev::isotrScale(Shape * shape, const point_t point, const double k)
+void strelyaev::toScaleIso(Shape * shape, const point_t point, const double k)
 {
   point_t start = shape->getFrameRect().pos;
   shape->move(point);
@@ -29,7 +29,7 @@ void strelyaev::isotrScale(Shape * shape, const point_t point, const double k)
   shape->move(-dx, -dy);
 }
 
-void strelyaev::outputShapes(std::ostream & out, Shape ** list, size_t current_index)
+void strelyaev::outputShapes(std::ostream & out, Shape * const * list, size_t current_index)
 {
   double sum = 0;
   for (size_t i = 0; i < current_index; i++)
@@ -53,7 +53,7 @@ void strelyaev::outputShapes(std::ostream & out, Shape ** list, size_t current_i
   out << "\n";
 }
 
-void strelyaev::scaleShapes(Shape ** list, size_t current_index, const double * arguments, std::ostream & out)
+void strelyaev::scaleShapes(Shape * const * list, size_t current_index, const double * arguments, std::ostream & out)
 {
   if (current_index == 0)
   {
@@ -67,7 +67,7 @@ void strelyaev::scaleShapes(Shape ** list, size_t current_index, const double * 
   outputShapes(out, list, current_index);
   for (size_t i = 0; i < current_index; i++)
   {
-    isotrScale(list[i], center, arguments[2]);
+    toScaleIso(list[i], center, arguments[2]);
   }
   outputShapes(out, list, current_index);
 }

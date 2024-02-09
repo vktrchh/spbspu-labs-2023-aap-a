@@ -20,9 +20,14 @@ strelyaev::Shape * strelyaev::inputRectangle(const char string[])
   {
     throw std::invalid_argument("Invalid RECTANGLE arguments");
   }
-  point_t p1 = {coords_array[0], coords_array[1]};
-  point_t p2 = {coords_array[2], coords_array[3]};
-  return new Rectangle(p1, p2);
+  const size_t num_points = 2;
+  point_t points[num_points]{};
+  for (size_t i = 0; i < num_points; ++i)
+  {
+    size_t index = i * 2;
+    points[i] = {coords_array[index], coords_array[index + 1]};
+  }
+  return new Rectangle(points[0], points[1]);
 }
 
 strelyaev::Shape * strelyaev::inputTriangle(const char string[])
@@ -39,10 +44,14 @@ strelyaev::Shape * strelyaev::inputTriangle(const char string[])
   {
     throw std::invalid_argument("Invalid TRIANGLE arguments");
   }
-  point_t p1 = {coords_array[0], coords_array[1]};
-  point_t p2 = {coords_array[2], coords_array[3]};
-  point_t p3 = {coords_array[4], coords_array[5]};
-  return new Triangle(p1, p2, p3);
+  const size_t num_points = 3;
+  point_t points[num_points]{};
+  for (size_t i = 0; i < num_points; ++i)
+  {
+    size_t index = i * 2;
+    points[i] = {coords_array[index], coords_array[index + 1]};
+  }
+  return new Triangle(points[0], points[1], points[2]);
 }
 
 strelyaev::Shape * strelyaev::inputParallelogram(const char string[])
@@ -59,8 +68,12 @@ strelyaev::Shape * strelyaev::inputParallelogram(const char string[])
   {
     throw std::invalid_argument("Invalid PARALLELOGRAM arguments");
   }
-  point_t p1 = {coords_array[0], coords_array[1]};
-  point_t p2 = {coords_array[2], coords_array[3]};
-  point_t p3 = {coords_array[4], coords_array[5]};
-  return new Parallelogram(p1, p2, p3);
+  const size_t num_points = 3;
+  point_t points[num_points]{};
+  for (size_t i = 0; i < num_points; ++i)
+  {
+    size_t index = i * 2;
+    points[i] = {coords_array[index], coords_array[index + 1]};
+  }
+  return new Parallelogram(points[0], points[1], points[2]);
 }
