@@ -8,8 +8,6 @@ void marishin::outputShapesInfo(std::ostream& out, const Shape* const* shapes, s
   }
 
   double totalArea = 0.0;
-  out << std::fixed;
-  out.precision(1);
 
   for (size_t i = 0; i < shapeCount; i++)
   {
@@ -29,7 +27,5 @@ void marishin::outputShapesInfo(std::ostream& out, const Shape* const* shapes, s
 
     out << " " << lowerLeftCorner.x << " " << lowerLeftCorner.y << " " << topRightCorner.x << " " << topRightCorner.y;
   }
-
-  out << "\n";
 
 }

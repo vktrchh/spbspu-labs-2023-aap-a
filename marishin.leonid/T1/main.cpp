@@ -17,7 +17,10 @@ int main()
   try
   {
     myShapes = inputShape(std::cin, numberOfShapes);
+    std::cout << std::fixed;
+    std::cout.precision(1);
     outputShapesInfo(std::cout, myShapes, numberOfShapes);
+    std::cout << "\n";
     std::cin >> center.x >> center.y >> scalingFactor;
 
     if (!std::cin)
@@ -33,6 +36,7 @@ int main()
       scale(myShapes[i], center, scalingFactor);
     }
     outputShapesInfo(std::cout, myShapes, numberOfShapes);
+    std::cout << "\n";
   }
   catch (const std::bad_alloc& e)
   {
