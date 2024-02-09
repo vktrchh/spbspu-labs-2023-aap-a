@@ -80,6 +80,10 @@ void strelyaev::Triangle::move(double offset_x, double offset_y)
 
 void strelyaev::Triangle::scale(double k)
 {
+  if (k < 0)
+  {
+    throw std::logic_error("Invalid SCALE argument");
+  }
   double center_x = (p1_.x + p2_.x + p3_.x) / 3;
   double center_y = (p1_.y + p2_.y + p3_.y) / 3;
   point_t center = {center_x, center_y};

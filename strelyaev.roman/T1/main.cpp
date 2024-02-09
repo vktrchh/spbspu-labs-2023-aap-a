@@ -1,7 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <cstring>
-#include <getString.hpp>
+//#include <getString.hpp>
 #include "base-types.hpp"
 #include "shape.hpp"
 #include "rectangle.hpp"
@@ -62,7 +62,7 @@ int main()
             Shape * shape = inputRectangle(string);
             if (shape != nullptr)
             {
-              list[current_index++];
+              list[current_index++] = shape;
             }
           }
           if (i == 1)
@@ -70,7 +70,7 @@ int main()
             Shape * shape = inputTriangle(string);
             if (shape != nullptr)
             {
-              list[current_index++];
+              list[current_index++] = shape;
             }
           }
           if (i == 2)
@@ -78,7 +78,7 @@ int main()
             Shape * shape = inputParallelogram(string);
             if (shape != nullptr)
             {
-              list[current_index++];
+              list[current_index++] = shape;
             }
           }
           if (i == 3)
@@ -89,9 +89,14 @@ int main()
         }
       }
     }
-    catch(const std::exception& e)
+    catch(const std::invalid_argument& e)
     {
       errors = true;
+    }
+    catch(const std::logic_error& e)
+    {
+      std::cerr << e.what() << "\n";
+      return 1;
     }
     delete [] string;
   }

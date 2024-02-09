@@ -15,7 +15,7 @@ void strelyaev::scaleCommand(const char string[], Shape ** list, size_t current_
     arguments[i] = std::stod(argument_string, std::addressof(pos));
     argument_string += pos;
   }
-    scaleShapes(list, current_index, arguments, out);
+  scaleShapes(list, current_index, arguments, out);
 }
 
 void strelyaev::isotrScale(Shape * shape, const point_t point, const double k)
@@ -58,10 +58,6 @@ void strelyaev::scaleShapes(Shape ** list, size_t current_index, const double ar
   if (current_index == 0)
   {
     throw std::logic_error("Nothing to scale");
-  }
-  if (arguments[2] < 0)
-  {
-    throw std::logic_error("Invalid SCALE argument");
   }
   const point_t center = {arguments[0], arguments[1]};
   outputShapes(out, list, current_index);
