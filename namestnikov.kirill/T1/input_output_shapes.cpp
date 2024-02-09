@@ -10,10 +10,8 @@
 
 namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count)
 {
-  std::map<std::string, size_t> possibleShapes;
-  possibleShapes["RECTANGLE"] = 4;
-  possibleShapes["CIRCLE"] = 3;
-  possibleShapes["COMPLEXQUAD"] = 8;
+  std::string possibleShapesNames[3] = {"RECTANGLE", "CIRCLE", "COMPLEXQUAD"};
+  size_t shapesParametersCount[3] = {4, 3, 8};
   double * currentParameters = nullptr;
   std::string currentShapeName = "";
   Shape ** currentShapes = nullptr;
@@ -30,24 +28,13 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
     }
     else
     {
-      for (auto now: possibleShapes)
+      for (size_t i = 0; i < 3; ++i)
       {
-        std::string shapeName = now.first;
-        size_t possibleSize = now.second;
+        std::string shapeName = possibleShapesNames[i];
+        size_t possibleSize = shapesParametersCount[i];
         if (currentShapeName == shapeName)
         {
-          try
-          {
-            currentParameters = new double[possibleSize];
-          }
-          catch (const std::bad_alloc & e)
-          {
-            if (currentShapes != nullptr)
-            {
-              namestnikov::deleteShapes(currentShapes, count);
-            }
-            throw e;
-          }
+          double currentParameters[possibleSize]{};
           for (size_t i = 0; i < possibleSize; ++i)
           {
             in >> currentParameters[i];
@@ -58,7 +45,6 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
             {
               namestnikov::deleteShapes(currentShapes, count);
             }
-            delete [] currentParameters;
             throw std::invalid_argument("Error in input");
           }
           oldShapes = currentShapes;
@@ -95,7 +81,6 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
           }
           catch (const std::bad_alloc &)
           {
-            delete [] currentParameters;
             namestnikov::deleteShapes(currentShapes, count);
             throw;
           }
@@ -103,7 +88,6 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
           {
             std::cerr << "Error: " << e.what() << "\n";
           }
-          delete [] currentParameters;
         }
       }
       std::string s = "";
