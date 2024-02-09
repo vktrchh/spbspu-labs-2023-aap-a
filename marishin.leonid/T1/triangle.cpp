@@ -8,15 +8,7 @@ marishin::Triangle::Triangle(point_t firstPoint, point_t secondPoint, point_t th
   secondPoint_(secondPoint),
   thirdPoint_(thirdPoint)
 {
-  try
-  {
-    checkTriangle(firstPoint_, secondPoint_, thirdPoint_);
-  }
-  catch (const std::invalid_argument& e)
-  {
-    std::cerr << "Error: " << e.what() << '\n';
-    throw;
-  }
+  checkTriangle(firstPoint_, secondPoint_, thirdPoint_);
 }
 
 double marishin::Triangle::getArea() const
