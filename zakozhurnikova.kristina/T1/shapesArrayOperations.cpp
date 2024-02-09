@@ -167,6 +167,11 @@ void zakozhurnikova::inputShapesArray(std::istream& in, Shape** shapes, size_t& 
         delete[] string;
         return;
       }
+      if (string && *string == '\n')
+      {
+         delete[] string;
+         continue;
+      }
       shapes[size] = zakozhurnikova::readShape(string);
       ++size;
       delete[] string;
