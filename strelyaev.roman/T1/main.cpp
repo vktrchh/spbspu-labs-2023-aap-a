@@ -59,15 +59,27 @@ int main()
         {
           if (i == 0)
           {
-            list[current_index++] = inputRectangle(string);
+            Shape * shape = inputRectangle(string);
+            if (shape != nullptr)
+            {
+              list[current_index++];
+            }
           }
           if (i == 1)
           {
-            list[current_index++] = inputTriangle(string);
+            Shape * shape = inputTriangle(string);
+            if (shape != nullptr)
+            {
+              list[current_index++];
+            }
           }
           if (i == 2)
           {
-            list[current_index++] = inputParallelogram(string);
+            Shape * shape = inputParallelogram(string);
+            if (shape != nullptr)
+            {
+              list[current_index++];
+            }
           }
           if (i == 3)
           {
