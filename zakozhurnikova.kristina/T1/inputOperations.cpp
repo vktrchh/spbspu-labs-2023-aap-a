@@ -51,6 +51,11 @@ char* zakozhurnikova::readString(std::istream& input)
         break;
       }
     }
+    if (string[0] == '\0')
+    {
+      delete[] string;
+      throw std::range_error("Failed string reading");
+    }
   }
   catch (const std::bad_alloc& e)
   {

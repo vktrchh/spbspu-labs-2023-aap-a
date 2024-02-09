@@ -25,15 +25,9 @@ int main()
 
     printShapes(std::cout, shapes, size);
   }
-  catch(const std::invalid_argument& e)
+  catch(const std::exception& e)
   {
     std::cerr << e.what() << '\n';
-    freeShapesArray(shapes, size);
-    return 1;
-  }
-  catch (const std::runtime_error& e)
-  {
-    std::cerr << "Error: " << e.what() << '\n';
     freeShapesArray(shapes, size);
     return 1;
   }
