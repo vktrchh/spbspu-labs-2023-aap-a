@@ -16,11 +16,11 @@ int main ()
   const size_t maxshapes = 1000;
   char * string = nullptr;
   size_t current_index = 0;
-  Shape ** list = new Shape * [maxshapes]{nullptr};
+  Shape * list[maxshapes] = {nullptr};
   bool errors = false;
 
   std::cin >> std::noskipws;
-  while (true)
+  while (std::cin.good())
   {
     if (!std::cin.good())
     {
@@ -29,7 +29,6 @@ int main ()
       {
         delete list[i];
       }
-      delete [] list;
       return 1;
     }
     string = nullptr;
@@ -37,7 +36,7 @@ int main ()
     {
       string = inputString(std::cin);
     }
-    catch (const std::logic_error & e)
+    catch (const std::logic_error& e)
     {
       std::cerr << e.what() << "\n";
       delete [] string;
@@ -45,7 +44,6 @@ int main ()
       {
         delete list[i];
       }
-      delete [] list;
       return 2;
     }
     if (strncmp("SCALE", string, 5) == 0)
@@ -64,7 +62,7 @@ int main ()
         delete [] string;
         break;
       }
-      catch(const std::exception & e)
+      catch(const std::exception& e)
       {
         std::cerr << e.what() << '\n';
         delete [] string;
@@ -72,7 +70,6 @@ int main ()
         {
           delete list[i];
         }
-        delete [] list;
         return 2;
       }
     }
@@ -101,5 +98,4 @@ int main ()
   {
     delete list[i];
   }
-  delete [] list;
 }
