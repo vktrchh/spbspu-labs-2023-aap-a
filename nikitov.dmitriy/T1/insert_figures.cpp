@@ -7,7 +7,8 @@
 
 nikitov::Shape* nikitov::insertRectangle(std::string line)
 {
-  line = line.substr(10);
+  std::string name = "RECTANGLE";
+  line = line.substr(name.length());
   const char* cLine = line.c_str();
   size_t coordinatePointer = 0;
   double coordinates[4] = {};
@@ -23,7 +24,8 @@ nikitov::Shape* nikitov::insertRectangle(std::string line)
 
 nikitov::Shape* nikitov::insertDiamond(std::string line)
 {
-  line = line.substr(8);
+  std::string name = "DIAMOND";
+  line = line.substr(name.length());
   const char* cLine = line.c_str();
   size_t coordinatePointer = 0;
   double coordinates[6] = {};
@@ -40,7 +42,8 @@ nikitov::Shape* nikitov::insertDiamond(std::string line)
 
 nikitov::Shape* nikitov::insertRegular(std::string line)
 {
-  line = line.substr(8);
+  std::string name = "REGULAR";
+  line = line.substr(name.length());
   const char* cLine = line.c_str();
   size_t coordinatePointer = 7;
   double coordinates[6] = {};
