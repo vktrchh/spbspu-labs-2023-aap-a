@@ -29,7 +29,7 @@ nikitov::Shape* nikitov::insertDiamond(std::string line)
   double coordinates[6] = {};
   for (size_t i = 0; i != 6; ++i)
   {
-    coordinates[i] = std::stod(cLine, &coordinatePointer);
+    coordinates[i] = std::stod(cLine, std::addressof(coordinatePointer));
     cLine += coordinatePointer;
   }
   point_t firstPoint = { coordinates[0], coordinates[1] };
