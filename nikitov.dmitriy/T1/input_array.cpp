@@ -40,19 +40,19 @@ nikitov::Shape** nikitov::inputArray(std::string& line, bool& isErrorInProgram, 
       bool isErrorInIteration = false;
       try
       {
-        if (line.find("SCALE") != std::string::npos)
+        if (line.find("SCALE") == 0)
         {
           return figures;
         }
-        else if (line.find("RECTANGLE") != std::string::npos)
+        else if (line.find("RECTANGLE") == 0)
         {
           figures[nFigures] = insertRectangle(line);
         }
-        else if (line.find("DIAMOND") != std::string::npos)
+        else if (line.find("DIAMOND") == 0)
         {
           figures[nFigures] = insertDiamond(line);
         }
-        else if (line.find("REGULAR") != std::string::npos)
+        else if (line.find("REGULAR") == 0)
         {
           figures[nFigures] = insertRegular(line);
         }
