@@ -5,9 +5,7 @@ bool stepanov::findMin(const int *matrix, size_t index, size_t cols)
   size_t i = index;
   size_t c = cols;
   const int *n = matrix + i;
-  bool isLess = false;
-
-  isLess = ((*n) < *(n - c));
+  bool isLess = ((*n) < *(n - c));
   isLess = isLess && ((*n) < *(n - c));
   isLess = isLess && ((*n) < *(n + c));
   isLess = isLess && ((*n) < *(n - 1));
