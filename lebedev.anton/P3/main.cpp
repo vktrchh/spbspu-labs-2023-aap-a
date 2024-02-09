@@ -23,4 +23,5 @@ int main()
   }
 
   //std::cout << string;
+  delete[] string;
 }
