@@ -2,11 +2,11 @@
 #include <cmath>
 #include <stdexcept>
 
-void marishin::checkTriangle(const point_t& firstPoint, const point_t& secondPoint, const point_t& thirdPoint)
+void marishin::checkTriangle(const point_t& first, const point_t& second, const point_t& third)
 {
-  const point_t& p1 = firstPoint;
-  const point_t& p2 = secondPoint;
-  const point_t& p3 = thirdPoint;
+  const point_t& p1 = first;
+  const point_t& p2 = second;
+  const point_t& p3 = third;
 
   double ab = std::sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
   double ac = std::sqrt((p1.x - p3.x) * (p1.x - p3.x) + (p1.y - p3.y) * (p1.y - p3.y));
@@ -18,11 +18,11 @@ void marishin::checkTriangle(const point_t& firstPoint, const point_t& secondPoi
   }
 }
 
-double marishin::getAreaTriangle(const point_t& firstPoint, const point_t& secondPoint, const point_t& thirdPoint)
+double marishin::getAreaTriangle(const point_t& first, const point_t& second, const point_t& third)
 {
-  const point_t& p1 = firstPoint;
-  const point_t& p2 = secondPoint;
-  const point_t& p3 = thirdPoint;
+  const point_t& p1 = first;
+  const point_t& p2 = second;
+  const point_t& p3 = third;
 
   double ab = std::sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
   double ac = std::sqrt((p1.x - p3.x) * (p1.x - p3.x) + (p1.y - p3.y) * (p1.y - p3.y));
@@ -31,7 +31,7 @@ double marishin::getAreaTriangle(const point_t& firstPoint, const point_t& secon
   return std::sqrt(abc * (abc - ab) * (abc - bc) * (abc - ac));
 }
 
-marishin::rectangle_t marishin::getFrameRectTriangle(const point_t& firstPoint, const point_t& secondPoint, const point_t& thirdPoint)
+marishin::rectangle_t marishin::getFrameRectTriangle(const point_t& first, const point_t& second, const point_t& third)
 {
   const point_t& p1 = firstPoint;
   const point_t& p2 = secondPoint;

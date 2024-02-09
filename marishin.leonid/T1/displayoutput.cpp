@@ -32,8 +32,7 @@ void marishin::outputShapesInfo(std::ostream& out, Shape **const shapes, size_t 
       point_t lowerLeftCorner = { point.x - width / 2.0, point.y - height / 2.0 };
       point_t topRightCorner = { point.x + width / 2.0, point.y + height / 2.0 };
 
-      out << " " << lowerLeftCorner.x << " " << lowerLeftCorner.y
-          << " " << topRightCorner.x << " " << topRightCorner.y;
+      out << " " << lowerLeftCorner.x << " " << lowerLeftCorner.y << " " << topRightCorner.x << " " << topRightCorner.y;
     }
   }
 

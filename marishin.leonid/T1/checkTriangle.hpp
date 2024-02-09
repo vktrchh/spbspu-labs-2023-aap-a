@@ -5,9 +5,9 @@
 
 namespace marishin
 {
-  void checkTriangle(const point_t& firstPoint, const point_t& secondPoint, const point_t& thirdPoint);
-  double getAreaTriangle(const point_t& firstPoint, const point_t& secondPoint, const point_t& thirdPoint);
-  rectangle_t getFrameRectTriangle(const point_t& firstPoint, const point_t& secondPoint, const point_t& thirdPoint);
+  void checkTriangle(const point_t& first, const point_t& second, const point_t& third);
+  double getAreaTriangle(const point_t& first, const point_t& second, const point_t& third);
+  rectangle_t getFrameRectTriangle(const point_t& first, const point_t& second, const point_t& third);
 }
 
 #endif
