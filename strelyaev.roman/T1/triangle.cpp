@@ -58,28 +58,21 @@ void strelyaev::Triangle::move(const point_t point)
 {
   double dx = point.x - center_.x;
   double dy = point.y - center_.y;
-  p1_.x += dx;
-  p2_.x += dx;
-  p3_.x += dx;
-  p1_.y += dy;
-  p2_.y += dy;
-  p3_.y += dy;
+
   center_.x = point.x;
   center_.y = point.y;
 }
 
 
 
-void strelyaev::Triangle::move(double dx, double dy)
+void strelyaev::Triangle::move(double offset_x, double offset_y)
 {
-  p1_.x += dx;
-  p2_.x += dx;
-  p3_.x += dx;
-  p1_.y += dy;
-  p2_.y += dy;
-  p3_.y += dy;
-  center_.x += dx;
-  center_.y += dy;
+  point_t * points[] = {&p1_, &p2_, &p3_};
+  for (size_t i = 0; i < 3; i++)
+  {
+    points[i]->x += offset_x;
+    points[i]->y += offset_y;
+  }
 }
 
 void strelyaev::Triangle::scale(double k)
