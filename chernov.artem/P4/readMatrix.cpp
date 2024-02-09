@@ -1,10 +1,10 @@
 #include "readMatrix.hpp"
 
+#include <iostream>
 #include <cstddef>
-#include <fstream>
 #include <stdexcept>
 
-void chernov::readMatrix(std::ifstream& input, int* matrix, size_t rows, size_t cols)
+void chernov::readMatrix(std::istream& input, int* matrix, size_t rows, size_t cols)
 {
   for (size_t i = 0; i < rows * cols; ++i)
   {

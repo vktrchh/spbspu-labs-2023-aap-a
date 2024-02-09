@@ -12,16 +12,13 @@
 int main(int argc, char* argv[])
 {
   using namespace chernov;
-  int num = 0;
-  int staticMatrix[10000] = {};
-  int* matrix = nullptr;
 
   if (argc != 4)
   {
     std::cerr << "Error in command line arguments\n";
     return 1;
   }
-
+  int num = 0;
   try
   {
     num = std::atoi(argv[1]);
@@ -52,6 +49,8 @@ int main(int argc, char* argv[])
   }
 
   size_t sizeOfArray = rows * cols;
+  int fixedMatrix[10000] = {};
+  int* matrix = nullptr;
 
   try
   {
@@ -61,7 +60,7 @@ int main(int argc, char* argv[])
     }
     else if (num == 2)
     {
-      matrix = staticMatrix;
+      matrix = fixedMatrix;
     }
 
     readMatrix(input, matrix, rows, cols);
