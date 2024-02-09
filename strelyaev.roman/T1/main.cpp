@@ -12,17 +12,17 @@
 
 using namespace strelyaev;
 
-int main ()
+int main()
 {
+  std::cin >> std::noskipws;
   const size_t maxshapes = 1000;
   char * string = nullptr;
   size_t current_index = 0;
   Shape * list[maxshapes] = {nullptr};
   bool errors = false;
-  bool scale_entered = false;
+  bool scale_was_met = false;
 
-  std::cin >> std::noskipws;
-  while (!scale_entered)
+  while (!scale_was_met)
   {
     if (!std::cin.good())
     {
@@ -33,12 +33,12 @@ int main ()
       }
       return 1;
     }
-    string = nullptr;
+
     try
     {
       string = getString(std::cin);
     }
-    catch (const std::logic_error& e)
+    catch(const std::logic_error& e)
     {
       std::cerr << e.what() << "\n";
       delete [] string;
@@ -48,51 +48,41 @@ int main ()
       }
       return 2;
     }
-    if (strncmp("SCALE", string, 5) == 0)
-    {
-      scale_entered = true;
-      size_t pos = 0;
-      const char * argument_string = string + 6;
-      double arguments[3]{};
-      for (size_t i = 0; i < 3; ++i)
-      {
-        arguments[i] = std::stod(argument_string, std::addressof(pos));
-        argument_string += pos;
-      }
-      try
-      {
-        scaleShapes(list, current_index, arguments, std::cout);
-        delete [] string;
-        break;
-      }
-      catch(const std::exception& e)
-      {
-        std::cerr << e.what() << '\n';
-        delete [] string;
-        for (size_t i = 0; i < current_index; i++)
-        {
-          delete list[i];
-        }
-        return 2;
-      }
-    }
-    Shape * new_shape = nullptr;
+    const char * shape_names[] = { "RECTANGLE", "TRIANGLE", "PARALLELOGRAM", "SCALE"};
+    const size_t shapes_count = 4;
     try
     {
-      new_shape = getShape(string);
-      if (new_shape != nullptr)
+      for (size_t i = 0; i < shapes_count; i++)
       {
-        list[current_index++] = new_shape;
+        size_t name_size = std::strlen(shape_names[i]);
+        if (std::strncmp(shape_names[i], string, name_size) == 0)
+        {
+          if (i == 0)
+          {
+            list[current_index++] = inputRectangle(string);
+          }
+          if (i == 1)
+          {
+            list[current_index++] = inputTriangle(string);
+          }
+          if (i == 2)
+          {
+            list[current_index++] = inputParallelogram(string);
+          }
+          if (i == 3)
+          {
+            scale_was_met = true;
+            scaleCommand(string, list, current_index, std::cout);
+          }
+        }
       }
     }
-    catch(const std::invalid_argument & e)
+    catch(const std::exception& e)
     {
-      delete new_shape;
       errors = true;
     }
     delete [] string;
   }
-  std::cin >> std::skipws;
   if (errors)
   {
     std::cerr << "Some shapes are incorrect!\n";
@@ -101,4 +91,5 @@ int main ()
   {
     delete list[i];
   }
+  std::cin >> std::skipws;
 }

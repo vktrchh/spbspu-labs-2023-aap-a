@@ -5,9 +5,9 @@
 #include <iostream>
 namespace strelyaev
 {
-  Shape * getShape(const char string[]);
+  void scaleCommand(const char *, Shape **, size_t, std::ostream&);
   void isotrScale(Shape * shape, const point_t point, const double k);
-  void scaleShapes(Shape ** list, size_t current_index, const double arguments[3], std::ostream & out);
+  void scaleShapes(Shape ** list, size_t current_index, const double *, std::ostream & out);
   void outputShapes(std::ostream & out, Shape ** list, size_t current_index);
 }
 #endif

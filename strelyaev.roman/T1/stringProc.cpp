@@ -2,32 +2,20 @@
 #include <stdexcept>
 #include <string>
 #include <cstring>
+#include <ostream>
 #include "inputShapes.hpp"
 
-strelyaev::Shape * strelyaev::getShape(const char string[])
+void strelyaev::scaleCommand(const char string[], Shape ** list, size_t current_index, std::ostream& out)
 {
-  const char * shape_names[] = { "RECTANGLE", "TRIANGLE", "PARALLELOGRAM"};
-  const size_t shapes_count = 3;
-  for (size_t i = 0; i < shapes_count; i++)
+  size_t pos = 0;
+  const char * argument_string = string + 6;
+  double arguments[3]{};
+  for (size_t i = 0; i < 3; ++i)
   {
-    size_t name_size = strlen(shape_names[i]);
-    if (strncmp(shape_names[i], string, name_size) == 0)
-    {
-      if (i == 0)
-      {
-        return inputRectangle(string);
-      }
-      if (i == 1)
-      {
-        return inputTriangle(string);
-      }
-      if (i == 2)
-      {
-        return inputParallelogram(string);
-      }
-    }
+    arguments[i] = std::stod(argument_string, std::addressof(pos));
+    argument_string += pos;
   }
-  return nullptr;
+    scaleShapes(list, current_index, arguments, out);
 }
 
 void strelyaev::isotrScale(Shape * shape, const point_t point, const double k)
