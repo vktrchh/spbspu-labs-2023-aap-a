@@ -1,8 +1,8 @@
 #include "complexquad.hpp"
-#include "geometric_functions.hpp"
-#include "base-types.hpp"
 #include <stdexcept>
 #include <algorithm>
+#include "geometric_functions.hpp"
+#include "base-types.hpp"
 
 namestnikov::Complexquad::Complexquad(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4):
   points_{p1, p2, p3, p4}

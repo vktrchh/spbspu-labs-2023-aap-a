@@ -1,8 +1,8 @@
 #include "geometric_functions.hpp"
-#include "base-types.hpp"
-#include "shape.hpp"
 #include <cmath>
 #include <stdexcept>
+#include "base-types.hpp"
+#include "shape.hpp"
 
 double namestnikov::getSizeOfLine(const point_t & p1, const point_t & p2)
 {
