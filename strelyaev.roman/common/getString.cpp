@@ -41,7 +41,7 @@ char * strelyaev::getString(std::istream & in)
     }
   }
   string[i] = '\0';
-  if (!in.good())
+  if (in.fail())
   {
     throw std::logic_error("EOF is met");
   }
