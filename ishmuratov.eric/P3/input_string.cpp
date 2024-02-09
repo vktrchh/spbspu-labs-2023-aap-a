@@ -27,9 +27,9 @@ char * ishmuratov::inputString(std::istream& input)
       }
       catch (const std::bad_alloc& e)
       {
-	input >> std::skipws;
-	delete [] initialArray;
-	throw;
+        input >> std::skipws;
+        delete [] initialArray;
+        throw;
       }
     }
   }
