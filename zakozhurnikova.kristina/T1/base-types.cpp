@@ -76,33 +76,28 @@ zakozhurnikova::point_t zakozhurnikova::point_t::scaleShift(double k, const poin
 
 void zakozhurnikova::rectangle_t::showCoordinates() const
 {
-  zakozhurnikova::point_t downLeft(pos.getX() - width / 2.0, pos.getY() - height / 2.0);
-  zakozhurnikova::point_t upRight(pos.getX() + width / 2.0, pos.getY() + height / 2.0);
-  std::cout << downLeft.getX() << ' ' << downLeft.getY() <<
-    ' ' << upRight.getX() << ' ' << upRight.getY();
+  zakozhurnikova::point_t downLeft(pos.x - width / 2.0, pos.y - height / 2.0);
+  zakozhurnikova::point_t upRight(pos.x + width / 2.0, pos.y + height / 2.0);
+  std::cout << downLeft.x << ' ' << downLeft.y <<
+    ' ' << upRight.x << ' ' << upRight.y;
 }
 
 void zakozhurnikova::rectangle_t::showSquareCoords() const
 {
-  point_t downLeft(pos.getX() - width / 2.0,
-    pos.getY() - height / 2.0);
+  point_t downLeft(pos.x - width / 2.0,
+    pos.y - height / 2.0);
 
-  point_t upLeft(pos.getX() - width / 2.0,
-    pos.getY() + height / 2.0);
+  point_t upLeft(pos.x - width / 2.0,
+    pos.y + height / 2.0);
 
-  point_t downRight(pos.getX() + width / 2.0,
-    pos.getY() - height / 2.0);
+  point_t downRight(pos.x + width / 2.0,
+    pos.y - height / 2.0);
 
-  point_t upRight(pos.getX() + width / 2.0,
-      pos.getY() + height / 2.0);
+  point_t upRight(pos.x + width / 2.0,
+      pos.y + height / 2.0);
 
-  std::cout << downLeft.getX() << ' ' << downLeft.getY() <<
-    ' ' << upLeft.getX() << ' ' << upLeft.getY() <<
-    ' ' << downRight.getX() << ' ' << downRight.getY() <<
-    ' ' << upRight.getX() << ' ' << upRight.getY();
-}
-
-zakozhurnikova::point_t zakozhurnikova::rectangle_t::getCenter() const
-{
-  return pos;
+  std::cout << downLeft.x << ' ' << downLeft.y <<
+    ' ' << upLeft.x << ' ' << upLeft.y <<
+    ' ' << downRight.x << ' ' << downRight.y <<
+    ' ' << upRight.x << ' ' << upRight.y;
 }

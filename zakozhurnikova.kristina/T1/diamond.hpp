@@ -14,16 +14,16 @@ namespace zakozhurnikova
       pointTwo_(point_t()),
       center_(point_t())
     {
-      if (pointOne.getX() != pointTwo.getX() && pointOne.getY() != pointTwo.getY())
+      if (pointOne.x != pointTwo.x && pointOne.y != pointTwo.y)
       {
         center_ = pointThree;
         pointOne_ = pointOne;
         pointTwo_ = pointTwo;
-      } else if (pointOne.getX() != pointThree.getX() && pointOne.getY() != pointThree.getY()) {
+      } else if (pointOne.x != pointThree.x && pointOne.y != pointThree.y) {
         center_ = pointTwo;
         pointOne_ = pointOne;
         pointTwo_ = pointTwo;
-      } else if (pointThree.getX() != pointTwo.getX() && pointThree.getY() != pointTwo.getY()) {
+      } else if (pointThree.x != pointTwo.x && pointThree.y != pointTwo.y) {
         center_ = pointOne;
         pointOne_ = pointTwo;
         pointTwo_ = pointThree;

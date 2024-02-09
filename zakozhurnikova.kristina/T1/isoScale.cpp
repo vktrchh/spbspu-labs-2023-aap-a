@@ -2,7 +2,7 @@
 
 void zakozhurnikova::isoScale(Shape* shape, const point_t& scalePoint, double k)
 {
-  point_t originPoint = shape->getFrameRect().getCenter();
+  point_t originPoint = shape->getFrameRect().pos;
   shape->move(scalePoint);
   shape->scale(k);
   originPoint = originPoint.scaleShift(k, scalePoint);

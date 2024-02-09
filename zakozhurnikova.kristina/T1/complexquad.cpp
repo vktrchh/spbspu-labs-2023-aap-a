@@ -23,22 +23,22 @@ double zakozhurnikova::Complexquad::getArea() const
 
 zakozhurnikova::rectangle_t zakozhurnikova::Complexquad::getFrameRect() const
 {
-  double x1 = p1_.getX();
-  double y1 = p1_.getY();
-  double x2 = p2_.getX();
-  double y2 = p2_.getY();
-  double x3 = p3_.getX();
-  double y3 = p3_.getY();
-  double x4 = p4_.getX();
-  double y4 = p4_.getY();
-  double minX = std::fmin(std::fmin(x1, x2), std::fmin(x3, x4));
-  double minY = std::fmin(std::fmin(y1, y2), std::fmin(y3, y4));
-  double maxX = std::fmax(std::fmax(x1, x2), std::fmax(x3, x4));
-  double maxY = std::fmax(std::fmax(y1, y2), std::fmax(y3, y4));
+  double x1 = p1_.x;
+  double y1 = p1_.y;
+  double x2 = p2_.x;
+  double y2 = p2_.y;
+  double x3 = p3_.x;
+  double y3 = p3_.y;
+  double x4 = p4_.x;
+  double y4 = p4_.y;
+  double minX = std::min(std::min(x1, x2), std::min(x3, x4));
+  double minY = std::min(std::min(y1, y2), std::min(y3, y4));
+  double maxX = std::max(std::max(x1, x2), std::max(x3, x4));
+  double maxY = std::max(std::max(y1, y2), std::max(y3, y4));
   double width = maxX - minX;
-  double heihgt = maxY - maxY;
+  double height = maxY - maxY;
   point_t center((maxX + minX) / 2.0, (maxY + minY) / 2.0);
-  return zakozhurnikova::rectangle_t(width, heihgt, center);
+  return zakozhurnikova::rectangle_t(width, height, center);
 }
 
 void zakozhurnikova::Complexquad::move(const point_t& p)
@@ -74,14 +74,14 @@ void zakozhurnikova::Complexquad::scale(double k)
 
 zakozhurnikova::point_t zakozhurnikova::Complexquad::getCenter() const
 {
-  double x1 = p1_.getX();
-  double y1 = p1_.getY();
-  double x2 = p2_.getX();
-  double y2 = p2_.getY();
-  double x3 = p3_.getX();
-  double y3 = p3_.getY();
-  double x4 = p4_.getX();
-  double y4 = p4_.getY();
+  double x1 = p1_.x;
+  double y1 = p1_.y;
+  double x2 = p2_.x;
+  double y2 = p2_.y;
+  double x3 = p3_.x;
+  double y3 = p3_.y;
+  double x4 = p4_.x;
+  double y4 = p4_.y;
   double determinant = (x2 - x1) * (y4 - y3) - (x4 - x3) * (y2 - y1);
   double determinantX = (x2 - x1) * (y3 * (x4 - x3) - x3 * (y4 - y3)) - (x4 - x3) * (y1 * (x2 - x1) - x1 * (y2 - y1));
   double determinantY = (y2 - y1) * (y3 * (x4 - x3) - x3 * (y4 - y3)) - (y4 - y3) * (y1 * (x2 - x1) - x1 * (y2 - y1));

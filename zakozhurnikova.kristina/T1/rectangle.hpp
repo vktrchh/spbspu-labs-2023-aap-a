@@ -14,7 +14,7 @@ namespace zakozhurnikova
       downLeft_(pointOne),
       upRight_(pointTwo)
     {
-     if (pointOne.getX() >= pointTwo.getX() || pointOne.getY() >= pointTwo.getY())
+     if (pointOne.x >= pointTwo.x || pointOne.y >= pointTwo.y)
   {
     throw std::invalid_argument("Invalid rectangle parameters");
   }

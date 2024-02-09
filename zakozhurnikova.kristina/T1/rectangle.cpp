@@ -3,15 +3,15 @@
 
 double zakozhurnikova::Rectangle::getArea() const
 {
-  double width = upRight_.getX() - downLeft_.getX();
-  double height = upRight_.getY() - downLeft_.getY();
+  double width = upRight_.x - downLeft_.x;
+  double height = upRight_.y - downLeft_.y;
   return width * height;
 }
 
 zakozhurnikova::rectangle_t zakozhurnikova::Rectangle::getFrameRect() const
 {
-  double width = upRight_.getX() - downLeft_.getX();
-  double height = upRight_.getY() - downLeft_.getY();
+  double width = upRight_.x - downLeft_.x;
+  double height = upRight_.y - downLeft_.y;
   point_t pos((upRight_ + downLeft_) / 2.0);
   return zakozhurnikova::rectangle_t(width, height, pos);
 }
@@ -19,8 +19,8 @@ zakozhurnikova::rectangle_t zakozhurnikova::Rectangle::getFrameRect() const
 void zakozhurnikova::Rectangle::move(const point_t& p)
 {
   zakozhurnikova::point_t center((downLeft_ + upRight_)  / 2.0);
-  double shiftX = p.getX() - center.getX();
-  double shiftY = p.getY() - center.getY();
+  double shiftX = p.x - center.x;
+  double shiftY = p.y - center.y;
   move(shiftX, shiftY);
 }
 

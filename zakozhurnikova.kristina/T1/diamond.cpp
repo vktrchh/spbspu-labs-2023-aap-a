@@ -10,10 +10,10 @@ double zakozhurnikova::Diamond::getArea() const
 
 zakozhurnikova::rectangle_t zakozhurnikova::Diamond::getFrameRect() const
 {
-  double widthDist = std::abs(pointOne_.getX() - center_.getX());
-  double heightDist = std::abs(pointOne_.getY() - center_.getY());
-  double width = widthDist != 0 ? widthDist : std::abs(pointTwo_.getX() - center_.getX());
-  double height = heightDist != 0 ? heightDist : std::abs(pointTwo_.getY() - center_.getY());
+  double widthDist = std::abs(pointOne_.x - center_.x);
+  double heightDist = std::abs(pointOne_.y - center_.y);
+  double width = widthDist != 0 ? widthDist : std::abs(pointTwo_.x - center_.x);
+  double height = heightDist != 0 ? heightDist : std::abs(pointTwo_.y - center_.y);
   return zakozhurnikova::rectangle_t(width, height, center_);
 }
 
@@ -27,8 +27,8 @@ void zakozhurnikova::Diamond::move(double dx, double dy)
 
 void zakozhurnikova::Diamond::move(const point_t& p)
 {
-  double shiftX = p.getX() - center_.getX();
-  double shiftY = p.getY() - center_.getY();
+  double shiftX = p.x - center_.x;
+  double shiftY = p.y - center_.y;
   move(shiftX,  shiftY);
 }
 
