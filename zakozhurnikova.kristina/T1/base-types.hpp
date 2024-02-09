@@ -6,27 +6,27 @@ namespace zakozhurnikova
   struct point_t
   {
     point_t() :
-      x_(0.0),
-      y_(0.0)
+      x(0.0),
+      y(0.0)
     {}
     point_t(double x, double y) :
-      x_(x),
-      y_(y)
+      x(x),
+      y(y)
     {}
     point_t(const point_t& p) :
-      x_(p.x_),
-      y_(p.y_)
+      x(p.x),
+      y(p.y)
     {}
     point_t(point_t&& p) = default;
     ~point_t()
     {}
     double getX() const
     {
-      return x_;
+      return x;
     }
     double getY() const
     {
-      return y_;
+      return y;
     }
     point_t scaleShift(double k, const point_t& p);
     double getDistance(const point_t& p) const;
@@ -41,22 +41,22 @@ namespace zakozhurnikova
     point_t& operator=(point_t&& point);
 
     private:
-      double x_;
-      double y_;
+      double x;
+      double y;
   };
 
   struct rectangle_t
   {
     rectangle_t() = delete;
     rectangle_t(double width, double height, const point_t& pos) :
-      width_(width),
-      height_(height),
-      pos_(pos)
+      width(width),
+      height(height),
+      pos(pos)
     {}
     rectangle_t(const rectangle_t& rec):
-      width_(rec.width_),
-      height_(rec.height_),
-      pos_(rec.pos_)
+      width(rec.width),
+      height(rec.height),
+      pos(rec.pos)
     {}
     rectangle_t(rectangle_t&& rec) = default;
     ~rectangle_t()
@@ -65,9 +65,9 @@ namespace zakozhurnikova
     void showSquareCoords() const;
     point_t getCenter() const;
   private:
-    double width_;
-    double height_;
-    point_t pos_;
+    double width;
+    double height;
+    point_t pos;
   };
 }
 #endif

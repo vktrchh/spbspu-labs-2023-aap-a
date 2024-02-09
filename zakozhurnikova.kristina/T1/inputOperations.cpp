@@ -42,6 +42,11 @@ char* zakozhurnikova::readString(std::istream& input)
       ++counter;
       if (c == '\n')
       {
+        if (counter == 1)
+        {
+           delete[] string;
+           throw std::logic_error("Empty string");
+        }
         string[counter - 1] = '\0';
         break;
       }
