@@ -66,10 +66,8 @@ void strelyaev::Rectangle::scale(double k)
 
   double offset_x = (new_width - width) / 2.0;
   double offset_y = (new_height - height) / 2.0;
-  point_t * points[] = {&p1_, &p2_};
-  for (size_t i = 0; i < 2; i++)
-  {
-    points[i]->x += offset_x;
-    points[i]->y += offset_y;
-  }
+  p1_.x -= offset_x;
+  p1_.y -= offset_y;
+  p2_.x += offset_x;
+  p2_.y += offset_y;
 }
