@@ -46,6 +46,7 @@ nikitov::Diamond::Diamond(const point_t& firstPoint, const point_t& secondPoint,
       firstPoint_ = thirdPoint_;
       thirdPoint_ = temp;
     }
+  }
 }
 
 double nikitov::Diamond::getArea() const
@@ -81,8 +82,8 @@ void nikitov::Diamond::move(double dx, double dy)
 
 void nikitov::Diamond::scale(double ratio)
 {
-  secondPoint_.x = center.x - (center.x - secondPoint_.x) * ratio;
-  secondPoint_.y = center.y - (center.y - secondPoint_.y) * ratio;
-  thirdPoint_.x = center.x - (center.x - thirdPoint_.x) * ratio;
-  thirdPoint_.y = center.y - (center.y - thirdPoint_.y) * ratio;
+  secondPoint_.x = firstPoint_.x - (firstPoint_.x - secondPoint_.x) * ratio;
+  secondPoint_.y = firstPoint_.y - (firstPoint_.y - secondPoint_.y) * ratio;
+  thirdPoint_.x = firstPoint_.x - (firstPoint_.x - thirdPoint_.x) * ratio;
+  thirdPoint_.y = firstPoint_.y - (firstPoint_.y - thirdPoint_.y) * ratio;
 }
