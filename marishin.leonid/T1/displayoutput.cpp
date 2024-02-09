@@ -1,6 +1,6 @@
 #include "displayoutput.hpp"
 
-void marishin::outputShapesInfo(std::ostream& out, Shape **const shapes, size_t shapeCount)
+void marishin::outputShapesInfo(std::ostream& out, const Shape* const* shapes, size_t shapeCount)
 {
   if (shapeCount == 0)
   {

@@ -9,7 +9,7 @@
 
 namespace marishin
 {
-  void outputShapesInfo(std::ostream& out, Shape **const shapes, size_t shapeCount);
+  void outputShapesInfo(std::ostream& out, const Shape* const* shapes, size_t shapeCount);
 }
 
 #endif
