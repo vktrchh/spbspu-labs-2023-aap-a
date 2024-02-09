@@ -69,16 +69,15 @@ zakozhurnikova::point_t& zakozhurnikova::point_t::operator=(point_t&& point)
 
 zakozhurnikova::point_t zakozhurnikova::point_t::scaleShift(double k, const point_t& p)
 {
-  double shiftX = p.x_ + k * std::abs((x_ - p.x_));
-  double shiftY = p.y_ + k * std::abs((y_ - p.y_));
+  double shiftX = p.x_ + k * (x_ - p.x_);
+  double shiftY = p.y_ + k * (y_ - p.y_);
   return zakozhurnikova::point_t(shiftX, shiftY);
 }
 
 void zakozhurnikova::rectangle_t::showCoordinates() const
 {
-  zakozhurnikova::point_t downLeft(width_ - 2 * pos_.getX(),
-    height_ - 2 * pos_.getY());
-  zakozhurnikova::point_t upRight(width_, height_);
+  zakozhurnikova::point_t downLeft(pos_.getX() - width_ / 2.0, pos_.getY() - height_ / 2.0);
+  zakozhurnikova::point_t upRight(pos_.getX() + width_ / 2.0, pos_.getY() + height_ / 2.0);
   std::cout << downLeft.getX() << ' ' << downLeft.getY() <<
     ' ' << upRight.getX() << ' ' << upRight.getY() << '\n';
 }

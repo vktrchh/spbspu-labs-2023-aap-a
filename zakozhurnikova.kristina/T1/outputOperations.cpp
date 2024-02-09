@@ -13,6 +13,10 @@ double getFullArea(const zakozhurnikova::Shape* const* shapes, size_t size)
 }
 void zakozhurnikova::printShapes(std::ostream& output, const Shape* const* shapes, size_t size)
 {
+  if (size == 0)
+  {
+    throw std::invalid_argument("Nothing to print");
+  }
   output << std::fixed;
   output.precision(1);
 
@@ -27,6 +31,5 @@ void zakozhurnikova::printShapes(std::ostream& output, const Shape* const* shape
     {
       shapes[i]->getFrameRect().showCoordinates();
     }
-    output << '\n';
   }
 }

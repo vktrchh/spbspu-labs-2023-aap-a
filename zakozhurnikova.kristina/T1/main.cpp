@@ -17,29 +17,27 @@ int main()
   try
   {
     inputShapesArray(std::cin, shapes, size, scalePoint, k);
+    printShapes(std::cout, shapes, size);
+
+    for (size_t i = 0; i < size; ++i)
+    {
+      isoScale(shapes[i], scalePoint, k);
+    }
+
+    printShapes(std::cout, shapes, size);
   }
   catch(const std::invalid_argument& e)
   {
     std::cerr << e.what() << '\n';
     freeShapesArray(shapes, size);
-    return 0;
+    return 1;
   }
   catch (const std::runtime_error& e)
   {
     std::cerr << "Error: " << e.what() << '\n';
     freeShapesArray(shapes, size);
-    return 0;
+    return 1;
   }
-
-  printShapes(std::cout, shapes, size);
-
-  for (size_t i = 0; i < size; ++i)
-  {
-    isoScale(shapes[i], scalePoint, k);
-  }
-
-  printShapes(std::cout, shapes, size);
-
   freeShapesArray(shapes, size);
   return 0;
 }
