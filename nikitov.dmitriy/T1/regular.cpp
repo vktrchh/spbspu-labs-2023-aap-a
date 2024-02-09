@@ -3,14 +3,14 @@
 #include <limits>
 #include <stdexcept>
 
-nikitov::Regular::Regular(const point_t& firstPoint, const point_t& secondPoint, const point_t& thirdPoint):
-  firstPoint_(firstPoint),
-  secondPoint_(secondPoint),
-  thirdPoint_(thirdPoint)
+nikitov::Regular::Regular(const point_t& first, const point_t& second, const point_t& third):
+  first_(first),
+  second_(second),
+  third_(third)
 {
-  double firstLine = pow(firstPoint_.x - secondPoint_.x, 2) + pow(firstPoint_.y - secondPoint_.y, 2);
-  double secondLine = pow(thirdPoint_.x - secondPoint_.x, 2) + pow(thirdPoint_.y - secondPoint_.y, 2);
-  double thirdLine = pow(firstPoint_.x - thirdPoint_.x, 2) + pow(firstPoint_.y - thirdPoint_.y, 2);
+  double firstLine = pow(first_.x - second_.x, 2) + pow(first_.y - second_.y, 2);
+  double secondLine = pow(third_.x - second_.x, 2) + pow(third_.y - second_.y, 2);
+  double thirdLine = pow(first_.x - third_.x, 2) + pow(first_.y - third_.y, 2);
   if (!(firstLine + secondLine == thirdLine || secondLine + thirdLine == firstLine)
     || std::max(sqrt(firstLine), sqrt(thirdLine)) > sqrt(secondLine) * 2)
   {
@@ -21,8 +21,8 @@ nikitov::Regular::Regular(const point_t& firstPoint, const point_t& secondPoint,
 double nikitov::Regular::getArea() const
 {
   const double PI = 3.141592653589793;
-  double firstLine = sqrt(pow(firstPoint_.x - secondPoint_.x, 2) + pow(firstPoint_.y - secondPoint_.y, 2));
-  double thirdLine = sqrt(pow(firstPoint_.x - thirdPoint_.x, 2) + pow(firstPoint_.y - thirdPoint_.y, 2));
+  double firstLine = sqrt(pow(first_.x - second_.x, 2) + pow(first_.y - second_.y, 2));
+  double thirdLine = sqrt(pow(first_.x - third_.x, 2) + pow(first_.y - third_.y, 2));
 
   double circumRadius = std::max(firstLine, thirdLine);
   double inRadius = std::min(firstLine, thirdLine);
@@ -35,8 +35,8 @@ double nikitov::Regular::getArea() const
 nikitov::rectangle_t nikitov::Regular::getFrameRect() const
 {
   const double PI = 3.141592653589793;
-  double firstLine = sqrt(pow(firstPoint_.x - secondPoint_.x, 2) + pow(firstPoint_.y - secondPoint_.y, 2));
-  double thirdLine = sqrt(pow(firstPoint_.x - thirdPoint_.x, 2) + pow(firstPoint_.y - thirdPoint_.y, 2));
+  double firstLine = sqrt(pow(first_.x - second_.x, 2) + pow(first_.y - second_.y, 2));
+  double thirdLine = sqrt(pow(first_.x - third_.x, 2) + pow(first_.y - third_.y, 2));
 
   double circumRadius = std::max(firstLine, thirdLine);
   double inRadius = std::min(firstLine, thirdLine);
@@ -51,15 +51,15 @@ nikitov::rectangle_t nikitov::Regular::getFrameRect() const
   point_t point;
   if (circumRadius == firstLine)
   {
-    point = secondPoint_;
+    point = second_;
   }
   else
   {
-    point = thirdPoint_;
+    point = third_;
   }
 
-  point.x = point.x - firstPoint_.x;
-  point.y = point.y - firstPoint_.y;
+  point.x = point.x - first_.x;
+  point.y = point.y - first_.y;
   double angle = 2 * asin(a / 2  / circumRadius);
   for (size_t i = 0; i != n; ++i)
   {
@@ -72,30 +72,30 @@ nikitov::rectangle_t nikitov::Regular::getFrameRect() const
     maxY = std::max(maxY, point.y);
     minY = std::min(minY, point.y);
   }
-  return { maxX - minX, maxY - minY, firstPoint_ };
+  return { maxX - minX, maxY - minY, first_ };
 }
 
 void nikitov::Regular::move(const point_t& point)
 {
-  double dx = point.x - firstPoint_.x;
-  double dy = point.y - firstPoint_.y;
+  double dx = point.x - first_.x;
+  double dy = point.y - first_.y;
   move(dx, dy);
 }
 
 void nikitov::Regular::move(double dx, double dy)
 {
-  firstPoint_.x += dx;
-  firstPoint_.y += dy;
-  secondPoint_.x += dx;
-  secondPoint_.y += dy;
-  thirdPoint_.x += dx;
-  thirdPoint_.y += dy;
+  first_.x += dx;
+  first_.y += dy;
+  second_.x += dx;
+  second_.y += dy;
+  third_.x += dx;
+  third_.y += dy;
 }
 
 void nikitov::Regular::scale(double ratio)
 {
-  secondPoint_.x = firstPoint_.x + (secondPoint_.x - firstPoint_.x) * ratio;
-  secondPoint_.y = firstPoint_.y + (secondPoint_.y - firstPoint_.y) * ratio;
-  thirdPoint_.x = firstPoint_.x + (thirdPoint_.x - firstPoint_.x) * ratio;
-  thirdPoint_.y = firstPoint_.y + (thirdPoint_.y - firstPoint_.y) * ratio;
+  second_.x = first_.x + (second_.x - first_.x) * ratio;
+  second_.y = first_.y + (second_.y - first_.y) * ratio;
+  third_.x = first_.x + (third_.x - first_.x) * ratio;
+  third_.y = first_.y + (third_.y - first_.y) * ratio;
 }

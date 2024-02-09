@@ -8,7 +8,7 @@ namespace nikitov
   class Diamond: public Shape
   {
   public:
-    Diamond(const point_t& firstPoint, const point_t& secondPoint, const point_t& thirdPoint);
+    Diamond(const point_t& first, const point_t& second, const point_t& third);
     virtual ~Diamond() = default;
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
@@ -16,9 +16,9 @@ namespace nikitov
     virtual void move(double dx, double dy);
     virtual void scale(double ratio);
   private:
-    point_t firstPoint_;
-    point_t secondPoint_;
-    point_t thirdPoint_;
+    point_t first_;
+    point_t second_;
+    point_t third_;
   };
 }
 #endif

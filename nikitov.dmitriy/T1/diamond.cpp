@@ -2,49 +2,49 @@
 #include <cmath>
 #include <stdexcept>
 
-nikitov::Diamond::Diamond(const point_t& firstPoint, const point_t& secondPoint, const point_t& thirdPoint):
-  firstPoint_(firstPoint),
-  secondPoint_(secondPoint),
-  thirdPoint_(thirdPoint)
+nikitov::Diamond::Diamond(const point_t& first, const point_t& second, const point_t& third):
+  first_(first),
+  second_(second),
+  third_(third)
 {
-  size_t status = (firstPoint_.x - secondPoint_.x == 0 || firstPoint_.y - secondPoint_.y == 0);
-  status += (firstPoint_.x - thirdPoint_.x == 0 || firstPoint_.y - thirdPoint_.y == 0);
-  status += (secondPoint_.x - thirdPoint_.x == 0 || secondPoint_.y - thirdPoint_.y == 0);
+  size_t status = (first_.x - second_.x == 0 || first_.y - second_.y == 0);
+  status += (first_.x - third_.x == 0 || first_.y - third_.y == 0);
+  status += (second_.x - third_.x == 0 || second_.y - third_.y == 0);
   if (status < 2)
   {
     throw std::invalid_argument("Error: invalid diamond arguments");
   }
 
-  point_t temp = firstPoint_;
-  if (firstPoint_.x - secondPoint_.x == 0)
+  point_t temp = first_;
+  if (first_.x - second_.x == 0)
   {
-    if (firstPoint_.y - thirdPoint_.y != 0)
+    if (first_.y - third_.y != 0)
     {
-      firstPoint_ = secondPoint_;
-      secondPoint_ = temp;
+      first_ = second_;
+      second_ = temp;
     }
   }
-  else if (firstPoint_.x - thirdPoint_.x == 0)
+  else if (first_.x - third_.x == 0)
   {
-    if (firstPoint_.y - secondPoint_.x != 0)
+    if (first_.y - second_.x != 0)
     {
-      firstPoint_ = thirdPoint_;
-      thirdPoint_ = secondPoint_;
-      secondPoint_ = temp;
+      first_ = third_;
+      third_ = second_;
+      second_ = temp;
     }
   }
   else
   {
-    if (secondPoint_.y - firstPoint_.y == 0)
+    if (second_.y - first_.y == 0)
     {
-      firstPoint_ = secondPoint_;
-      secondPoint_ = thirdPoint_;
-      thirdPoint_ = temp;
+      first_ = second_;
+      second_ = third_;
+      third_ = temp;
     }
     else
     {
-      firstPoint_ = thirdPoint_;
-      thirdPoint_ = temp;
+      first_ = third_;
+      third_ = temp;
     }
   }
 }
@@ -57,33 +57,32 @@ double nikitov::Diamond::getArea() const
 
 nikitov::rectangle_t nikitov::Diamond::getFrameRect() const
 {
-  double width = abs(firstPoint_.x - thirdPoint_.x) * 2;
-  double height = abs(firstPoint_.y - secondPoint_.y) * 2;
-  return { width, height, firstPoint_ };
+  double width = abs(first_.x - third_.x) * 2;
+  double height = abs(first_.y - second_.y) * 2;
+  return { width, height, first_ };
 }
 
 void nikitov::Diamond::move(const point_t& point)
 {
-  point_t center = getFrameRect().pos;
-  double dx = point.x - center.x;
-  double dy = point.y - center.y;
+  double dx = point.x - first_.x;
+  double dy = point.y - first_.y;
   move(dx, dy);
 }
 
 void nikitov::Diamond::move(double dx, double dy)
 {
-  firstPoint_.x += dx;
-  firstPoint_.y += dy;
-  secondPoint_.x += dx;
-  secondPoint_.y += dy;
-  thirdPoint_.x += dx;
-  thirdPoint_.y += dy;
+  first_.x += dx;
+  first_.y += dy;
+  second_.x += dx;
+  second_.y += dy;
+  third_.x += dx;
+  third_.y += dy;
 }
 
 void nikitov::Diamond::scale(double ratio)
 {
-  secondPoint_.x = firstPoint_.x - (firstPoint_.x - secondPoint_.x) * ratio;
-  secondPoint_.y = firstPoint_.y - (firstPoint_.y - secondPoint_.y) * ratio;
-  thirdPoint_.x = firstPoint_.x - (firstPoint_.x - thirdPoint_.x) * ratio;
-  thirdPoint_.y = firstPoint_.y - (firstPoint_.y - thirdPoint_.y) * ratio;
+  second_.x = first_.x - (first_.x - second_.x) * ratio;
+  second_.y = first_.y - (first_.y - second_.y) * ratio;
+  third_.x = first_.x - (first_.x - third_.x) * ratio;
+  third_.y = first_.y - (first_.y - third_.y) * ratio;
 }
