@@ -1,7 +1,7 @@
 #include "parametersLogic.hpp"
 #include <stdexcept>
 
-const double readValue(const char* str, size_t& pos, int& endOfString);
+double readValue(const char* str, size_t& pos, int& endOfString);
 double* reallocateVal(const double* values, size_t lenF, size_t lenS);
 
 const double* grechishnikov::parseValues(const char* str, size_t& size)
@@ -47,7 +47,7 @@ const grechishnikov::point_t* grechishnikov::makePairs(const double* values, siz
   {
     throw std::logic_error("Odd number of elements");
   }
-  grechishnikov::point_t* pairs = new grechishnikov::point_t [size / 2] { 0, 0 };
+  grechishnikov::point_t* pairs = new grechishnikov::point_t [size / 2] { { 0, 0 } };
   for (size_t i = 0; i < size / 2; i++)
   {
     pairs[i].x = values[i * 2];
@@ -56,7 +56,7 @@ const grechishnikov::point_t* grechishnikov::makePairs(const double* values, siz
   return pairs;
 }
 
-const double readValue(const char* str, size_t& pos, int& endOfString)
+double readValue(const char* str, size_t& pos, int& endOfString)
 {
   char* end = nullptr;
   for (size_t i = pos; str[i] == ' '; i++)
