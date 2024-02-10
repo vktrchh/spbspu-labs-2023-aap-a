@@ -41,7 +41,7 @@ void marishin::Rectangle::move(double dx, double dy)
 
 void marishin::Rectangle::scale(double factor)
 {
-  if (coefficient <= 0.0)
+  if (factor <= 0.0)
   {
     throw std::invalid_argument("Invalid scale coefficient. Must be non-negative.");
   }
