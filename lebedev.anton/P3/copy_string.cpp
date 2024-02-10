@@ -6,8 +6,6 @@ char * lebedev::copyString(char * string)
   size_t current_index = 0;
   char * copy = new char[string_size];
 
-
-
   while (string[current_index] != '\0')
   {
     if (current_index + 1 == string_size)
