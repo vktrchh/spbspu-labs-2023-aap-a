@@ -16,7 +16,6 @@ namespace strelyaev
      point_t p1_;
      point_t p2_;
      point_t p3_;
-     point_t p4_;
   };
 }
 #endif
