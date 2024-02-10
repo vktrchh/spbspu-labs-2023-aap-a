@@ -80,7 +80,7 @@ grechishnikov::Shape* grechishnikov::inputPolygon(const grechishnikov::point_t* 
   return new grechishnikov::Polygon(points, size);
 }
 
-void grechishnikov::freeShapes(Shape** shapes, size_t size)
+void grechishnikov::freeShapes(Shape* const* shapes, size_t size)
 {
   for (size_t i = 0; i < size; i++)
   {
@@ -122,6 +122,19 @@ bool grechishnikov::isEqualStr(const char* fStr, const char* sStr)
   if (fStr[i] != sStr[i])
   {
     check = 0;
+  }
+  return check;
+}
+
+bool grechishnikov::checkEnteredShapes(grechishnikov::Shape* const* shapes, size_t size)
+{
+  bool check = 1;
+  for (size_t i = 0; i < size; i++)
+  {
+    if (shapes[i] == nullptr)
+    {
+      check = 0;
+    }
   }
   return check;
 }

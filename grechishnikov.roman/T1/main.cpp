@@ -9,6 +9,7 @@
 #include "triangle.hpp"
 #include "polygon.hpp"
 #include "isoScale.hpp"
+#include "outputShapes.hpp"
 
 int main()
 {
@@ -17,9 +18,6 @@ int main()
   const char* str = nullptr;
   const char* name = nullptr;
   Shape* shapes[1000] = { nullptr };
-
-  const size_t legalNameCount = 3;
-  const char* legalName[] = { "RECTANGLE\0", "TRIANGLE\0", "POLYGON\0" };
 
   size_t count = 0;
   bool endOfInput = false;
@@ -34,13 +32,10 @@ int main()
       delete[] name;
       name = tempName;
 
-      for (size_t i = 0; i < legalNameCount; i++)
+      if (!isEqualStr(name, "SCALE\0"))
       {
-        if (isEqualStr(legalName[i], name))
-        {
-          shapes[count] = inputShape(str);
-          count++;
-        }
+        shapes[count] = inputShape(str);
+        count++;
       }
 
       if (isEqualStr(name, "SCALE\0"))
@@ -59,14 +54,14 @@ int main()
           throw std::logic_error("Incorrect number of parameters to scale");
         }
 
-
-
+        outputShapes(std::cout, shapes, count);
+        std::cout << '\n';
         for (size_t g = 0; g < count; g++)
         {
           isoScale(shapes[g], { values[0], values[1] }, values[2]);
         }
-
-
+        outputShapes(std::cout, shapes, count);
+        std::cout << '\n';
 
         delete[] values;
         delete[] str;
@@ -79,7 +74,7 @@ int main()
     delete[] str;
     delete[] name;
     freeShapes(shapes, count);
-    std::cout << "Cannot allocate enough memory" << '\n';
+    std::cout << "Error: Cannot allocate enough memory" << '\n';
     return 2;
   }
   catch (const std::logic_error &e)
@@ -87,13 +82,13 @@ int main()
     delete[] str;
     delete[] name;
     freeShapes(shapes, count);
-    std::cout << e.what() << '\n';
+    std::cout << "Error: " << e.what() << '\n';
     return 1;
   }
 
-  for (size_t i = 0; i < count; i++)
+  if (!checkEnteredShapes(shapes, count))
   {
-    std::cout << shapes[i]->getArea() << '\n';
+    std::cerr << "Some shapes were not processed" << '\n';
   }
 
   freeShapes(shapes, count);
