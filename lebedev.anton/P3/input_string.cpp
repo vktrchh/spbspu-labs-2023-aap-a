@@ -28,7 +28,8 @@ char * lebedev::inputString(std::istream & input)
         throw;
       }
     }
-    string[current_index++] = current_char;
+    string[current_index] = current_char;
+    ++current_index;
   }
   string[current_index] = '\0';
   input >> std::skipws;
