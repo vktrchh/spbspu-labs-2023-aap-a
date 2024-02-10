@@ -10,6 +10,7 @@ void marishin::scale(Shape *shape, point_t center, double scaleCoefficient)
   point_t initialPosition = shape->getFrameRect().pos;
   shape->move(center);
   point_t newPosition = shape->getFrameRect().pos;
+  shape->checkScale(scaleCoefficient);
   shape->scale(scaleCoefficient);
   shape->move((initialPosition.x - newPosition.x) * scaleCoefficient, (initialPosition.y - newPosition.y) * scaleCoefficient);
 }
