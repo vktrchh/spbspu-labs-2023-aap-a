@@ -7,7 +7,7 @@ double* reallocateVal(const double* values, size_t lenF, size_t lenS);
 const double* grechishnikov::parseValues(const char* str, size_t& size)
 {
   size_t len = 10;
-  double* values = new double [len];
+  double* values = new double [len] { 0 };
 
   size_t curValue = 0;
   size_t pos = 0;
@@ -63,7 +63,7 @@ const double readValue(const char* str, size_t& pos, int& endOfString)
   {
     pos++;
   }
-  if (std::isdigit(str[pos]))
+  if (std::isdigit(str[pos]) || str[pos] == '-')
   {
     const double val = std::strtod(str + pos, &end);
     for (size_t i = pos; str[i] != *end; i++)
