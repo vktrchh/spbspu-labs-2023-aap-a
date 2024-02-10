@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <cctype>
+#include <stdexcept>
 #include "expand_array.hpp"
 #include "define_len.hpp"
 #include "exclude_common.hpp"
