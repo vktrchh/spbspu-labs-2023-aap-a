@@ -60,7 +60,7 @@ int main()
     std::cout << "EXC-SND: " << result1 << '\n';
     delete [] result1;
   }
-  catch(const std::bad_alloc & e)
+  catch(const std::exception & e)
   {
     std::cerr << e.what();
     delete [] result1;
@@ -80,7 +80,7 @@ int main()
       delete [] result2;
     }
   }
-  catch(const std::bad_alloc & e)
+  catch(const std::exception & e)
   {
     std::cerr << e.what();
     delete [] result2;
