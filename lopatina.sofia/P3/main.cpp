@@ -55,7 +55,8 @@ int main()
     result1 = new char[amount]{};
     const char * string1 = "abc";
     const size_t size1 = defineLen(string1);
-    result1 = excludeCommon(input, string1, amount, size1, result1);
+    //result1 =
+    excludeCommon(input, string1, amount, size1, result1);
     std::cout << "EXC-SND: " << result1 << '\n';
     delete [] result1;
   }

@@ -1,6 +1,6 @@
 #include "exclude_common.hpp"
 
-char * lopatina::excludeCommon(char * first_str, const char * second_str, size_t size1, const size_t size2, char * result)
+void lopatina::excludeCommon(char * first_str, const char * second_str, size_t size1, const size_t size2, char * result)
 {
 //  char * result = new char[size1];
   int flag = 0;
@@ -25,5 +25,5 @@ char * lopatina::excludeCommon(char * first_str, const char * second_str, size_t
     }
     flag = 0;
   }
-  return result;
+  //return result;
 }
