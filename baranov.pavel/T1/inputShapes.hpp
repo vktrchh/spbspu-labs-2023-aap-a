@@ -5,6 +5,7 @@
 
 namespace baranov
 {
+  void parseParameters(const char * string, double * parameters, size_t count);
   Shape * parseRectangle(const char * string);
   Shape * parseRing(const char * string);
   Shape * parseEllipse(const char * string);

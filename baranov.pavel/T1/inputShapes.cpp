@@ -7,20 +7,25 @@
 #include <cstring>
 #include <stdexcept>
 
-baranov::Shape * baranov::parseRectangle(const char * string)
+void baranov::parseParameters(const char * string, double * parameters, size_t count)
 {
-  double rectParameters[4]{};
   size_t pos = 0;
-  string += 9;
-  for (size_t i = 0; i < 4; ++i)
+  for (size_t i = 0; i < count; ++i)
   {
-    rectParameters[i] = std::stod(string, & pos);
+    parameters[i] = std::stod(string, & pos);
     string += pos;
   }
   if (*string != '\0')
   {
-    throw std::invalid_argument("Invalid rectangle parameters");
+    throw std::invalid_argument("Invalid shape parameters");
   }
+}
+
+baranov::Shape * baranov::parseRectangle(const char * string)
+{
+  double rectParameters[4]{};
+  string += 9;
+  parseParameters(string, rectParameters, 4);
   baranov::point_t ldCorner = { rectParameters[0], rectParameters[1] };
   baranov::point_t ruCorner = { rectParameters[2], rectParameters[3] };
   return new baranov::Rectangle(ldCorner, ruCorner);
@@ -29,17 +34,8 @@ baranov::Shape * baranov::parseRectangle(const char * string)
 baranov::Shape * baranov::parseRing(const char * string)
 {
   double ringParameters[4]{};
-  size_t pos = 0;
   string += 4;
-  for (size_t i = 0; i < 4; ++i)
-  {
-    ringParameters[i] = std::stod(string, & pos);
-    string += pos;
-  }
-  if (*string != '\0')
-  {
-    throw std::invalid_argument("Invalid ring parameters");
-  }
+  parseParameters(string, ringParameters, 4);
   baranov::point_t center = { ringParameters[0], ringParameters[1] };
   return new baranov::Ring(center, ringParameters[2], ringParameters[3]);
 }
@@ -47,17 +43,8 @@ baranov::Shape * baranov::parseRing(const char * string)
 baranov::Shape * baranov::parseEllipse(const char * string)
 {
   double ellipseParameters[4]{};
-  size_t pos = 0;
   string += 7;
-  for (size_t i = 0; i < 4; ++i)
-  {
-    ellipseParameters[i] = std::stod(string, & pos);
-    string += pos;
-  }
-  if (*string != '\0')
-  {
-    throw std::invalid_argument("Invalid ellipse parameters");
-  }
+  parseParameters(string, ellipseParameters, 4);
   baranov::point_t center = { ellipseParameters[0], ellipseParameters[1] };
   return new baranov::Ellipse(center, ellipseParameters[2], ellipseParameters[3]);
 }
