@@ -41,6 +41,10 @@ void marishin::Triangle::move(double dx, double dy)
 
 void marishin::Triangle::scale(double factor)
 {
+  if (coefficient <= 0.0)
+  {
+    throw std::invalid_argument("Invalid scale coefficient. Must be non-negative.");
+  }
   point_t pos = { (firstPoint_.x + secondPoint_.x + thirdPoint_.x) / 3,
     (firstPoint_.y + secondPoint_.y + thirdPoint_.y) / 3 };
 
