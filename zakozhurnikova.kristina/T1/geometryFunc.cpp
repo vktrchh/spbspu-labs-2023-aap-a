@@ -36,10 +36,32 @@ bool zakozhurnikova::hasEqualPoints(const point_t* points, size_t size)
   return false;
 }
 
+bool zakozhurnikova::isPointOnLine(double x1, double y1, double x2, double y2, double x, double y)
+{
+  double leftSide = (y - y1) * (x2 - x1);
+  double rightSide = (x - x1) * (y2 - y1);
+  return leftSide == rightSide;
+}
+
+bool zakozhurnikova::hasContentPoint(const point_t* points, size_t size)
+{
+  for (size_t i = 0; i < size - 2; ++i)
+  {
+    for (size_t j = i + 2; j < size; ++j)
+    {
+      if (isPointOnLine(points[i].x, points[i].y, points[i + 1].x, points[i + 1].y, points[i + 2].x, points[i + 2].y))
+      {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 bool zakozhurnikova::hasIntersection(const point_t* points)
 {
   const size_t POINTS_COUNT = 4;
-  if (hasEqualPoints(points, POINTS_COUNT))
+  if (hasEqualPoints(points, POINTS_COUNT)  || hasContentPoint(points, POINTS_COUNT))
   {
     return false;
   }

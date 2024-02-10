@@ -58,7 +58,6 @@ namespace zakozhurnikova
     ~rectangle_t()
     {}
     void showCoordinates() const;
-    void showSquareCoords() const;
   };
 }
 #endif

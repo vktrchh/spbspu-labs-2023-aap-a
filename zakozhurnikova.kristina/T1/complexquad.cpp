@@ -55,10 +55,11 @@ void zakozhurnikova::Complexquad::move(const point_t& p)
 
 void zakozhurnikova::Complexquad::move(double dx, double dy)
 {
-  p1_ += zakozhurnikova::point_t(dx, dy);
-  p2_ += zakozhurnikova::point_t(dx, dy);
-  p3_ += zakozhurnikova::point_t(dx, dy);
-  p4_ += zakozhurnikova::point_t(dx, dy);
+  zakozhurnikova::point_t shift(dx, dy);
+  p1_ += shift;
+  p2_ += shift;
+  p3_ += shift;
+  p4_ += shift;
 }
 
 void zakozhurnikova::Complexquad::scale(double k)
