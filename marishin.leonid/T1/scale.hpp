@@ -6,7 +6,7 @@
 #include "base-types.hpp"
 namespace marishin
 {
-  void scale(Shape *shape, point_t center, double scaleCoefficient);
+  void scale(Shape *shape, point_t center, double coefficient);
 }
 
 #endif

@@ -1,16 +1,16 @@
 #include "scale.hpp"
 
-void marishin::scale(Shape *shape, point_t center, double scaleCoefficient)
+void marishin::scale(Shape *shape, point_t center, double coefficient)
 {
-  if (scaleCoefficient <= 0.0)
+  if (coefficient <= 0.0)
   {
     throw std::invalid_argument("Invalid scale coefficient. Must be non-negative.");
   }
 
   point_t initialPosition = shape->getFrameRect().pos;
   shape->move(center);
-  shape->checkScale(scaleCoefficient);
+  shape->checkScale(coefficient);
   point_t newPosition = shape->getFrameRect().pos;
-  shape->scale(scaleCoefficient);
-  shape->move((initialPosition.x - newPosition.x) * scaleCoefficient, (initialPosition.y - newPosition.y) * scaleCoefficient);
+  shape->scale(coefficient);
+  shape->move((initialPosition.x - newPosition.x) * coefficient, (initialPosition.y - newPosition.y) * coefficient);
 }
