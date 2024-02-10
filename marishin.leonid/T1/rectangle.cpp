@@ -41,10 +41,6 @@ void marishin::Rectangle::move(double dx, double dy)
 
 void marishin::Rectangle::scale(double factor)
 {
-  if (factor <= 0.0)
-  {
-    throw std::invalid_argument("Invalid scale coefficient. Must be non-negative.");
-  }
   point_t pos = { ((lowerLeftCorner_.x + topRightCorner_.x) / 2), ((lowerLeftCorner_.y + topRightCorner_.y) / 2) };
   lowerLeftCorner_.x = lowerLeftCorner_.x - (pos.x - lowerLeftCorner_.x) * (factor - 1);
   lowerLeftCorner_.y = lowerLeftCorner_.y - (pos.y - lowerLeftCorner_.y) * (factor - 1);

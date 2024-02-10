@@ -35,10 +35,6 @@ void marishin::Ring::move(const double dx, const double dy)
 
 void marishin::Ring::scale(double factor)
 {
-  if (factor <= 0.0)
-  {
-    throw std::invalid_argument("Invalid scale coefficient. Must be non-negative.");
-  }
   innerRadius_ *= factor;
   outerRadius_ *= factor;
 }
