@@ -39,7 +39,7 @@ void marishin::Triangle::scale(double factor)
   point_t pos = { (firstPoint_.x + secondPoint_.x + thirdPoint_.x) / 3,
     (firstPoint_.y + secondPoint_.y + thirdPoint_.y) / 3 };
 
-  firstPoint_ = scalePoint(firstPoint_, pos, factor);
-  secondPoint_ = scalePoint(secondPoint_, pos, factor);
-  thirdPoint_ = scalePoint(thirdPoint_, pos, factor);
+  firstPoint_ = scaleCorner(firstPoint_, pos, factor);
+  secondPoint_ = scaleCorner(secondPoint_, pos, factor);
+  thirdPoint_ = scaleCorner(thirdPoint_, pos, factor);
 }
