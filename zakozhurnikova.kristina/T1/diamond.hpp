@@ -1,8 +1,9 @@
 #ifndef DIAMOND_HPP
 #define DIAMOND_HPP
 #include "shape.hpp"
+#include "geometryFunc.hpp"
+#include <limits>
 #include <stdexcept>
-
 namespace zakozhurnikova
 {
   class Diamond : public Shape
@@ -14,28 +15,18 @@ namespace zakozhurnikova
       pointTwo_(point_t()),
       center_(point_t())
     {
-      const bool CONDITION = pointOne.x - pointThree.x == 0 ||
-         pointOne.y - pointThree.y == 0 || pointTwo.x - pointThree.x == 0 ||
-         pointTwo.y - pointThree.y == 0;
-      if (CONDITION) {
-        if (pointOne.x != pointTwo.x && pointOne.y != pointTwo.y) {
-          center_ = pointThree;
-          pointOne_ = pointOne;
-          pointTwo_ = pointTwo;
-        } else if (pointOne.x != pointThree.x && pointOne.y != pointThree.y) {
-          center_ = pointTwo;
-          pointOne_ = pointOne;
-          pointTwo_ = pointTwo;
-        } else if (pointThree.x != pointTwo.x && pointThree.y != pointTwo.y) {
-          center_ = pointOne;
-          pointOne_ = pointTwo;
-          pointTwo_ = pointThree;
-         }
-      }
-      else {
+      const double EPSILON = 1e-6;
+      point_t points[3]{};
+      initPoints(points, pointOne, pointTwo, pointThree);
+      center_ = points[0];
+      pointOne_ = points[1];
+      pointTwo_ = points[2];
+      const bool CONDITION = ((std::abs(center_.x - pointOne_.x) <= EPSILON) && (std::abs(center_.y - pointTwo_.y) <= EPSILON)) ||
+        ((std::abs(center_.x - pointTwo_.x) <= EPSILON) && (std::abs(center_.y - pointOne_.y) <= EPSILON));
+      if (!CONDITION)
+      {
         throw std::invalid_argument("These points do not define a diamond");
       }
-
     }
     Diamond(const Diamond& di) :
       pointOne_(di.pointOne_),
