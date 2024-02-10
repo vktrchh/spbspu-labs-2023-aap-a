@@ -52,9 +52,10 @@ int main()
   char * result1 = nullptr;
   try
   {
+  //  result1 = new char[amount]{};
     const char * string1 = "abc";
     const size_t size1 = defineLen(string1);
-    char * result1 = excludeCommon(input, string1, amount, size1);
+    result1 = excludeCommon(input, string1, amount, size1);
     std::cout << "EXC-SND: " << result1 << '\n';
     delete [] result1;
   }
@@ -66,12 +67,12 @@ int main()
     return 1;
   }
 
-  char * result2 = 0;
+  char * result2 = nullptr;
   try
   {
     const char * string2 = "g1h2k";
     const size_t size2 = defineLen(string2);
-    char * result2 = addNumbers(input, string2, amount, size2);
+    result2 = addNumbers(input, string2, amount, size2);
     std::cout << "DGT-SND: " << result2 << '\n';
     if (result2 != input)
     {
