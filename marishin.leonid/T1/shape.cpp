@@ -3,7 +3,7 @@
 
 void marishin::Shape::checkScale(double factor)
 {
-  if (factor < 0.0)
+  if (factor <= 0.0)
   {
     throw std::invalid_argument("The coefficient must be positive");
   }
