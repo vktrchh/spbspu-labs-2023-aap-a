@@ -23,14 +23,7 @@ void zakozhurnikova::printShapes(std::ostream& output, const Shape* const* shape
   output << getFullArea(shapes, size) << ' ';
   for (size_t i = 0; i < size; ++i)
   {
-    if (dynamic_cast<const zakozhurnikova::Square*>(shapes[i]))
-    {
-      shapes[i]->getFrameRect().showSquareCoords();
-    }
-    else
-    {
-      shapes[i]->getFrameRect().showCoordinates();
-    }
+    shapes[i]->getFrameRect().showCoordinates();
     if ( i != size - 1)
     {
       output << ' ';
