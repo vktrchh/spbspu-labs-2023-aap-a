@@ -13,7 +13,6 @@ namespace marishin
     virtual void move(const point_t newPos) = 0;
     virtual void move(double dx, double dy) = 0;
     virtual void scale(double factor) = 0;
-    void checkScale(double factor);
     virtual ~Shape() = default;
   };
 }
