@@ -14,11 +14,11 @@ namespace namestnikov
     virtual point_t getCenter() const;
     virtual void move(const point_t & p);
     virtual void move(const double dx, const double dy);
+    virtual void scale(const double coefficient);
     ~Circle() = default;
   private:
      point_t circleCenter_;
      double circleRadius_;
-     virtual void scale(const double coefficient);
   };
 }
 
