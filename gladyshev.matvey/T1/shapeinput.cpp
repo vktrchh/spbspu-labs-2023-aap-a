@@ -16,6 +16,11 @@ namespace gladyshev
         if (inputName == "RECTANGLE" || inputName == "PARALLELOGRAM" || inputName == "CIRCLE")
         {
           Shape * checkedShape = identifyShape(inputName, in);
+          if (in.get() != '\n')
+          {
+            delete checkedShape;
+            throw std::logic_error("too many args");
+          }
           if (checkedShape == nullptr)
           {
             incorFig = true;

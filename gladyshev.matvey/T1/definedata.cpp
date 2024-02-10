@@ -18,10 +18,6 @@ namespace gladyshev
         throw std::logic_error("bad input of rectangle`s coords");
       }
     }
-    if (in.get() != '\n')
-    {
-      throw std::logic_error("too many args for rectangle");
-    }
     if ((p[0] == p[2]) || (p[1] == p[3]) || (p[2] < p[0]) || (p[3] < p[1]))
     {
       return nullptr;
@@ -39,10 +35,6 @@ namespace gladyshev
       {
         throw std::logic_error("bad input of scale`s coods");
       }
-    }
-    if (in.get() != '\n')
-    {
-      throw std::logic_error("too many args for scale");
     }
     if (dataScale[2] <= 0)
     {
@@ -63,10 +55,6 @@ namespace gladyshev
         throw std::logic_error("bad input of circle`s coords");
       }
     }
-     if (in.get() != '\n')
-    {
-      throw std::logic_error("too many args for circle");
-    }
     if (p[2] <= 0)
     {
       return nullptr;
@@ -84,10 +72,6 @@ namespace gladyshev
       {
         throw std::logic_error("bad input of parallelogram`s coords");
       }
-    }
-    if (in.get() != '\n')
-    {
-      throw std::logic_error("too many args for scale");
     }
     if (!(((p[1] == p[3]) && (p[3] != p[5]) && (p[0] != p[2])) || ((p[3] == p[5]) && (p[5] != p[1]) && (p[2] != p[4]))))
     {
