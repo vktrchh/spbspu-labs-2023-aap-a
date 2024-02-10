@@ -42,6 +42,12 @@ int main()
     }
   }
   std::cin >> std::skipws;
+  if (input[0] == '\0')
+  {
+    std::cerr << "Empty input\n";
+    delete [] input;
+    return 1;
+  }
 
   char * result1 = 0;
   try
