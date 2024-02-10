@@ -1,6 +1,5 @@
 #include "output_shape.hpp"
 #include <iostream>
-#include <stdexcept>
 #include "base-types.hpp"
 
 void erohin::outputShape(std::ostream& output, const Shape* const* shape, size_t size)

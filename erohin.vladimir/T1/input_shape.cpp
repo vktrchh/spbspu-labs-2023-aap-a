@@ -13,14 +13,13 @@ void erohin::inputShape(Shape** result, std::istream& input, size_t& size, point
   bool isScaleCommandEntered = false;
   std::string name;
   double current_par = 0.0;
-  constexpr size_t par_max_size = 10;
   size_t par_size = 0;
-  double par[par_max_size]{ 0.0 };
+  double par[10]{ 0.0 };
   while (!input.eof() && !isScaleCommandEntered)
   {
     input.clear();
     input >> name;
-    while ((input >> current_par) && (par_size != par_max_size))
+    while ((input >> current_par) && (par_size != 10))
     {
       par[par_size++] = current_par;
     }

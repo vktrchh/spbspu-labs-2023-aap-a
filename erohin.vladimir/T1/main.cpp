@@ -9,7 +9,7 @@ int main()
 {
   using namespace erohin;
   size_t size = 0;
-  point_t scale_pos = {0.0, 0.0};
+  point_t scale_pos = { 0.0, 0.0 };
   double scale_ratio = 0.0;
   bool isWrongFigureCreation = false;
   Shape* shape[1000] {nullptr};
