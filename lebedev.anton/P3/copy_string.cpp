@@ -27,7 +27,8 @@ char * lebedev::copyString(char * string)
         throw;
       }
     }
-    copy[current_index++] = string[current_index];
+    copy[current_index] = string[current_index];
+    ++current_index;
   }
   copy[current_index] = '\0';
   return copy;
