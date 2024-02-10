@@ -1,6 +1,5 @@
 #include "input_output_shapes.hpp"
 #include <string>
-#include <map>
 #include "rectangle.hpp"
 #include "base-types.hpp"
 #include "circle.hpp"
