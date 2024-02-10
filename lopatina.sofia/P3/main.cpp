@@ -49,7 +49,7 @@ int main()
     return 1;
   }
 
-  char * result1 = 0;
+  char * result1 = nullptr;
   try
   {
     const char * string1 = "abc";
