@@ -16,11 +16,34 @@ zakozhurnikova::point_t zakozhurnikova::getComplexquadCenter(const point_t* poin
   double determinant = (x2 - x1) * (y4 - y3) - (x4 - x3) * (y2 - y1);
   double determinantX = (x2 - x1) * (y3 * (x4 - x3) - x3 * (y4 - y3)) - (x4 - x3) * (y1 * (x2 - x1) - x1 * (y2 - y1));
   double determinantY = (y2 - y1) * (y3 * (x4 - x3) - x3 * (y4 - y3)) - (y4 - y3) * (y1 * (x2 - x1) - x1 * (y2 - y1));
-  return zakozhurnikova::point_t(determinantX / determinant, determinantY / determinant);
+  point_t center(-determinantX / determinant, -determinantY / determinant);
+  return center;
+}
+
+bool zakozhurnikova::hasEqualPoints(const point_t* points, size_t size)
+{
+  for (size_t i = 0; i < size - 1; ++i)
+  {
+    for (size_t j = i + 1; j < size; ++j)
+    {
+      if (points[i] == points[j])
+      {
+        return true;
+      }
+    }
+  }
+
+  return false;
 }
 
 bool zakozhurnikova::hasIntersection(const point_t* points)
 {
+  const size_t POINTS_COUNT = 4;
+  if (hasEqualPoints(points, POINTS_COUNT))
+  {
+    return false;
+  }
+
   double x1 = points[0].x;
   double y1 = points[0].y;
   double x2 = points[1].x;
@@ -29,13 +52,21 @@ bool zakozhurnikova::hasIntersection(const point_t* points)
   double y3 = points[2].y;
   double x4 = points[3].x;
   double y4 = points[3].y;
-  double determinant = (x2 - x1) * (y4 - y3) - (x4 - x3) * (y2 - y1);
-  if (determinant - 0.0 <= std::numeric_limits<double>::epsilon())
+  double denominator = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
+  if (std::abs(denominator) <= 1e-6)
+  {
+    return false;
+  }
+  double x = ((x1 * y2 - y1 * x2) * (x3 - x4) - (x1 - x2) * (x3 * y4 - y3 * x4)) / denominator;
+  double y = ((x1 * y2 - y1 * x2) * (y3 - y4) - (y1 - y2) * (x3 * y4 - y3 * x4)) / denominator;
+  if (x < std::min(x1, x2) || x > std::max(x1, x2) || x < std::min(x3, x4) || x > std::max(x3, x4) ||
+      y < std::min(y1, y2) || y > std::max(y1, y2) || y < std::min(y3, y4) || y > std::max(y3, y4))
   {
     return false;
   }
   return true;
 }
+
 void zakozhurnikova::initPoints(point_t* points, const point_t& pointOne, const point_t& pointTwo, const point_t& pointThree)
 {
   const double EPSILON = 1e-6;

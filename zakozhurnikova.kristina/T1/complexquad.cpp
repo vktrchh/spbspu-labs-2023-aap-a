@@ -37,7 +37,7 @@ zakozhurnikova::rectangle_t zakozhurnikova::Complexquad::getFrameRect() const
   double maxX = std::max(std::max(x1, x2), std::max(x3, x4));
   double maxY = std::max(std::max(y1, y2), std::max(y3, y4));
   double width = maxX - minX;
-  double height = maxY - maxY;
+  double height = maxY - minY;
   point_t center((maxX + minX) / 2.0, (maxY + minY) / 2.0);
   return zakozhurnikova::rectangle_t(width, height, center);
 }

@@ -32,6 +32,7 @@ namespace zakozhurnikova
     point_t operator/(double k) const;
     point_t operator-(const point_t& p) const;
     point_t& operator-();
+    bool operator==(const point_t& p) const;
     point_t& operator=(const point_t& point);
     point_t& operator=(point_t&& point);
   };

@@ -1,6 +1,7 @@
 #include "base-types.hpp"
 #include <cmath>
 #include <iostream>
+#include <cmath>
 
 double zakozhurnikova::point_t::getDistance(const point_t& p) const
 {
@@ -49,6 +50,11 @@ zakozhurnikova::point_t& zakozhurnikova::point_t::operator-()
     x *= -1;
     y *= -1;
     return *this;
+}
+
+bool zakozhurnikova::point_t::operator==(const point_t& p) const
+{
+  return x == p.x && y == p.y;
 }
 
 zakozhurnikova::point_t& zakozhurnikova::point_t::operator=(const point_t& point)
