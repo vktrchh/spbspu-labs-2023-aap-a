@@ -8,15 +8,16 @@
 #include "rectangle.hpp"
 #include "triangle.hpp"
 #include "polygon.hpp"
+#include "isoScale.hpp"
 
 int main()
 {
   using namespace grechishnikov;
 
-  size_t size = 0;
   const char* str = nullptr;
   const char* name = nullptr;
   Shape* shapes[1000] = { nullptr };
+
   const size_t legalNameCount = 3;
   const char* legalName[] = { "RECTANGLE\0", "TRIANGLE\0", "POLYGON\0" };
 
@@ -29,7 +30,6 @@ int main()
       const char* tempStr = inputString(std::cin);
       delete[] str;
       str = tempStr;
-
       const char* tempName = parseName(str);
       delete[] name;
       name = tempName;
@@ -45,9 +45,32 @@ int main()
 
       if (isEqualStr(name, "SCALE\0"))
       {
+        endOfInput = true;
+
+        if (count == 0)
+        {
+          throw std::logic_error("Nothing to scale");
+        }
+        size_t size = 0;
+        const double* values = parseValues(str + 5, size);
+        if (size != 3)
+        {
+          delete[] values;
+          throw std::logic_error("Incorrect number of parameters to scale");
+        }
+
+
+
+        for (size_t g = 0; g < count; g++)
+        {
+          isoScale(shapes[g], { values[0], values[1] }, values[2]);
+        }
+
+
+
+        delete[] values;
         delete[] str;
         delete[] name;
-        endOfInput = true;
       }
     }
   }
@@ -56,8 +79,8 @@ int main()
     delete[] str;
     delete[] name;
     freeShapes(shapes, count);
-    std::cout << "bad_alloc" << '\n';
-    return 1;
+    std::cout << "Cannot allocate enough memory" << '\n';
+    return 2;
   }
   catch (const std::logic_error &e)
   {

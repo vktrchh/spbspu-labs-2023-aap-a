@@ -20,18 +20,20 @@ grechishnikov::Shape* grechishnikov::inputShape(const char* str)
   try
   {
     name = parseName(str);
-    size_t pos = 0;
-    for (size_t i = 0; str[i] != ' '; i++)
-    {
-      pos++;
-    }
-    values = grechishnikov::parseValues(str + pos, size);
-    points = grechishnikov::makePairs(values, size);
     for (size_t i = 0; i < legalNameCount; i++)
     {
       if (isEqualStr(legalName[i], name))
       {
+        size_t pos = 0;
+        for (size_t i = 0; str[i] != ' '; i++)
+        {
+        pos++;
+        }
+        values = grechishnikov::parseValues(str + pos, size);
+        points = grechishnikov::makePairs(values, size);
+
         Shape* returnShape = (*correspondingFunctions[i])(points, size / 2);
+
         delete[] name;
         delete[] values;
         delete[] points;
@@ -39,24 +41,16 @@ grechishnikov::Shape* grechishnikov::inputShape(const char* str)
       }
     }
   }
-  catch (const std::logic_error& e)
+  catch (const std::exception& e)
   {
     delete[] name;
     delete[] values;
     delete[] points;
     throw;
   }
-  catch (const std::bad_alloc& e)
-  {
-    delete[] name;
-    delete[] values;
-    delete[] points;
-    throw;
-  }
+
   delete[] name;
-  delete[] values;
-  delete[] points;
-  throw std::logic_error("Incorrect name");
+  return nullptr;
 }
 
 grechishnikov::Shape* grechishnikov::inputRectangle(const grechishnikov::point_t* points, size_t size)
@@ -118,7 +112,7 @@ bool grechishnikov::isEqualStr(const char* fStr, const char* sStr)
 {
   bool check = 1;
   size_t i = 0;
-  for (i = 0; fStr[i] != '\0' || sStr[i] != '\0'; i++)
+  for (i = 0; fStr[i] != '\0' && sStr[i] != '\0'; i++)
   {
     if (fStr[i] != sStr[i])
     {
