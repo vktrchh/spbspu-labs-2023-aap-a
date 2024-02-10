@@ -3,6 +3,8 @@
 
 #include "shape.hpp"
 #include "base-types.hpp"
+#include "scaleRectangle.hpp"
+
 namespace marishin
 {
   class Triangle: public Shape

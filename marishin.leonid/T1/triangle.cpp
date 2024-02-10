@@ -29,14 +29,9 @@ void marishin::Triangle::move(point_t newPos)
 
 void marishin::Triangle::move(double dx, double dy)
 {
-  firstPoint_.x += dx;
-  firstPoint_.y += dy;
-
-  secondPoint_.x += dx;
-  secondPoint_.y += dy;
-
-  thirdPoint_.x += dx;
-  thirdPoint_.y += dy;
+  firstPoint_ = mixPoint(firstPoint_, dx, dy);
+  secondPoint_ = mixPoint(secondPoint_, dx, dy);
+  thirdPoint_ = mixPoint(thirdPoint_, dx, dy);
 }
 
 void marishin::Triangle::scale(double factor)
@@ -44,12 +39,7 @@ void marishin::Triangle::scale(double factor)
   point_t pos = { (firstPoint_.x + secondPoint_.x + thirdPoint_.x) / 3,
     (firstPoint_.y + secondPoint_.y + thirdPoint_.y) / 3 };
 
-  firstPoint_.x = factor * (firstPoint_.x - pos.x) + pos.x;
-  firstPoint_.y = factor * (firstPoint_.y - pos.y) + pos.y;
-
-  secondPoint_.x = factor * (secondPoint_.x - pos.x) + pos.x;
-  secondPoint_.y = factor * (secondPoint_.y - pos.y) + pos.y;
-
-  thirdPoint_.x = factor * (thirdPoint_.x - pos.x) + pos.x;
-  thirdPoint_.y = factor * (thirdPoint_.y - pos.y) + pos.y;
+  firstPoint_ = scalePoint(firstPoint_, pos, factor);
+  secondPoint_ = scalePoint(secondPoint_, pos, factor);
+  thirdPoint_ = scalePoint(thirdPoint_, pos, factor);
 }

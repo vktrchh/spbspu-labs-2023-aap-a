@@ -42,3 +42,10 @@ marishin::rectangle_t marishin::getFrameRectTriangle(const point_t& first, const
   point_t pos = { (std::min(p1.x, (std::min(p2.x, p3.x)))) + width / 2, (std::min(p1.y, (std::min(p2.y, p3.y)))) + height / 2 };
   return { pos, width, height };
 }
+
+marishin::point_t marishin::scalePoint(point_t corner, point_t pos, double factor)
+{
+  corner.x = factor * (corner.x - pos.x) + pos.x;
+  corner.y = factor * (corner.x - pos.x) + pos.x;
+  return corner;
+}

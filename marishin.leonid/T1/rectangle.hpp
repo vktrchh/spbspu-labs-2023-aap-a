@@ -2,6 +2,7 @@
 #define RECTANGLE_HPP
 
 #include "shape.hpp"
+#include "scaleRectangle.hpp"
 
 namespace marishin
 {
