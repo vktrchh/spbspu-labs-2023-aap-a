@@ -35,7 +35,7 @@ int findLargeSeriesOfEqualElements(int* matrix, size_t rows, size_t cols)
     size_t numberSeries = 1;
     size_t maximumNumberSeries = 0;
     size_t rowNum = 0;
-    for (int i = 0; i < rows * cols; ++i)
+    for (size_t i = 0; i < rows * cols; ++i)
     {
         if (matrix[i] == matrix[i + 1])
         {
