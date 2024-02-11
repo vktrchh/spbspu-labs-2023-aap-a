@@ -21,17 +21,19 @@ int main()
 
   size_t count = 0;
   bool endOfInput = false;
+  bool scaleHappened = true;
   try
   {
     while (!endOfInput)
     {
       const char* tempStr = inputString(std::cin);
+      if (!std::cin)
+      {
+        endOfInput = true;
+        scaleHappened = false;
+      }
       delete[] str;
       str = tempStr;
-      if (str == nullptr)
-      {
-        continue;
-      }
       const char* tempName = parseName(str);
       delete[] name;
       name = tempName;
@@ -41,7 +43,6 @@ int main()
         shapes[count] = inputShape(str);
         count++;
       }
-
       if (isEqualStr(name, "SCALE\0"))
       {
         endOfInput = true;
@@ -94,7 +95,11 @@ int main()
     std::cerr << "Error: " << e.what() << '\n';
     return 1;
   }
-
+  if (!scaleHappened)
+  {
+    freeShapes(shapes, count);
+    std::cerr << "Scale was not inputted" << '\n';
+  }
   if (!checkEnteredShapes(shapes, count))
   {
     std::cerr << "Some shapes were not processed" << '\n';
