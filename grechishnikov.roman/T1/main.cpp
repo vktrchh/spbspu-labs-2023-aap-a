@@ -28,6 +28,10 @@ int main()
       const char* tempStr = inputString(std::cin);
       delete[] str;
       str = tempStr;
+      if (str == nullptr)
+      {
+        continue;
+      }
       const char* tempName = parseName(str);
       delete[] name;
       name = tempName;
