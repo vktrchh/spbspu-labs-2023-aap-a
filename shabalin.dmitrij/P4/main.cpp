@@ -35,7 +35,7 @@ int findLargeSeriesOfEqualElements(int* matrix, size_t rows, size_t cols)
     size_t numberSeries = 0;
     size_t maximumNumberSeries = 0;
     size_t rowNum = 0;
-    for (size_t i = 0; i < rows * cols - 1; ++i)
+    for (size_t i = 0; i < rows * cols; ++i)
     {
         if (matrix[i] == matrix[i + 1])
         {
@@ -93,6 +93,7 @@ int main(int argc, char* argv[])
     if ((rows == 0 && cols == 0))
     {
         std::cerr << "Null matrix" << "\n";
+        output << cols << ' ' << rows;
         return 0;
     }
 
