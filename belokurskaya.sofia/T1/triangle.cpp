@@ -35,10 +35,10 @@ double belokurskaya::Triangle::getArea() const
 
 belokurskaya::rectangle_t belokurskaya::Triangle::getFrameRect() const
 {
-  double min_x = std::min({vertex1_.x, vertex2_.x, vertex3_.x});
-  double max_x = std::max({vertex1_.x, vertex2_.x, vertex3_.x});
-  double min_y = std::min({vertex1_.y, vertex2_.y, vertex3_.y});
-  double max_y = std::max({vertex1_.y, vertex2_.y, vertex3_.y});
+  double min_x = std::min(std::min(vertex1_.x, vertex2_.x), vertex3_.x);
+  double max_x = std::max(std::max(vertex1_.x, vertex2_.x), vertex3_.x);
+  double min_y = std::min(std::min(vertex1_.y, vertex2_.y), vertex3_.y);
+  double max_y = std::max(std::max(vertex1_.y, vertex2_.y), vertex3_.y);
 
   double width = max_x - min_x;
   double height = max_y - min_y;
