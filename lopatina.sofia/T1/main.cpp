@@ -223,33 +223,37 @@ private:
 };
 */
 
-bool isCentralPoint(double point1_x, double point1_y, double point2_x, double point3_y)
+bool isCentralPoint(point_t point1, point_t point2, point_t point3)
 {
-  if ((point1_x == point2_x) && (point1_y == point3_y))
+  if (((point1.x_ == point2.x_) && (point1.y_ == point3.y_)) || ((point1.x_ == point3.x_) && (point1.y_ == point2.y_)))
   {
     return true;
   }
   return false;
 }
 
-void distributePoints(point_t cent_point, point_t side_point_x, point_t side_point_y, point_t first_p, point_t second_p)
+point_t defineSidePointX(point_t point1, point_t point2, point_t point3)
 {
-  if (first_p.x_ == cent_point.x_)
+  if (point1.x_ == point2.x_)
   {
-    side_point_x.x_ = first_p.x_;
-    side_point_x.y_ = first_p.y_;
-    side_point_y.x_ = second_p.x_;
-    side_point_y.y_ = second_p.y_;
+    return point2;
   }
   else
   {
-    side_point_y.x_ = first_p.x_;
-    side_point_y.y_ = first_p.y_;
-    side_point_x.x_ = second_p.x_;
-    side_point_x.y_ = second_p.y_;
+    return point3;
   }
-  std::cout << "YES First point: " << first_p.x_ << ' ' << first_p.y_ << " Second point: " << second_p.x_ << ' ' << second_p.y_ << '\n';
-  std::cout << "SIDE x: " << side_point_x.x_ << ' ' << side_point_x.y_ << '\n';
+}
+
+point_t defineSidePointY(point_t point1, point_t point2, point_t point3)
+{
+    if (point1.y_ == point2.y_)
+  {
+    return point2;
+  }
+  else
+  {
+    return point3;
+  }
 }
 
 int main()
@@ -336,6 +340,11 @@ int main()
     {
       break;
     }
+    if (!std::cin)
+    {
+      std::cerr << "No SCALE command entered\n";
+      return 1;
+    }
     if (name == "RECTANGLE")
     {
       double low_left_x = 0, low_left_y = 0, up_right_x = 0, up_right_y = 0;
@@ -364,40 +373,54 @@ int main()
       if (((point1_x != point2_x) || (point1_y != point2_y)) && ((point2_x != point3_x) || (point2_y != point3_y)) && ((point3_x != point1_x) || (point3_y != point1_y)))
       {
         std::cout << "No same points\n";
-        point_t point1 = {point1_x, point1_y};
-        point_t point2 = {point2_x, point2_y};
-        point_t point3 = {point3_x, point3_y};
+        point_t point1 = {0.0, 0.0};
+        point_t point2 = {0.0, 0.0};
+        point_t point3 = {0.0, 0.0};
         point_t central_point = {0.0, 0.0};
         point_t side_point_x = {0.0, 0.0};
         point_t side_point_y = {0.0, 0.0};
-        if (isCentralPoint(point1_x, point1_y, point2_x, point3_y) || isCentralPoint(point1_x, point1_y, point3_x, point2_y))
+
+        int flag = 0;
+        for (size_t i = 1; i < 4; ++i)
         {
-          central_point.x_ = point1_x;
-          central_point.y_ = point1_y;
-          distributePoints(central_point, side_point_x, side_point_y, point2, point3);
+          if (i == 1)
+          {
+            point1 = {point1_x, point1_y};
+            point2 = {point2_x, point2_y};
+            point3 = {point3_x, point3_y};
+          }
+          if (i == 2)
+          {
+            point1 = {point2_x, point2_y};
+            point2 = {point1_x, point1_y};
+            point3 = {point3_x, point3_y};
+          }
+          if (i == 3)
+          {
+            point1 = {point3_x, point3_y};
+            point2 = {point1_x, point1_y};
+            point3 = {point2_x, point2_y};
+          }
+          if (isCentralPoint(point1, point2, point3))
+          {
+            flag = 1;
+            central_point = {point1.x_, point1.y_};
+            side_point_x = defineSidePointX(point1, point2, point3);
+            side_point_y = defineSidePointY(point1, point2, point3);
+          }
         }
-        else if (isCentralPoint(point2_x, point2_y, point1_x, point3_y) || isCentralPoint(point2_x, point2_y, point3_x, point1_y))
+        if (flag == 0)
         {
-          central_point.x_ = point2_x;
-          central_point.y_ = point2_y;
-          distributePoints(central_point, side_point_x, side_point_y, point1, point3);
+          std::cout << "Wrong parameters\n";
         }
-        else if (isCentralPoint(point3_x, point3_y, point1_x, point2_y) || isCentralPoint(point3_x, point3_y, point2_x, point1_y))
-        {
-          central_point.x_ = point3_x;
-          central_point.y_ = point3_y;
-          distributePoints(central_point, side_point_x, side_point_y, point1, point2);
-          std::cout << "TEST DIST POINTS: CENTRAL: " << central_point.x_ << ' ' << central_point.y_ << " SIDE X: " << side_point_x.x_ << ' ' << side_point_x.y_ << " SIDE Y: " << side_point_y.x_ << ' ' << side_point_y.y_ << '\n';
-           std::cout << "SIDE x: " << side_point_x.x_ << ' ' << side_point_x.y_ << '\n';
-       }
-        else
-        {
-          std::cout << "Invalid parameters\n";
-        }
+        std::cout << "TEST CHECK DIAM:\n";
+        std::cout << "Centr: x = " << central_point.x_  << "  y = " << central_point.y_ << '\n';
+        std::cout << "SIDE_X: x = " << side_point_x.x_  << "  y = " << side_point_x.y_ << '\n';
+        std::cout << "SIDE_Y: x = " << side_point_y.x_  << "  y = " << side_point_y.y_ << '\n';
       }
       else
       {
-        std::cout << "Same points\n";
+        std::cout << "There are indentical points\n";
       }
 
     }
