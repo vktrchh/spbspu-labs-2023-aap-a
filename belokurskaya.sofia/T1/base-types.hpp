@@ -10,7 +10,7 @@ namespace belokurskaya
 
     bool operator==(const point_t & other) const
     {
-      retyrn x == other.x && y == other.y;
+      return x == other.x && y == other.y;
     }
   };
 
