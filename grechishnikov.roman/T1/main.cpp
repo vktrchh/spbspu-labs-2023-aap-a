@@ -57,6 +57,11 @@ int main()
           delete[] values;
           throw std::logic_error("Incorrect number of parameters to scale");
         }
+        if (values[2] <= 0)
+        {
+          delete[] values;
+          throw std::logic_error("Incorrect scale ratio");
+        }
 
         outputShapes(std::cout, shapes, count);
         std::cout << '\n';
