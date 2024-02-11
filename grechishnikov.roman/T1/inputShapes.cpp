@@ -44,12 +44,19 @@ grechishnikov::Shape* grechishnikov::inputShape(const char* str)
       }
     }
   }
-  catch (const std::exception& e)
+  catch (const std::invalid_argument& e)
   {
     delete[] name;
     delete[] values;
     delete[] points;
     return nullptr;
+  }
+  catch (const std::exception& e)
+  {
+    delete[] name;
+    delete[] values;
+    delete[] points;
+    throw;
   }
 
   delete[] name;
