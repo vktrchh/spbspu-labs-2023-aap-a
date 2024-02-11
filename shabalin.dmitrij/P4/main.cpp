@@ -62,7 +62,7 @@ double* makeUpSmoothMatrix(int* matrix, double* smooth, size_t rows, size_t cols
         {
             for (int d = -1; d <= 1; ++d)
             {
-                if (!(j == 0 & d == 0))
+                if (!(j == 0) && !(d == 0))
                 {
                     size_t currentRow = (i / cols) + j;
                     size_t currentColumn = (i % cols) + d;
