@@ -34,8 +34,8 @@ int findLargeSeriesOfEqualElements(int* matrix, size_t rows, size_t cols)
 {
     size_t numberSeries = 0;
     size_t maximumNumberSeries = 0;
-    size_t rowNum = 0;
-    for (size_t i = 0; i < rows * cols; ++i)
+    size_t rowNumber = 0;
+    for (size_t i = 0; i < rows * cols - 1; ++i)
     {
         if (matrix[i] == matrix[i + 1])
         {
@@ -44,10 +44,38 @@ int findLargeSeriesOfEqualElements(int* matrix, size_t rows, size_t cols)
         if (numberSeries > maximumNumberSeries)
         {
             maximumNumberSeries = numberSeries;
-            rowNum = i / cols + 1;
+            rowNumber = i / cols + 1;
         }
     }
-    return rowNum;
+    return rowNumber;
+};
+
+double* makeUpSmoothMatrix(int* matrix, double* smooth, size_t rows, size_t cols)
+{
+    for (size_t i = 0; i < cols * rows; ++i)
+    {
+        double sum = 0.0;
+        size_t count = 0;
+        for (int j = -1; j <= 1; ++j)
+        {
+            for (int d = -1; d <= 1; ++d)
+            {
+                if (!(j == 0 && d == 0))
+                {
+                    size_t currentRow = (i / cols) + j;
+                    size_t currentColumn = (i % cols) + d;
+                    if ((currentRow < rows) && (currentColumn < cols))
+                    {
+                        size_t newPosition = currentRow * i + currentColumn;
+                        sum += matrix[newPosition];
+                        count++;
+                    }
+                }
+            }
+        }
+        smooth[i] = sum / count;
+    }
+    return smooth;
 };
 
 int main(int argc, char* argv[])
@@ -92,26 +120,29 @@ int main(int argc, char* argv[])
 
     if ((rows == 0 && cols == 0))
     {
-        std::cerr << "Null matrix" << "\n";
-        output << cols*rows << '\n';
+        std::cout << "Null matrix" << "\n";
         return 0;
     }
 
     size_t countOfElements = rows * cols;
 
     int tempMatrix[10000] = {};
+    double tempSmoothedMatrix[10000] = {};
 
     int* matrix = nullptr;
+    double* smoothedMatrix = nullptr;
 
     if (task == 2)
     {
         try
         {
             matrix = new int[countOfElements];
+            smoothedMatrix = new double[countOfElements];
         }
         catch (const std::bad_alloc& e)
         {
             delete[] matrix;
+            delete[] smoothedMatrix;
         }
         try
         {
@@ -121,12 +152,16 @@ int main(int argc, char* argv[])
             {
                 throw std::logic_error("Error of output");
             }
+            smoothedMatrix = makeUpSmoothMatrix(matrix, smoothedMatrix, rows, cols);
+            matrixOutput(output, smoothedMatrix, rows, cols);
             delete[] matrix;
+            delete[] smoothedMatrix;
         }
         catch (const std::exception& e)
         {
             std::cerr << e.what() << '\n';
             delete[] matrix;
+            delete[] smoothedMatrix;
             return 1;
         }
     }
@@ -140,6 +175,8 @@ int main(int argc, char* argv[])
             {
                 throw std::logic_error("Error of output");
             }
+            smoothedMatrix = makeUpSmoothMatrix(tempMatrix, tempSmoothedMatrix, rows, cols);
+            matrixOutput(output, tempSmoothedMatrix, rows, cols);
         }
         catch (const std::exception& e)
         {
