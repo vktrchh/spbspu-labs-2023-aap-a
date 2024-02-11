@@ -15,6 +15,11 @@ int main()
   size_t i = 0;
 
   std::cin >> std::noskipws;
+  if (!std::cin)
+  {
+    std::cerr << "Error input\n";
+    return 1;
+  }
   while (std::cin >> c)
   {
     if (!std::cin)
