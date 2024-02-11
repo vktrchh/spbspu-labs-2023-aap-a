@@ -7,6 +7,11 @@ namespace belokurskaya
   {
     double x;
     double y;
+
+    bool operator==(const point_t & other) const
+    {
+      retyrn x == other.x && y == other.y;
+    }
   };
 
   struct rectangle_t
