@@ -83,7 +83,7 @@ int main()
     delete[] str;
     delete[] name;
     freeShapes(shapes, count);
-    std::cout << "Error: Cannot allocate enough memory" << '\n';
+    std::cerr << "Error: Cannot allocate enough memory" << '\n';
     return 2;
   }
   catch (const std::logic_error &e)
@@ -91,7 +91,7 @@ int main()
     delete[] str;
     delete[] name;
     freeShapes(shapes, count);
-    std::cout << "Error: " << e.what() << '\n';
+    std::cerr << "Error: " << e.what() << '\n';
     return 1;
   }
 
