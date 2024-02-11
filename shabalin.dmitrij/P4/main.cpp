@@ -30,7 +30,7 @@ void matrixOutput(std::ofstream& output, const double* matrix, size_t rows, size
     }
 };
 
-size_t findLargeSeriesOfEqualElements(int* matrix, size_t rows, size_t cols)
+int findLargeSeriesOfEqualElements(int* matrix, size_t rows, size_t cols)
 {
     size_t numberSeries = 1;
     size_t maximumNumberSeries = 0;
