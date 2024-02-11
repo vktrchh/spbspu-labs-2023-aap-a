@@ -60,7 +60,11 @@ grechishnikov::Shape* grechishnikov::inputRectangle(const grechishnikov::point_t
 {
   if (size != 2)
   {
-    throw std::logic_error("Incorrect number of parameters");
+    return nullptr;
+  }
+  if (rCorner.x <= lCorner.x || rCorner.y <= lCorner.y)
+  {
+    return nullptr;
   }
   return new grechishnikov::Rectangle(points[0], points[1]);
 }
@@ -69,7 +73,12 @@ grechishnikov::Shape* grechishnikov::inputTriangle(const grechishnikov::point_t*
 {
   if (size != 3)
   {
-    throw std::logic_error("Incorrect number of parameters");
+    return nullptr;
+  }
+  double sq = ((b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y)) / 2;
+  if (sq == 0)
+  {
+    return nullptr;
   }
   return new grechishnikov::Triangle(points[0], points[1], points[2]);
 }
@@ -78,7 +87,7 @@ grechishnikov::Shape* grechishnikov::inputPolygon(const grechishnikov::point_t* 
 {
   if (size < 3)
   {
-    throw std::logic_error("Incorrect number of parameters");
+    return nullptr;
   }
   return new grechishnikov::Polygon(points, size);
 }

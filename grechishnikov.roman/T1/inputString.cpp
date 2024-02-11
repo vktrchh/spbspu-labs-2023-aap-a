@@ -3,7 +3,7 @@
 
 char* reallocate(const char* str, size_t lenF, size_t lenS);
 
-char* grechishnikov::inputString(std::istream& in)
+const char* grechishnikov::inputString(std::istream& in)
 {
   size_t len = 10;
   char* curStr = new char[len];
@@ -39,7 +39,7 @@ char* grechishnikov::inputString(std::istream& in)
   if (curPos == 0)
   {
     delete[] curStr;
-    throw std::logic_error("String is empty");
+    return nullptr;
   }
   in >> std::skipws;
   return curStr;
