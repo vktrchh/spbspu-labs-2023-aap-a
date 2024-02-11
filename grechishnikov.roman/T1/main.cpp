@@ -31,8 +31,11 @@ int main()
       {
         endOfInput = true;
         scaleHappened = false;
+        delete[] str;
+        delete[] name;
         continue;
       }
+
       delete[] str;
       str = tempStr;
       const char* tempName = parseName(str);
