@@ -72,7 +72,7 @@ int main(int argc, char **argv)
         throw std::invalid_argument("Invalid matrix dimensions: rows or columns is zero");
       }
 
-      int * matrix = new int[rows * cols];
+      matrix = new int[rows * cols];
       petuhov::fillMatrix(matrix, rows, cols, inputFile);
       is_lower_triangular = petuhov::isLowerTriangular(matrix, rows, cols);
       delete[] matrix;
