@@ -11,10 +11,24 @@ grechishnikov::Polygon::Polygon(const grechishnikov::point_t* points, size_t siz
   {
     throw std::invalid_argument("Invalid parameters (Not enough arguments for Polygon)");
   }
+
   points_ = new grechishnikov::point_t [size_];
   for (size_t i = 0; i < size_; i++)
   {
     points_[i] = points[i];
+  }
+  try
+  {
+    Triangle pTri[size_ - 2];
+    for (size_t i = 2; i < size_; i++)
+    {
+      pTri[i - 2] = { points_[0], points_[i - 1], points_[i] };
+    }
+  }
+  catch (const std::logic_error& e)
+  {
+    delete[] points_;
+    throw std::invalid_argument("Invalid parameters (some points are in a line)");
   }
 }
 
