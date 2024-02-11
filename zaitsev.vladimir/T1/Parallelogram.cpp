@@ -38,29 +38,17 @@ double zaitsev::Parallelogram::getArea() const
 
 zaitsev::rectangle_t zaitsev::Parallelogram::getFrameRect() const
 {
-  double lower = std::numeric_limits< double >::max();
-  double upper = std::numeric_limits< double >::lowest();
-  double left = std::numeric_limits< double >::max();
-  double right = std::numeric_limits< double >::lowest();
+  point_t left_corner = def_vertices_[0] + def_vertices_[2] - def_vertices_[1];
+  point_t right_corner = left_corner;
 
   for (size_t i = 0; i < 3; ++i)
   {
-    lower = std::min(lower, def_vertices_[i].y);
-    upper = std::max(upper, def_vertices_[i].y);
-    left = std::min(left, def_vertices_[i].x);
-    right = std::max(right, def_vertices_[i].x);
+    changeRectangleBounds(left_corner, right_corner, def_vertices_[i]);
   }
 
-  point_t vertex4 = def_vertices_[0] + def_vertices_[2] - def_vertices_[1];
-  lower = std::min(lower, vertex4.y);
-  upper = std::max(upper, vertex4.y);
-  left = std::min(left, vertex4.x);
-  right = std::max(right, vertex4.x);
-
-  double width = right - left;
-  double height = upper - lower;
-  point_t pos = { (left + right) / 2, (lower + upper) / 2 };
-  return { width, height, pos };
+  point_t size = right_corner - left_corner;
+  point_t pos = (left_corner + right_corner) / 2;
+  return { size.x, size.y, pos };
 }
 
 void zaitsev::Parallelogram::move(const point_t& dest_pos)

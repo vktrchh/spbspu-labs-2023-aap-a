@@ -95,6 +95,14 @@ double zaitsev::getAreaOfTriangle(const point_t& p1, const point_t& p2, const po
   return std::fabs(skewProduct(p2 - p1, p3 - p1)) / 2;
 }
 
+void zaitsev::changeRectangleBounds(point_t& left_corner, point_t& right_corner, const point_t& new_pt)
+{
+  left_corner.x = std::min(left_corner.x, new_pt.x);
+  left_corner.y = std::min(left_corner.y, new_pt.y);
+  right_corner.x = std::max(right_corner.x, new_pt.x);
+  right_corner.y = std::max(right_corner.y, new_pt.y);
+}
+
 void zaitsev::scale(Shape* shape, double factor, const point_t& iso_center)
 {
   point_t start_pos = shape->getFrameRect().pos;

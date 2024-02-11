@@ -10,21 +10,27 @@
 #include "parallelogram.hpp"
 #include "Geom_functions.h"
 
-double zaitsev::readNextValue(std::istream& input)
+double zaitsev::readValue(std::istream& input)
 {
   std::string s;
   input >> s;
-  return stod(s);
+  return std::stod(s);
+}
+
+void zaitsev::readPoint(std::istream& input, point_t& dest)
+{
+  dest.x = readValue(input);
+  dest.y = readValue(input);
 }
 
 zaitsev::Shape* zaitsev::readRectangle(std::istream& input)
 {
-  point_t left = { 0,0 };
-  point_t right = { 0,0 };
-  left.x = readNextValue(input);
-  left.y = readNextValue(input);
-  right.x = readNextValue(input);
-  right.y = readNextValue(input);
+  point_t left = { 0, 0 };
+  point_t right = { 0, 0 };
+  left.x = readValue(input);
+  left.y = readValue(input);
+  right.x = readValue(input);
+  right.y = readValue(input);
   return new Rectangle(left, right);;
 }
 
@@ -33,8 +39,8 @@ zaitsev::Shape* zaitsev::readComplexquad(std::istream& input)
   point_t vertices[4] = {};
   for (size_t i = 0; i < 4; ++i)
   {
-    vertices[i].x = readNextValue(input);
-    vertices[i].y = readNextValue(input);
+    vertices[i].x = readValue(input);
+    vertices[i].y = readValue(input);
   }
   return new Complexquad(vertices);
 }
@@ -44,17 +50,17 @@ zaitsev::Shape* zaitsev::readParallelogram(std::istream& input)
   point_t vertices[3] = {};
   for (size_t i = 0; i < 3; ++i)
   {
-    vertices[i].x = readNextValue(input);
-    vertices[i].y = readNextValue(input);
+    vertices[i].x = readValue(input);
+    vertices[i].y = readValue(input);
   }
   return new Parallelogram(vertices);
 }
 
 void zaitsev::readScale(std::istream& input, point_t& center, double& factor)
 {
-  center.x = readNextValue(input);
-  center.y = readNextValue(input);
-  factor = readNextValue(input);
+  center.x = readValue(input);
+  center.y = readValue(input);
+  factor = readValue(input);
 }
 
 std::ostream& zaitsev::shapesOutput(std::ostream& output, const Shape* const* shapes, size_t size)
