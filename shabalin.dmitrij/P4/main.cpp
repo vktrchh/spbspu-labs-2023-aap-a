@@ -93,7 +93,7 @@ int main(int argc, char* argv[])
     if ((rows == 0 && cols == 0))
     {
         std::cerr << "Null matrix" << "\n";
-        output << cols << ' ' << rows;
+        output << cols*rows << '\n';
         return 0;
     }
 
