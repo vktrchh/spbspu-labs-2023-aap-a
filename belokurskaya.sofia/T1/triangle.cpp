@@ -1,4 +1,5 @@
 #include "triangle.hpp"
+#include "base-types.hpp"
 
 #include <stdexcept>
 #include <cmath>
