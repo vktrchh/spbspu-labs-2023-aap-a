@@ -8,9 +8,6 @@
 int main()
 {
   using namespace isaychev;
-  const char * scaleStr = "SCALE ";
-  char * currDesc = nullptr;
-  size_t i = 0, figuresCount = 0, figDescMistakeCheck = 0, eofCheck = 0;
   Shape ** figures = nullptr;
   try
   {
@@ -21,6 +18,9 @@ int main()
     std::cerr << "can't allocate memory for figure array\n";
     return 1;
   }
+  const char * scaleStr = "SCALE ";
+  char * currDesc = nullptr;
+  size_t i = 0, figuresCount = 0, figDescMistakeCheck = 0, eofCheck = 0;
   while (i < 1000)
   {
     try
@@ -80,17 +80,10 @@ int main()
     }
     catch (const std::invalid_argument & e)
     {
-      if (eofCheck > 0)
-      {
-        delete [] currDesc;
-        std::cerr << "input was finished with eof symbol; " << e.what() << "\n";
-        deleteFigures(figures, figuresCount);
-        return 5;
-      }
-      delete [] currDesc;
       std::cerr << e.what() << "\n";
+      delete [] currDesc;
       deleteFigures(figures, figuresCount);
-      return 6;
+      return 5;
     }
     outputResults(figures, figuresCount);
   }
