@@ -1,3 +1,4 @@
+#include <new>
 #include <stdexcept>
 #include "base-types.hpp"
 #include "inputAndOutputOperations.hpp"
@@ -36,10 +37,7 @@ char * arakelyan::inputString(std::istream &input)
 
   char * string = nullptr;
   string = new char[arrSize];
-  if (string == nullptr)
-  {
-    throw std::logic_error("Cannot allocate memory for string!");
-  }
+
 
   input >> std::noskipws;
   while (input >> sym)
@@ -54,27 +52,28 @@ char * arakelyan::inputString(std::istream &input)
     {
       arrSize *= 2;
 
-      char * tempBuffer = nullptr;
+      try 
+      {
+        char * tempBuffer = new char[arrSize];
 
-      tempBuffer = new char[arrSize];
-      if (tempBuffer == nullptr)
+        for (size_t j = 0; j < i; j++)
+        {
+          tempBuffer[j] = string[j];
+        }
+
+        delete [] string;
+
+        string = tempBuffer;
+      }
+      catch (const std::bad_alloc & e)
       {
         delete [] string;
-        throw std::bad_alloc();
+        throw;
       }
-
-      for (size_t j = 0; j < i; j++)
-      {
-        tempBuffer[j] = string[j];
-      }
-
-      delete [] string;
-
-      string = tempBuffer;
     }
 
-
     string[i] = sym;
+
     if (sym == '\n' && i == 0)
     {
       continue;
@@ -83,14 +82,17 @@ char * arakelyan::inputString(std::istream &input)
     {
       break;
     }
+
     i++;
   }
+
   string[i] = '\0';
   if (!input)
   {
     delete [] string;
     throw std::logic_error("Error input!");
   }
+
   input >> std::skipws;
   return string;
 }
