@@ -21,6 +21,8 @@ void matrixOutput(std::ofstream& output, const double* matrix, size_t rows, size
     {
         throw std::logic_error("Can't output the result");
     }
+    output << std::fixed;
+    output.precision(1);
     for (size_t i = 0; i < rows * cols; ++i)
     {
         if (!(output << ' ' << matrix[i]))
@@ -48,6 +50,34 @@ int findLargeSeriesOfEqualElements(int* matrix, size_t rows, size_t cols)
         }
     }
     return rowNumber;
+};
+
+double* makeUpSmoothMatrix(int* matrix, double* smooth, size_t rows, size_t cols)
+{
+    for (size_t i = 0; i < cols * rows - 1; ++i)
+    {
+        double sum = 0.0;
+        size_t count = 0;
+        for (int j = -1; j <= 1; ++j)
+        {
+            for (int d = -1; d <= 1; ++d)
+            {
+                if (!(j == 0 & d == 0))
+                {
+                    size_t currentRow = (i / cols) + j;
+                    size_t currentColumn = (i % cols) + d;
+                    if ((currentRow < rows) && (currentColumn < cols))
+                    {
+                        size_t newPosition = currentRow * i + currentColumn;
+                        sum += matrix[newPosition];
+                        count++;
+                    }
+                }
+            }
+        }
+        smooth[i] = sum / count;
+    }
+    return smooth;
 };
 
 int main(int argc, char* argv[])
@@ -99,33 +129,41 @@ int main(int argc, char* argv[])
     size_t countOfElements = rows * cols;
 
     int tempMatrix[10000] = {};
+    double tempSmoothedMatrix[10000] = {};
 
     int* matrix = nullptr;
+    double* smoothedMatrix = nullptr;
 
     if (task == 2)
     {
         try
         {
             matrix = new int[countOfElements];
+            smoothedMatrix = new double[countOfElements];
         }
         catch (const std::bad_alloc& e)
         {
             delete[] matrix;
+            delete[] smoothedMatrix;
         }
         try
         {
             matrixInput(input, matrix, countOfElements);
-            output << findLargeSeriesOfEqualElements(matrix, rows, cols) << ' ';
+            output << findLargeSeriesOfEqualElements(matrix, rows, cols) << '\n';
             if (!output)
             {
                 throw std::logic_error("Error of output");
             }
+            smoothedMatrix = makeUpSmoothMatrix(matrix, smoothedMatrix, rows, cols);
+            matrixOutput(output, smoothedMatrix, rows, cols);
             delete[] matrix;
+            delete[] smoothedMatrix;
         }
         catch (const std::exception& e)
         {
             std::cerr << e.what() << '\n';
             delete[] matrix;
+            delete[] smoothedMatrix;
             return 1;
         }
     }
@@ -134,11 +172,13 @@ int main(int argc, char* argv[])
         try
         {
             matrixInput(input, tempMatrix, countOfElements);
-            output << findLargeSeriesOfEqualElements(tempMatrix, rows, cols) << ' ';
+            output << findLargeSeriesOfEqualElements(tempMatrix, rows, cols) << '\n';
             if (!output)
             {
                 throw std::logic_error("Error of output");
             }
+            smoothedMatrix = makeUpSmoothMatrix(tempMatrix, tempSmoothedMatrix, rows, cols);
+            matrixOutput(output, tempSmoothedMatrix, rows, cols);
         }
         catch (const std::exception& e)
         {
