@@ -3,7 +3,6 @@
 #include <cstdlib>
 #include <fstream>
 #include <stdexcept>
-#include "createMatrix.hpp"
 #include "islowertriangular.hpp"
 #include "fillMatrix.hpp"
 
@@ -55,22 +54,27 @@ int main(int argc, char **argv)
   }
 
   int *matrix = nullptr;
-  bool isLowerTriangular = false;
+  bool is_lower_triangular = false;
 
   try
   {
     if (arr_type == 1)
     {
-      int static_matrix[10000] = {};
-      matrix = static_matrix;
+      int fixed_matrix[10000] = {};
+      matrix = fixed_matrix;
       petuhov::fillMatrix(matrix, rows, cols, inputFile);
-      isLowerTriangular = petuhov::isLowerTriangular(matrix, rows, cols);
+      is_lower_triangular = petuhov::isLowerTriangular(matrix, rows, cols);
     }
     else if (arr_type == 2)
     {
-      matrix = petuhov::createMatrix(rows, cols);
+      if (rows == 0 || cols == 0)
+      {
+        throw std::invalid_argument("Invalid matrix dimensions: rows or columns is zero");
+      }
+
+      int * matrix = new int[rows * cols];
       petuhov::fillMatrix(matrix, rows, cols, inputFile);
-      isLowerTriangular = petuhov::isLowerTriangular(matrix, rows, cols);
+      is_lower_triangular = petuhov::isLowerTriangular(matrix, rows, cols);
       delete[] matrix;
     }
   }
@@ -90,6 +94,6 @@ int main(int argc, char **argv)
     std::cerr << "Cannot write output\n";
     return 5;
   }
-  outputFile << isLowerTriangular << "\n";
+  outputFile << is_lower_triangular << "\n";
   return 0;
 }
