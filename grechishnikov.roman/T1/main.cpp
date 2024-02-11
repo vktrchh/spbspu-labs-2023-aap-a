@@ -31,6 +31,7 @@ int main()
       {
         endOfInput = true;
         scaleHappened = false;
+        continue;
       }
       delete[] str;
       str = tempStr;
@@ -99,6 +100,7 @@ int main()
   {
     freeShapes(shapes, count);
     std::cerr << "Scale was not inputted" << '\n';
+    return 3;
   }
   if (!checkEnteredShapes(shapes, count))
   {
