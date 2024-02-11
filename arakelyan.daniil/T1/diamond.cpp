@@ -20,7 +20,7 @@ double arakelyan::Diamond::getArea() const
   return std::abs(((p1_.y - p3_.y) * (p2_.x - p4_.x)) / 2.0);
 }
 
-arakelyan::rectangle_t arakelyan::Diamond::getFrameRect()
+arakelyan::rectangle_t arakelyan::Diamond::getFrameRect() const
 {
   double width = std::abs(p2_.x - midPoint_.x) * 2.0;
   double height = std::abs(p1_.y - midPoint_.y) * 2.0;

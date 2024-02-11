@@ -9,7 +9,7 @@ namespace arakelyan
   public:
     Rectangle(point_t fp,point_t sp);
     virtual double getArea() const;
-    virtual rectangle_t getFrameRect();
+    virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t point);
     virtual void move(const double delX, const double delY);
     virtual void scale(const double k);

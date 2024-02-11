@@ -108,7 +108,7 @@ int main()
 
   if (errorsFlagShapes)
   {
-    std::cerr << "Something went wrong witch shapes creation!\n";
+    std::cerr << "Something went wrong with shapes creation!\n";
   }
   if (errorsFlagScale)
   {
