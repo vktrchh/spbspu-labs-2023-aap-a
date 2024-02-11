@@ -330,6 +330,7 @@ int main()
   double area_after = 0;
   rectangle_t array[1000] = {};
   size_t counter = 0;
+  int error_flag = 0;
 
   while (counter != 1000)
   {
@@ -338,6 +339,13 @@ int main()
     std::cout << "Test: name: " << name << "  array: - " << "  counter: " << counter << '\n';
     if (name == "SCALE")
     {
+      double center_x = 0.0, center_y = 0.0, index = 0.0;
+      std::cin >> center_x >> center_y >> index;
+      if (index <= 0.0)
+      {
+        std::cerr << "Incorrect scale index\n";
+        return 1;
+      }
       break;
     }
     if (!std::cin)
@@ -345,42 +353,74 @@ int main()
       std::cerr << "No SCALE command entered\n";
       return 1;
     }
+
     if (name == "RECTANGLE")
     {
-      double low_left_x = 0, low_left_y = 0, up_right_x = 0, up_right_y = 0;
+      double low_left_x = 0.0, low_left_y = 0.0, up_right_x = 0.0, up_right_y = 0.0;
       std::cin >> low_left_x >> low_left_y >> up_right_x >> up_right_y;
-      std::cout << "Test rect: " << low_left_x << ' ' << low_left_y << ' ' << up_right_x << ' ' << up_right_y;
-      Rectangle *first = new Rectangle({ low_left_x, low_left_y }, { up_right_x, up_right_y });
+      if ((low_left_x == up_right_x) && (low_left_y == up_right_y))
+      {
+        error_flag = 1;
+        std::cout << "RECT ERROR\n";
+      }
+      else
+      {
+        std::cout << "Test rect: " << low_left_x << ' ' << low_left_y << ' ' << up_right_x << ' ' << up_right_y;
+        Rectangle *first = new Rectangle({ low_left_x, low_left_y }, { up_right_x, up_right_y });
+      }
     }
+
     if (name == "SQUARE")
     {
-      double low_left_x = 0, low_left_y = 0, side = 0;
+      double low_left_x = 0.0, low_left_y = 0.0, side = 0.0;
       std::cin >> low_left_x >> low_left_y >> side;
-      std::cout << "Test square: " << low_left_x << ' ' << low_left_y << ' ' << side;
+      if (side <= 0.0)
+      {
+        error_flag = 1;
+        std::cout << "SQUARE ERROR\n";
+      }
+      else
+      {
+        std::cout << "Test square: " << low_left_x << ' ' << low_left_y << ' ' << side;
+      }
     }
+
     if (name == "TRIANGLE")
     {
-      double point1_x = 0, point1_y = 0, point2_x = 0, point2_y = 0, point3_x = 0, point3_y = 0;
+      double point1_x = 0.0, point1_y = 0.0, point2_x = 0.0, point2_y = 0.0, point3_x = 0.0, point3_y = 0.0;
       std::cin >> point1_x >> point1_y >> point2_x >> point2_y >> point3_x >> point3_y;
-      std::cout << "Test tri: " <<  point1_x << ' ' << point1_y << ' ' << point2_x << ' ' << point2_y << ' ' << point3_x << ' ' << point3_y;
+      if (((point1_x == point2_x) && (point1_y == point2_y)) || ((point2_x == point3_x) && (point2_y == point3_y)) || ((point3_x == point1_x) && (point3_y == point1_y)))
+      {
+        error_flag = 1;
+        std::cout << "TRI ERROR\n";
+      }
+      else
+      {
+        std::cout << "Test tri: " <<  point1_x << ' ' << point1_y << ' ' << point2_x << ' ' << point2_y << ' ' << point3_x << ' ' << point3_y;
+      }
     }
+
     if (name == "DIAMOND")
     {
-      double point1_x = 0, point1_y = 0, point2_x = 0, point2_y = 0, point3_x = 0, point3_y = 0;
+      double point1_x = 0.0, point1_y = 0.0, point2_x = 0.0, point2_y = 0.0, point3_x = 0.0, point3_y = 0.0;
       std::cin >> point1_x >> point1_y >> point2_x >> point2_y >> point3_x >> point3_y;
       std::cout << "Test diamond: " <<  point1_x << ' ' << point1_y << ' ' << point2_x << ' ' << point2_y << ' ' << point3_x << ' ' << point3_y;
 
-      if (((point1_x != point2_x) || (point1_y != point2_y)) && ((point2_x != point3_x) || (point2_y != point3_y)) && ((point3_x != point1_x) || (point3_y != point1_y)))
+      if (((point1_x == point2_x) && (point1_y == point2_y)) || ((point2_x == point3_x) && (point2_y == point3_y)) || ((point3_x == point1_x) && (point3_y == point1_y)))
       {
-        std::cout << "No same points\n";
+        error_flag = 1;
+        std::cout << "DIAM ERROR\n";
+      }
+      else
+      {
         point_t point1 = {0.0, 0.0};
         point_t point2 = {0.0, 0.0};
         point_t point3 = {0.0, 0.0};
         point_t central_point = {0.0, 0.0};
         point_t side_point_x = {0.0, 0.0};
         point_t side_point_y = {0.0, 0.0};
-
         int flag = 0;
+
         for (size_t i = 1; i < 4; ++i)
         {
           if (i == 1)
@@ -411,18 +451,14 @@ int main()
         }
         if (flag == 0)
         {
-          std::cout << "Wrong parameters\n";
+          error_flag = 1;
+          std::cout << "Wrong parameters in diamond\n";
         }
         std::cout << "TEST CHECK DIAM:\n";
         std::cout << "Centr: x = " << central_point.x_  << "  y = " << central_point.y_ << '\n';
         std::cout << "SIDE_X: x = " << side_point_x.x_  << "  y = " << side_point_x.y_ << '\n';
         std::cout << "SIDE_Y: x = " << side_point_y.x_  << "  y = " << side_point_y.y_ << '\n';
       }
-      else
-      {
-        std::cout << "There are indentical points\n";
-      }
-
     }
 
     counter += 1;
