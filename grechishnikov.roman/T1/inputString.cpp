@@ -3,7 +3,7 @@
 
 char* reallocate(const char* str, size_t lenF, size_t lenS);
 
-const char* grechishnikov::inputString(std::istream& in)
+char* grechishnikov::inputString(std::istream& in)
 {
   size_t len = 10;
   char* curStr = new char[len];
