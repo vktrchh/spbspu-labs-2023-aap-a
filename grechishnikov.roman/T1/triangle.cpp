@@ -39,16 +39,15 @@ grechishnikov::rectangle_t grechishnikov::Triangle::getFrameRect() const
   double max_y = max(a_.y, b_.y, c_.y);
   double min_x = min(a_.x, b_.x, c_.x);
   double min_y = min(a_.y, b_.y, c_.y);
-
   double width = max_x - min_x;
   double height = max_y - min_y;
-  point_t pos = { min_x + width / 2, min_y + height / 2 };
+  point_t pos = { min_x + width / 2.0, min_y + height / 2.0 };
   return { width, height, pos };
 }
 
 void grechishnikov::Triangle::move(const point_t& pos)
 {
-  point_t aPos = { (a_.x + b_.x + c_.x) / 3, (a_.y + b_.y + c_.y) / 3 };
+  point_t aPos = { (a_.x + b_.x + c_.x) / 3.0, (a_.y + b_.y + c_.y) / 3.0 };
   move(pos.x - aPos.x, pos.y - aPos.y);
 }
 
@@ -64,7 +63,7 @@ void grechishnikov::Triangle::move(double dx, double dy)
 
 void grechishnikov::Triangle::scale(double rate)
 {
-  point_t aPos = { (a_.x + b_.x + c_.x) / 3, (a_.y + b_.y + c_.y) / 3 };
+  point_t aPos = { (a_.x + b_.x + c_.x) / 3.0, (a_.y + b_.y + c_.y) / 3.0 };
   a_.x = aPos.x + (a_.x - aPos.x) * rate;
   a_.y = aPos.y + (a_.y - aPos.y) * rate;
   b_.x = aPos.x + (b_.x - aPos.x) * rate;
