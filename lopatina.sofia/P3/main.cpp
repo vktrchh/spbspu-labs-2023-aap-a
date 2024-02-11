@@ -56,7 +56,6 @@ int main()
     result1 = new char[amount]{};
     const char * string1 = "abc";
     const size_t size1 = defineLen(string1);
-    //result1 =
     excludeCommon(input, string1, amount, size1, result1);
     std::cout << "EXC-SND: " << result1 << '\n';
     delete [] result1;
@@ -74,12 +73,11 @@ int main()
   {
     const char * string2 = "g1h2k";
     const size_t size2 = defineLen(string2);
-    result2 = addNumbers(input, string2, amount, size2);
+    size_t num_dig = countNumbers(string2);
+    result2 = new char[amount + num_dig]{};
+    addNumbers(input, string2, amount, size2, result2);
     std::cout << "DGT-SND: " << result2 << '\n';
-    if (result2 != input)
-    {
-      delete [] result2;
-    }
+    delete [] result2;
   }
   catch(const std::exception & e)
   {

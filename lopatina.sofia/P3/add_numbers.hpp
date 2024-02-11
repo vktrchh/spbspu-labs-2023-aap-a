@@ -4,7 +4,8 @@
 #include <iostream>
 namespace lopatina
 {
-  char * addNumbers(char * first_str, const char * second_str, size_t size1, size_t size2);
+  size_t countNumbers(const char * str);
+  void addNumbers(char * first_str, const char * second_str, size_t size1, size_t size2, char * result);
 }
 
 #endif
