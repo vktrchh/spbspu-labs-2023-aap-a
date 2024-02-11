@@ -8,6 +8,10 @@
 
 grechishnikov::Shape* grechishnikov::inputShape(const char* str)
 {
+  if (str == nullptr)
+  {
+    return nullptr;
+  }
   const size_t legalNameCount = 3;
   const char* legalName[] = { "RECTANGLE\0", "TRIANGLE\0", "POLYGON\0" };
   Shape* (*correspondingFunctions[])(const grechishnikov::point_t* points, size_t size) = {
@@ -30,7 +34,7 @@ grechishnikov::Shape* grechishnikov::inputShape(const char* str)
         size_t pos = 0;
         for (size_t i = 0; str[i] != ' '; i++)
         {
-        pos++;
+          pos++;
         }
         values = grechishnikov::parseValues(str + pos, size);
         points = grechishnikov::makePairs(values, size);
@@ -101,6 +105,10 @@ void grechishnikov::freeShapes(Shape* const* shapes, size_t size)
 
 const char* grechishnikov::parseName(const char* str)
 {
+  if (str == nullptr)
+  {
+    return nullptr;
+  }
   char* name = new char [20] { '0' };
   size_t i = 0;
   for (i = 0; str[i] != ' ' && str[i] != '\0'; i++)
@@ -121,6 +129,10 @@ const char* grechishnikov::parseName(const char* str)
 
 bool grechishnikov::isEqualStr(const char* fStr, const char* sStr)
 {
+  if (fStr == nullptr || sStr == nullptr)
+  {
+    return false;
+  }
   bool check = 1;
   size_t i = 0;
   for (i = 0; fStr[i] != '\0' && sStr[i] != '\0'; i++)
