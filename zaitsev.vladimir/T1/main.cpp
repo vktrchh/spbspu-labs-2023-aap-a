@@ -81,7 +81,7 @@ int main()
           std::getline(std::cin, shape_type);
         }
       }
-      catch (const std::exception&)
+      catch (const std::invalid_argument&)
       {
         wrong_args = true;
       }
