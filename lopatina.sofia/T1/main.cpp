@@ -260,13 +260,6 @@ int main()
 {
 //-----------
   std::cout << "TEST:\n";
-  Shape *first = new Rectangle({ 1.0, 1.0 }, { 3.0, 4.0 });
-  std::cout << first->getArea() << '\n';
-  first->move({ 3.0, 5.0 });
-  std::cout << first->getFrameRect().pos_.x_ << '\n';
-  first->move(2.0, 1.0);
-  std::cout << first->getFrameRect().pos_.x_ << '\n';
-
   std::cout << "TEST_2:\n";
   Shape *second = new Rectangle({ -1.0, -1.0 }, { 1.0, 1.0 });
   std::cout << "Area: " << second->getArea() << '\n';
@@ -328,7 +321,8 @@ int main()
 //-----------
   double area_before = 0;
   double area_after = 0;
-  rectangle_t array[1000] = {};
+  Shape * array[1000] = {};
+  double elements[6] = {0.0};
   size_t counter = 0;
   int error_flag = 0;
 
@@ -341,6 +335,11 @@ int main()
     {
       double center_x = 0.0, center_y = 0.0, index = 0.0;
       std::cin >> center_x >> center_y >> index;
+//-----test
+      std::cout << array[0]->getArea() << '\n';
+      array[0]->scale({center_x, center_y}, index);
+      std::cout << array[0]->getArea() << '\n';
+//----
       if (index <= 0.0)
       {
         std::cerr << "Incorrect scale index\n";
@@ -358,15 +357,35 @@ int main()
     {
       double low_left_x = 0.0, low_left_y = 0.0, up_right_x = 0.0, up_right_y = 0.0;
       std::cin >> low_left_x >> low_left_y >> up_right_x >> up_right_y;
-      if ((low_left_x == up_right_x) && (low_left_y == up_right_y))
+      if ((low_left_x == up_right_x) || (low_left_y == up_right_y))
+      {
+        error_flag = 1;
+        std::cout << "RECT ERROR\n";
+      }
+      else if (((low_left_x > up_right_x) && (low_left_y < up_right_y)) || ((low_left_y > up_right_y) && (low_left_x < up_right_x)))
       {
         error_flag = 1;
         std::cout << "RECT ERROR\n";
       }
       else
       {
-        std::cout << "Test rect: " << low_left_x << ' ' << low_left_y << ' ' << up_right_x << ' ' << up_right_y;
-        Rectangle *first = new Rectangle({ low_left_x, low_left_y }, { up_right_x, up_right_y });
+         std::cout << "Test rect before: " << low_left_x << ' ' << low_left_y << ' ' << up_right_x << ' ' << up_right_y << '\n';
+        if (low_left_x > up_right_x)
+        {
+          double x1 = low_left_x, x2 = up_right_x;
+          low_left_x = x2;
+          up_right_x = x1;
+        }
+        if (low_left_y > up_right_y)
+        {
+          double y1 = low_left_y, y2 = up_right_y;
+          low_left_y = y2;
+          up_right_y = y1;
+        }
+        std::cout << "Test rect after: " << low_left_x << ' ' << low_left_y << ' ' << up_right_x << ' ' << up_right_y << '\n';
+        array[counter++] = new Rectangle({ low_left_x, low_left_y }, { up_right_x, up_right_y });
+//        std::cout << "RECT TEST: " << first->getArea() << '\n';
+//        std::cout << first->getFrameRect().height_ << '\n';
       }
     }
 
