@@ -33,7 +33,7 @@ double belokurskaya::Triangle::getArea() const
   return std::sqrt(s * (s - a) * (s - b) * (s - c));
 }
 
-rectangle_t belokurskaya::Triangle::getFrameRect() const
+belokurskaya::rectangle_t belokurskaya::Triangle::getFrameRect() const
 {
   double min_x = std::min({vertex1_.x, vertex2_.x, vertex3_.x});
   double max_x = std::max({vertex1_.x, vertex2_.x, vertex3_.x});
