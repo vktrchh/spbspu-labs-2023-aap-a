@@ -62,11 +62,14 @@ grechishnikov::Shape* grechishnikov::inputRectangle(const grechishnikov::point_t
   {
     return nullptr;
   }
-  if (rCorner.x <= lCorner.x || rCorner.y <= lCorner.y)
+  try
+  {
+    return new grechishnikov::Rectangle(points[0], points[1]);
+  }
+  catch (const std::invalid_argument& e)
   {
     return nullptr;
   }
-  return new grechishnikov::Rectangle(points[0], points[1]);
 }
 
 grechishnikov::Shape* grechishnikov::inputTriangle(const grechishnikov::point_t* points, size_t size)
@@ -75,12 +78,14 @@ grechishnikov::Shape* grechishnikov::inputTriangle(const grechishnikov::point_t*
   {
     return nullptr;
   }
-  double sq = ((b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y)) / 2;
-  if (sq == 0)
+  try
+  {
+    return new grechishnikov::Triangle(points[0], points[1], points[2]);
+  }
+  catch (const std::invalid_argument& e)
   {
     return nullptr;
   }
-  return new grechishnikov::Triangle(points[0], points[1], points[2]);
 }
 
 grechishnikov::Shape* grechishnikov::inputPolygon(const grechishnikov::point_t* points, size_t size)
@@ -89,7 +94,14 @@ grechishnikov::Shape* grechishnikov::inputPolygon(const grechishnikov::point_t* 
   {
     return nullptr;
   }
-  return new grechishnikov::Polygon(points, size);
+  try
+  {
+    return new grechishnikov::Polygon(points, size);
+  }
+  catch (const std::invalid_argument& e)
+  {
+    return nullptr;
+  }
 }
 
 void grechishnikov::freeShapes(Shape* const* shapes, size_t size)
