@@ -52,7 +52,7 @@ char * arakelyan::inputString(std::istream &input)
     {
       arrSize *= 2;
 
-      try 
+      try
       {
         char * tempBuffer = new char[arrSize];
 
@@ -65,7 +65,7 @@ char * arakelyan::inputString(std::istream &input)
 
         string = tempBuffer;
       }
-      catch (const std::bad_alloc & e)
+      catch (const std::bad_alloc &e)
       {
         delete [] string;
         throw;
