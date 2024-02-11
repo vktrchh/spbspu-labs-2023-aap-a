@@ -30,36 +30,6 @@ void matrixOutput(std::ofstream& output, const double* matrix, size_t rows, size
     }
 };
 
-double* makeUpSmoothMatrix(int* matrix, double* smooth, size_t rows, size_t cols)
-{
-    for (size_t i = 0; i < cols * rows; ++i)
-    {
-        double sum = 0.0;
-        size_t count = 0;
-        size_t row = i / cols;
-        size_t col = i % cols;
-        for (int j = -1; j <= 1; ++j)
-        {
-            for (int k = -1; k <= 1; ++k)
-            {
-                if (!(j == 0 && k == 0))
-                {
-                    size_t newRow = row + j;
-                    size_t newCol = col + k;
-                    if ((newRow < rows) && (newCol < cols))
-                    {
-                        size_t index = newRow * cols + newCol;
-                        sum += matrix[index];
-                        count++;
-                    }
-                }
-            }
-        }
-        smooth[i] = sum / count;
-    }
-    return smooth;
-};
-
 size_t findLargeSeriesOfEqualElements(int* matrix, size_t rows, size_t cols)
 {
     size_t numberSeries = 1;
@@ -129,22 +99,18 @@ int main(int argc, char* argv[])
     size_t countOfElements = rows * cols;
 
     int tempMatrix[10000] = {};
-    double tempSmoothedMatrix[10000] = {};
 
     int* matrix = nullptr;
-    double* smoothedMatrix = nullptr;
 
     if (task == 2)
     {
         try
         {
             matrix = new int[countOfElements];
-            smoothedMatrix = new double[countOfElements];
         }
         catch (const std::bad_alloc& e)
         {
             delete[] matrix;
-            delete[] smoothedMatrix;
         }
         try
         {
@@ -154,16 +120,12 @@ int main(int argc, char* argv[])
             {
                 throw std::logic_error("Error of output");
             }
-            //smoothedMatrix = makeUpSmoothMatrix(matrix, smoothedMatrix, rows, cols);
-            //matrixOutput(output, smoothedMatrix, rows, cols);
-            //delete[] matrix;
-            //delete[] smoothedMatrix;
+            delete[] matrix;
         }
         catch (const std::exception& e)
         {
             std::cerr << e.what() << '\n';
             delete[] matrix;
-            delete[] smoothedMatrix;
             return 1;
         }
     }
@@ -177,8 +139,6 @@ int main(int argc, char* argv[])
             {
                 throw std::logic_error("Error of output");
             }
-            //smoothedMatrix = makeUpSmoothMatrix(tempMatrix, tempSmoothedMatrix, rows, cols);
-            //matrixOutput(output, tempSmoothedMatrix, rows, cols);
         }
         catch (const std::exception& e)
         {
