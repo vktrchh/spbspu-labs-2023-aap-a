@@ -13,7 +13,7 @@ char* chernov::removeVowels(char* input, char* stringWithVowelsRemoved, size_t s
       if (input[i] == vowels[k])
       {
         flag = true;
-	break;
+        break;
       }
     }
     if (flag == false)
