@@ -86,7 +86,7 @@ void belokurskaya::Triangle::scale(double factor)
   vertex3_.y = centroid.y + (vertex3_.y - centroid.y) * factor;
 }
 
-point_t belokurskaya::Triangle::calculateCentroid() const
+belokurskaya::point_t belokurskaya::Triangle::calculateCentroid() const
 {
   double centroid_x = (vertex1_.x + vertex2_.x + vertex3_.x) / 3.0;
   double centroid_y = (vertex1_.y + vertex2_.y + vertex3_.y) / 3.0;
