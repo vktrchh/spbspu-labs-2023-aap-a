@@ -5,8 +5,7 @@
 
 namespace grechishnikov
 {
-  char* inputStr(std::istream& in, size_t& size);
-  char* reallocate(char* str, size_t lenF, size_t lenS);
+  char* inputStr(std::istream& in);
 }
 
 #endif

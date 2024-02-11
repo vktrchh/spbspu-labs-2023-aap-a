@@ -2,17 +2,22 @@
 #include <cstddef>
 #include <exception>
 #include "inputStr.hpp"
-#include "countUnic.hpp"
+#include "countUnique.hpp"
 
 int main()
 {
   using namespace grechishnikov;
 
   char* str = nullptr;
-  size_t size = 0;
   try
   {
-    str = inputStr(std::cin, size);
+    str = inputStr(std::cin);
+  }
+  catch (const std::bad_alloc &e)
+  {
+    delete[] str;
+    std::cerr << "Cannot allocate enough\n";
+    return 1;
   }
   catch (const std::logic_error &e)
   {
@@ -20,6 +25,6 @@ int main()
     std::cerr << e.what() << "\n";
     return 1;
   }
-  std::cout << countUnic(str, size) << "\n";
+  std::cout << countUnique(str) << "\n";
   delete[] str;
 }
