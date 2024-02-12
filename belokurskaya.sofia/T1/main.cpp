@@ -20,6 +20,10 @@ int main()
     std::string input;
     while (std::getline(std::cin, input))
     {
+      if (input.empty())
+      {
+        continue;
+      }
       std::istringstream inputStream(input);
       std::string command;
       inputStream >> command;
