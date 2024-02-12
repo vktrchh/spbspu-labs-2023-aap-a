@@ -3,9 +3,9 @@
 #include "isoScale.hpp"
 #include "shapesArrayOperations.hpp"
 #include "outputOperations.hpp"
-#include "inputOperations.hpp"
 #include "diamond.hpp"
 #include <iostream>
+#include <inputOperations.hpp>
 
 int main()
 {
