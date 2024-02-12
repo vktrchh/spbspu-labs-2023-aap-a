@@ -56,6 +56,7 @@ int main()
       double scale_point_x, scale_point_y, scale_factor;
       inputStream >> scale_point_x >> scale_point_y >> scale_factor;
 
+      std::cout << std::fixed << std::setprecision(1);
       std::cout << total_area_before_scaling << " ";
 
       for (int i = 0; i < shape_count; ++i)

@@ -39,7 +39,11 @@ void belokurskaya::Rectangle::scale(double factor)
   {
     throw std::invalid_argument("Invalid scaling factor");
   }
+  point_t old_center = pos_;
 
   width_ *= factor;
   height_ *= factor;
+
+  pos_.x = old_center.x - (old_center.x - pos_.x) * factor;
+  pos_.y = old_center.y - (old_center.y - pos_.y) * factor;
 }

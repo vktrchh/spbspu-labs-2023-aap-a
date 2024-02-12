@@ -69,7 +69,8 @@ void belokurskaya::Concave::move(double dx, double dy)
 
 void belokurskaya::Concave::scale(double factor)
 {
-  point_t center{(vertex1_.x + vertex2_.x + vertex3_.x + vertex4_.x) / 4.0, (vertex1_.y + vertex2_.y + vertex3_.y + vertex4_.y) / 4.0};
+  point_t center{(vertex1_.x + vertex2_.x + vertex3_.x + vertex4_.x) / 4.0,
+  (vertex1_.y + vertex2_.y + vertex3_.y + vertex4_.y) / 4.0};
 
   vertex1_.x = center.x + (vertex1_.x - center.x) * factor;
   vertex1_.y = center.y + (vertex1_.y - center.y) * factor;
