@@ -105,6 +105,7 @@ void arakelyan::shapeOutput(std::ostream &output, arakelyan::Shape **shapes, con
   {
     totalArea += shapes[i]->getArea();
   }
+  output << totalArea;
   for (size_t i = 0; i < shapesCount; i++)
   {
     rectangle_t rectCurrShape = shapes[i]->getFrameRect();
@@ -112,7 +113,7 @@ void arakelyan::shapeOutput(std::ostream &output, arakelyan::Shape **shapes, con
     double leftDownY = rectCurrShape.pos.y - (rectCurrShape.height / 2.0);
     double rigtUpX = rectCurrShape.pos.x + (rectCurrShape.width / 2.0);
     double rightUpY = rectCurrShape.pos.y + (rectCurrShape.height / 2.0);
-    output << "\n" << totalArea << " " << leftDownX << " " << leftDownY << " " << rigtUpX << " " << rightUpY << "\n";
+    output << " " << leftDownX << " " << leftDownY << " " << rigtUpX << " " << rightUpY;
   }
   output << "\n";
 }
