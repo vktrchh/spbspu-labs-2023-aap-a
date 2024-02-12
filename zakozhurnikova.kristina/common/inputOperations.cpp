@@ -17,9 +17,8 @@ char* extendBuffer(const char* string, size_t newSize)
   return result;
 }
 
-char* zakozhurnikova::readString(std::istream& input)
+char* zakozhurnikova::readString(std::istream& input, size_t& stringSize)
 {
-  size_t stringSize = 20;
   size_t bufferSize = 20;
   char c = '\0';
   size_t counter = 0;

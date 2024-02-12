@@ -1,74 +1,21 @@
 #include <iostream>
-#include "removeSpaces.h"
+#include <inputOperations.hpp>
 
 int main()
 {
   size_t size = 20;
   char *buff = nullptr;
   char *string = nullptr;
-  char c = '\0';
-  size_t counter = 0;
   try
   {
-    buff = new char[size]{'\0'};
+    string = zakozhurnikova::readString(std::cin, size);
+    buff = new char[size]{0};
   }
-  catch (const std::exception &e)
+  catch (const std::exception & e)
   {
-    std::cerr << e.what() << '\n';
-    return 1;
-  }
-
-  while (std::cin.get(c))
-  {
-    if (counter == size - 1)
-    {
-      try
-      {
-        string = new char[size]{'\0'};
-      }
-      catch (const std::exception &e)
-      {
-        std::cerr << e.what() << '\n';
-        delete[] buff;
-        buff = nullptr;
-        return 1;
-      }
-      for (size_t i = 0; i < size; i++)
-      {
-        string[i] = buff[i];
-      }
-
-      size *= 2;
-      delete[] buff;
-      buff = nullptr;
-      try
-      {
-        buff = new char[size]{'\0'};
-      }
-      catch (const std::exception &e)
-      {
-        std::cerr << e.what() << '\n';
-        delete[] string;
-        string = nullptr;
-      }
-      for (size_t i = 0; i < size / 2; i++)
-      {
-        buff[i] = string[i];
-      }
-      delete[] string;
-      string = nullptr;
-    }
-    buff[counter] = c;
-    counter++;
-    if (c == '\n')
-    {
-      break;
-    }
-  }
-  if (buff[0] == '\n' || !buff[0])
-  {
-    std::cerr << "Empty string\n";
+    delete[] string;
     delete[] buff;
+    std::cerr << "Error: " << e.what() << '\n';
     return 1;
   }
   char *tmp = nullptr;

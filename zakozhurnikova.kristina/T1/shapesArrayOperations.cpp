@@ -138,7 +138,8 @@ void zakozhurnikova::inputShapesArray(std::istream& in, Shape** shapes, size_t& 
   {
     try
     {
-      string = zakozhurnikova::readString(in);
+      size_t stringSize = 20;
+      string = zakozhurnikova::readString(in, stringSize);
       if (string && strncmp(string, "SCALE", 5) == 0)
       {
         readScale(string, scalePoint, k);

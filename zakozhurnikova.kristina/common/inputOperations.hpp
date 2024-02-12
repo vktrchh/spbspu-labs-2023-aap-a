@@ -4,6 +4,6 @@
 
 namespace zakozhurnikova
 {
-  char* readString(std::istream& input);
+  char* readString(std::istream& input, size_t& stringSize);
 }
 #endif
