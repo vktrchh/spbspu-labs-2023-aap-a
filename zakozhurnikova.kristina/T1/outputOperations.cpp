@@ -28,7 +28,7 @@ void zakozhurnikova::printShapes(std::ostream& output, const Shape* const* shape
   output << std::fixed;
   output.precision(1);
 
-  output << getFullArea(shapes, size) << ' ';
+  output << getFullArea(shapes, size);
   for (size_t i = 0; i < size; ++i)
   {
     output << ' ';

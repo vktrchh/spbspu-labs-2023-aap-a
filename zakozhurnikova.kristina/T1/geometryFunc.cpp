@@ -106,7 +106,7 @@ void zakozhurnikova::initPoints(point_t* points, const point_t& pointOne, const 
   double sqrA = std::pow(getDistance(pointOne, pointTwo), 2.0);
   double sqrB = std::pow(getDistance(pointOne, pointThree), 2.0);
   double sqrC = std::pow(getDistance(pointTwo, pointThree), 2.0);
-  if(std::abs(sqrA - sqrB - sqrC) <= EPSILON)
+  if (std::abs(sqrA - sqrB - sqrC) <= EPSILON)
   {
     points[0] = pointThree;
     points[1] = pointTwo;
