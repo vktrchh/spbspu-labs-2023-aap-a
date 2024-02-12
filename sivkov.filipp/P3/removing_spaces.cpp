@@ -1,45 +1,41 @@
 #include "removing_spaces.hpp"
 #include <cctype>
+#include <string>
 
-char* sivkov::deleteSpace(char* string)
+void sivkov::deleteSpace(char* string)
 {
   if (string == nullptr)
   {
-    return nullptr;
+    return;
   }
 
-  size_t length = 0;
-  while (string[length] != '\0')
+  size_t writeIndex = 0;
+
+
+  size_t readIndex = 0;
+  while (std::isspace(string[readIndex]))
   {
-    ++length;
+    ++readIndex;
   }
 
-  size_t startIndex = 0;
-  while (std::isspace(string[startIndex]))
+  bool previousWasSpace = false;
+  while (string[readIndex] != '\0')
   {
-    ++startIndex;
-  }
-
-  size_t newLength = length - startIndex;
-
-  char* arrayWithOutSpace = new char[newLength + 1];
-  size_t indexArr = 0;
-
-  for (size_t j = startIndex; j < length; ++j)
-  {
-    if (std::isspace(string[j]))
+    if (!std::isspace(string[readIndex]))
     {
-      if (indexArr == 0 || arrayWithOutSpace[indexArr - 1] != ' ')
-      {
-        arrayWithOutSpace[indexArr++] = ' ';
-      }
+      string[writeIndex] = string[readIndex];
+      ++writeIndex;
+      previousWasSpace = false;
     }
-    else
+    else if (!previousWasSpace)
     {
-      arrayWithOutSpace[indexArr++] = string[j];
+      string[writeIndex] = ' ';
+      ++writeIndex;
+      previousWasSpace = true;
     }
+    ++readIndex;
   }
 
-  arrayWithOutSpace[indexArr] = '\0';
-  return arrayWithOutSpace;
+  string[writeIndex] = '\0';
 }
+
