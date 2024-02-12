@@ -73,8 +73,8 @@ int main()
       {
         try
         {
-          double dx = (shapes[i]->getFrameRect().pos.x - scale_point_x) * scale_factor;
-          double dy = (shapes[i]->getFrameRect().pos.y - scale_point_y) * scale_factor;
+          double dx = (shapes[i]->getFrameRect().pos.x - scale_point_x) * (scale_factor - 1.0);
+          double dy = (shapes[i]->getFrameRect().pos.y - scale_point_y) * (scale_factor - 1.0);
           shapes[i]->move({ scale_point_x, scale_point_y});
           shapes[i]->scale(scale_factor);
           shapes[i]->move({ -dx, -dy });
