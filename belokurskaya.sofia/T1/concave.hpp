@@ -23,7 +23,7 @@ namespace belokurskaya
 
       bool isTriangle(const point_t & p1, const point_t & p2, const point_t & p3) const;
       bool isInsideTriangle(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4) const;
-      static bool isConcave(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4) const;
+      static bool isConcave(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4);
       double calculateTriangleArea(const point_t & p1, const point_t & p2, const point_t & p3) const;
   };
 }
