@@ -6,7 +6,7 @@ namespace piyavkin
   {
     return std::sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
   }
-  point_t addMovement(point_t p, double dx, double dy)
+  point_t addShift(point_t p, double dx, double dy)
   {
     p.x += dx;
     p.y += dy;

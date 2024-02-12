@@ -1,5 +1,6 @@
 #include "triangle.hpp"
-#include <iostream>
+#include <stdexcept>
+#include <algorithm>
 #include <cmath>
 #include "base-function.hpp"
 
@@ -40,9 +41,9 @@ namespace piyavkin
   }
   void Triangle::move(double dx, double dy)
   {
-    a_ = addMovement(a_, dx, dy);
-    b_ = addMovement(b_, dx, dy);
-    c_ = addMovement(c_, dx, dy);
+    a_ = addShift(a_, dx, dy);
+    b_ = addShift(b_, dx, dy);
+    c_ = addShift(c_, dx, dy);
   }
   void Triangle::scale(double k)
   {

@@ -29,8 +29,8 @@ namespace piyavkin
   }
   void Rectangle::move(double dx, double dy)
   {
-    lowerLeftCorner_ = addMovement(lowerLeftCorner_, dx, dy);
-    topRightCorner_ = addMovement(topRightCorner_, dx, dy);
+    lowerLeftCorner_ = addShift(lowerLeftCorner_, dx, dy);
+    topRightCorner_ = addShift(topRightCorner_, dx, dy);
   }
   void piyavkin::Rectangle::scale(double k)
   {

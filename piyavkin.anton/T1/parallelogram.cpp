@@ -64,9 +64,9 @@ namespace piyavkin
   }
   void piyavkin::Parallelogram::move(double dx, double dy)
   {
-    a_ = addMovement(a_, dx, dy);
-    b_ = addMovement(b_, dx, dy);
-    c_ = addMovement(c_, dx, dy);
+    a_ = addShift(a_, dx, dy);
+    b_ = addShift(b_, dx, dy);
+    c_ = addShift(c_, dx, dy);
   }
   void piyavkin::Parallelogram::scale(double k)
   {
