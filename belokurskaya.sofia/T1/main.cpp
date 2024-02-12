@@ -30,7 +30,7 @@ int main()
       double height = std::abs(upper_right_y - lower_left_y);
       double center_x = (lower_left_x + upper_right_x) / 2.0;
       double center_y = (lower_left_y + upper_right_y) / 2.0;
-      shapes[shape_count++] = new belokurskaya::Rectangle({ center_x, center_y }, width, height);
+      shapes[shape_count] = new belokurskaya::Rectangle({ center_x, center_y }, width, height);
       total_area_before_scaling += shapes[shape_count]->getArea();
       shape_count++;
     }
@@ -38,7 +38,7 @@ int main()
     {
       double vertex1_x, vertex1_y, vertex2_x, vertex2_y, vertex3_x, vertex3_y;
       inputStream >> vertex1_x >> vertex1_y >> vertex2_x >> vertex2_y >> vertex3_x >> vertex3_y;
-      shapes[shape_count++] = new belokurskaya::Triangle({vertex1_x, vertex1_y}, {vertex2_x, vertex2_y}, {vertex3_x, vertex3_y});
+      shapes[shape_count] = new belokurskaya::Triangle({vertex1_x, vertex1_y}, {vertex2_x, vertex2_y}, {vertex3_x, vertex3_y});
       total_area_before_scaling += shapes[shape_count]->getArea();
       shape_count++;
     }
@@ -46,7 +46,7 @@ int main()
     {
       double vertex1_x, vertex1_y, vertex2_x, vertex2_y, vertex3_x, vertex3_y, vertex4_x, vertex4_y;
       inputStream >> vertex1_x >> vertex1_y >> vertex2_x >> vertex2_y >> vertex3_x >> vertex3_y >> vertex4_x >> vertex4_y;
-      shapes[shape_count++] = new belokurskaya::Concave({vertex1_x, vertex1_y},
+      shapes[shape_count] = new belokurskaya::Concave({vertex1_x, vertex1_y},
       {vertex2_x, vertex2_y}, {vertex3_x, vertex3_y}, {vertex4_x, vertex4_y});
       total_area_before_scaling += shapes[shape_count]->getArea();
       shape_count++;
@@ -65,7 +65,7 @@ int main()
 
         belokurskaya::rectangle_t frameRect = shapes[i]->getFrameRect();
         std::cout << frameRect.pos.x - frameRect.width / 2.0 << " " << frameRect.pos.y - frameRect.height / 2.0 << " ";
-        std::cout << frameRect.pos.x + frameRect.width / 2.0 << " " << frameRect.pos.y + frameRect.height / 2.0 << "\n";
+        std::cout << frameRect.pos.x + frameRect.width / 2.0 << " " << frameRect.pos.y + frameRect.height / 2.0;
       }
       std::cout << "\n";
 
@@ -96,7 +96,7 @@ int main()
         double scale_lower_left_y = frameRect.pos.y - frameRect.height / 2.0;
         double scale_upper_right_x = frameRect.pos.x + frameRect.width / 2.0;
         double scale_upper_right_y = frameRect.pos.y + frameRect.height / 2.0;
-        std::cout << scale_lower_left_x << " " << scale_lower_left_y << " " << scale_upper_right_x << " " << scale_upper_right_y << "\n";
+        std::cout << scale_lower_left_x << " " << scale_lower_left_y << " " << scale_upper_right_x << " " << scale_upper_right_y;
       }
       std::cout << "\n";
       break;
