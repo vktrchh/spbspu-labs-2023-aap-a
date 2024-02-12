@@ -36,7 +36,7 @@ int main()
   std::cout << "\n";
   for (size_t i = 0; i < counter; ++i)
   {
-    isoScale(shapes[i], pos, counter);
+    isoScale(shapes[i], pos, factor);
   }
   outData(std::cout, shapes, counter);
   std::cout << "\n";
