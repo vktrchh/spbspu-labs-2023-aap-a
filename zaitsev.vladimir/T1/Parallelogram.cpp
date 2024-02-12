@@ -1,10 +1,7 @@
 #include "parallelogram.hpp"
 #include <stdexcept>
 #include <cstring>
-#include <cmath>
 #include <cstddef>
-#include <limits>
-#include <algorithm>
 #include "base-types.hpp"
 #include "Geom_functions.h"
 

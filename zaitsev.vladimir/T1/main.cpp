@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cstddef>
 #include "base-types.hpp"
 #include "Geom_functions.h"
 #include "Shapes_i_o.h"
@@ -60,7 +61,6 @@ int main()
     freeShapes(shapes, size);
     return 1;
   }
-
 
   if (size == 0)
   {
