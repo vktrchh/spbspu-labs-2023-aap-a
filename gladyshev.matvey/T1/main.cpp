@@ -32,13 +32,13 @@ int main()
     std::cerr << "Error in memory allocating" << "\n";
     return 2;
   }
-  outData(std::cout, shapes, counter, pos, factor);
+  outData(std::cout, shapes, counter);
   std::cout << "\n";
   for (size_t i = 0; i < counter; ++i)
   {
     isoScale(shapes[i], pos, counter);
   }
-  outData(std::cout, shapes, counter, pos, factor);
+  outData(std::cout, shapes, counter);
   std::cout << "\n";
   if (incorrectFigure)
   {
