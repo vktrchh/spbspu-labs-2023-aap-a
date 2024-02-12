@@ -8,7 +8,7 @@ namespace zaitsev
   class Complexquad: public Shape
   {
   public:
-    Complexquad(const point_t* sections);
+    Complexquad(point_t vertex1, point_t vertex2, point_t vertex3, point_t vertex4);
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t& dest_pos);

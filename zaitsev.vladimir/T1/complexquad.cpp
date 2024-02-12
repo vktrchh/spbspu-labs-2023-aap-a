@@ -14,13 +14,13 @@ void changeRectangleBounds(zaitsev::point_t& left_corner, zaitsev::point_t& righ
   right_corner.y = std::max(right_corner.y, new_pt.y);
 }
 
-zaitsev::Complexquad::Complexquad(const point_t* sections)
+zaitsev::Complexquad::Complexquad(point_t vertex1, point_t vertex2, point_t vertex3, point_t vertex4):
+  vertices_{ vertex1, vertex2, vertex3, vertex4 }
 {
-  if (!checkIntersection(sections))
+  if (!checkIntersection(vertices_))
   {
     throw std::invalid_argument("Lines are parallel");
   }
-  std::memcpy(vertices_, sections, 4 * sizeof(point_t));
 }
 
 double zaitsev::Complexquad::getArea() const

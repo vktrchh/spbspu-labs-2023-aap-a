@@ -8,7 +8,7 @@ namespace zaitsev
   class Parallelogram: public Shape
   {
   public:
-    Parallelogram(const point_t* vertices_);
+    Parallelogram(point_t vertex1, point_t vertex2, point_t vertex3);
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t& dest_pos);

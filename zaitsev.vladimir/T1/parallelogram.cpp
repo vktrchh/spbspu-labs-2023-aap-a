@@ -6,25 +6,22 @@
 #include "geometric_functions.hpp"
 
 
-zaitsev::Parallelogram::Parallelogram(const point_t* vertices)
+zaitsev::Parallelogram::Parallelogram(point_t vertex1, point_t vertex2, point_t vertex3):
+  def_vertices_{ vertex1, vertex2, vertex3 }
 {
-  if (vertices[0].y != vertices[1].y && vertices[2].y != vertices[1].y)
+  if (vertex1.y != vertex2.y && vertex3.y != vertex2.y)
   {
     throw std::invalid_argument("Sides are not parallel to x axis");
   }
-  if (getAreaOfTriangle(vertices[0],vertices[1],vertices[2])==0)
+  if (getAreaOfTriangle(vertex1, vertex2, vertex3)==0)
   {
     throw std::invalid_argument("Parallelogram degenerated into a point");
   }
-  if (vertices[0].y != vertices[1].y)
+  if (vertex1.y != vertex2.y)
   {
-    def_vertices_[0] = vertices[2];
-    def_vertices_[1] = vertices[1];
-    def_vertices_[2] = vertices[0];
-  }
-  else
-  {
-    std::memcpy(def_vertices_, vertices, 3 * sizeof(point_t));
+    def_vertices_[0] = vertex3;
+    def_vertices_[1] = vertex2;
+    def_vertices_[2] = vertex1;
   }
 }
 

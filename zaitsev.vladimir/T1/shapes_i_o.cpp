@@ -39,7 +39,7 @@ zaitsev::Shape* zaitsev::readComplexquad(std::istream& input)
   {
     readPoint(input, vertices[i]);
   }
-  return new Complexquad(vertices);
+  return new Complexquad(vertices[0], vertices[1], vertices[2], vertices[3]);
 }
 
 zaitsev::Shape* zaitsev::readParallelogram(std::istream& input)
@@ -49,7 +49,7 @@ zaitsev::Shape* zaitsev::readParallelogram(std::istream& input)
   {
     readPoint(input, vertices[i]);
   }
-  return new Parallelogram(vertices);
+  return new Parallelogram(vertices[0], vertices[1], vertices[2]);
 }
 
 void zaitsev::readScale(std::istream& input, point_t& center, double& factor)
