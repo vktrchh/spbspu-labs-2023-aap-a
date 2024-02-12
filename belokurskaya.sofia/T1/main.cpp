@@ -79,6 +79,11 @@ int main()
         double scale_point_x, scale_point_y, scale_factor;
         inputStream >> scale_point_x >> scale_point_y >> scale_factor;
 
+        if (scale_factor <= 0.0)
+        {
+          std::cerr << "Invalid scaling factor\n";
+          return 1;
+        }
         std::cout << std::fixed << std::setprecision(1);
         std::cout << total_area_before_scaling << " ";
 
