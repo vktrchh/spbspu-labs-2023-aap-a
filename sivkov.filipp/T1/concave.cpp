@@ -142,11 +142,9 @@ bool Concave::isTriangle(point_t first, point_t second, point_t third)
   return is;
 }
 
-bool Concave::isInsideTriangle(const point_t& A, const point_t& B, const point_t& C, const point_t& P)
-{
-  double ABC = 0.5 * ((B.x - A.x) * (C.y - A.y) - (C.x - A.x) * (B.y - A.y));
-  double ABP = 0.5 * ((B.x - A.x) * (P.y - A.y) - (P.x - A.x) * (B.y - A.y));
-  double ACP = 0.5 * ((C.x - A.x) * (P.y - A.y) - (P.x - A.x) * (C.y - A.y));
-
-  return (ABC > 0 && ABP > 0 && ACP > 0) || (ABC < 0 && (ABP < 0 || ACP < 0));
+bool Concave::isInsideTriangle(const point_t& A, const point_t& B, const point_t& C, const point_t& D) {
+  double ab = (B.y - A.y) * D.x + (A.x - B.x) * D.y + (B.x * A.y - A.x * B.y);
+  double bc = (B.y - C.y) * D.x + (C.x - B.x) * D.y + (B.x * C.y - C.x * B.y);
+  double ac = (C.y - A.y) * D.x + (A.x - C.x) * D.y + (C.x * A.y - A.x * C.y);
+  return (ab < 0 && bc > 0 && ac > 0);
 }
