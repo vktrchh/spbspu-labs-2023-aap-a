@@ -5,8 +5,16 @@
 
 char* sivkov::addString(std::istream& in)
 {
-  size_t size = 20;
+  const size_t initialSize = 20;
+  const size_t incrementSize = 10;
+
+  size_t size = initialSize;
   char* string = new char[size];
+  if (!string)
+  {
+    return nullptr;
+  }
+
   char c = 0;
   size_t i = 0;
 
@@ -15,32 +23,22 @@ char* sivkov::addString(std::istream& in)
   {
     if (i == (size - 1))
     {
-      size_t buffer_size = size + 10;
-      char* buffer = nullptr;
-      try
-      {
-        buffer = new char[buffer_size];
-      }
-      catch (...)
+      size_t newSize = size + incrementSize;
+      char* buffer = new char[newSize];
+      if (!buffer)
       {
         delete[] string;
-        throw std::logic_error("cant create buffer");
+        return nullptr;
       }
-      for (size_t j = 0; j < i; j++)
+      for (size_t j = 0; j < size; ++j)
       {
         buffer[j] = string[j];
       }
       delete[] string;
       string = buffer;
-      size = buffer_size;
+      size = newSize;
     }
     string[i++] = c;
-  }
-
-  if (i == 0 || (string[0] == '\n') || (string[0] == '\0'))
-  {
-    delete[] string;
-    throw std::logic_error("error with string");
   }
 
   string[i] = '\0';
