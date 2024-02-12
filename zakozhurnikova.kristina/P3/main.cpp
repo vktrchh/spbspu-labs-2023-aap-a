@@ -25,10 +25,9 @@ int main()
   {
     std::cerr << e.what() << '\n';
     delete[] string;
-    delete[] buff;
     return 1;
   }
-  zakozhurnikova::removeSpaces(tmp, buff, size);
+  zakozhurnikova::removeSpaces(tmp, string, size);
   char *head = tmp;
   while (*head)
   {
