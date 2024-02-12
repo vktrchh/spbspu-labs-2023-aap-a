@@ -14,6 +14,21 @@ erohin::CompositeShape::CompositeShape():
   }
 }
 
+erohin::CompositeShape::CompositeShape(const CompositeShape& rhs):
+  capacity_(rhs.capacity_),
+  size_(rhs.size_),
+  shape_(new Shape* [rhs.capacity_])
+{
+  for (size_t i = 0; i < size_; ++i)
+  {
+    shape_[i] = rhs.shape_[i]->clone();
+  }
+  for (size_t i = size_; i < capacity_; ++i)
+  {
+    shape_[i] = nullptr;
+  }
+}
+
 erohin::CompositeShape::CompositeShape(CompositeShape&& rhs) noexcept:
   capacity_(rhs.capacity_),
   size_(rhs.size_),
@@ -31,6 +46,16 @@ erohin::CompositeShape::~CompositeShape()
     delete shape_[i];
   }
   delete[] shape_;
+}
+
+erohin::CompositeShape& erohin::CompositeShape::operator=(const CompositeShape& rhs)
+{
+  if (this != &rhs)
+  {
+    CompositeShape temp(rhs);
+    swap(temp);
+  }
+  return *this;
 }
 
 erohin::CompositeShape& erohin::CompositeShape::operator=(CompositeShape&& rhs) noexcept

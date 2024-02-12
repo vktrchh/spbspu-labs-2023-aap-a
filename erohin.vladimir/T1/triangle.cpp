@@ -70,6 +70,12 @@ void erohin::Triangle::move(point_t point)
   move(dx, dy);
 }
 
+erohin::Shape* erohin::Triangle::clone() const
+{
+  Shape* shape = new Triangle(vertex_[0], vertex_[1], vertex_[2]);
+  return shape;
+}
+
 void erohin::Triangle::doScaling(double ratio)
 {
   point_t center = getCenter();

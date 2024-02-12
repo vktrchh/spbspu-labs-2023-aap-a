@@ -11,8 +11,10 @@ namespace erohin
   {
   public:
     CompositeShape();
+    CompositeShape(const CompositeShape& rhs);
     CompositeShape(CompositeShape&& rhs) noexcept;
     ~CompositeShape();
+    CompositeShape& operator=(const CompositeShape& rhs);
     CompositeShape& operator=(CompositeShape&& rhs) noexcept;
     Shape& operator[](size_t index);
     const Shape& operator[](size_t index) const;

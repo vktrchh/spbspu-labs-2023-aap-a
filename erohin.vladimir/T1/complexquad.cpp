@@ -2,7 +2,6 @@
 #include <stdexcept>
 #include "base-types.hpp"
 #include "geom_func.hpp"
-#include "rectangle.hpp"
 #include "triangle.hpp"
 
 erohin::Complexquad::Complexquad(point_t corner1, point_t corner2, point_t corner3, point_t corner4):
@@ -59,6 +58,12 @@ void erohin::Complexquad::move(point_t point)
   double dx = point.x - center.x;
   double dy = point.y - center.y;
   move(dx, dy);
+}
+
+erohin::Shape* erohin::Complexquad::clone() const
+{
+  Shape* shape = new Complexquad(vertex_[0], vertex_[1], vertex_[2], vertex_[3]);
+  return shape;
 }
 
 void erohin::Complexquad::doScaling(double ratio)

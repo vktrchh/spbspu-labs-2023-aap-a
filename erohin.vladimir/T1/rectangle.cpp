@@ -35,6 +35,18 @@ void erohin::Rectangle::move(point_t point)
   frameRect_.pos = point;
 }
 
+erohin::Shape* erohin::Rectangle::clone() const
+{
+  point_t corner[2] = { 0.0, 0.0 };
+  rectangle_t framRect = getFrameRect();
+  corner[0].x = framRect.pos.x - framRect.width / 2.0;
+  corner[0].y = framRect.pos.y - framRect.height / 2.0;
+  corner[1].x = framRect.pos.x + framRect.width / 2.0;
+  corner[1].y = framRect.pos.y + framRect.height / 2.0;
+  Shape* shape = new Rectangle(corner[0], corner[1]);
+  return shape;
+}
+
 void erohin::Rectangle::doScaling(double ratio)
 {
   frameRect_.width *= ratio;
