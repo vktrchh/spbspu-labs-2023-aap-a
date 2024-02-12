@@ -112,11 +112,10 @@ int main()
         {
           try
           {
-            double dx = (shapes[i]->getFrameRect().pos.x - scale_point_x) * (scale_factor - 1.0);
-            double dy = (shapes[i]->getFrameRect().pos.y - scale_point_y) * (scale_factor - 1.0);
-            shapes[i]->move({ scale_point_x, scale_point_y});
+            belokurskaya::point_t center = shapes[i]->getFrameRect().pos;
+            shapes[i]->move(center);
             shapes[i]->scale(scale_factor);
-            shapes[i]->move({ -dx, -dy });
+            shapes[i]->move((scale_factor - 1) * (center.x - scale_point_x), (scale_factor - 1) * (center.y - scale_point_y));
             total_area_after_scaling += shapes[i]->getArea();
           }
           catch (const std::invalid_argument& e)
@@ -143,7 +142,6 @@ int main()
       else
       {
         std::cerr << "Unknown command.\n";
-        return 1;
       }
     }
   }
