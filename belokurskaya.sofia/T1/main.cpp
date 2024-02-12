@@ -87,6 +87,10 @@ int main()
         {
           throw std::invalid_argument("Invalid scaling factor");
         }
+        if (shape_count == 0)
+        {
+          std::cerr << "Nothing to scale\n";
+        }
         std::cout << std::fixed << std::setprecision(1);
         std::cout << total_area_before_scaling << " ";
 
@@ -138,11 +142,6 @@ int main()
         std::cerr << "Unknown command.\n";
         return 1;
       }
-    }
-    if (!std::cin.eof())
-    {
-      std::cerr << "Nothing to scale.\n";
-      return 1;
     }
   }
   catch (const std::exception & e)
