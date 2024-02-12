@@ -32,11 +32,8 @@ void erohin::inputShape(Shape** result, std::istream& input, size_t& size, point
     {
       try
       {
-        Shape* shape_ptr = createShape(name, par, par_size);
-        if (shape_ptr)
-        {
-          result[size++] = shape_ptr;
-        }
+        result[size] = createShape(name, par, par_size);
+        ++size;
       }
       catch (const std::invalid_argument&)
       {
@@ -46,6 +43,8 @@ void erohin::inputShape(Shape** result, std::istream& input, size_t& size, point
       {
         result[size++] = nullptr;
       }
+      catch (const std::runtime_error&)
+      {}
     }
     par_size = 0;
   }

@@ -27,6 +27,10 @@ erohin::Shape* erohin::createShape(const std::string name, const double* par, si
   {
     shape = createComplexquad(par, par_size);
   }
+  else
+  {
+    throw std::runtime_error("No figure match found");
+  }
   return shape;
 }
 
