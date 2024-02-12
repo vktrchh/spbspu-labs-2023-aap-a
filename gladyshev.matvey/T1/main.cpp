@@ -16,7 +16,6 @@ int main()
   try
   {
     shapeInput(std::cin, shapes, incorrectFigure, unsupportedFigure, pos, counter, factor);
-    outData(std::cout, shapes, counter, pos, factor);
   }
   catch (const std::logic_error& e)
   {
@@ -33,6 +32,14 @@ int main()
     std::cerr << "Error in memory allocating" << "\n";
     return 2;
   }
+  outData(std::cout, shapes, counter, pos, factor);
+  std::cout << "\n";
+  for (size_t i = 0; i < counter; ++i)
+  {
+    isoScale(shapes[i], pos, counter);
+  }
+  outData(std::cout, shapes, counter, pos, factor);
+  std::cout << "\n";
   if (incorrectFigure)
   {
     std::cerr << "Errors in the description of supported figures\n";

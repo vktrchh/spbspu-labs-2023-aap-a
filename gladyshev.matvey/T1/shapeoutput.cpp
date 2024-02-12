@@ -1,7 +1,6 @@
 #include <iomanip>
 
 #include "shapeoutput.hpp"
-#include "definedata.hpp"
 
 namespace gladyshev
 {
@@ -14,37 +13,16 @@ namespace gladyshev
     {
       area += shapes[i]->getArea();
     }
-    out << area << " ";
+    out << area;
     for (size_t i = 0; i < counter; ++i)
     {
       rectangle_t frame = shapes[i]->getFrameRect();
       for (size_t j = 0; j < 2; ++j)
       {
-        out << ((j % 2 == 0) ? frame.pos.x - frame.width / 2 : frame.pos.x + frame.width / 2) << " ";
-        out << ((j % 2 == 0) ? frame.pos.y - frame.height / 2 : frame.pos.y + frame.height / 2);
-        if (i != counter - 1 || j != 1)
-        {
-          out << " ";
-        }
+        out << " " << ((j % 2 == 0) ? frame.pos.x - frame.width / 2 : frame.pos.x + frame.width / 2);
+        out << " " << ((j % 2 == 0) ? frame.pos.y - frame.height / 2 : frame.pos.y + frame.height / 2);
       }
     }
-    out << "\n";
-    out << area * factor * factor << " ";
-    for (size_t i = 0; i < counter; ++i)
-    {
-      isoScale(shapes[i], pos, factor);
-      rectangle_t frame = shapes[i]->getFrameRect();
-      for (size_t j = 0; j < 2; ++j)
-      {
-        out << ((j % 2 == 0) ? frame.pos.x - frame.width / 2 : frame.pos.x + frame.width / 2) << " ";
-        out << ((j % 2 == 0) ? frame.pos.y - frame.height / 2 : frame.pos.y + frame.height / 2);
-        if (i != counter - 1 || j != 1)
-        {
-          out << " ";
-        }
-      }
-    }
-    out << "\n";
     return out;
   }
 }

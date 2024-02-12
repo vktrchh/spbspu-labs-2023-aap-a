@@ -1,9 +1,9 @@
-#include <iostream>
-
 #include "definedata.hpp"
 #include "circle.hpp"
 #include "rectangle.hpp"
 #include "parallelogram.hpp"
+
+#include <iostream>
 
 namespace gladyshev
 {
