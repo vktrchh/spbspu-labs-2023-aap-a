@@ -5,11 +5,9 @@
 arakelyan::Diamond::Diamond(const point_t fp, const point_t sp, const point_t tp):
   p1_(fp),
   p2_(sp),
-  midPoint_(tp),
-  p3_{(fp.x), (tp.y - (fp.y - tp.y))},
-  p4_{(tp.x - (sp.x - tp.x)),(sp.y)}
+  p3_(tp)
 {
-  if ((fp.x != tp.x) || (sp.y != tp.y))
+  if (!(p1_.y == p2_.y || p1_.y == p3_.y || p2_.y == p3_.y))
   {
     throw std::logic_error("Diagonals of the DIAMOND are not parallel to the axes!");
   }
@@ -17,30 +15,70 @@ arakelyan::Diamond::Diamond(const point_t fp, const point_t sp, const point_t tp
 
 double arakelyan::Diamond::getArea() const
 {
-  return std::abs(((p1_.y - p3_.y) * (p2_.x - p4_.x)) / 2.0);
+  rectangle_t dataOfFrameRect = getFrameRect();
+  return (dataOfFrameRect.height * dataOfFrameRect.width) / 2.0;
 }
 
 arakelyan::rectangle_t arakelyan::Diamond::getFrameRect() const
 {
-  double width = std::abs(p2_.x - midPoint_.x) * 2.0;
-  double height = std::abs(p1_.y - midPoint_.y) * 2.0;
-  rectangle_t data = {width, height, midPoint_};
-  return data;
+  double width = 0;
+  if (p1_.y == p2_.y)
+  {
+    width = std::abs(p2_.x - p1_.x) * 2.0;
+  }
+  else if (p1_.y == p3_.y)
+  {
+    width = std::abs(p3_.x - p1_.x) * 2.0;
+  }
+  else
+  {
+    width = std::abs(p2_.x - p3_.x) * 2.0;
+  }
+
+  double height = 0;
+  if (p2_.x == p3_.x)
+  {
+    height = std::abs(p3_.y - p2_.y) * 2.0;
+  }
+  else if (p1_.x == p2_.x)
+  {
+    height = std::abs(p3_.y - p1_.y) * 2.0;
+  }
+  else
+  {
+    height = std::abs(p1_.y - p2_.y) * 2.0;
+  }
+
+  point_t midPoint = {0,0};
+
+  if (p2_.x == p3_.x && p2_.y == p1_.y)
+  {
+    midPoint = p2_;
+  }
+  else if (p1_.y == p2_.y && p1_.x == p3_.x)
+  {
+    midPoint = p1_;
+  }
+  else
+  {
+    midPoint = p3_;
+  }
+
+  rectangle_t dataOfFrameRect = {width, height, midPoint};
+  return dataOfFrameRect;
 }
 
 void arakelyan::Diamond::move(const point_t point)
 {
-  double dX = point.x - midPoint_.x;
-  double dY = point.y - midPoint_.y;
-  p1_.x += dX;
-  p1_.y += dY;
-  p2_.x += dX;
-  p2_.y += dY;
-  p3_.x += dX;
-  p3_.y += dY;
-  p4_.x += dX;
-  p4_.y += dY;
-  midPoint_ = point;
+  rectangle_t data = getFrameRect();
+  double delX = point.x - data.pos.x;
+  double delY = point.y - data.pos.y;
+  p1_.x += delX;
+  p1_.y += delY;
+  p2_.x += delX;
+  p2_.y += delY;
+  p3_.x += delX;
+  p3_.y += delY;
 }
 
 void arakelyan::Diamond::move(const double delX, const double delY)
@@ -51,10 +89,6 @@ void arakelyan::Diamond::move(const double delX, const double delY)
   p2_.y += delY;
   p3_.x += delX;
   p3_.y += delY;
-  p4_.x += delX;
-  p4_.y += delY;
-  midPoint_.x += delX;
-  midPoint_.y += delY;
 }
 
 void arakelyan::Diamond::scale(const double k)
@@ -64,16 +98,14 @@ void arakelyan::Diamond::scale(const double k)
     throw std::logic_error("The coefficient cannot be less than zero! (Diamond)");
   }
   rectangle_t dataOfFrameRect = getFrameRect();
-  double widthWithScale = dataOfFrameRect.width * k;
-  double heightWithScale = dataOfFrameRect.height * k;
-  p1_.x = midPoint_.x;
-  p1_.y = midPoint_.y + (heightWithScale / 2.0);
-  p2_.x = midPoint_.x + (widthWithScale / 2.0);
-  p2_.y = midPoint_.y;
-  p3_.x = midPoint_.x;
-  p3_.y = midPoint_.y - (heightWithScale / 2.0);
-  p4_.x = midPoint_.x - (widthWithScale / 2.0);
-  p4_.y = midPoint_.y;
+  // double widthWithScale = dataOfFrameRect.width * k;
+  // double heightWithScale = dataOfFrameRect.height * k;
+  p1_.x = dataOfFrameRect.pos.x + (p1_.x - dataOfFrameRect.pos.x) * k;
+  p1_.y = dataOfFrameRect.pos.y + (p1_.y - dataOfFrameRect.pos.y) * k;
+  p2_.x = dataOfFrameRect.pos.x + (p2_.x - dataOfFrameRect.pos.x) * k;
+  p2_.y = dataOfFrameRect.pos.y + (p2_.y - dataOfFrameRect.pos.y) * k;
+  p3_.x = dataOfFrameRect.pos.x + (p3_.x - dataOfFrameRect.pos.x) * k;
+  p3_.y = dataOfFrameRect.pos.y + (p3_.y - dataOfFrameRect.pos.y) * k;
 }
 
 arakelyan::Diamond::~Diamond()
