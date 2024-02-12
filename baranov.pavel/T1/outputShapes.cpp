@@ -1,6 +1,6 @@
 #include "outputShapes.hpp"
 
-double baranov::getSumArea(Shape ** const shapes, const size_t count)
+double baranov::getSumArea(const Shape * const * shapes, const size_t count)
 {
   double result = 0;
   for (size_t i = 0; i < count; ++i)
@@ -10,7 +10,7 @@ double baranov::getSumArea(Shape ** const shapes, const size_t count)
   return result;
 }
 
-void baranov::outputShapes(std::ostream & output, Shape ** const shapes, const size_t count)
+void baranov::outputShapes(std::ostream & output, const Shape * const * shapes, const size_t count)
 {
   output << getSumArea(shapes, count);
   for (size_t i = 0; i < count; ++i)
