@@ -138,10 +138,7 @@ public:
   }
   virtual double getArea()
   {
-    std::cout << "\nPOINTS IN AREA: " << p1_.x_ << ' ' << p1_.y_ << ' ' << p2_.x_ << ' ' << p2_.y_ << ' ' << p3_.x_ << ' ' << p3_.y_ << '\n';;
-    std::cout << "AREA: " << (std::abs ((p2_.x_ - p1_.x_) * (p3_.y_ - p1_.y_) - (p3_.x_ - p1_.x_) * (p2_.y_ - p1_.y_))) / 2.0 << '\n';
-    std::cout << "RECT AREA: " << height_tri_ * width_tri_ << '\n';
-    return (0.5 * (std::abs ((p2_.x_ - p1_.x_) * (p3_.y_ - p1_.y_) - (p3_.x_ - p1_.x_) * (p2_.y_ - p1_.y_))));
+    return 0.5 * (std::abs ((p2_.x_ - p1_.x_) * (p3_.y_ - p1_.y_) - (p3_.x_ - p1_.x_) * (p2_.y_ - p1_.y_)));
   }
   virtual rectangle_t getFrameRect()
   {
@@ -170,9 +167,7 @@ public:
     move(s);
     height_tri_ = height_tri_ * k;
     width_tri_ = width_tri_ * k;
-    std::cout << p1_.x_ << ' ' << p1_.y_ << '\n';
     move(k * (point.x_ - pos_tri_.x_), k * (point.y_ - pos_tri_.y_));
-    std::cout << p1_.x_ << ' ' << p1_.y_ << '\n';
     rectangle_t newRect{height_tri_, width_tri_, pos_};
     return newRect;
   }
@@ -265,23 +260,30 @@ point_t defineSidePointY(point_t point1, point_t point2, point_t point3)
   }
 }
 
+void outputResult(std::ostream & output, Shape ** array, size_t counter)
+{
+  double sum_area = 0.0;
+  for (size_t i = 0; i < counter; ++i)
+  {
+    sum_area += array[i]->getArea();
+  }
+  output << std::fixed << std::setprecision(1) << sum_area;
+  for (size_t i = 0; i < counter; ++i)
+  {
+    rectangle_t frame = array[i]->getFrameRect();
+    double height = frame.height_;
+    double width = frame.width_;
+    double pos_x = frame.pos_.x_;
+    double pos_y = frame.pos_.y_;
+    output << ' ' << round((pos_x - (width / 2.0)) * 10) / 10 << ' ' << round((pos_y - (height / 2.0)) * 10) / 10;
+    output << ' ' << round((pos_x + (width / 2.0)) * 10) / 10 << ' ' << round((pos_y + (height / 2.0)) * 10) / 10;
+  }
+  output << '\n';
+}
+
 int main()
 {
-/*
-  std::cout << "\nTEST_NUMBERS:\n";
-  std::cout << "3.46 -> " << round(3.46 * 10) / 10 << '\n';
-  std::cout << "3.44 -> " << round(3.44 * 10) / 10 << '\n';
-  std::cout << "3.45 -> " << round(3.45 * 10) / 10 << '\n';
-  std::cout << "3.4 -> " << round(3.4 * 10) / 10 << '\n';
-  double f = 3.0;
-  std::cout << "3.0 -> " << std::fixed << std::setprecision(1) << f << '\n';
-  std::cout << "------\n";
-*/
-
-  double area_before = 0;
-  double area_after = 0;
   Shape * array[1000] = {};
-  double elements[6] = {0.0};
   size_t counter = 0;
   int error_flag = 0;
 
@@ -289,7 +291,6 @@ int main()
   {
     std::string name = "";
     std::cin >> name;
-    std::cout << "Test: name: " << name << "  array: - " << "  counter: " << counter << '\n';
     if (name == "SCALE")
     {
       double center_x = 0.0, center_y = 0.0, index = 0.0;
@@ -299,25 +300,20 @@ int main()
         std::cerr << "Incorrect scale index\n";
         return 1;
       }
-      for (size_t i = 0; i < counter; ++i)
+
+      if (counter != 0)
       {
-        std::cout << '\n' << i << '\n';
-        rectangle_t frame = array[i]->getFrameRect();
-        double height = frame.height_;
-        double width = frame.width_;
-        double pos_x = frame.pos_.x_;
-        double pos_y = frame.pos_.y_;
-        std::cout << "Before scale:\n " << array[i]->getArea() << ' ';
-        std::cout << (pos_x - (width / 2.0)) << ' ' << (pos_y - (height / 2.0)) << ' ';
-        std::cout << (pos_x + (width / 2.0)) << ' ' << (pos_y + (height / 2.0)) << '\n';
-        rectangle_t sc_fr = array[i]->scale({center_x, center_y}, index);
-        height = sc_fr.height_;
-        width = sc_fr.width_;
-        pos_x = sc_fr.pos_.x_;
-        pos_y = sc_fr.pos_.y_;
-        std::cout << "After scale: " << array[i]->getArea() << ' ';
-        std::cout << (pos_x - (width / 2.0)) << ' ' << (pos_y - (height / 2.0)) << ' ';
-        std::cout << (pos_x + (width / 2.0)) << ' ' << (pos_y + (height / 2.0)) << '\n';
+        outputResult(std::cout, array, counter);
+        for (size_t i = 0; i < counter; ++i)
+        {
+          array[i]->scale({center_x, center_y}, index);
+        }
+        outputResult(std::cout, array, counter);
+
+        if (error_flag == 1)
+        {
+          std::cerr << "Some figure has wrong parameters\n";
+        }
       }
       break;
     }
@@ -339,11 +335,9 @@ int main()
       else if (((low_left_x > up_right_x) && (low_left_y < up_right_y)) || ((low_left_y > up_right_y) && (low_left_x < up_right_x)))
       {
         error_flag = 1;
-        std::cout << "RECT ERROR\n";
       }
       else
       {
-         std::cout << "Test rect before: " << low_left_x << ' ' << low_left_y << ' ' << up_right_x << ' ' << up_right_y << '\n';
         if (low_left_x > up_right_x)
         {
           double x1 = low_left_x, x2 = up_right_x;
@@ -356,7 +350,6 @@ int main()
           low_left_y = y2;
           up_right_y = y1;
         }
-        std::cout << "Test rect after: " << low_left_x << ' ' << low_left_y << ' ' << up_right_x << ' ' << up_right_y << '\n';
         array[counter++] = new Rectangle({low_left_x, low_left_y}, {up_right_x, up_right_y});
       }
     }
@@ -368,11 +361,9 @@ int main()
       if (side <= 0.0)
       {
         error_flag = 1;
-        std::cout << "SQUARE ERROR\n";
       }
       else
       {
-        std::cout << "Test square: " << low_left_x << ' ' << low_left_y << ' ' << side;
         array[counter++] = new Square({low_left_x, low_left_y}, side);
       }
     }
@@ -384,16 +375,13 @@ int main()
       if (((point1_x == point2_x) && (point1_y == point2_y)) || ((point2_x == point3_x) && (point2_y == point3_y)) || ((point3_x == point1_x) && (point3_y == point1_y)))
       {
         error_flag = 1;
-        std::cout << "TRI ERROR\n";
       }
       else if (((point1_x == point2_x) && (point2_x  == point3_x)) || ((point1_y == point2_y) && (point2_y == point3_y)))
       {
         error_flag = 1;
-        std::cout << "TRI ERROR\n";
       }
       else
       {
-        std::cout << "Test tri: " <<  point1_x << ' ' << point1_y << ' ' << point2_x << ' ' << point2_y << ' ' << point3_x << ' ' << point3_y;
         array[counter++] = new Triangle({point1_x, point1_y}, {point2_x, point2_y}, {point3_x, point3_y});
       }
     }
@@ -402,12 +390,9 @@ int main()
     {
       double point1_x = 0.0, point1_y = 0.0, point2_x = 0.0, point2_y = 0.0, point3_x = 0.0, point3_y = 0.0;
       std::cin >> point1_x >> point1_y >> point2_x >> point2_y >> point3_x >> point3_y;
-      std::cout << "Test diamond: " <<  point1_x << ' ' << point1_y << ' ' << point2_x << ' ' << point2_y << ' ' << point3_x << ' ' << point3_y;
-
       if (((point1_x == point2_x) && (point1_y == point2_y)) || ((point2_x == point3_x) && (point2_y == point3_y)) || ((point3_x == point1_x) && (point3_y == point1_y)))
       {
         error_flag = 1;
-        std::cout << "DIAM ERROR\n";
       }
       else
       {
@@ -450,14 +435,9 @@ int main()
         if (flag == 0)
         {
           error_flag = 1;
-          std::cout << "Wrong parameters in diamond\n";
         }
         else
         {
-          std::cout << "TEST CHECK DIAM:\n";
-          std::cout << "Centr: x = " << central_point.x_  << "  y = " << central_point.y_ << '\n';
-          std::cout << "SIDE_X: x = " << side_point_x.x_  << "  y = " << side_point_x.y_ << '\n';
-          std::cout << "SIDE_Y: x = " << side_point_y.x_  << "  y = " << side_point_y.y_ << '\n';
           array[counter++] = new Diamond(central_point, side_point_x, side_point_y);
         }
       }
