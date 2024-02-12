@@ -23,11 +23,11 @@ double arakelyan::Parallelogram::getArea() const
   rectangle_t dataFrameOfPar = getFrameRect();
   if (p1_.y == p2_.y)
   {
-    return std::abs(dataFrameOfPar.height * (dataFrameOfPar.width - p3_.x));
+    return std::abs((p1_.x - p2_.x) * dataFrameOfPar.height);
   }
   else
   {
-    return (p2_.y - p3_.y) * (p3_.x - p1_.x);
+    return std::abs((p2_.x - p3_.x) * dataFrameOfPar.height);
   }
 }
 
@@ -102,8 +102,6 @@ void arakelyan::Parallelogram::scale(const double k)
     throw std::logic_error("The coefficient cannot be less than zero! (Parallelogram)");
   }
   rectangle_t rectOfParal = getFrameRect();
-  // double widthWithScale = rectOfParal.width * k;
-  // double heightWithScale = rectOfParal.height * k;
   p1_.x = rectOfParal.pos.x + ((p1_.x - rectOfParal.pos.x) * k);
   p1_.y = rectOfParal.pos.y + ((p1_.y - rectOfParal.pos.y) * k);
   p2_.x = rectOfParal.pos.x + ((p2_.x - rectOfParal.pos.x) * k);
