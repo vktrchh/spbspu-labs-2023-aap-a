@@ -1,6 +1,6 @@
 #include "makeUpSmoothMatrix.hpp"
 
-double* shabalin::makeUpSmoothMatrix(const int* matrix, double* smooth, size_t rows, size_t cols)
+double* shabalin::makeUpSmoothMatrix(const int* matrix, double* smoothedMatrix, size_t rows, size_t cols)
 {
     for (size_t i = 0; i < cols * rows; ++i)
     {
@@ -14,16 +14,19 @@ double* shabalin::makeUpSmoothMatrix(const int* matrix, double* smooth, size_t r
                 {
                     size_t currentRow = (i / cols) + j;
                     size_t currentColumn = (i % cols) + d;
-                    if ((currentRow < rows) && (currentColumn < cols) && (currentRow > 0) && (currentColumn >0))
+                    if ((currentRow > 0) && (currentColumn > 0))
                     {
-                        size_t newPosition = currentRow * i + currentColumn;
-                        sum += matrix[newPosition];
-                        count++;
+                        if ((currentRow < rows) && (currentColumn < cols))
+                        {
+                            size_t newPosition = currentRow * i + currentColumn;
+                            sum += matrix[newPosition];
+                            count++;
+                        }
                     }
                 }
             }
         }
-        smooth[i] = sum / count;
+        smoothedMatrix[i] = sum / count;
     }
-    return smooth;
+    return smoothedMatrix;
 };
