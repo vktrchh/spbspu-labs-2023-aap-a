@@ -116,6 +116,7 @@ int main()
           try
           {
             belokurskaya::isoScale(shapes[i], shapes[i]->getFrameRect().pos, scale_factor);
+            total_area_after_scaling += shapes[i]->getArea();
           }
           catch (const std::invalid_argument& e)
           {
