@@ -11,6 +11,7 @@ namespace belokurskaya
       Concave(const point_t & vertex1, const point_t & vertex2, const point_t & vertex3, const point_t & vertex4);
       double getArea() const override;
       rectangle_t getFrameRect() const override;
+      void move(const point_t & new_pos) override;
 
     private:
       point_t vertex1_;
