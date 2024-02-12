@@ -65,7 +65,25 @@ void belokurskaya::Concave::move(double dx, double dy)
   vertex4_.y += dy;
 }
 
+void belokurskaya::Concave::scale(double factor)
+{
+  point_t center{(vertex1_.x + vertex2_.x + vertex3_.x + vertex4_.x) / 4.0, (vertex1_.y + vertex2_.y + vertex3_.y + vertex4_.y) / 4.0}; 
+
+  vertex1_.x = center.x + (vertex1_.x - center.x) * factor;
+  vertex1_.y = center.y + (vertex1_.y - center.y) * factor;
+
+  vertex2_.x = center.x + (vertex2_.x - center.x) * factor;
+  vertex2_.y = center.y + (vertex2_.y - center.y) * factor;
+
+  vertex3_.x = center.x + (vertex3_.x - center.x) * factor;
+  vertex3_.y = center.y + (vertex3_.y - center.y) * factor;
+
+  vertex4_.x = center.x + (vertex4_.x - center.x) * factor;
+  vertex4_.y = center.y + (vertex4_.y - center.y) * factor;
+}
+
 double belokurskaya::Concave::calculateTriangleArea(const point_t & p1, const point_t & p2, const point_t & p3) const
 {
   return std::abs((p1.x * (p2.y - p3.y) + p2.x * (p3.y - p1.y) + p3.x * (p1.y - p2.y)) / 2.0);
 }
+

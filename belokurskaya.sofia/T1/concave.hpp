@@ -13,6 +13,7 @@ namespace belokurskaya
       rectangle_t getFrameRect() const override;
       void move(const point_t & new_pos) override;
       void move(double dx, double dy) override;
+      void scale(double factor) override;
 
     private:
       point_t vertex1_;
