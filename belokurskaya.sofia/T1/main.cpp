@@ -135,6 +135,11 @@ int main()
         return 1;
       }
     }
+    if (!std::cin.eof())
+    {
+      std::cerr << "Nothing to scale.\n";
+      return 1;
+    }
   }
   catch (const std::exception & e)
   {
