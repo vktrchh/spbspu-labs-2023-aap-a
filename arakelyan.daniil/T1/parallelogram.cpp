@@ -70,7 +70,6 @@ arakelyan::rectangle_t arakelyan::Parallelogram::getFrameRect() const
   return data;
 }
 
-
 void arakelyan::Parallelogram::move(const point_t point)
 {
   rectangle_t rectOfParal = getFrameRect();
@@ -91,20 +90,20 @@ void arakelyan::Parallelogram::move(const point_t point)
 }
 
 void arakelyan::Parallelogram::move(const double delX, const double delY)
- { 
+{
   point_t * pointsArray[3] = {&p1_, &p2_, &p3_};
   for (size_t i = 0; i < 3; i++)
   {
     pointsArray[i]->x += delX;
     pointsArray[i]->y += delY;
   }
-   // p1_.x += delX;
-   // p1_.y += delY;
-   // p2_.x += delX;
-   // p2_.y += delY;
-   // p3_.x += delX;
-   // p3_.y += delY;
- }
+  // p1_.x += delX;
+  // p1_.y += delY;
+  // p2_.x += delX;
+  // p2_.y += delY;
+  // p3_.x += delX;
+  // p3_.y += delY;
+}
 
 void arakelyan::Parallelogram::scale(const double k)
 {
