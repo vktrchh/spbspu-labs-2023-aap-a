@@ -1,10 +1,31 @@
 #include "diamond.hpp"
+#include "geometryFunc.hpp"
 #include <cmath>
+
+zakozhurnikova::Diamond::Diamond(const point_t& pointOne, const point_t& pointTwo, const point_t& pointThree) :
+  pointOne_(pointOne),
+  pointTwo_(pointTwo),
+  center_(pointThree)
+{
+  const double EPSILON = 1e-6;
+  point_t points[3];
+  initPoints(points, pointOne, pointTwo, pointThree);
+  center_ = points[0];
+  pointOne_ = points[1];
+  pointTwo_ = points[2];
+  const bool CONDITION = ((std::abs(center_.x - pointOne_.x) <= EPSILON) && (std::abs(center_.y - pointTwo_.y) <= EPSILON)) ||
+    ((std::abs(center_.x - pointTwo_.x) <= EPSILON) && (std::abs(center_.y - pointOne_.y) <= EPSILON));
+  if (!CONDITION)
+  {
+    throw std::invalid_argument("These points do not define a diamond");
+  }
+}
+
 
 double zakozhurnikova::Diamond::getArea() const
 {
-  double d1 = 2 * pointOne_.getDistance(center_);
-  double d2 = 2 * pointTwo_.getDistance(center_);
+  double d1 = 2 * getDistance(pointOne_, center_);
+  double d2 = 2 * getDistance(pointTwo_, center_);
   return 0.5 * d1 * d2;
 }
 
@@ -17,12 +38,12 @@ zakozhurnikova::rectangle_t zakozhurnikova::Diamond::getFrameRect() const
     width = std::abs(pointTwo_.x - center_.x) * 2;
     height = std::abs(pointOne_.y - center_.y) * 2;
   }
-  return zakozhurnikova::rectangle_t(width, height, center_);
+  return rectangle_t{width, height, center_};
 }
 
 void zakozhurnikova::Diamond::move(double dx, double dy)
 {
-  zakozhurnikova::point_t shift(dx, dy);
+  point_t shift = {dx, dy};
   pointOne_ += shift;
   pointTwo_ += shift;
   center_ += shift;
@@ -38,6 +59,10 @@ void zakozhurnikova::Diamond::move(const point_t& p)
 
 void zakozhurnikova::Diamond::scale(double k)
 {
+  if (k <= 0)
+  {
+    throw std::invalid_argument("Scale coefficient should be a positive real number.");
+  }
   pointOne_ = center_ - (center_ - pointOne_) * k;
   pointTwo_ = center_ - (center_ - pointTwo_) * k;
 }

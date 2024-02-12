@@ -11,6 +11,14 @@ double getFullArea(const zakozhurnikova::Shape* const* shapes, size_t size)
   }
   return result;
 }
+
+void zakozhurnikova::showCoordinates(std::ostream& out, const rectangle_t& rec)
+{
+  point_t downLeft = {rec.pos.x - rec.width / 2.0, rec.pos.y - rec.height / 2.0};
+  point_t upRight = {rec.pos.x + rec.width / 2.0, rec.pos.y + rec.height / 2.0};
+  out << downLeft.x << ' ' << downLeft.y << ' ' << upRight.x << ' ' << upRight.y;
+}
+
 void zakozhurnikova::printShapes(std::ostream& output, const Shape* const* shapes, size_t size)
 {
   if (size == 0)
@@ -23,11 +31,8 @@ void zakozhurnikova::printShapes(std::ostream& output, const Shape* const* shape
   output << getFullArea(shapes, size) << ' ';
   for (size_t i = 0; i < size; ++i)
   {
-    shapes[i]->getFrameRect().showCoordinates();
-    if (i != size - 1)
-    {
-      output << ' ';
-    }
+    output << ' ';
+    showCoordinates(output, shapes[i]->getFrameRect());
   }
   output << '\n';
 }

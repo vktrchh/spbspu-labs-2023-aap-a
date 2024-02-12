@@ -9,23 +9,7 @@ namespace zakozhurnikova
   class Rectangle: public Shape
   {
   public:
-    Rectangle() = delete;
-    Rectangle(const point_t& pointOne, const point_t& pointTwo) :
-      downLeft_(pointOne),
-      upRight_(pointTwo)
-    {
-      if (pointOne.x >= pointTwo.x || pointOne.y >= pointTwo.y)
-      {
-        throw std::invalid_argument("Invalid rectangle parameters");
-      }
-    }
-    Rectangle(const Rectangle& rec):
-      downLeft_(rec.downLeft_),
-      upRight_(rec.upRight_)
-    {}
-    Rectangle(Rectangle&& rec) = default;
-    ~Rectangle()
-    {}
+    Rectangle(const point_t& pointOne, const point_t& pointTwo);
     double getArea() const;
     rectangle_t getFrameRect() const;
     void move(const point_t& p);

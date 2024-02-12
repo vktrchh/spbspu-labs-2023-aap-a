@@ -5,6 +5,7 @@
 
 namespace zakozhurnikova
 {
+  void showCoordinates(std::ostream& out, const rectangle_t& rec);
   void printShapes(std::ostream& output, const Shape* const* shapes, size_t size);
 }
 #endif

@@ -10,22 +10,7 @@ namespace zakozhurnikova
   {
   public:
     Square() = delete;
-    Square(const point_t& downLeft, double length) :
-      downLeft_(downLeft),
-      length_(length)
-    {
-      if (length <= 0.0)
-      {
-        throw std::invalid_argument("Invalid square parameters");
-      }
-    }
-    Square(const Square& sq) :
-      downLeft_(sq.downLeft_),
-      length_(sq.length_)
-    {}
-    Square(Square&& sq) = default;
-    ~Square()
-    {}
+    Square(const point_t& downLeft, double length);
     double getArea() const;
     rectangle_t getFrameRect() const;
     void move(const point_t& p);

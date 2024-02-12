@@ -9,6 +9,24 @@
 #include <cstring>
 #include <stdexcept>
 
+void readArray(double* array, size_t size, const char* string, size_t pos)
+{
+  for (size_t i = 0; i < size; ++i)
+  {
+    array[i] = std::stod(string, &pos);
+    string += pos;
+  }
+  if (*string != '\0')
+  {
+    throw std::invalid_argument("Invalid diamond parameters");
+  }
+}
+
+bool areSame(const char* s1, const char* s2)
+{
+  return std::strncmp(s1, s2, std::strlen(s2)) == 0;
+}
+
 zakozhurnikova::Shape* readRectangle(const char* string)
 {
   const size_t RECT_WORD_LEN = 9;
@@ -16,15 +34,7 @@ zakozhurnikova::Shape* readRectangle(const char* string)
   double rectData[ARRAY_LEN]{};
   size_t pos = 0;
   string += RECT_WORD_LEN;
-  for (size_t i = 0; i < ARRAY_LEN; ++i)
-  {
-    rectData[i] = std::stod(string, &pos);
-    string += pos;
-  }
-  if (*string != '\0')
-  {
-    throw std::invalid_argument("Invalid rectangle parameters");
-  }
+  readArray(rectData, ARRAY_LEN, string, pos);
   zakozhurnikova::point_t downLeft = { rectData[0], rectData[1] };
   zakozhurnikova::point_t upRight = { rectData[2], rectData[3] };
   return new zakozhurnikova::Rectangle(downLeft, upRight);
@@ -37,15 +47,7 @@ zakozhurnikova::Shape* readSquare(const char* string)
   double squareData[ARRAY_LEN]{};
   size_t pos = 0;
   string += SQUARE_WORD_LEN;
-  for (size_t i = 0; i < ARRAY_LEN; ++i)
-  {
-    squareData[i] = std::stod(string, &pos);
-    string += pos;
-  }
-  if (*string != '\0')
-  {
-    throw std::invalid_argument("Invalid square parameters");
-  }
+  readArray(squareData, ARRAY_LEN, string, pos);
   zakozhurnikova::point_t downLeft = { squareData[0], squareData[1] };
   double length = squareData[2];
 
@@ -59,16 +61,7 @@ zakozhurnikova::Shape* readDiamond(const char* string)
   double diamondData[ARRAY_LEN]{};
   size_t pos = 0;
   string += SQUARE_WORD_LEN;
-  for (size_t i = 0; i < ARRAY_LEN; ++i)
-  {
-    diamondData[i] = std::stod(string, &pos);
-    string += pos;
-  }
-  if (*string != '\0')
-  {
-    throw std::invalid_argument("Invalid diamond parameters");
-  }
-
+  readArray(diamondData, ARRAY_LEN, string, pos);
   zakozhurnikova::point_t pointOne = { diamondData[0], diamondData[1] };
   zakozhurnikova::point_t pointTwo = { diamondData[2], diamondData[3] };
   zakozhurnikova::point_t center = { diamondData[4], diamondData[5] };
@@ -83,39 +76,32 @@ zakozhurnikova::Shape* readComplexquad(const char* string)
   double complexquadData[ARRAY_LEN]{};
   size_t pos = 0;
   string += COMPLEXQUAD_WORD_LEN;
-  for (size_t i = 0; i < ARRAY_LEN; ++i)
-  {
-    complexquadData[i] = std::stod(string, &pos);
-    string += pos;
-  }
-  if (*string != '\0')
-  {
-    throw std::invalid_argument("Invalid complexquad parameters");
-  }
+  readArray(complexquadData, ARRAY_LEN, string, pos);
 
   zakozhurnikova::point_t pointOne = { complexquadData[0], complexquadData[1] };
   zakozhurnikova::point_t pointTwo = { complexquadData[2], complexquadData[3] };
   zakozhurnikova::point_t pointThree = { complexquadData[4], complexquadData[5] };
   zakozhurnikova::point_t pointFour = { complexquadData[6], complexquadData[7]};
 
-  return new zakozhurnikova::Complexquad(pointOne, pointTwo, pointThree, pointFour);
+  zakozhurnikova::point_t vertexes[4] {pointOne, pointTwo, pointThree, pointFour};
+  return new zakozhurnikova::Complexquad{vertexes};
 }
 
 zakozhurnikova::Shape* zakozhurnikova::readShape(const char* string)
 {
-  if (string && std::strncmp(string, "RECTANGLE", 9) == 0)
+  if (string && areSame(string, "RECTANGLE"))
   {
     return readRectangle(string);
   }
-  else if (string && std::strncmp(string, "SQUARE", 6) == 0)
+  else if (string && areSame(string, "SQUARE"))
   {
     return readSquare(string);
   }
-  else if (string && std::strncmp(string, "DIAMOND", 7) == 0)
+  else if (string && areSame(string, "DIAMOND"))
   {
     return readDiamond(string);
   }
-  else if (string && std::strncmp(string, "COMPLEXQUAD", 11) == 0)
+  else if (string && areSame(string, "COMPLEXQUAD"))
   {
     return readComplexquad(string);
   }
@@ -132,15 +118,7 @@ void zakozhurnikova::readScale(const char* string, zakozhurnikova::point_t& scal
   double scaleData[SCALE_PARAM_COUNT]{};
   size_t pos = 0;
   string += SCALE_WORD_LEN;
-  for (size_t i = 0; i < SCALE_PARAM_COUNT; ++i)
-  {
-    scaleData[i] = std::stod(string, &pos);
-    string += pos;
-  }
-  if (*string != '\0')
-  {
-    throw std::invalid_argument("Invalid scale parameters");
-  }
+  readArray(scaleData, SCALE_PARAM_COUNT, string, pos);
   scalePoint = { scaleData[0], scaleData[1] };
   k = scaleData[2];
 }
@@ -178,10 +156,6 @@ void zakozhurnikova::inputShapesArray(std::istream& in, Shape** shapes, size_t& 
     }
     catch (const std::logic_error& e)
     {
-    }
-    catch (const std::range_error& e)
-    {
-       throw std::range_error(e.what());
     }
     catch (const std::runtime_error& e)
     {

@@ -15,15 +15,15 @@ double zakozhurnikova::Complexquad::getArea() const
 {
   point_t center = getComplexquadCenter(vertexes_);
 
-  double a1 = vertexes_[0].getDistance(center);
-  double b1 = vertexes_[3].getDistance(center);
-  double c1 = vertexes_[0].getDistance(vertexes_[3]);
+  double a1 = getDistance(vertexes_[0], center);
+  double b1 = getDistance(vertexes_[3], center);
+  double c1 = getDistance(vertexes_[0], vertexes_[3]);
   double s1 = (a1 + b1 + c1) / 2.0;
   double area1 = std::sqrt(s1 * (s1 - a1) * (s1 - b1) * (s1 - c1));
 
-  double a2 = vertexes_[1].getDistance(center);
-  double b2 = vertexes_[2].getDistance(center);
-  double c2 = vertexes_[1].getDistance(vertexes_[2]);
+  double a2 = getDistance(vertexes_[1], center);
+  double b2 = getDistance(vertexes_[2], center);
+  double c2 = getDistance(vertexes_[1], vertexes_[2]);
   double s2 = (a2 + b2 + c2) / 2.0;
   double area2 = std::sqrt(s2 * (s2 - a2) * (s2 - b2) * (s2 - c2));
 
@@ -53,7 +53,7 @@ zakozhurnikova::rectangle_t zakozhurnikova::Complexquad::getFrameRect() const
 void zakozhurnikova::Complexquad::move(const point_t& p)
 {
   point_t center = getComplexquadCenter(vertexes_);
-  point_t shift(-(center - p));
+  point_t shift(p - center);
   vertexes_[0] += shift;
   vertexes_[1] += shift;
   vertexes_[2] += shift;
@@ -76,8 +76,8 @@ void zakozhurnikova::Complexquad::scale(double k)
     throw std::invalid_argument("Scale coefficient should be a positive real number.");
   }
   point_t center = getComplexquadCenter(vertexes_);
-  vertexes_[0] = vertexes_[0].scaleShift(k, center);
-  vertexes_[1] = vertexes_[1].scaleShift(k, center);
-  vertexes_[2] = vertexes_[2].scaleShift(k, center);
-  vertexes_[3] = vertexes_[3].scaleShift(k, center);
+  vertexes_[0] = scaleShift(k, vertexes_[0], center);
+  vertexes_[1] = scaleShift(k, vertexes_[1], center);
+  vertexes_[2] = scaleShift(k, vertexes_[2], center);
+  vertexes_[3] = scaleShift(k, vertexes_[3], center);
 }
