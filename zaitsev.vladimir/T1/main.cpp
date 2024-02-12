@@ -46,12 +46,12 @@ int main()
         {
           std::getline(std::cin, shape_type);
         }
-        std::cin >> shape_type;
       }
       catch (const std::invalid_argument&)
       {
         wrong_args = true;
       }
+      std::cin >> shape_type;
     }
   }
   catch (std::bad_alloc&)
