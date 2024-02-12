@@ -1,3 +1,4 @@
+#include <iostream>
 #include "deleteFigures.hpp"
 #include "creatingFigures.hpp"
 #include "stringManipulations.hpp"
@@ -8,16 +9,7 @@
 int main()
 {
   using namespace isaychev;
-  Shape ** figures = nullptr;
-  try
-  {
-    figures = new Shape *[1000]{};
-  }
-  catch(const std::bad_alloc &)
-  {
-    std::cerr << "can't allocate memory for figure array\n";
-    return 1;
-  }
+  Shape * figures[1000] = {};
   const char * scaleStr = "SCALE ";
   char * currDesc = nullptr;
   size_t i = 0, figuresCount = 0, figDescMistakeCheck = 0, eofCheck = 0;
@@ -36,14 +28,14 @@ int main()
       }
       figures[i++] = createFigure(currDesc);
     }
-    catch(const std::bad_alloc &)
+    catch (const std::bad_alloc &)
     {
       deleteFigures(figures, figuresCount);
       delete [] currDesc;
       std::cerr << "can't allocate memory for description of figure or a figure itself\n";
-      return 2;
+      return 1;
     }
-    catch(const std::logic_error &)
+    catch (const std::logic_error &)
     {
       figDescMistakeCheck++;
     }
@@ -63,7 +55,6 @@ int main()
   }
   if (figuresCount == 0 && checkString(currDesc, scaleStr) == 1)
   {
-    delete [] figures;
     delete [] currDesc;
     std::cerr << "nothing to scale\n";
     return 3;
@@ -78,6 +69,7 @@ int main()
   else
   {
     outputResults(figures, figuresCount);
+    std::cout << "\n";
     try
     {
       isoscale(currDesc, figures, figuresCount);
@@ -90,6 +82,7 @@ int main()
       return 5;
     }
     outputResults(figures, figuresCount);
+    std::cout << "\n";
   }
   deleteFigures(figures, figuresCount);
   delete [] currDesc;

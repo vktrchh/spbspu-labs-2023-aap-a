@@ -2,7 +2,7 @@
 #include <stdexcept>
 #include <cmath>
 
-int canBeReg(const double a, const double c)
+bool canBeReg(double a, double c)
 {
   double a1 = 0.0, c1 = 0.0;
   a1 = std::min(a, c);
@@ -10,25 +10,23 @@ int canBeReg(const double a, const double c)
   double angle = std::acos(a1 / c1);
   double n = 3.1415926535 / angle;
   double roundedN = std::round(n);
-  int check = 0;
   if (std::fabs(roundedN - n) < 0.0001)
   {
-    check++;
+    return true;
   }
-  return check;
+  return false;
 }
 
-int isTriangle(const double a, const double b, const double c)
+bool isTriangle(double a, double b, double c)
 {
-  int check = 0;
   double a1 = std::sqrt(a);
   double b1 = std::sqrt(b);
   double c1 = std::sqrt(c);
   if (a1 + b1 > c1 && a1 + c1 > b1 && b1 + c1 > a1)
   {
-    check++;
+    return true;
   }
-  return check;
+  return false;
 }
 
 isaychev::Regular::Regular(const point_t & p1, const point_t & p2, const point_t & p3):
@@ -109,7 +107,7 @@ isaychev::rectangle_t isaychev::Regular::getFrameRect() const
   return {width, height, pos};
 }
 
-void isaychev::Regular::move(const double dX, const double dY)
+void isaychev::Regular::move(double dX, double dY)
 {
   center_.x += dX;
   closePnt_.x += dX;
@@ -130,7 +128,7 @@ void isaychev::Regular::move(const point_t & newPos)
   center_ = {newPos.x, newPos.y};
 }
 
-void isaychev::Regular::scale(const double coeff)
+void isaychev::Regular::scale(double coeff)
 {
   if(coeff <= 0.0)
   {

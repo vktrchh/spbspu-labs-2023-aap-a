@@ -12,8 +12,8 @@ namespace isaychev
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t & newPos);
-    virtual void move(const double dX, const double dY);
-    virtual void scale(const double coeff);
+    virtual void move(double dX, double dY);
+    virtual void scale(double coeff);
 
    private:
     point_t botL_;

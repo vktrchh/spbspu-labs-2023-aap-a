@@ -1,12 +1,12 @@
 #ifndef OUTPUTRESULTS_HPP
 #define OUTPUTRESULTS_HPP
 
-#include <iostream>
+#include <cstddef>
 #include "shape.hpp"
 
 namespace isaychev
 {
-  void outputResults(Shape ** Figures, size_t figuresCount);
+  void outputResults(Shape **const Figures, size_t figuresCount);
 }
 
 #endif

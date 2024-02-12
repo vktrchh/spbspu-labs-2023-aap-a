@@ -32,7 +32,7 @@ void isaychev::Rectangle::move(const point_t & newPos)
   botL_ = {newPos.x - (width / 2), newPos.y - (height / 2)};
 }
 
-void isaychev::Rectangle::move(const double dX, const double dY)
+void isaychev::Rectangle::move(double dX, double dY)
 {
   topR_.x += dX;
   botL_.x += dX;
@@ -40,7 +40,7 @@ void isaychev::Rectangle::move(const double dX, const double dY)
   botL_.y += dY;
 }
 
-void isaychev::Rectangle::scale(const double coeff)
+void isaychev::Rectangle::scale(double coeff)
 {
   if(coeff <= 0.0)
   {

@@ -6,5 +6,4 @@ void isaychev::deleteFigures(Shape ** arrOfFigures, size_t numOfFigures)
   {
     delete arrOfFigures[i];
   }
-  delete [] arrOfFigures;
 }

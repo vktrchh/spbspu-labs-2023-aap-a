@@ -1,8 +1,8 @@
 #ifndef ISOSCALE_HPP
 #define ISPSCALE_HPP
 
-#include "shape.hpp"
 #include <cstdlib>
+#include "shape.hpp"
 
 namespace isaychev
 {
