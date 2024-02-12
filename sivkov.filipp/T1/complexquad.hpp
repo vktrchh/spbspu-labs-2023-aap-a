@@ -11,11 +11,11 @@ class Complexquad : public Shape
 {
 public:
   Complexquad(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4);
-  virtual double getArea() const;
-  virtual rectangle_t getFrameRect() const;
-  virtual void move(point_t newPos);
-  virtual void move(double x, double y);
-  virtual void scale(double k);
+  double getArea() const;
+  rectangle_t getFrameRect() const;
+  void move(point_t newPos);
+  void move(double x, double y);
+  void scale(double k);
   double areaOfTriangle(const point_t& ver1, const point_t& ver2, const point_t& ver3) const;
   bool areSegmentsIntersecting(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4);
   point_t findIntersection(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4) const;

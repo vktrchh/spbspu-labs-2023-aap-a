@@ -7,7 +7,7 @@ Complexquad::Complexquad(const point_t& ver1, const point_t& ver2, const point_t
   cqVer3_(ver3),
   cqVer4_(ver4)
 {
-  if (areSegmentsIntersecting(ver1, ver2, ver3, ver4) || areSegmentsIntersecting(ver3, ver4, ver1, ver2))
+  if (!areSegmentsIntersecting(ver1, ver2, ver3, ver4)) 
   {
     throw std::invalid_argument("Sides of the complex quad intersect. Invalid configuration.");
   }
@@ -50,14 +50,7 @@ void Complexquad::move(point_t newPos)
   point_t center = findIntersection(cqVer1_, cqVer2_, cqVer3_, cqVer4_);
   const double dx = newPos.x - center.x;
   const double dy = newPos.y - center.y;
-  cqVer1_.x += dx;
-  cqVer1_.y += dy;
-  cqVer2_.x += dx;
-  cqVer2_.y += dy;
-  cqVer3_.x += dx;
-  cqVer3_.y += dy;
-  cqVer4_.x += dx;
-  cqVer4_.y += dy;
+  move(dx, dy);
 }
 
 void Complexquad::move(const double dx, const double dy)
@@ -106,12 +99,14 @@ point_t Complexquad::findIntersection(const point_t& ver1, const point_t& ver2, 
 {
   double a1, b1, c1, a2, b2, c2;
 
-  if (ver1.x == ver2.x) {
+  if (ver1.x == ver2.x)
+  {
     a1 = 1;
     b1 = 0;
     c1 = -ver2.x;
   }
-  else if (ver1.y == ver2.y) {
+  else if (ver1.y == ver2.y)
+  {
     a1 = 0;
     b1 = 1;
     c1 = -ver2.y;
@@ -126,7 +121,8 @@ point_t Complexquad::findIntersection(const point_t& ver1, const point_t& ver2, 
     b2 = 0;
     c2 = -ver4.x;
   }
-  else if (ver3.y == ver4.y) {
+  else if (ver3.y == ver4.y)
+  {
     a2 = 0;
     b2 = 1;
     c2 = -ver4.y;
@@ -137,7 +133,8 @@ point_t Complexquad::findIntersection(const point_t& ver1, const point_t& ver2, 
     c2 = -ver3.x * a2 - ver3.y * b2;
   }
 
-  if (a1 / a2 == b1 / b2) {
+  if (a1 / a2 == b1 / b2)
+  {
     throw std::invalid_argument("no intersection\n");
   }
   else {
@@ -160,9 +157,7 @@ bool Complexquad::areSegmentsIntersecting(const point_t& ver1, const point_t& ve
   double line3x = ver4.x - ver1.x;
   double line3y = ver4.y - ver1.y;
 
-  if ((line1x * line2y - line1y * line2x) * (line1x * line3y - line1y * line3x) >= 0) {
-    return false;
-  }
+  bool check1 = ((line1x * line2y - line1y * line2x) * (line1x * line3y - line1y * line3x) < 0);
 
   line1x = ver4.x - ver3.x;
   line1y = ver4.y - ver3.y;
@@ -171,8 +166,8 @@ bool Complexquad::areSegmentsIntersecting(const point_t& ver1, const point_t& ve
   line3x = ver2.x - ver3.x;
   line3y = ver2.y - ver3.y;
 
-  if ((line1x * line2y - line1y * line2x) * (line1x * line3y - line1y * line3x) >= 0) {
-    return false;
-  }
-  return true;
+  bool check2 = ((line1x * line2y - line1y * line2x) * (line1x * line3y - line1y * line3x) < 0);
+  return check1 * check2;
 }
+
+
