@@ -39,7 +39,6 @@ int main()
 
         if (lower_left_x >= upper_right_x || lower_left_y >= upper_right_y)
         {
-          std::cerr << "Error: Incorrect rectangle coordinates.\n";
           continue;
         }
         double width = std::abs(upper_right_x - lower_left_x);
@@ -63,7 +62,7 @@ int main()
         }
         else
         {
-          std::cerr << "Error: Invalid triangle coordinates.\n";
+          continue;
         }
       }
       else if (command == "CONCAVE" && shape_count < max_shapes)
