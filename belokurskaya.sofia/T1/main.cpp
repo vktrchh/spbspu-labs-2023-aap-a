@@ -46,7 +46,6 @@ int main()
     shapes[shape_count] = new belokurskaya::Rectangle({ center_x, center_y }, width, height);
     total_area_before_scaling += shapes[shape_count]->getArea();
     shape_count++;
-}
     }
     else if (command == "TRIANGLE" && shape_count < max_shapes)
     {
