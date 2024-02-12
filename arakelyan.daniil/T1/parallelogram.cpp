@@ -7,9 +7,13 @@ arakelyan::Parallelogram::Parallelogram(point_t fp, point_t sp, point_t tp):
   p2_(sp),
   p3_(tp)
 {
-  if (!(p1_.y == p2_.y || p1_.y == p3_.y || p2_.y == p3_.y))
+  if (!((p1_.y == p2_.y) || (p1_.y == p3_.y) || (p2_.y == p3_.y)))
   {
     throw std::logic_error("The provided points do not form a parallelogram!");
+  }
+  if ((p1_.x == 0) && (p1_.y == 0) && (p2_.x == 0) && (p2_.y == 0) && (p3_.x == 0) && (p3_.y == 0))
+  {
+    throw std::logic_error("Invalid points for parallelogram!");
   }
 };
 
