@@ -3,7 +3,7 @@
 
 namespace zakozhurnikova
 {
-  void removeSpaces(char *dest, const char *src);
+  void removeSpaces(char *dest, const char *src, size_t buff);
 }
 
 #endif
