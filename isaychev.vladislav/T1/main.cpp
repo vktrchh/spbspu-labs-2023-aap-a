@@ -12,7 +12,8 @@ int main()
   Shape * figures[1000] = {};
   const char * scaleStr = "SCALE ";
   char * currDesc = nullptr;
-  size_t i = 0, figuresCount = 0, figDescMistakeCheck = 0, eofCheck = 0;
+  size_t i = 0, figuresCount = 0, figDescMistakeCheck = 0;
+  bool eofCheck = false;
   while (i < 1000)
   {
     try
@@ -22,7 +23,7 @@ int main()
       {
         if (std::cin.eof())
         {
-          eofCheck++;
+          eofCheck = true;
         }
         break;
       }
@@ -49,22 +50,18 @@ int main()
     }
     delete [] currDesc;
   }
-  if (figDescMistakeCheck > 0)
-  {
-    std::cerr << "There were mistakes in figure descriptions\n";
-  }
   if (figuresCount == 0 && checkString(currDesc, scaleStr) == 1)
   {
     delete [] currDesc;
     std::cerr << "nothing to scale\n";
-    return 3;
+    return 2;
   }
   else if (eofCheck == 1 && checkString(currDesc, scaleStr) == 0)
   {
     deleteFigures(figures, figuresCount);
     delete [] currDesc;
     std::cerr << "input was finished with eof symbol; scale wasn't inputed\n";
-    return 4;
+    return 3;
   }
   else
   {
@@ -79,10 +76,14 @@ int main()
       std::cerr << e.what() << "\n";
       delete [] currDesc;
       deleteFigures(figures, figuresCount);
-      return 5;
+      return 4;
     }
     outputResults(figures, figuresCount);
     std::cout << "\n";
+  }
+  if (figDescMistakeCheck > 0)
+  {
+    std::cerr << "There were mistakes in figure descriptions\n";
   }
   deleteFigures(figures, figuresCount);
   delete [] currDesc;
