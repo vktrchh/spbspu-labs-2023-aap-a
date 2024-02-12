@@ -31,32 +31,40 @@ int main()
       if (command == "RECTANGLE" && shape_count < max_shapes)
       {
         double lower_left_x, lower_left_y, upper_right_x, upper_right_y;
-        inputStream >> lower_left_x >> lower_left_y >> upper_right_x >> upper_right_y;
-
-        bool valid_coordinates = (lower_left_x < upper_right_x && lower_left_y < upper_right_y);
-
-        if (valid_coordinates)
+        if (!(inputStream >> lower_left_x >> lower_left_y >> upper_right_x >> upper_right_y))
         {
-          double width = std::abs(upper_right_x - lower_left_x);
-          double height = std::abs(upper_right_y - lower_left_y);
-          double center_x = (lower_left_x + upper_right_x) / 2.0;
-          double center_y = (lower_left_y + upper_right_y) / 2.0;
-          shapes[shape_count] = new belokurskaya::Rectangle({ center_x, center_y }, width, height);
-          total_area_before_scaling += shapes[shape_count]->getArea();
-          shape_count++;
+          std::cerr << "Invalid input for rectangle\n";
+          continue;
         }
-        else
+
+        if (lower_left_x >= upper_right_x || lower_left_y >= upper_right_y)
         {
           std::cerr << "Error: Incorrect rectangle coordinates.\n";
+          continue;
         }
+        double width = std::abs(upper_right_x - lower_left_x);
+        double height = std::abs(upper_right_y - lower_left_y);
+        double center_x = (lower_left_x + upper_right_x) / 2.0;
+        double center_y = (lower_left_y + upper_right_y) / 2.0;
+        shapes[shape_count] = new belokurskaya::Rectangle({ center_x, center_y }, width, height);
+        total_area_before_scaling += shapes[shape_count]->getArea();
+        shape_count++;
       }
       else if (command == "TRIANGLE" && shape_count < max_shapes)
       {
         double vertex1_x, vertex1_y, vertex2_x, vertex2_y, vertex3_x, vertex3_y;
         inputStream >> vertex1_x >> vertex1_y >> vertex2_x >> vertex2_y >> vertex3_x >> vertex3_y;
-        shapes[shape_count] = new belokurskaya::Triangle({vertex1_x, vertex1_y}, {vertex2_x, vertex2_y}, {vertex3_x, vertex3_y});
-        total_area_before_scaling += shapes[shape_count]->getArea();
-        shape_count++;
+
+        if (std::labs((vertex2_x - vertex1_x) * (vertex3_y - vertex1_y) - (vertex3_x - vertex1_x) * (vertex2_y - vertex1_y)) > 1e-9)
+        {
+          shapes[shape_count] = new belokurskaya::Triangle({vertex1_x, vertex1_y}, {vertex2_x, vertex2_y}, {vertex3_x, vertex3_y});
+          total_area_before_scaling += shapes[shape_count]->getArea();
+          shape_count++;
+        }
+        else
+        {
+          std::cerr << "Error: Invalid triangle coordinates.\n";
+        }
       }
       else if (command == "CONCAVE" && shape_count < max_shapes)
       {
@@ -93,7 +101,7 @@ int main()
 
           belokurskaya::rectangle_t frameRect = shapes[i]->getFrameRect();
           std::cout << frameRect.pos.x - frameRect.width / 2.0 << " " << frameRect.pos.y - frameRect.height / 2.0 << " ";
-          std::cout << frameRect.pos.x + frameRect.width / 2.0 << " " << frameRect.pos.y + frameRect.height / 2.0;
+          std::cout << frameRect.pos.x + frameRect.width / 2.0 << " " << frameRect.pos.y + frameRect.height / 2.0 << " ";
         }
         std::cout << "\n";
 
@@ -124,7 +132,7 @@ int main()
           double scale_lower_left_y = frameRect.pos.y - frameRect.height / 2.0;
           double scale_upper_right_x = frameRect.pos.x + frameRect.width / 2.0;
           double scale_upper_right_y = frameRect.pos.y + frameRect.height / 2.0;
-          std::cout << scale_lower_left_x << " " << scale_lower_left_y << " " << scale_upper_right_x << " " << scale_upper_right_y;
+          std::cout << scale_lower_left_x << " " << scale_lower_left_y << " " << scale_upper_right_x << " " << scale_upper_right_y << " ";
         }
         std::cout << "\n";
         break;
