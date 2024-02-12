@@ -28,3 +28,5 @@ size_t serter::CountOfSignsChangesInSeq::operator()() const
 {
   return count_;
 }
+
+
