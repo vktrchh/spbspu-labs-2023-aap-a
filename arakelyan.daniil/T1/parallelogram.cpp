@@ -81,12 +81,6 @@ void arakelyan::Parallelogram::move(const point_t point)
     pointsArray[i]->x += delX;
     pointsArray[i]->y += delY;
   }
-  // p1_.x += delX;
-  // p1_.y += delY;
-  // p2_.x += delX;
-  // p2_.y += delY;
-  // p3_.x += delX;
-  // p3_.y += delY;
 }
 
 void arakelyan::Parallelogram::move(const double delX, const double delY)
@@ -97,12 +91,6 @@ void arakelyan::Parallelogram::move(const double delX, const double delY)
     pointsArray[i]->x += delX;
     pointsArray[i]->y += delY;
   }
-  // p1_.x += delX;
-  // p1_.y += delY;
-  // p2_.x += delX;
-  // p2_.y += delY;
-  // p3_.x += delX;
-  // p3_.y += delY;
 }
 
 void arakelyan::Parallelogram::scale(const double k)
@@ -118,12 +106,6 @@ void arakelyan::Parallelogram::scale(const double k)
     pointsArray[i]->x = rectOfParal.pos.x + ((pointsArray[i]->x - rectOfParal.pos.x) * k);
     pointsArray[i]->y = rectOfParal.pos.y + ((pointsArray[i]->y - rectOfParal.pos.y) * k);
   }
-  // p1_.x = rectOfParal.pos.x + ((p1_.x - rectOfParal.pos.x) * k);
-  // p1_.y = rectOfParal.pos.y + ((p1_.y - rectOfParal.pos.y) * k);
-  // p2_.x = rectOfParal.pos.x + ((p2_.x - rectOfParal.pos.x) * k);
-  // p2_.y = rectOfParal.pos.y + ((p2_.y - rectOfParal.pos.y) * k);
-  // p3_.x = rectOfParal.pos.x + ((p3_.x - rectOfParal.pos.x) * k);
-  // p3_.y = rectOfParal.pos.y + ((p3_.y - rectOfParal.pos.y) * k);
 }
 
 arakelyan::Parallelogram::~Parallelogram()

@@ -8,7 +8,7 @@
 #include "diamond.hpp"
 #include "rectangle.hpp"
 
-void arakelyan::dataExtractionParAndDiam(const char * string, point_t & p1, point_t & p2, point_t & p3, const size_t wordLen)
+void arakelyan::dataExtractionParAndDiam(const char * string, point_t &p1, point_t &p2, point_t &p3, const size_t wordLen)
 {
   string += wordLen;
   double coordStorage[6] = {};
@@ -35,7 +35,7 @@ void arakelyan::dataExtractionParAndDiam(const char * string, point_t & p1, poin
   p3 = {coordStorage[4], coordStorage[5]};
 }
 
-void arakelyan::dataExtractionRect(const char * string, point_t & p1, point_t & p2)
+void arakelyan::dataExtractionRect(const char * string, point_t &p1, point_t &p2)
 {
   double coordStorage[4] = {};
   size_t wordLen = 9;
@@ -115,7 +115,7 @@ arakelyan::Shape * arakelyan::defineAndCreateShape(const char * string)
       return createDiam(string);
     }
   }
-  catch (const std::logic_error & e)
+  catch (const std::logic_error &e)
   {
     throw;
   }

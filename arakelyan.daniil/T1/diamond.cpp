@@ -89,12 +89,6 @@ void arakelyan::Diamond::move(const double delX, const double delY)
     pointsArray[i]->x += delX;
     pointsArray[i]->y += delY;
   }
-  // p1_.x += delX;
-  // p1_.y += delY;
-  // p2_.x += delX;
-  // p2_.y += delY;
-  // p3_.x += delX;
-  // p3_.y += delY;
 }
 
 void arakelyan::Diamond::scale(const double k)
@@ -110,12 +104,6 @@ void arakelyan::Diamond::scale(const double k)
     pointsArray[i]->x = dataOfFrameRect.pos.x + ((pointsArray[i]->x - dataOfFrameRect.pos.x) * k);
     pointsArray[i]->y = dataOfFrameRect.pos.y +((pointsArray[i]-> x - dataOfFrameRect.pos.y) * k);
   }
-  // p1_.x = dataOfFrameRect.pos.x + ((p1_.x - dataOfFrameRect.pos.x) * k);
-  // p1_.y = dataOfFrameRect.pos.y + ((p1_.y - dataOfFrameRect.pos.y) * k);
-  // p2_.x = dataOfFrameRect.pos.x + ((p2_.x - dataOfFrameRect.pos.x) * k);
-  // p2_.y = dataOfFrameRect.pos.y + ((p2_.y - dataOfFrameRect.pos.y) * k);
-  // p3_.x = dataOfFrameRect.pos.x + ((p3_.x - dataOfFrameRect.pos.x) * k);
-  // p3_.y = dataOfFrameRect.pos.y + ((p3_.y - dataOfFrameRect.pos.y) * k);
 }
 
 arakelyan::Diamond::~Diamond()

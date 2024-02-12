@@ -3,7 +3,6 @@
 #include "base-types.hpp"
 #include "shape.hpp"
 #include "rectangle.hpp"
-
 namespace arakelyan
 {
   class Parallelogram: public arakelyan::Shape

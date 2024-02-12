@@ -64,7 +64,7 @@ int main()
       {
         myShapes[currentShapesCount] = defineAndCreateShape(string);
       }
-      catch (const std::logic_error &e)
+      catch (const std::exception &e)
       {
         errorsFlagShapes = true;
       }
