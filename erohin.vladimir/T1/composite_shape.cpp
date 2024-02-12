@@ -1,6 +1,7 @@
 #include "composite_shape.hpp"
 #include <utility>
 #include <stdexcept>
+#include "geom_func.hpp"
 
 erohin::CompositeShape::CompositeShape():
   capacity_(4),
@@ -30,13 +31,6 @@ erohin::CompositeShape::~CompositeShape()
     delete shape_[i];
   }
   delete[] shape_;
-}
-
-void erohin::CompositeShape::swap(CompositeShape& rhs)
-{
-  std::swap(capacity_, rhs.capacity_);
-  std::swap(size_, rhs.size_);
-  std::swap(shape_, rhs.shape_);
 }
 
 erohin::CompositeShape& erohin::CompositeShape::operator=(CompositeShape&& rhs) noexcept
@@ -103,6 +97,62 @@ bool erohin::CompositeShape::empty() const
 size_t erohin::CompositeShape::size() const
 {
   return size_;
+}
+
+double erohin::CompositeShape::getArea() const
+{
+  double sumArea = 0.0;
+  for (size_t i = 0; i < size_; ++i)
+  {
+    sumArea += shape_[i]->getArea();
+  }
+  return sumArea;
+}
+
+erohin::rectangle_t erohin::CompositeShape::getFrameRect() const
+{
+  point_t point[2 * size_] = { 0.0, 0.0 };
+  rectangle_t frameRect = { 0.0, 0.0, { 0.0, 0.0 } };
+  for (size_t i = 0; i < size_; ++i)
+  {
+    frameRect = shape_[i]->getFrameRect();
+    point[2 * i].x = frameRect.pos.x - frameRect.width / 2.0;
+    point[2 * i].y = frameRect.pos.y - frameRect.height / 2.0;
+    point[2 * i + 1].x = frameRect.pos.x + frameRect.width / 2.0;
+    point[2 * i + 1].y = frameRect.pos.y + frameRect.height / 2.0;
+  }
+  return findPointsFrameRect(point, 2 * size_);
+}
+
+void erohin::CompositeShape::move(double dx, double dy)
+{
+  for (size_t i = 0; i < size_; ++i)
+  {
+    shape_[i]->move(dx, dy);
+  }
+}
+
+void erohin::CompositeShape::move(point_t point)
+{
+  rectangle_t frameRect = getFrameRect();
+  double dx = point.x - frameRect.pos.x;
+  double dy = point.y - frameRect.pos.y;
+  move(dx, dy);
+}
+
+void erohin::CompositeShape::scale(double ratio)
+{
+  for (size_t i = 0; i < size_; ++i)
+  {
+    isoScale(shape_[i], getFrameRect().pos, ratio);
+  }
+}
+
+void erohin::CompositeShape::swap(CompositeShape& rhs)
+{
+  std::swap(capacity_, rhs.capacity_);
+  std::swap(size_, rhs.size_);
+  std::swap(shape_, rhs.shape_);
 }
 
 void erohin::CompositeShape::resize(size_t length)

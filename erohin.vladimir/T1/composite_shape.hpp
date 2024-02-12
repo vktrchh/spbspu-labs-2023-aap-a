@@ -3,6 +3,7 @@
 
 #include <cstddef>
 #include "shape.hpp"
+#include "base-types.hpp"
 
 namespace erohin
 {
@@ -22,6 +23,11 @@ namespace erohin
     void pop();
     bool empty() const;
     size_t size() const;
+    double getArea() const;
+    rectangle_t getFrameRect() const;
+    void move(double dx, double dy);
+    void move(point_t point);
+    void scale(double ratio);
   private:
     size_t capacity_;
     size_t size_;
