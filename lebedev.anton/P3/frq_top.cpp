@@ -15,7 +15,7 @@ char * lebedev::findTopFrqSymbs(const char * string, char * symbols)
 
   for (int symbol = 'A'; symbol <= 'z'; ++symbol)
   {
-    if(std::isalpha(symbol))
+    if (std::isalpha(symbol))
     {
       size_t frq_current = 0;
       size_t current_index = 0;
