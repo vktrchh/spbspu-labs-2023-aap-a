@@ -49,6 +49,15 @@ int main()
       inputStream >> scale_point_x >> scale_point_y >> scale_factor;
       for (int i = 0; i < shape_count; ++i)
       {
+        belokurskaya::rectangle_t frameRect = shapes[i]->getFrameRect();
+        std::cout << shapes[i]->getArea();
+        std::cout << frameRect.pos.x - frameRect.width / 2.0 << " " << frameRect.pos.y - frameRect.height / 2.0 << " ";
+        std::cout << frameRect.pos.x + frameRect.width / 2.0 << " " << frameRect.pos.y + frameRect.height / 2.0 << "\n";
+      }
+      std::cout << std::endl;
+
+      for (int i = 0; i < shape_count; ++i)
+      {
         try
         {
           double dx = (shapes[i]->getFrameRect().pos.x - scale_point_x) * scale_factor;
