@@ -37,7 +37,7 @@ rebdev::Concave::Concave(const point_t * vertexs):
   {
     throw std::logic_error("concave error");
   }
-};
+}
 
 double rebdev::Concave::getArea() const
 {
@@ -49,7 +49,7 @@ double rebdev::Concave::getArea() const
   sum /= 2;
 
   return ((sum < 0) ? -sum : sum);
-};
+}
 
 rebdev::rectangle_t rebdev::Concave::getFrameRect() const
 {
@@ -65,7 +65,7 @@ rebdev::rectangle_t rebdev::Concave::getFrameRect() const
   }
 
   return rectangle_t{(xMax - xMin), (yMax - yMin), point_t{(xMax + xMin) / 2, (yMax + yMin) / 2}};
-};
+}
 
 void rebdev::Concave::move(const point_t point)
 {
@@ -77,7 +77,7 @@ void rebdev::Concave::move(const point_t point)
     vertexs_[i].x += xChange;
     vertexs_[i].y += yChange;
   }
-};
+}
 
 void rebdev::Concave::move(const double x, const double y)
 {
@@ -86,23 +86,23 @@ void rebdev::Concave::move(const double x, const double y)
     vertexs_[i].x += x;
     vertexs_[i].y += y;
   }
-};
+}
 
 void rebdev::Concave::scale(const double k)
 {
   vertexs_[0] = scalePoint(vertexs_[0], vertexs_[2], k);
   vertexs_[1] = scalePoint(vertexs_[1], vertexs_[2], k);
   vertexs_[3] = scalePoint(vertexs_[3], vertexs_[2], k);
-};
+}
 
 rebdev::point_t rebdev::Concave::scalePoint(const point_t & pointToScale, const point_t & centerPoint, const double k)
 {
   point_t scaledPoint = {(pointToScale.x - centerPoint.x) * k + centerPoint.x,
     (pointToScale.y - centerPoint.y) * k + centerPoint.y};
   return scaledPoint;
-};
+}
 
 bool rebdev::Concave::isTriangle(const point_t f, const point_t s, const point_t t)
 {
     return (((t.x - f.x) / (s.x - f.x)) != ((t.y - f.y) / (s.y - f.y)));
-};
+}

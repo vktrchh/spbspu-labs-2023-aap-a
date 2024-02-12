@@ -12,7 +12,7 @@ void rebdev::printSum(Shape ** shapes, const size_t numOfShapes, std::ostream & 
   out.precision(1);
 
   out << sum;
-};
+}
 
 void rebdev::printShapes(Shape ** shapes, const size_t numOfShapes, std::ostream & out)
 {

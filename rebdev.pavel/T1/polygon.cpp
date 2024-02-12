@@ -35,12 +35,12 @@ rebdev::Polygon::Polygon(const point_t * vertexs, const size_t numOfVertexs):
   {
     vertexs_[i] = vertexs[i];
   }
-};
+}
 
 rebdev::Polygon::~Polygon()
 {
   delete[] vertexs_;
-};
+}
 
 double rebdev::Polygon::getArea() const
 {
@@ -52,7 +52,7 @@ double rebdev::Polygon::getArea() const
   sum += (vertexs_[numOfVertexs_ - 1].x - vertexs_[0].x) * (vertexs_[numOfVertexs_ - 1].y + vertexs_[0].y);
   sum /= 2;
   return  ((sum >= 0) ? sum : -sum);
-};
+}
 
 rebdev::rectangle_t rebdev::Polygon::getFrameRect() const
 {
@@ -66,7 +66,7 @@ rebdev::rectangle_t rebdev::Polygon::getFrameRect() const
     yMax = ((yMax < vertexs_[i].y) ? vertexs_[i].y : yMax);
   }
   return rectangle_t{(xMax - xMin), (yMax - yMin), point_t{(xMax + xMin) / 2, (yMax + yMin)/2}};
-};
+}
 
 void rebdev::Polygon::move(const point_t point)
 {
@@ -79,7 +79,7 @@ void rebdev::Polygon::move(const point_t point)
     vertexs_[i].x += xChange;
     vertexs_[i].y += yChange;
   }
-};
+}
 
 void rebdev::Polygon::move(const double x, const double y)
 {
@@ -88,7 +88,7 @@ void rebdev::Polygon::move(const double x, const double y)
     vertexs_[i].x += x;
     vertexs_[i].y += y;
   }
-};
+}
 
 void rebdev::Polygon::scale(const double k)
 {
@@ -100,7 +100,7 @@ void rebdev::Polygon::scale(const double k)
     vertexs_[i].y = (vertexs_[i].y - center.y) * k + center.y;
   }
 
-};
+}
 
 rebdev::point_t rebdev::Polygon::getPolygonCenter()
 {
@@ -116,4 +116,4 @@ rebdev::point_t rebdev::Polygon::getPolygonCenter()
   center.y /= numOfVertexs_;
 
   return center;
-};
+}

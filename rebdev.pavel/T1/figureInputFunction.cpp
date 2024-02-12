@@ -92,4 +92,4 @@ rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name
   }
 
   return nullptr;
-};
+}
