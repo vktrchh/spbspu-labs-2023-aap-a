@@ -1,6 +1,7 @@
 #include "shape.hpp"
 
 #include <stdexcept>
+#include <cmath>
 
 belokurskaya::Concave::Concave(const point_t & vertex1, const point_t & vertex2, const point_t & vertex3, const point_t & vertex4):
 vertex1_(vertex1), vertex2_(vertex2), vertex3_(vertex3), vertex4_(vertex4)
