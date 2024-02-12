@@ -59,13 +59,19 @@ int main()
     std::cerr << "input was finished with eof symbol; scale wasn't inputed\n";
     return 3;
   }
-  else
+  else if (countWSpaces(currDesc) >= 1)
   {
-    outputResults(figures, figuresCount);
-    std::cout << "\n";
+    constexpr size_t numOfScalePars = 3;
+    double scaleParams[numOfScalePars] = {};
+    parseParams(currDesc, numOfScalePars, scaleParams);
+    if (scaleParams[2] > 0)
+    {
+      outputResults(figures, figuresCount);
+      std::cout << "\n";
+    }
     try
     {
-      isoscale(currDesc, figures, figuresCount);
+      isoscale(figures, figuresCount, scaleParams);
     }
     catch (const std::invalid_argument & e)
     {

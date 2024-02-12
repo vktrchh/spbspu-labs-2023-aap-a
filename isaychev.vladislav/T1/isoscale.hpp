@@ -6,7 +6,7 @@
 
 namespace isaychev
 {
-  void isoscale(char * str, Shape ** figures, const size_t numOfFigures);
+  void isoscale(Shape ** figures, size_t numOfFigures, const double * scaleParams);
 }
 
 #endif

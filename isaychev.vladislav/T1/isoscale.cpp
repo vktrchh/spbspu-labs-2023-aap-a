@@ -1,9 +1,8 @@
 #include "isoscale.hpp"
 #include <stdexcept>
 #include <cmath>
-#include "stringManipulations.hpp"
 
-void isoscaleFigure(const isaychev::point_t & center, const double coeff, isaychev::Shape * figure)
+void isoscaleFigure(const isaychev::point_t & center, double coeff, isaychev::Shape * figure)
 {
   figure->scale(coeff);
   isaychev::rectangle_t rec = figure->getFrameRect();
@@ -12,16 +11,10 @@ void isoscaleFigure(const isaychev::point_t & center, const double coeff, isaych
   figure->move(dX, dY);
 }
 
-void isaychev::isoscale(char * str, Shape ** figures, const size_t numOfFigures)
+void isaychev::isoscale(Shape ** figures, size_t numOfFigures, const double * scaleParams)
 {
-  if (countWSpaces(str) >= 1)
+  for (size_t i = 0; i < numOfFigures; i++)
   {
-    constexpr size_t numOfScalePars = 3;
-    double scaleParams[numOfScalePars] = {};
-    parseParams(str, numOfScalePars, scaleParams);
-    for (size_t i = 0; i < numOfFigures; i++)
-    {
-      isoscaleFigure({scaleParams[0], scaleParams[1]}, scaleParams[2], figures[i]);
-    }
+    isoscaleFigure({scaleParams[0], scaleParams[1]}, scaleParams[2], figures[i]);
   }
 }
