@@ -12,9 +12,9 @@ int main()
   Shape * figures[1000] = {};
   const char * scaleStr = "SCALE ";
   char * currDesc = nullptr;
-  size_t i = 0, figuresCount = 0, figDescMistakeCheck = 0;
+  size_t figuresCount = 0, figDescMistakeCheck = 0;
   bool eofCheck = false;
-  while (i < 1000)
+  while (figuresCount < 1000)
   {
     try
     {
@@ -27,7 +27,7 @@ int main()
         }
         break;
       }
-      figures[i++] = createFigure(currDesc);
+      figures[figuresCount++] = createFigure(currDesc);
     }
     catch (const std::bad_alloc &)
     {
@@ -40,13 +40,9 @@ int main()
     {
       figDescMistakeCheck++;
     }
-    if (figures[i - 1] == nullptr)
+    if (figures[figuresCount - 1] == nullptr)
     {
-      i--;
-    }
-    else
-    {
-      figuresCount++;
+      figuresCount--;
     }
     delete [] currDesc;
   }
