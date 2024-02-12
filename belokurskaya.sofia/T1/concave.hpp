@@ -21,6 +21,9 @@ namespace belokurskaya
       point_t vertex3_;
       point_t vertex4_;
 
+      bool isTriangle(const point_t & p1, const point_t & p2, const point_t & p3) const;
+      bool isInsideTriangle(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4) const;
+      bool isConvex(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4) const;
       double calculateTriangleArea(const point_t & p1, const point_t & p2, const point_t & p3) const;
   };
 }

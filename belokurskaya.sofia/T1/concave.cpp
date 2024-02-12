@@ -68,7 +68,7 @@ void belokurskaya::Concave::move(double dx, double dy)
 
 void belokurskaya::Concave::scale(double factor)
 {
-  point_t center{(vertex1_.x + vertex2_.x + vertex3_.x + vertex4_.x) / 4.0, (vertex1_.y + vertex2_.y + vertex3_.y + vertex4_.y) / 4.0}; 
+  point_t center{(vertex1_.x + vertex2_.x + vertex3_.x + vertex4_.x) / 4.0, (vertex1_.y + vertex2_.y + vertex3_.y + vertex4_.y) / 4.0};
 
   vertex1_.x = center.x + (vertex1_.x - center.x) * factor;
   vertex1_.y = center.y + (vertex1_.y - center.y) * factor;
@@ -81,6 +81,30 @@ void belokurskaya::Concave::scale(double factor)
 
   vertex4_.x = center.x + (vertex4_.x - center.x) * factor;
   vertex4_.y = center.y + (vertex4_.y - center.y) * factor;
+}
+
+bool belokurskaya::Concave::isTriangle(const point_t& p1, const point_t& p2, const point_t& p3) const
+{
+  return ((p1.x - p2.x) * (p3.y - p2.y) - (p1.y - p2.y) * (p3.x - p2.x)) != 0;
+}
+
+bool belokurskaya::Concave::isInsideTriangle(const point_t& p1, const point_t& p2, const point_t& p3, const point_t& p4) const
+{
+  return ((p2.y - p3.y) * (p1.x - p3.x) + (p3.x - p2.x) * (p1.y - p3.y)) *
+         ((p2.y - p3.y) * (p4.x - p3.x) + (p3.x - p2.x) * (p4.y - p3.y)) >= 0 &&
+         ((p3.y - p1.y) * (p2.x - p1.x) + (p1.x - p3.x) * (p2.y - p1.y)) *
+         ((p3.y - p1.y) * (p4.x - p1.x) + (p1.x - p3.x) * (p4.y - p1.y)) >= 0 &&
+         ((p1.y - p2.y) * (p3.x - p2.x) + (p2.x - p1.x) * (p3.y - p2.y)) *
+         ((p1.y - p2.y) * (p4.x - p2.x) + (p2.x - p1.x) * (p4.y - p2.y)) >= 0;
+}
+
+bool belokurskaya::Concave::isConvex(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4) const
+{
+  double cross_product1 = (p2.x - p1.x) * (p3.y - p1.y) - (p2.y - p1.y) * (p3.x - p1.x);
+  double cross_product2 = (p3.x - p2.x) * (p4.y - p2.y) - (p3.y - p2.y) * (p4.x - p2.x);
+  double cross_product3 = (p4.x - p3.x) * (p1.y - p3.y) - (p4.y - p3.y) * (p1.x - p3.x);
+  double cross_product4 = (p1.x - p4.x) * (p2.y - p4.y) - (p1.y - p4.y) * (p2.x - p4.x);
+  return cross_product1 * cross_product2 > 0 && cross_product2 * cross_product3 > 0 && cross_product3 * cross_product4 > 0;
 }
 
 double belokurskaya::Concave::calculateTriangleArea(const point_t & p1, const point_t & p2, const point_t & p3) const
