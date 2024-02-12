@@ -1,5 +1,4 @@
 #include "shapesArrayOperations.hpp"
-#include "inputOperations.hpp"
 #include "rectangle.hpp"
 #include "square.hpp"
 #include "diamond.hpp"
@@ -8,6 +7,7 @@
 #include <iostream>
 #include <cstring>
 #include <stdexcept>
+#include <inputOperations.hpp>
 
 void readArray(double* array, size_t size, const char* string, size_t pos)
 {
