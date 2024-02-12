@@ -2,7 +2,6 @@
 #include <fstream>
 #include <stdexcept>
 
-
 void shabalin::matrixInput(std::ifstream& input, int* matrix, size_t countOfElements)
 {
     for (size_t i = 0; i < countOfElements; ++i)
