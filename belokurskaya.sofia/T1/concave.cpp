@@ -1,4 +1,5 @@
 #include "shape.hpp"
+#include "concave.hpp"
 
 #include <stdexcept>
 #include <cmath>
