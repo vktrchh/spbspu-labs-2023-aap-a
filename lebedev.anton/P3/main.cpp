@@ -1,7 +1,6 @@
 #include <iostream>
 
 #include "input_string.hpp"
-#include "copy_string.hpp"
 #include "upp_low.hpp"
 #include "frq_top.hpp"
 
@@ -13,7 +12,7 @@ int main()
   {
     string = inputString(std::cin);
   }
-  catch (...)
+  catch (const std::bad_alloc &)
   {
     std::cerr << "Error in memory allocation\n";
     return 1;
@@ -25,35 +24,25 @@ int main()
     return 1;
   }
 
-  char * string_upp_low = nullptr;
   char * symbols = nullptr;
   try
   {
     symbols = new char[4];
   }
-  catch (...)
+  catch (const std::bad_alloc &)
   {
     std::cerr << "Error in memory allocation\n";
+    delete[] string;
+    delete[] symbols;
     return 1;
   }
 
-  try
-  {
-    string_upp_low = copyString(string);
-  }
-  catch (...)
-  {
-    std::cerr << "Error in memory allocation\n";
-    return 1;
-  }
-
-  string_upp_low = convertToLow(string_upp_low);
   symbols = findTopFrqSymbs(string, symbols);
-  std::cout << string_upp_low << "\n";
+  string = convertToLow(string);
+  std::cout << string << "\n";
   std::cout << symbols << "\n";
 
   delete[] string;
-  delete[] string_upp_low;
   delete[] symbols;
   return 0;
 }
