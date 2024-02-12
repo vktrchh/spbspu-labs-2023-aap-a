@@ -1,5 +1,6 @@
 #include "frq_top.hpp"
 
+#include <cstddef>
 #include <cctype>
 
 char * lebedev::findTopFrqSymbs(const char * string, char * symbols)
