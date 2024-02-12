@@ -39,6 +39,7 @@ int main()
 
         if (lower_left_x >= upper_right_x || lower_left_y >= upper_right_y)
         {
+          std::cerr << "Is a rectangle\n";
           continue;
         }
         double width = std::abs(upper_right_x - lower_left_x);
@@ -95,7 +96,7 @@ int main()
           return 1;
         }
         std::cout << std::fixed << std::setprecision(1);
-        std::cout << total_area_before_scaling << " ";
+        std::cout << total_area_before_scaling;
 
         for (int i = 0; i < shape_count; ++i)
         {
@@ -103,8 +104,8 @@ int main()
           std::cout.precision(1);
 
           belokurskaya::rectangle_t frameRect = shapes[i]->getFrameRect();
-          std::cout << frameRect.pos.x - frameRect.width / 2.0 << " " << frameRect.pos.y - frameRect.height / 2.0 << " ";
-          std::cout << frameRect.pos.x + frameRect.width / 2.0 << " " << frameRect.pos.y + frameRect.height / 2.0 << " ";
+          std::cout << " " << frameRect.pos.x - frameRect.width / 2.0 << " " << frameRect.pos.y - frameRect.height / 2.0;
+          std::cout << " " << frameRect.pos.x + frameRect.width / 2.0 << " " << frameRect.pos.y + frameRect.height / 2.0;
         }
         std::cout << "\n";
 
@@ -123,7 +124,7 @@ int main()
             std::cerr << "Error: " << e.what() << "\n";
           }
         }
-        std::cout << total_area_after_scaling << " ";
+        std::cout << total_area_after_scaling;
 
         for (int i = 0; i < shape_count; ++i)
         {
@@ -134,7 +135,7 @@ int main()
           double scale_lower_left_y = frameRect.pos.y - frameRect.height / 2.0;
           double scale_upper_right_x = frameRect.pos.x + frameRect.width / 2.0;
           double scale_upper_right_y = frameRect.pos.y + frameRect.height / 2.0;
-          std::cout << scale_lower_left_x << " " << scale_lower_left_y << " " << scale_upper_right_x << " " << scale_upper_right_y << " ";
+          std::cout << " " << scale_lower_left_x << " " << scale_lower_left_y << " " << scale_upper_right_x << " " << scale_upper_right_y;
         }
         std::cout << "\n";
         break;
