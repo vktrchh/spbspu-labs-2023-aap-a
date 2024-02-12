@@ -42,7 +42,7 @@ public:
   }
   virtual rectangle_t getFrameRect()
   {
-    rectangle_t newRect{ height_rect_, width_rect_, pos_rect_ };
+    rectangle_t newRect{height_rect_, width_rect_, pos_rect_};
     return newRect;
   }
   virtual void move(point_t s)
@@ -57,14 +57,12 @@ public:
   }
   virtual rectangle_t scale(point_t s, double k)
   {
-    point_t point{ pos_rect_.x_, pos_rect_.y_ };
+    point_t point{pos_rect_.x_, pos_rect_.y_};
     move(s);
     height_rect_ = height_rect_ * k;
     width_rect_ = width_rect_ * k;
-    std::cout << "IN RECT: HEIGHT: " << height_rect_ << "   WIDTH: " << width_rect_ << '\n';
-    point_t new_pos{ pos_rect_.x_ - k * (pos_rect_.x_ - point.x_), pos_rect_.y_ - k * (pos_rect_.y_ - point.y_) };
-    move(new_pos);
-    rectangle_t newRect{ height_rect_, width_rect_, pos_rect_ };
+    move(k * (point.x_ - pos_rect_.x_), k * (point.y_ - pos_rect_.y_));
+    rectangle_t newRect{height_rect_, width_rect_, pos_rect_};
     return newRect;
   }
 private:
@@ -88,7 +86,7 @@ public:
   }
   virtual rectangle_t getFrameRect()
   {
-    rectangle_t newRect{ side_, side_, pos_sq_ };
+    rectangle_t newRect{side_, side_, pos_sq_};
     return newRect;
   }
   virtual void move(point_t s)
@@ -103,13 +101,11 @@ public:
   }
   virtual rectangle_t scale(point_t s, double k)
   {
-    point_t point{ pos_sq_.x_, pos_sq_.y_ };
+    point_t point{pos_sq_.x_, pos_sq_.y_};
     move(s);
     side_ = side_ * k;
-    std::cout << "IN SQUARE: SIDE: " << side_ << '\n';
-    point_t new_pos{ pos_sq_.x_ - k * (pos_sq_.x_ - point.x_), pos_sq_.y_ - k * (pos_sq_.y_ - point.y_) };
-    move(new_pos);
-    rectangle_t newRect{ side_, side_, pos_sq_ };
+    move(k * (point.x_ - pos_sq_.x_), k * (point.y_ - pos_sq_.y_));
+    rectangle_t newRect{side_, side_, pos_sq_};
     return newRect;
   }
 
@@ -123,26 +119,33 @@ class Triangle: public Shape
 public:
   Triangle(point_t point1, point_t point2, point_t point3)
   {
+    p1_.x_ = point1.x_;
+    p1_.y_ = point1.y_;
+    p2_.x_ = point2.x_;
+    p2_.y_ = point2.y_;
+    p3_.x_ = point3.x_;
+    p3_.y_ = point3.y_;
     pos_tri_.x_ = (point1.x_ + point2.x_ + point3.x_) / 3.0;
     pos_tri_.y_ = (point1.y_ + point2.y_ + point3.y_) / 3.0;
     double max_x = std::max({point1.x_, point2.x_, point3.x_});
     double min_x = std::min({point1.x_, point2.x_, point3.x_});
     double max_y = std::max({point1.y_, point2.y_, point3.y_});
     double min_y = std::min({point1.y_, point2.y_, point3.y_});
-    std::cout << "MAX: x: " << max_x << " y: " << max_y << " MIN: x: " << min_x << " MIN: y: " << min_y << '\n';
     height_tri_ = max_y - min_y;
     width_tri_ = max_x - min_x;
-    std::cout << "HEIGHT: " << height_tri_ << " WIDTH: " << width_tri_ << '\n';
     pos_.x_ = min_x + (width_tri_ / 2.0);
     pos_.y_ = min_y + (height_tri_ / 2.0);
   }
   virtual double getArea()
   {
-    return height_tri_ * width_tri_;
+    std::cout << "\nPOINTS IN AREA: " << p1_.x_ << ' ' << p1_.y_ << ' ' << p2_.x_ << ' ' << p2_.y_ << ' ' << p3_.x_ << ' ' << p3_.y_ << '\n';;
+    std::cout << "AREA: " << (std::abs ((p2_.x_ - p1_.x_) * (p3_.y_ - p1_.y_) - (p3_.x_ - p1_.x_) * (p2_.y_ - p1_.y_))) / 2.0 << '\n';
+    std::cout << "RECT AREA: " << height_tri_ * width_tri_ << '\n';
+    return (0.5 * (std::abs ((p2_.x_ - p1_.x_) * (p3_.y_ - p1_.y_) - (p3_.x_ - p1_.x_) * (p2_.y_ - p1_.y_))));
   }
   virtual rectangle_t getFrameRect()
   {
-    rectangle_t newRect{ height_tri_, width_tri_, pos_ };
+    rectangle_t newRect{height_tri_, width_tri_, pos_};
     return newRect;
   }
   virtual void move(point_t s)
@@ -152,68 +155,74 @@ public:
   }
   virtual void move(double x, double y)
   {
-    pos_tri_.x_ += x;
-    pos_tri_.y_ += y;
+    pos_.x_ += x;
+    pos_.y_ += y;
+    p1_.x_ += x;
+    p1_.y_ += y;
+    p2_.x_ += x;
+    p2_.y_ += y;
+    p3_.x_ += x;
+    p3_.y_ += y;
   }
   virtual rectangle_t scale(point_t s, double k)
   {
-    point_t point{ pos_tri_.x_, pos_tri_.y_ };
+    point_t point{pos_tri_.x_, pos_tri_.y_};
     move(s);
     height_tri_ = height_tri_ * k;
     width_tri_ = width_tri_ * k;
-    std::cout << "IN TRI: HEIGHT: " << height_tri_ << "   WIDTH: " << width_tri_ << '\n';
-    point_t new_pos{ pos_tri_.x_ - k * (pos_tri_.x_ - point.x_), pos_tri_.y_ - k * (pos_tri_.y_ - point.y_) };
-    move(new_pos);
-    rectangle_t newRect{ height_tri_, width_tri_, pos_tri_ };
+    std::cout << p1_.x_ << ' ' << p1_.y_ << '\n';
+    move(k * (point.x_ - pos_tri_.x_), k * (point.y_ - pos_tri_.y_));
+    std::cout << p1_.x_ << ' ' << p1_.y_ << '\n';
+    rectangle_t newRect{height_tri_, width_tri_, pos_};
     return newRect;
   }
 private:
+  point_t p1_;
+  point_t p2_;
+  point_t p3_;
   double height_tri_;
   double width_tri_;
   point_t pos_tri_;
   point_t pos_;
 };
 
-/*
 class Diamond: public Shape
 {
 public:
-  Diamond(point_t point1, point_t point2, point_t point3)
+  Diamond(point_t central, point_t side_x, point_t side_y)
   {
-    height_rect_ = b.y_ - a.y_;
-    width_rect_ = b.x_ - a.x_;
-    pos_rect_.x_ = (a.x_ + b.x_) / 2.0;
-    pos_rect_.y_ = (a.y_ + b.y_) / 2.0;
+    height_diam_ = std::abs (side_y.y_ - central.y_);
+    width_diam_ = std::abs (side_x.x_ - central.x_);
+    pos_diam_.x_ = central.x_;
+    pos_diam_.y_ = central.y_;
   }
   virtual double getArea()
   {
-    return height_rect_ * width_rect_;
+    return (0.5 * height_diam_ * width_diam_);
   }
   virtual rectangle_t getFrameRect()
   {
-    rectangle_t newRect{ height_rect_, width_rect_, pos_rect_ };
+    rectangle_t newRect{height_diam_, width_diam_, pos_diam_};
     return newRect;
   }
   virtual void move(point_t s)
   {
-    pos_rect_.x_ = s.x_;
-    pos_rect_.y_ = s.y_;
+    pos_diam_.x_ = s.x_;
+    pos_diam_.y_ = s.y_;
   }
   virtual void move(double x, double y)
   {
-    pos_rect_.x_ += x;
-    pos_rect_.y_ += y;
+    pos_diam_.x_ += x;
+    pos_diam_.y_ += y;
   }
   virtual rectangle_t scale(point_t s, double k)
   {
-    point_t point{ pos_rect_.x_, pos_rect_.y_ };
+    point_t point{pos_diam_.x_, pos_diam_.y_};
     move(s);
-    height_rect_ = height_rect_ * k;
-    width_rect_ = width_rect_ * k;
-    std::cout << "IN RECT: HEIGHT: " << height_rect_ << "   WIDTH: " << width_rect_ << '\n';
-    point_t new_pos{ pos_rect_.x_ - k * (pos_rect_.x_ - point.x_), pos_rect_.y_ - k * (pos_rect_.y_ - point.y_) };
-    move(new_pos);
-    rectangle_t newRect{ height_rect_, width_rect_, pos_rect_ };
+    height_diam_ = height_diam_ * k;
+    width_diam_ = width_diam_ * k;
+    move(k * (point.x_ - pos_diam_.x_), k * (point.y_ - pos_diam_.y_));
+    rectangle_t newRect{ height_diam_, width_diam_, pos_diam_ };
     return newRect;
   }
 private:
@@ -221,7 +230,7 @@ private:
   double width_diam_;
   point_t pos_diam_;
 };
-*/
+
 
 bool isCentralPoint(point_t point1, point_t point2, point_t point3)
 {
@@ -236,11 +245,11 @@ point_t defineSidePointX(point_t point1, point_t point2, point_t point3)
 {
   if (point1.x_ == point2.x_)
   {
-    return point2;
+    return point3;
   }
   else
   {
-    return point3;
+    return point2;
   }
 }
 
@@ -248,65 +257,16 @@ point_t defineSidePointY(point_t point1, point_t point2, point_t point3)
 {
     if (point1.y_ == point2.y_)
   {
-    return point2;
+    return point3;
   }
   else
   {
-    return point3;
+    return point2;
   }
 }
 
 int main()
 {
-//-----------
-  std::cout << "TEST:\n";
-  std::cout << "TEST_2:\n";
-  Shape *second = new Rectangle({ -1.0, -1.0 }, { 1.0, 1.0 });
-  std::cout << "Area: " << second->getArea() << '\n';
-  rectangle_t frame = second->getFrameRect();
-  std::cout << "Frame.x: " << frame.pos_.x_ << '\n';
-  std::cout << "Frame.y: " << frame.pos_.y_ << '\n';
-  rectangle_t sc = second->scale({ 0.0, 0.0 }, 2.0);
-  double scale_x = sc.pos_.x_;
-  double scale_y = sc.pos_.y_;
-  double height = sc.height_;
-  double width = sc.width_;
-  std::cout << "H: " << height << "  W: " << width << '\n';
-  std::cout << "Scale: x: " << scale_x << "  y: " << scale_y << '\n';
-  std::cout << (scale_x - (width / 2.0)) << ' ' << (scale_y - (height / 2.0)) << '\n';
-  std::cout << (scale_x + (width / 2.0)) << ' ' << (scale_y + (height / 2.0)) << '\n';
-
-  std::cout << "\nTEST_3:\n";
-  Shape *third = new Square({ -2.0, -2.0 }, 4.0);
-  std::cout << "Area: " << third->getArea() << '\n';
-  rectangle_t frame2 = third->getFrameRect();
-  std::cout << "Frame.x: " << frame2.pos_.x_ << '\n';
-  std::cout << "Frame.y: " << frame2.pos_.y_ << '\n';
-  rectangle_t sc2 = third->scale({ 0.0, 0.0 }, 2.0);
-  double scale2_x = sc2.pos_.x_;
-  double scale2_y = sc2.pos_.y_;
-  double side = sc2.height_;
-  std::cout << "S: " << side << '\n';
-  std::cout << "Scale: x: " << scale2_x << "  y: " << scale2_y << '\n';
-  std::cout << (scale2_x - (side / 2.0)) << ' ' << (scale2_y - (side / 2.0)) << '\n';
-  std::cout << (scale2_x + (side / 2.0)) << ' ' << (scale2_y + (side / 2.0)) << '\n';
-
-  std::cout << "\nTEST_4:\n";
-  Shape *four = new Triangle({ -2.0, 0.0 }, {-1.5, 2.5}, {-1.0, -2.0});
-  std::cout << "Area: " << four->getArea() << '\n';
-  rectangle_t frame3 = four->getFrameRect();
-  std::cout << "Frame.x: " << frame3.pos_.x_ << '\n';
-  std::cout << "Frame.y: " << frame3.pos_.y_ << '\n';
-  rectangle_t sc3 = four->scale({ 0.0, 0.0 }, 2.0);
-  double scale3_x = sc3.pos_.x_;
-  double scale3_y = sc3.pos_.y_;
-  double h4 = sc3.height_;
-  double w4 = sc3.width_;
-  std::cout << "H: " << h4 << " W: " << w4 << '\n';
-  std::cout << "Scale: x: " << scale3_x << "  y: " << scale3_y << '\n';
-  std::cout << (scale3_x - (w4 / 2.0)) << ' ' << (scale3_y - (h4 / 2.0)) << '\n';
-  std::cout << (scale3_x + (w4 / 2.0)) << ' ' << (scale3_y + (h4 / 2.0)) << '\n';
-
 /*
   std::cout << "\nTEST_NUMBERS:\n";
   std::cout << "3.46 -> " << round(3.46 * 10) / 10 << '\n';
@@ -318,7 +278,6 @@ int main()
   std::cout << "------\n";
 */
 
-//-----------
   double area_before = 0;
   double area_after = 0;
   Shape * array[1000] = {};
@@ -335,15 +294,30 @@ int main()
     {
       double center_x = 0.0, center_y = 0.0, index = 0.0;
       std::cin >> center_x >> center_y >> index;
-//-----test
-      std::cout << array[0]->getArea() << '\n';
-      array[0]->scale({center_x, center_y}, index);
-      std::cout << array[0]->getArea() << '\n';
-//----
       if (index <= 0.0)
       {
         std::cerr << "Incorrect scale index\n";
         return 1;
+      }
+      for (size_t i = 0; i < counter; ++i)
+      {
+        std::cout << '\n' << i << '\n';
+        rectangle_t frame = array[i]->getFrameRect();
+        double height = frame.height_;
+        double width = frame.width_;
+        double pos_x = frame.pos_.x_;
+        double pos_y = frame.pos_.y_;
+        std::cout << "Before scale:\n " << array[i]->getArea() << ' ';
+        std::cout << (pos_x - (width / 2.0)) << ' ' << (pos_y - (height / 2.0)) << ' ';
+        std::cout << (pos_x + (width / 2.0)) << ' ' << (pos_y + (height / 2.0)) << '\n';
+        rectangle_t sc_fr = array[i]->scale({center_x, center_y}, index);
+        height = sc_fr.height_;
+        width = sc_fr.width_;
+        pos_x = sc_fr.pos_.x_;
+        pos_y = sc_fr.pos_.y_;
+        std::cout << "After scale: " << array[i]->getArea() << ' ';
+        std::cout << (pos_x - (width / 2.0)) << ' ' << (pos_y - (height / 2.0)) << ' ';
+        std::cout << (pos_x + (width / 2.0)) << ' ' << (pos_y + (height / 2.0)) << '\n';
       }
       break;
     }
@@ -383,9 +357,7 @@ int main()
           up_right_y = y1;
         }
         std::cout << "Test rect after: " << low_left_x << ' ' << low_left_y << ' ' << up_right_x << ' ' << up_right_y << '\n';
-        array[counter++] = new Rectangle({ low_left_x, low_left_y }, { up_right_x, up_right_y });
-//        std::cout << "RECT TEST: " << first->getArea() << '\n';
-//        std::cout << first->getFrameRect().height_ << '\n';
+        array[counter++] = new Rectangle({low_left_x, low_left_y}, {up_right_x, up_right_y});
       }
     }
 
@@ -401,6 +373,7 @@ int main()
       else
       {
         std::cout << "Test square: " << low_left_x << ' ' << low_left_y << ' ' << side;
+        array[counter++] = new Square({low_left_x, low_left_y}, side);
       }
     }
 
@@ -413,9 +386,15 @@ int main()
         error_flag = 1;
         std::cout << "TRI ERROR\n";
       }
+      else if (((point1_x == point2_x) && (point2_x  == point3_x)) || ((point1_y == point2_y) && (point2_y == point3_y)))
+      {
+        error_flag = 1;
+        std::cout << "TRI ERROR\n";
+      }
       else
       {
         std::cout << "Test tri: " <<  point1_x << ' ' << point1_y << ' ' << point2_x << ' ' << point2_y << ' ' << point3_x << ' ' << point3_y;
+        array[counter++] = new Triangle({point1_x, point1_y}, {point2_x, point2_y}, {point3_x, point3_y});
       }
     }
 
@@ -473,14 +452,15 @@ int main()
           error_flag = 1;
           std::cout << "Wrong parameters in diamond\n";
         }
-        std::cout << "TEST CHECK DIAM:\n";
-        std::cout << "Centr: x = " << central_point.x_  << "  y = " << central_point.y_ << '\n';
-        std::cout << "SIDE_X: x = " << side_point_x.x_  << "  y = " << side_point_x.y_ << '\n';
-        std::cout << "SIDE_Y: x = " << side_point_y.x_  << "  y = " << side_point_y.y_ << '\n';
+        else
+        {
+          std::cout << "TEST CHECK DIAM:\n";
+          std::cout << "Centr: x = " << central_point.x_  << "  y = " << central_point.y_ << '\n';
+          std::cout << "SIDE_X: x = " << side_point_x.x_  << "  y = " << side_point_x.y_ << '\n';
+          std::cout << "SIDE_Y: x = " << side_point_y.x_  << "  y = " << side_point_y.y_ << '\n';
+          array[counter++] = new Diamond(central_point, side_point_x, side_point_y);
+        }
       }
     }
-
-    counter += 1;
   }
-  std::cout << counter << '\n';
 }
