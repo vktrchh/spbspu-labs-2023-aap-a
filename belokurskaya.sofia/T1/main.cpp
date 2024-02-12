@@ -40,7 +40,7 @@ int main()
     {
       double vertex1_x, vertex1_y, vertex2_x, vertex2_y, vertex3_x, vertex3_y, vertex4_x, vertex4_y;
       inputStream >> vertex1_x >> vertex1_y >> vertex2_x >> vertex2_y >> vertex3_x >> vertex3_y >> vertex4_x >> vertex4_y;
-      shapes[shape_count++] = new Concave({vertex1_x, vertex1_y},
+      shapes[shape_count++] = new belokurskaya::Concave({vertex1_x, vertex1_y},
       {vertex2_x, vertex2_y}, {vertex3_x, vertex3_y}, {vertex4_x, vertex4_y});
     }
     else if (command == "SCALE")
