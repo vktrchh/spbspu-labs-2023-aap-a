@@ -167,5 +167,5 @@ bool Complexquad::areSegmentsIntersecting(const point_t& ver1, const point_t& ve
   line3y = ver2.y - ver3.y;
 
   bool check2 = ((line1x * line2y - line1y * line2x) * (line1x * line3y - line1y * line3x) < 0);
-  return check1 * check2;
+  return check1 && check2;
 }
