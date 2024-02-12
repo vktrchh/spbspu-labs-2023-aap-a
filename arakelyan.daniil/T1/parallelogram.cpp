@@ -1,14 +1,13 @@
 #include "parallelogram.hpp"
+#include "base-types.hpp"
 #include <stdexcept>
 
 arakelyan::Parallelogram::Parallelogram(point_t fp, point_t sp, point_t tp):
   p1_(fp),
   p2_(sp),
-  p3_(tp),
-  p4_{(p1_.x + (p3_.x - p2_.x)),(p3_.y)},
-  midpoint_{(p1_.x + ((p3_.x - p1_.x) / 2.0)),(p3_.y - ((p3_.y - p2_.y) / 2.0))}
+  p3_(tp)
 {
-  if (p2_.x - p1_.x != p3_.x - p4_.x)
+  if (!(p1_.y == p2_.y || p1_.y == p3_.y || p2_.y == p3_.y))
   {
     throw std::logic_error("The provided points do not form a parallelogram!");
   }
@@ -16,44 +15,72 @@ arakelyan::Parallelogram::Parallelogram(point_t fp, point_t sp, point_t tp):
 
 double arakelyan::Parallelogram::getArea() const
 {
-  return std::abs((p2_.x - p1_.x) * (p1_.y - p3_.y));
+  return std::abs((p3_.y - p1_.y) * (p2_.x - p1_.x));
 }
 
 arakelyan::rectangle_t arakelyan::Parallelogram::getFrameRect() const
 {
-  double width = std::abs(p3_.x - p1_.x);
-  double height = std::abs(p1_.y - p3_.y);
-  point_t midPointOfRect = {(p1_.x + p3_.x) / 2.0,(p1_.y + p3_.y) / 2.0};
+  double width = std::abs(p2_.x - p1_.x) + std::abs(p2_.x - p3_.x);
+  double height = 0;
+  if (p2_.y == p1_.y)
+  {
+    height = std::abs(p3_.y - p2_.y);
+  }
+  else
+  {
+    height = std::abs(p2_.y - p1_.y);
+  }
+
+  point_t midPointOfRect = {0,0};
+
+  if (p1_.x <= p2_.x && p1_.x <= p3_.x)
+  {
+    midPointOfRect.x = p1_.x + (width / 2.0);
+  }
+  else if (p2_.x <= p1_.x && p2_.x <= p3_.x)
+  {
+    midPointOfRect.x = p2_.x + (width / 2.0);
+  }
+  else
+  {
+    midPointOfRect.x = p3_.x + (width / 2.0);
+  }
+
+  if (p1_.y > p2_.y || p1_.y > p3_.y)
+  {
+    midPointOfRect.y = p1_.y - (height / 2.0);
+  }
+  else
+  {
+    midPointOfRect.y = p1_.y + (height / 2.0);
+  }
   rectangle_t data = {width, height, midPointOfRect};
   return data;
 }
 
+
 void arakelyan::Parallelogram::move(const point_t point)
 {
-  double dx = point.x - midpoint_.x;
-  double dy = point.y - midpoint_.y;
-  p1_.x += dx;
-  p1_.y += dy;
-  p2_.x += dx;
-  p2_.y += dy;
-  p3_.x += dx;
-  p4_.y += dy;
-  midpoint_ = point;
-}
-
-void arakelyan::Parallelogram::move(const double delX, const double delY)
-{
+  rectangle_t rectOfParal = getFrameRect();
+  double delX = point.x - rectOfParal.pos.x;
+  double delY = point.y - rectOfParal.pos.y;
   p1_.x += delX;
   p1_.y += delY;
   p2_.x += delX;
   p2_.y += delY;
   p3_.x += delX;
   p3_.y += delY;
-  p4_.x += delX;
-  p4_.y += delY;
-  midpoint_.x += delX;
-  midpoint_.y += delY;
 }
+
+void arakelyan::Parallelogram::move(const double delX, const double delY)
+ {
+   p1_.x += delX;
+   p1_.y += delY;
+   p2_.x += delX;
+   p2_.y += delY;
+   p3_.x += delX;
+   p3_.y += delY;
+ }
 
 void arakelyan::Parallelogram::scale(const double k)
 {
@@ -61,17 +88,15 @@ void arakelyan::Parallelogram::scale(const double k)
   {
     throw std::logic_error("The coefficient cannot be less than zero! (Parallelogram)");
   }
-  rectangle_t dataOfRect = getFrameRect();
-  double widthWithScale = dataOfRect.width * k;
-  double heightWithScale = dataOfRect.height * k;
-  p1_.x = midpoint_.x - (widthWithScale / 2.0);
-  p1_.y = midpoint_.y - (heightWithScale / 2.0);
-  p2_.x = midpoint_.x + (widthWithScale / 4.0);
-  p2_.y = midpoint_.y - (heightWithScale / 2.0);
-  p3_.x = midpoint_.x + (widthWithScale / 2.0);
-  p3_.y = midpoint_.y + (heightWithScale / 2.0);
-  p4_.x = midpoint_.x - (widthWithScale / 4.0);
-  p4_.y = midpoint_.y + (heightWithScale / 2.0);
+  rectangle_t rectOfParal = getFrameRect();
+  // double widthWithScale = rectOfParal.width * k;
+  // double heightWithScale = rectOfParal.height * k;
+  p1_.x = rectOfParal.pos.x + ((p1_.x - rectOfParal.pos.x) * k);
+  p1_.y = rectOfParal.pos.y + ((p1_.y - rectOfParal.pos.y) * k);
+  p2_.x = rectOfParal.pos.x + ((p2_.x - rectOfParal.pos.x) * k);
+  p2_.y = rectOfParal.pos.y + ((p2_.y - rectOfParal.pos.y) * k);
+  p3_.x = rectOfParal.pos.x + ((p3_.x - rectOfParal.pos.x) * k);
+  p3_.y = rectOfParal.pos.y + ((p3_.y - rectOfParal.pos.y) * k);
 }
 
 arakelyan::Parallelogram::~Parallelogram()

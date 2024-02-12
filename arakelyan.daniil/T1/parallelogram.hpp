@@ -20,8 +20,6 @@ namespace arakelyan
     point_t p1_;
     point_t p2_;
     point_t p3_;
-    point_t p4_;
-    point_t midpoint_;
   };
 }
 #endif
