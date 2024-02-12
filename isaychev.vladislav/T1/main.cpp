@@ -1,8 +1,8 @@
 #include <iostream>
+#include <inputString.hpp>
 #include "deleteFigures.hpp"
 #include "creatingFigures.hpp"
 #include "stringManipulations.hpp"
-#include "inputString.hpp"
 #include "outputResults.hpp"
 #include "isoscale.hpp"
 

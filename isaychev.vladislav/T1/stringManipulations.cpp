@@ -62,10 +62,3 @@ void isaychev::parseParams(char * str, const size_t numOfParameters, double * pa
   }
 }
 
-void isaychev::copyString(const char * str, char * str2, size_t len)
-{
-  for (size_t j = 0; j < len; ++j)
-  {
-    str2[j] = str[j];
-  }
-}
