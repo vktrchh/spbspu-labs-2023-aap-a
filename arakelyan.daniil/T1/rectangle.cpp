@@ -43,8 +43,8 @@ void arakelyan::Rectangle::move(const double delX, const double delY)
   // pointLeftDown_.y += delY;
   // pointRightUp_.x += delX;
   // pointRightUp_.y += delY;
-  // midpoint_.x += delX;
-  // midpoint_.y += delY;
+  midpoint_.x += delX;
+  midpoint_.y += delY;
 }
 
 void arakelyan::Rectangle::move(const point_t point)
