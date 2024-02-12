@@ -57,7 +57,7 @@ namespace gladyshev
         }
       }
     }
-    return nullptr;
+    throw std::invalid_argument("not a figure");
   }
   void isoScale(Shape * shapes, point_t pos, double factor)
   {

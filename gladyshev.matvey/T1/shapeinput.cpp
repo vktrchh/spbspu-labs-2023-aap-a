@@ -14,17 +14,7 @@ namespace gladyshev
     {
       try
       {
-        if (inputName == "RECTANGLE" || inputName == "PARALLELOGRAM" || inputName == "CIRCLE")
-        {
-          Shape * checkedShape = identifyShape(inputName, in);
-          if (in.get() != '\n')
-          {
-            delete checkedShape;
-            throw std::logic_error("too many args");
-          }
-          shapes[mainCounter++] = checkedShape;
-        }
-        else if (inputName == "SCALE")
+        if (inputName == "SCALE")
         {
           if (mainCounter == 0)
           {
@@ -38,10 +28,13 @@ namespace gladyshev
           }
           return;
         }
-        else
+        Shape * checkedShape = identifyShape(inputName, in);
+        if (in.get() != '\n')
         {
-          unsupFig = true;
+          delete checkedShape;
+          throw std::logic_error("too many args");
         }
+        shapes[mainCounter++] = checkedShape;
       }
       catch (const std::invalid_argument& e)
       {
