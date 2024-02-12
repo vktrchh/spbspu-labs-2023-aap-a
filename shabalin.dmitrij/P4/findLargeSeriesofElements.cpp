@@ -14,7 +14,7 @@ int shabalin::findLargeSeriesOfEqualElements(int* matrix, size_t rows, size_t co
         if (numberSeries > maximumNumberSeries)
         {
             maximumNumberSeries = numberSeries;
-            rowNumber = i / cols + 1;
+            rowNumber = (i / cols) + 1;
         }
     }
     return rowNumber;

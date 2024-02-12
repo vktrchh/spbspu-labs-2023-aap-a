@@ -2,7 +2,7 @@
 
 double* shabalin::makeUpSmoothMatrix(const int* matrix, double* smooth, size_t rows, size_t cols)
 {
-    for (size_t i = 0; i < cols * rows; ++i)
+    for (size_t i = 0; i < cols * rows - 1; ++i)
     {
         double sum = 0.0;
         size_t count = 0;
