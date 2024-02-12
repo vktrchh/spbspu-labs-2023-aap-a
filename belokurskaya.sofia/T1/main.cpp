@@ -41,7 +41,7 @@ int main()
 
         if (lower_left_x >= upper_right_x || lower_left_y >= upper_right_y)
         {
-          std::cerr << "Is a rectangle\n";
+          std::cerr << "Is not a rectangle\n";
           continue;
         }
         double width = std::abs(upper_right_x - lower_left_x);
@@ -65,6 +65,7 @@ int main()
         }
         else
         {
+          std::cerr << "Is not a triangle\n";
           continue;
         }
       }
@@ -82,6 +83,7 @@ int main()
         else
         {
           std::cerr << "Is not a concave\n";
+          continue;
         }
       }
       else if (command == "SCALE")
