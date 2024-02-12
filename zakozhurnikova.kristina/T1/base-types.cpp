@@ -1,7 +1,6 @@
 #include "base-types.hpp"
 #include <cmath>
 #include <iostream>
-#include <cmath>
 
 double zakozhurnikova::point_t::getDistance(const point_t& p) const
 {
@@ -23,17 +22,17 @@ void zakozhurnikova::point_t::operator-=(const point_t& p)
 
 zakozhurnikova::point_t zakozhurnikova::point_t::operator+(const point_t& p) const
 {
-  return point_t(x + p.x, y + p.y);
+  return point_t{x + p.x, y + p.y};
 }
 
 zakozhurnikova::point_t zakozhurnikova::point_t::operator-(const point_t& p) const
 {
-  return point_t(x - p.x, y - p.y);
+  return point_t{x - p.x, y - p.y};
 }
 
 zakozhurnikova::point_t zakozhurnikova::point_t::operator*(double k) const
 {
-  return point_t(x * k, y * k);
+  return point_t{x * k, y * k};
 }
 
 zakozhurnikova::point_t zakozhurnikova::point_t::operator/(double k) const
@@ -42,7 +41,8 @@ zakozhurnikova::point_t zakozhurnikova::point_t::operator/(double k) const
   {
     throw std::invalid_argument("Division by ZERO.");
   }
-  return zakozhurnikova::point_t(x / k, y / k);
+  point_t res = {x / k, y / k};
+  return res;
 }
 
 zakozhurnikova::point_t& zakozhurnikova::point_t::operator-()
@@ -57,33 +57,16 @@ bool zakozhurnikova::point_t::operator==(const point_t& p) const
   return x == p.x && y == p.y;
 }
 
-zakozhurnikova::point_t& zakozhurnikova::point_t::operator=(const point_t& point)
-{
-  this->x = point.x;
-  this->y = point.y;
-  return *this;
-}
-
-zakozhurnikova::point_t& zakozhurnikova::point_t::operator=(point_t&& point)
-{
-  this->x = point.x;
-  this->y = point.y;
-  point.x = 0.0;
-  point.y = 0.0;
-  return *this;
-}
-
-zakozhurnikova::point_t zakozhurnikova::point_t::scaleShift(double k, const point_t& p)
+zakozhurnikova::point_t zakozhurnikova::point_t::scaleShift(double k, const point_t& p) const
 {
   double shiftX = p.x + k * (x - p.x);
   double shiftY = p.y + k * (y - p.y);
-  return zakozhurnikova::point_t(shiftX, shiftY);
+  return point_t{shiftX, shiftY};
 }
 
-void zakozhurnikova::rectangle_t::showCoordinates() const
+void zakozhurnikova::rectangle_t::showCoordinates(std::ostream& out) const
 {
-  zakozhurnikova::point_t downLeft(pos.x - width / 2.0, pos.y - height / 2.0);
-  zakozhurnikova::point_t upRight(pos.x + width / 2.0, pos.y + height / 2.0);
-  std::cout << downLeft.x << ' ' << downLeft.y <<
-    ' ' << upRight.x << ' ' << upRight.y;
+  point_t downLeft = {pos.x - width / 2.0, pos.y - height / 2.0};
+  point_t upRight = {pos.x + width / 2.0, pos.y + height / 2.0};
+  out << downLeft.x << ' ' << downLeft.y << ' ' << upRight.x << ' ' << upRight.y;
 }

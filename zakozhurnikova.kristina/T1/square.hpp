@@ -6,7 +6,7 @@
 namespace zakozhurnikova
 {
 
-  class Square : public Shape
+  class Square: public Shape
   {
   public:
     Square() = delete;

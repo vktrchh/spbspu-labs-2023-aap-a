@@ -4,9 +4,10 @@
 #include "geometryFunc.hpp"
 #include <limits>
 #include <stdexcept>
+
 namespace zakozhurnikova
 {
-  class Diamond : public Shape
+  class Diamond: public Shape
   {
   public:
     Diamond() = delete;

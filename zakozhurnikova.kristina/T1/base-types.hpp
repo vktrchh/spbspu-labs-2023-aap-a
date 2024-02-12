@@ -1,5 +1,6 @@
 #ifndef BASE_TYPES_HPP
 #define BASE_TYPES_HPP
+#include <iosfwd>
 
 namespace zakozhurnikova
 {
@@ -8,22 +9,7 @@ namespace zakozhurnikova
     double x;
     double y;
 
-    point_t() :
-      x(0.0),
-      y(0.0)
-    {}
-    point_t(double x, double y) :
-      x(x),
-      y(y)
-    {}
-    point_t(const point_t& p) :
-      x(p.x),
-      y(p.y)
-    {}
-    point_t(point_t&& p) = default;
-    ~point_t()
-    {}
-    point_t scaleShift(double k, const point_t& p);
+    point_t scaleShift(double k, const point_t& p) const;
     double getDistance(const point_t& p) const;
     void operator+=(const point_t& p);
     void operator-=(const point_t& p);
@@ -33,8 +19,6 @@ namespace zakozhurnikova
     point_t operator-(const point_t& p) const;
     point_t& operator-();
     bool operator==(const point_t& p) const;
-    point_t& operator=(const point_t& point);
-    point_t& operator=(point_t&& point);
   };
 
   struct rectangle_t
@@ -43,21 +27,7 @@ namespace zakozhurnikova
     double height;
     point_t pos;
 
-    rectangle_t() = delete;
-    rectangle_t(double width, double height, const point_t& pos) :
-      width(width),
-      height(height),
-      pos(pos)
-    {}
-    rectangle_t(const rectangle_t& rec):
-      width(rec.width),
-      height(rec.height),
-      pos(rec.pos)
-    {}
-    rectangle_t(rectangle_t&& rec) = default;
-    ~rectangle_t()
-    {}
-    void showCoordinates() const;
+    void showCoordinates(std::ostream& out) const;
   };
 }
 #endif

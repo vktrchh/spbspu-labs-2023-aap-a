@@ -6,7 +6,7 @@
 namespace zakozhurnikova
 {
 
-  class Rectangle : public Shape
+  class Rectangle: public Shape
   {
   public:
     Rectangle() = delete;
@@ -14,10 +14,10 @@ namespace zakozhurnikova
       downLeft_(pointOne),
       upRight_(pointTwo)
     {
-     if (pointOne.x >= pointTwo.x || pointOne.y >= pointTwo.y)
-  {
-    throw std::invalid_argument("Invalid rectangle parameters");
-  }
+      if (pointOne.x >= pointTwo.x || pointOne.y >= pointTwo.y)
+      {
+        throw std::invalid_argument("Invalid rectangle parameters");
+      }
     }
     Rectangle(const Rectangle& rec):
       downLeft_(rec.downLeft_),

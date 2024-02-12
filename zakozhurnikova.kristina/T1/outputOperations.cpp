@@ -24,7 +24,7 @@ void zakozhurnikova::printShapes(std::ostream& output, const Shape* const* shape
   for (size_t i = 0; i < size; ++i)
   {
     shapes[i]->getFrameRect().showCoordinates();
-    if ( i != size - 1)
+    if (i != size - 1)
     {
       output << ' ';
     }
