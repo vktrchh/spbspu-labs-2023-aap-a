@@ -193,7 +193,7 @@ public:
   }
   virtual double getArea()
   {
-    return (0.5 * height_diam_ * width_diam_);
+    return (height_diam_ * width_diam_) / 2.0;
   }
   virtual rectangle_t getFrameRect()
   {
@@ -281,6 +281,14 @@ void outputResult(std::ostream & output, Shape ** array, size_t counter)
   output << '\n';
 }
 
+void deleteArray(Shape ** array, size_t counter)
+{
+  for (size_t i = 0; i < counter; ++i)
+  {
+    delete array[i];
+  }
+}
+
 int main()
 {
   Shape * array[1000] = {};
@@ -298,6 +306,7 @@ int main()
       if (index <= 0.0)
       {
         std::cerr << "Incorrect scale index\n";
+        deleteArray(array, counter);
         return 1;
       }
 
@@ -315,11 +324,13 @@ int main()
           std::cerr << "Some figure has wrong parameters\n";
         }
       }
-      break;
+      deleteArray(array, counter);
+      return 0;
     }
     if (!std::cin)
     {
       std::cerr << "No SCALE command entered\n";
+      deleteArray(array, counter);
       return 1;
     }
 
