@@ -3,7 +3,8 @@
 #include <cstring>
 #include <cstddef>
 #include "base-types.hpp"
-#include "geometric_functions.hpp"
+#include "Geom_functions.h"
+
 
 zaitsev::Parallelogram::Parallelogram(const point_t* vertices)
 {
