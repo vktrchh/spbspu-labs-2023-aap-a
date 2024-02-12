@@ -27,10 +27,8 @@ zaitsev::Shape* zaitsev::readRectangle(std::istream& input)
 {
   point_t left = { 0, 0 };
   point_t right = { 0, 0 };
-  left.x = readValue(input);
-  left.y = readValue(input);
-  right.x = readValue(input);
-  right.y = readValue(input);
+  readPoint(input, left);
+  readPoint(input, right);
   return new Rectangle(left, right);;
 }
 
@@ -39,8 +37,7 @@ zaitsev::Shape* zaitsev::readComplexquad(std::istream& input)
   point_t vertices[4] = {};
   for (size_t i = 0; i < 4; ++i)
   {
-    vertices[i].x = readValue(input);
-    vertices[i].y = readValue(input);
+    readPoint(input, vertices[i]);
   }
   return new Complexquad(vertices);
 }
@@ -50,16 +47,14 @@ zaitsev::Shape* zaitsev::readParallelogram(std::istream& input)
   point_t vertices[3] = {};
   for (size_t i = 0; i < 3; ++i)
   {
-    vertices[i].x = readValue(input);
-    vertices[i].y = readValue(input);
+    readPoint(input, vertices[i]);
   }
   return new Parallelogram(vertices);
 }
 
 void zaitsev::readScale(std::istream& input, point_t& center, double& factor)
 {
-  center.x = readValue(input);
-  center.y = readValue(input);
+  readPoint(input, center);
   factor = readValue(input);
 }
 
@@ -82,7 +77,6 @@ std::ostream& zaitsev::shapesOutput(std::ostream& output, const Shape* const* sh
     output << " " << frame.pos.x - frame.width / 2 << " " << frame.pos.y - frame.height / 2;
     output << " " << frame.pos.x + frame.width / 2 << " " << frame.pos.y + frame.height / 2;
   }
-  output << "\n";
   output.copyfmt(format_holder);
   return output;
 }

@@ -45,10 +45,6 @@ zaitsev::point_t zaitsev::Rectangle::getCenter() const
 
 void zaitsev::Rectangle::scale(double factor)
 {
-  if (factor <= 0)
-  {
-    throw std::invalid_argument("Scale factor must be positive");
-  }
   point_t center = getCenter();
   left_corner_ = center + (left_corner_ - center) * factor;
   right_corner_ = center + (right_corner_ - center) * factor;

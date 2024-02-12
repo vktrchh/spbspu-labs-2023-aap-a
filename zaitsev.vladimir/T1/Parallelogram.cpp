@@ -68,10 +68,6 @@ void zaitsev::Parallelogram::move(double x_shift, double y_shift)
 
 void zaitsev::Parallelogram::scale(double factor)
 {
-  if (factor <= 0)
-  {
-    throw std::invalid_argument("Scale factor must be positive");
-  }
   point_t center = getCenter();
   for (size_t i = 0; i < 3; ++i)
   {
