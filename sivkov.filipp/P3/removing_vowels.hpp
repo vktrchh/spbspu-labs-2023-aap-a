@@ -1,9 +1,9 @@
-#ifndef REMOVING_SPACES_HPP
-#define REMOVING_SPACES_HPP
+#ifndef REMOVING_VOWELS_HPP
+#define REMOVING_VOWELS_HPP
 
 namespace sivkov
 {
-  void deleteSpace(char* string);
+  void removing_vowels(char* string);
 }
 
 #endif
