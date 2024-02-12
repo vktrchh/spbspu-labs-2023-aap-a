@@ -10,10 +10,8 @@
 
 namespace gladyshev
 {
-  Shape * inputRectangle(std::istream& in);
+  void inputPoints(std::istream& in, double * arrcords, size_t counter);
   void inputScale(std::istream& in, point_t& pos, double& factor);
-  Shape * inputCircle(std::istream& in);
-  Shape * inputParallelogram(std::istream& in);
   void freeMemory(Shape ** shapes, size_t amount);
   Shape * identifyShape(std::string inputName, std::istream& in);
   void isoScale(Shape * shapes, point_t pos, double factor);

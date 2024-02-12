@@ -1,9 +1,16 @@
 #include "circle.hpp"
 
+#include <stdexcept>
+
 gladyshev::Circle::Circle(const point_t& p1, double radius):
   radius_{ radius },
   center_{ p1 }
-{}
+{
+  if (radius <= 0)
+  {
+    throw std::invalid_argument("radius mast be positive");
+  }
+}
 
 gladyshev::Circle::~Circle() = default;
 
@@ -33,5 +40,9 @@ void gladyshev::Circle::move(const point_t& newPos)
 
 void gladyshev::Circle::scale(double factor)
 {
+  if (factor <= 0)
+  {
+    throw std::logic_error("factor mast be positive");
+  }
   radius_ *= factor;
 }

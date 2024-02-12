@@ -1,12 +1,17 @@
-#include <algorithm>
-
 #include "parallelogram.hpp"
+
+#include <stdexcept>
 
 gladyshev::Parallelogram::Parallelogram(const point_t& p1, const point_t& p2, const point_t& p3):
   p1_(p1),
   p2_(p2),
   p3_(p3)
-{}
+{
+ if (!(((p1_.y == p2_.y) && (p2_.y != p3_.y) && (p1_.x != p2_.x)) || ((p2_.y == p3_.y) && (p3_.y != p1_.y) && (p2_.x != p3_.x))))
+  {
+    throw std::invalid_argument("bad parallelogram coords");
+  }
+}
 
 gladyshev::Parallelogram::~Parallelogram() = default;
 
@@ -43,6 +48,10 @@ void gladyshev::Parallelogram::move(const point_t& newPos)
 
 void gladyshev::Parallelogram::scale(double factor)
 {
+  if (factor <= 0)
+  {
+    throw std::logic_error("factor must be positive");
+  }
   point_t * points[] = { &p1_, &p2_, &p3_ };
   rectangle_t frameRect = getFrameRect();
   for (size_t i = 0; i < 3; ++i)

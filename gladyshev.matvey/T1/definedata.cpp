@@ -7,78 +7,26 @@
 
 namespace gladyshev
 {
-  Shape * inputRectangle(std::istream& in)
+  void inputPoints(std::istream& in, double * arrcords, size_t counter)
   {
-    double p[4]{};
-    for (size_t i = 0; i < 4; i++)
+    for (size_t i = 0; i < counter; ++i)
     {
-      in >> p[i];
+      in >> arrcords[i];
       if (!in)
       {
-        throw std::logic_error("bad input of rectangle`s coords");
+        throw std::logic_error("bad input of data");
       }
     }
-    if ((p[0] == p[2]) || (p[1] == p[3]) || (p[2] < p[0]) || (p[3] < p[1]))
-    {
-      return nullptr;
-    }
-    return new Rectangle({ p[0], p[1] }, { p[2], p[3] });
   }
 
   void inputScale(std::istream& in, point_t& pos, double& factor)
   {
     double dataScale[3]{};
-    for (size_t i = 0; i < 3; ++i)
-    {
-      in >> dataScale[i];
-      if (!in)
-      {
-        throw std::logic_error("bad input of scale`s coods");
-      }
-    }
-    if (dataScale[2] <= 0)
-    {
-      throw std::logic_error("factor of scale must be positive");
-    }
+    inputPoints(in, dataScale, 3);
     pos = { dataScale[0], dataScale[1] };
     factor = dataScale[2];
   }
 
-  Shape * inputCircle(std::istream& in)
-  {
-    double p[3]{};
-    for (size_t i = 0; i < 3; ++i)
-    {
-      in >> p[i];
-      if (!in)
-      {
-        throw std::logic_error("bad input of circle`s coords");
-      }
-    }
-    if (p[2] <= 0)
-    {
-      return nullptr;
-    }
-    return new Circle({ p[0], p[1] }, p[2]);
-  }
-
-  Shape * inputParallelogram(std::istream& in)
-  {
-    double p[6]{};
-    for (size_t i = 0; i < 6; ++i)
-    {
-      in >> p[i];
-      if (!in)
-      {
-        throw std::logic_error("bad input of parallelogram`s coords");
-      }
-    }
-    if (!(((p[1] == p[3]) && (p[3] != p[5]) && (p[0] != p[2])) || ((p[3] == p[5]) && (p[5] != p[1]) && (p[2] != p[4]))))
-    {
-      return nullptr;
-    }
-    return new Parallelogram({ p[0], p[1] }, { p[2], p[3] }, { p[4], p[5] });
-  }
   void freeMemory(Shape ** shapes, size_t amount)
   {
     for (size_t i = 0; i < amount; ++i)
@@ -90,6 +38,7 @@ namespace gladyshev
   Shape * identifyShape(std::string inputName, std::istream& in)
   {
     const char * names[] = { "RECTANGLE", "PARALLELOGRAM", "CIRCLE" };
+    double p[6]{};
     for (size_t i = 0; i < 3; ++i)
     {
       if (inputName == names[i])
@@ -97,11 +46,14 @@ namespace gladyshev
         switch (i)
         {
           case 0:
-            return inputRectangle(in);
+            inputPoints(in, p, 4);
+            return new Rectangle({ p[0], p[1] }, { p[2], p[3] });
           case 1:
-            return inputParallelogram(in);
+            inputPoints(in, p, 6);
+            return new Parallelogram({ p[0], p[1] }, { p[2], p[3] }, { p[4], p[5] });
           case 2:
-            return inputCircle(in);
+            inputPoints(in, p, 3);
+            return new Circle({ p[0], p[1] }, p[2]);
         }
       }
     }

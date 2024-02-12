@@ -9,27 +9,25 @@ int main()
   using namespace gladyshev;
   Shape * shapes[1000]{};
   size_t counter = 0;
+  bool unsupFig = false;
   point_t pos = { 0, 0 };
   double factor = 0;
-  bool incorrectFigure = false;
-  bool unsupportedFigure = false;
   try
   {
-    shapeInput(std::cin, shapes, incorrectFigure, unsupportedFigure, pos, counter, factor);
-  }
-  catch (const std::logic_error& e)
-  {
-    std::cerr << "Error: " << e.what() << "\n";
-    return 2;
+    shapeInput(std::cin, shapes, pos, counter, factor);
   }
   catch (const std::runtime_error& e)
   {
-    std::cerr << "Error: " << e.what() << "\n";
-    return 2;
+    unsupFig = true;
   }
   catch (const std::bad_alloc& e)
   {
     std::cerr << "Error in memory allocating" << "\n";
+    return 2;
+  }
+  catch (const std::exception& e)
+  {
+    std::cerr << "Error: " << e.what() << "\n";
     return 2;
   }
   outData(std::cout, shapes, counter);
@@ -40,13 +38,9 @@ int main()
   }
   outData(std::cout, shapes, counter);
   std::cout << "\n";
-  if (incorrectFigure)
+  if (unsupFig)
   {
-    std::cerr << "Errors in the description of supported figures\n";
-  }
-  if (unsupportedFigure)
-  {
-    std::cerr << "The presence of an incorrect figure\n";
+    std::cerr << "there are incorrect or unsupported figures\n";
   }
   freeMemory(shapes, counter);
   return 0;

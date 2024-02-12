@@ -1,11 +1,16 @@
-#include <cmath>
-
 #include "rectangle.hpp"
+
+#include <stdexcept>
 
 gladyshev::Rectangle::Rectangle(const point_t& p1, const point_t& p2):
   p1FrameRec_(p1),
   p2FrameRec_(p2)
-{}
+{
+  if ((p1.x == p2.x) || (p1.y == p2.y) || (p2.x < p1.x) || (p2.y < p1.y))
+  {
+    throw std::invalid_argument("bad rectangle coords");
+  }
+}
 
 gladyshev::Rectangle::~Rectangle() = default;
 
@@ -38,6 +43,10 @@ gladyshev::rectangle_t gladyshev::Rectangle::getFrameRect() const
 
 void gladyshev::Rectangle::scale(double factor)
 {
+  if (factor <= 0)
+  {
+    throw std::logic_error("factor must be positive");
+  }
   rectangle_t frameRect = getFrameRect();
   p1FrameRec_.x = p1FrameRec_.x - (frameRect.pos.x - p1FrameRec_.x) * (factor - 1);
   p1FrameRec_.y = p1FrameRec_.y - (frameRect.pos.y - p1FrameRec_.y) * (factor - 1);

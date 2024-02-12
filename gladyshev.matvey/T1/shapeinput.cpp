@@ -1,13 +1,14 @@
-#include <iostream>
-
 #include "shapeinput.hpp"
 #include "definedata.hpp"
 
+#include <iostream>
+
 namespace gladyshev
 {
-  void shapeInput(std::istream& in, Shape ** shapes, bool& incorFig, bool& unsupFig, point_t& pos, size_t& counter, double& factor)
+  void shapeInput(std::istream& in, Shape ** shapes, point_t& pos, size_t& counter, double& factor)
   {
     size_t mainCounter = 0;
+    bool unsupFig = false;
     std::string inputName = "";
     while (in >> inputName)
     {
@@ -21,14 +22,7 @@ namespace gladyshev
             delete checkedShape;
             throw std::logic_error("too many args");
           }
-          if (checkedShape == nullptr)
-          {
-            incorFig = true;
-          }
-          else
-          {
-            shapes[mainCounter++] = checkedShape;
-          }
+          shapes[mainCounter++] = checkedShape;
         }
         else if (inputName == "SCALE")
         {
@@ -38,12 +32,20 @@ namespace gladyshev
           }
           counter = mainCounter;
           inputScale(in, pos, factor);
+          if (unsupFig)
+          {
+            throw std::runtime_error("there are incorrect or unsupported figures");
+          }
           return;
         }
         else
         {
           unsupFig = true;
         }
+      }
+      catch (const std::invalid_argument& e)
+      {
+        unsupFig = true;
       }
       catch (const std::logic_error& e)
       {
@@ -54,7 +56,7 @@ namespace gladyshev
     if (in.eof())
     {
       freeMemory(shapes, mainCounter);
-      throw std::runtime_error("EOF");
+      throw std::out_of_range("EOF");
     }
   }
 }
