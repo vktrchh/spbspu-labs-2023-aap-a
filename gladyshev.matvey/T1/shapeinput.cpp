@@ -28,7 +28,7 @@ namespace gladyshev
         {
           if (mainCounter == 0)
           {
-            throw std::runtime_error("lack of supported data");
+            throw std::out_of_range("lack of supported data");
           }
           counter = mainCounter;
           inputScale(in, pos, factor);
