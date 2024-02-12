@@ -19,16 +19,9 @@ void isaychev::isoscale(char * str, Shape ** figures, const size_t numOfFigures)
     constexpr size_t numOfScalePars = 3;
     double scaleParams[numOfScalePars] = {};
     parseParams(str, numOfScalePars, scaleParams);
-    if(scaleParams[2] <= 0.0)
+    for (size_t i = 0; i < numOfFigures; i++)
     {
-      throw std::invalid_argument("wrong coefficient for isoscale");
-    }
-    else
-    {
-      for (size_t i = 0; i < numOfFigures; i++)
-      {
-        isoscaleFigure({scaleParams[0], scaleParams[1]}, scaleParams[2], figures[i]);
-      }
+      isoscaleFigure({scaleParams[0], scaleParams[1]}, scaleParams[2], figures[i]);
     }
   }
 }

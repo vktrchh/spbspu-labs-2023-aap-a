@@ -34,5 +34,12 @@ void isaychev::Circle::move(const double dX, const double dY)
 
 void isaychev::Circle::scale(const double coeff)
 {
-  radius_ *= coeff;
+  if(coeff <= 0.0)
+  {
+    throw std::invalid_argument("wrong coefficient for scale");
+  }
+  else
+  {
+    radius_ *= coeff;
+  }
 }

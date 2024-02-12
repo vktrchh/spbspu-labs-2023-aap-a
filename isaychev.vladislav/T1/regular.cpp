@@ -132,8 +132,15 @@ void isaychev::Regular::move(const point_t & newPos)
 
 void isaychev::Regular::scale(const double coeff)
 {
-  distPnt_.x = center_.x + (distPnt_.x - center_.x) * coeff;
-  closePnt_.x = center_.x + (closePnt_.x - center_.x) * coeff;
-  distPnt_.y = center_.y + (distPnt_.y - center_.y) * coeff;
-  closePnt_.y = center_.y + (closePnt_.y - center_.y) * coeff;
+  if(coeff <= 0.0)
+  {
+    throw std::invalid_argument("wrong coefficient for scale");
+  }
+  else
+  {
+    distPnt_.x = center_.x + (distPnt_.x - center_.x) * coeff;
+    closePnt_.x = center_.x + (closePnt_.x - center_.x) * coeff;
+    distPnt_.y = center_.y + (distPnt_.y - center_.y) * coeff;
+    closePnt_.y = center_.y + (closePnt_.y - center_.y) * coeff;
+  }
 }
