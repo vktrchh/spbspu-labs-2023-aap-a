@@ -14,6 +14,9 @@ namespace belokurskaya
       void move(const point_t & new_pos) override;
       void move(double dx, double dy) override;
       void scale(double factor) override;
+      bool isInsideTriangle(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4) const;
+      double calculateTriangleArea(const point_t & p1, const point_t & p2, const point_t & p3) const;
+      static bool isConcave(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4);
 
     private:
       point_t vertex1_;
@@ -22,9 +25,6 @@ namespace belokurskaya
       point_t vertex4_;
 
       bool isTriangle(const point_t & p1, const point_t & p2, const point_t & p3) const;
-      bool isInsideTriangle(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4) const;
-      static bool isConcave(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4);
-      double calculateTriangleArea(const point_t & p1, const point_t & p2, const point_t & p3) const;
   };
 }
 #endif
