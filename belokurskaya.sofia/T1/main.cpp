@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-#include <cmath>
+#include <iomanip>
 
 #include "rectangle.hpp"
 #include "triangle.hpp"
@@ -49,12 +49,15 @@ int main()
       inputStream >> scale_point_x >> scale_point_y >> scale_factor;
       for (int i = 0; i < shape_count; ++i)
       {
+        std::cout << std::fixed;
+        std::cout.precision(1);
+
         belokurskaya::rectangle_t frameRect = shapes[i]->getFrameRect();
         std::cout << shapes[i]->getArea();
         std::cout << frameRect.pos.x - frameRect.width / 2.0 << " " << frameRect.pos.y - frameRect.height / 2.0 << " ";
         std::cout << frameRect.pos.x + frameRect.width / 2.0 << " " << frameRect.pos.y + frameRect.height / 2.0 << "\n";
       }
-      std::cout << std::endl;
+      std::cout << "\n";
 
       for (int i = 0; i < shape_count; ++i)
       {
