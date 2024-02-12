@@ -5,6 +5,7 @@
 
 #include "rectangle.hpp"
 #include "triangle.hpp"
+#include "concave.hpp"
 
 int main()
 {
