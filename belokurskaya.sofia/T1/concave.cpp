@@ -99,7 +99,7 @@ bool belokurskaya::Concave::isInsideTriangle(const point_t& p1, const point_t& p
          ((p1.y - p2.y) * (p4.x - p2.x) + (p2.x - p1.x) * (p4.y - p2.y)) >= 0;
 }
 
-bool belokurskaya::Concave::isConvex(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4) const
+bool belokurskaya::Concave::isConcave(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4) const
 {
   double cross_product1 = (p2.x - p1.x) * (p3.y - p1.y) - (p2.y - p1.y) * (p3.x - p1.x);
   double cross_product2 = (p3.x - p2.x) * (p4.y - p2.y) - (p3.y - p2.y) * (p4.x - p2.x);
