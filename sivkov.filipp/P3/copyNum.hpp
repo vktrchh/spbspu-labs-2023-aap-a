@@ -3,6 +3,6 @@
 
 namespace sivkov
 {
-  char* copyNum(char* string1, const char* string2);
+  void copyNum(char* string1, const char* string2);
 }
 #endif
