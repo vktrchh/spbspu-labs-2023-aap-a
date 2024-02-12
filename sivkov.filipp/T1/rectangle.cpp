@@ -1,11 +1,11 @@
 #include "rectangle.hpp"
 #include <stdexcept>
 
-Rectangle::Rectangle(const point_t& leftTop, const point_t& rightBottom) :
-  leftTop_(leftTop),
-  rightBottom_(rightBottom)
+Rectangle::Rectangle(point_t leftBottom, point_t rightTop) :
+  leftBottom_(leftBottom),
+  rightTop_(rightTop)
 {
-  if (leftTop_.x >= rightBottom_.x || leftTop_.y <= rightBottom_.y)
+  if (leftBottom_.x >= rightTop_.x || leftBottom_.y >= rightTop_.y)
   {
     throw std::invalid_argument("Invalid rectangle coordinates");
   }
@@ -19,46 +19,44 @@ double Rectangle::getArea() const
 
 rectangle_t Rectangle::getFrameRect() const
 {
-  double width = rightBottom_.x - leftTop_.x;
+  double width = rightTop_.x - leftBottom_.x;
   if (width < 0)
   {
     width = width * -1;
   }
-  double height = rightBottom_.y - leftTop_.y;
+  double height = rightTop_.y - leftBottom_.y;
   if (height < 0)
   {
     height = height * -1;
   }
-  point_t center = { (leftTop_.x + rightBottom_.x) / 2, (leftTop_.y + rightBottom_.y) / 2 };
+  point_t center = { (leftBottom_.x + rightTop_.x) / 2, (leftBottom_.y + rightTop_.y) / 2 };
   return { center, width, height };
 }
 
-void Rectangle::move(const point_t& newPos)
+void Rectangle::move(point_t newPos)
 {
-  point_t center = { (leftTop_.x + rightBottom_.x) / 2, (leftTop_.y + rightBottom_.y) / 2 };
+  point_t center = { (leftBottom_.x + rightTop_.x) / 2, (leftBottom_.y + rightTop_.y) / 2 };
   double dx = newPos.x - center.x;
   double dy = newPos.y - center.y;
   move(dx, dy);
 }
 
-
 void Rectangle::move(double dx, double dy)
 {
-  leftTop_.x += dx;
-  leftTop_.y += dy;
-  rightBottom_.x += dx;
-  rightBottom_.y += dy;
+  leftBottom_.x += dx;
+  leftBottom_.y += dy;
+  rightTop_.x += dx;
+  rightTop_.y += dy;
 }
-
 
 void Rectangle::scale(double factor)
 {
   if (factor > 0)
   {
     point_t pos = getFrameRect().pos;
-    double newWidth = (rightBottom_.x - leftTop_.x) * factor;
-    double newHeight = (rightBottom_.y - leftTop_.y) * factor;
-    leftTop_ = { pos.x - newWidth / 2, pos.y - newHeight / 2 };
-    rightBottom_ = { pos.x + newWidth / 2, pos.y + newHeight / 2 };
+    double newWidth = (rightTop_.x - leftBottom_.x) * factor;
+    double newHeight = (rightTop_.y - leftBottom_.y) * factor;
+    leftBottom_ = { pos.x - newWidth / 2, pos.y - newHeight / 2 };
+    rightTop_ = { pos.x + newWidth / 2, pos.y + newHeight / 2 };
   }
 }
