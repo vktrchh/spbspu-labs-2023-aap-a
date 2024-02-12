@@ -1,6 +1,6 @@
-#include <iomanip>
-
 #include "shapeoutput.hpp"
+
+#include <iomanip>
 
 namespace gladyshev
 {
