@@ -1,4 +1,4 @@
-#include "Shapes_i_o.h"
+#include "shapes_i_o.hpp"
 #include <string>
 #include <stdexcept>
 #include <cstddef>
@@ -8,7 +8,7 @@
 #include "rectangle.hpp"
 #include "complexquad.hpp"
 #include "parallelogram.hpp"
-#include "Geom_functions.h"
+#include "geometric_functions.hpp"
 
 double zaitsev::readValue(std::istream& input)
 {

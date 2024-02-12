@@ -2,8 +2,8 @@
 #include <string>
 #include <cstddef>
 #include "base-types.hpp"
-#include "Geom_functions.h"
-#include "Shapes_i_o.h"
+#include "geometric_functions.hpp"
+#include "shapes_i_o.hpp"
 
 int main()
 {

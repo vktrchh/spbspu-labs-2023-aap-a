@@ -1,4 +1,4 @@
-#include "Geom_functions.h"
+#include "geometric_functions.hpp"
 #include <stdexcept>
 #include <cmath>
 #include "base-types.hpp"

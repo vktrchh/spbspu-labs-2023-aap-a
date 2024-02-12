@@ -4,7 +4,7 @@
 #include <cstddef>
 #include <algorithm>
 #include "base-types.hpp"
-#include "Geom_functions.h"
+#include "geometric_functions.hpp"
 
 void changeRectangleBounds(zaitsev::point_t& left_corner, zaitsev::point_t& right_corner, const zaitsev::point_t& new_pt)
 {
