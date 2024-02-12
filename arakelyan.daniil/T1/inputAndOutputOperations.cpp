@@ -1,4 +1,3 @@
-#include <new>
 #include <stdexcept>
 #include "base-types.hpp"
 #include "inputAndOutputOperations.hpp"

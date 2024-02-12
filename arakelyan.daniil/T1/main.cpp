@@ -32,7 +32,7 @@ int main()
     {
       string = inputString(std::cin);
     }
-    catch (const std::exception & e)
+    catch (const std::exception &e)
     {
       for (size_t i = 0; i < currentShapesCount; i++)
       {
@@ -52,7 +52,7 @@ int main()
       {
         scaleFunction(myShapes, currentShapesCount, scalePoint, scaleK);
       }
-      catch (const std::logic_error & e)
+      catch (const std::logic_error &e)
       {
         errorsFlagScale = true;
       }
@@ -64,7 +64,7 @@ int main()
       {
         myShapes[currentShapesCount] = defineAndCreateShape(string);
       }
-      catch (const std::logic_error & e)
+      catch (const std::logic_error &e)
       {
         errorsFlagShapes = true;
       }

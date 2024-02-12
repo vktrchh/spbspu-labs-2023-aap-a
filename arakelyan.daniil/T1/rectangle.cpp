@@ -1,6 +1,6 @@
+#include <stdexcept>
 #include "rectangle.hpp"
 #include "base-types.hpp"
-#include <stdexcept>
 
 arakelyan::Rectangle::Rectangle(point_t fp, point_t sp):
   pointRightUp_(sp),
@@ -33,22 +33,29 @@ arakelyan::rectangle_t arakelyan::Rectangle::getFrameRect() const
 
 void arakelyan::Rectangle::move(const double delX, const double delY)
 {
-  pointLeftDown_.x += delX;
-  pointLeftDown_.y += delY;
-  pointRightUp_.x += delX;
-  pointRightUp_.y += delY;
-  midpoint_.x += delX;
-  midpoint_.y += delY;
+  point_t * pointsArray[2] = {&pointLeftDown_, &pointRightUp_};
+  for (size_t i = 0; i < 2; i++)
+  {
+    pointsArray[i]->x += delX;
+    pointsArray[i]->y += delY;
+  }
+  // pointLeftDown_.x += delX;
+  // pointLeftDown_.y += delY;
+  // pointRightUp_.x += delX;
+  // pointRightUp_.y += delY;
+  // midpoint_.x += delX;
+  // midpoint_.y += delY;
 }
 
 void arakelyan::Rectangle::move(const point_t point)
 {
   double dx = point.x - midpoint_.x;
   double dy = point.y - midpoint_.y;
-  pointRightUp_.x += dx;
-  pointRightUp_.y += dy;
-  pointLeftDown_.x += dx;
-  pointLeftDown_.y += dy;
+  arakelyan::Rectangle::move(dx,dy);
+  // pointRightUp_.x += dx;
+  // pointRightUp_.y += dy;
+  // pointLeftDown_.x += dx;
+  // pointLeftDown_.y += dy;
   midpoint_ = point;
 }
 
