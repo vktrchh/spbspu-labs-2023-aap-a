@@ -1,5 +1,6 @@
 #ifndef REMOVESPACES_H
 #define REMOVESPACES_H
+#include <cstddef>
 
 namespace zakozhurnikova
 {

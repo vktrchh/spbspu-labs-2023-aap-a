@@ -2,7 +2,7 @@
 
 void zakozhurnikova::removeSpaces(char *dest, const char *src, size_t buff)
 {
-  if (!src || !dest}
+  if (!src || !dest)
   {
     return;
   }
@@ -12,23 +12,20 @@ void zakozhurnikova::removeSpaces(char *dest, const char *src, size_t buff)
     if (src[i] == '\0')
     {
       break;
-  ++src;
-  for (; *src != '\0'; ++src)
-  {
-    if (*(src - 1) != ' ')
-    {
-      *dest = *(src - 1);
-      ++dest;
     }
-    if (*src == ' ' && *(src - 1) != ' ')
+    if (src[i - 1] != ' ')
     {
-      *dest = *src;
-      ++dest;
+      dest[index] = src[i - 1];
+      index++;
+    }
+    if (src[i] == ' ' && src[i - 1] != ' ')
+    {
+      dest[index] = src[i];
+      index++;
     }
   }
-
-  if (*(dest - 1) == ' ')
+  if (dest[index - 1] == ' ')
   {
-    *(dest - 1) = '\0';
+    dest[index - 1] = '\0';
   }
 }
