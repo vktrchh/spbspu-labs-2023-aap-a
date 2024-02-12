@@ -14,8 +14,8 @@ namespace piyavkin
     rectangle_t getFrameRect() const override;
     void move(point_t bias) override;
     void move(double dx, double dy) override;
-    void scale(double k) override;
   private:
+    void scaleFigure(double k) override;
     point_t a_;
     point_t b_;
     point_t c_;

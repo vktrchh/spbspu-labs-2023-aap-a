@@ -1,7 +1,16 @@
 #include "base-function.hpp"
 #include <cmath>
+#include "shape.hpp"
 namespace piyavkin
 {
+  void Shape::scale(double k)
+  {
+    if (k < 0)
+    {
+      throw std::logic_error("Сoefficient less than 0");
+    }
+    scaleFigure(k);
+  }
   double getLength(point_t p1, point_t p2)
   {
     return std::sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));

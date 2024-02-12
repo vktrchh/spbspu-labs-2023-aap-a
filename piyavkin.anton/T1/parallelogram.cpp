@@ -68,12 +68,8 @@ namespace piyavkin
     b_ = addShift(b_, dx, dy);
     c_ = addShift(c_, dx, dy);
   }
-  void piyavkin::Parallelogram::scale(double k)
+  void piyavkin::Parallelogram::scaleFigure(double k)
   {
-    if (k < 0)
-    {
-      throw std::logic_error("Сoefficient less than 0");
-    }
     point_t pos = {(b_.x + c_.x) / 2, (b_.y + c_.y) / 2};
     a_ = scalePoint(a_, pos, k);
     b_ = scalePoint(b_, pos, k);

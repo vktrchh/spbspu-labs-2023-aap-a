@@ -45,12 +45,8 @@ namespace piyavkin
     b_ = addShift(b_, dx, dy);
     c_ = addShift(c_, dx, dy);
   }
-  void Triangle::scale(double k)
+  void Triangle::scaleFigure(double k)
   {
-    if (k < 0)
-    {
-      throw std::logic_error("Сoefficient less than 0");
-    }
     point_t pos = {(a_.x + b_.x + c_.x) / 3, (a_.y + b_.y + c_.y) / 3};
     a_ = scalePoint(a_, pos, k);
     b_ = scalePoint(b_, pos, k);

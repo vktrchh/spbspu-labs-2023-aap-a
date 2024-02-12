@@ -32,12 +32,8 @@ namespace piyavkin
     lowerLeftCorner_ = addShift(lowerLeftCorner_, dx, dy);
     topRightCorner_ = addShift(topRightCorner_, dx, dy);
   }
-  void piyavkin::Rectangle::scale(double k)
+  void piyavkin::Rectangle::scaleFigure(double k)
   {
-    if (k < 0)
-    {
-      throw std::logic_error("Сoefficient less than 0");
-    }
     point_t pos = {(lowerLeftCorner_.x + topRightCorner_.x) / 2, (lowerLeftCorner_.y + topRightCorner_.y) / 2};
     lowerLeftCorner_ = scalePoint(lowerLeftCorner_, pos, k);
     topRightCorner_ = scalePoint(topRightCorner_, pos, k);
