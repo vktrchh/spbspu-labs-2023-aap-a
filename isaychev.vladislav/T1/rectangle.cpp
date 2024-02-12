@@ -1,9 +1,15 @@
 #include "rectangle.hpp"
+#include <stdexcept>
 
 isaychev::Rectangle::Rectangle(const point_t & p1, const point_t & p2):
   botL_(p1),
   topR_(p2)
-{}
+{
+  if (botL_.x >= topR_.x || botL_.y >= topR_.y)
+  {
+    throw std::logic_error("Incorrect rectangle parameters");
+  }
+}
 
 double isaychev::Rectangle::getArea() const
 {

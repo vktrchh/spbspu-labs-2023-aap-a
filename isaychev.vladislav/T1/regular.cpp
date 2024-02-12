@@ -1,12 +1,58 @@
 #include "regular.hpp"
-#include <iostream>
+#include <stdexcept>
 #include <cmath>
+
+int canBeReg(const double a, const double c)
+{
+  double a1 = 0.0, c1 = 0.0;
+  a1 = std::min(a, c);
+  c1 = std::max(a, c);
+  double angle = std::acos(a1 / c1);
+  double n = 3.1415926535 / angle;
+  double roundedN = std::round(n);
+  int check = 0;
+  if (std::fabs(roundedN - n) < 0.0001)
+  {
+    check++;
+  }
+  return check;
+}
+
+int isTriangle(const double a, const double b, const double c)
+{
+  int check = 0;
+  double a1 = std::sqrt(a);
+  double b1 = std::sqrt(b);
+  double c1 = std::sqrt(c);
+  if (a1 + b1 > c1 && a1 + c1 > b1 && b1 + c1 > a1)
+  {
+    check++;
+  }
+  return check;
+}
 
 isaychev::Regular::Regular(const point_t & p1, const point_t & p2, const point_t & p3):
   center_(p1),
   closePnt_(p2),
   distPnt_(p3)
-{}
+{
+  double side1 = std::pow((p1.x - p2.x), 2) + std::pow((p1.y - p2.y), 2);
+  double side2 = std::pow((p1.x - p3.x), 2) + std::pow((p1.y - p3.y), 2);
+  double bottom = std::pow((p2.x - p3.x), 2) + std::pow((p2.y - p3.y), 2);
+  int regCheck = canBeReg(side1, side2);
+  int triCheck = isTriangle(side1, side2, bottom);
+  if (side2 == side1 + bottom && regCheck == 1 && triCheck == 1)
+  {
+    closePnt_.x = p2.x;
+    closePnt_.y = p2.y;
+    distPnt_.x = p3.x;
+    distPnt_.y = p3.y;
+  }
+  else if (!(side1 == side2 + bottom) || regCheck == 0 || triCheck == 0)
+  {
+    throw std::logic_error("Incorrect regular parameters");
+  }
+}
 
 double isaychev::Regular::getArea() const
 {

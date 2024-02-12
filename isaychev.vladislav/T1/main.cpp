@@ -57,6 +57,10 @@ int main()
     }
     delete [] currDesc;
   }
+  if (figDescMistakeCheck > 0)
+  {
+    std::cerr << "There were mistakes in figure descriptions\n";
+  }
   if (figuresCount == 0 && checkString(currDesc, scaleStr) == 1)
   {
     delete [] figures;
@@ -86,10 +90,6 @@ int main()
       return 5;
     }
     outputResults(figures, figuresCount);
-  }
-  if (figDescMistakeCheck > 0)
-  {
-    std::cerr << "There were mistakes in figure descriptions\n";
   }
   deleteFigures(figures, figuresCount);
   delete [] currDesc;

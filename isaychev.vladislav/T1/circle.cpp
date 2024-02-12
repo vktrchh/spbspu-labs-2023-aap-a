@@ -1,9 +1,15 @@
 #include "circle.hpp"
+#include <stdexcept>
 
 isaychev::Circle::Circle(const point_t p, const double rad):
   center_(p),
   radius_(rad)
-{}
+{
+  if (radius_ <= 0.0)
+  {
+    throw std::logic_error("Incorrect circle parameters");
+  }
+}
 
 double isaychev::Circle::getArea() const
 {
