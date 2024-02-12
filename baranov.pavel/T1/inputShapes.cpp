@@ -119,12 +119,13 @@ void baranov::inputShapes(std::istream & input, Shape ** shapes, size_t & count,
   {
     try
     {
-      string = inputString(input);
+      size_t stringSize = 0;
+      string = inputString(input, stringSize);
       if (std::strncmp(string, "SCALE", 5) == 0)
       {
         parseScale(string, scalePoint, scaleRatio);
         delete[] string;
-        return;;
+        return;
       }
       shapes[count] = parseShape(string);
       ++count;

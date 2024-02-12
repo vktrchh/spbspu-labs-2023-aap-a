@@ -1,6 +1,6 @@
 #include "inputString.hpp"
 
-char * baranov::enlargeString(const char * string, const size_t newSize)
+char * baranov::expandString(const char * string, const size_t newSize)
 {
   char * result = new char[newSize]{};
   size_t i = 0;
@@ -13,23 +13,22 @@ char * baranov::enlargeString(const char * string, const size_t newSize)
   return result;
 }
 
-char * baranov::inputString(std::istream & input)
+char * baranov::inputString(std::istream & input, size_t & stringSize)
 {
-  size_t stringSize = 20;
   const size_t bufferSize = 20;
   char * string = new char[bufferSize]{};
   char c = 0;
   size_t i = 0;
   input >> std::noskipws;
-  while (input >> c)
+  while ((input >> c))
   {
     if (i == stringSize - 1)
     {
       try
       {
-        char * enlargedString = enlargeString(string, stringSize + bufferSize);
+        char * expandedString = expandString(string, stringSize + bufferSize);
         delete[] string;
-        string = enlargedString;
+        string = expandedString;
       }
       catch (const std::bad_alloc & e)
       {
