@@ -1,3 +1,4 @@
+#include "removeSpaces.h"
 #include <iostream>
 #include <inputOperations.hpp>
 
