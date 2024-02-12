@@ -1,5 +1,6 @@
 #include "parallelogram.hpp"
 #include "base-types.hpp"
+#include <iterator>
 #include <stdexcept>
 
 arakelyan::Parallelogram::Parallelogram(point_t fp, point_t sp, point_t tp):
@@ -19,7 +20,15 @@ arakelyan::Parallelogram::Parallelogram(point_t fp, point_t sp, point_t tp):
 
 double arakelyan::Parallelogram::getArea() const
 {
-  return std::abs((p3_.y - p1_.y) * (p2_.x - p1_.x));
+  rectangle_t dataFrameOfPar = getFrameRect();
+  if (p1_.y == p2_.y)
+  {
+    return std::abs(dataFrameOfPar.height * (dataFrameOfPar.width - p3_.x));
+  }
+  else
+  {
+    return (p2_.y - p3_.y) * (p3_.x - p1_.x);
+  }
 }
 
 arakelyan::rectangle_t arakelyan::Parallelogram::getFrameRect() const
