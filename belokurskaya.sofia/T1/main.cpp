@@ -145,6 +145,7 @@ int main()
   for (int i = 0; i < shape_count; ++i)
   {
     delete shapes[i];
+    shapes[i] = nullptr;
   }
   return 0;
 }
