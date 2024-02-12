@@ -119,7 +119,7 @@ void baranov::inputShapes(std::istream & input, Shape ** shapes, size_t & count,
   {
     try
     {
-      size_t stringSize = 0;
+      size_t stringSize = 20;
       string = inputString(input, stringSize);
       if (std::strncmp(string, "SCALE", 5) == 0)
       {
