@@ -157,9 +157,5 @@ void zakozhurnikova::inputShapesArray(std::istream& in, Shape** shapes, size_t& 
     catch (const std::logic_error& e)
     {
     }
-    catch (const std::runtime_error& e)
-    {
-      delete[] string;
-    }
   }
 }
