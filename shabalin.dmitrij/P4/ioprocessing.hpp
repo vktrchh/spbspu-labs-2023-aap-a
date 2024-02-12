@@ -1,5 +1,5 @@
 #ifndef IOPROCESSING_HPP
-#define IOPROCESSING_HPP 
+#define IOPROCESSING_HPP
 #include <cstddef>
 #include <iostream>
 
