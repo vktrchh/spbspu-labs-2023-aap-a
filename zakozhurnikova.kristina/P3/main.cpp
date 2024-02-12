@@ -5,17 +5,14 @@
 int main()
 {
   size_t size = 20;
-  char *buff = nullptr;
   char *string = nullptr;
   try
   {
     string = zakozhurnikova::readString(std::cin, size);
-    buff = new char[size]{0};
   }
   catch (const std::exception & e)
   {
     delete[] string;
-    delete[] buff;
     std::cerr << "Error: " << e.what() << '\n';
     return 1;
   }
@@ -41,8 +38,6 @@ int main()
   std::cout << '\n';
   head = nullptr;
   delete[] tmp;
-  delete[] buff;
-  buff = nullptr;
-  tmp = nullptr;
+  delete[] string;
   return 0;
 }
