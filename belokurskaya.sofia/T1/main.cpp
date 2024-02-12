@@ -92,7 +92,7 @@ int main()
         }
         if (shape_count == 0)
         {
-          std::cerr << "Nothing to scale\n";
+          return 1;
         }
         std::cout << std::fixed << std::setprecision(1);
         std::cout << total_area_before_scaling << " ";
