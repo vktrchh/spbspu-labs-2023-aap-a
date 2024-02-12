@@ -29,6 +29,16 @@ double belokurskaya::Concave::getArea() const
   return triangle1_area + triangle2_area;
 }
 
+belokurskaya::rectangle_t belokurskaya::getFrameRect() const
+{
+  double min_x = std::min(std::min(std::min(vertex1_.x, vertex2_.x), vertex3_.x), vertex4_.x);
+  double min_y = std::min(std::min(std::min(vertex1_.y, vertex2_.y), vertex3_.y), vertex4_.y);
+  double max_x = std::max(std::max(std::max(vertex1_.x, vertex2_.x), vertex3_.x), vertex4_.x);
+  double max_y = std::max(std::max(std::max(vertex1_.y, vertex2_.y), vertex3_.y), vertex4_.y);
+  point_t center = {(min_x + max_x) / 2, (min_y + max_y) / 2};
+  return {center, max_x - min_x, max_y - min_y};
+}
+
 double belokurskaya::Concave::calculateTriangleArea(const point_t & p1, const point_t & p2, const point_t & p3) const
 {
   return std::abs((p1.x * (p2.y - p3.y) + p2.x * (p3.y - p1.y) + p3.x * (p1.y - p2.y)) / 2.0);
