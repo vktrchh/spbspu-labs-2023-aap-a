@@ -28,7 +28,7 @@ baranov::Shape * baranov::parseRectangle(const char * string)
   parseParameters(string, rectParameters, 4);
   baranov::point_t ldCorner = { rectParameters[0], rectParameters[1] };
   baranov::point_t ruCorner = { rectParameters[2], rectParameters[3] };
-  return new baranov::Rectangle(ldCorner, ruCorner);
+  return new Rectangle(ldCorner, ruCorner);
 }
 
 baranov::Shape * baranov::parseRing(const char * string)
@@ -36,8 +36,8 @@ baranov::Shape * baranov::parseRing(const char * string)
   double ringParameters[4]{};
   string += 4;
   parseParameters(string, ringParameters, 4);
-  baranov::point_t center = { ringParameters[0], ringParameters[1] };
-  return new baranov::Ring(center, ringParameters[2], ringParameters[3]);
+  point_t center = { ringParameters[0], ringParameters[1] };
+  return new Ring(center, ringParameters[2], ringParameters[3]);
 }
 
 baranov::Shape * baranov::parseEllipse(const char * string)
@@ -45,8 +45,8 @@ baranov::Shape * baranov::parseEllipse(const char * string)
   double ellipseParameters[4]{};
   string += 7;
   parseParameters(string, ellipseParameters, 4);
-  baranov::point_t center = { ellipseParameters[0], ellipseParameters[1] };
-  return new baranov::Ellipse(center, ellipseParameters[2], ellipseParameters[3]);
+  point_t center = { ellipseParameters[0], ellipseParameters[1] };
+  return new Ellipse(center, ellipseParameters[2], ellipseParameters[3]);
 }
 
 void baranov::parseScale(const char * string, point_t & scalePoint, size_t & scaleRatio)
@@ -89,22 +89,22 @@ baranov::Shape * baranov::parseShape(const char * string)
     {
       if (i == 0)
       {
-        return baranov::parseRectangle(string);
+        return parseRectangle(string);
       }
       else if (i == 1)
       {
-        return baranov::parseRing(string);
+        return parseRing(string);
       }
       else if (i == 2)
       {
-        return baranov::parseEllipse(string);
+        return parseEllipse(string);
       }
     }
   }
   throw std::invalid_argument("Invalid shape name");
 }
 
-void baranov::freeShapes(baranov::Shape ** shapes, size_t size)
+void baranov::freeShapes(Shape ** shapes, size_t size)
 {
   for (size_t i = 0; i < size; ++i)
   {
@@ -119,14 +119,14 @@ void baranov::inputShapes(std::istream & input, Shape ** shapes, size_t & count,
   {
     try
     {
-      string = baranov::inputString(input);
-      if (strncmp(string, "SCALE", 5) == 0)
+      string = inputString(input);
+      if (std::strncmp(string, "SCALE", 5) == 0)
       {
-        baranov::parseScale(string, scalePoint, scaleRatio);
+        parseScale(string, scalePoint, scaleRatio);
         delete[] string;
         return;;
       }
-      shapes[count] = baranov::parseShape(string);
+      shapes[count] = parseShape(string);
       ++count;
       delete[] string;
     }
