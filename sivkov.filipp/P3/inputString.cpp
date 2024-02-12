@@ -7,9 +7,9 @@ char* sivkov::addString(std::istream& in)
 {
   const size_t initialSize = 20;
   const size_t incrementSize = 10;
-
   size_t size = initialSize;
   char* string = new char[size];
+
   if (!string)
   {
     return nullptr;
@@ -40,7 +40,6 @@ char* sivkov::addString(std::istream& in)
     }
     string[i++] = c;
   }
-
   string[i] = '\0';
   return string;
 }

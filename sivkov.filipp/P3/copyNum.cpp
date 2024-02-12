@@ -9,7 +9,6 @@ void sivkov::copyNum(char* string1, const char* string2)
   {
     ++length1;
   }
-
   size_t index1 = length1;
   size_t index2 = 0;
   while (string2[index2] != '\0')
@@ -21,7 +20,6 @@ void sivkov::copyNum(char* string1, const char* string2)
     }
     ++index2;
   }
-
   string1[index1] = '\0';
 }
 
