@@ -81,8 +81,7 @@ int main()
 
         if (scale_factor <= 0.0)
         {
-          std::cerr << "Invalid scaling factor\n";
-          return 1;
+          thtow std::invalid_argument("Invalid scaling factor");
         }
         std::cout << std::fixed << std::setprecision(1);
         std::cout << total_area_before_scaling << " ";
