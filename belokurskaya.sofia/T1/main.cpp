@@ -7,6 +7,7 @@
 #include "triangle.hpp"
 #include "concave.hpp"
 #include "iso_scale.hpp"
+#include "results_printer.hpp"
 
 int main()
 {
@@ -87,7 +88,6 @@ int main()
       {
         double scale_point_x, scale_point_y, scale_factor;
         inputStream >> scale_point_x >> scale_point_y >> scale_factor;
-
         if (scale_factor <= 0.0)
         {
           delete shapes[shape_count];
@@ -97,20 +97,6 @@ int main()
         {
           return 1;
         }
-        std::cout << std::fixed << std::setprecision(1);
-        std::cout << total_area_before_scaling;
-
-        for (int i = 0; i < shape_count; ++i)
-        {
-          std::cout << std::fixed;
-          std::cout.precision(1);
-
-          belokurskaya::rectangle_t frameRect = shapes[i]->getFrameRect();
-          std::cout << " " << frameRect.pos.x - frameRect.width / 2.0 << " " << frameRect.pos.y - frameRect.height / 2.0;
-          std::cout << " " << frameRect.pos.x + frameRect.width / 2.0 << " " << frameRect.pos.y + frameRect.height / 2.0;
-        }
-        std::cout << "\n";
-
         for (int i = 0; i < shape_count; ++i)
         {
           try
@@ -123,20 +109,7 @@ int main()
             std::cerr << "Error: " << e.what() << "\n";
           }
         }
-        std::cout << total_area_after_scaling;
-
-        for (int i = 0; i < shape_count; ++i)
-        {
-          std::cout << std::fixed;
-          std::cout.precision(1);
-          belokurskaya::rectangle_t frameRect = shapes[i]->getFrameRect();
-          double scale_lower_left_x = frameRect.pos.x - frameRect.width / 2.0;
-          double scale_lower_left_y = frameRect.pos.y - frameRect.height / 2.0;
-          double scale_upper_right_x = frameRect.pos.x + frameRect.width / 2.0;
-          double scale_upper_right_y = frameRect.pos.y + frameRect.height / 2.0;
-          std::cout << " " << scale_lower_left_x << " " << scale_lower_left_y << " " << scale_upper_right_x << " " << scale_upper_right_y;
-        }
-        std::cout << "\n";
+        printResults(shapes, shape_count, total_area_before_scaling, total_area_after_scaling);
         break;
       }
       else
