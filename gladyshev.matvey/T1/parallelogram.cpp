@@ -8,8 +8,7 @@ gladyshev::Parallelogram::Parallelogram(const point_t& p1, const point_t& p2, co
   p3_(p3)
 {}
 
-gladyshev::Parallelogram::~Parallelogram()
-{}
+gladyshev::Parallelogram::~Parallelogram() = default;
 
 double gladyshev::Parallelogram::getArea() const
 {

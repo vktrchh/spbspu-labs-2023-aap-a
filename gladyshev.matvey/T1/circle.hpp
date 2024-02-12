@@ -16,8 +16,8 @@ namespace gladyshev
       virtual void move(const point_t& pos);
       virtual void scale(double factor);
     private:
-      double radiusCircle_;
-      point_t poscir_;
+      double radius_;
+      point_t center_;
   };
 }
 

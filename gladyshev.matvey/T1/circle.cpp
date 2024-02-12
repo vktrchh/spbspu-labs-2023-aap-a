@@ -1,31 +1,30 @@
 #include "circle.hpp"
 
 gladyshev::Circle::Circle(const point_t& p1, double radius):
-  radiusCircle_{ radius },
-  poscir_{ p1 }
+  radius_{ radius },
+  center_{ p1 }
 {}
 
-gladyshev::Circle::~Circle()
-{}
+gladyshev::Circle::~Circle() = default;
 
 double gladyshev::Circle::getArea() const
 {
-  return radiusCircle_ * radiusCircle_ * 3.14;
+  return radius_ * radius_ * 3.14;
 }
 
 gladyshev::rectangle_t gladyshev::Circle::getFrameRect() const
 {
-  rectangle_t frameRect;
-  frameRect.height = 2 * radiusCircle_;
-  frameRect.width = 2 * radiusCircle_;
-  frameRect.pos = { poscir_.x, poscir_.y };
+  double height = 2 * radius_;
+  double width = 2 * radius_;
+  point_t pos = { center_.x, center_.y };
+  rectangle_t frameRect = { pos, width, height };
   return frameRect;
 }
 
 void gladyshev::Circle::move(double dx, double dy)
 {
-  poscir_.x += dx;
-  poscir_.y += dy;
+  center_.x += dx;
+  center_.y += dy;
 }
 void gladyshev::Circle::move(const point_t& newPos)
 {
@@ -34,5 +33,5 @@ void gladyshev::Circle::move(const point_t& newPos)
 
 void gladyshev::Circle::scale(double factor)
 {
-  radiusCircle_ *= factor;
+  radius_ *= factor;
 }

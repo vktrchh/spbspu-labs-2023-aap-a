@@ -7,8 +7,7 @@ gladyshev::Rectangle::Rectangle(const point_t& p1, const point_t& p2):
   p2FrameRec_(p2)
 {}
 
-gladyshev::Rectangle::~Rectangle()
-{}
+gladyshev::Rectangle::~Rectangle() = default;
 
 double gladyshev::Rectangle::getArea() const
 {
@@ -30,10 +29,10 @@ void gladyshev::Rectangle::move(const point_t& newPos)
 
 gladyshev::rectangle_t gladyshev::Rectangle::getFrameRect() const
 {
-  rectangle_t frameRect;
-  frameRect.height = std::abs(p1FrameRec_.y - p2FrameRec_.y);
-  frameRect.width = std::abs(p1FrameRec_.x - p2FrameRec_.x);
-  frameRect.pos = { (p1FrameRec_.x + p2FrameRec_.x) / 2, (p1FrameRec_.y + p2FrameRec_.y) / 2 };
+  double height = std::abs(p1FrameRec_.y - p2FrameRec_.y);
+  double width = std::abs(p1FrameRec_.x - p2FrameRec_.x);
+  point_t pos = { (p1FrameRec_.x + p2FrameRec_.x) / 2, (p1FrameRec_.y + p2FrameRec_.y) / 2 };
+  rectangle_t frameRect = { pos, width, height };
   return frameRect;
 }
 
