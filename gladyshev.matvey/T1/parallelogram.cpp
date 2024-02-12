@@ -50,7 +50,7 @@ void gladyshev::Parallelogram::scale(double factor)
 {
   if (factor <= 0)
   {
-    throw std::logic_error("factor must be positive");
+    throw std::underflow_error("factor must be positive");
   }
   point_t * points[] = { &p1_, &p2_, &p3_ };
   rectangle_t frameRect = getFrameRect();

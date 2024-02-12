@@ -42,7 +42,7 @@ void gladyshev::Circle::scale(double factor)
 {
   if (factor <= 0)
   {
-    throw std::logic_error("factor mast be positive");
+    throw std::underflow_error("factor mast be positive");
   }
   radius_ *= factor;
 }

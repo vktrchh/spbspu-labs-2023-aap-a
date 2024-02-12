@@ -15,6 +15,20 @@ int main()
   try
   {
     shapeInput(std::cin, shapes, pos, counter, factor);
+    outData(std::cout, shapes, counter);
+    std::cout << "\n";
+    for (size_t i = 0; i < counter; ++i)
+    {
+      isoScale(shapes[i], pos, factor);
+    }
+    outData(std::cout, shapes, counter);
+    std::cout << "\n";
+  }
+  catch (const std::underflow_error& e)
+  {
+    std::cerr << "Error: " << e.what() << "\n";
+    freeMemory(shapes, counter);
+    return 2;
   }
   catch (const std::runtime_error& e)
   {
@@ -30,14 +44,6 @@ int main()
     std::cerr << "Error: " << e.what() << "\n";
     return 2;
   }
-  outData(std::cout, shapes, counter);
-  std::cout << "\n";
-  for (size_t i = 0; i < counter; ++i)
-  {
-    isoScale(shapes[i], pos, factor);
-  }
-  outData(std::cout, shapes, counter);
-  std::cout << "\n";
   if (unsupFig)
   {
     std::cerr << "there are incorrect or unsupported figures\n";

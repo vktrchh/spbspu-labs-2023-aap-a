@@ -45,7 +45,7 @@ void gladyshev::Rectangle::scale(double factor)
 {
   if (factor <= 0)
   {
-    throw std::logic_error("factor must be positive");
+    throw std::underflow_error("factor must be positive");
   }
   rectangle_t frameRect = getFrameRect();
   p1FrameRec_.x = p1FrameRec_.x - (frameRect.pos.x - p1FrameRec_.x) * (factor - 1);
