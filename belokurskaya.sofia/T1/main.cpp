@@ -6,6 +6,7 @@
 #include "rectangle.hpp"
 #include "triangle.hpp"
 #include "concave.hpp"
+#include "iso_scale.hpp"
 
 int main()
 {
@@ -89,6 +90,7 @@ int main()
 
         if (scale_factor <= 0.0)
         {
+          delete shapes[shape_count];
           throw std::invalid_argument("Invalid scaling factor");
         }
         if (shape_count == 0)
@@ -113,11 +115,7 @@ int main()
         {
           try
           {
-            belokurskaya::point_t center = shapes[i]->getFrameRect().pos;
-            shapes[i]->move(center);
-            shapes[i]->scale(scale_factor);
-            shapes[i]->move((scale_factor - 1) * (center.x - scale_point_x), (scale_factor - 1) * (center.y - scale_point_y));
-            total_area_after_scaling += shapes[i]->getArea();
+            belokurskaya::isoScale(shapes[i], shapes[i]->getFrameRect().pos, scale_factor);
           }
           catch (const std::invalid_argument& e)
           {

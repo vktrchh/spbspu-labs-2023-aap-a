@@ -54,12 +54,7 @@ void belokurskaya::Triangle::move(const point_t& new_pos)
   double dx = new_pos.x - centroid.x;
   double dy = new_pos.y - centroid.y;
 
-  vertex1_.x += dx;
-  vertex1_.y += dy;
-  vertex2_.x += dx;
-  vertex2_.y += dy;
-  vertex3_.x += dx;
-  vertex3_.y += dy;
+  move(dx, dy);
 }
 
 void belokurskaya::Triangle::move(double dx, double dy)
