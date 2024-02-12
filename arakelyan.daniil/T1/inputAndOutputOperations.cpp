@@ -38,7 +38,6 @@ char * arakelyan::inputString(std::istream &input)
   char * string = nullptr;
   string = new char[arrSize];
 
-
   input >> std::noskipws;
   while (input >> sym)
   {
@@ -113,6 +112,7 @@ void arakelyan::shapeOutput(std::ostream &output, arakelyan::Shape **shapes, con
     double leftDownY = rectCurrShape.pos.y - (rectCurrShape.height / 2.0);
     double rigtUpX = rectCurrShape.pos.x + (rectCurrShape.width / 2.0);
     double rightUpY = rectCurrShape.pos.y + (rectCurrShape.height / 2.0);
-    output << totalArea << " " << leftDownX << " " << leftDownY << " " << rigtUpX << " " << rightUpY << "\n";
+    output << "\n" << totalArea << " " << leftDownX << " " << leftDownY << " " << rigtUpX << " " << rightUpY << "\n";
   }
+  output << "\n";
 }

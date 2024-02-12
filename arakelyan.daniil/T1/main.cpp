@@ -54,13 +54,6 @@ int main()
       }
       catch (const std::logic_error & e)
       {
-        // for (size_t i = 0; i < currentShapesCount; i++)
-        // {
-        //   delete myShapes[i];
-        // }
-        // delete [] myShapes;
-        // std::cout << "Error: " << e.what() << "\n";
-        // return 1;
         errorsFlagScale = true;
       }
       break;
@@ -73,14 +66,6 @@ int main()
       }
       catch (const std::logic_error & e)
       {
-        // delete [] string;
-        // for (size_t i = 0; i < currentShapesCount; i++)
-        // {
-        //   delete myShapes[i];
-        // }
-        // delete [] myShapes;
-        // std::cerr << "Error: " << e.what() << "\n";
-        // return 1;
         errorsFlagShapes = true;
       }
       if (myShapes[currentShapesCount] != nullptr)
@@ -90,21 +75,6 @@ int main()
     }
     delete [] string;
   }
-
-  // try
-  // {
-  //   scaleFunction(myShapes, currentShapesCount, scalePoint, scaleK);
-  // }
-  // catch (const std::logic_error & e)
-  // {
-  //   for (size_t i = 0; i < currentShapesCount; i++)
-  //   {
-  //     delete myShapes[i];
-  //   }
-  //   delete [] myShapes;
-  //   std::cout << "Error: " << e.what() << "\n";
-  //   return 1;
-  // }
 
   if (errorsFlagShapes)
   {

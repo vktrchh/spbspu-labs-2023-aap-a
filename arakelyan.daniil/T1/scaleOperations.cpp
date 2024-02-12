@@ -19,10 +19,11 @@ void arakelyan::scaleFunction(arakelyan::Shape ** shapes, const size_t shapesCou
   {
     throw std::logic_error("k of scale cannot be less than zero!");
   }
+
+  shapeOutput(std::cout, shapes, shapesCount);
   for (size_t i = 0; i < shapesCount; i++)
   {
-    shapeOutput(std::cout, shapes, shapesCount);
     isoScale(shapes[i], scalePoint, scaleK);
-    shapeOutput(std::cout, shapes, shapesCount);
   }
+  shapeOutput(std::cout, shapes, shapesCount);
 }
