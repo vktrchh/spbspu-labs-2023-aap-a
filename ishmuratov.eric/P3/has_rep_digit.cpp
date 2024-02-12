@@ -2,7 +2,7 @@
 #include <cstddef>
 #include <cctype>
 
-int ishmuratov::hasRepDigit(const char * const str)
+int ishmuratov::hasRepDigit(const char * str)
 {
   for (size_t i = 0; str[i] != '\0'; i++)
   {

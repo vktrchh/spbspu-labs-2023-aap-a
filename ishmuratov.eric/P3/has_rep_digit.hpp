@@ -3,7 +3,7 @@
 
 namespace ishmuratov
 {
-  int hasRepDigit(const char * const str);
+  int hasRepDigit(const char * str);
 }
 
 #endif

@@ -33,12 +33,6 @@ char * ishmuratov::inputString(std::istream& input)
       }
     }
   }
-  if (count == 0)
-  {
-    input >> std::skipws;
-    delete [] initialArray;
-    throw std::runtime_error("Empty string!");
-  }
   initialArray[count] = '\0';
   input >> std::skipws;
   return initialArray;

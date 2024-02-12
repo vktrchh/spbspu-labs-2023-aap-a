@@ -1,7 +1,7 @@
 #include "has_rep_symbol.hpp"
 #include <cstddef>
 
-int ishmuratov::hasRep(const char * const string)
+int ishmuratov::hasRep(const char * string)
 {
   for (size_t i = 0; string[i] != '\0'; i++)
   {

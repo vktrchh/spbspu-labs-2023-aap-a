@@ -3,7 +3,7 @@
 
 namespace ishmuratov
 {
-  int hasRep(const char * const string);
+  int hasRep(const char * string);
 }
 
 #endif

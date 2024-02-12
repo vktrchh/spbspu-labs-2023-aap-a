@@ -16,9 +16,10 @@ int main()
     std::cerr << "Error: " << e.what() << "\n";
     return 1;
   }
-  catch (const std::runtime_error& e)
+  if (inArray[0] == '\0')
   {
-    std::cerr << "Error: " << e.what() << "\n";
+    delete [] inArray;
+    std::cerr << "Error: Empty string!" << "\n";
     return 1;
   }
   std::cout << hasRep(inArray) << "\n";
