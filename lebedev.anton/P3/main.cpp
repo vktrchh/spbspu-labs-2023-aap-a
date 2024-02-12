@@ -8,30 +8,22 @@ int main()
 {
   using namespace lebedev;
   char * string = nullptr;
+  char * symbols = nullptr;
+
   try
   {
     string = inputString(std::cin);
-  }
-  catch (const std::bad_alloc &)
-  {
-    std::cerr << "Error in memory allocation\n";
-    return 1;
-  }
-  if (string[0] == '\0')
-  {
-    std::cerr << "Error: Empty input\n";
-    delete[] string;
-    return 1;
-  }
-
-  char * symbols = nullptr;
-  try
-  {
     symbols = new char[4];
   }
   catch (const std::bad_alloc &)
   {
     std::cerr << "Error in memory allocation\n";
+    delete[] symbols;
+    return 1;
+  }
+  if (string[0] == '\0')
+  {
+    std::cerr << "Error: Empty input\n";
     delete[] string;
     delete[] symbols;
     return 1;

@@ -22,7 +22,7 @@ char * lebedev::inputString(std::istream & input)
         string = buffer;
         string_size += 5;
       }
-      catch(const std::bad_alloc &)
+      catch (const std::bad_alloc &)
       {
         delete[] string;
         throw;
