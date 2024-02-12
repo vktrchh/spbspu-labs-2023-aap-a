@@ -4,7 +4,7 @@
 #include "triangle.hpp"
 #include "geom_func.hpp"
 
-erohin::Diamond::Diamond(point_t corner1, point_t corner2, point_t corner3) :
+erohin::Diamond::Diamond(point_t corner1, point_t corner2, point_t corner3):
   frameRect_{ findDiamondFrameRect(corner1, corner2, corner3) }
 {
   if (frameRect_.width * frameRect_.height == 0.0)
@@ -36,12 +36,8 @@ void erohin::Diamond::move(point_t point)
   frameRect_.pos = point;
 }
 
-void erohin::Diamond::scale(double ratio)
+void erohin::Diamond::doScaling(double ratio)
 {
-  if (ratio <= 0.0)
-  {
-    throw std::invalid_argument("Wrong figure creation");
-  }
   frameRect_.width *= ratio;
   frameRect_.height *= ratio;
 }

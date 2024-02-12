@@ -8,7 +8,7 @@
 #include "diamond.hpp"
 #include "complexquad.hpp"
 
-erohin::Shape* erohin::createShape(const std::string name, double* par, size_t par_size)
+erohin::Shape* erohin::createShape(const std::string name, const double* par, size_t par_size)
 {
   Shape* shape = nullptr;
   if (name == "RECTANGLE")
@@ -30,7 +30,7 @@ erohin::Shape* erohin::createShape(const std::string name, double* par, size_t p
   return shape;
 }
 
-erohin::Shape* erohin::createRectangle(double* par, size_t par_size)
+erohin::Shape* erohin::createRectangle(const double* par, size_t par_size)
 {
   if (par_size != 4)
   {
@@ -40,7 +40,7 @@ erohin::Shape* erohin::createRectangle(double* par, size_t par_size)
   return shape;
 }
 
-erohin::Shape* erohin::createTriangle(double* par, size_t par_size)
+erohin::Shape* erohin::createTriangle(const double* par, size_t par_size)
 {
   if (par_size != 6)
   {
@@ -55,7 +55,7 @@ erohin::Shape* erohin::createTriangle(double* par, size_t par_size)
   return shape;
 }
 
-erohin::Shape* erohin::createComplexquad(double* par, size_t par_size)
+erohin::Shape* erohin::createComplexquad(const double* par, size_t par_size)
 {
   if (par_size != 8)
   {
@@ -70,7 +70,7 @@ erohin::Shape* erohin::createComplexquad(double* par, size_t par_size)
   return shape;
 }
 
-erohin::Shape* erohin::createDiamond(double* par, size_t par_size)
+erohin::Shape* erohin::createDiamond(const double* par, size_t par_size)
 {
   if (par_size != 6)
   {
@@ -85,7 +85,7 @@ erohin::Shape* erohin::createDiamond(double* par, size_t par_size)
   return shape;
 }
 
-void erohin::inputScaleParameteres(double* par, size_t par_size, point_t& pos, double& ratio)
+void erohin::inputScaleParameteres(const double* par, size_t par_size, point_t& pos, double& ratio)
 {
   if (par_size != 3 || par[2] <= 0.0)
   {

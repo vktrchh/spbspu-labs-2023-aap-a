@@ -4,7 +4,7 @@
 #include "base-types.hpp"
 #include "geom_func.hpp"
 
-erohin::Triangle::Triangle(point_t corner1, point_t corner2, point_t corner3) :
+erohin::Triangle::Triangle(point_t corner1, point_t corner2, point_t corner3):
   vertex_{ corner1, corner2, corner3 }
 {
   double side[3]{ 0.0 };
@@ -70,12 +70,8 @@ void erohin::Triangle::move(point_t point)
   move(dx, dy);
 }
 
-void erohin::Triangle::scale(double ratio)
+void erohin::Triangle::doScaling(double ratio)
 {
-  if (ratio <= 0.0)
-  {
-    throw std::invalid_argument("Wrong figure creation");
-  }
   point_t center = getCenter();
   for (size_t i = 0; i < 3; ++i)
   {

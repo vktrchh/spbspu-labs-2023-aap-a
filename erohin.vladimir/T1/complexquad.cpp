@@ -5,7 +5,7 @@
 #include "rectangle.hpp"
 #include "triangle.hpp"
 
-erohin::Complexquad::Complexquad(point_t corner1, point_t corner2, point_t corner3, point_t corner4) :
+erohin::Complexquad::Complexquad(point_t corner1, point_t corner2, point_t corner3, point_t corner4):
   vertex_{ corner1, corner2, corner3, corner4 }
 {
   point_t center = findIntersectionPoint(vertex_);
@@ -61,12 +61,8 @@ void erohin::Complexquad::move(point_t point)
   move(dx, dy);
 }
 
-void erohin::Complexquad::scale(double ratio)
+void erohin::Complexquad::doScaling(double ratio)
 {
-  if (ratio <= 0.0)
-  {
-    throw std::invalid_argument("Wrong figure creation");
-  }
   point_t center = getCenter();
   for (size_t i = 0; i < 4; ++i)
   {

@@ -13,7 +13,9 @@ namespace erohin
     virtual rectangle_t getFrameRect() const = 0;
     virtual void move(double dx, double dy) = 0;
     virtual void move(point_t point) = 0;
-    virtual void scale(double ratio) = 0;
+    void scale(double ratio);
+  private:
+    virtual void doScaling(double ratio) = 0;
   };
 }
 
