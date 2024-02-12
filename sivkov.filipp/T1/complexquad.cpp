@@ -7,7 +7,7 @@ Complexquad::Complexquad(const point_t& ver1, const point_t& ver2, const point_t
   cqVer3_(ver3),
   cqVer4_(ver4)
 {
-  if (!areSegmentsIntersecting(ver1, ver2, ver3, ver4)) 
+  if (!areSegmentsIntersecting(ver1, ver2, ver3, ver4))
   {
     throw std::invalid_argument("Sides of the complex quad intersect. Invalid configuration.");
   }
@@ -169,5 +169,3 @@ bool Complexquad::areSegmentsIntersecting(const point_t& ver1, const point_t& ve
   bool check2 = ((line1x * line2y - line1y * line2x) * (line1x * line3y - line1y * line3x) < 0);
   return check1 * check2;
 }
-
-
