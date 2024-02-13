@@ -21,7 +21,7 @@ int main()
     while (true)
     {
       std::string input;
-      if (std::getline(std::cin, input))
+      if (!std::getline(std::cin, input))
       {
         if (std::cin.eof())
         {
