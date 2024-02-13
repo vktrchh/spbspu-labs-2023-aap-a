@@ -1,6 +1,6 @@
 #include "findLargeSeriesofElements.hpp"
 
-int shabalin::findLargeSeriesOfEqualElements(int* matrix, size_t rows, size_t cols)
+int shabalin::findLargeSeriesOfEqualElements(const int* matrix, size_t rows, size_t cols)
 {
     size_t numberSeries = 0;
     size_t maximumNumberSeries = 0;

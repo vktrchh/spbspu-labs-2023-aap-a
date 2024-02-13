@@ -18,7 +18,7 @@ double* shabalin::makeUpSmoothMatrix(const int* matrix, double* smoothedMatrix, 
                     {
                         if ((currentRow < rows) && (currentColumn < cols))
                         {
-                            size_t newPosition = currentRow * i + currentColumn;
+                            size_t newPosition = (currentRow * i) + currentColumn;
                             sum += matrix[newPosition];
                             count++;
                         }
