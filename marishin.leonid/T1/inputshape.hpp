@@ -5,6 +5,7 @@
 #include "triangle.hpp"
 #include "ring.hpp"
 #include <iostream>
+#include <vector>
 
 namespace marishin
 {
