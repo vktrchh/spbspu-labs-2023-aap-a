@@ -5,15 +5,16 @@
 #include <stdexcept>
 #include <cstddef>
 
-char* skuratov::transformInputString(size_t& size)
+char* skuratov::transformInputString(std::istream& in)
 {
+  size_t size = 10;
   char* input = new char[size] {};
   char c = 0;
   size_t i = 0;
-  std::cin >> std::noskipws;
-  while (std::cin >> c)
+  in >> std::noskipws;
+  while (in >> c)
   {
-    if (i == 0 && c == '\n')
+    if (!in)
     {
       throw std::runtime_error("Error input");
     }

@@ -9,11 +9,11 @@
 int main()
 {
   using namespace skuratov;
-  size_t size = 10;
+  char* inputLine = nullptr;
   const char* lineOfProgram = "abc";
   try
   {
-    char* inputLine = skuratov::transformInputString(size);
+    inputLine = transformInputString(std::cin);
 
     size_t size1 = 0;
     char* inputLinePtr = inputLine;
@@ -22,17 +22,11 @@ int main()
       delete[] inputLine;
       throw std::invalid_argument("Empty input");
     }
-    for (size_t i = 0; i != size; ++i)
+    while (inputLine[size1] != '\0')
     {
-      if (inputLine[i] != '\0')
-      {
-        size1++;
-      }
-      else
-      {
-        break;
-      }
+      size1++;
     }
+
     size_t size2 = 0;
     while (*lineOfProgram != '\0')
     {
