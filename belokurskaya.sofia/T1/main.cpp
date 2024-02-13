@@ -87,7 +87,12 @@ int main()
         belokurskaya::point_t scale_point = {scale_point_x, scale_point_y};
         if (scale_factor <= 0.0)
         {
-          delete shapes[shape_count];
+          for (int i = 0; i < shape_count; ++i)
+          {
+            delete shapes[i];
+            shapes[i] = nullptr;
+          }
+          delete[] shapes;
           throw std::invalid_argument("Invalid scaling factor");
         }
         if (shape_count == 0)
