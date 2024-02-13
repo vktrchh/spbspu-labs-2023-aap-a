@@ -10,16 +10,16 @@ namespace marishin
   class Triangle: public Shape
   {
   public:
-    Triangle(point_t firstPoint, point_t secondPoint, point_t thirdPoint);
+    Triangle(point_t first, point_t second, point_t third);
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(point_t newPos);
     virtual void move(double dx, double dy);
     virtual void scale(double factor);
   private:
-    point_t firstPoint_;
-    point_t secondPoint_;
-    point_t thirdPoint_;
+    point_t first_;
+    point_t second_;
+    point_t third_;
   };
 }
 
