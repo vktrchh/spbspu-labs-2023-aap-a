@@ -63,14 +63,7 @@ rebdev::rectangle_t rebdev::Polygon::getFrameRect() const
 void rebdev::Polygon::move(const point_t & point)
 {
   point_t center = getPolygonCenter();
-
-  double xChange = point.x - center.x;
-  double yChange = point.y - center.y;
-  for (size_t i = 0; i < numOfVertexs_; ++i)
-  {
-    vertexs_[i].x += xChange;
-    vertexs_[i].y += yChange;
-  }
+  move(point.x - center.x, point.y - center.y);
 }
 
 void rebdev::Polygon::move(double x, double y)

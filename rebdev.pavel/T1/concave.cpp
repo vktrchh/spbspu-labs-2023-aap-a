@@ -10,6 +10,7 @@ rebdev::Concave::Concave(const point_t & firstVertex, const point_t & secondVert
 {
   point_t vertexs[4] = {firstVertex, secondVertex, thirdVertex, fourthVertex};
   bool isConcave = false;
+
   for (size_t i = 0; ((i < 4) && (!isConcave)); ++i)
   {
     if (!isTriangle(vertexs[i], vertexs[(i + 1) % 4], vertexs[(i + 2) % 4]))
@@ -63,14 +64,7 @@ rebdev::rectangle_t rebdev::Concave::getFrameRect() const
 
 void rebdev::Concave::move(const point_t & point)
 {
-  double yChange = point.y - vertexs_[2].y;
-  double xChange = point.x - vertexs_[2].x;
-
-  for (size_t i = 0; i < 4; ++i)
-  {
-    vertexs_[i].x += xChange;
-    vertexs_[i].y += yChange;
-  }
+  move(point.x - vertexs_[2].x, point.y - vertexs_[2].y);
 }
 
 void rebdev::Concave::move(double x, double y)
@@ -96,7 +90,7 @@ rebdev::point_t rebdev::Concave::scalePoint(const point_t & pointToScale, const 
   return scaledPoint;
 }
 
-bool rebdev::Concave::isTriangle(const point_t & f, const point_t & s, const point_t & t)
+bool rebdev::isTriangle(const point_t & f, const point_t & s, const point_t & t)
 {
     return (((t.x - f.x) / (s.x - f.x)) != ((t.y - f.y) / (s.y - f.y)));
 }
