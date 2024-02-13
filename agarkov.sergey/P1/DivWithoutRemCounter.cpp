@@ -9,11 +9,12 @@ void agarkov::DivWithoutRemCounter::operator()(int num)
 {
   if (prev == 0)
   {
+    prev = num;
     return;
   }
   if (prev < 0)
   {
-    return;
+    return; //??
   }
   if (num % prev == 0)
   {

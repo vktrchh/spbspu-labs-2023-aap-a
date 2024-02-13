@@ -21,8 +21,10 @@ int main()
     else if (num != 0)
     {
       pyth_triple_counter(num);
+      div_without_rem_counter(num);
     }
   }
   while (num != 0);
   std::cout << pyth_triple_counter.getCount() <<"\n";
+  std::cout << div_without_rem_counter.getCount() <<"\n";
 }
