@@ -1,5 +1,5 @@
-#include "copyNum.hpp"
 #include <cctype>
+#include "copyNum.hpp"
 
 void sivkov::copyNum(char* string1, const char* string2)
 {

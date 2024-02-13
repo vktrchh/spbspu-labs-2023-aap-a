@@ -1,5 +1,5 @@
-#include "removing_vowels.hpp"
 #include <cstddef>
+#include "removing_vowels.hpp"
 
 void sivkov::removing_vowels(char* string)
 {

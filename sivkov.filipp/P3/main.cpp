@@ -1,9 +1,9 @@
+#include <iostream>
+#include <exception>
 #include "inputString.hpp"
 #include "removing_spaces.hpp"
 #include "copyNum.hpp"
 #include "removing_vowels.hpp"
-#include <iostream>
-#include <exception>
 
 int main()
 {

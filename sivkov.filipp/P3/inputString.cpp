@@ -1,7 +1,7 @@
-#include "inputString.hpp"
 #include <iostream>
 #include <cstdio>
 #include <exception>
+#include "inputString.hpp"
 
 char* sivkov::addString(std::istream& in)
 {

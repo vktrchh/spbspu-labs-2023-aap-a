@@ -1,6 +1,6 @@
-#include "removing_spaces.hpp"
 #include <cctype>
 #include <string>
+#include "removing_spaces.hpp"
 
 void sivkov::deleteSpace(char* string)
 {
