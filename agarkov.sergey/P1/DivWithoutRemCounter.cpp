@@ -1,5 +1,7 @@
 #include "DivWithoutRemCounter.hpp"
 
+#include <stdexcept>
+
 agarkov::DivWithoutRemCounter::DivWithoutRemCounter():
   prev(0),
   count(0)
@@ -14,7 +16,7 @@ void agarkov::DivWithoutRemCounter::operator()(int num)
   }
   if (prev < 0)
   {
-    return; //??
+    throw std::logic_error("Division by remainder by a negative number");
   }
   if (num % prev == 0)
   {

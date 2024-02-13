@@ -12,7 +12,6 @@ int main()
   do
   {
     std::cin >> num;
-
     if (!std::cin)
     {
       std::cerr << "Is not a sequence\n";
@@ -21,7 +20,15 @@ int main()
     else if (num != 0)
     {
       pyth_triple_counter(num);
-      div_without_rem_counter(num);
+      try
+      {
+        div_without_rem_counter(num);
+      }
+      catch (const std::logic_error& e)
+      {
+        std::cerr << e.what() << "\n";
+        return 2;
+      }
     }
   }
   while (num != 0);
