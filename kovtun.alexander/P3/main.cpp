@@ -1,21 +1,28 @@
 #include <iostream>
+#include <iomanip>
 
 int main()
 {
-  size_t size = 5;
+  size_t stringSize = 5;
+  size_t charIndex = 0;
   char c = '\n';
-  char * input = new char[size]();
+  char * input = new char[stringSize]();
 
-  for (size_t counter = 0; counter < size; counter++)
+  std::cin >> std::noskipws;
+  while (std::cin >> c  && charIndex < stringSize)
   {
-    std::cin >> c;
-    input[counter] = c;
-  }
+    if (c == '\n')
+    {
+      input[charIndex] = '\0';
+      break;
+    }
 
-  for (int i = 0; i < size; i++)
-  {
-    std::cout << input[i];
+    input[charIndex] = c;
+    charIndex++;
   }
+  std::cin >> std::skipws;
+
+  std::cout << input;
   delete [] input;
 
   return 0;
