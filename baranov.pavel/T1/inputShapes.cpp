@@ -26,8 +26,8 @@ baranov::Shape * baranov::parseRectangle(const char * string)
   double rectParameters[4]{};
   string += 9;
   parseParameters(string, rectParameters, 4);
-  baranov::point_t ldCorner = { rectParameters[0], rectParameters[1] };
-  baranov::point_t ruCorner = { rectParameters[2], rectParameters[3] };
+  point_t ldCorner = { rectParameters[0], rectParameters[1] };
+  point_t ruCorner = { rectParameters[2], rectParameters[3] };
   return new Rectangle(ldCorner, ruCorner);
 }
 
@@ -85,7 +85,7 @@ baranov::Shape * baranov::parseShape(const char * string)
     {
       continue;
     }
-    if (strncmp(shapeNames[i], string, nameSize) == 0)
+    if (std::strncmp(shapeNames[i], string, nameSize) == 0)
     {
       if (i == 0)
       {

@@ -54,3 +54,4 @@ void baranov::Rectangle::scale(const double ratio)
   pointScale(ruCorner_, center, ratio);
   pointScale(ldCorner_, center, ratio);
 }
+
