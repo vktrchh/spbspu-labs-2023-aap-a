@@ -4,7 +4,7 @@
 #include <cstring>
 #include "shape.hpp"
 
-zaitsev::CompositeShape::CompositeShape() : size_(0), capacity_(8), shapes_(new Shape* [8])
+zaitsev::CompositeShape::CompositeShape(): size_(0), capacity_(8), shapes_(new Shape* [8])
 {
 }
 
@@ -37,8 +37,8 @@ zaitsev::CompositeShape& zaitsev::CompositeShape::operator=(const CompositeShape
   return *this;
 }
 
-zaitsev::CompositeShape::CompositeShape(const CompositeShape& other) :
-  size_(other.size_), capacity_(other.capacity_), shapes_(new Shape* [other.capacity_])
+zaitsev::CompositeShape::CompositeShape(const CompositeShape& other):
+    size_(other.size_), capacity_(other.capacity_), shapes_(new Shape* [other.capacity_])
 {
   for (size_t i = 0; i < size_; ++i)
   {
@@ -86,7 +86,7 @@ void zaitsev::CompositeShape::pop_back()
 }
 
 zaitsev::CompositeShape::CompositeShape(CompositeShape&& other):
-   size_(other.size_), capacity_(other.capacity_), shapes_(other.shapes_)
+    size_(other.size_), capacity_(other.capacity_), shapes_(other.shapes_)
 {
   other.size_ = 0;
   other.capacity_ = 0;
