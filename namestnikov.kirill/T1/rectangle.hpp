@@ -8,14 +8,14 @@ namespace namestnikov
   class Rectangle: public Shape
   {
   public:
-    Rectangle(const point_t & leftCornerPoint, const point_t & rightCornerPoint);
+    Rectangle(const point_t & leftCorner, const point_t & rightCorner);
     virtual double getArea() const;
     virtual void move(const point_t & p);
     virtual void move(const double dx, const double dy);
     virtual rectangle_t getFrameRect() const;
   private:
-    point_t leftCornerPoint_;
-    point_t rightCornerPoint_;
+    point_t leftCorner_;
+    point_t rightCorner_;
     point_t getCenter() const;
     virtual void scale(const double coefficient);
   };

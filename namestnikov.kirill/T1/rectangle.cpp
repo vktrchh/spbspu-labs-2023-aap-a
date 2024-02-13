@@ -1,11 +1,11 @@
 #include "rectangle.hpp"
 #include <stdexcept>
 
-namestnikov::Rectangle::Rectangle(const point_t & leftCornerPoint, const point_t & rightCornerPoint):
-  leftCornerPoint_(leftCornerPoint),
-  rightCornerPoint_(rightCornerPoint)
+namestnikov::Rectangle::Rectangle(const point_t & leftCorner, const point_t & rightCorner):
+  leftCorner_(leftCorner),
+  rightCorner_(rightCorner)
 {
-  if ((leftCornerPoint.x >= rightCornerPoint.x) || (leftCornerPoint.y >= rightCornerPoint.y))
+  if ((leftCorner.x >= rightCorner.x) || (leftCorner.y >= rightCorner.y))
   {
     throw std::invalid_argument("Wrong rectangle points");
   }
@@ -19,9 +19,9 @@ double namestnikov::Rectangle::getArea() const
 
 namestnikov::rectangle_t namestnikov::Rectangle::getFrameRect() const
 {
-  double width = rightCornerPoint_.x - leftCornerPoint_.x;
-  double height = rightCornerPoint_.y - leftCornerPoint_.y;
-  point_t position = {rightCornerPoint_.x - (width / 2), rightCornerPoint_.y - (height / 2)};
+  double width = rightCorner_.x - leftCorner_.x;
+  double height = rightCorner_.y - leftCorner_.y;
+  point_t position = {rightCorner_.x - (width / 2), rightCorner_.y - (height / 2)};
   return {width, height, position};
 }
 
@@ -40,21 +40,21 @@ void namestnikov::Rectangle::move(const point_t & p)
 
 void namestnikov::Rectangle::move(const double dx, const double dy)
 {
-  leftCornerPoint_.x += dx;
-  leftCornerPoint_.y += dy;
-  rightCornerPoint_.x += dx;
-  rightCornerPoint_.y += dy;
+  leftCorner_.x += dx;
+  leftCorner_.y += dy;
+  rightCorner_.x += dx;
+  rightCorner_.y += dy;
 }
 
 void namestnikov::Rectangle::scale(const double coefficient)
 {
   rectangle_t rect = getFrameRect();
-  double dx1 = (rect.pos.x - leftCornerPoint_.x) * coefficient;
-  double dy1 = (rect.pos.y - leftCornerPoint_.y) * coefficient;
-  double dx2 = (rightCornerPoint_.x - rect.pos.x) * coefficient;
-  double dy2 = (rightCornerPoint_.y - rect.pos.y) * coefficient;
-  leftCornerPoint_.x = rect.pos.x - dx1;
-  leftCornerPoint_.y = rect.pos.y - dy1;
-  rightCornerPoint_.x = rect.pos.x + dx2;
-  rightCornerPoint_.y = rect.pos.y + dy2;
+  double dx1 = (rect.pos.x - leftCorner_.x) * coefficient;
+  double dy1 = (rect.pos.y - leftCorner_.y) * coefficient;
+  double dx2 = (rightCorner_.x - rect.pos.x) * coefficient;
+  double dy2 = (rightCorner_.y - rect.pos.y) * coefficient;
+  leftCorner_.x = rect.pos.x - dx1;
+  leftCorner_.y = rect.pos.y - dy1;
+  rightCorner_.x = rect.pos.x + dx2;
+  rightCorner_.y = rect.pos.y + dy2;
 }
