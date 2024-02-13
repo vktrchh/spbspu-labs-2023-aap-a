@@ -18,9 +18,9 @@ int main()
     }
     else if (num != 0)
     {
-      std::cout << num << " "; 
+      pyth_triple_counter(num);
     }
   }
   while (num != 0);
-  std::cout << "\n";
+  std::cout << pyth_triple_counter.getCount() <<"\n";
 }
