@@ -3,15 +3,18 @@
 
 void sivkov::removing_vowels(char* string)
 {
-  const char vowels[11] = { 'A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u', '\0' };
-  size_t oldIndex = 0;
-  size_t newIndex = 0;
-  while (string[oldIndex] != '\0')
+  const char* vowels = "AEIOUaeiou";
+
+  char* oldPtr = string;
+  char* newPtr = string;
+
+  while (*oldPtr != '\0')
   {
     bool isVowel = false;
+
     for (size_t i = 0; i < 10; ++i)
     {
-      if (string[oldIndex] == vowels[i])
+      if (*oldPtr == vowels[i])
       {
         isVowel = true;
         break;
@@ -19,10 +22,10 @@ void sivkov::removing_vowels(char* string)
     }
     if (!isVowel)
     {
-      string[newIndex] = string[oldIndex];
-      ++newIndex;
+      *newPtr = *oldPtr;
+      ++newPtr;
     }
-    ++oldIndex;
+    ++oldPtr;
   }
-  string[newIndex] = '\0';
+  *newPtr = '\0';
 }
