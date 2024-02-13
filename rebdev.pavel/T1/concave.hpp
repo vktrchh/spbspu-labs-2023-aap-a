@@ -9,7 +9,8 @@ namespace rebdev
   class Concave: public Shape
   {
     public:
-      Concave(const point_t * vertexs);
+      Concave(const point_t & firstVertex, const point_t & secondVertex,
+        const point_t & thirdVertex, const point_t & fourthVertex);
 
       virtual ~Concave() = default;
       virtual double getArea() const;

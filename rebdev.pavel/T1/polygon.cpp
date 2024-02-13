@@ -1,4 +1,5 @@
 #include "polygon.hpp"
+#include "figureFunction.hpp"
 
 #include <iostream>
 
@@ -56,16 +57,7 @@ double rebdev::Polygon::getArea() const
 
 rebdev::rectangle_t rebdev::Polygon::getFrameRect() const
 {
-  double xMin = vertexs_[0].x, xMax = vertexs_[0].x;
-  double yMin = vertexs_[0].y, yMax = vertexs_[0].y;
-  for (size_t i = 0; i < numOfVertexs_; ++i)
-  {
-    xMin = ((xMin > vertexs_[i].x) ? vertexs_[i].x : xMin);
-    yMin = ((yMin > vertexs_[i].y) ? vertexs_[i].y : yMin);
-    xMax = ((xMax < vertexs_[i].x) ? vertexs_[i].x : xMax);
-    yMax = ((yMax < vertexs_[i].y) ? vertexs_[i].y : yMax);
-  }
-  return rectangle_t{(xMax - xMin), (yMax - yMin), point_t{(xMax + xMin) / 2, (yMax + yMin)/2}};
+  return getFrameRectangle(vertexs_, numOfVertexs_);
 }
 
 void rebdev::Polygon::move(const point_t & point)

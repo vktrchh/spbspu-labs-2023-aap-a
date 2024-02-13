@@ -31,7 +31,7 @@ rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name
       }
     }
 
-    return (new Concave(vertexs));
+    return (new Concave(vertexs[0], vertexs[1], vertexs[2], vertexs[3]));
   }
   else if (name.find("POLYGON") != std::string::npos)
   {

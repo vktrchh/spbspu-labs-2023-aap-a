@@ -1,36 +1,41 @@
 #include "concave.hpp"
+#include "figureFunction.hpp"
 
 #include <cstddef>
-#include <iostream>
+#include <stdexcept>
 
-rebdev::Concave::Concave(const point_t * vertexs):
+rebdev::Concave::Concave(const point_t & firstVertex, const point_t & secondVertex,
+  const point_t & thirdVertex, const point_t & fourthVertex):
   vertexs_{{0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}}
 {
-  bool isConcave = 0;
+  point_t vertexs[4] = {firstVertex, secondVertex, thirdVertex, fourthVertex};
+  bool isConcave = false;
   for (size_t i = 0; ((i < 4) && (!isConcave)); ++i)
   {
-    if (isTriangle(vertexs[i], vertexs[(i + 1) % 4], vertexs[(i + 2) % 4]))
+    if (!isTriangle(vertexs[i], vertexs[(i + 1) % 4], vertexs[(i + 2) % 4]))
     {
-      double arr[3] = {0.0, 0.0, 0.0};
-      for (size_t j = 0; j < 3; ++j)
-      {
-        arr[j] = (vertexs[(i + j) % 4].x - vertexs[(i + 3) % 4].x)
-          * (vertexs[(i + (j + 1) % 3) % 4].y - vertexs[(i + j) % 4].y);
-        arr[j] -= (vertexs[(i + (j + 1) % 3) % 4].x - vertexs[(i + j) % 4].x)
-          * (vertexs[(i + j) % 4].y - vertexs[(i + 3) % 4].y);
-      }
+      continue;
+    }
 
-      bool identicalSigns = ((arr[0] > 0) && (arr[1] > 0) && (arr[2] > 0));
-      identicalSigns = (identicalSigns || ((arr[0] < 0) && (arr[1] < 0) && (arr[2] < 0)));
+    double arr[3] = {0.0, 0.0, 0.0};
+    for (size_t j = 0; j < 3; ++j)
+    {
+      point_t vertexsArr[3] = {vertexs[(i + j) % 4], vertexs[(i + 3) % 4], vertexs[(i + (j + 1) % 3) % 4]};
 
-      if (identicalSigns)
-      {
-        vertexs_[0] = vertexs[i];
-        vertexs_[1] = vertexs[(i + 1) % 4];
-        vertexs_[2] = vertexs[(i + 3) % 4];
-        vertexs_[3] = vertexs[(i + 2) % 4];
-        isConcave = 1;
-      }
+      arr[j] = (vertexsArr[0].x - vertexsArr[1].x) * (vertexsArr[2].y - vertexsArr[0].y);
+      arr[j] -= (vertexsArr[2].x - vertexsArr[0].x) * (vertexsArr[0].y - vertexsArr[1].y);
+    }
+
+    bool identicalSigns = ((arr[0] > 0) && (arr[1] > 0) && (arr[2] > 0));
+    identicalSigns = (identicalSigns || ((arr[0] < 0) && (arr[1] < 0) && (arr[2] < 0)));
+
+    if (identicalSigns)
+    {
+      vertexs_[0] = vertexs[i];
+      vertexs_[1] = vertexs[(i + 1) % 4];
+      vertexs_[2] = vertexs[(i + 3) % 4];
+      vertexs_[3] = vertexs[(i + 2) % 4];
+      isConcave = true;
     }
   }
   if (!isConcave)
@@ -48,23 +53,12 @@ double rebdev::Concave::getArea() const
   }
   sum /= 2;
 
-  return ((sum < 0) ? -sum : sum);
+  return std::abs(sum);
 }
 
 rebdev::rectangle_t rebdev::Concave::getFrameRect() const
 {
-  double xMin = vertexs_[0].x, xMax = vertexs_[0].x;
-  double yMin = vertexs_[0].y, yMax = vertexs_[0].y;
-
-  for (size_t i = 0; i < 4; ++i)
-  {
-    xMin = ((xMin > vertexs_[i].x) ? vertexs_[i].x : xMin);
-    yMin = ((yMin > vertexs_[i].y) ? vertexs_[i].y : yMin);
-    xMax = ((xMax < vertexs_[i].x) ? vertexs_[i].x : xMax);
-    yMax = ((yMax < vertexs_[i].y) ? vertexs_[i].y : yMax);
-  }
-
-  return rectangle_t{(xMax - xMin), (yMax - yMin), point_t{(xMax + xMin) / 2, (yMax + yMin) / 2}};
+  return getFrameRectangle(vertexs_, 4);
 }
 
 void rebdev::Concave::move(const point_t & point)
