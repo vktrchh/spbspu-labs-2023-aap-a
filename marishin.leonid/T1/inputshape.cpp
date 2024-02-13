@@ -15,7 +15,7 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
     {
       if (currentName == shapeNames[i])
       {
-        double option = [shapeParametersCount[i]];
+        double option[shapeParametersCount[i]];
 
         for (size_t j = 0; j < shapeParametersCount[i]; j++)
         {
