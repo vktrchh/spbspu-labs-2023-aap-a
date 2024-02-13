@@ -16,6 +16,8 @@ int main()
   try
   {
     shapes = inputShapes(std::cin, shapesCount);
+    std::cout << std::fixed;
+    std::cout.precision(1);
     outputShapes(std::cout, shapes, shapesCount);
     std::cout << '\n';
     std::cin >> point.x >> point.y >> ratio;
@@ -36,7 +38,7 @@ int main()
   }
   catch (const std::bad_alloc&)
   {
-    std::cerr << "Memory error";
+    std::cerr << "Memory error\0";
     return 1;
   }
   catch (const std::exception& e)

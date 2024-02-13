@@ -2,9 +2,9 @@
 #include <stdexcept>
 
 novokhatskiy::Ellipse::Ellipse(const point_t &center, double vert, double horizon):
-center_(center),
-vert_(vert),
-horizon_(horizon)
+  center_(center),
+  vert_(vert),
+  horizon_(horizon)
 {
   if ((vert <= 0.0) || (horizon <= 0.0))
   {

@@ -5,8 +5,6 @@
 #include <iostream>
 #include <string>
 
-
-
 void novokhatskiy::freeShapes(Shape** shapes, size_t shapeCounter)
 {
   for (size_t i = 0; i < shapeCounter; i++)
@@ -24,7 +22,6 @@ novokhatskiy::Shape** novokhatskiy::inputShapes(std::istream& input, size_t& sha
   double* currentParameters = nullptr;
   novokhatskiy::Shape** currentShapes = nullptr;
   novokhatskiy::Shape** oldShapes = nullptr;
-  char symbol = 0;
   while (input >> currentName)
   {
     for (size_t i = 0; i < 3; ++i)
@@ -98,18 +95,14 @@ novokhatskiy::Shape** novokhatskiy::inputShapes(std::istream& input, size_t& sha
     }
     if (currentName == "")
     {
-      std::cerr << "Wrong input";
+      std::cerr << "Wrong input\0";
     }
     if (currentName == "SCALE")
     {
       break;
     }
-    input >> std::noskipws;
-    while (symbol != '\n')
-    {
-      input >> symbol;
-    }
-    input >> std::skipws;
+    std::string emptyString = "";
+    std::getline(std::cin, emptyString);
   }
   return currentShapes;
 }

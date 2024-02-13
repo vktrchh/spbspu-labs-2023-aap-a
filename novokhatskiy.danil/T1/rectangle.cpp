@@ -2,8 +2,8 @@
 #include <stdexcept>
 
 novokhatskiy::Rectangle::Rectangle(const point_t &lowerLeftCorner, const point_t &upperRightCorner):
-lowerLeftCorner_(lowerLeftCorner),
-upperRightCorner_(upperRightCorner)
+  lowerLeftCorner_(lowerLeftCorner),
+  upperRightCorner_(upperRightCorner)
 {
   if (!((upperRightCorner.y >= lowerLeftCorner.y) && (upperRightCorner.x >= lowerLeftCorner.x)))
   {

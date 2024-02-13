@@ -6,7 +6,7 @@
 
 namespace novokhatskiy
 {
-  void outputShapes(std::ostream &output, Shape **const shapes, size_t shapeCounter);
+  void outputShapes(std::ostream &output, const Shape* const* shapes, size_t shapeCounter);
 }
 
 #endif

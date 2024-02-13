@@ -3,9 +3,9 @@
 #include <algorithm>
 
 novokhatskiy::Ring::Ring(const point_t &center, double outerRadius, double innerRadius):
-center_(center),
-innerRadius_(innerRadius),
-outerRadius_(outerRadius)
+  center_(center),
+  innerRadius_(innerRadius),
+  outerRadius_(outerRadius)
 {
   if ((innerRadius <= 0.0) || (outerRadius <= 0.0) || (innerRadius >= outerRadius))
   {

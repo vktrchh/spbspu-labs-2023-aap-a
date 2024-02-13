@@ -4,7 +4,7 @@
 
 namespace novokhatskiy
 {
-  class Rectangle : public Shape
+  class Rectangle: public Shape
   {
 
   public:
