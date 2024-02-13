@@ -43,7 +43,7 @@ marishin::rectangle_t marishin::getFrameRectTriangle(const point_t& first, const
   return { pos, width, height };
 }
 
-marishin::point_t marishin::scaleCorner(const point_t& corner, const point_t& pos, const double& factor)
+marishin::point_t marishin::scaleCorner(point_t& corner, const point_t& pos, const double& factor)
 {
   corner.x = factor * (corner.x - pos.x) + pos.x;
   corner.y = factor * (corner.y - pos.y) + pos.y;
