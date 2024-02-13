@@ -15,8 +15,8 @@ double namestnikov::getAreaOfTriangle(const point_t & p1, const point_t & p2, co
   double a = getSizeOfLine(p1, p2);
   double b = getSizeOfLine(p1, p3);
   double c = getSizeOfLine(p2, p3);
-  double halfPerimetr = (a + b + c) / 2;
-  return std::sqrt(halfPerimetr * (halfPerimetr - a) * (halfPerimetr - b) * (halfPerimetr - c));
+  double semiPerimetr = (a + b + c) / 2;
+  return std::sqrt(semiPerimetr * (semiPerimetr - a) * (semiPerimetr - b) * (semiPerimetr - c));
 }
 
 namestnikov::point_t namestnikov::getIntersectionOfTwoLines(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4)
