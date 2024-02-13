@@ -69,6 +69,11 @@ void zaitsev::Parallelogram::scale(double factor)
   }
 }
 
+zaitsev::Shape* zaitsev::Parallelogram::clone() const
+{
+  return new Parallelogram(*this);
+}
+
 zaitsev::point_t zaitsev::Parallelogram::getCenter() const
 {
   return (def_vertices_[0] + def_vertices_[2]) / 2;

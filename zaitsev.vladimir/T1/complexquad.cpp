@@ -71,5 +71,9 @@ void zaitsev::Complexquad::scale(double factor)
   {
     vertices_[i] = center + (vertices_[i] - center) * factor;
   }
-  return;
+}
+
+zaitsev::Shape* zaitsev::Complexquad::clone() const
+{
+  return new Complexquad(*this);
 }

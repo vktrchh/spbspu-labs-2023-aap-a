@@ -49,3 +49,8 @@ void zaitsev::Rectangle::scale(double factor)
   left_corner_ = center + (left_corner_ - center) * factor;
   right_corner_ = center + (right_corner_ - center) * factor;
 }
+
+zaitsev::Shape* zaitsev::Rectangle::clone() const
+{
+  return new Rectangle(*this);
+}

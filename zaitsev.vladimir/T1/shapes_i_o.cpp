@@ -12,9 +12,13 @@
 
 double zaitsev::readValue(std::istream& input)
 {
-  std::string s;
-  input >> s;
-  return std::stod(s);
+  double val = 0;
+  input >> val;
+  if (!input)
+  {
+    throw std::invalid_argument("The value must be a number");
+  }
+  return val;
 }
 
 void zaitsev::readPoint(std::istream& input, point_t& dest)
@@ -68,7 +72,7 @@ std::ostream& zaitsev::shapesOutput(std::ostream& output, const Shape* const* sh
   double area = 0;
   for (size_t i = 0; i < size; ++i)
   {
-    area+=shapes[i]->getArea();
+    area += shapes[i]->getArea();
   }
   output << area;
   for (size_t i = 0; i < size; ++i)
