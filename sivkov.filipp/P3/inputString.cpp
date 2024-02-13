@@ -1,5 +1,4 @@
 #include "inputString.hpp"
-#include <iostream>
 #include <cstdio>
 #include <exception>
 
