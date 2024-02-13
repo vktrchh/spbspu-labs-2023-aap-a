@@ -8,29 +8,31 @@ void sivkov::deleteSpace(char* string)
   {
     return;
   }
-  size_t writeIndex = 0;
-  size_t readIndex = 0;
-  while (std::isspace(string[readIndex]))
-  {
-    ++readIndex;
-  }
+
+  char* writePtr = string;
+  char* readPtr = string;
   bool previousWasSpace = false;
-  while (string[readIndex] != '\0')
+
+  while (std::isspace(*readPtr))
   {
-    if (!std::isspace(string[readIndex]))
+    ++readPtr;
+  }
+
+  while (*readPtr != '\0')
+  {
+    if (!std::isspace(*readPtr))
     {
-      string[writeIndex] = string[readIndex];
-      ++writeIndex;
+      *writePtr = *readPtr;
+      ++writePtr;
       previousWasSpace = false;
     }
     else if (!previousWasSpace)
     {
-      string[writeIndex] = ' ';
-      ++writeIndex;
+      *writePtr = ' ';
+      ++writePtr;
       previousWasSpace = true;
     }
-    ++readIndex;
+    ++readPtr;
   }
-  string[writeIndex] = '\0';
+  *writePtr = '\0';
 }
-
