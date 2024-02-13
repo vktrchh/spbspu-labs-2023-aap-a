@@ -15,11 +15,11 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
     {
       if (currentName == shapeNames[i])
       {
-        double parameters[shapeParametersCount[i]];
+        double option = [shapeParametersCount[i]];
 
         for (size_t j = 0; j < shapeParametersCount[i]; j++)
         {
-          in >> parameters[j];
+          in >> option[j];
         }
 
         if (!in)
@@ -44,15 +44,15 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
         {
           if (currentName == "RECTANGLE")
           {
-            currentShapes[shapeCount] = new Rectangle({ parameters[0], parameters[1] }, { parameters[2], parameters[3] });
+            currentShapes[shapeCount] = new Rectangle({ option[0], option[1] }, { option[2], option[3] });
           }
           else if (currentName == "TRIANGLE")
           {
-            currentShapes[shapeCount] = new Triangle({ parameters[0], parameters[1] }, { parameters[2], parameters[3] }, { parameters[4], parameters[5] });
+            currentShapes[shapeCount] = new Triangle({ option[0], option[1] }, { option[2], option[3] }, { option[4], option[5] });
           }
           else if (currentName == "RING")
           {
-            currentShapes[shapeCount] = new Ring({ parameters[0], parameters[1] }, parameters[2], parameters[3]);
+            currentShapes[shapeCount] = new Ring({ option[0], option[1] }, option[2], option[3]);
           }
           ++shapeCount;
         }
