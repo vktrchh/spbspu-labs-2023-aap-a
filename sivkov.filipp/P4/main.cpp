@@ -6,7 +6,7 @@
 
 int main(int argc, char * argv[])
 {
-  if (argc == 1)
+  if (argc < 4)
   {
     std::cout << "Not enough arguments\n";
     return 1;
@@ -14,11 +14,6 @@ int main(int argc, char * argv[])
   else if (argc > 4)
   {
     std::cout << "Too many arguments\n";
-    return 1;
-  }
-  else if (argc != 4)
-  {
-    std::cout << "Error comand line\n";
     return 1;
   }
   int numOfTask = 0;
@@ -49,28 +44,23 @@ int main(int argc, char * argv[])
     std::cerr << "Cannot open file!\n";
     return 2;
   }
-   if (!input)
+  input >> rows >> cols;
+  if (!input)
   {
     std::cerr << "Cannot read numbers!\n";
     return 2;
   }
-  input >> rows >> cols;
   if (rows == 0 && cols == 0)
   {
     return 0;
   }
-  if (input.eof())
-  {
-    std::cerr << "empty file!\n";
-    return 2;
-  }
-  int defoltMatrix[10000] = {};
+  int FixedLenMatrix[10000] = {};
   int* dynamicMatrix = nullptr;
   int* matrix = nullptr;
 
   if (numOfTask == 1)
   {
-    matrix = defoltMatrix;
+    matrix = FixedLenMatrix;
   }
   else
   {
@@ -82,7 +72,6 @@ int main(int argc, char * argv[])
     catch (const std::bad_alloc&)
     {
       std::cerr << "Error with array\n";
-      delete[] dynamicMatrix;
       return 2;
     }
   }
@@ -92,16 +81,15 @@ int main(int argc, char * argv[])
     fillMatrix(input, matrix, rows * cols);
     count = findLocalMax(matrix, rows, cols);
   }
-  catch(const std::logic_error&)
+  catch (const std::logic_error&)
   {
     std::cerr << "Error data or array\n";
     if (numOfTask == 2)
     {
       delete[] matrix;
     }
-      return 2;
+    return 2;
   }
-
   std::ofstream output(argv[3]);
   output << count << '\n';
 
@@ -109,5 +97,5 @@ int main(int argc, char * argv[])
   {
     delete[] matrix;
   }
-   return 0;
+  return 0;
 }
