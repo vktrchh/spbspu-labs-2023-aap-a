@@ -26,8 +26,8 @@ int main()
       }
       catch (const std::logic_error& e)
       {
-        std::cout << e.what() << "\n";
-        return 2;
+        std::cerr << e.what() << "\n";
+        return 0;
       }
     }
   }

@@ -1,6 +1,8 @@
 #include "DivWithoutRemCounter.hpp"
 
 #include <stdexcept>
+#include <limits>
+#include <cstddef>
 
 agarkov::DivWithoutRemCounter::DivWithoutRemCounter():
   prev(0),
@@ -20,6 +22,10 @@ void agarkov::DivWithoutRemCounter::operator()(int num)
   }
   if (num % prev == 0)
   {
+    if (count == std::numeric_limits< size_t >::max())
+    {
+      throw std::logic_error("The upper limit size_t");
+    }
     count++;
   }
   prev = num;
