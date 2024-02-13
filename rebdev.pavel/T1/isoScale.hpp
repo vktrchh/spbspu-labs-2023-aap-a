@@ -1,6 +1,8 @@
 #ifndef ISOSCALE_HPP
 #define ISOSCALE_HPP
 
+#include <cstddef>
+
 #include "shape.hpp"
 #include "base-types.hpp"
 
