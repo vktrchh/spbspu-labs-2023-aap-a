@@ -1,5 +1,5 @@
-#ifndef RECTANGLE_H
-#define RECTANGLE_H
+#ifndef RECTANGLE_HPP
+#define RECTANGLE_HPP
 
 #include "shape.hpp"
 
@@ -17,7 +17,7 @@ namespace namestnikov
   private:
     point_t leftCornerPoint_;
     point_t rightCornerPoint_;
-    virtual void doScale(const double coefficient);
+    virtual void scale(const double coefficient);
   };
 }
 

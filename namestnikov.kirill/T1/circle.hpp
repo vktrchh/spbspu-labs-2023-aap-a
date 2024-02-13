@@ -1,5 +1,5 @@
-#ifndef CIRCLE_H
-#define CIRCLE_H
+#ifndef CIRCLE_HPP
+#define CIRCLE_HPP
 
 #include "shape.hpp"
 
@@ -18,7 +18,7 @@ namespace namestnikov
   private:
      point_t circleCenter_;
      double circleRadius_;
-     virtual void doScale(const double coefficient);
+     virtual void scale(const double coefficient);
   };
 }
 

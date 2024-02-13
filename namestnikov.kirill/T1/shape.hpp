@@ -1,5 +1,5 @@
-#ifndef SHAPE_H
-#define SHAPE_H
+#ifndef SHAPE_HPP
+#define SHAPE_HPP
 
 #include "base-types.hpp"
 
@@ -13,10 +13,9 @@ namespace namestnikov
     virtual rectangle_t getFrameRect() const = 0;
     virtual void move(const point_t & p) = 0;
     virtual void move(const double dx, const double dy) = 0;
-    void scale(const double coefficient);
+    void doScale(const double coefficient);
+    virtual void scale(const double coefficient) = 0;
     virtual ~Shape() = default;
-  private:
-    virtual void doScale(const double coefficient) = 0;
   };
 }
 

@@ -1,5 +1,5 @@
-#ifndef COMPLEXQUAD_H
-#define COMPLEXQUAD_H
+#ifndef COMPLEXQUAD_HPP
+#define COMPLEXQUAD_HPP
 
 #include "shape.hpp"
 #include "base-types.hpp"
@@ -20,7 +20,7 @@ namespace namestnikov
     virtual void move(const double dx, const double dy);
   private:
     point_t points_[4];
-    virtual void doScale(const double coefficient);
+    virtual void scale(const double coefficient);
   };
 }
 
