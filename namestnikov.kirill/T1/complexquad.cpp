@@ -73,7 +73,7 @@ void namestnikov::Complexquad::move(const double dx, const double dy)
   }
 }
 
-void namestnikov::Complexquad::scale(const double coefficient)
+void namestnikov::Complexquad::doScale(const double coefficient)
 {
   point_t centerPoint = getIntersectionOfTwoLines(points_[0], points_[1], points_[2], points_[3]);
   for (size_t i = 0; i < 4; ++i)

@@ -13,9 +13,10 @@ namespace namestnikov
     virtual rectangle_t getFrameRect() const = 0;
     virtual void move(const point_t & p) = 0;
     virtual void move(const double dx, const double dy) = 0;
-    virtual void scale(const double coefficient) = 0;
-    void doScale(const double coefficient);
+    void scale(const double coefficient);
     virtual ~Shape() = default;
+  private:
+    virtual void doScale(const double coefficient) = 0;
   };
 }
 

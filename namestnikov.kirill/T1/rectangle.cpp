@@ -46,7 +46,7 @@ void namestnikov::Rectangle::move(const double dx, const double dy)
   rightCornerPoint_.y += dy;
 }
 
-void namestnikov::Rectangle::scale(const double coefficient)
+void namestnikov::Rectangle::doScale(const double coefficient)
 {
   rectangle_t rect = getFrameRect();
   double dx1 = (rect.pos.x - leftCornerPoint_.x) * coefficient;

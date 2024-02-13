@@ -38,7 +38,7 @@ void namestnikov::Circle::move(const double dx, const double dy)
   circleCenter_.y += dy;
 }
 
-void namestnikov::Circle::scale(const double coefficient)
+void namestnikov::Circle::doScale(const double coefficient)
 {
   circleRadius_ *= coefficient;
 }

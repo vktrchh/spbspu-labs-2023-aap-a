@@ -86,7 +86,7 @@ void namestnikov::isoScale(Shape * shape, const point_t & point, double coeffici
   {
     point_t oldCenterPoint = shape->getCenter();
     shape->move(point);
-    shape->doScale(coefficient);
+    shape->scale(coefficient);
     point_t newCenterPoint = shape->getCenter();
     double dx = (oldCenterPoint.x - newCenterPoint.x) * coefficient;
     double dy = (oldCenterPoint.y - newCenterPoint.y) * coefficient;
