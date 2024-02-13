@@ -2,6 +2,7 @@
 #define READ_STRING_H
 
 #include <iostream>
+#include <iomanip>
 
 namespace kovtun
 {
