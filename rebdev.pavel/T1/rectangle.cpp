@@ -26,7 +26,7 @@ rebdev::rectangle_t rebdev::Rectangle::getFrameRect() const
   return rectangle_t{width, height, pos};
 }
 
-void rebdev::Rectangle::move(const point_t point)
+void rebdev::Rectangle::move(const point_t & point)
 {
   rectangle_t frameRectangle = getFrameRect();
 
@@ -39,7 +39,7 @@ void rebdev::Rectangle::move(const point_t point)
   angles_[0].x += xChange;
 }
 
-void rebdev::Rectangle::move(const double x, const double y)
+void rebdev::Rectangle::move(double x, double y)
 {
   angles_[0].x += x;
   angles_[0].y += y;
@@ -47,7 +47,7 @@ void rebdev::Rectangle::move(const double x, const double y)
   angles_[1].y += y;
 }
 
-void rebdev::Rectangle::scale(const double k)
+void rebdev::Rectangle::scale(double k)
 {
   rectangle_t frameRectangle = getFrameRect();
 

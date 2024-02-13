@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-rebdev::Polygon::Polygon(const point_t * vertexs, const size_t numOfVertexs):
+rebdev::Polygon::Polygon(const point_t * vertexs, size_t numOfVertexs):
   vertexs_(nullptr),
   numOfVertexs_(numOfVertexs)
 {
@@ -68,7 +68,7 @@ rebdev::rectangle_t rebdev::Polygon::getFrameRect() const
   return rectangle_t{(xMax - xMin), (yMax - yMin), point_t{(xMax + xMin) / 2, (yMax + yMin)/2}};
 }
 
-void rebdev::Polygon::move(const point_t point)
+void rebdev::Polygon::move(const point_t & point)
 {
   point_t center = getPolygonCenter();
 
@@ -81,7 +81,7 @@ void rebdev::Polygon::move(const point_t point)
   }
 }
 
-void rebdev::Polygon::move(const double x, const double y)
+void rebdev::Polygon::move(double x, double y)
 {
   for (size_t i = 0; i < numOfVertexs_; ++i)
   {
@@ -90,7 +90,7 @@ void rebdev::Polygon::move(const double x, const double y)
   }
 }
 
-void rebdev::Polygon::scale(const double k)
+void rebdev::Polygon::scale(double k)
 {
   point_t center = getPolygonCenter();
 

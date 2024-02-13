@@ -1,6 +1,6 @@
 #include "isoScale.hpp"
 
-void rebdev::isoScale(Shape ** shapes, const int & numOfShape, const point_t & scalePoint, const double & k)
+void rebdev::isoScale(Shape ** shapes, size_t numOfShape, const point_t & scalePoint, double k)
 {
   for (size_t i = 0; i < numOfShape; ++i)
   {

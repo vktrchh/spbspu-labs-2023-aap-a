@@ -6,7 +6,7 @@
 
 namespace rebdev
 {
-  void isoScale(Shape ** arr, const int & numOfShape, const point_t & scalePoint, const double & k);
+  void isoScale(Shape ** arr, size_t numOfShape, const point_t & scalePoint, double k);
 }
 
 #endif

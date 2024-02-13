@@ -14,7 +14,7 @@ namespace rebdev
       virtual ~Rectangle() = default;
       virtual double getArea() const;
       virtual rectangle_t getFrameRect() const;
-      virtual void move(point_t point);
+      virtual void move(const point_t & point);
       virtual void move(double x, double y);
       virtual void scale(double k);
     private:
