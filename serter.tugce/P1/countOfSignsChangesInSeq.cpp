@@ -11,12 +11,6 @@ serter::CountOfSignsChangesInSeq::CountOfSignsChangesInSeq():
 
 void serter::CountOfSignsChangesInSeq::operator()(int number)
 {
-  size_t max_size = std::numeric_limits< size_t >::max();
-
-  if (currentNumber_ == max_size)
-  {
-    throw std::logic_error("sequence is too long");
-  }
   if (currentNumber_ >= 0 && number < 0)
   {
     ++count_;
@@ -28,5 +22,7 @@ size_t serter::CountOfSignsChangesInSeq::operator()() const
 {
   return count_;
 }
+
+
 
 
