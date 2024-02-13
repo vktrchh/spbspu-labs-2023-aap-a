@@ -150,6 +150,10 @@ int main()
   catch (const std::exception & e)
   {
     std::cerr << e.what() << "\n";
+    for (int i = 0; i < shape_count; ++i)
+    {
+      delete shapes[i];
+    }
     return 1;
   }
 
