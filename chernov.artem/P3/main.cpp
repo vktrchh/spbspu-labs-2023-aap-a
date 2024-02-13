@@ -47,10 +47,10 @@ int main()
         input[i - 1] = 0;
         break;
       }
+      oldInput = nullptr;
     }
   }
   std::cin >> std::skipws;
-  oldInput = nullptr;
   char* stringWithDecimalDigitsRemoved = new char[sizeOfInput] {};
   char* stringWithVowelsRemoved = new char[sizeOfInput] {};
 
