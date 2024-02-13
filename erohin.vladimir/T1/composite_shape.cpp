@@ -68,41 +68,41 @@ erohin::CompositeShape& erohin::CompositeShape::operator=(CompositeShape&& rhs) 
   return *this;
 }
 
-erohin::Shape& erohin::CompositeShape::operator[](size_t index)
+erohin::Shape* erohin::CompositeShape::operator[](size_t index)
 {
-  return *shape_[index];
+  return shape_[index];
 }
 
-const erohin::Shape& erohin::CompositeShape::operator[](size_t index) const
+const erohin::Shape* erohin::CompositeShape::operator[](size_t index) const
 {
-  return *shape_[index];
+  return shape_[index];
 }
 
-erohin::Shape& erohin::CompositeShape::at(size_t index)
-{
-  if (index > size_)
-  {
-    throw std::out_of_range("Index is out of range");
-  }
-  return *shape_[index];
-}
-
-const erohin::Shape& erohin::CompositeShape::at(size_t index) const
+erohin::Shape* erohin::CompositeShape::at(size_t index)
 {
   if (index > size_)
   {
     throw std::out_of_range("Index is out of range");
   }
-  return *shape_[index];
+  return shape_[index];
 }
 
-void erohin::CompositeShape::push(const Shape& shape)
+const erohin::Shape* erohin::CompositeShape::at(size_t index) const
+{
+  if (index > size_)
+  {
+    throw std::out_of_range("Index is out of range");
+  }
+  return shape_[index];
+}
+
+void erohin::CompositeShape::push(const Shape* shape)
 {
   if (size_ == capacity_)
   {
     resize(2 * capacity_);
   }
-  *shape_[size_++] = shape;
+  shape_[size_++] = const_cast< Shape* >(shape);
 }
 
 void erohin::CompositeShape::pop()
@@ -193,10 +193,14 @@ void erohin::CompositeShape::resize(size_t length)
   {
     Shape** resized = new Shape* [length];
     capacity_ = length;
-    for (size_t i = 0; i < capacity_; ++i)
+    for (size_t i = 0; i < size_; ++i)
     {
-      resized[i] = (i < size_) ? shape_[i] : nullptr;
+      resized[i] = shape_[i];
       delete shape_[i];
+    }
+    for (size_t i = size_; i < capacity_; ++i)
+    {
+      resized[i] = nullptr;
     }
   }
 }

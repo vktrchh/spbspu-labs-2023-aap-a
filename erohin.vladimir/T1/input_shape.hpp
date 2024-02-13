@@ -3,12 +3,11 @@
 
 #include <iosfwd>
 #include "base-types.hpp"
-#include "shape.hpp"
+#include "composite_shape.hpp"
 
 namespace erohin
 {
-  void inputShape(Shape** result, std::istream& input, size_t& size, point_t& pos, double& ratio);
-  void freeShape(Shape** shape, size_t size);
+  void inputShape(CompositeShape& result, std::istream& input, point_t& pos, double& ratio);
 }
 
 #endif

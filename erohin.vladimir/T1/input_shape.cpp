@@ -3,12 +3,11 @@
 #include <string>
 #include <iostream>
 #include "triangle.hpp"
-#include "shape.hpp"
+#include "composite_shape.hpp"
 #include "create_shape.hpp"
 
-void erohin::inputShape(Shape** result, std::istream& input, size_t& size, point_t& pos, double& ratio)
+void erohin::inputShape(CompositeShape& result, std::istream& input, point_t& pos, double& ratio)
 {
-  size = 0;
   bool isFigureCreationFullSuccesful = true;
   bool isScaleCommandEntered = false;
   std::string name;
@@ -32,16 +31,11 @@ void erohin::inputShape(Shape** result, std::istream& input, size_t& size, point
     {
       try
       {
-        result[size] = createShape(name, par, par_size);
-        ++size;
+        result.push(createShape(name, par, par_size));
       }
       catch (const std::invalid_argument&)
       {
         isFigureCreationFullSuccesful = false;
-      }
-      catch (const std::bad_alloc&)
-      {
-        result[size++] = nullptr;
       }
       catch (const std::runtime_error&)
       {}
@@ -52,20 +46,12 @@ void erohin::inputShape(Shape** result, std::istream& input, size_t& size, point
   {
     throw std::logic_error("Scale command do not find");
   }
-  else if (!result[0])
+  else if (result.empty())
   {
     throw std::runtime_error("Nothing to scale");
   }
   else if (!isFigureCreationFullSuccesful)
   {
     throw std::invalid_argument("Wrong figure creation");
-  }
-}
-
-void erohin::freeShape(Shape** shape, size_t size)
-{
-  for (size_t i = 0; i < size; ++i)
-  {
-    delete shape[i];
   }
 }
