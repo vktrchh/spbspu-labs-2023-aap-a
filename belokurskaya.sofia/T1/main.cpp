@@ -80,14 +80,16 @@ int main()
         {
           continue;
         }
-        if (!belokurskaya::Concave::isConcave({vertex1_x, vertex1_y}, {vertex2_x, vertex2_y}, {vertex3_x, vertex3_y}, {vertex4_x, vertex4_y}))
+        if (!belokurskaya::Concave::isConcave({vertex1_x, vertex1_y},
+        {vertex2_x, vertex2_y}, {vertex3_x, vertex3_y}, {vertex4_x, vertex4_y}))
         {
           std::cerr << "Is not a concave\n";
           continue;
         }
         try
         {
-          shapes[shape_count] = new belokurskaya::Concave({vertex1_x, vertex1_y}, {vertex2_x, vertex2_y}, {vertex3_x, vertex3_y}, {vertex4_x, vertex4_y});
+          shapes[shape_count] = new belokurskaya::Concave({vertex1_x, vertex1_y},
+          {vertex2_x, vertex2_y}, {vertex3_x, vertex3_y}, {vertex4_x, vertex4_y});
           shape_count++;
         }
         catch(const std::invalid_argument& e)
