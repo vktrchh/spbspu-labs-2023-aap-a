@@ -4,10 +4,10 @@
 #include <iostream>
 #include <stdexcept>
 
-char* skuratov::mergeTwoLines(char* result, char* inputLine, const char* lineOfProgram)
+char* skuratov::mergeTwoLines(const char* inputLine, const char* lineOfProgram, size_t size)
 {
   int i = 0;
-
+  char* result = new char[size];
   while (*inputLine != '\0' || *lineOfProgram != '\0')
   {
     if (*inputLine != '\0')

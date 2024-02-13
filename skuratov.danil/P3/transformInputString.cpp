@@ -5,9 +5,8 @@
 #include <stdexcept>
 #include <cstddef>
 
-char* skuratov::transformInputString(std::istream& in)
+char* skuratov::transformInputString(std::istream& in, size_t& size)
 {
-  size_t size = 10;
   char* input = new char[size] {};
   char c = 0;
   size_t i = 0;

@@ -6,7 +6,7 @@
 
 namespace skuratov
 {
-  char* transformInputString(std::istream& in);
+  char* transformInputString(std::istream& in, size_t& size);
 }
 
 #endif

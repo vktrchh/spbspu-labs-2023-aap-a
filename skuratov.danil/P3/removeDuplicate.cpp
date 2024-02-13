@@ -3,26 +3,29 @@
 
 #include <cstddef>
 
-char* skuratov::removeDuplicate(char* result, const char* lineOfProgram, char* lineOfInput, size_t len1, size_t len2)
+char* skuratov::removeDuplicate(const char* lineOfProgram, const char* lineOfInput, size_t size)
 {
-  int index = 0;
-  int found = 0;
-
-  for (size_t i = 0; i < len1; i++)
+  char* result = new char[size];
+  size_t index = 0;
+  size_t i = 0;
+  while (lineOfInput[i] != '\0')
   {
-    found = 0;
-    for (size_t j = 0; j < len2; j++)
+    size_t j = 0;
+    bool isDuplicate = false;
+    while (lineOfProgram[j] != '\0')
     {
       if (lineOfInput[i] == lineOfProgram[j])
       {
-        found = 1;
+        isDuplicate = true;
         break;
       }
+      ++j;
     }
-    if (!found)
+    if (!isDuplicate)
     {
       result[index++] = lineOfInput[i];
     }
+    ++i;
   }
   result[index] = '\0';
   return result;

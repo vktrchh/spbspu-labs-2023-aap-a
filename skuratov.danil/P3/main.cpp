@@ -9,41 +9,29 @@
 int main()
 {
   using namespace skuratov;
+  size_t size = 10;
   char* inputLine = nullptr;
   const char* lineOfProgram = "abc";
+  size_t lineSize = 3;
   try
   {
-    inputLine = transformInputString(std::cin);
+    inputLine = transformInputString(std::cin, size);
 
-    size_t size1 = 0;
-    char* inputLinePtr = inputLine;
     if (inputLine[0] == '\0')
     {
       delete[] inputLine;
       throw std::invalid_argument("Empty input");
     }
-    while (inputLine[size1] != '\0')
-    {
-      size1++;
-    }
+    size += lineSize;
 
-    size_t size2 = 0;
-    while (*lineOfProgram != '\0')
-    {
-      size2++;
-      lineOfProgram++;
-    }
+    char* result1 = mergeTwoLines(inputLine, lineOfProgram, size);
+    std::cout << result1 << '\n';
 
-    inputLinePtr = inputLine;
-    lineOfProgram -= size2;
+    char* result2 = removeDuplicate(lineOfProgram, inputLine, size);
+    std::cout << result2 << '\n';
 
-    size_t size3 = size1 + size2;
-    char* result = new char[size3 + 1];
-
-    std::cout << skuratov::mergeTwoLines(result, inputLinePtr, lineOfProgram) << '\n';
-    std::cout << skuratov::removeDuplicate(result, lineOfProgram, inputLinePtr, size1, size2) << '\n';
-
-    delete[] result;
+    delete[] result1;
+    delete[] result2;
     delete[] inputLine;
   }
   catch (const std::exception& e)
