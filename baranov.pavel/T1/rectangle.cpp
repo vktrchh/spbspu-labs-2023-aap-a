@@ -1,6 +1,12 @@
 #include "rectangle.hpp"
 #include <stdexcept>
 
+void baranov::pointScale(point_t & point, const point_t & center, double ratio)
+{
+  point.x += (ratio - 1) * (point.x - center.x);
+  point.y += (ratio - 1) * (point.y - center.y);
+}
+
 baranov::Rectangle::Rectangle(const point_t & ldCorner, const point_t & ruCorner):
   ldCorner_(ldCorner),
   ruCorner_(ruCorner)
@@ -45,9 +51,6 @@ void baranov::Rectangle::scale(const double ratio)
     throw std::invalid_argument("Invalid scale ratio");
   }
   point_t center = getFrameRect().pos;
-  ruCorner_.x += (ratio - 1) * (ruCorner_.x - center.x);
-  ruCorner_.y += (ratio - 1) * (ruCorner_.y - center.y);
-  ldCorner_.x += (ratio - 1) * (ldCorner_.x - center.x);
-  ldCorner_.y += (ratio - 1) * (ldCorner_.y - center.y);
+  pointScale(ruCorner_, center, ratio);
+  pointScale(ldCorner_, center, ratio);
 }
-
