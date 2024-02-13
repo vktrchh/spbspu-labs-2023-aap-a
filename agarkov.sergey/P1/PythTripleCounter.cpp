@@ -26,7 +26,7 @@ void agarkov::PythTripleCounter::operator()(int num)
   }
 }
 
-int agarkov::PythTripleCounter::getCount()
+int agarkov::PythTripleCounter::getCount() const
 {
   return count;
 }

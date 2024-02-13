@@ -31,7 +31,7 @@ void agarkov::DivWithoutRemCounter::operator()(int num)
   prev = num;
 }
 
-int agarkov::DivWithoutRemCounter::getCount()
+int agarkov::DivWithoutRemCounter::getCount() const
 {
   return count;
 }

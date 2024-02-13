@@ -10,7 +10,7 @@ namespace agarkov
   public:
     DivWithoutRemCounter();
     void operator()(int cur);
-    int getCount();
+    int getCount() const;
   private:
     int prev;
     size_t count;

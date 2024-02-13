@@ -10,7 +10,7 @@ namespace agarkov
   public:
     PythTripleCounter();
     void operator()(int cur);
-    int getCount();
+    int getCount() const;
   private:
     size_t count;
     int first;
