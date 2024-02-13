@@ -116,7 +116,7 @@ int main()
       }
       else
       {
-        std::cerr << "Unknown command.\n";
+        continue;
       }
     }
   }
