@@ -27,7 +27,7 @@ namestnikov::Complexquad::Complexquad(const point_t & p1, const point_t & p2, co
 double namestnikov::Complexquad::getArea() const
 {
   point_t centerPoint = getIntersectionOfTwoLines(points_[0], points_[1], points_[2], points_[3]);
-  double square += getAreaOfTriangle(points_[0], points_[3], centerPoint);
+  double square = getAreaOfTriangle(points_[0], points_[3], centerPoint);
   square += getAreaOfTriangle(points_[1], points_[2], centerPoint);
   return square;
 }
