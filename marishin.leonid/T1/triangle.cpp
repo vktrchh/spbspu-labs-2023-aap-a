@@ -22,8 +22,7 @@ marishin::rectangle_t marishin::Triangle::getFrameRect() const
 
 void marishin::Triangle::move(point_t newPos)
 {
-  point_t pos = { (first_.x + second_.x + third_.x) / 3,
-    (first_.y + second_.y + third_.y) / 3 };
+  point_t pos = { (first_.x + second_.x + third_.x) / 3, (first_.y + second_.y + third_.y) / 3 };
   move(newPos.x - pos.x, newPos.y - pos.y);
 }
 
@@ -36,9 +35,7 @@ void marishin::Triangle::move(double dx, double dy)
 
 void marishin::Triangle::scale(double factor)
 {
-  point_t pos = { (first_.x + second_.x + third_.x) / 3,
-    (first_.y + second_.y + third_.y) / 3 };
-
+  point_t pos = { (first_.x + second_.x + third_.x) / 3, (first_.y + second_.y + third_.y) / 3 };
   first_ = scaleCorner(first_, pos, factor);
   second_ = scaleCorner(second_, pos, factor);
   third_ = scaleCorner(third_, pos, factor);
