@@ -17,6 +17,7 @@ namespace belokurskaya
       bool isInsideTriangle(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4) const;
       double calculateTriangleArea(const point_t & p1, const point_t & p2, const point_t & p3) const;
       static bool isConcave(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4);
+      void getVertices(point_t &vertex1, point_t &vertex2, point_t &vertex3, point_t &vertex4) const;
 
     private:
       point_t vertex1_;

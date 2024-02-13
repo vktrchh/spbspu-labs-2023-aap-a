@@ -5,7 +5,7 @@
 #include <cmath>
 
 belokurskaya::Concave::Concave(const point_t & vertex1, const point_t & vertex2, const point_t & vertex3, const point_t & vertex4):
-vertex1_(vertex1), vertex2_(vertex2), vertex3_(vertex3), vertex4_(vertex4)
+  vertex1_(vertex1), vertex2_(vertex2), vertex3_(vertex3), vertex4_(vertex4)
 {
   if (isTriangle(vertex1_, vertex2_, vertex3_))
   {
@@ -106,7 +106,12 @@ bool belokurskaya::Concave::isConcave(const point_t & p1, const point_t & p2, co
   double cross_product2 = (p3.x - p2.x) * (p4.y - p2.y) - (p3.y - p2.y) * (p4.x - p2.x);
   double cross_product3 = (p4.x - p3.x) * (p1.y - p3.y) - (p4.y - p3.y) * (p1.x - p3.x);
   double cross_product4 = (p1.x - p4.x) * (p2.y - p4.y) - (p1.y - p4.y) * (p2.x - p4.x);
-  return cross_product1 * cross_product2 > 0 && cross_product2 * cross_product3 > 0 && cross_product3 * cross_product4 > 0;
+  int sign_changes = 0;
+  if ((cross_product1 > 0) != (cross_product2 > 0)) sign_changes++;
+  if ((cross_product2 > 0) != (cross_product3 > 0)) sign_changes++;
+  if ((cross_product3 > 0) != (cross_product4 > 0)) sign_changes++;
+  if ((cross_product4 > 0) != (cross_product1 > 0)) sign_changes++;
+  return sign_changes > 0;
 }
 
 double belokurskaya::Concave::calculateTriangleArea(const point_t & p1, const point_t & p2, const point_t & p3) const
@@ -114,3 +119,10 @@ double belokurskaya::Concave::calculateTriangleArea(const point_t & p1, const po
   return std::abs((p1.x * (p2.y - p3.y) + p2.x * (p3.y - p1.y) + p3.x * (p1.y - p2.y)) / 2.0);
 }
 
+void belokurskaya::Concave::getVertices(point_t & vertex1, point_t & vertex2, point_t & vertex3, point_t & vertex4) const
+{
+    vertex1 = vertex1_;
+    vertex2 = vertex2_;
+    vertex3 = vertex3_;
+    vertex4 = vertex4_;
+}

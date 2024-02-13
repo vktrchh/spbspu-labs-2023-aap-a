@@ -5,7 +5,7 @@
 #include <cmath>
 
 belokurskaya::Triangle::Triangle(const point_t& vertex1, const point_t& vertex2, const point_t& vertex3):
-vertex1_(vertex1), vertex2_(vertex2), vertex3_(vertex3)
+  vertex1_(vertex1), vertex2_(vertex2), vertex3_(vertex3)
 {
     double a = std::hypot(vertex1_.x - vertex2_.x, vertex1_.y - vertex2_.y);
     double b = std::hypot(vertex2_.x - vertex3_.x, vertex2_.y - vertex3_.y);
@@ -86,4 +86,11 @@ belokurskaya::point_t belokurskaya::Triangle::calculateCentroid() const
   double centroid_x = (vertex1_.x + vertex2_.x + vertex3_.x) / 3.0;
   double centroid_y = (vertex1_.y + vertex2_.y + vertex3_.y) / 3.0;
   return {centroid_x, centroid_y};
+}
+
+void belokurskaya::Triangle::getVertices(point_t & vertex1, point_t & vertex2, point_t & vertex3) const
+{
+  vertex1 = vertex1_;
+  vertex2 = vertex2_;
+  vertex3 = vertex3_;
 }

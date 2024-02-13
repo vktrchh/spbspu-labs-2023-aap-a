@@ -2,6 +2,7 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
+#include <cmath>
 
 #include "rectangle.hpp"
 #include "triangle.hpp"
@@ -28,12 +29,11 @@ int main()
       std::string command;
       inputStream >> command;
 
-      if (command == "RECTANGLE" && shape_count < max_shapes)
+      if (command == "RECTANGLE")
       {
         double lower_left_x, lower_left_y, upper_right_x, upper_right_y;
         if (!(inputStream >> lower_left_x >> lower_left_y >> upper_right_x >> upper_right_y))
         {
-          std::cerr << "Invalid input for rectangle\n";
           continue;
         }
 
@@ -48,58 +48,74 @@ int main()
         shapes[shape_count] = new belokurskaya::Rectangle(lower_left, upper_right);
         shape_count++;
       }
-      else if (command == "TRIANGLE" && shape_count < max_shapes)
+      else if (command == "TRIANGLE")
       {
         double vertex1_x, vertex1_y, vertex2_x, vertex2_y, vertex3_x, vertex3_y;
-        inputStream >> vertex1_x >> vertex1_y >> vertex2_x >> vertex2_y >> vertex3_x >> vertex3_y;
-
-        if (std::labs((vertex2_x - vertex1_x) * (vertex3_y - vertex1_y) - (vertex3_x - vertex1_x) * (vertex2_y - vertex1_y)) > 1e-9)
+        if (!(inputStream >> vertex1_x >> vertex1_y >> vertex2_x >> vertex2_y >> vertex3_x >> vertex3_y))
         {
-          shapes[shape_count] = new belokurskaya::Triangle({vertex1_x, vertex1_y}, {vertex2_x, vertex2_y}, {vertex3_x, vertex3_y});
-          shape_count++;
+          continue;
         }
-        else
+
+        double a = sqrt(pow(vertex2_x - vertex1_x, 2) + pow(vertex2_y - vertex1_y, 2));
+        double b = sqrt(pow(vertex3_x - vertex2_x, 2) + pow(vertex3_y - vertex2_y, 2));
+        double c = sqrt(pow(vertex1_x - vertex3_x, 2) + pow(vertex1_y - vertex3_y, 2));
+        if (a + b <= c || a + c <= b || b + c <= a)
         {
           std::cerr << "Is not a triangle\n";
           continue;
         }
+
+        if (std::labs((vertex2_x - vertex1_x) * (vertex3_y - vertex1_y) - (vertex3_x - vertex1_x) * (vertex2_y - vertex1_y)) < 1e-9)
+        {
+          std::cerr << "Is not a triangle\n";
+          continue;
+        }
+        shapes[shape_count] = new belokurskaya::Triangle({vertex1_x, vertex1_y}, {vertex2_x, vertex2_y}, {vertex3_x, vertex3_y});
+        shape_count++;
       }
-      else if (command == "CONCAVE" && shape_count < max_shapes)
+      else if (command == "CONCAVE")
       {
         double vertex1_x, vertex1_y, vertex2_x, vertex2_y, vertex3_x, vertex3_y, vertex4_x, vertex4_y;
-        inputStream >> vertex1_x >> vertex1_y >> vertex2_x >> vertex2_y >> vertex3_x >> vertex3_y >> vertex4_x >> vertex4_y;
-        if (belokurskaya::Concave::isConcave({vertex1_x, vertex1_y}, {vertex2_x, vertex2_y}, {vertex3_x, vertex3_y}, {vertex4_x, vertex4_y}))
+        if (!(inputStream >> vertex1_x >> vertex1_y >> vertex2_x >> vertex2_y >> vertex3_x >> vertex3_y >> vertex4_x >> vertex4_y))
         {
-          shapes[shape_count] = new belokurskaya::Concave({vertex1_x, vertex1_y},
-          {vertex2_x, vertex2_y}, {vertex3_x, vertex3_y}, {vertex4_x, vertex4_y});
-          shape_count++;
+          continue;
         }
-        else
+        if (!belokurskaya::Concave::isConcave({vertex1_x, vertex1_y}, {vertex2_x, vertex2_y}, {vertex3_x, vertex3_y}, {vertex4_x, vertex4_y}))
         {
           std::cerr << "Is not a concave\n";
           continue;
+        }
+        try
+        {
+          shapes[shape_count] = new belokurskaya::Concave({vertex1_x, vertex1_y}, {vertex2_x, vertex2_y}, {vertex3_x, vertex3_y}, {vertex4_x, vertex4_y});
+          shape_count++;
+        }
+        catch(const std::invalid_argument& e)
+        {
+          std::cerr << e.what() << "\n";
         }
       }
       else if (command == "SCALE")
       {
         double scale_point_x, scale_point_y, scale_factor;
-        inputStream >> scale_point_x >> scale_point_y >> scale_factor;
-        belokurskaya::point_t scale_point = {scale_point_x, scale_point_y};
+        if (!(inputStream >> scale_point_x >> scale_point_y >> scale_factor))
+        {
+          throw std::invalid_argument("Invalid input for scale");
+        }
         if (scale_factor <= 0.0)
         {
           for (int i = 0; i < shape_count; ++i)
           {
             delete shapes[i];
-            shapes[i] = nullptr;
           }
-          delete[] shapes;
           throw std::invalid_argument("Invalid scaling factor");
         }
         if (shape_count == 0)
         {
           return 1;
         }
-        printResults(shapes, shape_count);
+        const belokurskaya::point_t scale_point = {scale_point_x, scale_point_y};
+        belokurskaya::printResults(shapes, shape_count);
         for (int i = 0; i < shape_count; ++i)
         {
           try
@@ -111,7 +127,7 @@ int main()
             std::cerr << "Error: " << e.what() << "\n";
           }
         }
-        printResults(shapes, shape_count);
+        belokurskaya::printResults(shapes, shape_count);
         break;
       }
       else
@@ -129,7 +145,6 @@ int main()
   for (int i = 0; i < shape_count; ++i)
   {
     delete shapes[i];
-    shapes[i] = nullptr;
   }
   return 0;
 }
