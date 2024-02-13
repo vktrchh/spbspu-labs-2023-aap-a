@@ -1,11 +1,11 @@
 #include "inputShapes.hpp"
+#include <stdexcept>
+#include <cstring>
+#include <inputString.hpp>
 #include "shape.hpp"
 #include "rectangle.hpp"
 #include "ring.hpp"
 #include "ellipse.hpp"
-#include <inputString.hpp>
-#include <cstring>
-#include <stdexcept>
 
 void baranov::parseParameters(const char * string, double * parameters, size_t count)
 {
