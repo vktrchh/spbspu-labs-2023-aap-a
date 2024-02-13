@@ -1,16 +1,17 @@
 #include "rectangle.hpp"
+#include "figureFunction.hpp"
 
-#include <iostream>
+#include <stdexcept>
 
-rebdev::Rectangle::Rectangle(const point_t angles[2]):
+rebdev::Rectangle::Rectangle(const point_t & firstAngle, const point_t & secondAngle):
   angles_{{0.0, 0.0}, {0.0, 0.0}}
 {
-  if ((angles[0].x >= angles[1].x) || (angles[0].y >= angles[1].y))
+  if ((firstAngle.x >= secondAngle.x) || (firstAngle.y >= secondAngle.y))
   {
     throw std::logic_error("rectangle error");
   }
-  angles_[0] = angles[0];
-  angles_[1] = angles[1];
+  angles_[0] = firstAngle;
+  angles_[1] = secondAngle;
 }
 
 double rebdev::Rectangle::getArea() const
@@ -20,23 +21,13 @@ double rebdev::Rectangle::getArea() const
 
 rebdev::rectangle_t rebdev::Rectangle::getFrameRect() const
 {
-  double width = angles_[1].x - angles_[0].x;
-  double height = angles_[1].y - angles_[0].y;
-  point_t pos = {(angles_[1].x + angles_[0].x)/2, (angles_[1].y + angles_[0].y)/2};
-  return rectangle_t{width, height, pos};
+  return getFrameRectangle(angles_, 2);
 }
 
 void rebdev::Rectangle::move(const point_t & point)
 {
   rectangle_t frameRectangle = getFrameRect();
-
-  double yChange = point.y - frameRectangle.pos.y;
-  double xChange = point.x - frameRectangle.pos.x;
-
-  angles_[1].y += yChange;
-  angles_[1].x += xChange;
-  angles_[0].y += yChange;
-  angles_[0].x += xChange;
+  move(point.x - frameRectangle.pos.x, point.y - frameRectangle.pos.y);
 }
 
 void rebdev::Rectangle::move(double x, double y)
@@ -49,10 +40,5 @@ void rebdev::Rectangle::move(double x, double y)
 
 void rebdev::Rectangle::scale(double k)
 {
-  rectangle_t frameRectangle = getFrameRect();
-
-  angles_[1].x = (angles_[1].x - frameRectangle.pos.x) * k + frameRectangle.pos.x;
-  angles_[1].y = (angles_[1].y - frameRectangle.pos.y) * k + frameRectangle.pos.y;
-  angles_[0].x = (angles_[0].x - frameRectangle.pos.x) * k + frameRectangle.pos.x;
-  angles_[0].y = (angles_[0].y - frameRectangle.pos.y) * k + frameRectangle.pos.y;
+  scaleFigure(angles_, 2, getFrameRect().pos, k);
 }

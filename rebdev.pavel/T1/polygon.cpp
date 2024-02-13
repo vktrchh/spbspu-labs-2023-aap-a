@@ -52,7 +52,7 @@ double rebdev::Polygon::getArea() const
   }
   sum += (vertexs_[numOfVertexs_ - 1].x - vertexs_[0].x) * (vertexs_[numOfVertexs_ - 1].y + vertexs_[0].y);
   sum /= 2;
-  return  ((sum >= 0) ? sum : -sum);
+  return  abs(sum);
 }
 
 rebdev::rectangle_t rebdev::Polygon::getFrameRect() const
@@ -77,14 +77,7 @@ void rebdev::Polygon::move(double x, double y)
 
 void rebdev::Polygon::scale(double k)
 {
-  point_t center = getPolygonCenter();
-
-  for (size_t i = 0; i < numOfVertexs_; ++i)
-  {
-    vertexs_[i].x = (vertexs_[i].x - center.x) * k + center.x;
-    vertexs_[i].y = (vertexs_[i].y - center.y) * k + center.y;
-  }
-
+  scaleFigure(vertexs_, numOfVertexs_, getPolygonCenter(), k);
 }
 
 rebdev::point_t rebdev::Polygon::getPolygonCenter()

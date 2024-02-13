@@ -11,6 +11,15 @@ rebdev::rectangle_t rebdev::getFrameRectangle(const point_t vertexs[], size_t nu
     xMax = ((xMax < vertexs[i].x) ? vertexs[i].x : xMax);
     yMax = ((yMax < vertexs[i].y) ? vertexs[i].y : yMax);
   }
-  return rectangle_t{(xMax - xMin), (yMax - yMin), point_t{(xMax + xMin) / 2, (yMax + yMin)/2}};
 
+  return rectangle_t{(xMax - xMin), (yMax - yMin), point_t{(xMax + xMin) / 2, (yMax + yMin)/2}};
+}
+
+void rebdev::scaleFigure(point_t vertexs[], size_t numOfVertexs, const point_t & center, double k)
+{
+  for (size_t i = 0; i < numOfVertexs; ++i)
+  {
+    vertexs[i].x = (vertexs[i].x - center.x) * k + center.x;
+    vertexs[i].y = (vertexs[i].y - center.y) * k + center.y;
+  }
 }

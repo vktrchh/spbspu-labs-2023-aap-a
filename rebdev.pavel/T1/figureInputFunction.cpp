@@ -16,7 +16,7 @@ rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name
       throw std::logic_error("input error");
     }
 
-    return (new Rectangle(vertexs));
+    return (new Rectangle(vertexs[0], vertexs[1]));
   }
   else if (name.find("CONCAVE") != std::string::npos)
   {
