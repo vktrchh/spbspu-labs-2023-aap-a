@@ -167,9 +167,10 @@ void erohin::CompositeShape::move(point_t point)
 
 void erohin::CompositeShape::scale(double ratio)
 {
+  point_t center = getFrameRect().pos;
   for (size_t i = 0; i < size_; ++i)
   {
-    isoScale(shape_[i], getFrameRect().pos, ratio);
+    isoScale(shape_[i], center, ratio);
   }
 }
 

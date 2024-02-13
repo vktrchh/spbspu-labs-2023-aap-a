@@ -13,11 +13,10 @@ void erohin::isoScale(Shape* shape, const point_t& pos, double ratio)
 
 void erohin::isoScale(CompositeShape& composite_shape, const point_t& pos, double ratio)
 {
-  point_t init_pos = composite_shape.getFrameRect().pos;
-  composite_shape.move(pos);
-  point_t new_pos = composite_shape.getFrameRect().pos;
-  composite_shape.scale(ratio);
-  composite_shape.move(ratio * (init_pos.x - new_pos.x), ratio * (init_pos.y - new_pos.y));
+  for (size_t i = 0; i < composite_shape.size(); ++i)
+  {
+    isoScale(composite_shape[i], pos, ratio);
+  }
 }
 
 double erohin::getDistance(const point_t& from, const point_t& to)
