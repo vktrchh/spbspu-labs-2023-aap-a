@@ -24,7 +24,6 @@ void baranov::parseParameters(const char * string, double * parameters, size_t c
 baranov::Shape * baranov::parseRectangle(const char * string)
 {
   double rectParameters[4]{};
-  string += 9;
   parseParameters(string, rectParameters, 4);
   point_t ldCorner = { rectParameters[0], rectParameters[1] };
   point_t ruCorner = { rectParameters[2], rectParameters[3] };
@@ -34,7 +33,6 @@ baranov::Shape * baranov::parseRectangle(const char * string)
 baranov::Shape * baranov::parseRing(const char * string)
 {
   double ringParameters[4]{};
-  string += 4;
   parseParameters(string, ringParameters, 4);
   point_t center = { ringParameters[0], ringParameters[1] };
   return new Ring(center, ringParameters[2], ringParameters[3]);
@@ -43,7 +41,6 @@ baranov::Shape * baranov::parseRing(const char * string)
 baranov::Shape * baranov::parseEllipse(const char * string)
 {
   double ellipseParameters[4]{};
-  string += 7;
   parseParameters(string, ellipseParameters, 4);
   point_t center = { ellipseParameters[0], ellipseParameters[1] };
   return new Ellipse(center, ellipseParameters[2], ellipseParameters[3]);
@@ -87,6 +84,7 @@ baranov::Shape * baranov::parseShape(const char * string)
     }
     if (std::strncmp(shapeNames[i], string, nameSize) == 0)
     {
+      string += nameSize;
       if (i == 0)
       {
         return parseRectangle(string);
