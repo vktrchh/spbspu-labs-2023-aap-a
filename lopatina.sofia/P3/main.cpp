@@ -25,8 +25,9 @@ int main()
       input[i - 1] = 0;
       break;
     }
-    if (i == (amount - 1))
+    if (i == amount)
     {
+      //std::cout << "AM: " << amount << " I: " << i << '\n';
       try
       {
         char * new_input = expandArray(input, amount);
