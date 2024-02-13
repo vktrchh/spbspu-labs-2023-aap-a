@@ -11,10 +11,7 @@ arakelyan::Rectangle::Rectangle(point_t fp, point_t sp):
   {
     throw std::logic_error("Invalid arguments!");
   }
-};
-
-arakelyan::Rectangle::~Rectangle()
-{};
+}
 
 double arakelyan::Rectangle::getArea() const
 {
@@ -29,7 +26,7 @@ arakelyan::rectangle_t arakelyan::Rectangle::getFrameRect() const
   double height = std::abs(pointRightUp_.y - pointLeftDown_.y);
   rectangle_t data = {width, height, midpoint_};
   return data;
-};
+}
 
 void arakelyan::Rectangle::move(const double delX, const double delY)
 {
@@ -72,3 +69,6 @@ void arakelyan::Rectangle::scale(const double k)
   pointRightUp_.x = data.pos.x + widthHalf;
   pointRightUp_.y = data.pos.y + heightHalf;
 }
+
+arakelyan::Rectangle::~Rectangle()
+{}

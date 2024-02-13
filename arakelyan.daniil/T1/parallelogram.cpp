@@ -15,7 +15,7 @@ arakelyan::Parallelogram::Parallelogram(point_t fp, point_t sp, point_t tp):
   {
     throw std::logic_error("Invalid points for parallelogram!");
   }
-};
+}
 
 double arakelyan::Parallelogram::getArea() const
 {
@@ -109,4 +109,4 @@ void arakelyan::Parallelogram::scale(const double k)
 }
 
 arakelyan::Parallelogram::~Parallelogram()
-{};
+{}
