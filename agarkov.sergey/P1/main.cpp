@@ -1,14 +1,9 @@
 #include <iostream>
 #include <stdexcept>
-#include "NumberOfSequence.hpp"
 
 int main()
 {
-  int num = 1;
-
-  using namespace agarkov;
-  NumberOfSequence counter;
-
+  int num = 0;
   do
   {
     std::cin >> num;
@@ -20,18 +15,9 @@ int main()
     }
     else if (num != 0)
     {
-
-      try
-      {
-        counter(num);
-      }
-      catch (const std::exception & e)
-      {
-        std::cerr << "error: " << e.what() << "\n";
-        return 2;
-      }
+      std::cout << num << " "; 
     }
   }
   while (num != 0);
-  std::cout << "answer: " << counter() << "\n";
+  std::cout << "\n";
 }
