@@ -6,7 +6,7 @@
 namespace marishin
 {
   point_t mixPoint(point_t corner, double dx, double dy);
-  point_t scalePoint(marishin::point_t corner, marishin::point_t pos, double factor);
+  point_t scalePoint(point_t corner, point_t pos, double factor);
 }
 
 #endif

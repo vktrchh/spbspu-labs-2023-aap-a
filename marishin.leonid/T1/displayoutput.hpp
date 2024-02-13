@@ -1,7 +1,7 @@
 #ifndef DISPLAYOUTPUT_HPP
 #define DISPLAYOUTPUT_HPP
 
-#include <iomanip>
+#include <ostream>
 #include "shape.hpp"
 
 namespace marishin

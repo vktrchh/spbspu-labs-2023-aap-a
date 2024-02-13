@@ -11,7 +11,7 @@ int main()
   using namespace marishin;
   Shape** myShapes = nullptr;
   size_t numberOfShapes = 0;
-  point_t center = { 0 , 0 };
+  point_t center = {0, 0};
   double scalingFactor = 0.0;
 
   try
