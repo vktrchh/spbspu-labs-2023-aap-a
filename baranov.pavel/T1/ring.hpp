@@ -12,11 +12,11 @@ namespace baranov
       virtual rectangle_t getFrameRect() const;
       virtual void move(const point_t & point);
       virtual void move(double dx, double dy);
-      virtual void scale(double ratio);
     private:
       point_t center_;
       double outRadius_;
       double inRadius_;
+      virtual void doScale(double ratio);
   };
 }
 

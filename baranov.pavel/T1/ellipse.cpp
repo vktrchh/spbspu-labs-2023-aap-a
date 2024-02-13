@@ -37,12 +37,8 @@ void baranov::Ellipse::move(const double dx, const double dy)
   center_.y += dy;
 }
 
-void baranov::Ellipse::scale(const double ratio)
+void baranov::Ellipse::doScale(const double ratio)
 {
-  if (ratio < 0)
-  {
-    throw std::invalid_argument("Invalid scale ratio");
-  }
   xRadius_ *= ratio;
   yRadius_ *= ratio;
 }

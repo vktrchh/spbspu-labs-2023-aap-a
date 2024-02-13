@@ -37,12 +37,8 @@ void baranov::Ring::move(const double dx, const double dy)
   center_.y += dy;
 }
 
-void baranov::Ring::scale(const double ratio)
+void baranov::Ring::doScale(const double ratio)
 {
-  if (ratio < 0)
-  {
-    throw std::invalid_argument("Invalid scale ratio");
-  }
   outRadius_ *= ratio;
   inRadius_ *= ratio;
 }

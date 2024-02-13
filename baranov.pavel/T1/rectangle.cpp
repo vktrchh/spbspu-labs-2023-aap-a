@@ -44,12 +44,8 @@ void baranov::Rectangle::move(const double dx, const double dy)
   ldCorner_.y += dy;
 }
 
-void baranov::Rectangle::scale(const double ratio)
+void baranov::Rectangle::doScale(const double ratio)
 {
-  if (ratio < 0)
-  {
-    throw std::invalid_argument("Invalid scale ratio");
-  }
   point_t center = getFrameRect().pos;
   pointScale(ruCorner_, center, ratio);
   pointScale(ldCorner_, center, ratio);
