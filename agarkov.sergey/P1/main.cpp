@@ -2,11 +2,13 @@
 #include <stdexcept>
 
 #include "PythTripleCounter.hpp"
+#include "DivWithoutRemCounter.hpp"
 
 int main()
 {
   int num = 0;
   agarkov::PythTripleCounter pyth_triple_counter;
+  agarkov::DivWithoutRemCounter div_without_rem_counter;
   do
   {
     std::cin >> num;
