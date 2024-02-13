@@ -1,6 +1,8 @@
 #ifndef PYTHTRIPLECOUNTER_HPP 
 #define PYTHTRIPLECOUNTER_HPP 
 
+#include <cstddef>
+
 namespace agarkov
 {
   struct PythTripleCounter
