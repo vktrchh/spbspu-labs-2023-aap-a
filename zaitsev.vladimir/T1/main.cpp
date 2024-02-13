@@ -55,7 +55,7 @@ int main()
       std::cin >> shape_type;
     }
   }
-  catch (std::bad_alloc&)
+  catch (const std::bad_alloc&)
   {
     std::cerr << "Error: Failed to allocate memory\n";
     freeShapes(shapes, size);
@@ -84,7 +84,7 @@ int main()
       std::cerr << "Warning: Some shapes were set incorrectly\n";
     }
   }
-  catch (std::invalid_argument& e)
+  catch (const std::invalid_argument& e)
   {
     std::cerr << "Error: " << e.what() << "\n";
     freeShapes(shapes, size);
