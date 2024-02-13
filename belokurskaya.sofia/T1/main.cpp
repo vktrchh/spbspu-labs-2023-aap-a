@@ -18,9 +18,18 @@ int main()
 
   try
   {
-    std::string input;
-    while (std::getline(std::cin, input))
+    while (true)
     {
+      std::string input;
+      if (std::getline(std::cin, input))
+      {
+        if (std::cin.eof())
+        {
+          std::cerr << "EOF reached\n";
+          break;
+        }
+        continue;
+      }
       if (input.empty())
       {
         continue;
