@@ -14,8 +14,6 @@ int main()
   const int max_shapes = 1000;
   belokurskaya::Shape* shapes[max_shapes];
   int shape_count = 0;
-  double total_area_before_scaling = 0.0;
-  double total_area_after_scaling = 0.0;
 
   try
   {
@@ -44,12 +42,10 @@ int main()
           std::cerr << "Is not a rectangle\n";
           continue;
         }
-        double width = std::abs(upper_right_x - lower_left_x);
-        double height = std::abs(upper_right_y - lower_left_y);
-        double center_x = (lower_left_x + upper_right_x) / 2.0;
-        double center_y = (lower_left_y + upper_right_y) / 2.0;
-        shapes[shape_count] = new belokurskaya::Rectangle({ center_x, center_y }, width, height);
-        total_area_before_scaling += shapes[shape_count]->getArea();
+        belokurskaya::point_t lower_left = {lower_left_x, lower_left_y};
+        belokurskaya::point_t upper_right = {upper_right_x, upper_right_y};
+
+        shapes[shape_count] = new belokurskaya::Rectangle(lower_left, upper_right);
         shape_count++;
       }
       else if (command == "TRIANGLE" && shape_count < max_shapes)
@@ -60,7 +56,6 @@ int main()
         if (std::labs((vertex2_x - vertex1_x) * (vertex3_y - vertex1_y) - (vertex3_x - vertex1_x) * (vertex2_y - vertex1_y)) > 1e-9)
         {
           shapes[shape_count] = new belokurskaya::Triangle({vertex1_x, vertex1_y}, {vertex2_x, vertex2_y}, {vertex3_x, vertex3_y});
-          total_area_before_scaling += shapes[shape_count]->getArea();
           shape_count++;
         }
         else
@@ -77,7 +72,6 @@ int main()
         {
           shapes[shape_count] = new belokurskaya::Concave({vertex1_x, vertex1_y},
           {vertex2_x, vertex2_y}, {vertex3_x, vertex3_y}, {vertex4_x, vertex4_y});
-          total_area_before_scaling += shapes[shape_count]->getArea();
           shape_count++;
         }
         else
@@ -90,6 +84,7 @@ int main()
       {
         double scale_point_x, scale_point_y, scale_factor;
         inputStream >> scale_point_x >> scale_point_y >> scale_factor;
+        belokurskaya::point_t scale_point = {scale_point_x, scale_point_y};
         if (scale_factor <= 0.0)
         {
           delete shapes[shape_count];
@@ -99,19 +94,19 @@ int main()
         {
           return 1;
         }
+        printResults(shapes, shape_count);
         for (int i = 0; i < shape_count; ++i)
         {
           try
           {
-            belokurskaya::isoScale(shapes[i], shapes[i]->getFrameRect().pos, scale_factor);
-            total_area_after_scaling += shapes[i]->getArea();
+            belokurskaya::isoScale(shapes[i], scale_point, scale_factor);
           }
           catch (const std::invalid_argument& e)
           {
             std::cerr << "Error: " << e.what() << "\n";
           }
         }
-        printResults(shapes, shape_count, total_area_before_scaling, total_area_after_scaling);
+        printResults(shapes, shape_count);
         break;
       }
       else

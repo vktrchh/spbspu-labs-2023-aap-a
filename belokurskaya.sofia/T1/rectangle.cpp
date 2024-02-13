@@ -3,10 +3,10 @@
 
 #include <stdexcept>
 
-belokurskaya::Rectangle::Rectangle(const point_t & pos, double width, double height):
-pos_(pos), width_(width), height_(height)
+belokurskaya::Rectangle::Rectangle(const point_t & lower_left, const point_t & upper_right):
+  lower_left_(lower_left), upper_right_(upper_right)
 {
-  if (width <= 0 || height <= 0)
+  if (lower_left_.x >= upper_right_.x || lower_left_.y >= upper_right_.y)
   {
     throw std::invalid_argument("Invalid rectangle dimensions");
   }
@@ -14,23 +14,29 @@ pos_(pos), width_(width), height_(height)
 
 double belokurskaya::Rectangle::getArea() const
 {
-  return width_ * height_;
+  return (upper_right_.x - lower_left_.x) * (upper_right_.y - lower_left_.y);
 }
 
 belokurskaya::rectangle_t belokurskaya::Rectangle::getFrameRect() const
 {
-  return {pos_, width_, height_};
+  double width = upper_right_.x - lower_left_.x;
+  double height = upper_right_.y - lower_left_.y;
+  point_t center = {upper_right_.x - (width / 2), upper_right_.y - (height / 2)};
+  return {center, width, height};
 }
 
 void belokurskaya::Rectangle::move(const point_t & new_pos)
 {
-  pos_ = new_pos;
+  point_t center = getFrameRect().pos;
+  move(new_pos.x - center.x, new_pos.y - center.y);
 }
 
 void belokurskaya::Rectangle::move(double dx, double dy)
 {
-  pos_.x += dx;
-  pos_.y += dy;
+  lower_left_.x += dx;
+  lower_left_.y += dy;
+  upper_right_.x += dx;
+  upper_right_.y += dy;
 }
 
 void belokurskaya::Rectangle::scale(double factor)
@@ -39,11 +45,16 @@ void belokurskaya::Rectangle::scale(double factor)
   {
     throw std::invalid_argument("Invalid scaling factor");
   }
-  point_t old_center = pos_;
+  rectangle_t frameRect = getFrameRect();
+  point_t old_center = frameRect.pos;
+  double width = frameRect.width;
+  double height = frameRect.height;
 
-  width_ *= factor;
-  height_ *= factor;
+  width *= factor;
+  height *= factor;
 
-  pos_.x = old_center.x - (old_center.x - pos_.x) * factor;
-  pos_.y = old_center.y - (old_center.y - pos_.y) * factor;
+  lower_left_.x = old_center.x - width / 2;
+  lower_left_.y = old_center.y - height / 2;
+  upper_right_.x = old_center.x + width / 2;
+  upper_right_.y = old_center.y + height / 2;
 }

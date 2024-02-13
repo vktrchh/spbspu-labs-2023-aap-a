@@ -8,7 +8,7 @@ namespace belokurskaya
   class Rectangle : public Shape
   {
     public:
-      Rectangle(const point_t & pos, double width, double height);
+      Rectangle(const point_t & lower_left, const point_t & upper_right);
 
       double getArea() const override;
       rectangle_t getFrameRect() const override;
@@ -17,9 +17,8 @@ namespace belokurskaya
       void scale(double factor) override;
 
     private:
-      point_t pos_;
-      double width_;
-      double height_;
+      point_t lower_left_;
+      point_t upper_right_;
   };
 }
 
