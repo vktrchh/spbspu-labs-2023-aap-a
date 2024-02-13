@@ -1,6 +1,6 @@
 #include "triangle.hpp"
-#include "checkTriangle.hpp"
 #include <stdexcept>
+#include "checkTriangle.hpp"
 
 marishin::Triangle::Triangle(point_t first, point_t second, point_t third):
   first_(first),
