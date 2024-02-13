@@ -5,7 +5,15 @@
 int main()
 {
   char * string = nullptr;
-  string = kovtun::readString(std::cin);
+  try
+  {
+    string = kovtun::readString(std::cin);
+  }
+  catch (const std::bad_alloc & e)
+  {
+    std::cerr << e.what() << "\n";
+    return 1;
+  }
 
   std::cout << string;
 
