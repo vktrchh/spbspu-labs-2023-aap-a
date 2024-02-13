@@ -1,7 +1,7 @@
 #ifndef INPUTSTRING_HPP
 #define INPUTSTRING_HPP
 
-#include <iostream>
+#include <istream>
 
 namespace sivkov
 {
