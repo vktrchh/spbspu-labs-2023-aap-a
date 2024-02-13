@@ -72,7 +72,7 @@ void rebdev::Concave::move(const point_t point)
   double yChange = point.y - vertexs_[2].y;
   double xChange = point.x - vertexs_[2].x;
 
-  for (int i = 0; i < 4; ++i)
+  for (size_t i = 0; i < 4; ++i)
   {
     vertexs_[i].x += xChange;
     vertexs_[i].y += yChange;
@@ -81,7 +81,7 @@ void rebdev::Concave::move(const point_t point)
 
 void rebdev::Concave::move(const double x, const double y)
 {
-  for (int i = 0; i < 4; ++i)
+  for (size_t i = 0; i < 4; ++i)
   {
     vertexs_[i].x += x;
     vertexs_[i].y += y;

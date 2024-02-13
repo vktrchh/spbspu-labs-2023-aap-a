@@ -15,7 +15,7 @@ rebdev::Rectangle::Rectangle(const point_t angles[2]):
 
 double rebdev::Rectangle::getArea() const
 {
-  return  ((angles_[1].x - angles_[0].x) * (angles_[1].y - angles_[0].y));
+  return ((angles_[1].x - angles_[0].x) * (angles_[1].y - angles_[0].y));
 }
 
 rebdev::rectangle_t rebdev::Rectangle::getFrameRect() const

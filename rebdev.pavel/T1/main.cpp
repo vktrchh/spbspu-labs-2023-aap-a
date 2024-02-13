@@ -17,7 +17,7 @@ int main()
   try
   {
     shapes = new rebdev::Shape * [1000];
-    for (int i = 0; i < 1000; ++i)
+    for (size_t i = 0; i < 1000; ++i)
     {
       shapes[i] = nullptr;
     }
