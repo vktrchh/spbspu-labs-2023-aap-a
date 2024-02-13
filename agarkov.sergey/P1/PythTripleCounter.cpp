@@ -12,7 +12,7 @@ void agarkov::PythTripleCounter::operator()(int num)
   third = second;
   second = first;
   first = num;
-  if ((first * first) == (second * second + third * third))
+  if ((first * first) == (second * second + third * third) && second > 0 && third > 0)
   {
     count++;
   }
