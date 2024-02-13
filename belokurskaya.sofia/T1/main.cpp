@@ -26,7 +26,7 @@ int main()
         if (std::cin.eof())
         {
           std::cerr << "EOF reached\n";
-          break;
+          return 1;
         }
         continue;
       }
