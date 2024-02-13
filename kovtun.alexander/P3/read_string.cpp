@@ -23,8 +23,18 @@ char * kovtun::readString(std::istream & in)
     {
       // possible wrapping around
       stringSize *= 2;
-      char * copy = new char[stringSize]();
-      // TODO: handle bad allocation
+      char * copy = nullptr;
+      try
+      {
+        copy = new char[stringSize]();
+      }
+      catch (const std::bad_alloc & e)
+      {
+        delete [] input;
+        std::cerr << "failed to allocate new memory for string\n";
+        throw e;
+      }
+
       for (int i = 0; i < charIndex; i++)
       {
         copy[i] = input[i];
