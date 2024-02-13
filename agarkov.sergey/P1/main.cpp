@@ -14,7 +14,7 @@ int main()
     if (!std::cin)
     {
       std::cerr << "Is not a sequence\n";
-      return 1;
+      return 2;
     }
     else if (num != 0)
     {
