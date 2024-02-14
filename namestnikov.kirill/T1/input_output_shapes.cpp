@@ -13,10 +13,10 @@ void namestnikov::inputRectangle(std::istream & in, Shape ** shapes, size_t & co
   for (size_t i = 0; i < size; ++i)
   {
     in >> rectangleParameters[i];
-  }
-  if (!in)
-  {
-    throw std::invalid_argument("Error in input\n");
+    if (!in)
+    {
+      throw std::invalid_argument("Error in input");
+    }
   }
   shapes[count++] = new Rectangle({rectangleParameters[0], rectangleParameters[1]}, {rectangleParameters[2], rectangleParameters[3]});
 }
@@ -56,6 +56,17 @@ void namestnikov::inputComplexquad(std::istream & in, Shape ** shapes, size_t & 
   shapes[count++] = new Complexquad(points[0], points[1], points[2], points[3]);
 }
 
+void namestnikov::fillShapesArray(Shape ** oldShapes, Shape ** currentShapes, const size_t count)
+{
+  if (oldShapes)
+  {
+    for (size_t i = 0; i < count; ++i)
+    {
+      currentShapes[i] = oldShapes[i];
+    }
+  }
+}
+
 namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count)
 {
   std::string currentShapeName = "";
@@ -65,13 +76,14 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
   {
     oldShapes = currentShapes;
     currentShapes = new Shape * [count + 1]{};
-    if (oldShapes)
-    {
-      for (size_t i = 0; i < count; ++i)
-      {
-        currentShapes[i] = oldShapes[i];
-      }
-    }
+    fillShapesArray(oldShapes, currentShapes, count);
+    //if (oldShapes)
+    //{
+    //  for (size_t i = 0; i < count; ++i)
+    //  {
+    //    currentShapes[i] = oldShapes[i];
+    //  }
+    //}
     delete [] oldShapes;
     try
     {
