@@ -16,8 +16,8 @@ namespace namestnikov
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t & p);
-    virtual void move(const double dx, const double dy);
-    virtual void unsafeScale(const double coefficient);
+    virtual void move(double dx, double dy);
+    virtual void unsafeScale(double coefficient);
   private:
     point_t points_[4];
     point_t getCenter() const;

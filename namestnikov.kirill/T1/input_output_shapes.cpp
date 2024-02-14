@@ -8,9 +8,8 @@
 
 void namestnikov::inputRectangle(std::istream & in, Shape ** shapes, size_t & count)
 {
-  const size_t size = 4;
-  double rectangleParameters[size] = {};
-  for (size_t i = 0; i < size; ++i)
+  double rectangleParameters[4] = {};
+  for (size_t i = 0; i < 4; ++i)
   {
     in >> rectangleParameters[i];
     if (!in)
@@ -23,9 +22,8 @@ void namestnikov::inputRectangle(std::istream & in, Shape ** shapes, size_t & co
 
 void namestnikov::inputCircle(std::istream & in, Shape ** shapes, size_t & count)
 {
-  const size_t size = 3;
-  double circleParameters[size] = {};
-  for (size_t i = 0; i < size; ++i)
+  double circleParameters[3] = {};
+  for (size_t i = 0; i < 3; ++i)
   {
     in >> circleParameters[i];
     if (!in)
@@ -38,9 +36,8 @@ void namestnikov::inputCircle(std::istream & in, Shape ** shapes, size_t & count
 
 void namestnikov::inputComplexquad(std::istream & in, Shape ** shapes, size_t & count)
 {
-  const size_t size = 8;
-  double complexquadParameters[size] = {};
-  for (size_t i = 0; i < size; ++i)
+  double complexquadParameters[8] = {};
+  for (size_t i = 0; i < 8; ++i)
   {
     in >> complexquadParameters[i];
     if (!in)
