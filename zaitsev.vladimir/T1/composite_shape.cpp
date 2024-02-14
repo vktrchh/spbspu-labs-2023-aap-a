@@ -88,6 +88,8 @@ void zaitsev::CompositeShape::push_back(Shape* shape)
   {
     Shape** temp = new Shape*[capacity_ * 2];
     std::memcpy(temp, shapes_, sizeof(Shape*) * size_);
+    delete[] shapes_;
+    shapes_ = temp;
     capacity_ *= 2;
   }
   shapes_[size_] = shape;
