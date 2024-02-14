@@ -79,6 +79,10 @@ zaitsev::CompositeShape& zaitsev::CompositeShape::operator=(CompositeShape&& oth
 
 void zaitsev::CompositeShape::push_back(Shape* shape)
 {
+  if (!shape)
+  {
+    return;
+  }
   if (size_ == capacity_)
   {
     Shape** temp = new Shape*[capacity_ * 2];
