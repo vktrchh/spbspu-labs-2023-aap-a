@@ -30,7 +30,6 @@ int main()
     {
       cloneString[i] = firstString[i];
     }
-    cloneString[length+1] = '\0';
   }
   catch (std::bad_alloc &e)
   {

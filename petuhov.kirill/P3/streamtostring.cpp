@@ -13,6 +13,7 @@ char * petuhov::streamToString(std::istream & input)
   {
     if (!input)
     {
+      delete[] stringBuffer;
       delete[] string;
       throw std::logic_error("Error reading input");
     }
