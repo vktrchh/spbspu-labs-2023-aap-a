@@ -15,28 +15,43 @@ nikitov::point_t identifyFirst(const nikitov::point_t& first, const nikitov::poi
       return second;
     }
   }
+  else if (first.x - third.x == 0)
+  {
+    if (first.y - second.y == 0)
+    {
+      return first;
+    }
+    else
+    {
+      return third;
+    }
+  }
   else
   {
-    return third;
-  }
-}
-
-nikitov::point_t identifySecond(const nikitov::point_t& first, const nikitov::point_t& second, const nikitov::point_t& third)
-{
-  if (first.x - second.x == 0)
-  {
-    if (first.y - third.y == 0)
+    if (second.y - first.y == 0)
     {
       return second;
     }
     else
     {
-      return first;
+      return third;
     }
+  }
+}
+
+nikitov::point_t identifySecond(const nikitov::point_t& first, const nikitov::point_t& second, const nikitov::point_t& third)
+{
+  if (first.y - second.y == 0)
+  {
+    return third;
+  }
+  else if (first.y - third.y == 0)
+  {
+    return second;
   }
   else
   {
-    return third;
+    return first;
   }
 }
 
@@ -46,13 +61,13 @@ nikitov::point_t identifyThird(const nikitov::point_t& first, const nikitov::poi
   {
     return third;
   }
-  else if (second.x - third.x == 0)
+  else if (first.x - third.x == 0)
   {
-    return first;
+    return second;
   }
   else
   {
-   return second;
+    return first;
   }
 }
 
