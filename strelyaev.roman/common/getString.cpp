@@ -1,6 +1,6 @@
 #include "getString.hpp"
 
-char * strelyaev::getString(std::istream & in)
+char * strelyaev::getString(std::istream& in)
 {
   size_t size = 10;
   char * string = new char [size];
