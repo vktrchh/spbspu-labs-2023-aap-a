@@ -18,7 +18,8 @@ void namestnikov::inputRectangle(std::istream & in, Shape ** shapes, size_t & co
       throw std::invalid_argument("Error in input");
     }
   }
-  shapes[count++] = new Rectangle({rectangleParameters[0], rectangleParameters[1]}, {rectangleParameters[2], rectangleParameters[3]});
+  shapes[count] = new Rectangle({rectangleParameters[0], rectangleParameters[1]}, {rectangleParameters[2], rectangleParameters[3]});
+  ++count;
 }
 
 void namestnikov::inputCircle(std::istream & in, Shape ** shapes, size_t & count)
@@ -33,7 +34,8 @@ void namestnikov::inputCircle(std::istream & in, Shape ** shapes, size_t & count
       throw std::invalid_argument("Error in input");
     }
   }
-  shapes[count++] = new Circle({circleParameters[0], circleParameters[1]}, circleParameters[2]);
+  shapes[count] = new Circle({circleParameters[0], circleParameters[1]}, circleParameters[2]);
+  ++count;
 }
 
 void namestnikov::inputComplexquad(std::istream & in, Shape ** shapes, size_t & count)
@@ -53,7 +55,8 @@ void namestnikov::inputComplexquad(std::istream & in, Shape ** shapes, size_t & 
   {
     points[i / 2] = {complexquadParameters[i], complexquadParameters[i + 1]};
   }
-  shapes[count++] = new Complexquad(points[0], points[1], points[2], points[3]);
+  shapes[count] = new Complexquad(points[0], points[1], points[2], points[3]);
+  ++count;
 }
 
 namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count)
