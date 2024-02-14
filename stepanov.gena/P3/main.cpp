@@ -8,6 +8,7 @@ int main()
   if (resultString[0] == '\0')
   {
     std::cerr << "Empty string" << '\n';
+    delete[] resultString;
     return 1;
   }
   std::cout << resultString << '\n';
