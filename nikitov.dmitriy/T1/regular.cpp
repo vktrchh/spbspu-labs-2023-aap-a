@@ -12,9 +12,9 @@ nikitov::Regular::Regular(const point_t& first, const point_t& second, const poi
   double secondLine = std::pow(third_.x - second_.x, 2) + std::pow(third_.y - second_.y, 2);
   double thirdLine = std::pow(first_.x - third_.x, 2) + std::pow(first_.y - third_.y, 2);
 
-  bool isNotExists = firstLine + secondLine == thirdLine;
-  isNotExists = isNotExists || secondLine + thirdLine == firstLine;
-  isNotExists = isNotExists || std::max(sqrt(firstLine), std::sqrt(thirdLine)) > std::sqrt(secondLine) * 2;
+  bool isNotExists = (firstLine + secondLine == thirdLine);
+  isNotExists = isNotExists || (secondLine + thirdLine == firstLine);
+  isNotExists = isNotExists || (std::max(sqrt(firstLine), std::sqrt(thirdLine)) > std::sqrt(secondLine) * 2);
   if (!isNotExists)
   {
     throw std::invalid_argument("Error: invalid regular agrugments");
