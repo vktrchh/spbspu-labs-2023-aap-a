@@ -33,6 +33,7 @@ int main()
   }
   catch (std::bad_alloc &e)
   {
+    delete[] firstString;
     std::cerr << "Not enough memory for clone string";
     return 1;
   }
@@ -44,7 +45,8 @@ int main()
   }
   catch (std::exception &e)
   {
-    delete[] secondString;
+    delete[] firstString;
+    delete[] cloneString;
     std::cerr << e.what();
     return 1;
   }
