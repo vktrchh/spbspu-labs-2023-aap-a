@@ -6,7 +6,7 @@
 int main()
 {
   char *firstString = nullptr;
-  char * cloneString = nullptr;
+  char *cloneString = nullptr;
   size_t length = 0;
 
   try
@@ -25,9 +25,9 @@ int main()
   }
   try
   {
-    cloneString = new char[length + 1];
+    cloneString = new char[length];
   }
-  catch (std::bad_alloc & e)
+  catch (std::bad_alloc &e)
   {
     delete[] cloneString;
     std::cerr << "Not enough memory for clone string";
