@@ -32,6 +32,7 @@ int main()
   }
   catch (const std::bad_alloc & e)
   {
+    // как лучше все это проверять и чистить?
     delete [] firstString;
     delete [] secondString;
     delete [] loweredString;
