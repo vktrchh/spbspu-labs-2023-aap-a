@@ -1,6 +1,6 @@
-#include "substractString.hpp"
+#include "substractstring.hpp"
 
-void petuhov::substractString(char * firstString, size_t firstStringSize, const char * secondString)
+void petuhov::substractString(char * firstString, const char * secondString)
 {
   size_t resultIndex = 0;
 

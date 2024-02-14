@@ -5,10 +5,9 @@
 int main()
 {
   char * firstString = nullptr;
-  size_t firstStringSize = 0;
   try
   {
-    firstString = petuhov::streamToString(std::cin, firstStringSize);
+    firstString = petuhov::streamToString(std::cin);
   }
   catch (std::exception & e)
   {
@@ -17,10 +16,9 @@ int main()
     return 1;
   }
   char * secondString = nullptr;
-  size_t secondStringSize = 0;
   try
   {
-    secondString = petuhov::streamToString(std::cin, secondStringSize);
+    secondString = petuhov::streamToString(std::cin);
   }
   catch (std::exception & e)
   {
@@ -29,17 +27,7 @@ int main()
     return 1;
   }
 
-  char * substractResult = nullptr;
-  try
-  {
-    substractResult = petuhov::substractString(firstString, firstStringSize, secondString);
-    std::cout << substractResult;
-    return 0;
-  }
-  catch (std::exception & e)
-  {
-    delete[] substractResult;
-    std::cout << e.what();
-    return 1;
-  }
+  petuhov::substractString(firstString, secondString);
+  std::cout << firstString;
+  return 0;
 }

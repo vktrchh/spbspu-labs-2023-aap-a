@@ -4,7 +4,7 @@
 
 namespace petuhov
 {
-  void substractString(char * firstString, size_t firstStringSize, const char * secondString);
+  void substractString(char * firstString, const char * secondString);
 }
 
 #endif

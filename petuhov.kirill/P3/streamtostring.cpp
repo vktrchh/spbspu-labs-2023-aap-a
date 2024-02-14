@@ -1,6 +1,6 @@
 #include "streamtostring.hpp"
 
-char * petuhov::streamToString(std::istream & input, size_t & stringSize)
+char * petuhov::streamToString(std::istream & input)
 {
   char sym = 0;
   size_t stringBufferSize = 0;
@@ -41,6 +41,5 @@ char * petuhov::streamToString(std::istream & input, size_t & stringSize)
   {
     throw std::logic_error("Empty input string");
   }
-  stringSize = ++stringBufferSize;
   return string;
 }
