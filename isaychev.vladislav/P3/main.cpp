@@ -1,25 +1,25 @@
 #include <iostream>
+#include <inputString.hpp>
 #include "extractChars.hpp"
 #include "addLat.hpp"
-#include "inputString.hpp"
 
 int main()
 {
   using namespace isaychev;
-  size_t capacity = 10, length1 = 0;
+  size_t capacity = 10;
   char * str = nullptr;
   try
   {
-    str = inputString(std::cin, length1, capacity);
+    str = inputString(std::cin, capacity);
   }
   catch (const std::bad_alloc &)
   {
     std::cerr << "can't allocate memory for first string\n";
     return 1;
   }
-  catch (const std::logic_error & e)
+  if (checkForEmptyStr(str))
   {
-    std::cerr << e.what() << "\n";
+    std::cerr << "String is empty\n";
     return 2;
   }
   const char * str2 = "AFD12hd";

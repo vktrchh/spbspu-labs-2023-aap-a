@@ -2,19 +2,18 @@
 #include <utility>
 #include <string>
 
-int isaychev::checkString(const char * string, const char * strForCheck)
+bool isaychev::checkString(const char * string, const char * strForCheck)
 {
   size_t i = 0;
-  int checkFlag = 1;
   while (strForCheck[i] != '\0')
   {
     if (strForCheck[i] != string[i])
     {
-      checkFlag = 0;
+      return false;
     }
     i++;
   }
-  return checkFlag;
+  return true;
 }
 
 size_t isaychev::countWSpaces(const char * str)

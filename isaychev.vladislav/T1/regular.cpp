@@ -130,7 +130,7 @@ void isaychev::Regular::move(const point_t & newPos)
 
 void isaychev::Regular::scale(double coeff)
 {
-  if(coeff <= 0.0)
+  if (coeff <= 0.0)
   {
     throw std::invalid_argument("wrong coefficient for scale");
   }

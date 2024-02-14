@@ -2,6 +2,20 @@
 #include <iostream>
 #include <stdexcept>
 
+bool isaychev::checkForEmptyStr(const char * str)
+{
+  size_t i = 0;
+  while (str[i] != '\0')
+  {
+    i++;
+  }
+  if (i == 0)
+  {
+    return true;
+  }
+  return false;
+}
+
 void copyString(const char * str, char * str2)
 {
   for (size_t j = 0; str[j] != '\0'; ++j)

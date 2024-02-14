@@ -2,8 +2,9 @@
 #include <cmath>
 #include <iostream>
 #include <iomanip>
+#include "regular.hpp"
 
-double sumUpAreas(isaychev::Shape **const figures, size_t figureCount)
+double sumUpAreas(isaychev::Shape *const* figures, size_t figureCount)
 {
   double sumOfAreas = 0;
   for (size_t j = 0; j < figureCount; j++)
@@ -13,7 +14,7 @@ double sumUpAreas(isaychev::Shape **const figures, size_t figureCount)
   return sumOfAreas;
 }
 
-void isaychev::outputResults(Shape **const figures, size_t figureCount)
+void isaychev::outputResults(Shape *const* figures, size_t figureCount)
 {
   std::cout << std::fixed;
   std::cout << std::setprecision(1) << sumUpAreas(figures, figureCount);

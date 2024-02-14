@@ -9,18 +9,17 @@
 int main()
 {
   using namespace isaychev;
-  size_t capacity = 10;
   Shape * figures[1000] = {};
   const char * scaleStr = "SCALE ";
   char * currDesc = nullptr;
-  size_t figureCount = 0, figDescMistakeCheck = 0;
+  size_t figureCount = 0, figDescMistakeCheck = 0, capacity = 10;
   bool eofCheck = false;
   while (figureCount < 1000)
   {
     try
     {
       currDesc = inputString(std::cin, capacity);
-      if (checkString(currDesc, scaleStr) == 1 || std::cin.eof())
+      if (checkString(currDesc, scaleStr) || std::cin.eof())
       {
         if (std::cin.eof())
         {
