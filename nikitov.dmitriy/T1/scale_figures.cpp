@@ -7,7 +7,7 @@
 double countAreasSum(nikitov::Shape** figures, size_t nFigures)
 {
   double areasSum = 0.0;
-  for(size_t i = 0; i != nFigures; ++i)
+  for (size_t i = 0; i != nFigures; ++i)
   {
     areasSum += figures[i]->getArea();
   }
@@ -40,20 +40,20 @@ void nikitov::scaleFigures(Shape** figures, size_t nFigures, const point_t& isoS
   {
     output << countAreasSum(figures, nFigures);
 
-    for(size_t i = 0; i != nFigures; ++i)
+    for (size_t i = 0; i != nFigures; ++i)
     {
       outputFrame(figures[i], output);
     }
     output << '\n';
 
-    for(size_t i = 0; i != nFigures; ++i)
+    for (size_t i = 0; i != nFigures; ++i)
     {
       scaleFigure(figures[i], isoScaleCenter, ratio);
     }
 
     output << countAreasSum(figures, nFigures);
 
-    for(size_t i = 0; i != nFigures; ++i)
+    for (size_t i = 0; i != nFigures; ++i)
     {
       outputFrame(figures[i], output);
     }

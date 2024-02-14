@@ -27,13 +27,13 @@ int main()
       return 2;
     }
   }
-  catch (std::invalid_argument& e)
+  catch (const std::invalid_argument& e)
   {
     std::cerr << e.what() << '\n';
     freeArray(figures, nFigures);
     return 1;
   }
-  catch (std::exception& e)
+  catch (const std::exception& e)
   {
     std::cerr << e.what() << '\n';
     return 3;
