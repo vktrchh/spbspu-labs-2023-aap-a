@@ -1,10 +1,9 @@
 #include "inputArray.hpp"
 #include <iomanip>
 
-char* stepanov::inputArray(std::istream& input)
+char* stepanov::inputArray(std::istream& input, size_t& sizeString)
 {
   char* string = nullptr;
-  size_t sizeString = 20;
   char symbol = 0;
   size_t index = 0;
   try

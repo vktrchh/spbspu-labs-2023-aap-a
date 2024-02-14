@@ -4,6 +4,6 @@
 
 namespace stepanov
 {
-  char* inputArray(std::istream& input);
+  char* inputArray(std::istream& input, size_t& sizeString);
 }
 #endif
