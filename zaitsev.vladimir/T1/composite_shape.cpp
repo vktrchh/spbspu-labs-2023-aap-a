@@ -214,6 +214,10 @@ zaitsev::point_t zaitsev::CompositeShape::getCenter() const
 
 std::ostream& zaitsev::operator<<(std::ostream& output, const CompositeShape& shape)
 {
+  if (shape.empty())
+  {
+    throw std::runtime_error("Shape has no components");
+  }
   std::ios format_holder(nullptr);
   format_holder.copyfmt(output);
   output.precision(1);
