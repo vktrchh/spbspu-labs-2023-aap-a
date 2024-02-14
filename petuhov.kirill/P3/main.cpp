@@ -42,7 +42,7 @@ int main()
     std::cerr << e.what();
     return 1;
   }
-  
+
   petuhov::removeSpaces(firstString, cloneString);
   petuhov::substractString(firstString, secondString);
   std::cout << firstString << "\n" << cloneString << "\n";
