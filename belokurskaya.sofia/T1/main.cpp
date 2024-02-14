@@ -44,7 +44,7 @@ int main()
 
       if (command == "RECTANGLE")
       {
-        double lower_left_x, lower_left_y, upper_right_x, upper_right_y;
+        double lower_left_x = 0.0, lower_left_y = 0.0, upper_right_x = 0.0, upper_right_y = 0.0;
         if (!(inputStream >> lower_left_x >> lower_left_y >> upper_right_x >> upper_right_y))
         {
           continue;
@@ -63,7 +63,7 @@ int main()
       }
       else if (command == "TRIANGLE")
       {
-        double vertex1_x, vertex1_y, vertex2_x, vertex2_y, vertex3_x, vertex3_y;
+        double vertex1_x = 0.0, vertex1_y = 0.0, vertex2_x = 0.0, vertex2_y = 0.0, vertex3_x = 0.0, vertex3_y = 0.0;
         if (!(inputStream >> vertex1_x >> vertex1_y >> vertex2_x >> vertex2_y >> vertex3_x >> vertex3_y))
         {
           continue;
@@ -88,7 +88,7 @@ int main()
       }
       else if (command == "CONCAVE")
       {
-        double vertex1_x, vertex1_y, vertex2_x, vertex2_y, vertex3_x, vertex3_y, vertex4_x, vertex4_y;
+        double vertex1_x = 0.0, vertex1_y = 0.0, vertex2_x = 0.0, vertex2_y = 0.0, vertex3_x = 0.0, vertex3_y = 0.0, vertex4_x = 0.0, vertex4_y = 0.0;
         if (!(inputStream >> vertex1_x >> vertex1_y >> vertex2_x >> vertex2_y >> vertex3_x >> vertex3_y >> vertex4_x >> vertex4_y))
         {
           continue;
@@ -112,7 +112,7 @@ int main()
       }
       else if (command == "SCALE")
       {
-        double scale_point_x, scale_point_y, scale_factor;
+        double scale_point_x = 0.0, scale_point_y = 0.0, scale_factor = 0.0;
         if (!(inputStream >> scale_point_x >> scale_point_y >> scale_factor))
         {
           throw std::invalid_argument("Invalid input for scale");
