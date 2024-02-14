@@ -6,86 +6,103 @@
 #include "complexquad.hpp"
 #include "geometric_functions.hpp"
 
+void namestnikov::inputRectangle(std::istream & in, Shape ** shapes, size_t & count)
+{
+  const size_t size = 4;
+  double rectangleParameters[size] = {};
+  for (size_t i = 0; i < size; ++i)
+  {
+    in >> rectangleParameters[i];
+    if (!in)
+    {
+      throw std::invalid_argument("Error in input");
+    }
+  }
+  shapes[count++] = new Rectangle({rectangleParameters[0], rectangleParameters[1]}, {rectangleParameters[2], rectangleParameters[3]});
+}
+
+void namestnikov::inputCircle(std::istream & in, Shape ** shapes, size_t & count)
+{
+  const size_t size = 3;
+  double circleParameters[size] = {};
+  for (size_t i = 0; i < size; ++i)
+  {
+    in >> circleParameters[i];
+    if (!in)
+    {
+      throw std::invalid_argument("Error in input");
+    }
+  }
+  shapes[count++] = new Circle({circleParameters[0], circleParameters[1]}, circleParameters[2]);
+}
+
+void namestnikov::inputComplexquad(std::istream & in, Shape ** shapes, size_t & count)
+{
+  const size_t size = 8;
+  double complexquadParameters[size] = {};
+  for (size_t i = 0; i < size; ++i)
+  {
+    in >> complexquadParameters[i];
+    if (!in)
+    {
+      throw std::invalid_argument("Error in input");
+    }
+  }
+  point_t points[4] = {};
+  for (size_t i = 0; i < 8; i += 2)
+  {
+    points[i / 2] = {complexquadParameters[i], complexquadParameters[i + 1]};
+  }
+  shapes[count++] = new Complexquad(points[0], points[1], points[2], points[3]);
+}
+
 namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count)
 {
-  std::string possibleShapesNames[3] = {"RECTANGLE", "CIRCLE", "COMPLEXQUAD"};
-  size_t shapesParametersCount[3] = {4, 3, 8};
   std::string currentShapeName = "";
   Shape ** currentShapes = nullptr;
   Shape ** oldShapes = nullptr;
-  while (in >> currentShapeName)
+  while ((in >> currentShapeName) && (currentShapeName != "SCALE"))
   {
-    if (currentShapeName == "SCALE")
-    {
-      break;
-    }
-    else if (currentShapeName == "")
+    if (currentShapeName == "")
     {
       std::cerr << "Wrong shape name\n";
     }
     else
     {
-      for (size_t i = 0; i < 3; ++i)
+      oldShapes = currentShapes;
+      currentShapes = new Shape * [count + 1];
+      if (oldShapes)
       {
-        std::string shapeName = possibleShapesNames[i];
-        size_t possibleSize = shapesParametersCount[i];
-        if (currentShapeName == shapeName)
+        for (size_t i = 0; i < count; ++i)
         {
-          double currentParameters[possibleSize]{};
-          for (size_t i = 0; i < possibleSize; ++i)
-          {
-            in >> currentParameters[i];
-          }
-          if (!in)
-          {
-            if (currentShapes != nullptr)
-            {
-              namestnikov::deleteShapes(currentShapes, count);
-            }
-            throw std::invalid_argument("Error in input");
-          }
-          oldShapes = currentShapes;
-          currentShapes = new Shape * [count + 1];
-          if (oldShapes)
-          {
-            for (size_t i = 0; i < count; ++i)
-            {
-              currentShapes[i] = oldShapes[i];
-            }
-          }
-          delete [] oldShapes;
-          try
-          {
-            if (currentShapeName == "RECTANGLE")
-            {
-              currentShapes[count] = new Rectangle({currentParameters[0], currentParameters[1]}, {currentParameters[2], currentParameters[3]});
-              ++count;
-            }
-            else if (currentShapeName == "CIRCLE")
-            {
-              currentShapes[count] = new Circle({currentParameters[0], currentParameters[1]}, currentParameters[2]);
-              ++count;
-            }
-            else if (currentShapeName == "COMPLEXQUAD")
-            {
-              point_t firstPoint = {currentParameters[0], currentParameters[1]};
-              point_t secondPoint = {currentParameters[2], currentParameters[3]};
-              point_t thirdPoint = {currentParameters[4], currentParameters[5]};
-              point_t fourthPoint = {currentParameters[6], currentParameters[7]};
-              currentShapes[count] = new Complexquad(firstPoint, secondPoint, thirdPoint, fourthPoint);
-              ++count;
-            }
-          }
-          catch (const std::bad_alloc &)
-          {
-            namestnikov::deleteShapes(currentShapes, count);
-            throw;
-          }
-          catch (const std::exception & e)
-          {
-            std::cerr << "Error: " << e.what() << "\n";
-          }
+          currentShapes[i] = oldShapes[i];
         }
+      }
+      delete [] oldShapes;
+      try
+      {
+        if (currentShapeName == "RECTANGLE")
+        {
+          inputRectangle(in, currentShapes, count);
+        }
+        else if (currentShapeName == "CIRCLE")
+        {
+          inputCircle(in, currentShapes, count);
+        }
+        else if (currentShapeName == "COMPLEXQUAD")
+        {
+          inputComplexquad(in, currentShapes, count);
+        }
+      }
+      catch (const std::bad_alloc &)
+      {
+        namestnikov::deleteShapes(currentShapes, count);
+        throw;
+      }
+      catch (const std::invalid_argument &)
+      {
+        namestnikov::deleteShapes(currentShapes, count);
+        std::cerr << "Error in input\n";
       }
       std::string s = "";
       getline(in, s);

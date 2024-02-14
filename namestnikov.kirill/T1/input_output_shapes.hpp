@@ -7,6 +7,9 @@
 
 namespace namestnikov
 {
+  void inputRectangle(std::istream & in, Shape ** shapes, size_t & count);
+  void inputCircle(std::istream & in, Shape ** shapes, size_t & count);
+  void inputComplexquad(std::istream & in, Shape ** shapes, size_t &  count);
   Shape ** inputShapes(std::istream & in, size_t & count);
   std::ostream & outputShapes(std::ostream & out, const Shape * const * shapes, size_t count);
 }

@@ -17,10 +17,10 @@ namespace namestnikov
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t & p);
     virtual void move(const double dx, const double dy);
+    virtual void unsafeScale(const double coefficient);
   private:
     point_t points_[4];
     point_t getCenter() const;
-    virtual void scale(const double coefficient);
   };
 }
 
