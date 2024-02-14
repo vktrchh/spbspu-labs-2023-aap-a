@@ -4,7 +4,7 @@
 #include <cstring>
 #include "shape.hpp"
 
-zaitsev::CompositeShape::CompositeShape(): 
+zaitsev::CompositeShape::CompositeShape():
     size_(0),
     capacity_(8),
     shapes_(new Shape* [8])
