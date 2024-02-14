@@ -28,4 +28,4 @@ namespace zaitsev
     Shape** shapes_;
   };
 }
-#endif COMPOSITE_SHAPE_HPP
+#endif
