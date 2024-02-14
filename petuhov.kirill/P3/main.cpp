@@ -7,7 +7,7 @@ int main()
 {
   char *firstString = nullptr;
   char *cloneString = nullptr;
-  size_t length = 0;
+  size_t length = 1;
 
   try
   {
