@@ -9,10 +9,15 @@ int main()
   try
   {
     string = strelyaev::getString(std::cin);
+    if (string == nullptr)
+    {
+      delete [] string;
+      std::cerr << "Unable to create string\n";
+    }
     if ((string[0] == '\n') || (string[0] == '\0'))
     {
       delete [] string;
-      std::cerr << "Unable to create string.";
+      std::cerr << "Unable to create string\n";
     }
   }
   catch (const std::logic_error & e)
