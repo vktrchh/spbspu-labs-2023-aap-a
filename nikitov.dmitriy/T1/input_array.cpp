@@ -5,7 +5,7 @@
 #include "shape.hpp"
 #include "insert_figures.hpp"
 
-void recognizeScaleParameters(std::string line, nikitov::point_t& isoScaleCenter, double& ratio)
+void nikitov::recognizeScaleParameters(std::string line, point_t& isoScaleCenter, double& ratio)
 {
   std::string name = "SCALE";
   line = line.substr(name.length());
@@ -14,7 +14,7 @@ void recognizeScaleParameters(std::string line, nikitov::point_t& isoScaleCenter
   double coordinates[3] = {};
   for (size_t i = 0; i != 3; ++i)
   {
-    coordinates[i] = std::stod(cLine, &coordinatePointer);
+    coordinates[i] = std::stod(cLine, std::addressof(coordinatePointer));
     cLine += coordinatePointer;
   }
   isoScaleCenter = { coordinates[0], coordinates[1] };
@@ -23,7 +23,7 @@ void recognizeScaleParameters(std::string line, nikitov::point_t& isoScaleCenter
 
 nikitov::Shape** increaseArray(nikitov::Shape** figures, size_t nFigures)
 {
-  nikitov::Shape** newFigures = new nikitov::Shape*[nFigures + 1];
+  nikitov::Shape** newFigures = new nikitov::Shape*[nFigures + 1]{ nullptr };
   for (size_t i = 0; i != nFigures; ++i)
   {
     newFigures[i] = figures[i];
@@ -40,13 +40,12 @@ void nikitov::freeArray(Shape** figures, size_t nFigures)
   delete[] figures;
 }
 
-nikitov::Shape** nikitov::inputArray(std::string& line, size_t& nFigures, point_t& isoScaleCenter, double& ratio, std::istream& input)
+nikitov::Shape** nikitov::inputArray(std::string& line, size_t& nFigures, bool& isErrorInProgram, std::istream& input)
 {
-  bool isErrorInProgram = false;
-  Shape** figures = new Shape*[1];
+  Shape** figures = new Shape*[1]{ nullptr };
   try
   {
-    while (input)
+    while (input || line.find("SCALE") != 0)
     {
       std::getline(input, line);
       if (!input)
@@ -54,20 +53,9 @@ nikitov::Shape** nikitov::inputArray(std::string& line, size_t& nFigures, point_
         throw std::logic_error("Error: Wrong input");
       }
 
-      bool isErrorInIteration = false;
       try
       {
-        if (line.find("SCALE") == 0)
-        {
-          recognizeScaleParameters(line, isoScaleCenter, ratio);
-
-          if (isErrorInProgram)
-          {
-            std::cerr << "Error: Wrong coordinates for figures\n";
-          }
-          return figures;
-        }
-        else if (line.find("RECTANGLE") == 0)
+        if (line.find("RECTANGLE") == 0)
         {
           figures[nFigures] = insertRectangle(line);
         }
@@ -79,18 +67,13 @@ nikitov::Shape** nikitov::inputArray(std::string& line, size_t& nFigures, point_
         {
           figures[nFigures] = insertRegular(line);
         }
-        else
-        {
-          isErrorInIteration = true;
-        }
       }
-      catch (std::invalid_argument&)
+      catch (const std::invalid_argument&)
       {
-        isErrorInIteration = true;
         isErrorInProgram = true;
       }
 
-      if (!isErrorInIteration)
+      if (figures[nFigures] != nullptr)
       {
         ++nFigures;
         Shape** tempFigures = increaseArray(figures, nFigures);

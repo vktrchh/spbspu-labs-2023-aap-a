@@ -10,14 +10,16 @@ int main()
   using namespace nikitov;
   std::string line;
   size_t nFigures = 0;
-  point_t isoScaleCenter = {};
-  double ratio = 0;
   Shape** figures = nullptr;
+  bool isErrorInProgram = false;
   try
   {
-    figures = inputArray(line, nFigures, isoScaleCenter, ratio, std::cin);
+    figures = inputArray(line, nFigures, isErrorInProgram, std::cin);
     if (nFigures != 0)
     {
+      point_t isoScaleCenter = {};
+      double ratio = 0;
+      recognizeScaleParameters(line, isoScaleCenter, ratio);
       scaleFigures(figures, nFigures, isoScaleCenter, ratio, std::cout);
     }
     else
@@ -37,6 +39,11 @@ int main()
   {
     std::cerr << e.what() << '\n';
     return 3;
+  }
+
+  if (isErrorInProgram)
+  {
+    std::cerr << "Error: Wrong coordinates for figures\n";
   }
 
   freeArray(figures, nFigures);
