@@ -7,6 +7,7 @@ int main()
 {
   char *firstString = nullptr;
   char *cloneString = nullptr;
+  char *secondString = nullptr;
   size_t length = 0;
 
   try
@@ -15,30 +16,22 @@ int main()
   }
   catch (std::exception &e)
   {
-    delete[] firstString;
     std::cerr << e.what();
     return 1;
   }
-  while (firstString[length] != '\0')
+  while (firstString[length] != '\0') 
   {
     ++length;
   }
   try
   {
-    cloneString = new char[length+1];
-    for (size_t i = 0; i <= length; ++i)
-    {
-      cloneString[i] = firstString[i];
-    }
+    cloneString = new char[length +1];
   }
-  catch (std::bad_alloc &e)
+  catch (std::exception & e)
   {
     delete[] firstString;
-    std::cerr << "Not enough memory for clone string";
-    return 1;
+    std::cerr << "Error while creating cloneString";
   }
-  char *secondString = nullptr;
-
   try
   {
     secondString = petuhov::streamToString(std::cin);
@@ -46,13 +39,12 @@ int main()
   catch (std::exception &e)
   {
     delete[] firstString;
-    delete[] cloneString;
     std::cerr << e.what();
     return 1;
   }
-
+  
+  petuhov::removeSpaces(firstString, cloneString);
   petuhov::substractString(firstString, secondString);
-  petuhov::removeSpaces(cloneString);
   std::cout << firstString << "\n" << cloneString << "\n";
   delete[] firstString;
   delete[] cloneString;

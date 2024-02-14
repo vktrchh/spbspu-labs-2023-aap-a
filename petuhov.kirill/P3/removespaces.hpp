@@ -3,7 +3,7 @@
 
 namespace petuhov
 {
-  void removeSpaces(char * string);
+  char * removeSpaces(const char * string, char * output);
 }
 
 #endif
