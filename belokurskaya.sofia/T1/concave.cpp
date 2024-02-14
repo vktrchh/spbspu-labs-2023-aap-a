@@ -13,7 +13,7 @@ belokurskaya::Concave::Concave(const point_t & vertex1, const point_t & vertex2,
     {
       throw std::invalid_argument("Fourth vertex must be inside the triangle formed by the first three vertices");
     }
-    if (isConcave(vertex1_, vertex2_, vertex3_, vertex4_))
+    if (!isConcave(vertex1_, vertex2_, vertex3_, vertex4_))
     {
       throw std::invalid_argument("The vertices do not form a concave quadrilateral");
     }
@@ -103,15 +103,16 @@ bool belokurskaya::Concave::isInsideTriangle(const point_t& p1, const point_t& p
 bool belokurskaya::Concave::isConcave(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4)
 {
   double cross_product1 = (p2.x - p1.x) * (p3.y - p1.y) - (p2.y - p1.y) * (p3.x - p1.x);
-  double cross_product2 = (p3.x - p2.x) * (p4.y - p2.y) - (p3.y - p2.y) * (p4.x - p2.x);
-  double cross_product3 = (p4.x - p3.x) * (p1.y - p3.y) - (p4.y - p3.y) * (p1.x - p3.x);
-  double cross_product4 = (p1.x - p4.x) * (p2.y - p4.y) - (p1.y - p4.y) * (p2.x - p4.x);
-  int sign_changes = 0;
-  if ((cross_product1 > 0) != (cross_product2 > 0)) sign_changes++;
-  if ((cross_product2 > 0) != (cross_product3 > 0)) sign_changes++;
-  if ((cross_product3 > 0) != (cross_product4 > 0)) sign_changes++;
-  if ((cross_product4 > 0) != (cross_product1 > 0)) sign_changes++;
-  return sign_changes > 0;
+    double cross_product2 = (p3.x - p2.x) * (p4.y - p2.y) - (p3.y - p2.y) * (p4.x - p2.x);
+    double cross_product3 = (p4.x - p3.x) * (p1.y - p3.y) - (p4.y - p3.y) * (p1.x - p3.x);
+    double cross_product4 = (p1.x - p4.x) * (p2.y - p4.y) - (p1.y - p4.y) * (p2.x - p4.x);
+
+    int sign_changes = 0;
+    if ((cross_product1 > 0) != (cross_product2 > 0)) sign_changes++;
+    if ((cross_product2 > 0) != (cross_product3 > 0)) sign_changes++;
+    if ((cross_product3 > 0) != (cross_product4 > 0)) sign_changes++;
+    if ((cross_product4 > 0) != (cross_product1 > 0)) sign_changes++;
+    return sign_changes > 0;
 }
 
 double belokurskaya::Concave::calculateTriangleArea(const point_t & p1, const point_t & p2, const point_t & p3) const
