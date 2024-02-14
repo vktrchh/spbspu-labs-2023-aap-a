@@ -77,13 +77,6 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
     oldShapes = currentShapes;
     currentShapes = new Shape * [count + 1]{};
     fillShapesArray(oldShapes, currentShapes, count);
-    //if (oldShapes)
-    //{
-    //  for (size_t i = 0; i < count; ++i)
-    //  {
-    //    currentShapes[i] = oldShapes[i];
-    //  }
-    //}
     delete [] oldShapes;
     try
     {
