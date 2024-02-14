@@ -1,6 +1,6 @@
-#include <cstddef>
 #include "streamtostring.hpp"
 #include "substractString.hpp"
+#include <cstddef>
 
 int main()
 {
@@ -12,6 +12,7 @@ int main()
   }
   catch (std::exception & e)
   {
+    delete[] firstString;
     std::cout << e.what();
     return 1;
   }
@@ -23,6 +24,7 @@ int main()
   }
   catch (std::exception & e)
   {
+    delete[] secondString;
     std::cout << e.what();
     return 1;
   }
@@ -36,6 +38,7 @@ int main()
   }
   catch (std::exception & e)
   {
+    delete[] substractResult;
     std::cout << e.what();
     return 1;
   }
