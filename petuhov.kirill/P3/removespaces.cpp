@@ -1,7 +1,7 @@
 #include "removespaces.hpp"
 #include <iostream>
 
-char * petuhov::removeSpaces(const char * string, char * output)
+void petuhov::removeSpaces(const char * string, char * output)
 {
   size_t index = 0;
   for (size_t i = 0; string[i] != '\0'; ++i)
