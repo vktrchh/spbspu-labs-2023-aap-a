@@ -13,7 +13,7 @@ void inputRectangle(std::istream& input, Shape** shapes, size_t count)
   {
     input >> tops[i];
   }
-  if (!input) 
+  if (!input)
   {
     throw std::runtime_error("Invalid tops");
   }

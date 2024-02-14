@@ -4,6 +4,5 @@
 #include <iostream>
 
 void outputFrameRectInfo(std::ostream& out, const Shape* shape);
-void findCoefficient(double& a, double& b, double& c, const point_t ver1, const point_t ver2);
-#endif
 
+#endif
