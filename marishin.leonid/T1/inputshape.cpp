@@ -150,7 +150,7 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
 }
 
 
-void marishin::cleanupShapes(Shape** shapes, size_t count)
+void marishin::cleanupShapes(Shape** shapes, size_t& count)
 {
   for (size_t i = 0; i < count; i++)
   {
