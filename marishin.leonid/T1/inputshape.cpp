@@ -72,14 +72,14 @@ marishin::Shape* marishin::readShape(std::istream& in, const std::string& curren
       throw std::invalid_argument("Unknown shape type");
     }
   }
-  catch (const std::bad_alloc& e)
-  {
-    cleanupShapes(currentShapes, shapeCount);
-    throw;
-  }
   catch (const std::exception& e)
   {
     std::cerr << e.what() << '\n';
+    continue;
+  }
+  catch (const std::bad_alloc& e)
+  {
+    cleanupShapes(currentShapes, shapeCount);
     throw;
   }
 }
