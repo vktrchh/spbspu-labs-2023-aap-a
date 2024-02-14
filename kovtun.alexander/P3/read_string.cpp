@@ -45,7 +45,7 @@ char * kovtun::readString(std::istream & in)
         throw e;
       }
 
-      for (int i = 0; i < charIndex; i++)
+      for (size_t i = 0; i < charIndex; i++)
       {
         copy[i] = input[i];
       }
@@ -67,7 +67,7 @@ size_t kovtun::getStringLength(const char * string)
   }
 
   size_t length = 0;
-  for (int i = 0; string[i] != '\0'; i++)
+  for (size_t i = 0; string[i] != '\0'; i++)
   {
     length++;
   }
