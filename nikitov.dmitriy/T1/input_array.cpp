@@ -45,7 +45,7 @@ nikitov::Shape** nikitov::inputArray(std::string& line, size_t& nFigures, bool& 
   Shape** figures = new Shape*[1]{ nullptr };
   try
   {
-    while (input || line.find("SCALE") != 0)
+    while (input && line.find("SCALE") != 0)
     {
       std::getline(input, line);
       if (!input)
