@@ -6,11 +6,10 @@
 
 namespace grechishnikov
 {
-  class Triangle : public Shape
+  class Triangle: public Shape
   {
   public:
     Triangle(const point_t& a, const point_t& b, const point_t& c);
-    Triangle();
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t& pos);

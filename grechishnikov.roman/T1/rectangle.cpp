@@ -1,11 +1,11 @@
 #include "rectangle.hpp"
 #include <stdexcept>
 
-grechishnikov::Rectangle::Rectangle(const point_t& lCorner, const point_t& rCorner):
-  lCorner_(lCorner),
-  rCorner_(rCorner)
+grechishnikov::Rectangle::Rectangle(const point_t& lowerLeftCorner, const point_t& upperRightCorner):
+  lowerLeftCorner_(lowerLeftCorner),
+  upperRightCorner_(upperRightCorner)
 {
-  if (rCorner.x <= lCorner.x || rCorner.y <= lCorner.y)
+  if (upperRightCorner.x <= lowerLeftCorner.x || upperRightCorner.y <= lowerLeftCorner.y)
   {
     throw std::invalid_argument("Invalid parameters");
   }
@@ -13,36 +13,36 @@ grechishnikov::Rectangle::Rectangle(const point_t& lCorner, const point_t& rCorn
 
 double grechishnikov::Rectangle::getArea() const
 {
-  return (rCorner_.x - lCorner_.x) * (rCorner_.y - lCorner_.y);
+  return (upperRightCorner_.x - lowerLeftCorner_.x) * (upperRightCorner_.y - lowerLeftCorner_.y);
 }
 
 grechishnikov::rectangle_t grechishnikov::Rectangle::getFrameRect() const
 {
-  double width = rCorner_.x - lCorner_.x;
-  double height = rCorner_.y - lCorner_.y;
-  point_t pos = { lCorner_.x + width / 2, lCorner_.y + height / 2 };
+  double width = upperRightCorner_.x - lowerLeftCorner_.x;
+  double height = upperRightCorner_.y - lowerLeftCorner_.y;
+  point_t pos = { lowerLeftCorner_.x + width / 2, lowerLeftCorner_.y + height / 2 };
   return { width, height, pos };
 }
 
 void grechishnikov::Rectangle::move(const point_t& pos)
 {
-  point_t aPos = { (rCorner_.x + lCorner_.x) / 2, (rCorner_.y + lCorner_.y) / 2 };
+  point_t aPos = { (upperRightCorner_.x + lowerLeftCorner_.x) / 2, (upperRightCorner_.y + lowerLeftCorner_.y) / 2 };
   move(pos.x - aPos.x, pos.y - aPos.y);
 }
 
 void grechishnikov::Rectangle::move(double dx, double dy)
 {
-  lCorner_.x += dx;
-  lCorner_.y += dy;
-  rCorner_.x += dx;
-  rCorner_.y += dy;
+  lowerLeftCorner_.x += dx;
+  lowerLeftCorner_.y += dy;
+  upperRightCorner_.x += dx;
+  upperRightCorner_.y += dy;
 }
 
 void grechishnikov::Rectangle::scale(double rate)
 {
-  point_t aPos = { (rCorner_.x + lCorner_.x) / 2, (rCorner_.y + lCorner_.y) / 2 };
-  lCorner_.x = aPos.x + (lCorner_.x - aPos.x) * rate;
-  lCorner_.y = aPos.y + (lCorner_.y - aPos.y) * rate;
-  rCorner_.x = aPos.x + (rCorner_.x - aPos.x) * rate;
-  rCorner_.y = aPos.y + (rCorner_.y - aPos.y) * rate;
+  point_t aPos = { (upperRightCorner_.x + lowerLeftCorner_.x) / 2, (upperRightCorner_.y + lowerLeftCorner_.y) / 2 };
+  lowerLeftCorner_.x = aPos.x + (lowerLeftCorner_.x - aPos.x) * rate;
+  lowerLeftCorner_.y = aPos.y + (lowerLeftCorner_.y - aPos.y) * rate;
+  upperRightCorner_.x = aPos.x + (upperRightCorner_.x - aPos.x) * rate;
+  upperRightCorner_.y = aPos.y + (upperRightCorner_.y - aPos.y) * rate;
 }

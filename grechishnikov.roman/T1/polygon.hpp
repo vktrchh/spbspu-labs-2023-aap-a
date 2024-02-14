@@ -7,7 +7,7 @@
 
 namespace grechishnikov
 {
-  class Polygon : public Shape
+  class Polygon: public Shape
   {
   public:
     Polygon(const point_t* points, size_t size);

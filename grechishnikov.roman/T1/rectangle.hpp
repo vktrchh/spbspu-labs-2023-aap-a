@@ -6,7 +6,7 @@
 
 namespace grechishnikov
 {
-  class Rectangle : public Shape
+  class Rectangle: public Shape
   {
   public:
     Rectangle(const point_t& lCorner, const point_t& rCorner);
@@ -16,8 +16,8 @@ namespace grechishnikov
     virtual void move(double dx, double dy);
     virtual void scale(double rate);
   private:
-    point_t lCorner_;
-    point_t rCorner_;
+    point_t lowerLeftCorner_;
+    point_t upperRightCorner_;
   };
 }
 

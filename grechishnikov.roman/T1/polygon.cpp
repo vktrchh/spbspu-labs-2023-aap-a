@@ -19,10 +19,9 @@ grechishnikov::Polygon::Polygon(const grechishnikov::point_t* points, size_t siz
   }
   try
   {
-    Triangle pTri[size - 2];
     for (size_t i = 2; i < size; i++)
     {
-      pTri[i - 2] = { points[0], points[i - 1], points[i] };
+      Triangle triangle(points[0], points[i - 1], points[i]);
     }
   }
   catch (const std::logic_error& e)
@@ -39,16 +38,11 @@ grechishnikov::Polygon::~Polygon()
 
 double grechishnikov::Polygon::getArea() const
 {
-  Triangle pTri[size_ - 2];
+  double result = 0;
   for (size_t i = 2; i < size_; i++)
   {
-    pTri[i - 2] = { points_[0], points_[i - 1], points_[i] };
-  }
-
-  double result = 0;
-  for (size_t i = 0; i < size_ - 2; i++)
-  {
-    result += pTri[i].getArea();
+    Triangle triangle(points_[0], points_[i - 1], points_[i]);
+    result += triangle.getArea();
   }
   return result;
 }
