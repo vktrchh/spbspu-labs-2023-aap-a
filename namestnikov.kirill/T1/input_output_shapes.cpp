@@ -28,10 +28,10 @@ void namestnikov::inputCircle(std::istream & in, Shape ** shapes, size_t & count
   for (size_t i = 0; i < size; ++i)
   {
     in >> circleParameters[i];
-  }
-  if (!in)
-  {
-    throw std::invalid_argument("Error in input");
+    if (!in)
+    {
+      throw std::invalid_argument("Error in input");
+    }
   }
   shapes[count++] = new Circle({circleParameters[0], circleParameters[1]}, circleParameters[2]);
 }
@@ -43,10 +43,10 @@ void namestnikov::inputComplexquad(std::istream & in, Shape ** shapes, size_t & 
   for (size_t i = 0; i < size; ++i)
   {
     in >> complexquadParameters[i];
-  }
-  if (!in)
-  {
-    throw std::invalid_argument("Error in input");
+    if (!in)
+    {
+      throw std::invalid_argument("Error in input");
+    }
   }
   point_t points[4] = {};
   for (size_t i = 0; i < 8; i += 2)
@@ -63,49 +63,42 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
   Shape ** oldShapes = nullptr;
   while ((in >> currentShapeName) && (currentShapeName != "SCALE"))
   {
-    if (currentShapeName == "")
+    oldShapes = currentShapes;
+    currentShapes = new Shape * [count + 1]{};
+    if (oldShapes)
     {
-      std::cerr << "Wrong shape name\n";
+      for (size_t i = 0; i < count; ++i)
+      {
+        currentShapes[i] = oldShapes[i];
+      }
     }
-    else
+    delete [] oldShapes;
+    try
     {
-      oldShapes = currentShapes;
-      currentShapes = new Shape * [count + 1]{};
-      if (oldShapes)
+      if (currentShapeName == "RECTANGLE")
       {
-        for (size_t i = 0; i < count; ++i)
-        {
-          currentShapes[i] = oldShapes[i];
-        }
+        inputRectangle(in, currentShapes, count);
       }
-      delete [] oldShapes;
-      try
+      else if (currentShapeName == "CIRCLE")
       {
-        if (currentShapeName == "RECTANGLE")
-        {
-          inputRectangle(in, currentShapes, count);
-        }
-        else if (currentShapeName == "CIRCLE")
-        {
-          inputCircle(in, currentShapes, count);
-        }
-        else if (currentShapeName == "COMPLEXQUAD")
-        {
-          inputComplexquad(in, currentShapes, count);
-        }
+        inputCircle(in, currentShapes, count);
       }
-      catch (const std::bad_alloc &)
+      else if (currentShapeName == "COMPLEXQUAD")
       {
-        namestnikov::deleteShapes(currentShapes, count);
-        throw;
+        inputComplexquad(in, currentShapes, count);
       }
-      catch (const std::invalid_argument & e)
-      {
-        std::cerr << "Error: " << e.what() << "\n";
-      }
-      std::string s = "";
-      getline(in, s);
     }
+    catch (const std::bad_alloc &)
+    {
+      namestnikov::deleteShapes(currentShapes, count);
+      throw;
+    }
+    catch (const std::invalid_argument & e)
+    {
+      std::cerr << "Error: " << e.what() << "\n";
+    }
+    std::string skippedLine = "";
+    getline(in, skippedLine);
   }
   return currentShapes;
 }
