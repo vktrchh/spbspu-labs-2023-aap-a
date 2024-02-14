@@ -13,11 +13,13 @@ int main()
     {
       delete [] string;
       std::cerr << "Unable to create string\n";
+      return 1;
     }
     if ((string[0] == '\n') || (string[0] == '\0'))
     {
       delete [] string;
       std::cerr << "Unable to create string\n";
+      return 1;
     }
   }
   catch (const std::logic_error & e)
