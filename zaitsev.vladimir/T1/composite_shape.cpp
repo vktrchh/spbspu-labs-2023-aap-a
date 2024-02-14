@@ -5,6 +5,7 @@
 #include "shape.hpp"
 #include "base-types.hpp"
 #include "geometric_functions.hpp"
+#include "shapes_i_o.hpp"
 
 zaitsev::CompositeShape::CompositeShape():
     size_(0),
@@ -144,7 +145,7 @@ const zaitsev::Shape& zaitsev::CompositeShape::operator[](size_t pos) const
 
 bool zaitsev::CompositeShape::empty() const
 {
-  return size_ > 0 ? true : false;
+  return size_ == 0 ? true : false;
 }
 
 size_t zaitsev::CompositeShape::size() const
@@ -182,9 +183,10 @@ zaitsev::rectangle_t zaitsev::CompositeShape::getFrameRect() const
 
 void zaitsev::CompositeShape::move(const point_t& dest_pos)
 {
+  point_t pos = getCenter();
   for (size_t i = 0; i < size_; ++i)
   {
-    shapes_[i]->move(dest_pos);
+    shapes_[i]->move(dest_pos.x - pos.x, dest_pos.y - pos.y);
   }
 }
 
@@ -198,10 +200,6 @@ void zaitsev::CompositeShape::move(double x_shift, double y_shift)
 
 void zaitsev::CompositeShape::scale(double factor)
 {
-  if (factor <= 0)
-  {
-    throw std::invalid_argument("Scale factor must be positive");
-  }
   point_t center = getCenter();
   for (size_t i = 0; i < size_; ++i)
   {
@@ -212,4 +210,27 @@ void zaitsev::CompositeShape::scale(double factor)
 zaitsev::point_t zaitsev::CompositeShape::getCenter() const
 {
   return getFrameRect().pos;
+}
+
+std::ostream& zaitsev::operator<<(std::ostream& output, const CompositeShape& shape)
+{
+  std::ios format_holder(nullptr);
+  format_holder.copyfmt(output);
+  output.precision(1);
+  output.setf(std::ios::fixed);
+
+  double area = 0;
+  for (size_t i = 0; i < shape.size(); ++i)
+  {
+    area += shape[i].getArea();
+  }
+  output << area;
+  for (size_t i = 0; i < shape.size(); ++i)
+  {
+    rectangle_t frame = shape[i].getFrameRect();
+    output << " " << frame.pos.x - frame.width / 2 << " " << frame.pos.y - frame.height / 2;
+    output << " " << frame.pos.x + frame.width / 2 << " " << frame.pos.y + frame.height / 2;
+  }
+  output.copyfmt(format_holder);
+  return output;
 }

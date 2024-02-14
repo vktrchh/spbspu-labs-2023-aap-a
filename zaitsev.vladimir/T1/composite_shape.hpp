@@ -1,6 +1,7 @@
 #ifndef COMPOSITE_SHAPE_HPP
 #define COMPOSITE_SHAPE_HPP
 #include <cstddef>
+#include <ostream>
 #include "shape.hpp"
 
 namespace zaitsev
@@ -9,10 +10,10 @@ namespace zaitsev
   {
   public:
     CompositeShape();
-    ~CompositeShape();
     CompositeShape(const CompositeShape& other);
-    CompositeShape& operator=(const CompositeShape& other);
     CompositeShape(CompositeShape&& other);
+    ~CompositeShape();
+    CompositeShape& operator=(const CompositeShape& other);
     CompositeShape& operator=(CompositeShape&& other);
     void push_back(Shape* shape);
     void pop_back();
@@ -33,5 +34,7 @@ namespace zaitsev
     Shape** shapes_;
     point_t getCenter() const;
   };
+
+  std::ostream& operator<<(std::ostream& output, const CompositeShape& shape);
 }
 #endif

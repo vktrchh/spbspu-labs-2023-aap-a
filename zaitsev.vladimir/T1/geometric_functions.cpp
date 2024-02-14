@@ -122,3 +122,16 @@ void zaitsev::scale(Shape* shape, double factor, const point_t& iso_center)
   shape->scale(factor);
   shape->move(factor * (start_pos.x - iso_center_pos.x), factor * (start_pos.y - iso_center_pos.y));
 }
+
+void zaitsev::scale(CompositeShape& shape, double factor, const point_t& iso_center)
+{
+  if (factor <= 0)
+  {
+    throw std::invalid_argument("Scale factor must be positive");
+  }
+  point_t start_pos = shape.getFrameRect().pos;
+  shape.move(iso_center);
+  point_t iso_center_pos = shape.getFrameRect().pos;
+  shape.scale(factor);
+  shape.move(factor * (start_pos.x - iso_center_pos.x), factor * (start_pos.y - iso_center_pos.y));
+}

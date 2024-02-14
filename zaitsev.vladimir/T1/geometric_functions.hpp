@@ -2,6 +2,7 @@
 #define GEOM_FUNCTIONS_H
 #include "base-types.hpp"
 #include "shape.hpp"
+#include "composite_shape.hpp"
 
 namespace zaitsev
 {
@@ -11,5 +12,6 @@ namespace zaitsev
   void changeRectangleBounds(point_t& left_corner, point_t& right_corner, const point_t& new_pt);
   rectangle_t transformRectangleBounds(const point_t& left_corner, const point_t& right_corner);
   void scale(Shape* shape, double factor, const point_t& iso_center);
+  void scale(CompositeShape& shape, double factor, const point_t& iso_center);
 }
 #endif

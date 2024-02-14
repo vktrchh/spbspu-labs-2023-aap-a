@@ -4,14 +4,13 @@
 #include "base-types.hpp"
 #include "geometric_functions.hpp"
 #include "shapes_i_o.hpp"
+#include "composite_shape.hpp"
 
 int main()
 {
   using namespace zaitsev;
-
   std::string shape_type;
-  size_t size = 0;
-  Shape* shapes[10'000] = {};
+  CompositeShape shape;
   bool wrong_args = false;
 
   try
@@ -24,24 +23,20 @@ int main()
         if (!std::cin)
         {
           std::cerr << "No scale command entered\n";
-          freeShapes(shapes, size);
           return 1;
         }
 
         if (shape_type == "RECTANGLE")
         {
-          shapes[size] = readRectangle(std::cin);
-          ++size;
+          shape.push_back(readRectangle(std::cin));
         }
         else if (shape_type == "COMPLEXQUAD")
         {
-          shapes[size] = readComplexquad(std::cin);
-          ++size;
+          shape.push_back(readComplexquad(std::cin));
         }
         else if (shape_type == "PARALLELOGRAM")
         {
-          shapes[size] = readParallelogram(std::cin);
-          ++size;
+          shape.push_back(readParallelogram(std::cin));
         }
         else
         {
@@ -58,13 +53,6 @@ int main()
   catch (const std::bad_alloc&)
   {
     std::cerr << "Error: Failed to allocate memory\n";
-    freeShapes(shapes, size);
-    return 1;
-  }
-
-  if (size == 0)
-  {
-    std::cerr << "Error: No shapes to scale\n";
     return 1;
   }
 
@@ -73,24 +61,19 @@ int main()
   try
   {
     readScale(std::cin, center, factor);
-    shapesOutput(std::cout, shapes, size) << "\n";
-    for (size_t i = 0; i < size; ++i)
-    {
-      scale(shapes[i], factor, center);
-    }
-    shapesOutput(std::cout, shapes, size) << "\n";
+    std::cout << shape << "\n";
+    scale(shape, factor, center);
+    std::cout << shape << "\n";
     if (wrong_args)
     {
       std::cerr << "Warning: Some shapes were set incorrectly\n";
     }
   }
-  catch (const std::invalid_argument& e)
+  catch (const std::exception& e)
   {
-    std::cerr << "Error: " << e.what() << "\n";
-    freeShapes(shapes, size);
+    std::cerr << "Error:" << e.what() << "\n";
     return 1;
   }
 
-  freeShapes(shapes, size);
   return 0;
 }
