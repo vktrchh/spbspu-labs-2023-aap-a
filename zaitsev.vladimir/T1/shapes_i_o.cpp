@@ -27,6 +27,14 @@ void zaitsev::readPoint(std::istream& input, point_t& dest)
   dest.y = readValue(input);
 }
 
+void zaitsev::readArray(std::istream& input, point_t* dest, size_t size)
+{
+  for (size_t i = 0; i < size; ++i)
+  {
+    readPoint(input, dest[i]);
+  }
+}
+
 zaitsev::Shape* zaitsev::readRectangle(std::istream& input)
 {
   point_t left = { 0, 0 };
@@ -39,20 +47,14 @@ zaitsev::Shape* zaitsev::readRectangle(std::istream& input)
 zaitsev::Shape* zaitsev::readComplexquad(std::istream& input)
 {
   point_t vertices[4] = {};
-  for (size_t i = 0; i < 4; ++i)
-  {
-    readPoint(input, vertices[i]);
-  }
+  readArray(input, vertices, 4);
   return new Complexquad(vertices[0], vertices[1], vertices[2], vertices[3]);
 }
 
 zaitsev::Shape* zaitsev::readParallelogram(std::istream& input)
 {
   point_t vertices[3] = {};
-  for (size_t i = 0; i < 3; ++i)
-  {
-    readPoint(input, vertices[i]);
-  }
+  readArray(input, vertices, 3);
   return new Parallelogram(vertices[0], vertices[1], vertices[2]);
 }
 

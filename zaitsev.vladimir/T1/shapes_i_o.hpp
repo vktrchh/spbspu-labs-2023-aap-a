@@ -9,6 +9,7 @@ namespace zaitsev
 {
   double readValue(std::istream& input);
   void readPoint(std::istream& input, point_t& dest);
+  void readArray(std::istream& input, point_t* dest, size_t size);
   Shape* readRectangle(std::istream& input);
   Shape* readComplexquad(std::istream& input);
   Shape* readParallelogram(std::istream& input);

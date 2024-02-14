@@ -8,7 +8,7 @@ namespace zaitsev
   class Rectangle: public Shape
   {
   public:
-    Rectangle(const point_t& left_corner, const point_t& right_corner);
+    Rectangle(point_t left_corner, point_t right_corner);
     Rectangle(const Rectangle& other) = default;
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
