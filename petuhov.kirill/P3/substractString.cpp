@@ -2,10 +2,16 @@
 
 char * petuhov::substractString(const char * firstString, size_t firstStringSize, const char * secondString)
 {
-  if (firstStringSize <= 0)
+  if (firstStringSize == 0)
   {
     throw std::logic_error("First string size is under or equal 0");
   }
+
+  if (firstString == nullptr || secondString == nullptr)
+  {
+    throw std::logic_error("String cannot be nullptr");
+  }
+  
   char * result = new char[firstStringSize];
   size_t resultIndex = 0;
 
@@ -18,6 +24,7 @@ char * petuhov::substractString(const char * firstString, size_t firstStringSize
       if (firstString[i] == secondString[j])
       {
         charFound = true;
+        break;
       }
     }
 
