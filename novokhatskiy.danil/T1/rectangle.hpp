@@ -8,7 +8,7 @@ namespace novokhatskiy
   {
 
   public:
-    Rectangle(const point_t &lowerLeftCorner, const point_t &upperRightCorner);
+    Rectangle(const point_t &leftCorner, const point_t &rightCorner);
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t &p);
@@ -16,8 +16,8 @@ namespace novokhatskiy
     virtual void scale(double ratio);
 
   private:
-    point_t lowerLeftCorner_;
-    point_t upperRightCorner_;
+    point_t leftCorner_;
+    point_t rightCorner_;
   };
 }
 

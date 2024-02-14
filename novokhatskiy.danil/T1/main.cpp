@@ -38,7 +38,7 @@ int main()
   }
   catch (const std::bad_alloc&)
   {
-    std::cerr << "Memory error\0";
+    std::cerr << "Memory error\n";
     return 1;
   }
   catch (const std::exception& e)

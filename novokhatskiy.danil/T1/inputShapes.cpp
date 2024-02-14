@@ -95,7 +95,7 @@ novokhatskiy::Shape** novokhatskiy::inputShapes(std::istream& input, size_t& sha
     }
     if (currentName == "")
     {
-      std::cerr << "Wrong input\0";
+      std::cerr << "Wrong input\n";
     }
     if (currentName == "SCALE")
     {
