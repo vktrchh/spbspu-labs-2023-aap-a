@@ -2,7 +2,7 @@
 
 void petuhov::substractString(char * firstString, const char * secondString)
 {
-  size_t resultIndex = 0;
+  size_t index = 0;
 
   for (int i = 0; firstString[i] != '\0'; ++i)
   {
@@ -19,8 +19,8 @@ void petuhov::substractString(char * firstString, const char * secondString)
 
     if (!charFound)
     {
-      firstString[resultIndex++] = firstString[i];
+      firstString[index++] = firstString[i];
     }
   }
-  firstString[resultIndex] = '\0';
+  firstString[index] = '\0';
 }
