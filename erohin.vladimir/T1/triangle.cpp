@@ -53,7 +53,7 @@ void erohin::Triangle::move(double dx, double dy)
 
 erohin::point_t erohin::Triangle::getCenter() const
 {
-  point_t center = {0.0, 0.0};
+  point_t center = { 0.0, 0.0 };
   for (size_t i = 0; i < 3; ++i)
   {
     center.x += vertex_[i].x / 3.0;

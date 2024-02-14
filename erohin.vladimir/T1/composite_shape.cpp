@@ -6,13 +6,8 @@
 erohin::CompositeShape::CompositeShape():
   capacity_(4),
   size_(0),
-  shape_(new Shape* [4])
-{
-  for (size_t i = 0; i < size_; ++i)
-  {
-    shape_[i] = nullptr;
-  }
-}
+  shape_(new Shape* [4]{ nullptr })
+{}
 
 erohin::CompositeShape::CompositeShape(const CompositeShape& rhs):
   capacity_(rhs.capacity_),
