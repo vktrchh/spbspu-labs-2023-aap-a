@@ -1,5 +1,5 @@
 #include "inputArray.hpp"
-#include <istream>
+#include <iomanip>
 
 char* stepanov::inputArray(std::istream& input)
 {
@@ -7,11 +7,45 @@ char* stepanov::inputArray(std::istream& input)
   size_t sizeString = 20;
   char symbol = 0;
   size_t index = 0;
-  string = new char[sizeString];
-  while (input >> symbol && symbol != '\n')
+  try
   {
-    string[index] = symbol;
-    index += 1;
+    string = new char[sizeString] {};
   }
-  return 0;
+  catch (const std::bad_alloc& e)
+  {
+    std::cerr << "Not enough memory: " << e.what() << '\n';
+    return nullptr;
+  }
+  input >> std::noskipws;
+  while (input >> symbol)
+  {
+    if (symbol == '\n')
+    {
+      break;
+    }
+    else if (index == sizeString - 1)
+    {
+      sizeString *= 2;
+      try
+      {
+        char* newString = new char[sizeString] {};
+        for (size_t i = 0; i < index; i++)
+        {
+          newString[i] = string[i];
+        }
+        delete[] string;
+        string = newString;
+      }
+      catch (const std::bad_alloc& e)
+      {
+        std::cerr << "Not enough memory: " << e.what() << '\n';
+        delete[] string;
+        return nullptr;
+      }
+    }
+    string[index++] = symbol;
+  }
+  input >> std::skipws;
+  return string;
 }
+
