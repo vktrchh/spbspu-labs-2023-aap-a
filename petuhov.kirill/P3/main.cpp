@@ -1,4 +1,15 @@
+#include <cstddef>
+#include "streamtostring.hpp"
+
 int main()
 {
-    return 0;
+  char *firstString = nullptr;
+  try
+  {
+    firstString = petuhov::streamToString(std::cin);
+    std::cout << firstString;
+  }
+  catch (...)
+  {
+  }
 }
