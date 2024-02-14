@@ -56,3 +56,20 @@ char * kovtun::readString(std::istream & in)
 
   return input;
 }
+
+size_t kovtun::getStringLength(const char * string)
+{
+  // за кейс с обычным char можно лопатой по лицу
+  if (string == nullptr)
+  {
+    return 0;
+  }
+
+  size_t length = 0;
+  for (int i = 0; string[i] != '\0'; i++)
+  {
+    length++;
+  }
+
+  return length;
+}
