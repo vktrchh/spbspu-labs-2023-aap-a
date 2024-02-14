@@ -15,10 +15,10 @@ using namespace strelyaev;
 int main()
 {
   std::cin >> std::noskipws;
-  const size_t maxshapes = 1000;
-  char * string = nullptr;
+  constexpr size_t maxshapes = 1000;
+  char* string = nullptr;
   size_t current_index = 0;
-  Shape * list[maxshapes] = {nullptr};
+  Shape* list[maxshapes] = {nullptr};
   bool errors = false;
   bool scale_was_met = false;
 
@@ -48,7 +48,7 @@ int main()
       }
       return 2;
     }
-    const char * shape_names[] = { "RECTANGLE", "TRIANGLE", "PARALLELOGRAM", "SCALE"};
+    const char* shape_names[] = { "RECTANGLE", "TRIANGLE", "PARALLELOGRAM", "SCALE"};
     const size_t shapes_count = 4;
     try
     {
@@ -59,7 +59,7 @@ int main()
         {
           if (i == 0)
           {
-            Shape * shape = inputRectangle(string);
+            Shape* shape = inputRectangle(string);
             if (shape != nullptr)
             {
               list[current_index++] = shape;
@@ -67,7 +67,7 @@ int main()
           }
           if (i == 1)
           {
-            Shape * shape = inputTriangle(string);
+            Shape* shape = inputTriangle(string);
             if (shape != nullptr)
             {
               list[current_index++] = shape;
@@ -75,7 +75,7 @@ int main()
           }
           if (i == 2)
           {
-            Shape * shape = inputParallelogram(string);
+            Shape* shape = inputParallelogram(string);
             if (shape != nullptr)
             {
               list[current_index++] = shape;
@@ -107,7 +107,7 @@ int main()
   }
   if (errors)
   {
-    std::cerr << "Some shapes are incorrect!\n";
+    std::cerr << "Some names are incorrect!\n";
   }
   for (size_t i = 0; i < current_index; i++)
   {

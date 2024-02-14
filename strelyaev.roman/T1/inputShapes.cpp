@@ -6,9 +6,18 @@
 #include "triangle.hpp"
 #include "parallelogram.hpp"
 
-strelyaev::Shape * strelyaev::inputRectangle(const char string[])
+void strelyaev::createPoints(const size_t num_points, double* coords_array, point_t* points)
 {
-  const char * coords_string = string + 10;
+  for (size_t i = 0; i < num_points; ++i)
+  {
+    size_t index = i * 2;
+    points[i] = {coords_array[index], coords_array[index + 1]};
+  }
+}
+
+strelyaev::Shape* strelyaev::inputRectangle(const char string[])
+{
+  const char* coords_string = string + 10;
   double coords_array[4]{};
   size_t pos = 0;
   for (size_t i = 0; i < 4; ++i)
@@ -22,17 +31,13 @@ strelyaev::Shape * strelyaev::inputRectangle(const char string[])
   }
   const size_t num_points = 2;
   point_t points[num_points]{};
-  for (size_t i = 0; i < num_points; ++i)
-  {
-    size_t index = i * 2;
-    points[i] = {coords_array[index], coords_array[index + 1]};
-  }
+  createPoints(num_points, coords_array, points);
   return new Rectangle(points[0], points[1]);
 }
 
-strelyaev::Shape * strelyaev::inputTriangle(const char string[])
+strelyaev::Shape* strelyaev::inputTriangle(const char string[])
 {
-  const char * coords_string = string + 9;
+  const char* coords_string = string + 9;
   double coords_array[6]{};
   size_t pos = 0;
   for (size_t i = 0; i < 6; ++i)
@@ -46,17 +51,13 @@ strelyaev::Shape * strelyaev::inputTriangle(const char string[])
   }
   const size_t num_points = 3;
   point_t points[num_points]{};
-  for (size_t i = 0; i < num_points; ++i)
-  {
-    size_t index = i * 2;
-    points[i] = {coords_array[index], coords_array[index + 1]};
-  }
+  createPoints(num_points, coords_array, points);
   return new Triangle(points[0], points[1], points[2]);
 }
 
-strelyaev::Shape * strelyaev::inputParallelogram(const char string[])
+strelyaev::Shape* strelyaev::inputParallelogram(const char string[])
 {
-  const char * coords_string = string + 14;
+  const char* coords_string = string + 14;
   double coords_array[6]{};
   size_t pos = 0;
   for (size_t i = 0; i < 6; ++i)
@@ -70,10 +71,6 @@ strelyaev::Shape * strelyaev::inputParallelogram(const char string[])
   }
   const size_t num_points = 3;
   point_t points[num_points]{};
-  for (size_t i = 0; i < num_points; ++i)
-  {
-    size_t index = i * 2;
-    points[i] = {coords_array[index], coords_array[index + 1]};
-  }
+  createPoints(num_points, coords_array, points);
   return new Parallelogram(points[0], points[1], points[2]);
 }

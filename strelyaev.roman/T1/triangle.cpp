@@ -57,20 +57,14 @@ void strelyaev::Triangle::move(const point_t point)
   point_t center = {center_x, center_y};
   double dx = point.x - center.x;
   double dy = point.y - center.y;
-
-  point_t * points[] = {&p1_, &p2_, &p3_};
-  for (size_t i = 0; i < 3; i++)
-  {
-    points[i]->x += dx;
-    points[i]->y += dy;
-  }
+  this->move(dx, dy);
 }
 
 
 
 void strelyaev::Triangle::move(double offset_x, double offset_y)
 {
-  point_t * points[] = {&p1_, &p2_, &p3_};
+  point_t* points[] = {&p1_, &p2_, &p3_};
   for (size_t i = 0; i < 3; i++)
   {
     points[i]->x += offset_x;
@@ -80,10 +74,14 @@ void strelyaev::Triangle::move(double offset_x, double offset_y)
 
 void strelyaev::Triangle::scale(double k)
 {
+  if (k < 0)
+  {
+    throw std::logic_error("Invalid SCALE argument.");
+  }
   double center_x = (p1_.x + p2_.x + p3_.x) / 3;
   double center_y = (p1_.y + p2_.y + p3_.y) / 3;
   point_t center = {center_x, center_y};
-  point_t * points[] = {&p1_, &p2_, &p3_};
+  point_t* points[] = {&p1_, &p2_, &p3_};
   for (size_t i = 0; i < 3; i++)
   {
     points[i]->x = center.x + (points[i]->x - center.x) * k;

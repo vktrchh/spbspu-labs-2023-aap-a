@@ -6,7 +6,7 @@ namespace strelyaev
   class Rectangle: public Shape
   {
     public:
-     Rectangle(point_t, point_t);
+     Rectangle(point_t lower_left_corner, point_t upper_right_corner);
      virtual double getArea() const;
      virtual rectangle_t getFrameRect() const;
      virtual void move(point_t);

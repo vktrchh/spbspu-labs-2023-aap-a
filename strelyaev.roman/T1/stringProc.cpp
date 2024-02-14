@@ -5,10 +5,10 @@
 #include <ostream>
 #include "inputShapes.hpp"
 
-void strelyaev::scaleCommand(const char * string, Shape * const * list, size_t current_index, std::ostream& out)
+void strelyaev::scaleCommand(const char* string, Shape* const* list, size_t current_index, std::ostream& out)
 {
   size_t pos = 0;
-  const char * argument_string = string + 6;
+  const char* argument_string = string + 6;
   double arguments[3]{};
   for (size_t i = 0; i < 3; ++i)
   {
@@ -18,7 +18,7 @@ void strelyaev::scaleCommand(const char * string, Shape * const * list, size_t c
   scaleShapes(list, current_index, arguments, out);
 }
 
-void strelyaev::toScaleIso(Shape * shape, const point_t point, const double k)
+void strelyaev::toScaleIso(Shape* shape, const point_t point, const double k)
 {
   point_t start = shape->getFrameRect().pos;
   shape->move(point);
@@ -29,7 +29,7 @@ void strelyaev::toScaleIso(Shape * shape, const point_t point, const double k)
   shape->move(-dx, -dy);
 }
 
-void strelyaev::outputShapes(std::ostream & out, Shape * const * list, size_t current_index)
+void strelyaev::outputShapes(std::ostream& out, const Shape* const* list, size_t current_index)
 {
   double sum = 0;
   for (size_t i = 0; i < current_index; i++)
@@ -53,17 +53,17 @@ void strelyaev::outputShapes(std::ostream & out, Shape * const * list, size_t cu
   out << "\n";
 }
 
-void strelyaev::scaleShapes(Shape * const * list, size_t current_index, const double * arguments, std::ostream & out)
+void strelyaev::scaleShapes(Shape* const* list, size_t current_index, const double* arguments, std::ostream& out)
 {
   if (current_index == 0)
   {
     throw std::logic_error("Nothing to scale");
   }
-  const point_t center = {arguments[0], arguments[1]};
   if (arguments[2] < 0)
   {
-    throw std::logic_error("Invalid SCALE argument");
+    throw std::logic_error("Invalid SCALE argument.");
   }
+  const point_t center = {arguments[0], arguments[1]};
   outputShapes(out, list, current_index);
   for (size_t i = 0; i < current_index; i++)
   {
