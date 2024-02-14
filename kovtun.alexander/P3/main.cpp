@@ -18,6 +18,8 @@ int main()
 
     if (firstString[0] == '\0' || secondString[0] == '\0')
     {
+      delete [] firstString;
+      delete [] secondString;
       std::cerr << "empty input\n";
       return 2;
     }
@@ -30,11 +32,21 @@ int main()
   }
   catch (const std::bad_alloc & e)
   {
+    delete [] firstString;
+    delete [] secondString;
+    delete [] loweredString;
+    delete [] mergedString;
+
     std::cerr << e.what() << "\n";
     return 1;
   }
   catch (...)
   {
+    delete [] firstString;
+    delete [] secondString;
+    delete [] loweredString;
+    delete [] mergedString;
+
     std::cerr << "unexpected error occurred\n";
     return 3;
   }
