@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <cstddef>
 #include <cstring>
+#include <algorithm>
 #include "shape.hpp"
 #include "base-types.hpp"
 #include "geometric_functions.hpp"
@@ -86,11 +87,11 @@ void zaitsev::CompositeShape::push_back(Shape* shape)
   }
   if (size_ == capacity_)
   {
-    Shape** temp = new Shape*[capacity_ * 2];
+    Shape** temp = new Shape*[std::max(capacity_ * 2, 8ull)];
     std::memcpy(temp, shapes_, sizeof(Shape*) * size_);
     delete[] shapes_;
     shapes_ = temp;
-    capacity_ *= 2;
+    capacity_ = std::max(capacity_ * 2, 8ull);
   }
   shapes_[size_] = shape;
   ++size_;
