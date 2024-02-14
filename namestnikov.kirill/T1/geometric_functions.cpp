@@ -76,7 +76,7 @@ void namestnikov::fillLineCoefficients(const point_t & p1, const point_t & p2, d
   }
 }
 
-void namestnikov::isoScale(Shape * shape, const point_t & point, double coefficient)
+void namestnikov::isoScale(Shape * shape, const point_t & point, const double coefficient)
 {
   if (coefficient <= 0.0)
   {
@@ -92,6 +92,17 @@ void namestnikov::isoScale(Shape * shape, const point_t & point, double coeffici
     double dy = (oldCenterPoint.y - newCenterPoint.y) * coefficient;
     shape->move(dx, dy);
   }
+}
+
+void namestnikov::unsafeIsoScale(Shape * shape, const point_t & point, const double coefficient)
+{
+  point_t oldCenterPoint = shape->getCenter();
+  shape->move(point);
+  shape->scale(coefficient);
+  point_t newCenterPoint = shape->getCenter();
+  double dx = (oldCenterPoint.x - newCenterPoint.x) * coefficient;
+  double dy = (oldCenterPoint.y - newCenterPoint.y) * coefficient;
+  shape->move(dx, dy);
 }
 
 void namestnikov::deleteShapes(Shape ** shapes, size_t size)

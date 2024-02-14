@@ -31,7 +31,7 @@ int main()
     }
     for (size_t i = 0; i < count; ++i)
     {
-      isoScale(shapes[i], scalePoint, scaleCoefficient);
+      unsafeIsoScale(shapes[i], scalePoint, scaleCoefficient);
     }
     outputShapes(std::cout, shapes, count);
     std::cout << "\n";
