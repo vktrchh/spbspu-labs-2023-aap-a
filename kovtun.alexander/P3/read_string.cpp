@@ -40,6 +40,7 @@ char * kovtun::readString(std::istream & in)
       catch (const std::bad_alloc & e)
       {
         delete [] input;
+        in >> std::skipws;
         std::cerr << "failed to allocate new memory for string\n";
         throw e;
       }
