@@ -14,12 +14,18 @@ int main()
   {
     firstString = kovtun::readString(std::cin);
     size_t firstStringLength = kovtun::getStringLength(firstString);
+    secondString = kovtun::readString(std::cin);
+
+    if (firstString[0] == '\0' || secondString[0] == '\0')
+    {
+      std::cerr << "empty input\n";
+      return 2;
+    }
 
     loweredString = new char[firstStringLength + 1]();
     loweredString[firstStringLength] = '\0';
     kovtun::convertToLowercase(loweredString, firstString);
 
-    secondString = kovtun::readString(std::cin);
     mergedString = kovtun::mergeStrings(firstString, secondString);
   }
   catch (const std::bad_alloc & e)
@@ -29,8 +35,8 @@ int main()
   }
   catch (...)
   {
-    std::cerr << "";
-    return 1;
+    std::cerr << "unexpected error occurred\n";
+    return 3;
   }
 
   std::cout << loweredString << "\n";
