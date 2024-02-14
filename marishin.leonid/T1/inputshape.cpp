@@ -53,34 +53,21 @@ void marishin::readRing(std::istream& in, Shape** currentShapes, size_t& shapeCo
 
 marishin::Shape* marishin::readShape(std::istream& in, const std::string& currentName, Shape** currentShapes, size_t& shapeCount)
 {
-  try
+  if (currentName == "RECTANGLE")
   {
-    if (currentName == "RECTANGLE")
-    {
-      readRectangle(in, currentShapes, shapeCount);
-    }
-    else if (currentName == "TRIANGLE")
-    {
-      readTriangle(in, currentShapes, shapeCount);
-    }
-    else if (currentName == "RING")
-    {
-      readRing(in, currentShapes, shapeCount);
-    }
-    else
-    {
-      throw std::invalid_argument("Unknown shape type");
-    }
+    readRectangle(in, currentShapes, shapeCount);
   }
-  catch (const std::bad_alloc& e)
+  else if (currentName == "TRIANGLE")
   {
-    cleanupShapes(currentShapes, shapeCount);
-    throw;
+    readTriangle(in, currentShapes, shapeCount);
   }
-  catch (const std::exception& e)
+  else if (currentName == "RING")
   {
-    std::cerr << e.what() << '\n';
-    return nullptr;
+    readRing(in, currentShapes, shapeCount);
+  }
+  else
+  {
+    throw std::invalid_argument("Unknown shape type");
   }
 }
 
