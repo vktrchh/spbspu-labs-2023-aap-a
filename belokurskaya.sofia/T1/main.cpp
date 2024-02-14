@@ -88,7 +88,14 @@ int main()
       }
       else if (command == "CONCAVE")
       {
-        double vertex1_x = 0.0, vertex1_y = 0.0, vertex2_x = 0.0, vertex2_y = 0.0, vertex3_x = 0.0, vertex3_y = 0.0, vertex4_x = 0.0, vertex4_y = 0.0;
+        double vertex1_x = 0.0;
+        double vertex1_y = 0.0;
+        double vertex2_x = 0.0;
+        double vertex2_y = 0.0;
+        double vertex3_x = 0.0;
+        double vertex3_y = 0.0;
+        double vertex4_x = 0.0;
+        double vertex4_y = 0.0;
         if (!(inputStream >> vertex1_x >> vertex1_y >> vertex2_x >> vertex2_y >> vertex3_x >> vertex3_y >> vertex4_x >> vertex4_y))
         {
           continue;
