@@ -1,5 +1,6 @@
 #include "rectangle.hpp"
 #include <stdexcept>
+#include "geometric_functions.hpp"
 
 namestnikov::Rectangle::Rectangle(const point_t & leftCorner, const point_t & rightCorner):
   leftCorner_(leftCorner),
@@ -40,21 +41,13 @@ void namestnikov::Rectangle::move(const point_t & p)
 
 void namestnikov::Rectangle::move(const double dx, const double dy)
 {
-  leftCorner_.x += dx;
-  leftCorner_.y += dy;
-  rightCorner_.x += dx;
-  rightCorner_.y += dy;
+  movePoint(leftCorner_, dx, dy);
+  movePoint(rightCorner_, dx, dy);
 }
 
 void namestnikov::Rectangle::unsafeScale(const double coefficient)
 {
   rectangle_t rect = getFrameRect();
-  double dx1 = (rect.pos.x - leftCorner_.x) * coefficient;
-  double dy1 = (rect.pos.y - leftCorner_.y) * coefficient;
-  double dx2 = (rightCorner_.x - rect.pos.x) * coefficient;
-  double dy2 = (rightCorner_.y - rect.pos.y) * coefficient;
-  leftCorner_.x = rect.pos.x - dx1;
-  leftCorner_.y = rect.pos.y - dy1;
-  rightCorner_.x = rect.pos.x + dx2;
-  rightCorner_.y = rect.pos.y + dy2;
+  scalePoint(leftCorner_, rect.pos, coefficient);
+  scalePoint(rightCorner_, rect.pos, coefficient);
 }

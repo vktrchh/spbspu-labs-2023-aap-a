@@ -1,5 +1,6 @@
 #include "circle.hpp"
 #include <stdexcept>
+#include "geometric_functions.hpp"
 
 namestnikov::Circle::Circle(const point_t & center, const double radius):
   circleCenter_(center),
@@ -34,8 +35,7 @@ void namestnikov::Circle::move(const point_t & p)
 
 void namestnikov::Circle::move(const double dx, const double dy)
 {
-  circleCenter_.x += dx;
-  circleCenter_.y += dy;
+  movePoint(circleCenter_, dx, dy);
 }
 
 void namestnikov::Circle::unsafeScale(const double coefficient)
