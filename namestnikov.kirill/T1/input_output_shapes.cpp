@@ -13,13 +13,12 @@ void namestnikov::inputRectangle(std::istream & in, Shape ** shapes, size_t & co
   for (size_t i = 0; i < size; ++i)
   {
     in >> rectangleParameters[i];
-    if (!in)
-    {
-      throw std::invalid_argument("Error in input");
-    }
   }
-  shapes[count] = new Rectangle({rectangleParameters[0], rectangleParameters[1]}, {rectangleParameters[2], rectangleParameters[3]});
-  ++count;
+  if (!in)
+  {
+    throw std::invalid_argument("Error in input\n");
+  }
+  shapes[count++] = new Rectangle({rectangleParameters[0], rectangleParameters[1]}, {rectangleParameters[2], rectangleParameters[3]});
 }
 
 void namestnikov::inputCircle(std::istream & in, Shape ** shapes, size_t & count)
@@ -29,13 +28,12 @@ void namestnikov::inputCircle(std::istream & in, Shape ** shapes, size_t & count
   for (size_t i = 0; i < size; ++i)
   {
     in >> circleParameters[i];
-    if (!in)
-    {
-      throw std::invalid_argument("Error in input");
-    }
   }
-  shapes[count] = new Circle({circleParameters[0], circleParameters[1]}, circleParameters[2]);
-  ++count;
+  if (!in)
+  {
+    throw std::invalid_argument("Error in input");
+  }
+  shapes[count++] = new Circle({circleParameters[0], circleParameters[1]}, circleParameters[2]);
 }
 
 void namestnikov::inputComplexquad(std::istream & in, Shape ** shapes, size_t & count)
@@ -45,18 +43,17 @@ void namestnikov::inputComplexquad(std::istream & in, Shape ** shapes, size_t & 
   for (size_t i = 0; i < size; ++i)
   {
     in >> complexquadParameters[i];
-    if (!in)
-    {
-      throw std::invalid_argument("Error in input");
-    }
+  }
+  if (!in)
+  {
+    throw std::invalid_argument("Error in input");
   }
   point_t points[4] = {};
   for (size_t i = 0; i < 8; i += 2)
   {
     points[i / 2] = {complexquadParameters[i], complexquadParameters[i + 1]};
   }
-  shapes[count] = new Complexquad(points[0], points[1], points[2], points[3]);
-  ++count;
+  shapes[count++] = new Complexquad(points[0], points[1], points[2], points[3]);
 }
 
 namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count)
@@ -73,7 +70,7 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
     else
     {
       oldShapes = currentShapes;
-      currentShapes = new Shape * [count + 1];
+      currentShapes = new Shape * [count + 1]{};
       if (oldShapes)
       {
         for (size_t i = 0; i < count; ++i)
@@ -102,10 +99,9 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
         namestnikov::deleteShapes(currentShapes, count);
         throw;
       }
-      catch (const std::invalid_argument &)
+      catch (const std::invalid_argument & e)
       {
-        namestnikov::deleteShapes(currentShapes, count);
-        std::cerr << "Error in input\n";
+        std::cerr << "Error: " << e.what() << "\n";
       }
       std::string s = "";
       getline(in, s);
