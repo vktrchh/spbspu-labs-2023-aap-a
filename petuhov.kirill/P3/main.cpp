@@ -19,15 +19,15 @@ int main()
     std::cerr << e.what();
     return 1;
   }
-  while (firstString[length] != '\0') 
+  while (firstString[length] != '\0')
   {
     ++length;
   }
   try
   {
-    cloneString = new char[length +1];
+    cloneString = new char[length + 1];
   }
-  catch (std::exception & e)
+  catch (std::exception &e)
   {
     delete[] firstString;
     std::cerr << "Error while creating cloneString";
