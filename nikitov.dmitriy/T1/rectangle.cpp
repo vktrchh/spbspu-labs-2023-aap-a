@@ -48,3 +48,8 @@ void nikitov::Rectangle::scale(double ratio)
   rightCorner_.x = center.x + (center.x - leftCorner_.x);
   rightCorner_.y = center.y + (center.y - leftCorner_.y);
 }
+
+nikitov::Shape* nikitov::Rectangle::clone() const
+{
+  return new Rectangle(leftCorner_, rightCorner_);
+}

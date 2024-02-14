@@ -102,3 +102,8 @@ void nikitov::Regular::scale(double ratio)
   third_.x = first_.x + (third_.x - first_.x) * ratio;
   third_.y = first_.y + (third_.y - first_.y) * ratio;
 }
+
+nikitov::Shape* nikitov::Regular::clone() const
+{
+  return new Regular(first_, second_, third_);
+}

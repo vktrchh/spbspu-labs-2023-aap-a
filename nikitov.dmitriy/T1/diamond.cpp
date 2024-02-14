@@ -122,3 +122,8 @@ void nikitov::Diamond::scale(double ratio)
   third_.x = first_.x - (first_.x - third_.x) * ratio;
   third_.y = first_.y - (first_.y - third_.y) * ratio;
 }
+
+nikitov::Shape* nikitov::Diamond::clone() const
+{
+  return new Diamond(first_, second_, third_);
+}
