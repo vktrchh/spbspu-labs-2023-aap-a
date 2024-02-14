@@ -51,26 +51,6 @@ void marishin::readRing(std::istream& in, Shape** currentShapes, size_t& shapeCo
   currentShapes[shapeCount] = new Ring({ option[0], option[1] }, option[2], option[3]);
 }
 
-marishin::Shape* marishin::readShape(std::istream& in, const std::string& currentName, Shape** currentShapes, size_t& shapeCount)
-{
-  if (currentName == "RECTANGLE")
-  {
-    readRectangle(in, currentShapes, shapeCount);
-  }
-  else if (currentName == "TRIANGLE")
-  {
-    readTriangle(in, currentShapes, shapeCount);
-  }
-  else if (currentName == "RING")
-  {
-    readRing(in, currentShapes, shapeCount);
-  }
-  else
-  {
-    throw std::invalid_argument("Unknown shape type");
-  }
-}
-
 marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
 {
   const size_t numShapes = 3;
@@ -99,7 +79,18 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
         ++shapeCount;
         try
         {
-          readShape(in, currentName, currentShapes, shapeCount);
+          if (currentName == "RECTANGLE")
+          {
+            readRectangle(in, currentShapes, shapeCount);
+          }
+          else if (currentName == "TRIANGLE")
+          {
+            readTriangle(in, currentShapes, shapeCount);
+          }
+          else if (currentName == "RING")
+          {
+            readRing(in, currentShapes, shapeCount);
+          }
         }
         catch (const std::bad_alloc& e)
         {
