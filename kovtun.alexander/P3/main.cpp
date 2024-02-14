@@ -16,7 +16,7 @@ int main()
     size_t firstStringLength = kovtun::getStringLength(firstString);
     secondString = kovtun::readString(std::cin);
 
-    if (firstString[0] == '\0' || secondString[0] == '\0')
+    if (firstString[0] == '\0' && secondString[0] == '\0')
     {
       delete [] firstString;
       delete [] secondString;
