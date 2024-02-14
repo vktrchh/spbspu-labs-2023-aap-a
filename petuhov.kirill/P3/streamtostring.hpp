@@ -4,7 +4,7 @@
 
 namespace petuhov
 {
-  char * streamToString(std::istream & input);
+  char * streamToString(std::istream & input, size_t & stringSize);
 }
 
 #endif
