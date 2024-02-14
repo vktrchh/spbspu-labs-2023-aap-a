@@ -57,9 +57,9 @@ nikitov::point_t identifyThird(const nikitov::point_t& first, const nikitov::poi
 }
 
 nikitov::Diamond::Diamond(const point_t& first, const point_t& second, const point_t& third):
-  first_(identifyFirst(first, second, third),
-  second_(identifySecond(first, second, third),
-  third_(identifyThird(first, second, third)
+  first_(identifyFirst(first, second, third)),
+  second_(identifySecond(first, second, third)),
+  third_(identifyThird(first, second, third))
 {
   size_t status = (first_.x - second_.x == 0 || first_.y - second_.y == 0);
   status += (first_.x - third_.x == 0 || first_.y - third_.y == 0);
