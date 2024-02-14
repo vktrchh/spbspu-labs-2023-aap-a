@@ -86,23 +86,20 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
     {
       if (currentName == shapeNames[i])
       {
+        oldShapes = currentShapes;
+        currentShapes = new marishin::Shape * [shapeCount + 1];
+        if (oldShapes)
+        {
+          for (size_t k = 0; k < shapeCount; k++)
+          {
+            currentShapes[k] = oldShapes[k];
+          }
+        }
+        delete[] oldShapes;
+        ++shapeCount;
         try
         {
-          marishin::Shape* newShape = readShape(in, currentName, currentShapes, shapeCount);
-
-          oldShapes = currentShapes;
-          currentShapes = new marishin::Shape * [shapeCount + 1];
-          if (oldShapes)
-          {
-            for (size_t k = 0; k < shapeCount; k++)
-            {
-              currentShapes[k] = oldShapes[k];
-            }
-          }
-          delete[] oldShapes;
-
-          currentShapes[shapeCount] = newShape;
-          ++shapeCount;
+          readShape(in, currentName, currentShapes, shapeCount);
         }
         catch (const std::bad_alloc& e)
         {
