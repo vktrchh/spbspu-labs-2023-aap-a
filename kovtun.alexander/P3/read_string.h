@@ -6,7 +6,7 @@
 
 namespace kovtun
 {
-  char * readString(std::istream &);
+  char * readString(std::istream & in);
 }
 
 #endif
