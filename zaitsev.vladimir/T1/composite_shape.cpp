@@ -87,11 +87,15 @@ void zaitsev::CompositeShape::push_back(Shape* shape)
   }
   if (size_ == capacity_)
   {
-    Shape** temp = new Shape*[std::max(capacity_ * 2, 8ull)];
+    if (capacity_ == 0)
+    {
+      capacity_ = 4;
+    }
+    Shape** temp = new Shape*[capacity_ * 2];
     std::memcpy(temp, shapes_, sizeof(Shape*) * size_);
     delete[] shapes_;
     shapes_ = temp;
-    capacity_ = std::max(capacity_ * 2, 8ull);
+    capacity_ *= 2;
   }
   shapes_[size_] = shape;
   ++size_;
