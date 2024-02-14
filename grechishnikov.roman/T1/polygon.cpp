@@ -1,7 +1,7 @@
 #include "polygon.hpp"
-#include "triangle.hpp"
 #include <stdexcept>
 #include <iostream>
+#include "triangle.hpp"
 
 grechishnikov::Polygon::Polygon(const grechishnikov::point_t* points, size_t size):
   points_(nullptr),

@@ -1,10 +1,10 @@
 #include "inputShapes.hpp"
+#include <stdexcept>
+#include <cctype>
 #include "rectangle.hpp"
 #include "triangle.hpp"
 #include "polygon.hpp"
 #include "parametersLogic.hpp"
-#include <stdexcept>
-#include <cctype>
 
 grechishnikov::Shape* grechishnikov::inputShape(const char* str)
 {
