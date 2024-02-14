@@ -143,7 +143,7 @@ void zhalilov::inputShapesSource(Shape **shapes, point_t &point, double &ratio, 
 {
   size_t shapeIndex = 0;
   bool hasIncorrectShapes = false;
-  while (true)
+  while (name == "SCALE")
   {
     try
     {
@@ -151,20 +151,10 @@ void zhalilov::inputShapesSource(Shape **shapes, point_t &point, double &ratio, 
       input >> name;
       if (!input)
       {
-        break;
-      }
-      if (name == "SCALE")
-      {
-        input >> point.x >> point.y;
-        input >> ratio;
-        length = shapeIndex;
-        break;
+        throw std::ios_base::failure("input interrupted");
       }
       shapes[shapeIndex] = identifyShape(name, input);
-      if (shapes[shapeIndex])
-      {
-        shapeIndex++;
-      }
+      shapeIndex++;
     }
     catch (const std::invalid_argument &e)
     {
@@ -177,11 +167,9 @@ void zhalilov::inputShapesSource(Shape **shapes, point_t &point, double &ratio, 
     }
   }
 
+  input >> point.x >> point.y;
+  input >> ratio;
   length = shapeIndex;
-  if (!input)
-  {
-    throw std::ios_base::failure("input interrupted");
-  }
   if (ratio <= 0.0)
   {
     throw std::underflow_error("ratio scale should be greater than zero");
