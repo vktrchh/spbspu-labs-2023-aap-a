@@ -8,9 +8,10 @@ namespace piyavkin
   class CompositeShape
   {
   public:
+    CompositeShape();
     double getArea() const;
     rectangle_t getFrameRect() const;
-    void move(point_t bias);
+    void move(const point_t& bias);
     void move(double dx, double dy);
     CompositeShape(CompositeShape&& cs);
     CompositeShape operator=(CompositeShape&& cs);
@@ -20,9 +21,10 @@ namespace piyavkin
     Shape operator[](size_t i) const;
     Shape operator[](size_t i);
     Shape at(size_t i);
-    void scale();
+    void scale(double k);
     void push_back(const Shape* shape);
     void pop_back();
+    ~CompositeShape();
   private:
     Shape** shapes_;
     size_t size_;
