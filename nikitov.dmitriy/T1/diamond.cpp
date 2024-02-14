@@ -2,10 +2,64 @@
 #include <cmath>
 #include <stdexcept>
 
+nikitov::point_t identifyFirst(const nikitov::point_t& first, const nikitov::point_t& second, const nikitov::point_t& third)
+{
+  if (first.x - second.x == 0)
+  {
+    if (first.y - third.y == 0)
+    {
+      return first;
+    }
+    else
+    {
+      return second;
+    }
+  }
+  else
+  {
+    return third;
+  }
+}
+
+nikitov::point_t identifySecond(const nikitov::point_t& first, const nikitov::point_t& second, const nikitov::point_t& third)
+{
+  if (first.x - second.x == 0)
+  {
+    if (first.y - third.y == 0)
+    {
+      return second;
+    }
+    else
+    {
+      return first;
+    }
+  }
+  else
+  {
+    return third;
+  }
+}
+
+nikitov::point_t identifyThird(const nikitov::point_t& first, const nikitov::point_t& second, const nikitov::point_t& third)
+{
+  if (first.x - second.x == 0)
+  {
+    return third;
+  }
+  else if (second.x - third.x == 0)
+  {
+    return first;
+  }
+  else
+  {
+   return second;
+  }
+}
+
 nikitov::Diamond::Diamond(const point_t& first, const point_t& second, const point_t& third):
-  first_(first),
-  second_(second),
-  third_(third)
+  first_(identifyFirst(first, second, third),
+  second_(identifySecond(first, second, third),
+  third_(identifyThird(first, second, third)
 {
   size_t status = (first_.x - second_.x == 0 || first_.y - second_.y == 0);
   status += (first_.x - third_.x == 0 || first_.y - third_.y == 0);
@@ -13,39 +67,6 @@ nikitov::Diamond::Diamond(const point_t& first, const point_t& second, const poi
   if (status < 2)
   {
     throw std::invalid_argument("Error: invalid diamond arguments");
-  }
-
-  point_t temp = first_;
-  if (first_.x - second_.x == 0)
-  {
-    if (first_.y - third_.y != 0)
-    {
-      first_ = second_;
-      second_ = temp;
-    }
-  }
-  else if (first_.x - third_.x == 0)
-  {
-    if (first_.y - second_.x != 0)
-    {
-      first_ = third_;
-      third_ = second_;
-      second_ = temp;
-    }
-  }
-  else
-  {
-    if (second_.y - first_.y == 0)
-    {
-      first_ = second_;
-      second_ = third_;
-      third_ = temp;
-    }
-    else
-    {
-      first_ = third_;
-      third_ = temp;
-    }
   }
 }
 
