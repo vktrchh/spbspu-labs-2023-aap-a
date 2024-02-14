@@ -5,7 +5,7 @@
 
 namespace isaychev
 {
-  char * inputString(std::istream & input);
+  char * inputString(std::istream & input, size_t & capacity);
 }
 
 #endif

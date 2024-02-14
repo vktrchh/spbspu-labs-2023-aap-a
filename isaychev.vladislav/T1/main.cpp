@@ -9,16 +9,17 @@
 int main()
 {
   using namespace isaychev;
+  size_t capacity = 10;
   Shape * figures[1000] = {};
   const char * scaleStr = "SCALE ";
   char * currDesc = nullptr;
-  size_t figuresCount = 0, figDescMistakeCheck = 0;
+  size_t figureCount = 0, figDescMistakeCheck = 0;
   bool eofCheck = false;
-  while (figuresCount < 1000)
+  while (figureCount < 1000)
   {
     try
     {
-      currDesc = inputString(std::cin);
+      currDesc = inputString(std::cin, capacity);
       if (checkString(currDesc, scaleStr) == 1 || std::cin.eof())
       {
         if (std::cin.eof())
@@ -27,11 +28,11 @@ int main()
         }
         break;
       }
-      figures[figuresCount++] = createFigure(currDesc);
+      figures[figureCount++] = createFigure(currDesc);
     }
     catch (const std::bad_alloc &)
     {
-      deleteFigures(figures, figuresCount);
+      deleteFigures(figures, figureCount);
       delete [] currDesc;
       std::cerr << "can't allocate memory for description of figure or a figure itself\n";
       return 1;
@@ -40,13 +41,13 @@ int main()
     {
       figDescMistakeCheck++;
     }
-    if (figures[figuresCount - 1] == nullptr)
+    if (figures[figureCount - 1] == nullptr)
     {
-      figuresCount--;
+      figureCount--;
     }
     delete [] currDesc;
   }
-  if (figuresCount == 0 && checkString(currDesc, scaleStr) == 1)
+  if (figureCount == 0 && checkString(currDesc, scaleStr) == 1)
   {
     delete [] currDesc;
     std::cerr << "nothing to scale\n";
@@ -54,7 +55,7 @@ int main()
   }
   else if (eofCheck == 1 && checkString(currDesc, scaleStr) == 0)
   {
-    deleteFigures(figures, figuresCount);
+    deleteFigures(figures, figureCount);
     delete [] currDesc;
     std::cerr << "input was finished with eof symbol; scale wasn't inputed\n";
     return 3;
@@ -66,27 +67,27 @@ int main()
     parseParams(currDesc, numOfScalePars, scaleParams);
     if (scaleParams[2] > 0)
     {
-      outputResults(figures, figuresCount);
+      outputResults(figures, figureCount);
       std::cout << "\n";
     }
     try
     {
-      isoscale(figures, figuresCount, scaleParams);
+      isoscale(figures, figureCount, scaleParams);
     }
     catch (const std::invalid_argument & e)
     {
       std::cerr << e.what() << "\n";
       delete [] currDesc;
-      deleteFigures(figures, figuresCount);
+      deleteFigures(figures, figureCount);
       return 4;
     }
-    outputResults(figures, figuresCount);
+    outputResults(figures, figureCount);
     std::cout << "\n";
   }
   if (figDescMistakeCheck > 0)
   {
     std::cerr << "There were mistakes in figure descriptions\n";
   }
-  deleteFigures(figures, figuresCount);
+  deleteFigures(figures, figureCount);
   delete [] currDesc;
 }

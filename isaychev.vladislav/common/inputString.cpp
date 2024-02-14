@@ -2,17 +2,17 @@
 #include <iostream>
 #include <stdexcept>
 
-void copyString(const char * str, char * str2, size_t len)
+void copyString(const char * str, char * str2)
 {
-  for (size_t j = 0; j < len; ++j)
+  for (size_t j = 0; str[j] != '\0'; ++j)
   {
     str2[j] = str[j];
   }
 }
 
-char * isaychev::inputString(std::istream & input)
+char * isaychev::inputString(std::istream & input, size_t & capacity)
 {
-  size_t capacity = 10, length = 0;
+  size_t length = 0;
   char * str = nullptr;
   try
   {
@@ -26,7 +26,7 @@ char * isaychev::inputString(std::istream & input)
         capacity += 10;
         char * bigger_str = nullptr;
         bigger_str = new char[capacity]{};
-        copyString(str, bigger_str, length);
+        copyString(str, bigger_str);
         delete [] str;
         str = bigger_str;
       }

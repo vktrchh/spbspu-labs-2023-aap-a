@@ -6,7 +6,7 @@
 
 namespace isaychev
 {
-  void outputResults(Shape **const Figures, size_t figuresCount);
+  void outputResults(Shape **const figures, size_t figureCount);
 }
 
 #endif
