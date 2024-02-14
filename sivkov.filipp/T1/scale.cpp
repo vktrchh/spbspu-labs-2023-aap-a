@@ -3,7 +3,7 @@
 
 void scale(Shape* shape, point_t center, double k)
 {
-  if (k < 0)
+  if (k <= 0.0)
   {
     throw std::invalid_argument("K cannot be < 0");
   }

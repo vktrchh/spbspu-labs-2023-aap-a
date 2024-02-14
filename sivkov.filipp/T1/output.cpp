@@ -1,15 +1,15 @@
 #include "output.hpp"
 #include "othersFun.hpp"
 
-void output(std::ostream& out, Shape** shapes, size_t —Åount)
+void output(std::ostream& out, Shape** shapes, size_t Òount)
 {
   double sumOfArea = 0;
-  for (size_t i = 0; i < —Åount; ++i)
+  for (size_t i = 0; i < Òount; ++i)
   {
     sumOfArea = shapes[i]->getArea() + sumOfArea;
   }
   out << sumOfArea;
-  for (size_t i = 0; i < —Åount; ++i)
+  for (size_t i = 0; i < Òount; ++i)
   {
     outputFrameRectInfo(out, shapes[i]);
   }

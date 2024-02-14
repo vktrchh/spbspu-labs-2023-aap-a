@@ -15,3 +15,4 @@ struct rectangle_t
 };
 
 #endif
+

@@ -33,5 +33,6 @@ int main()
   {
     std::cerr << "Exception caught: " << e.what() << std::endl;
   }
+  delete[] figures;
   return 0;
 }
