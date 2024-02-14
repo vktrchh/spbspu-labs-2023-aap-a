@@ -23,7 +23,6 @@ char * petuhov::streamToString(std::istream & input)
     }
     catch (std::bad_alloc & e)
     {
-      delete[] stringBuffer;
       throw;
     }
 
