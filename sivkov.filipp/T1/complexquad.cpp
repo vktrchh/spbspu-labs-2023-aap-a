@@ -1,4 +1,5 @@
 #include "complexquad.hpp"
+#include "othersFun.hpp"
 #include <stdexcept>
 
 Complexquad::Complexquad(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4) :
@@ -7,7 +8,7 @@ Complexquad::Complexquad(const point_t& ver1, const point_t& ver2, const point_t
   cqVer3_(ver3),
   cqVer4_(ver4)
 {
-  if (!areSegmentsIntersecting(ver1, ver2, ver3, ver4))
+  if (areSegmentsIntersecting(ver1, ver2, ver3, ver4))
   {
     throw std::invalid_argument("Sides of the complex quad intersect. Invalid configuration.");
   }
@@ -87,61 +88,30 @@ void Complexquad::scale(const double k)
 
 double Complexquad::areaOfTriangle(const point_t& ver1, const point_t& ver2, const point_t& ver3) const
 {
-  double a = std::sqrt(std::abs(ver1.x - ver2.x) * std::abs(ver1.x - ver2.x) + std::abs(ver1.y - ver2.y) * std::abs(ver1.y - ver2.y));
-  double b = std::sqrt(std::abs(ver1.x - ver3.x) * std::abs(ver1.x - ver3.x) + std::abs(ver1.y - ver3.y) * std::abs(ver1.y - ver3.y));
-  double c = std::sqrt(std::abs(ver2.x - ver3.x) * std::abs(ver2.x - ver3.x) + std::abs(ver2.y - ver3.y) * std::abs(ver2.y - ver3.y));
-  double halfPerimetr = (a + b + c) / 2;
-  double area = std::sqrt(halfPerimetr * (halfPerimetr - a) * (halfPerimetr - b) * (halfPerimetr - c));
+  double ab = std::sqrt(((ver1.x - ver2.x) * (ver1.x - ver2.x)) + ((ver1.y - ver2.y) * (ver1.y - ver2.y)));
+  double bc = std::sqrt(((ver2.x - ver3.x) * (ver2.x - ver3.x)) + ((ver2.y - ver3.y) * (ver2.y - ver3.y)));
+  double ac = std::sqrt(((ver3.x - ver1.x) * (ver3.x - ver1.x)) + ((ver3.y - ver1.y) * (ver3.y - ver1.y)));
+  double halfPerimetr = (ac + bc + ac) / 2;
+  double area = std::sqrt(halfPerimetr * (halfPerimetr - ab) * (halfPerimetr - bc) * (halfPerimetr - ac));
   return area;
 }
 
 point_t Complexquad::findIntersection(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4) const
 {
-  double a1, b1, c1, a2, b2, c2;
+  double a1 = 0, b1 = 0, c1 = 0, a2 = 0, b2 = 0, c2 = 0;
 
-  if (ver1.x == ver2.x)
-  {
-    a1 = 1;
-    b1 = 0;
-    c1 = -ver2.x;
-  }
-  else if (ver1.y == ver2.y)
-  {
-    a1 = 0;
-    b1 = 1;
-    c1 = -ver2.y;
-  }
-  else {
-    a1 = 1;
-    b1 = (ver2.x - ver1.x) / (ver1.y - ver2.y);
-    c1 = -ver1.x * a1 - ver1.y * b1;
-  }
-  if (ver3.x == ver4.x) {
-    a2 = 1;
-    b2 = 0;
-    c2 = -ver4.x;
-  }
-  else if (ver3.y == ver4.y)
-  {
-    a2 = 0;
-    b2 = 1;
-    c2 = -ver4.y;
-  }
-  else {
-    a2 = 1;
-    b2 = (ver4.x - ver3.x) / (ver3.y - ver4.y);
-    c2 = -ver3.x * a2 - ver3.y * b2;
-  }
+  findCoefficient(a1, b1, c1, ver1, ver3);
+  findCoefficient(a2, b2, c2, ver2, ver4);
 
   if (a1 / a2 == b1 / b2)
   {
-    throw std::invalid_argument("no intersection\n");
+    throw std::invalid_argument("no intersection");
   }
   else {
     double x = 0, y = 0;
-    double d = a1 * b2 - b1 * a2;
     double dx = c2 * b1 - c1 * b2;
     double dy = c1 * a2 - a1 * c2;
+    double d = a1 * b2 - b1 * a2;
     x = dx / d;
     y = dy / d;
     return { x, y };
