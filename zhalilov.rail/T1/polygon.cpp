@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include <algorithm>
 
-zhalilov::Polygon::Polygon(point_t *points, const size_t size):
+zhalilov::Polygon::Polygon(const point_t *points, const size_t size):
   m_points(nullptr),
   m_size(size)
 {

@@ -10,7 +10,7 @@ namespace zhalilov
   class Polygon: public Shape
   {
   public:
-    Polygon(point_t *points, const size_t size);
+    Polygon(const point_t *points, size_t size);
     virtual ~Polygon();
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
