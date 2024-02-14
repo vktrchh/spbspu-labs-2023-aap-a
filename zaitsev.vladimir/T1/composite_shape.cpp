@@ -9,8 +9,8 @@
 
 zaitsev::CompositeShape::CompositeShape():
     size_(0),
-    capacity_(1),
-    shapes_(new Shape* [1])
+    capacity_(8),
+    shapes_(new Shape* [8])
 {
 }
 
