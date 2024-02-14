@@ -33,7 +33,6 @@ int main()
     std::cerr << "Not enough memory for clone string";
     return 1;
   }
-  
   cloneString[length] = '\0';
   char *secondString = nullptr;
 
