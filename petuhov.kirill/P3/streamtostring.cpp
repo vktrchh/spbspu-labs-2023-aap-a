@@ -38,10 +38,5 @@ char * petuhov::streamToString(std::istream & input)
     stringBuffer[stringBufferSize] = '\0';
     string = stringBuffer;
   }
-
-  if (string == nullptr)
-  {
-    throw std::logic_error("Empty input string");
-  }
   return string;
 }
