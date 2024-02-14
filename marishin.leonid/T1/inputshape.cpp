@@ -67,7 +67,7 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
       if (currentName == shapeNames[i])
       {
         oldShapes = currentShapes;
-        currentShapes = new marishin::Shape * [shapeCount + 1];
+        currentShapes = new Shape * [shapeCount + 1];
         if (oldShapes)
         {
           for (size_t k = 0; k < shapeCount; k++)
@@ -76,7 +76,6 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
           }
         }
         delete[] oldShapes;
-        ++shapeCount;
         try
         {
           if (currentName == "RECTANGLE")
@@ -91,6 +90,7 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
           {
             readRing(in, currentShapes, shapeCount);
           }
+          ++shapeCount;
         }
         catch (const std::bad_alloc& e)
         {
@@ -104,15 +104,14 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
       }
     }
 
+    if (currentName == "")
+    {
+      std::cerr << "Incorrect input";
+    }
+
     if (currentName == "SCALE")
     {
       break;
-    }
-
-    if (!in)
-    {
-      cleanupShapes(currentShapes, shapeCount);
-      throw std::logic_error("It is not shape");
     }
 
     in >> std::noskipws;
