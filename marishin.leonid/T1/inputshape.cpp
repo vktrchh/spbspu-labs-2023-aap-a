@@ -80,6 +80,7 @@ marishin::Shape* marishin::readShape(std::istream& in, const std::string& curren
   catch (const std::exception& e)
   {
     std::cerr << e.what() << '\n';
+    throw;
   }
 }
 
