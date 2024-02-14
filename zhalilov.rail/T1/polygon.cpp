@@ -53,7 +53,6 @@ double zhalilov::Polygon::getArea() const
 
 zhalilov::rectangle_t zhalilov::Polygon::getFrameRect() const
 {
-  rectangle_t frameRect = { 0.0, 0.0, { 0.0, 0.0 }};
   point_t maxY = m_points[0], minY = m_points[0];
   point_t maxX = m_points[0], minX = m_points[0];
 
@@ -77,11 +76,11 @@ zhalilov::rectangle_t zhalilov::Polygon::getFrameRect() const
     }
   }
 
-  frameRect.width = maxX.x - minX.x;
-  frameRect.height = maxY.y - minY.y;
-  double width = frameRect.width;
-  double height = frameRect.height;
-  frameRect.pos = { minX.x + width / 2.0, minY.y + height / 2.0 };
+  double width = maxX.x - minX.x;
+  double height = maxY.y - minY.y;
+  double posX = minX.x + width / 2.0;
+  double posY = minY.y + height / 2.0;
+  rectangle_t frameRect = { width, height, { posX, posY }};
   return frameRect;
 }
 
