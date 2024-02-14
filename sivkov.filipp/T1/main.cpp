@@ -23,13 +23,11 @@ int main()
     std::cout << std::fixed;
     std::cout.precision(1);
     output(std::cout, figures, count);
-    std::cout << '\n';
     for (size_t i = 0; i < count; ++i)
     {
       scale(figures[i], center, k);
     }
     output(std::cout, figures, count);
-    std::cout << '\n';
     for (size_t i = 0; i < count; ++i)
     {
       delete figures[i];
