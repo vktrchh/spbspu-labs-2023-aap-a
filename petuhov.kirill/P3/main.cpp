@@ -7,7 +7,7 @@ int main()
 {
   char *firstString = nullptr;
   char *cloneString = nullptr;
-  size_t length = 1;
+  size_t length = 0;
 
   try
   {
@@ -25,7 +25,12 @@ int main()
   }
   try
   {
-    cloneString = new char[length];
+    cloneString = new char[length+1];
+    for (size_t i = 0; i <= length; ++i)
+    {
+      cloneString[i] = firstString[i];
+    }
+    cloneString[length+1] = '\0';
   }
   catch (std::bad_alloc &e)
   {
@@ -33,7 +38,6 @@ int main()
     std::cerr << "Not enough memory for clone string";
     return 1;
   }
-  cloneString[length] = '\0';
   char *secondString = nullptr;
 
   try
@@ -45,11 +49,6 @@ int main()
     delete[] secondString;
     std::cerr << e.what();
     return 1;
-  }
-
-  for (size_t i = 0; i <= length; ++i)
-  {
-    cloneString[i] = firstString[i];
   }
 
   petuhov::substractString(firstString, secondString);

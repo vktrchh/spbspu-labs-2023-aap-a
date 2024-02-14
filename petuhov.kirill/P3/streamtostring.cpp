@@ -18,7 +18,7 @@ char * petuhov::streamToString(std::istream & input)
     }
     try
     {
-      stringBuffer = new char[stringBufferSize + 10];
+      stringBuffer = new char[stringBufferSize + 2];
     }
     catch (std::bad_alloc & e)
     {
