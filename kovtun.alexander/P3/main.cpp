@@ -1,6 +1,18 @@
 #include "read_string.h"
 
 #include <iostream>
+#include <cctype>
+
+char * convertToLowercase(char * destination, const char * source)
+{
+  char * destinationBegin = destination;
+  for ( ; *source != '\0'; destination++, source++)
+  {
+    *destination = tolower(*source);
+  }
+
+  return destinationBegin;
+}
 
 int main()
 {
