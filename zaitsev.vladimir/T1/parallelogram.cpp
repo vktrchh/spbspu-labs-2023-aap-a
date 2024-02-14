@@ -39,10 +39,7 @@ zaitsev::rectangle_t zaitsev::Parallelogram::getFrameRect() const
   {
     changeRectangleBounds(left_corner, right_corner, def_vertices_[i]);
   }
-
-  point_t size = right_corner - left_corner;
-  point_t pos = (left_corner + right_corner) / 2;
-  return { size.x, size.y, pos };
+  return transformRectangleBounds(left_corner, right_corner);
 }
 
 void zaitsev::Parallelogram::move(const point_t& dest_pos)

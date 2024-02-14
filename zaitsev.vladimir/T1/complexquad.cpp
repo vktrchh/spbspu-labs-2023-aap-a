@@ -33,15 +33,11 @@ zaitsev::rectangle_t zaitsev::Complexquad::getFrameRect() const
 {
   point_t left_corner = vertices_[0];
   point_t right_corner = vertices_[0];
-
   for (size_t i = 1; i < 4; ++i)
   {
     changeRectangleBounds(left_corner, right_corner, vertices_[i]);
   }
-
-  point_t size = right_corner - left_corner;
-  point_t pos = (left_corner + right_corner) / 2;
-  return { size.x, size.y, pos };
+  return transformRectangleBounds(left_corner, right_corner);
 }
 
 void zaitsev::Complexquad::move(const point_t& dest_pos)

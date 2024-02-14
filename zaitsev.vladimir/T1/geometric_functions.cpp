@@ -103,6 +103,13 @@ void zaitsev::changeRectangleBounds(point_t& left_corner, point_t& right_corner,
   right_corner.y = std::max(right_corner.y, new_pt.y);
 }
 
+zaitsev::rectangle_t zaitsev::transformRectangleBounds(const point_t& left_corner, const point_t& right_corner)
+{
+  point_t size = right_corner - left_corner;
+  point_t pos = (left_corner + right_corner) / 2;
+  return { size.x, size.y, pos };
+}
+
 void zaitsev::scale(Shape* shape, double factor, const point_t& iso_center)
 {
   if (factor <= 0)

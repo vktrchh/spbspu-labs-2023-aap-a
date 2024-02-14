@@ -22,10 +22,16 @@ namespace zaitsev
     const Shape& operator[](size_t pos) const;
     bool empty() const;
     size_t size() const;
+    double getArea() const;
+    rectangle_t getFrameRect() const;
+    void move(const point_t& dest_pos);
+    void move(double x_shift, double y_shift);
+    void scale(double factor);
   private:
     size_t size_;
     size_t capacity_;
     Shape** shapes_;
+    point_t getCenter() const;
   };
 }
 #endif
