@@ -31,7 +31,7 @@ char * kovtun::mergeStrings(const char * first, const char * second)
       index++;
     }
   }
-  result[size] = '\0';
+  result[size - 1] = '\0';
 
   return result;
 }
