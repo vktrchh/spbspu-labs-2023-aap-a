@@ -4,7 +4,6 @@
 #include "complexquad.hpp"
 #include <string>
 
-
 void inputRectangle(std::istream& input, Shape** shapes, size_t count)
 {
   const size_t numberOfTops = 4;
@@ -13,7 +12,7 @@ void inputRectangle(std::istream& input, Shape** shapes, size_t count)
   {
     input >> tops[i];
   }
-  if (!input)
+  if (!input) 
   {
     throw std::runtime_error("Invalid tops");
   }
@@ -97,6 +96,11 @@ Shape** inputShape(std::istream& input, size_t& count)
           }
           delete[] arrayWithShape;
           throw;
+        }
+        catch (const std::logic_error& e)
+        {
+          std::cerr << e.what() << '\n';
+          continue;
         }
         ++count;
       }
