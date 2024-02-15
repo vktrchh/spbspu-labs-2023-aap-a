@@ -45,39 +45,35 @@ isaychev::Regular * createRegular(const double * params)
 isaychev::Shape * isaychev::createFigure(char * str)
 {
   size_t numOfCurrFigure = determineShape(str);
-  size_t numOfParameters = countWSpaces(str);
   isaychev::Shape * currFigure = nullptr;
-  double * parameters = nullptr;
   try
   {
-    if (numOfParameters > 0)
-    {
-      parameters = new double[numOfParameters]{};
-      parseParams(str, numOfParameters, parameters);
-    }
     if (numOfCurrFigure == 1)
     {
+      double parameters[4] = {};
+      parseParams(str, 4, parameters);
       currFigure = createRectangle(parameters);
     }
     else if (numOfCurrFigure == 2)
     {
+      double parameters[3] = {};
+      parseParams(str, 3, parameters);
       currFigure = createCircle(parameters);
     }
     else if (numOfCurrFigure == 3)
     {
+      double parameters[6] = {};
+      parseParams(str, 6, parameters);
       currFigure = createRegular(parameters);
     }
   }
   catch (const std::bad_alloc &)
   {
-    delete [] parameters;
     throw;
   }
   catch (const std::logic_error &)
   {
-    delete [] parameters;
     throw;
   }
-  delete [] parameters;
   return currFigure;
 }

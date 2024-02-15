@@ -37,8 +37,8 @@ isaychev::Regular::Regular(const point_t & p1, const point_t & p2, const point_t
   double side1 = std::pow((p1.x - p2.x), 2) + std::pow((p1.y - p2.y), 2);
   double side2 = std::pow((p1.x - p3.x), 2) + std::pow((p1.y - p3.y), 2);
   double bottom = std::pow((p2.x - p3.x), 2) + std::pow((p2.y - p3.y), 2);
-  int regCheck = canBeReg(side1, side2);
-  int triCheck = isTriangle(side1, side2, bottom);
+  bool regCheck = canBeReg(side1, side2);
+  bool triCheck = isTriangle(side1, side2, bottom);
   if (side2 == side1 + bottom && regCheck == 1 && triCheck == 1)
   {
     closePnt_.x = p2.x;
