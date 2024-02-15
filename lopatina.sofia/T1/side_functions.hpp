@@ -1,6 +1,7 @@
 #ifndef SIDE_FUNCTIONS_HPP
 #define SIDE_FUNCTIONS_HPP
 
+#include <iostream>
 #include "shape.hpp"
 #include "base-types.hpp"
 namespace lopatina

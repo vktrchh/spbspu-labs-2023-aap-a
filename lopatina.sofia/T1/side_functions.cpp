@@ -1,5 +1,4 @@
 #include "side_functions.hpp"
-#include <iostream>
 #include <cmath>
 #include <iomanip>
 #include <algorithm>
