@@ -5,5 +5,4 @@ namespace stepanov
 {
   char* replaceStringToLow(char* string);
 }
-
 #endif

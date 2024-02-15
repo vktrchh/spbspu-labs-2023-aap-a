@@ -39,12 +39,14 @@ char* stepanov::inputArray(std::istream& input, size_t& sizeString)
       {
         std::cerr << "Not enough memory: " << e.what() << '\n';
         delete[] string;
+        input >> std::skipws;
         return nullptr;
       }
     }
     string[index++] = symbol;
   }
   input >> std::skipws;
+
   return string;
 }
 

@@ -1,5 +1,5 @@
-#include "removeVowels.hpp"
 #include <cstddef>
+#include "removeVowels.hpp"
 
 char* stepanov::removeVowels(char* string)
 {
@@ -23,5 +23,6 @@ char* stepanov::removeVowels(char* string)
     }
   }
   string[index] = '\0';
+
   return string;
 }
