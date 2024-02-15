@@ -43,7 +43,7 @@ arakelyan::rectangle_t arakelyan::Parallelogram::getFrameRect() const
     height = std::abs(p2_.y - p1_.y);
   }
 
-  point_t midPointOfRect = {0,0};
+  point_t midPointOfRect = {0, 0};
   if (p1_.x <= p2_.x && p1_.x <= p3_.x)
   {
     midPointOfRect.x = p1_.x + (width / 2.0);
@@ -66,8 +66,7 @@ arakelyan::rectangle_t arakelyan::Parallelogram::getFrameRect() const
     midPointOfRect.y = p1_.y + (height / 2.0);
   }
 
-  rectangle_t data = {width, height, midPointOfRect};
-  return data;
+  return {width, height, midPointOfRect};
 }
 
 void arakelyan::Parallelogram::move(const point_t point)
