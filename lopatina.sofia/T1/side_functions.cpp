@@ -1,8 +1,8 @@
+#include "side_functions.hpp"
 #include <iostream>
 #include <cmath>
 #include <iomanip>
 #include <algorithm>
-#include "side_functions.hpp"
 
 bool lopatina::isCentralPoint(point_t point1, point_t point2, point_t point3)
 {

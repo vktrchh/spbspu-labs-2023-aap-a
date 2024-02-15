@@ -1,6 +1,6 @@
+#include "diamond.hpp"
 #include <iostream>
 #include <cmath>
-#include "diamond.hpp"
 #include "base-types.hpp"
 
 lopatina::Diamond::Diamond(point_t central, point_t side_x, point_t side_y)
