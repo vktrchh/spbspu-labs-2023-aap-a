@@ -36,6 +36,7 @@ namespace nikitov
     Shape** figures_;
     void increaseArray();
     void decreaseArray();
+    void swap(CompositeShape& other);
   };
 }
 #endif

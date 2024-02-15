@@ -1,5 +1,6 @@
 #include "composite_shape.hpp"
 #include <limits>
+#include <utility>
 #include <stdexcept>
 #include "base-types.hpp"
 #include "scale_figures.hpp"
@@ -23,6 +24,7 @@ nikitov::CompositeShape::CompositeShape(CompositeShape&& other):
   sizeOfArray_(other.sizeOfArray_),
   figures_(other.figures_)
 {
+  other.sizeOfArray_ = 0;
   other.figures_ = nullptr;
 }
 
@@ -35,17 +37,28 @@ nikitov::CompositeShape::~CompositeShape()
   delete[] figures_;
 }
 
-/*
-CompositeShape& nikitov::CompositeShape::operator=(CompositeShape& other)
+nikitov::CompositeShape& nikitov::CompositeShape::operator=(CompositeShape& other)
 {
-
+  CompositeShape temp(other);
+  if (&other != this)
+  {
+    swap(temp);
+  }
+  return *this;
 }
 
-CompositeShape& nikitov::CompositeShape::operator=(CompositeShape&& other)
+nikitov::CompositeShape& nikitov::CompositeShape::operator=(CompositeShape&& other)
 {
-
+  CompositeShape temp(other);
+  if (&other != this)
+  {
+    swap(temp);
+  }
+  other.sizeOfArray_ = 0;
+  other.figures_ = nullptr;
+  return *this;
 }
-*/
+
 nikitov::Shape& nikitov::CompositeShape::operator[](size_t index)
 {
   return *(figures_[index]);
@@ -171,4 +184,10 @@ void nikitov::CompositeShape::decreaseArray()
   delete[] figures_;
   --sizeOfArray_;
   figures_ = temp;
+}
+
+void nikitov::CompositeShape::swap(CompositeShape& other)
+{
+  std::swap(sizeOfArray_, other.sizeOfArray_);
+  std::swap(figures_, other.figures_);
 }
