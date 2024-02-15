@@ -41,6 +41,11 @@ void skuratov::Rectangle::move(double dx, double dy)
 
 void skuratov::Rectangle::scale(double scalingFactor)
 {
+  if (scalingFactor <= 0)
+  {
+    throw std::invalid_argument("Error: scale factor should be a positive");
+  }
+
   rectangle_t B = getFrameRect();
   lowerLeftCorner_.x = B.pos.x - (B.pos.x - lowerLeftCorner_.x) * scalingFactor;
   upperRightCorner_.x = B.pos.x + (B.pos.x - lowerLeftCorner_.x);
