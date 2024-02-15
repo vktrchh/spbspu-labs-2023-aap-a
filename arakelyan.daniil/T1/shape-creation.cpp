@@ -69,7 +69,7 @@ arakelyan::Shape * arakelyan::createPar(const char * string)
   point_t p2 = {0.0, 0.0};
   point_t p3 = {0.0, 0.0};
   dataExtractionParAndDiam(string, p1, p2, p3, wordLen);
-  return new arakelyan::Parallelogram(p1, p2, p3);
+  return new Parallelogram(p1, p2, p3);
 }
 
 arakelyan::Shape * arakelyan::createDiam(const char * string)
@@ -79,7 +79,7 @@ arakelyan::Shape * arakelyan::createDiam(const char * string)
   point_t p2 = {0.0, 0.0};
   point_t p3 = {0.0, 0.0};
   dataExtractionParAndDiam(string, p1, p2, p3, wordLen);
-  return new arakelyan::Diamond(p1, p2, p3);
+  return new Diamond(p1, p2, p3);
 }
 
 arakelyan::Shape * arakelyan::createRect(const char * string)
@@ -87,7 +87,7 @@ arakelyan::Shape * arakelyan::createRect(const char * string)
   point_t p1 = {0.0, 0.0};
   point_t p2 = {0.0, 0.0};
   dataExtractionRect(string, p1, p2);
-  return new arakelyan::Rectangle(p1, p2);
+  return new Rectangle(p1, p2);
 }
 
 arakelyan::Shape * arakelyan::defineAndCreateShape(const char * string)
@@ -100,24 +100,20 @@ arakelyan::Shape * arakelyan::defineAndCreateShape(const char * string)
   const char * foundRect = std::strstr(string, targetWordRectangle);
   const char * foundDia = std::strstr(string, targetWordDiamond);
 
-  try
+  if (foundPar != nullptr)
   {
-    if (foundPar != nullptr)
-    {
-      return createPar(string);
-    }
-    else if (foundRect != nullptr)
-    {
-      return createRect(string);
-    }
-    else if (foundDia != nullptr)
-    {
-      return createDiam(string);
-    }
+    return createPar(string);
   }
-  catch (const std::logic_error &e)
+  else if (foundRect != nullptr)
   {
-    throw;
+    return createRect(string);
   }
-  return nullptr;
+  else if (foundDia != nullptr)
+  {
+    return createDiam(string);
+  }
+  else
+  {
+    return nullptr;
+  }
 }
