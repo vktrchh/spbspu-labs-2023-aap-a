@@ -19,6 +19,7 @@ int main()
   }
   if (checkForEmptyStr(str))
   {
+    delete [] str;
     std::cerr << "String is empty\n";
     return 2;
   }
