@@ -105,9 +105,13 @@ Shape** inputShape(std::istream& input, size_t& count)
         ++count;
       }
     }
-    if (shape == "SCALE")
+    if ((shape == "SCALE") && (count != 0))
     {
       break;
+    }
+    else
+    {
+      throw std::invalid_argument("No read shape");
     }
     input >> std::noskipws;
     while (c != '\n')
