@@ -107,14 +107,27 @@ void nikitov::CompositeShape::scale(double ratio)
 {
 
 }
-
+*/
 void nikitov::CompositeShape::increaseArray()
 {
-
+  Shape** temp = new Shape*[sizeOfArray_ + 1];
+  for (size_t i = 0; i != sizeOfArray_; ++i)
+  {
+    temp[i] = figures_[i];
+  }
+  delete[] figures_;
+  ++sizeOfArray_;
+  figures_ = temp;
 }
 
 void nikitov::CompositeShape::decreaseArray()
 {
-
+  Shape** temp = new Shape*[sizeOfArray_ - 1];
+  for (size_t i = 0; i != sizeOfArray_ - 1; ++i)
+  {
+    temp[i] = figures_[i];
+  }
+  delete[] figures_;
+  --sizeOfArray_;
+  figures_ = temp;
 }
-*/
