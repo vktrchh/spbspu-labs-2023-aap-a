@@ -1,5 +1,6 @@
 #include "parametersLogic.hpp"
 #include <stdexcept>
+#include <algorithm>
 
 double readValue(const char* str, size_t& pos, int& endOfString);
 double* reallocateVal(const double* values, size_t lenF, size_t lenS);
@@ -7,7 +8,7 @@ double* reallocateVal(const double* values, size_t lenF, size_t lenS);
 const double* grechishnikov::parseValues(const char* str, size_t& size)
 {
   size_t len = 10;
-  double* values = new double [len] { 0 };
+  double* values = new double[len] { 0 };
 
   size_t curValue = 0;
   size_t pos = 0;
@@ -47,7 +48,7 @@ const grechishnikov::point_t* grechishnikov::makePairs(const double* values, siz
   {
     throw std::logic_error("Odd number of elements");
   }
-  grechishnikov::point_t* pairs = new grechishnikov::point_t [size / 2] { { 0, 0 } };
+  grechishnikov::point_t* pairs = new grechishnikov::point_t[size / 2] { { 0, 0 } };
   for (size_t i = 0; i < size / 2; i++)
   {
     pairs[i].x = values[i * 2];
@@ -84,12 +85,12 @@ double readValue(const char* str, size_t& pos, int& endOfString)
 
 double* reallocateVal(const double* values, size_t lenF, size_t lenS)
 {
-  double* newVal = new double [lenS];
+  double* newVal = new double[lenS];
   for (size_t i = 0; i < lenS; i++)
   {
     newVal[i] = 0;
   }
-  size_t min = (lenF < lenS) ? lenF : lenS;
+  size_t min = std::min(lenF, lenS);
   for (size_t i = 0; i < min; i++)
   {
     newVal[i] = values[i];

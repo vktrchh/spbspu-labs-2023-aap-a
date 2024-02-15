@@ -16,8 +16,9 @@ grechishnikov::Shape* grechishnikov::inputShape(const char* str)
   const char* legalName[] = { "RECTANGLE\0", "TRIANGLE\0", "POLYGON\0" };
   Shape* (*correspondingFunctions[])(const grechishnikov::point_t* points, size_t size) = {
     grechishnikov::inputRectangle,
-      grechishnikov::inputTriangle,
-        grechishnikov::inputPolygon };
+    grechishnikov::inputTriangle,
+    grechishnikov::inputPolygon
+  };
 
   const char* name = nullptr;
   const double* values = nullptr;
@@ -109,7 +110,7 @@ const char* grechishnikov::parseName(const char* str)
   {
     return nullptr;
   }
-  char* name = new char [20] { '0' };
+  char* name = new char[20] { '0' };
   size_t i = 0;
   for (i = 0; str[i] != ' ' && str[i] != '\0'; i++)
   {

@@ -1,18 +1,18 @@
 #include "polygon.hpp"
 #include <stdexcept>
 #include <iostream>
+#include <algorithm>
 #include "triangle.hpp"
 
 grechishnikov::Polygon::Polygon(const grechishnikov::point_t* points, size_t size):
-  points_(nullptr),
+  points_(new grechishnikov::point_t[size]),
   size_(size)
 {
   if (size < 3)
   {
+    delete[] points_;
     throw std::invalid_argument("Invalid parameters (Not enough arguments for Polygon)");
   }
-
-  points_ = new grechishnikov::point_t [size];
   for (size_t i = 0; i < size; i++)
   {
     points_[i] = points[i];
@@ -56,22 +56,10 @@ grechishnikov::rectangle_t grechishnikov::Polygon::getFrameRect() const
 
   for (size_t i = 1; i < size_; i++)
   {
-    if (max_x < points_[i].x)
-    {
-      max_x = points_[i].x;
-    }
-    if (max_y < points_[i].y)
-    {
-      max_y = points_[i].y;
-    }
-    if (min_x > points_[i].x)
-    {
-      min_x = points_[i].x;
-    }
-    if (min_y > points_[i].y)
-    {
-      min_y = points_[i].y;
-    }
+    max_x = std::max(max_x, points_[i].x);
+    max_y = std::max(max_y, points_[i].y);
+    min_x = std::min(min_x, points_[i].x);
+    min_y = std::min(min_y, points_[i].y);
   }
 
   double width = max_x - min_x;

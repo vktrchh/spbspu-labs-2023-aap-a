@@ -1,5 +1,6 @@
 #include "inputString.hpp"
 #include <stdexcept>
+#include <algorithm>
 
 char* reallocate(const char* str, size_t lenF, size_t lenS);
 
@@ -47,12 +48,12 @@ char* grechishnikov::inputString(std::istream& in)
 
 char* reallocate(const char* str, size_t lenF, size_t lenS)
 {
-  char* newStr = new char [lenS];
+  char* newStr = new char[lenS];
   for (size_t i = 0; i < lenS; ++i)
   {
     newStr[i] = 0;
   }
-  size_t min = (lenF < lenS) ? lenF : lenS;
+  size_t min = std::min(lenF, lenS);
   for (size_t i = 0; i < min; ++i)
   {
     newStr[i] = str[i];
