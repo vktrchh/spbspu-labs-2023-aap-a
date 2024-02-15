@@ -24,8 +24,7 @@ arakelyan::rectangle_t arakelyan::Rectangle::getFrameRect() const
 {
   double width = std::abs(pointRightUp_.x - pointLeftDown_.x);
   double height = std::abs(pointRightUp_.y - pointLeftDown_.y);
-  rectangle_t data = {width, height, midpoint_};
-  return data;
+  return {width, height, midpoint_};
 }
 
 void arakelyan::Rectangle::move(const double delX, const double delY)
@@ -64,6 +63,3 @@ void arakelyan::Rectangle::scale(const double k)
   pointRightUp_.x = data.pos.x + widthHalf;
   pointRightUp_.y = data.pos.y + heightHalf;
 }
-
-arakelyan::Rectangle::~Rectangle()
-{}

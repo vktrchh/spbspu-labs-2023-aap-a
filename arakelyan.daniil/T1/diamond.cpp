@@ -49,7 +49,7 @@ arakelyan::rectangle_t arakelyan::Diamond::getFrameRect() const
     height = std::abs(p1_.y - p2_.y) * 2.0;
   }
 
-  point_t midPoint = {0,0};
+  point_t midPoint = {0, 0};
 
   if (p2_.x == p3_.x && p2_.y == p1_.y)
   {
@@ -100,6 +100,3 @@ void arakelyan::Diamond::scale(const double k)
     pointsArray[i]->y = dataOfFrameRect.pos.y +((pointsArray[i]-> x - dataOfFrameRect.pos.y) * k);
   }
 }
-
-arakelyan::Diamond::~Diamond()
-{}

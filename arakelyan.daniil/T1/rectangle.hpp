@@ -13,7 +13,7 @@ namespace arakelyan
     virtual void move(const point_t point);
     virtual void move(const double delX, const double delY);
     virtual void scale(const double k);
-    virtual ~Rectangle();
+    virtual ~Rectangle() = default;
   private:
     point_t pointRightUp_;
     point_t pointLeftDown_;

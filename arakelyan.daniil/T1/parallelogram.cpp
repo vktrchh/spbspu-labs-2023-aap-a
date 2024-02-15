@@ -102,6 +102,3 @@ void arakelyan::Parallelogram::scale(const double k)
     pointsArray[i]->y = rectOfParal.pos.y + ((pointsArray[i]->y - rectOfParal.pos.y) * k);
   }
 }
-
-arakelyan::Parallelogram::~Parallelogram()
-{}

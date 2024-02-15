@@ -14,7 +14,7 @@ namespace arakelyan
     virtual void move(const point_t point);
     virtual void move(const double delX, const double delY);
     virtual void scale(const double k);
-    virtual ~Parallelogram();
+    virtual ~Parallelogram() = default;
   private:
     point_t p1_;
     point_t p2_;
