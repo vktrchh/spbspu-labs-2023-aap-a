@@ -26,6 +26,7 @@ int main()
   {
     std::cerr << "Empty string" << '\n';
     delete[] resultString;
+    delete[] newString;
     return 1;
   }
   std::cout << "String: " << resultString << '\n';
