@@ -64,27 +64,35 @@ void nikitov::CompositeShape::pop_back()
   delete figures_[sizeOfArray_];
   decreaseArray();
 }
-/*
-Shape* nikitov::CompositeShape::at(size_t index)
-{
 
+nikitov::Shape* nikitov::CompositeShape::at(size_t index)
+{
+  if (index >= sizeOfArray_)
+  {
+    throw std::out_of_range("Error: Index out of range");
+  }
+  return figures_[index];
 }
 
-const Shape* nikitov::CompositeShape::at(size_t index) const
+const nikitov::Shape* nikitov::CompositeShape::at(size_t index) const
 {
-
+  if (index >= sizeOfArray_)
+  {
+    throw std::out_of_range("Error: Index out of range");
+  }
+  return figures_[index];
 }
 
 size_t nikitov::CompositeShape::size() const
 {
-
+  return sizeOfArray_;
 }
 
 bool nikitov::CompositeShape::empty() const
 {
-
+  return sizeOfArray_;
 }
-
+/*
 double nikitov::CompositeShape::getArea() const
 {
 
