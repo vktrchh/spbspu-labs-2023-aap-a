@@ -44,12 +44,13 @@ void arakelyan::Rectangle::move(const point_t point)
 {
   double delX = point.x - midpoint_.x;
   double delY = point.y - midpoint_.y;
-  point_t * pointsArray[2] = {&pointLeftDown_, &pointRightUp_};
-  for (size_t i = 0; i < 2; i++)
-  {
-    pointsArray[i]->x += delX;
-    pointsArray[i]->y += delY;
-  }
+  move(delX, delY);
+  // point_t * pointsArray[2] = {&pointLeftDown_, &pointRightUp_};
+  // for (size_t i = 0; i < 2; i++)
+  // {
+  //   pointsArray[i]->x += delX;
+  //   pointsArray[i]->y += delY;
+  // }
   midpoint_ = point;
 }
 
