@@ -1,5 +1,6 @@
 #include "composite_shape.hpp"
 #include "base-types.hpp"
+#include <stdexcept>
 
 nikitov::CompositeShape::CompositeShape():
   sizeOfArray_(0),
