@@ -8,12 +8,6 @@
 
 namespace zhalilov
 {
-  struct scale_t
-  {
-    point_t point;
-    double ratio;
-  };
-
   Shape *inputRectangle(std::istream &input)
   {
     double nums[4] = {};
@@ -111,23 +105,9 @@ namespace zhalilov
     return polygon;
   }
 
-  Shape *identifyShape(const std::string &name, std::istream &input)
+  point_t *getPointsFromStream(size_t &size)
   {
-    using shapeCreatingFunc = Shape *(*)(std::istream &input);
-    size_t namesSize = 3;
-    const std::string shapeNames[] = {"RECTANGLE", "CIRCLE", "POLYGON"};
-    shapeCreatingFunc functions[3];
-    functions[0] = inputRectangle;
-    functions[1] = inputCircle;
-    functions[2] = inputPolygon;
-    for (size_t i = 0; i < namesSize; i++)
-    {
-      if (shapeNames[i] == name)
-      {
-        return functions[i](input);
-      }
-    }
-    return nullptr;
+
   }
 }
 
@@ -143,18 +123,33 @@ void zhalilov::inputShapesSource(Shape **shapes, point_t &point, double &ratio, 
 {
   size_t shapeIndex = 0;
   bool hasIncorrectShapes = false;
-  while (name == "SCALE")
+  std::string name;
+  while (name != "SCALE")
   {
     try
     {
-      std::string name;
       input >> name;
       if (!input)
       {
         throw std::ios_base::failure("input interrupted");
       }
-      shapes[shapeIndex] = identifyShape(name, input);
+
       shapeIndex++;
+      using shapeCreatingFunc = Shape *(*)(std::istream &input);
+      size_t namesSize = 3;
+      const std::string shapeNames[] = {"RECTANGLE", "CIRCLE", "POLYGON"};
+      shapeCreatingFunc functions[3];
+      functions[0] = inputRectangle;
+      functions[1] = inputCircle;
+      functions[2] = inputPolygon;
+      for (size_t i = 0; i < namesSize; i++)
+      {
+        if (shapeNames[i] == name)
+        {
+          shapes[shapeIndex] = functions[i](input);
+          shapeIndex++;
+        }
+      }
     }
     catch (const std::invalid_argument &e)
     {
