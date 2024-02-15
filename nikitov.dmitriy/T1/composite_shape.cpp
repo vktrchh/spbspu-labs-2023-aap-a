@@ -1,6 +1,7 @@
 #include "composite_shape.hpp"
-#include "base-types.hpp"
+#include <limits>
 #include <stdexcept>
+#include "base-types.hpp"
 
 nikitov::CompositeShape::CompositeShape():
   sizeOfArray_(0),
@@ -93,17 +94,35 @@ bool nikitov::CompositeShape::empty() const
 {
   return sizeOfArray_;
 }
-/*
+
 double nikitov::CompositeShape::getArea() const
 {
-
+  double sumOfAreas = 0;
+  for (size_t i = 0; i != sizeOfArray_; ++i)
+  {
+    sumOfAreas += figures_[i]->getArea();
+  }
+  return sumOfAreas;
 }
 
-rectangle_t nikitov::CompositeShape::getFrameRect() const
+nikitov::rectangle_t nikitov::CompositeShape::getFrameRect() const
 {
-
+  double maxX = std::numeric_limits < double >::min();
+  double maxY = maxX;
+  double minX = std::numeric_limits < double >::max();
+  double minY = minX;
+  for (size_t i = 0; i != sizeOfArray_; ++i)
+  {
+    rectangle_t frame = figures_[i]->getFrameRect();
+    maxX = std::max(maxX, frame.pos.x + (frame.width / 2));
+    maxY = std::max(maxY, frame.pos.y + (frame.height / 2));
+    minX = std::min(minX, frame.pos.x - (frame.width / 2));
+    minY = std::min(minY, frame.pos.y - (frame.height / 2));
+  }
+  point_t center = { minX + (maxX - minX) / 2, minY + (maxY - minY) / 2 };
+  return { maxX - minX, maxY - minY, center };
 }
-
+/*
 void nikitov::CompositeShape::move(const point_t& point)
 {
 
