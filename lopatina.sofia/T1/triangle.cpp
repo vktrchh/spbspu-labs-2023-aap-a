@@ -34,31 +34,40 @@ lopatina::rectangle_t lopatina::Triangle::getFrameRect()
   return newRect;
 }
 
-void lopatina::Triangle::move(point_t s)
+void lopatina::Triangle::move(point_t new_pos)
 {
-  pos_tri_.x_ = s.x_;
-  pos_tri_.y_ = s.y_;
+  double dx = new_pos.x_ - pos_tri_.x_;
+  double dy = new_pos.y_ - pos_tri_.y_;
+  move(dx, dy);
 }
 
-void lopatina::Triangle::move(double x, double y)
+void lopatina::Triangle::move(double dx, double dy)
 {
-  pos_.x_ += x;
-  pos_.y_ += y;
-  p1_.x_ += x;
-  p1_.y_ += y;
-  p2_.x_ += x;
-  p2_.y_ += y;
-  p3_.x_ += x;
-  p3_.y_ += y;
+  pos_tri_.x_ += dx;
+  pos_tri_.y_ += dy;
+  pos_.x_ += dx;
+  pos_.y_ += dy;
+  p1_.x_ += dx;
+  p1_.y_ += dy;
+  p2_.x_ += dx;
+  p2_.y_ += dy;
+  p3_.x_ += dx;
+  p3_.y_ += dy;
 }
 
-lopatina::rectangle_t lopatina::Triangle::scale(point_t s, double k)
+lopatina::rectangle_t lopatina::Triangle::scale(point_t new_pos, double k)
 {
-  point_t point{pos_tri_.x_, pos_tri_.y_};
-  move(s);
+  point_t old_pos{pos_tri_.x_, pos_tri_.y_};
+  move(new_pos);
   height_tri_ = height_tri_ * k;
   width_tri_ = width_tri_ * k;
-  move(k * (point.x_ - pos_tri_.x_), k * (point.y_ - pos_tri_.y_));
+  p1_.x_ = pos_tri_.x_ + (p1_.x_ - pos_tri_.x_) * k;
+  p1_.y_ = pos_tri_.y_ + (p1_.y_ - pos_tri_.y_) * k;
+  p2_.x_ = pos_tri_.x_ + (p2_.x_ - pos_tri_.x_) * k;
+  p2_.y_ = pos_tri_.y_ + (p2_.y_ - pos_tri_.y_) * k;
+  p3_.x_ = pos_tri_.x_ + (p3_.x_ - pos_tri_.x_) * k;
+  p3_.y_ = pos_tri_.y_ + (p3_.y_ - pos_tri_.y_) * k;
+  move(k * (old_pos.x_ - pos_tri_.x_), k * (old_pos.y_ - pos_tri_.y_));
   rectangle_t newRect{height_tri_, width_tri_, pos_};
   return newRect;
 }
