@@ -16,8 +16,8 @@ namespace nikitov
 
     CompositeShape& operator=(CompositeShape& other);
     CompositeShape& operator=(CompositeShape&& other);
-    Shape* operator[](size_t index);
-    const Shape* operator[](size_t index) const;
+    Shape& operator[](size_t index);
+    const Shape& operator[](size_t index) const;
 
     void push_back(Shape* figure);
     void pop_back();

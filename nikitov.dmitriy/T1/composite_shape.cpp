@@ -12,7 +12,7 @@ nikitov::CompositeShape::CompositeShape(const CompositeShape& other):
 {
   for (size_t i = 0; i != sizeOfArray_; ++i)
   {
-    figures_[i] = other.figures_[i]->clone();
+    figures_[i] = other[i].clone();
   }
 }
 
@@ -42,27 +42,29 @@ CompositeShape& nikitov::CompositeShape::operator=(CompositeShape&& other)
 {
 
 }
-
-Shape* nikitov::CompositeShape::operator[](size_t index)
+*/
+nikitov::Shape& nikitov::CompositeShape::operator[](size_t index)
 {
-
+  return *(figures_[index]);
 }
 
-const Shape* nikitov::CompositeShape::operator[](size_t index) const
+const nikitov::Shape& nikitov::CompositeShape::operator[](size_t index) const
 {
-
+  return *(figures_[index]);
 }
 
 void nikitov::CompositeShape::push_back(Shape* figure)
 {
-
+  increaseArray();
+  figures_[sizeOfArray_ - 1] = figure;
 }
 
 void nikitov::CompositeShape::pop_back()
 {
-
+  delete figures_[sizeOfArray_];
+  decreaseArray();
 }
-
+/*
 Shape* nikitov::CompositeShape::at(size_t index)
 {
 
