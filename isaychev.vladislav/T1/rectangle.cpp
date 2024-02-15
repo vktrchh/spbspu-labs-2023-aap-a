@@ -40,7 +40,7 @@ void isaychev::Rectangle::move(double dX, double dY)
   botL_.y += dY;
 }
 
-void isaychev::Rectangle::scale(double coeff)
+void isaychev::Rectangle::doScale(double coeff)
 {
   double width05 = (topR_.x - botL_.x) / 2;
   double height05 = (topR_.y - botL_.y)  / 2;

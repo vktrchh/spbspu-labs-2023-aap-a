@@ -18,7 +18,7 @@ namespace isaychev
     point_t center_;
     point_t closePnt_;
     point_t distPnt_;
-    virtual void scale(double coeff);
+    virtual void doScale(double coeff);
   };
 }
 

@@ -13,11 +13,11 @@ namespace isaychev
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t & newPos);
     virtual void move(double dX, double dY);
-    virtual void scale(double coeff);
 
    private:
     point_t botL_;
     point_t topR_;
+    virtual void doScale(double coeff);
   };
 }
 

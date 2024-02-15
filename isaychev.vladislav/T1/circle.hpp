@@ -17,7 +17,7 @@ namespace isaychev
    private:
     point_t center_;
     double radius_;
-    virtual void scale(double coeff);
+    virtual void doScale(double coeff);
   };
 }
 

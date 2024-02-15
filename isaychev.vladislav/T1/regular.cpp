@@ -128,7 +128,7 @@ void isaychev::Regular::move(const point_t & newPos)
   center_ = {newPos.x, newPos.y};
 }
 
-void isaychev::Regular::scale(double coeff)
+void isaychev::Regular::doScale(double coeff)
 {
   distPnt_.x = center_.x + (distPnt_.x - center_.x) * coeff;
   closePnt_.x = center_.x + (closePnt_.x - center_.x) * coeff;

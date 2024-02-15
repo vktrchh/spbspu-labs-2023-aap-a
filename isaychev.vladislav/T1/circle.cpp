@@ -32,7 +32,7 @@ void isaychev::Circle::move(double dX, double dY)
   center_.y += dY;
 }
 
-void isaychev::Circle::scale(double coeff)
+void isaychev::Circle::doScale(double coeff)
 {
   radius_ *= coeff;
 }
