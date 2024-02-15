@@ -3,6 +3,6 @@
 #include "shape.hpp"
 #include <iostream>
 
-void output(std::ostream& out, Shape** shapes, size_t сount);
+void output(std::ostream& out, Shape** shapes, size_t count);
 
 #endif
