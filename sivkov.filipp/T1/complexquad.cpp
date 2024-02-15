@@ -17,8 +17,19 @@ Complexquad::Complexquad(const point_t& ver1, const point_t& ver2, const point_t
 double Complexquad::getArea() const
 {
   point_t center = findIntersection(cqVer1_, cqVer2_, cqVer3_, cqVer4_);
-  double area1 = areaOfTriangle(cqVer1_, cqVer4_, center);
-  double area2 = areaOfTriangle(cqVer2_, cqVer3_, center);
+
+  double ab = findLine(cqVer1_, center);
+  double ac = findLine(cqVer4_, center);
+  double cb = findLine(cqVer1_, cqVer4_);
+  double halfPer = (ab + ac + cb) / 2.0;
+  double area1 = std::sqrt(halfPer * (halfPer - ab) * (halfPer - ac) * (halfPer - cb));
+
+  double ab1 = findLine(cqVer2_, center);
+  double ac1 = findLine(cqVer3_, center);
+  double cb1 = findLine(cqVer2_, cqVer3_);
+  double halfPer2 = (ab1 + ac1 + cb1) / 2.0;
+  double area2 = std::sqrt(halfPer2 * (halfPer2 - ab1) * (halfPer2 - ac1) * (halfPer2 - cb1));
+
   return area1 + area2;
 }
 
@@ -88,10 +99,10 @@ void Complexquad::scale(const double k)
 
 double Complexquad::areaOfTriangle(const point_t& ver1, const point_t& ver2, const point_t& ver3) const
 {
-  double ab = std::sqrt(((ver1.x - ver2.x) * (ver1.x - ver2.x)) + ((ver1.y - ver2.y) * (ver1.y - ver2.y)));
-  double bc = std::sqrt(((ver2.x - ver3.x) * (ver2.x - ver3.x)) + ((ver2.y - ver3.y) * (ver2.y - ver3.y)));
-  double ac = std::sqrt(((ver3.x - ver1.x) * (ver3.x - ver1.x)) + ((ver3.y - ver1.y) * (ver3.y - ver1.y)));
-  double halfPerimetr = (ac + bc + ac) / 2;
+  double ab = findLine(ver1, ver2);
+  double bc = findLine(ver1, ver3);
+  double ac = findLine(ver2, ver3);
+  double halfPerimetr = (ac + bc + ac) / 2.0;
   double area = std::sqrt(halfPerimetr * (halfPerimetr - ab) * (halfPerimetr - bc) * (halfPerimetr - ac));
   return area;
 }
@@ -100,8 +111,8 @@ point_t Complexquad::findIntersection(const point_t& ver1, const point_t& ver2, 
 {
   double a1 = 0, b1 = 0, c1 = 0, a2 = 0, b2 = 0, c2 = 0;
 
-  findCoefficient(a1, b1, c1, ver1, ver3);
-  findCoefficient(a2, b2, c2, ver2, ver4);
+  findCoefficient(a1, b1, c1, ver1, ver2);
+  findCoefficient(a2, b2, c2, ver3, ver4);
 
   if (a1 / a2 == b1 / b2)
   {
