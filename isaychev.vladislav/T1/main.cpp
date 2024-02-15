@@ -66,7 +66,7 @@ int main()
     parseParams(currDesc, numOfScalePars, scaleParams);
     if (scaleParams[2] > 0)
     {
-      outputResults(figures, figureCount);
+      outputResults(std::cout, figures, figureCount);
       std::cout << "\n";
     }
     try
@@ -80,7 +80,7 @@ int main()
       deleteFigures(figures, figureCount);
       return 4;
     }
-    outputResults(figures, figureCount);
+    outputResults(std::cout, figures, figureCount);
     std::cout << "\n";
   }
   if (figDescMistakeCheck > 0)

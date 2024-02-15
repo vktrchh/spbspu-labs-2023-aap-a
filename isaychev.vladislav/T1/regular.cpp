@@ -61,7 +61,7 @@ double isaychev::Regular::getArea() const
   radX = (center_.x - closePnt_.x) * (center_.x - closePnt_.x);
   radY = (center_.y - closePnt_.y) * (center_.y - closePnt_.y);
   inRad = std::sqrt(radX + radY);
-  double numOfSides = std::round(3.1415926535 / std::atan(bottom / inRad));
+  int numOfSides = std::round(3.1415926535 / std::atan(bottom / inRad));
   return bottom * inRad * numOfSides;
 }
 
@@ -76,13 +76,13 @@ isaychev::rectangle_t isaychev::Regular::getFrameRect() const
   double outRad = std::sqrt(radX * radX + radY * radY);
   double initXAngle = std::acos(radX / outRad);
   double steerAngle = 2 * std::acos(leg / outRad);
-  double numOfSides = std::round(3.1415926535 / std::acos(leg / outRad));
+  size_t numOfSides = std::round(3.1415926535 / std::acos(leg / outRad));
   double minX = 0.0, minY = 0.0, maxX = 0.0, maxY = 0.0;
   minX = maxX = distPnt_.x;
   minY = maxY = distPnt_.y;
-  for (double i = 1.0; i < numOfSides; i++)
+  for (size_t i = 1.0; i < numOfSides; i++)
   {
-    double currX = center_.x + outRad * cos(initXAngle + i * steerAngle);
+    double currX = center_.x + outRad * std::cos(initXAngle + i * steerAngle);
     if (currX < minX)
     {
       minX = currX;
@@ -91,7 +91,7 @@ isaychev::rectangle_t isaychev::Regular::getFrameRect() const
     {
       maxX = currX;
     }
-    double currY = center_.y + outRad * sin(initXAngle + i * steerAngle);
+    double currY = center_.y + outRad * std::sin(initXAngle + i * steerAngle);
     if (currY < minY)
     {
       minY = currY;
