@@ -51,7 +51,7 @@ void marishin::readRing(std::istream& in, Shape** currentShapes, size_t& shapeCo
   currentShapes[shapeCount] = new Ring({ option[0], option[1] }, option[2], option[3]);
 }
 
-void readShape(std::istream& in, Shape** currentShapes, size_t& shapeCount, const std::string& currentName)
+void marishin::readShape(std::istream& in, Shape** currentShapes, size_t& shapeCount, const std::string& currentName)
 {
   try
   {
