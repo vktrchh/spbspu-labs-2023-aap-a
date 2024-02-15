@@ -22,7 +22,7 @@ namespace piyavkin
     point_t pos = {(lowerLeftCorner_.x + topRightCorner_.x) / 2, (lowerLeftCorner_.y + topRightCorner_.y) / 2};
     return {std::abs(lowerLeftCorner_.x - topRightCorner_.x), std::abs(lowerLeftCorner_.y - topRightCorner_.y), pos};
   }
-  void Rectangle::move(point_t bias)
+  void Rectangle::move(const point_t& bias)
   {
     point_t pos = {(lowerLeftCorner_.x + topRightCorner_.x) / 2, (lowerLeftCorner_.y + topRightCorner_.y) / 2};
     move(bias.x - pos.x, bias.y - pos.y);

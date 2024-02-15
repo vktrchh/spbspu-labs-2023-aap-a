@@ -1,11 +1,17 @@
 #include "compositeshape.hpp"
+#include "inputshape.hpp"
 
 namespace piyavkin
 {
-//  CompositeShape::CompositeShape(size_t size, Shape** shapes):
-//    shapes_(shapes),
-//    size_(size)
-//  {}
+  CompositeShape::CompositeShape(size_t capacity):
+    shapes_(new Shape* [capacity]{}),
+    size_(0),
+    capacity_(capacity)
+  {}
+  CompositeShape::~CompositeShape()
+  {
+    clearMemory(shapes_, size_);
+  }
   double CompositeShape::getArea() const
   {
     double sum = 0;
@@ -77,5 +83,60 @@ namespace piyavkin
       shapes_[i]->scale(k);
       shapes_[i]->move(k * (posFigure.x - newPosFigure.x), k * (posFigure.y - newPosFigure.y));
     }
+  }
+  void CompositeShape::push_back(Shape* shape)
+  {
+    if (capacity_ == size_ + 1)
+    {
+      capacity_ += 10;
+      Shape** oldShapes = nullptr;
+      try
+      {
+        oldShapes = shapes_;
+        shapes_ = new Shape* [capacity_]{};
+        if (oldShapes)
+        {
+          for (size_t i = 0; i < size_; ++i)
+          {
+            shapes_[i] = oldShapes[i];
+          }
+          clearMemory(oldShapes, size_);
+        }
+      }
+      catch (const std::bad_alloc& e)
+      {
+        shapes_ = oldShapes;
+        return;
+      }
+    }
+    shapes_[++size_] = shape;
+  }
+  void CompositeShape::pop_back()
+  {
+    delete shapes_[size_--];
+  }
+  Shape& CompositeShape::at(size_t i)
+  {
+    if (i > size_)
+    {
+      throw std::logic_error("Segmential f");
+    }
+    return *shapes_[i];
+  }
+  const Shape& CompositeShape::at(size_t i) const
+  {
+    if (i > size_)
+    {
+      throw std::logic_error("Segmential f");
+    }
+    return *shapes_[i];
+  }
+  Shape& CompositeShape::operator[](size_t i)
+  {
+    return *shapes_[i];
+  }
+  const Shape& CompositeShape::operator[](size_t i) const
+  {
+    return *shapes_[i];
   }
 }

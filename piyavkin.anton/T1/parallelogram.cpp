@@ -57,7 +57,7 @@ namespace piyavkin
     }
     return {width, height, pos};
   }
-  void piyavkin::Parallelogram::move(point_t bias)
+  void piyavkin::Parallelogram::move(const point_t& bias)
   {
     point_t pos = {(b_.x + c_.x) / 2, (b_.y + c_.y) / 2};
     move(bias.x - pos.x, bias.y - pos.y);

@@ -34,7 +34,7 @@ namespace piyavkin
     point_t pos = {std::min(std::min(a_.x, b_.x), c_.x) + width / 2, std::min(std::min(a_.y, b_.y), c_.y) + height / 2};
     return {width, height, pos};
   }
-  void Triangle::move(point_t bias)
+  void Triangle::move(const point_t& bias)
   {
     point_t pos = {(a_.x + b_.x + c_.x) / 3, (a_.y + b_.y + c_.y) / 3};
     move(bias.x - pos.x, bias.y - pos.y);

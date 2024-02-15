@@ -7,6 +7,7 @@
 #include "parallelogram.hpp"
 #include "inputshape.hpp"
 #include "output.hpp"
+#include "compositeshape.hpp"
 
 int main()
 {
@@ -16,20 +17,37 @@ int main()
   {
     using namespace piyavkin;
     shapes = inputShape(std::cin, shapeCount);
-    double k = 0;
-    point_t center = {0, 0};
-    std::cin >> center.x >> center.y >> k;
-    std::cout << std::fixed;
-    std::cout.precision(1);
-    output(std::cout, shapes, shapeCount);
-    std::cout << '\n';
+    CompositeShape cs(100);
     for (size_t i = 0; i < shapeCount; ++i)
     {
-      isoScale(shapes[i], center, k);
+      cs.push_back(shapes[i]);
     }
-    output(std::cout, shapes, shapeCount);
-    std::cout << '\n';
-    clearMemory(shapes, shapeCount);
+    for (size_t i = 0; i < cs.size(); ++i)
+    {
+      std::cout << i << ' ';
+    }
+    for (size_t i = 0; i < cs.size(); ++i)
+    {
+      cs.pop_back();
+    }
+    for (size_t i = 0; i < cs.size(); ++i)
+    {
+      std::cout << i << ' ';
+    }
+//    double k = 0;
+//    point_t center = {0, 0};
+//    std::cin >> center.x >> center.y >> k;
+//    std::cout << std::fixed;
+//    std::cout.precision(1);
+//    output(std::cout, shapes, shapeCount);
+//    std::cout << '\n';
+//    for (size_t i = 0; i < shapeCount; ++i)
+//    {
+//      isoScale(shapes[i], center, k);
+//    }
+//    output(std::cout, shapes, shapeCount);
+//    std::cout << '\n';
+//    clearMemory(shapes, shapeCount);
   }
   catch (const std::exception& e)
   {

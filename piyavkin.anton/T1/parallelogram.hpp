@@ -12,7 +12,7 @@ namespace piyavkin
     Parallelogram(point_t p1, point_t p2, point_t p3);
     double getArea() const override;
     rectangle_t getFrameRect() const override;
-    void move(point_t bias) override;
+    void move(const point_t& bias) override;
     void move(double dx, double dy) override;
   private:
     void scaleFigure(double k) override;
