@@ -33,7 +33,7 @@ void marishin::Ring::move(const double dx, const double dy)
   center_.y += dy;
 }
 
-void marishin::Ring::scale(double factor)
+void marishin::Ring::unsafeScale(double factor)
 {
   innerRadius_ *= factor;
   outerRadius_ *= factor;

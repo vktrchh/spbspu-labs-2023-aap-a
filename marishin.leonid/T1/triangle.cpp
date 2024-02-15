@@ -33,7 +33,7 @@ void marishin::Triangle::move(double dx, double dy)
   third_ = mixPoint(third_, dx, dy);
 }
 
-void marishin::Triangle::scale(double factor)
+void marishin::Triangle::unsafeScale(double factor)
 {
   point_t pos = { (first_.x + second_.x + third_.x) / 3, (first_.y + second_.y + third_.y) / 3 };
   first_ = scaleCorner(first_, pos, factor);

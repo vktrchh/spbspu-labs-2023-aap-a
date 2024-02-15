@@ -15,7 +15,7 @@ namespace marishin
     virtual rectangle_t getFrameRect() const;
     virtual void move(point_t newPos);
     virtual void move(double dx, double dy);
-    virtual void scale(double factor);
+    virtual void unsafeScale(double factor);
   private:
     point_t first_;
     point_t second_;

@@ -37,7 +37,7 @@ void marishin::Rectangle::move(double dx, double dy)
   topRightCorner_ = mixPoint(topRightCorner_, dx, dy);
 }
 
-void marishin::Rectangle::scale(double factor)
+void marishin::Rectangle::unsafeScale(double factor)
 {
   point_t pos = { ((lowerLeftCorner_.x + topRightCorner_.x) / 2), ((lowerLeftCorner_.y + topRightCorner_.y) / 2) };
   lowerLeftCorner_ = scalePoint(lowerLeftCorner_, pos, factor);
