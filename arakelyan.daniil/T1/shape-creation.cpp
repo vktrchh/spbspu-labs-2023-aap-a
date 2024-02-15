@@ -27,7 +27,7 @@ void arakelyan::dataExtractionParAndDiam(const char * string, point_t &p1, point
   }
   if (*string != '\0')
   {
-    throw std::logic_error("Invalid input of shape coordinates, too many arg PARALLELOGRAM of DIAMOND!");
+    throw std::logic_error("Invalid input of shape coordinates, too many arg for PARALLELOGRAM or DIAMOND!");
   }
 
   p1 = {coordStorage[0], coordStorage[1]};

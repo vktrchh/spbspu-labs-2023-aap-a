@@ -26,7 +26,9 @@ int main()
 
   char * string = nullptr;
 
-  while (true)
+  bool readingFromInput = true;
+
+  while (readingFromInput)
   {
     try
     {
@@ -48,6 +50,7 @@ int main()
     {
       inputScaleParam(string, scalePoint, scaleK);
       delete [] string;
+
       try
       {
         scaleFunction(myShapes, currentShapesCount, scalePoint, scaleK);
@@ -56,7 +59,8 @@ int main()
       {
         errorsFlagScale = true;
       }
-      break;
+
+      readingFromInput = false;
     }
     else
     {
@@ -68,11 +72,13 @@ int main()
       {
         errorsFlagShapes = true;
       }
+
       if (myShapes[currentShapesCount] != nullptr)
       {
         currentShapesCount++;
       }
     }
+
     delete [] string;
   }
 

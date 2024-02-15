@@ -95,7 +95,7 @@ char * arakelyan::inputString(std::istream &input)
   return string;
 }
 
-void arakelyan::shapeOutput(std::ostream &output, arakelyan::Shape **shapes, const size_t shapesCount)
+void arakelyan::shapeOutput(std::ostream &output, arakelyan::Shape * const *shapes, const size_t shapesCount)
 {
   output << std::fixed;
   output.precision(1);
@@ -114,5 +114,4 @@ void arakelyan::shapeOutput(std::ostream &output, arakelyan::Shape **shapes, con
     double rightUpY = rectCurrShape.pos.y + (rectCurrShape.height / 2.0);
     output << " " << leftDownX << " " << leftDownY << " " << rigtUpX << " " << rightUpY;
   }
-  output << "\n";
 }
