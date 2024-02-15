@@ -1,20 +1,44 @@
 #include "composite_shape.hpp"
+#include "base-types.hpp"
 
 nikitov::CompositeShape::CompositeShape():
+  sizeOfArray_(0),
+  figures_(nullptr)
 {}
 
-nikitov::CompositeShape::CompositeShape(const CompositeShape& composition):
-{}
+nikitov::CompositeShape::CompositeShape(const CompositeShape& other):
+  sizeOfArray_(other.sizeOfArray_),
+  figures_(new Shape*[sizeOfArray_])
+{
+  for (size_t i = 0; i != sizeOfArray_; ++i)
+  {
+    figures_[i] = other.figures_[i]->clone();
+  }
+}
 
-nikitov::CompositeShape::CompositeShape(const CompositeShape&& composition):
-{}
+nikitov::CompositeShape::CompositeShape(CompositeShape&& other):
+  sizeOfArray_(other.sizeOfArray_),
+  figures_(other.figures_)
+{
+  other.figures_ = nullptr;
+}
 
-CompositeShape& nikitov::CompositeShape::operator=(CompositeShape& composition)
+nikitov::CompositeShape::~CompositeShape()
+{
+  for (size_t i = 0; i != sizeOfArray_; ++i)
+  {
+    delete[] figures_[i];
+  }
+  delete[] figures_;
+}
+
+/*
+CompositeShape& nikitov::CompositeShape::operator=(CompositeShape& other)
 {
 
 }
 
-CompositeShape& nikitov::CompositeShape::operator=(CompositeShape&& composition)
+CompositeShape& nikitov::CompositeShape::operator=(CompositeShape&& other)
 {
 
 }
@@ -44,7 +68,7 @@ Shape* nikitov::CompositeShape::at(size_t index)
 
 }
 
-const nikitov::CompositeShape::Shape* at(size_t index) const
+const Shape* nikitov::CompositeShape::at(size_t index) const
 {
 
 }
@@ -84,4 +108,13 @@ void nikitov::CompositeShape::scale(double ratio)
 
 }
 
+void nikitov::CompositeShape::increaseArray()
+{
 
+}
+
+void nikitov::CompositeShape::decreaseArray()
+{
+
+}
+*/

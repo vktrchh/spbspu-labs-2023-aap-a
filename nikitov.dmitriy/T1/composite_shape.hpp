@@ -10,12 +10,12 @@ namespace nikitov
   {
   public:
     CompositeShape();
-    CompositeShape(const CompositeShape& composition);
-    CompositeShape(const CompositeShape&& composition);
-    ~CompositeShape() = default;
+    CompositeShape(const CompositeShape& other);
+    CompositeShape(CompositeShape&& other);
+    ~CompositeShape();
 
-    CompositeShape& operator=(CompositeShape& composition);
-    CompositeShape& operator=(CompositeShape&& composition);
+    CompositeShape& operator=(CompositeShape& other);
+    CompositeShape& operator=(CompositeShape&& other);
     Shape* operator[](size_t index);
     const Shape* operator[](size_t index) const;
 
@@ -32,8 +32,10 @@ namespace nikitov
     void move(double dx, double dy) ;
     void scale(double ratio);
   private:
-    size_t sizeOfArray;
-    Shape* figures;
+    size_t sizeOfArray_;
+    Shape** figures_;
+    void increaseArray();
+    void decreaseArray();
   };
 }
 #endif
