@@ -16,16 +16,24 @@ int main()
   try
   {
     figures = inputShape(std::cin, count);
+    if (count == 0)
+    {
+      throw std::runtime_error("No shapes entered before scaling");
+    }
     double k = 0;
     point_t center = { 0, 0 };
     std::cin >> center.x >> center.y >> k;
+    if (!std::cin)
+    {
+      throw std::runtime_error("Invalid input for center coordinates and scaling factor");
+    }
     std::cout << std::fixed;
     std::cout.precision(1);
     output(std::cout, figures, count);
     std::cout << '\n';
     for (size_t i = 0; i < count; ++i)
     {
-      scale(figures[i], center, k);
+      scale(figures[i], center, k, count);
     }
     output(std::cout, figures, count);
     std::cout << '\n';
@@ -50,3 +58,4 @@ int main()
   }
   return 0;
 }
+
