@@ -5,21 +5,39 @@
 
 rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name)
 {
-  if (name.find("RECTANGLE") != std::string::npos)
+  Shape * ShapePointer = nullptr;
+  point_t * vertexs = nullptr;
+
+  size_t numOfVertexs = inputVertexs(input, vertexs);
+
+  try
   {
-    point_t vertexs[2] = {{0.0, 0.0}, {0.0, 0.0}};
-    inputVertexs(input, vertexs, 2);
-    return (new Rectangle(vertexs[0], vertexs[1]));
+    if (name.find("RECTANGLE") != std::string::npos)
+    {
+      ShapePointer = new Rectangle(vertexs[0], vertexs[1]);
+    }
+    else if (name.find("CONCAVE") != std::string::npos)
+    {
+      ShapePointer = new Concave(vertexs[0], vertexs[1], vertexs[2], vertexs[3]);
+    }
+    else if (name.find("POLYGON") != std::string::npos)
+    {
+      ShapePointer = new Polygon(vertexs, numOfVertexs);
+    }
   }
-  else if (name.find("CONCAVE") != std::string::npos)
+  catch(const std::logic_error & e)
   {
-    point_t vertexs[4] = {{0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}};
-    inputVertexs(input, vertexs, 4);
-    return (new Concave(vertexs[0], vertexs[1], vertexs[2], vertexs[3]));
+    delete[] vertexs;
+    throw;
   }
-  else if (name.find("POLYGON") != std::string::npos)
-  {
-    point_t * vertexs = new point_t[1];
+
+  delete[] vertexs;
+  return ShapePointer;
+}
+
+size_t rebdev::inputVertexs(std::istream & input, point_t * vertexs)
+{
+    vertexs = new point_t[1];
     point_t * bufferArr = nullptr;
     size_t bufferSize = 0, numOfVertexs = 0;
 
@@ -67,32 +85,6 @@ rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name
     delete[] vertexs;
     vertexs = bufferArr;
     bufferArr = nullptr;
-    Shape * polygon = nullptr;
-    try
-    {
-      polygon = new Polygon(vertexs, numOfVertexs);
-    }
-    catch (const std::logic_error & e)
-    {
-      delete[] vertexs;
-      throw;
-    }
-    delete[] vertexs;
-    return polygon;
-  }
 
-  return nullptr;
-}
-
-void rebdev::inputVertexs(std::istream & input, point_t * vertexs, size_t numOfVertexs)
-{
-    for (size_t i = 0; i < numOfVertexs; ++i)
-    {
-      input >> vertexs[i].x >> vertexs[i].y;
-
-      if (!input)
-      {
-        throw std::logic_error("input error");
-      }
-    }
+    return numOfVertexs;
 }
