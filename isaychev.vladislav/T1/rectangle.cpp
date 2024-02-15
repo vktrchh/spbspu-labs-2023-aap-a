@@ -42,17 +42,10 @@ void isaychev::Rectangle::move(double dX, double dY)
 
 void isaychev::Rectangle::scale(double coeff)
 {
-  if (coeff <= 0.0)
-  {
-    throw std::invalid_argument("wrong coefficient for scale");
-  }
-  else
-  {
-    double width05 = (topR_.x - botL_.x) / 2;
-    double height05 = (topR_.y - botL_.y)  / 2;
-    topR_.x += (coeff - 1.0) * width05;
-    topR_.y += (coeff - 1.0) * height05;
-    botL_.x -= (coeff - 1.0) * width05;
-    botL_.y -= (coeff - 1.0) * height05;
-  }
+  double width05 = (topR_.x - botL_.x) / 2;
+  double height05 = (topR_.y - botL_.y)  / 2;
+  topR_.x += (coeff - 1.0) * width05;
+  topR_.y += (coeff - 1.0) * height05;
+  botL_.x -= (coeff - 1.0) * width05;
+  botL_.y -= (coeff - 1.0) * height05;
 }
