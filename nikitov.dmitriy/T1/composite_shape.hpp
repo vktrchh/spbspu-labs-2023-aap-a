@@ -21,8 +21,8 @@ namespace nikitov
 
     void push_back(Shape* figure);
     void pop_back();
-    Shape* at(size_t index);
-    const Shape* at(size_t index) const;
+    Shape& at(size_t index);
+    const Shape& at(size_t index) const;
     size_t size() const;
     bool empty() const;
 

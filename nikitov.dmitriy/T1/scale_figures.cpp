@@ -4,16 +4,6 @@
 #include <iomanip>
 #include "shape.hpp"
 
-double countAreasSum(nikitov::Shape** figures, size_t nFigures)
-{
-  double areasSum = 0.0;
-  for (size_t i = 0; i != nFigures; ++i)
-  {
-    areasSum += figures[i]->getArea();
-  }
-  return areasSum;
-}
-
 void outputFrame(nikitov::Shape* figure, std::ostream& output)
 {
   nikitov::rectangle_t frame = figure->getFrameRect();
@@ -33,29 +23,27 @@ void nikitov::scaleFigure(Shape* figure, const point_t& isoScaleCenter, double r
   figure->move(-dx, -dy);
 }
 
-void nikitov::scaleFigures(Shape** figures, size_t nFigures, const point_t& isoScaleCenter, double ratio, std::ostream& output)
+void nikitov::scaleFigures(CompositeShape& composition, const point_t& isoScaleCenter, double ratio, std::ostream& output)
 {
   output << std::fixed << std::setprecision(1);
   if (ratio > 0)
   {
-    output << countAreasSum(figures, nFigures);
+    output << composition.getArea();
 
-    for (size_t i = 0; i != nFigures; ++i)
+    for (size_t i = 0; i != composition.size(); ++i)
     {
-      outputFrame(figures[i], output);
+      outputFrame(&composition[i], output);
     }
     output << '\n';
 
-    for (size_t i = 0; i != nFigures; ++i)
-    {
-      scaleFigure(figures[i], isoScaleCenter, ratio);
-    }
+    composition.move(isoScaleCenter);
+    composition.scale(ratio);
 
-    output << countAreasSum(figures, nFigures);
+    output << composition.getArea();
 
-    for (size_t i = 0; i != nFigures; ++i)
+    for (size_t i = 0; i != composition.size(); ++i)
     {
-      outputFrame(figures[i], output);
+      outputFrame(&composition[i], output);
     }
     std::cout << '\n';
   }

@@ -81,22 +81,22 @@ void nikitov::CompositeShape::pop_back()
   decreaseArray();
 }
 
-nikitov::Shape* nikitov::CompositeShape::at(size_t index)
+nikitov::Shape& nikitov::CompositeShape::at(size_t index)
 {
   if (index >= sizeOfArray_)
   {
     throw std::out_of_range("Error: Index out of range");
   }
-  return figures_[index];
+  return *figures_[index];
 }
 
-const nikitov::Shape* nikitov::CompositeShape::at(size_t index) const
+const nikitov::Shape& nikitov::CompositeShape::at(size_t index) const
 {
   if (index >= sizeOfArray_)
   {
     throw std::out_of_range("Error: Index out of range");
   }
-  return figures_[index];
+  return *figures_[index];
 }
 
 size_t nikitov::CompositeShape::size() const

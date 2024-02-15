@@ -4,12 +4,13 @@
 #include <iostream>
 #include <string>
 #include "shape.hpp"
+#include "composite_shape.hpp"
 
 namespace nikitov
 {
   void scaleFigure(Shape* figure, const point_t& isoScaleCenter, double ratio);
 
-  void scaleFigures(Shape** figures, size_t nFigures, const point_t& isoScaleCenter, double ratio, std::ostream& output);
+  void scaleFigures(CompositeShape& composition, const point_t& isoScaleCenter, double ratio, std::ostream& output);
 }
 
 #endif
