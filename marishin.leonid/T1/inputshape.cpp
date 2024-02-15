@@ -93,7 +93,7 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
   char symbol = 0;
   std::string currentName = "";
 
-  while (in >> currentName)
+  while ((in >> currentName) and (currentName != "") and (currentName != "SCALE"))
   {
     for (size_t i = 0; i < numShapes; ++i)
     {
@@ -120,16 +120,6 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
       }
     }
 
-    if (currentName == "")
-    {
-      std::cerr << "Incorrect input";
-    }
-
-    if (currentName == "SCALE")
-    {
-      break;
-    }
-
     in >> std::noskipws;
     while (symbol != '\n')
     {
@@ -139,7 +129,6 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
   }
   return currentShapes;
 }
-
 
 void marishin::cleanupShapes(Shape** shapes, size_t& count)
 {
