@@ -3,13 +3,14 @@
 #include "concave.hpp"
 #include "polygon.hpp"
 
+
 rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name)
 {
   Shape * ShapePointer = nullptr;
   point_t * vertexs = nullptr;
 
-  size_t numOfVertexs = inputVertexs(input, vertexs);
-
+  size_t numOfVertexs = 0;
+  vertexs = inputVertexs(input, numOfVertexs);
   try
   {
     if (name.find("RECTANGLE") != std::string::npos)
@@ -35,31 +36,20 @@ rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name
   return ShapePointer;
 }
 
-size_t rebdev::inputVertexs(std::istream & input, point_t * vertexs)
+rebdev::point_t * rebdev::inputVertexs(std::istream & input, size_t & numOfVertexs)
 {
-    vertexs = new point_t[1];
+    point_t * vertexs = new point_t[1];
     point_t * bufferArr = nullptr;
-    size_t bufferSize = 0, numOfVertexs = 0;
+    size_t bufferSize = 0;
 
     while (input >> vertexs[numOfVertexs].x >> vertexs[numOfVertexs].y)
     {
       if (numOfVertexs == bufferSize)
       {
         bufferSize += 10;
-
-        try
-        {
-          bufferArr = new point_t[bufferSize];
-        }
-        catch (const std::exception & e)
-        {
-          delete[] bufferArr;
-          delete[] vertexs;
-
-          throw;
-        }
-
+        bufferArr = new point_t[bufferSize];
         bufferArr[0] = vertexs[0];
+
         for (size_t i = 1; i < numOfVertexs; ++i)
         {
           bufferArr[i] = vertexs[i];
@@ -86,5 +76,5 @@ size_t rebdev::inputVertexs(std::istream & input, point_t * vertexs)
     vertexs = bufferArr;
     bufferArr = nullptr;
 
-    return numOfVertexs;
+    return vertexs;
 }
