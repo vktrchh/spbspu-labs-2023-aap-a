@@ -42,21 +42,21 @@ void grechishnikov::Triangle::move(const point_t& pos)
 
 void grechishnikov::Triangle::move(double dx, double dy)
 {
-  a_.x += dx;
-  b_.x += dx;
-  c_.x += dx;
-  a_.y += dy;
-  b_.y += dy;
-  c_.y += dy;
+  point_t* points[3] = { &a_, &b_, &c_ };
+  for (size_t i = 0; i < 3; i++)
+  {
+    points[i]->x += dx;
+    points[i]->y += dy;
+  }
 }
 
 void grechishnikov::Triangle::scale(double rate)
 {
   point_t aPos = { (a_.x + b_.x + c_.x) / 3.0, (a_.y + b_.y + c_.y) / 3.0 };
-  a_.x = aPos.x + (a_.x - aPos.x) * rate;
-  a_.y = aPos.y + (a_.y - aPos.y) * rate;
-  b_.x = aPos.x + (b_.x - aPos.x) * rate;
-  b_.y = aPos.y + (b_.y - aPos.y) * rate;
-  c_.x = aPos.x + (c_.x - aPos.x) * rate;
-  c_.y = aPos.y + (c_.y - aPos.y) * rate;
+  point_t* points[3] = { &a_, &b_, &c_ };
+  for (size_t i = 0; i < 3; i++)
+  {
+    points[i]->x = aPos.x + (points[i]->x - aPos.x) * rate;
+    points[i]->y = aPos.y + (points[i]->y - aPos.y) * rate;
+  }
 }

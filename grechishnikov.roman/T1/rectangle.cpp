@@ -41,8 +41,10 @@ void grechishnikov::Rectangle::move(double dx, double dy)
 void grechishnikov::Rectangle::scale(double rate)
 {
   point_t aPos = { (upperRightCorner_.x + lowerLeftCorner_.x) / 2, (upperRightCorner_.y + lowerLeftCorner_.y) / 2 };
-  lowerLeftCorner_.x = aPos.x + (lowerLeftCorner_.x - aPos.x) * rate;
-  lowerLeftCorner_.y = aPos.y + (lowerLeftCorner_.y - aPos.y) * rate;
-  upperRightCorner_.x = aPos.x + (upperRightCorner_.x - aPos.x) * rate;
-  upperRightCorner_.y = aPos.y + (upperRightCorner_.y - aPos.y) * rate;
+  point_t* points[2] = { &lowerLeftCorner_, &upperRightCorner_ };
+  for (size_t i = 0; i < 2; i++)
+  {
+    points[i]->x = aPos.x + (points[i]->x - aPos.x) * rate;
+    points[i]->y = aPos.y + (points[i]->y - aPos.y) * rate;
+  }
 }
