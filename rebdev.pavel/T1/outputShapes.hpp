@@ -6,8 +6,8 @@
 
 namespace rebdev
 {
-  void printSum(Shape ** shapes, size_t numOfShapes, std::ostream & out);
-  void printShapes(Shape ** shapes, size_t numOfShapes, std::ostream & out);
+  void printSum(Shape ** const shapes, size_t numOfShapes, std::ostream & out);
+  void printShapes(Shape ** const shapes, size_t numOfShapes, std::ostream & out);
 }
 
 #endif

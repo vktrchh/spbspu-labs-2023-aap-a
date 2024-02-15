@@ -9,5 +9,6 @@
 namespace rebdev
 {
   Shape * newFigure(std::istream & input, const std::string & name);
+  void inputVertexs(std::istream & input, point_t * vertexs, size_t numOfVertexs);
 }
 #endif

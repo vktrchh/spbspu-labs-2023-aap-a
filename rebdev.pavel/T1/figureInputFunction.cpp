@@ -8,29 +8,13 @@ rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name
   if (name.find("RECTANGLE") != std::string::npos)
   {
     point_t vertexs[2] = {{0.0, 0.0}, {0.0, 0.0}};
-
-    input >> vertexs[0].x >> vertexs[0].y >> vertexs[1].x >> vertexs[1].y;
-
-    if (!input)
-    {
-      throw std::logic_error("input error");
-    }
-
+    inputVertexs(input, vertexs, 2);
     return (new Rectangle(vertexs[0], vertexs[1]));
   }
   else if (name.find("CONCAVE") != std::string::npos)
   {
     point_t vertexs[4] = {{0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}};
-
-    for (size_t i = 0; i < 4; ++i)
-    {
-      input >> vertexs[i].x >> vertexs[i].y;
-      if (!input)
-      {
-        throw std::logic_error("input error");
-      }
-    }
-
+    inputVertexs(input, vertexs, 4);
     return (new Concave(vertexs[0], vertexs[1], vertexs[2], vertexs[3]));
   }
   else if (name.find("POLYGON") != std::string::npos)
@@ -54,7 +38,7 @@ rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name
           delete[] bufferArr;
           delete[] vertexs;
 
-          throw e;
+          throw;
         }
 
         for (size_t i = 0; i < numOfVertexs; ++i)
@@ -92,4 +76,17 @@ rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name
   }
 
   return nullptr;
+}
+
+void rebdev::inputVertexs(std::istream & input, point_t * vertexs, size_t numOfVertexs)
+{
+    for (size_t i = 0; i < numOfVertexs; ++i)
+    {
+      input >> vertexs[i].x >> vertexs[i].y;
+
+      if (!input)
+      {
+        throw std::logic_error("input error");
+      }
+    }
 }

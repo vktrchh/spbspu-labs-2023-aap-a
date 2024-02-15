@@ -67,7 +67,6 @@ int main()
       catch (const std::exception & e)
       {
         delete shapes[numOfShape];
-        shapes[numOfShape] = nullptr;
         figureError = 1;
       }
     }

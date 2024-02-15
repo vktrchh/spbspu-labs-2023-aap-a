@@ -4,14 +4,12 @@
 #include <stdexcept>
 
 rebdev::Rectangle::Rectangle(const point_t & firstAngle, const point_t & secondAngle):
-  angles_{{0.0, 0.0}, {0.0, 0.0}}
+  angles_{firstAngle, secondAngle}
 {
-  if ((firstAngle.x >= secondAngle.x) || (firstAngle.y >= secondAngle.y))
+  if ((angles_[0].x >= angles_[1].x) || (angles_[0].y >= angles_[1].y))
   {
     throw std::logic_error("rectangle error");
   }
-  angles_[0] = firstAngle;
-  angles_[1] = secondAngle;
 }
 
 double rebdev::Rectangle::getArea() const

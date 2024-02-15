@@ -28,7 +28,6 @@ rebdev::Polygon::Polygon(const point_t * vertexs, size_t numOfVertexs):
   }
   catch (const std::exception & e)
   {
-    delete[] vertexs_;
     throw;
   }
 
