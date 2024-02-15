@@ -2,6 +2,7 @@
 #include <limits>
 #include <stdexcept>
 #include "base-types.hpp"
+#include "scale_figures.hpp"
 
 nikitov::CompositeShape::CompositeShape():
   sizeOfArray_(0),
@@ -122,22 +123,32 @@ nikitov::rectangle_t nikitov::CompositeShape::getFrameRect() const
   point_t center = { minX + (maxX - minX) / 2, minY + (maxY - minY) / 2 };
   return { maxX - minX, maxY - minY, center };
 }
-/*
+
 void nikitov::CompositeShape::move(const point_t& point)
 {
-
+  point_t center = getFrameRect().pos;
+  double dx = point.x - center.x;
+  double dy = point.y - center.y;
+  move(dx, dy);
 }
 
 void nikitov::CompositeShape::move(double dx, double dy)
 {
-
+  for (size_t i = 0; i != sizeOfArray_; ++i)
+  {
+    figures_[i]->move(dx, dy);
+  }
 }
 
 void nikitov::CompositeShape::scale(double ratio)
 {
-
+  point_t center = getFrameRect().pos;
+  for (size_t i = 0; i != sizeOfArray_; ++i)
+  {
+    scaleFigure(figures_[i], center, ratio);
+  }
 }
-*/
+
 void nikitov::CompositeShape::increaseArray()
 {
   Shape** temp = new Shape*[sizeOfArray_ + 1];

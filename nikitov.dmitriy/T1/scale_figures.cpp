@@ -23,9 +23,9 @@ void outputFrame(nikitov::Shape* figure, std::ostream& output)
   output << ' ' << frame.pos.y + frame.height / 2;
 }
 
-void scaleFigure(nikitov::Shape* figure, const nikitov::point_t& isoScaleCenter, double ratio)
+void nikitov::scaleFigure(Shape* figure, const point_t& isoScaleCenter, double ratio)
 {
-  nikitov::point_t center = figure->getFrameRect().pos;
+  point_t center = figure->getFrameRect().pos;
   figure->move({ isoScaleCenter.x, isoScaleCenter.y });
   figure->scale(ratio);
   double dx = (isoScaleCenter.x - center.x) * ratio;
