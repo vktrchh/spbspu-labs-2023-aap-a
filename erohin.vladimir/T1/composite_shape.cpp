@@ -12,15 +12,23 @@ erohin::CompositeShape::CompositeShape():
 erohin::CompositeShape::CompositeShape(const CompositeShape& rhs):
   capacity_(rhs.capacity_),
   size_(rhs.size_),
-  shape_(new Shape* [rhs.capacity_])
+  shape_(new Shape* [rhs.capacity_]{ nullptr })
 {
   for (size_t i = 0; i < size_; ++i)
   {
-    shape_[i] = rhs.shape_[i]->clone();
-  }
-  for (size_t i = size_; i < capacity_; ++i)
-  {
-    shape_[i] = nullptr;
+    try
+    {
+      shape_[i] = rhs.shape_[i]->clone();
+    }
+    catch (const std::bad_alloc&)
+    {
+      for (size_t j = 0; j < i; ++j)
+      {
+        delete shape_[j];
+      }
+      delete[] shape_;
+      throw;
+    }
   }
 }
 
@@ -183,20 +191,19 @@ void erohin::CompositeShape::resize(size_t length)
     for (size_t i = length; i < size_; ++i)
     {
       delete shape_[i];
+      shape_[i] = nullptr;
     }
+    size_ = length;
   }
   else if (length > capacity_)
   {
-    Shape** resized = new Shape* [length];
-    capacity_ = length;
+    Shape** resized = new Shape* [length]{ nullptr };
     for (size_t i = 0; i < size_; ++i)
     {
       resized[i] = shape_[i];
-      delete shape_[i];
     }
-    for (size_t i = size_; i < capacity_; ++i)
-    {
-      resized[i] = nullptr;
-    }
+    delete[] shape_;
+    capacity_ = length;
+    shape_ = resized;
   }
 }
