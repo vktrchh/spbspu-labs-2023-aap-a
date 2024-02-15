@@ -1,7 +1,7 @@
 #include "concave.hpp"
 #include <stdexcept>
 
-Concave::Concave(const point_t ver1, const point_t ver2, const point_t ver3, const point_t ver4) :
+sivkov::Concave::Concave(const point_t ver1, const point_t ver2, const point_t ver3, const point_t ver4) :
   ver1_(ver1),
   ver2_(ver2),
   ver3_(ver3),
@@ -17,10 +17,9 @@ Concave::Concave(const point_t ver1, const point_t ver2, const point_t ver3, con
   }
 }
 
-Concave::~Concave()
-{}
+sivkov::Concave::~Concave() = default;
 
-double Concave::getArea() const
+double sivkov::Concave::getArea() const
 {
   double area = ((ver2_.x - ver1_.x) * (ver3_.y - ver1_.x)) - ((ver3_.x - ver1_.x) * (ver2_.y - ver1_.y));
   if (area < 0)
@@ -50,7 +49,7 @@ double Concave::getArea() const
   }
 };
 
-rectangle_t Concave::getFrameRect() const
+sivkov::rectangle_t sivkov::Concave::getFrameRect() const
 {
   double xmin = 0.0;
   double ymin = 0.0;
@@ -74,7 +73,7 @@ rectangle_t Concave::getFrameRect() const
   return rectangle_t{point_t{xmin + (xmax - xmin) / 2, ymin + (ymax - ymin) / 2} ,(xmax - xmin), (ymax - ymin)};
 }
 
-void Concave::move(point_t newPos)
+void sivkov::Concave::move(point_t newPos)
 {
   point_t oldPos = ver4_;
   double dx = newPos.x - oldPos.x;
@@ -89,7 +88,7 @@ void Concave::move(point_t newPos)
   ver3_.y += dy;
 }
 
-void Concave::move(double x, double y)
+void sivkov::Concave::move(double x, double y)
 {
   ver1_.x += x;
   ver1_.y += y;
@@ -101,7 +100,7 @@ void Concave::move(double x, double y)
   ver4_.y += y;
 }
 
-void Concave::scale(double k)
+void sivkov::Concave::scale(double k)
 {
   double centerX = ver4_.x;
   double centerY = ver4_.y;
@@ -116,33 +115,13 @@ void Concave::scale(double k)
   ver3_.y = centerY + (ver3_.y - centerY) * k;
 }
 
-point_t Concave::getVer1() const
-{
-  return ver1_;
-}
-
-point_t Concave::getVer2() const
-{
-  return ver2_;
-}
-
-point_t Concave::getVer3() const
-{
-  return ver3_;
-}
-
-point_t Concave::getVer4() const
-{
-  return ver4_;
-}
-
-bool Concave::isTriangle(point_t first, point_t second, point_t third)
+bool sivkov::Concave::isTriangle(point_t first, point_t second, point_t third)
 {
   bool is = (((third.x - first.x) / (second.x - first.x)) != ((third.y - first.y) / (second.y - first.y)));
   return is;
 }
 
-bool Concave::isInsideTriangle(const point_t& A, const point_t& B, const point_t& C, const point_t& D) {
+bool sivkov::Concave::isInsideTriangle(const point_t& A, const point_t& B, const point_t& C, const point_t& D) {
   double ab = (B.y - A.y) * D.x + (A.x - B.x) * D.y + (B.x * A.y - A.x * B.y);
   double bc = (B.y - C.y) * D.x + (C.x - B.x) * D.y + (B.x * C.y - C.x * B.y);
   double ac = (C.y - A.y) * D.x + (A.x - C.x) * D.y + (C.x * A.y - A.x * C.y);

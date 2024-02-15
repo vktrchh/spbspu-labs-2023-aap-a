@@ -1,7 +1,7 @@
 #include "rectangle.hpp"
 #include <stdexcept>
 
-Rectangle::Rectangle(point_t leftBottom, point_t rightTop) :
+sivkov::Rectangle::Rectangle(point_t leftBottom, point_t rightTop) :
   leftBottom_(leftBottom),
   rightTop_(rightTop)
 {
@@ -11,13 +11,13 @@ Rectangle::Rectangle(point_t leftBottom, point_t rightTop) :
   }
 }
 
-double Rectangle::getArea() const
+double sivkov::Rectangle::getArea() const
 {
   double area = getFrameRect().width * getFrameRect().height;
   return area;
 }
 
-rectangle_t Rectangle::getFrameRect() const
+sivkov::rectangle_t sivkov::Rectangle::getFrameRect() const
 {
   double width = rightTop_.x - leftBottom_.x;
   if (width < 0)
@@ -33,7 +33,7 @@ rectangle_t Rectangle::getFrameRect() const
   return { center, width, height };
 }
 
-void Rectangle::move(point_t newPos)
+void sivkov::Rectangle::move(point_t newPos)
 {
   point_t center = { (leftBottom_.x + rightTop_.x) / 2, (leftBottom_.y + rightTop_.y) / 2 };
   double dx = newPos.x - center.x;
@@ -41,7 +41,7 @@ void Rectangle::move(point_t newPos)
   move(dx, dy);
 }
 
-void Rectangle::move(double dx, double dy)
+void sivkov::Rectangle::move(double dx, double dy)
 {
   leftBottom_.x += dx;
   leftBottom_.y += dy;
@@ -49,7 +49,7 @@ void Rectangle::move(double dx, double dy)
   rightTop_.y += dy;
 }
 
-void Rectangle::scale(double factor)
+void sivkov::Rectangle::scale(double factor)
 {
   if (factor > 0)
   {

@@ -11,6 +11,7 @@
 
 int main()
 {
+  using namespace sivkov;
   Shape** figures = nullptr;
   size_t count = 0;
   try

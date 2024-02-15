@@ -2,7 +2,7 @@
 #include "othersFun.hpp"
 #include <stdexcept>
 
-Complexquad::Complexquad(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4) :
+sivkov::Complexquad::Complexquad(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4) :
   cqVer1_(ver1),
   cqVer2_(ver2),
   cqVer3_(ver3),
@@ -14,7 +14,7 @@ Complexquad::Complexquad(const point_t& ver1, const point_t& ver2, const point_t
   }
 }
 
-double Complexquad::getArea() const
+double sivkov::Complexquad::getArea() const
 {
   point_t center = findIntersection(cqVer1_, cqVer2_, cqVer3_, cqVer4_);
 
@@ -33,7 +33,7 @@ double Complexquad::getArea() const
   return area1 + area2;
 }
 
-rectangle_t Complexquad::getFrameRect() const
+sivkov::rectangle_t sivkov::Complexquad::getFrameRect() const
 {
   double xmin = cqVer1_.x;
   double ymin = cqVer1_.y;
@@ -57,7 +57,7 @@ rectangle_t Complexquad::getFrameRect() const
   return rectangle_t{ point_t{xmin + (xmax - xmin) / 2, ymin + (ymax - ymin) / 2} ,(xmax - xmin), (ymax - ymin) };
 }
 
-void Complexquad::move(point_t newPos)
+void sivkov::Complexquad::move(point_t newPos)
 {
   point_t center = findIntersection(cqVer1_, cqVer2_, cqVer3_, cqVer4_);
   const double dx = newPos.x - center.x;
@@ -65,7 +65,7 @@ void Complexquad::move(point_t newPos)
   move(dx, dy);
 }
 
-void Complexquad::move(const double dx, const double dy)
+void sivkov::Complexquad::move(const double dx, const double dy)
 {
   cqVer1_.x += dx;
   cqVer1_.y += dy;
@@ -77,7 +77,7 @@ void Complexquad::move(const double dx, const double dy)
   cqVer4_.y += dy;
 }
 
-void Complexquad::scale(const double k)
+void sivkov::Complexquad::scale(const double k)
 {
   if (k <= 0.0)
   {
@@ -97,7 +97,7 @@ void Complexquad::scale(const double k)
   }
 }
 
-double Complexquad::areaOfTriangle(const point_t& ver1, const point_t& ver2, const point_t& ver3) const
+double sivkov::Complexquad::areaOfTriangle(const point_t& ver1, const point_t& ver2, const point_t& ver3) const
 {
   double ab = findLine(ver1, ver2);
   double bc = findLine(ver1, ver3);
@@ -107,7 +107,7 @@ double Complexquad::areaOfTriangle(const point_t& ver1, const point_t& ver2, con
   return area;
 }
 
-point_t Complexquad::findIntersection(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4) const
+sivkov::point_t sivkov::Complexquad::findIntersection(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4) const
 {
   double a1 = 0, b1 = 0, c1 = 0, a2 = 0, b2 = 0, c2 = 0;
 
@@ -129,7 +129,7 @@ point_t Complexquad::findIntersection(const point_t& ver1, const point_t& ver2, 
   }
 }
 
-bool Complexquad::areSegmentsIntersecting(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4)
+bool sivkov::Complexquad::areSegmentsIntersecting(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4)
 {
   double line1x = ver2.x - ver1.x;
   double line1y = ver2.y - ver1.y;

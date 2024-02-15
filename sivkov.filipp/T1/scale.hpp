@@ -3,6 +3,9 @@
 #include "base-types.hpp"
 #include "shape.hpp"
 
-void scale(Shape* shape, point_t center, double k);
+namespace sivkov
+{
+  void scale(Shape* shape, point_t center, double k);
+}
 
 #endif

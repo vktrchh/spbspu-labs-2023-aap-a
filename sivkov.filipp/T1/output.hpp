@@ -3,6 +3,9 @@
 #include "shape.hpp"
 #include <iostream>
 
-void output(std::ostream& out, Shape** shapes, size_t count);
+namespace sivkov
+{
+  void output(std::ostream& out, sivkov::Shape** shapes, size_t count);
+}
 
 #endif

@@ -4,7 +4,7 @@
 #include "complexquad.hpp"
 #include <string>
 
-void inputRectangle(std::istream& input, Shape** shapes, size_t count)
+void sivkov::inputRectangle(std::istream& input, Shape** shapes, size_t count)
 {
   const size_t numberOfTops = 4;
   double tops[numberOfTops] = {};
@@ -19,7 +19,7 @@ void inputRectangle(std::istream& input, Shape** shapes, size_t count)
   shapes[count] = new Rectangle({ tops[0], tops[1] }, { tops[2], tops[3] });
 }
 
-void inputConcave(std::istream& input, Shape** shapes, size_t count)
+void sivkov::inputConcave(std::istream& input, Shape** shapes, size_t count)
 {
   const size_t numberOfTops = 8;
   double tops[numberOfTops] = {};
@@ -35,7 +35,7 @@ void inputConcave(std::istream& input, Shape** shapes, size_t count)
 }
 
 
-void inputComplexQuad(std::istream& input, Shape** shapes, size_t count)
+void sivkov::inputComplexQuad(std::istream& input, Shape** shapes, size_t count)
 {
   const size_t numberOfTops = 8;
   double tops[numberOfTops] = {};
@@ -50,7 +50,7 @@ void inputComplexQuad(std::istream& input, Shape** shapes, size_t count)
   shapes[count] = new Complexquad({ tops[0], tops[1] }, { tops[2], tops[3] }, { tops[4], tops[5] }, { tops[6], tops[7] });
 }
 
-Shape** inputShape(std::istream& input, size_t& count)
+sivkov::Shape** sivkov::inputShape(std::istream& input, size_t& count)
 {
   std::string shapeNames[3] = { "RECTANGLE","CONCAVE","COMPLEXQUAD" };
   std::string shape = "";
@@ -77,15 +77,15 @@ Shape** inputShape(std::istream& input, size_t& count)
         {
           if (shape == "RECTANGLE")
           {
-            inputRectangle(input, arrayWithShape, count);
+            sivkov::inputRectangle(input, arrayWithShape, count);
           }
           if (shape == "CONCAVE")
           {
-            inputConcave(input, arrayWithShape, count);
+            sivkov::inputConcave(input, arrayWithShape, count);
           }
           if (shape == "COMPLEXQUAD")
           {
-            inputComplexQuad(input, arrayWithShape, count);
+           sivkov::inputComplexQuad(input, arrayWithShape, count);
           }
         }
         catch (const std::bad_alloc& e)

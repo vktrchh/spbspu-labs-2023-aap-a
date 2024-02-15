@@ -1,7 +1,7 @@
 #include "scale.hpp"
 #include <iostream>
 
-void scale(Shape* shape, point_t center, double k)
+void sivkov::scale(Shape* shape, point_t center, double k)
 {
   if (k < 0)
   {
