@@ -8,7 +8,7 @@ namespace skuratov
   class Rectangle: public Shape
   {
   public:
-    Rectangle(const point_t &lowerLeftCorner, const point_t &upperRightCorner);
+    Rectangle(const point_t& lowerLeftCorner, const point_t& upperRightCorner);
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t& A);
