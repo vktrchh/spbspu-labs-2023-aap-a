@@ -57,7 +57,7 @@ rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name
 
     input.clear();
 
-    point_t bufferArr = new point_t[numOfVertexs];
+    bufferArr = new point_t[numOfVertexs];
 
     for (size_t i = 0; i < numOfVertexs; ++i)
     {
@@ -66,9 +66,9 @@ rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name
 
     delete[] vertexs;
     vertexs = bufferArr;
-    bufferArr = nullptr
+    bufferArr = nullptr;
 
-    Shape * polygon = new Polygon(bufferArr2, numOfVertexs);
+    Shape * polygon = new Polygon(vertexs, numOfVertexs);
 
     delete[] vertexs;
     return polygon;
