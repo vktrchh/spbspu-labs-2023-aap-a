@@ -25,9 +25,8 @@ int main()
       input[i - 1] = 0;
       break;
     }
-    if (i == amount)
+    if (i == (amount - 1))
     {
-      //std::cout << "AM: " << amount << " I: " << i << '\n';
       try
       {
         char * new_input = expandArray(input, amount);
@@ -44,6 +43,7 @@ int main()
     }
   }
   std::cin >> std::skipws;
+  input[i] = '\0';
   if (input[0] == '\0')
   {
     std::cerr << "Empty input\n";
