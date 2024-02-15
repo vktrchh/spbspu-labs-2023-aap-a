@@ -5,7 +5,7 @@
 #include "rectangle.hpp"
 namespace arakelyan
 {
-  class Parallelogram: public arakelyan::Shape
+  class Parallelogram: public Shape
   {
   public:
     Parallelogram(const point_t fp, const point_t sp, const point_t tp);

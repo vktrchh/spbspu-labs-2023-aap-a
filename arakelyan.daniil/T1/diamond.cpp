@@ -74,12 +74,6 @@ void arakelyan::Diamond::move(const point_t point)
   double delX = point.x - data.pos.x;
   double delY = point.y - data.pos.y;
   move(delX, delY);
-  // point_t * pointsArray[3] = {&p1_,&p2_,&p3_};
-  // for (size_t i = 0; i < 3; i++)
-  // {
-  //   pointsArray[i]->x += delX;
-  //   pointsArray[i]->y += delY;
-  // }
 }
 
 void arakelyan::Diamond::move(const double delX, const double delY)

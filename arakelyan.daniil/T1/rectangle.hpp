@@ -4,7 +4,7 @@
 #include "shape.hpp"
 namespace arakelyan
 {
-  class Rectangle: public arakelyan::Shape
+  class Rectangle: public Shape
   {
   public:
     Rectangle(point_t fp, point_t sp);
