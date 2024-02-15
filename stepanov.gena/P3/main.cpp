@@ -1,5 +1,6 @@
 #include "inputArray.hpp"
 #include "replaceStringToLow.hpp"
+#include "removeVowels.hpp"
 #include <iostream>
 
 int main()
@@ -14,10 +15,11 @@ int main()
     return 1;
   }
   std::cout << "String: " << resultString << '\n';
+  char* resultRemoveVowels = removeVowels(resultString);
+  std::cout << "[RMV-VOW]: " << resultRemoveVowels << '\n';
   char* resultUpToLow = replaceStringToLow(resultString);
-  std::cout << "[UPP-LOW: ]" << resultUpToLow << '\n';
+  std::cout << "[UPP-LOW]: " << resultUpToLow << '\n';
   delete[] resultString;
 }
-
 
 
