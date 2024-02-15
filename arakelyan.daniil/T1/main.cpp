@@ -49,7 +49,6 @@ int main()
     if (foundScale != nullptr)
     {
       inputScaleParam(string, scalePoint, scaleK);
-      delete [] string;
 
       try
       {
