@@ -67,9 +67,16 @@ rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name
     delete[] vertexs;
     vertexs = bufferArr;
     bufferArr = nullptr;
-
-    Shape * polygon = new Polygon(vertexs, numOfVertexs);
-
+    Shape * polygon = nullptr;
+    try
+    {
+      polygon = new Polygon(vertexs, numOfVertexs);
+    }
+    catch (const std::logic_error & e)
+    {
+      delete[] vertexs;
+      throw;
+    }
     delete[] vertexs;
     return polygon;
   }
