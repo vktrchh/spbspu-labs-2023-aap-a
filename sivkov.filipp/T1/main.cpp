@@ -46,6 +46,7 @@ int main()
       }
       delete[] figures;
     }
+    return 1;
   }
   return 0;
 }
