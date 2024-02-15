@@ -13,6 +13,7 @@ namespace marishin
   void readRing(std::istream& in, Shape** currentShapes, size_t& shapeCount);
   Shape** inputShape(std::istream& in, size_t& shapeCount);
   void cleanupShapes(Shape** shapes, size_t& count);
+  void readShape(std::istream& in, Shape** currentShapes, size_t& shapeCount, const std::string& currentName);
 }
 
 #endif

@@ -51,6 +51,39 @@ void marishin::readRing(std::istream& in, Shape** currentShapes, size_t& shapeCo
   currentShapes[shapeCount] = new Ring({ option[0], option[1] }, option[2], option[3]);
 }
 
+void readShape(std::istream& in, Shape** currentShapes, size_t& shapeCount, const std::string& currentName)
+{
+  try
+  {
+    if (currentName == "RECTANGLE")
+    {
+      readRectangle(in, currentShapes, shapeCount);
+    }
+    else if (currentName == "TRIANGLE")
+    {
+      readTriangle(in, currentShapes, shapeCount);
+    }
+    else if (currentName == "RING")
+    {
+      readRing(in, currentShapes, shapeCount);
+    }
+    else
+    {
+      throw std::runtime_error("Unknown shape type: ");
+    }
+    ++shapeCount;
+  }
+  catch (const std::bad_alloc& e)
+  {
+    cleanupShapes(currentShapes, shapeCount);
+    throw;
+  }
+  catch (const std::exception& e)
+  {
+    std::cerr << e.what() << '\n';
+  }
+}
+
 marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
 {
   const size_t numShapes = 3;
@@ -78,24 +111,7 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
         delete[] oldShapes;
         try
         {
-          if (currentName == "RECTANGLE")
-          {
-            readRectangle(in, currentShapes, shapeCount);
-          }
-          else if (currentName == "TRIANGLE")
-          {
-            readTriangle(in, currentShapes, shapeCount);
-          }
-          else if (currentName == "RING")
-          {
-            readRing(in, currentShapes, shapeCount);
-          }
-          ++shapeCount;
-        }
-        catch (const std::bad_alloc& e)
-        {
-          cleanupShapes(currentShapes, shapeCount);
-          throw;
+          readShape(in, currentShapes, shapeCount, currentName);
         }
         catch (const std::exception& e)
         {
