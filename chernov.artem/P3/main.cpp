@@ -63,4 +63,5 @@ int main()
   delete[] stringWithDecimalDigitsRemoved;
   delete[] stringWithVowelsRemoved;
   delete[] input;
+  return 0;
 }
