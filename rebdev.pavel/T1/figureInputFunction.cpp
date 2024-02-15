@@ -21,9 +21,9 @@ rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name
   {
     point_t * vertexs = new point_t[1];
     point_t * bufferArr = nullptr;
-    size_t bufferSize = 1, numOfVertexs = 1;
+    size_t bufferSize = 0, numOfVertexs = 0;
 
-    while (input >> vertexs[numOfVertexs - 1].x >> vertexs[numOfVertexs - 1].y)
+    while (input >> vertexs[numOfVertexs].x >> vertexs[numOfVertexs].y)
     {
       if (numOfVertexs == bufferSize)
       {
@@ -41,13 +41,10 @@ rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name
           throw;
         }
 
-        for (size_t i = 0; i < numOfVertexs; ++i)
+        bufferArr[0] = vertexs[0];
+        for (size_t i = 1; i < numOfVertexs; ++i)
         {
           bufferArr[i] = vertexs[i];
-        }
-        for (size_t i = numOfVertexs; i < bufferSize; ++i)
-        {
-          bufferArr[i] = point_t{0.0, 0.0};
         }
 
         delete[] vertexs;
@@ -60,19 +57,21 @@ rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name
 
     input.clear();
 
-    numOfVertexs -= 1;
-
-    point_t bufferArr2[numOfVertexs];
+    point_t bufferArr = new point_t[numOfVertexs];
 
     for (size_t i = 0; i < numOfVertexs; ++i)
     {
-      bufferArr2[i] = vertexs[i];
+      bufferArr[i] = vertexs[i];
     }
 
-    delete[] bufferArr;
     delete[] vertexs;
+    vertexs = bufferArr;
+    bufferArr = nullptr
 
-    return (new Polygon(bufferArr2, numOfVertexs));
+    Shape * polygon = new Polygon(bufferArr2, numOfVertexs);
+
+    delete[] vertexs;
+    return polygon;
   }
 
   return nullptr;
