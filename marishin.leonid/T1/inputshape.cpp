@@ -88,7 +88,7 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
 {
   const size_t numShapes = 3;
   std::string shapeNames[numShapes] = { "RECTANGLE", "TRIANGLE", "RING" };
-  marishin::Shape** currentShapes = nullptr;
+  Shape** currentShapes = nullptr;
   char symbol = 0;
   std::string currentName = "";
 
@@ -98,7 +98,7 @@ marishin::Shape** marishin::inputShape(std::istream& in, size_t& shapeCount)
     {
       if (currentName == shapeNames[i])
       {
-        marishin::Shape** newShapes = new Shape* [shapeCount + 1];
+        Shape** newShapes = new Shape* [shapeCount + 1];
         for (size_t k = 0; k < shapeCount; k++)
         {
           newShapes[k] = currentShapes[k];
