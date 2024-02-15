@@ -106,7 +106,7 @@ size_t nikitov::CompositeShape::size() const
 
 bool nikitov::CompositeShape::empty() const
 {
-  return sizeOfArray_;
+  return !sizeOfArray_;
 }
 
 double nikitov::CompositeShape::getArea() const

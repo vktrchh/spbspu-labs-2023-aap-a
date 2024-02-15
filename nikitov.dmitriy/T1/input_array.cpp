@@ -21,28 +21,9 @@ void nikitov::recognizeScaleParameters(std::string line, point_t& isoScaleCenter
   ratio = coordinates[2];
 }
 
-nikitov::Shape** increaseArray(nikitov::Shape** figures, size_t nFigures)
+void nikitov::inputArray(CompositeShape& composition, std::string& line, std::istream& input)
 {
-  nikitov::Shape** newFigures = new nikitov::Shape*[nFigures + 1]{ nullptr };
-  for (size_t i = 0; i != nFigures; ++i)
-  {
-    newFigures[i] = figures[i];
-  }
-  return newFigures;
-}
-
-void nikitov::freeArray(Shape** figures, size_t nFigures)
-{
-  for (size_t i = 0; i != nFigures; ++i)
-  {
-    delete figures[i];
-  }
-  delete[] figures;
-}
-
-nikitov::Shape** nikitov::inputArray(std::string& line, size_t& nFigures, bool& isErrorInProgram, std::istream& input)
-{
-  Shape** figures = new Shape*[1]{ nullptr };
+  bool isErrorInProgram = false;
   try
   {
     while (input && line.find("SCALE") != 0)
@@ -57,35 +38,29 @@ nikitov::Shape** nikitov::inputArray(std::string& line, size_t& nFigures, bool& 
       {
         if (line.find("RECTANGLE") == 0)
         {
-          figures[nFigures] = insertRectangle(line);
+          composition.push_back(insertRectangle(line));
         }
         else if (line.find("DIAMOND") == 0)
         {
-          figures[nFigures] = insertDiamond(line);
+          composition.push_back(insertDiamond(line));
         }
         else if (line.find("REGULAR") == 0)
         {
-          figures[nFigures] = insertRegular(line);
+          composition.push_back(insertRegular(line));
         }
       }
       catch (const std::invalid_argument&)
       {
         isErrorInProgram = true;
       }
-
-      if (figures[nFigures] != nullptr)
-      {
-        ++nFigures;
-        Shape** tempFigures = increaseArray(figures, nFigures);
-        delete[] figures;
-        figures = tempFigures;
-      }
     }
   }
   catch (...)
   {
-    freeArray(figures, nFigures);
     throw;
   }
-  return figures;
+  if (isErrorInProgram)
+  {
+    throw std::invalid_argument("Error: Wrong parameters of figure");
+  }
 }
