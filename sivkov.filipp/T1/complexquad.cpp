@@ -16,7 +16,7 @@ sivkov::Complexquad::Complexquad(const point_t& ver1, const point_t& ver2, const
 
 double sivkov::Complexquad::getArea() const
 {
-  point_t center = findIntersection(cqVer1_, cqVer2_, cqVer3_, cqVer4_);
+  point_t center = findCenter(cqVer1_, cqVer2_, cqVer3_, cqVer4_);
 
   double ab = findLine(cqVer1_, center);
   double ac = findLine(cqVer4_, center);
@@ -59,7 +59,7 @@ sivkov::rectangle_t sivkov::Complexquad::getFrameRect() const
 
 void sivkov::Complexquad::move(point_t newPos)
 {
-  point_t center = findIntersection(cqVer1_, cqVer2_, cqVer3_, cqVer4_);
+  point_t center = findCenter(cqVer1_, cqVer2_, cqVer3_, cqVer4_);
   const double dx = newPos.x - center.x;
   const double dy = newPos.y - center.y;
   move(dx, dy);
@@ -85,7 +85,7 @@ void sivkov::Complexquad::scale(const double k)
   }
   else
   {
-    point_t centerPoint = findIntersection(cqVer1_, cqVer2_, cqVer3_, cqVer4_);
+    point_t centerPoint = findCenter(cqVer1_, cqVer2_, cqVer3_, cqVer4_);
     cqVer1_.x = centerPoint.x + (cqVer1_.x - centerPoint.x) * k;
     cqVer1_.y = centerPoint.y + (cqVer1_.y - centerPoint.y) * k;
     cqVer2_.x = centerPoint.x + (cqVer2_.x - centerPoint.x) * k;
@@ -107,7 +107,7 @@ double sivkov::Complexquad::areaOfTriangle(const point_t& ver1, const point_t& v
   return area;
 }
 
-sivkov::point_t sivkov::Complexquad::findIntersection(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4) const
+sivkov::point_t sivkov::Complexquad::findCenter(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4) const
 {
   double a1 = 0, b1 = 0, c1 = 0, a2 = 0, b2 = 0, c2 = 0;
 
