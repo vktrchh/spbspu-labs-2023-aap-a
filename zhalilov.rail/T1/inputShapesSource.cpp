@@ -8,14 +8,9 @@
 
 namespace zhalilov
 {
-  Shape *inputRectangle(std::istream &input)
+  Shape *createRectangle(const double *nums, size_t length)
   {
-    double nums[4] = {};
-    for (size_t i = 0; i < 4; i++)
-    {
-      input >> nums[i];
-    }
-    if (!input)
+    if (length != 4)
     {
       throw std::invalid_argument("incorrect rect src's num of args");
     }
@@ -24,14 +19,9 @@ namespace zhalilov
     return new Rectangle(leftCorner, rightCorner);
   }
 
-  Shape *inputCircle(std::istream &input)
+  Shape *createCircle(const double *nums, size_t length)
   {
-    double nums[3] = {};
-    for (size_t i = 0; i < 3; i++)
-    {
-      input >> nums[i];
-    }
-    if (!input)
+    if (length != 3)
     {
       throw std::invalid_argument("incorrect circle src's num of args");
     }
@@ -40,20 +30,41 @@ namespace zhalilov
     return new Circle(center, radius);
   }
 
-  Shape *inputPolygon(std::istream &input)
+  Shape *createPolygon(const double *nums, size_t length)
   {
-    size_t index = 0;
-    size_t size = 10;
-    double *nums = new double[size]{};
-    while (true)
+    if (length % 2 != 0 || length < 6)
     {
-      double num;
-      input >> num;
-      if (input.fail())
+      throw std::invalid_argument("incorrect polygon src's nums of args");
+    }
+
+    point_t *points = nullptr;
+    Shape *polygon = nullptr;
+    try
+    {
+      points = new point_t[length / 2];
+      for (size_t i = 0; i < length / 2; i++)
       {
-        input.clear();
-        break;
+        points[i] = { nums[i * 2], nums[i * 2 + 1] };
       }
+      polygon = new Polygon(points, length / 2);
+    }
+    catch (const std::exception &e)
+    {
+      delete[] points;
+      throw;
+    }
+    delete[] points;
+    return polygon;
+  }
+
+  double *getPointsFromStream(size_t &length, std::istream &input)
+  {
+    size_t size = 3;
+    double *nums = new double[size]{};
+    double num = 0;
+    size_t index = 0;
+    while (input >> num)
+    {
       if (index + 1 == size)
       {
         try
@@ -76,38 +87,9 @@ namespace zhalilov
       nums[index] = num;
       index++;
     }
-
-    if (index % 2 != 0 || index < 6)
-    {
-      delete[] nums;
-      throw std::invalid_argument("incorrect polygon src's nums of args");
-    }
-
-    point_t *points = nullptr;
-    Shape *polygon = nullptr;
-    try
-    {
-      points = new point_t[index / 2];
-      for (size_t i = 0; i < index / 2; i++)
-      {
-        points[i] = { nums[i * 2], nums[i * 2 + 1] };
-      }
-      polygon = new Polygon(points, index / 2);
-    }
-    catch (const std::exception &e)
-    {
-      delete[] nums;
-      delete[] points;
-      throw;
-    }
-    delete[] nums;
-    delete[] points;
-    return polygon;
-  }
-
-  point_t *getPointsFromStream(size_t &size)
-  {
-
+    input.clear();
+    length = index;
+    return nums;
   }
 }
 
@@ -124,10 +106,12 @@ void zhalilov::inputShapesSource(Shape **shapes, point_t &point, double &ratio, 
   size_t shapeIndex = 0;
   bool hasIncorrectShapes = false;
   std::string name;
+  double *nums = nullptr;
   while (name != "SCALE")
   {
     try
     {
+      nums = nullptr;
       input >> name;
       if (!input)
       {
@@ -135,29 +119,34 @@ void zhalilov::inputShapesSource(Shape **shapes, point_t &point, double &ratio, 
       }
 
       shapeIndex++;
-      using shapeCreatingFunc = Shape *(*)(std::istream &input);
+      using shapeCreatingFunc = Shape *(*)(const double *points, size_t length);
       size_t namesSize = 3;
       const std::string shapeNames[] = {"RECTANGLE", "CIRCLE", "POLYGON"};
       shapeCreatingFunc functions[3];
-      functions[0] = inputRectangle;
-      functions[1] = inputCircle;
-      functions[2] = inputPolygon;
+      functions[0] = createRectangle;
+      functions[1] = createCircle;
+      functions[2] = createPolygon;
       for (size_t i = 0; i < namesSize; i++)
       {
         if (shapeNames[i] == name)
         {
-          shapes[shapeIndex] = functions[i](input);
+          size_t length = 0;
+          nums = getPointsFromStream(length, input);
+          shapes[shapeIndex] = functions[i](nums, length);
           shapeIndex++;
+          delete[] nums;
         }
       }
     }
     catch (const std::invalid_argument &e)
     {
       hasIncorrectShapes = true;
+      delete[] nums;
     }
     catch (const std::exception &e)
     {
       length = shapeIndex;
+      delete[] nums;
       throw;
     }
   }
