@@ -74,3 +74,4 @@ size_t kovtun::getStringLength(const char * string)
 
   return length;
 }
+

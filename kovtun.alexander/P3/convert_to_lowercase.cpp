@@ -12,3 +12,4 @@ char * kovtun::convertToLowercase(char * destination, const char * source)
 
   return destinationBegin;
 }
+

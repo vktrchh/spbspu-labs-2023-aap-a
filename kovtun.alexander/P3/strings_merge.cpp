@@ -35,3 +35,4 @@ char * kovtun::mergeStrings(const char * first, const char * second)
 
   return result;
 }
+
