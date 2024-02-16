@@ -140,9 +140,7 @@ nikitov::rectangle_t nikitov::CompositeShape::getFrameRect() const
 void nikitov::CompositeShape::move(const point_t& point)
 {
   point_t center = getFrameRect().pos;
-  double dx = point.x - center.x;
-  double dy = point.y - center.y;
-  move(dx, dy);
+  move(point.x - center.x, point.y - center.y);
 }
 
 void nikitov::CompositeShape::move(double dx, double dy)
