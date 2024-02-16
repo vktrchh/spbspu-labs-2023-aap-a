@@ -8,7 +8,7 @@ namespace skuratov
   class Diamond: public Shape
   {
   public:
-    Diamond(const point_t corner1, const point_t corner2, const point_t corner3);
+    Diamond(const point_t& corner1, const point_t& corner2, const point_t& corner3);
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t& A);
