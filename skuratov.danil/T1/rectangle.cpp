@@ -21,8 +21,8 @@ skuratov::rectangle_t skuratov::Rectangle::getFrameRect() const
 {
   double width = upperRightCorner_.x - lowerLeftCorner_.x;
   double height = upperRightCorner_.y - lowerLeftCorner_.y;
-  point_t core = { (lowerLeftCorner_.x + width) / 2, (lowerLeftCorner_.y + height) / 2 };
-  return { width, height, core };
+  point_t pos = { (lowerLeftCorner_.x + width) / 2, (lowerLeftCorner_.y + height) / 2 };
+  return { width, height, pos };
 }
 
 void skuratov::Rectangle::move(const point_t& A)
@@ -43,7 +43,7 @@ void skuratov::Rectangle::scale(double scalingFactor)
 {
   if (scalingFactor <= 0)
   {
-    throw std::invalid_argument("Error: scale factor should be a positive");
+    throw std::invalid_argument("Error: scale factor of rectangle should be a positive");
   }
 
   rectangle_t B = getFrameRect();

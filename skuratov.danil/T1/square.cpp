@@ -33,3 +33,16 @@ void skuratov::Square::move(double dx, double dy)
   bottomLeftCorner_.x += dx;
   bottomLeftCorner_.y += dy;
 }
+
+void skuratov::Square::scale(double scalingFactor)
+{
+  if (scalingFactor <= 0)
+  {
+    throw std::invalid_argument("Error: scale factor of square should be a positive");
+  }
+
+  sideLength_ *= scalingFactor;
+  point_t core = { bottomLeftCorner_.x + (sideLength_ / 2), bottomLeftCorner_.y + (sideLength_ / 2) };
+  bottomLeftCorner_.x = core.x - (sideLength_ / 2);
+  bottomLeftCorner_.y = core.y - (sideLength_ / 2);
+}
