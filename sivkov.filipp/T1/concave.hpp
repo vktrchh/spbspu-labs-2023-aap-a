@@ -16,8 +16,6 @@ namespace sivkov
     void move(double x, double y);
     void scale(double k);
   private:
-    bool isTriangle(point_t first, point_t second, point_t third);
-    bool isInsideTriangle(const point_t& A, const point_t& B, const point_t& C, const point_t& D);
     point_t ver1_;
     point_t ver2_;
     point_t ver3_;

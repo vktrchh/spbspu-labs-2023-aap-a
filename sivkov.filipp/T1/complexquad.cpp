@@ -97,16 +97,6 @@ void sivkov::Complexquad::scale(const double k)
   }
 }
 
-double sivkov::Complexquad::areaOfTriangle(const point_t& ver1, const point_t& ver2, const point_t& ver3) const
-{
-  double ab = findLine(ver1, ver2);
-  double bc = findLine(ver1, ver3);
-  double ac = findLine(ver2, ver3);
-  double halfPerimetr = (ac + bc + ac) / 2.0;
-  double area = std::sqrt(halfPerimetr * (halfPerimetr - ab) * (halfPerimetr - bc) * (halfPerimetr - ac));
-  return area;
-}
-
 sivkov::point_t sivkov::Complexquad::findCenter(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4) const
 {
   double a1 = 0, b1 = 0, c1 = 0, a2 = 0, b2 = 0, c2 = 0;

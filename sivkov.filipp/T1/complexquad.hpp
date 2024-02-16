@@ -18,7 +18,6 @@ namespace sivkov
     void move(point_t newPos);
     void move(double x, double y);
     void scale(double k);
-    double areaOfTriangle(const point_t& ver1, const point_t& ver2, const point_t& ver3) const;
     bool areSegmentsIntersecting(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4);
     point_t findCenter(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4) const;
   private:
