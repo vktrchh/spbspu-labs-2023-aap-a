@@ -1,8 +1,8 @@
+#include <iostream>
+
 #include "read_string.h"
 #include "convert_to_lowercase.h"
 #include "strings_merge.h"
-
-#include <iostream>
 
 int main()
 {

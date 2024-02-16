@@ -1,9 +1,9 @@
 #ifndef STRINGS_MERGE_H
 #define STRINGS_MERGE_H
 
-#include "read_string.h"
-
 #include <iostream>
+
+#include "read_string.h"
 
 namespace kovtun
 {
