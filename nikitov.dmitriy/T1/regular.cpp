@@ -46,7 +46,7 @@ nikitov::rectangle_t nikitov::Regular::getFrameRect() const
   size_t n = std::round(-2.0 * PI / (std::asin(inRadius / circumRadius) * 2.0 - PI));
   double a = 2.0 * circumRadius * std::sin(PI / n);
 
-  double maxX = std::numeric_limits < double >::min();
+  double maxX = std::numeric_limits < double >::lowest();
   double maxY = maxX;
   double minX = std::numeric_limits < double >::max();
   double minY = minX;

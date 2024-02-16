@@ -2,6 +2,7 @@
 #include <limits>
 #include <utility>
 #include <stdexcept>
+#include <algorithm>
 #include "base-types.hpp"
 #include "scale_figures.hpp"
 
@@ -121,17 +122,17 @@ double nikitov::CompositeShape::getArea() const
 
 nikitov::rectangle_t nikitov::CompositeShape::getFrameRect() const
 {
-  double maxX = std::numeric_limits < double >::min();
+  double maxX = std::numeric_limits < double >::lowest();
   double maxY = maxX;
   double minX = std::numeric_limits < double >::max();
   double minY = minX;
   for (size_t i = 0; i != sizeOfArray_; ++i)
   {
     rectangle_t frame = figures_[i]->getFrameRect();
-    maxX = std::max(maxX, frame.pos.x + (frame.width / 2));
-    maxY = std::max(maxY, frame.pos.y + (frame.height / 2));
-    minX = std::min(minX, frame.pos.x - (frame.width / 2));
-    minY = std::min(minY, frame.pos.y - (frame.height / 2));
+    maxX = std::max(maxX, frame.pos.x + (frame.width / 2.0));
+    maxY = std::max(maxY, frame.pos.y + (frame.height / 2.0));
+    minX = std::min(minX, frame.pos.x - (frame.width / 2.0));
+    minY = std::min(minY, frame.pos.y - (frame.height / 2.0));
   }
   point_t center = { minX + (maxX - minX) / 2.0, minY + (maxY - minY) / 2.0 };
   return { maxX - minX, maxY - minY, center };
