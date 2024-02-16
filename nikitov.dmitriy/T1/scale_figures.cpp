@@ -13,6 +13,16 @@ void outputFrame(nikitov::Shape* figure, std::ostream& output)
   output << ' ' << frame.pos.y + frame.height / 2;
 }
 
+void nikitov::scaleComposition(CompositeShape& composition, const point_t& isoScaleCenter, double ratio)
+{
+  point_t center = composition.getFrameRect().pos;
+  composition.move(isoScaleCenter);
+  composition.scale(ratio);
+  double dx = (isoScaleCenter.x - center.x) * ratio;
+  double dy = (isoScaleCenter.y - center.y) * ratio;
+  composition.move(-dx, -dy);
+}
+
 void nikitov::scaleFigure(Shape* figure, const point_t& isoScaleCenter, double ratio)
 {
   point_t center = figure->getFrameRect().pos;
@@ -36,8 +46,7 @@ void nikitov::scaleFigures(CompositeShape& composition, const point_t& isoScaleC
     }
     output << '\n';
 
-    composition.move(isoScaleCenter);
-    composition.scale(ratio);
+    scaleComposition(composition, isoScaleCenter, ratio);
 
     output << composition.getArea();
 

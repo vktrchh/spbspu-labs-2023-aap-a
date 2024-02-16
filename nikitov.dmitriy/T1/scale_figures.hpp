@@ -8,6 +8,8 @@
 
 namespace nikitov
 {
+  void scaleComposition(CompositeShape&, const point_t& isoScaleCenter, double ratio);
+
   void scaleFigure(Shape* figure, const point_t& isoScaleCenter, double ratio);
 
   void scaleFigures(CompositeShape& composition, const point_t& isoScaleCenter, double ratio, std::ostream& output);
