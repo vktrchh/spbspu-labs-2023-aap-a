@@ -5,7 +5,9 @@
 gladyshev::Parallelogram::Parallelogram(const point_t& p1, const point_t& p2, const point_t& p3):
   p_{ p1, p2, p3 }
 {
- if (!(((p_[0].y == p_[1].y) && (p_[1].y != p_[2].y) && (p_[0].x != p_[1].x)) || ((p_[1].y == p_[2].y) && (p_[2].y != p_[0].y) && (p_[1].x != p_[2].x))))
+  const bool firstCheck = ((p_[0].y == p_[1].y) && (p_[1].y != p_[2].y) && (p_[0].x != p_[1].x));
+  const bool secondCheck = ((p_[1].y == p_[2].y) && (p_[2].y != p_[0].y) && (p_[1].x != p_[2].x));
+  if (!(firstCheck || secondCheck))
   {
     throw std::invalid_argument("bad parallelogram coords");
   }
