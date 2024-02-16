@@ -1,38 +1,24 @@
-#include <iostream>
-#include <string>
 #include "copyNum.hpp"
+#include <cctype>
 
-char* sivkov::copyNum(char* string1, const char* string2)
+void sivkov::copyNum(char* string1, const char* string2)
 {
-  size_t k1 = 0;
-  size_t k2 = 0;
-  size_t k3 = 0;
-  for (size_t i = 0; string1[i] != '\0'; i++)
+  char* ptr1 = string1;
+  const char* ptr2 = string2;
+
+  while (*ptr1)
   {
-    k1++;
-  }
-  for (size_t i = 0; string2[i] != '\0'; i++)
-  {
-    k2++;
+    ++ptr1;
   }
 
-  char* finalString = new char[k1 + k2 + 1];
-  if (!finalString)
+  while (*ptr2)
   {
-    string1 = nullptr;
-    return string1;
-  }
-  for (size_t j = 0; j < k1; j++)
-  {
-    finalString[k3++] = string1[j];
-  }
-  for (size_t j = 0; j < k2; j++)
-  {
-    if (std::isdigit(string2[j]))
+    if (std::isdigit(*ptr2))
     {
-      finalString[k3++] = string2[j];
+      *ptr1 = *ptr2;
+      ++ptr1;
     }
+    ++ptr2;
   }
-  finalString[k3] = '\0';
-  return finalString;
+  *ptr1 = '\0';
 }

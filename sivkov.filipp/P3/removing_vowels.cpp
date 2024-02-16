@@ -1,33 +1,31 @@
 #include "removing_vowels.hpp"
+#include <cstddef>
 
-char* sivkov::removing_vowels(char* string)
+void sivkov::removing_vowels(char* string)
 {
-  char vowels[10] = { 'A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u' };
-  size_t length = 0;
-  while (string[length] != '\0')
-  {
-    ++length;
-  }
+  const char* vowels = "AEIOUaeiou";
 
-  size_t new_length = 0;
+  char* oldPtr = string;
+  char* newPtr = string;
 
-  for (size_t i = 0; i < length; ++i)
+  while (*oldPtr != '\0')
   {
-    bool is_vowel = false;
-    for (size_t j = 0; j < 10; ++j)
+    bool isVowel = false;
+
+    for (size_t i = 0; i < 10; ++i)
     {
-      if (string[i] == vowels[j])
+      if (*oldPtr == vowels[i])
       {
-        is_vowel = true;
+        isVowel = true;
         break;
       }
     }
-    if (!is_vowel)
+    if (!isVowel)
     {
-      string[new_length] = string[i];
-      ++new_length;
+      *newPtr = *oldPtr;
+      ++newPtr;
     }
+    ++oldPtr;
   }
-  string[new_length] = '\0';
-  return string;
+  *newPtr = '\0';
 }
