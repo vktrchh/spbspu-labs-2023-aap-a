@@ -24,7 +24,7 @@ char* stepanov::inputArray(std::istream& input, size_t& sizeString)
     }
     else if (index == sizeString - 1)
     {
-      sizeString *= 2;
+      sizeString += 20;
       try
       {
         char* newString = new char[sizeString] {};
