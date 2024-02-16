@@ -102,25 +102,24 @@ bool zakozhurnikova::hasIntersection(const point_t* points)
 
 void zakozhurnikova::initPoints(point_t* points, const point_t& pointOne, const point_t& pointTwo, const point_t& pointThree)
 {
-  const double EPSILON = 1e-6;
   double sqrA = std::pow(getDistance(pointOne, pointTwo), 2.0);
   double sqrB = std::pow(getDistance(pointOne, pointThree), 2.0);
   double sqrC = std::pow(getDistance(pointTwo, pointThree), 2.0);
-  if (std::abs(sqrA - sqrB - sqrC) <= EPSILON)
+  if (sqrA == sqrB + sqrC)
   {
     points[0] = pointThree;
     points[1] = pointTwo;
     points[2] = pointOne;
     return;
   }
-  else if(std::abs(sqrB - sqrA - sqrC) <= EPSILON)
+  else if(sqrB == sqrA + sqrC)
   {
     points[0] = pointTwo;
     points[1] = pointOne;
     points[2] = pointThree;
     return;
   }
-  else if(std::abs(sqrC - sqrA - sqrB) <= EPSILON)
+  else if(sqrC == sqrA + sqrB)
   {
     points[0] = pointOne;
     points[1] = pointTwo;
@@ -135,9 +134,8 @@ void zakozhurnikova::initPoints(point_t* points, const point_t& pointOne, const 
 
 bool zakozhurnikova::arePointsOnAxis(const point_t& p1, const point_t& p2, const point_t& p3)
 {
-  const double EPSILON = 1e-6;
-  const bool isTriangleOnAxisFirst = (std::abs(p1.x - p2.x) <= EPSILON) && (std::abs(p1.y - p3.y) <= EPSILON);
-  const bool isTriangleOnAxixSecond = (std::abs(p1.x - p3.x) <= EPSILON) && (std::abs(p1.y - p2.y) <= EPSILON);
+  const bool isTriangleOnAxisFirst = (p1.x - p2.x == 0.0) && (p1.y - p3.y == 0.0);
+  const bool isTriangleOnAxixSecond = (p1.x - p3.x == 0.0) && (p1.y - p2.y == 0.0);
   return isTriangleOnAxisFirst || isTriangleOnAxixSecond;
 }
 

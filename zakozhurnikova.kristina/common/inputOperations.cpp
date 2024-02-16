@@ -1,5 +1,4 @@
 #include "inputOperations.hpp"
-#include <iostream>
 
 char* extendBuffer(const char* string, size_t newSize)
 {
@@ -44,6 +43,7 @@ char* zakozhurnikova::readString(std::istream& input, size_t& stringSize)
         if (counter == 1)
         {
            delete[] string;
+           input >> std::skipws;
            throw std::logic_error("Empty string");
         }
         string[counter - 1] = '\0';
@@ -53,12 +53,14 @@ char* zakozhurnikova::readString(std::istream& input, size_t& stringSize)
     if (string[0] == '\0')
     {
       delete[] string;
+      input >> std::skipws;
       throw std::range_error("Failed string reading");
     }
   }
   catch (const std::bad_alloc& e)
   {
     delete[] string;
+    input >> std::skipws;
     throw std::runtime_error("Error while handling a string");
   }
   input >> std::skipws;

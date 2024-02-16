@@ -7,14 +7,13 @@ zakozhurnikova::Diamond::Diamond(const point_t& pointOne, const point_t& pointTw
   pointTwo_(pointTwo),
   center_(pointThree)
 {
-  const double EPSILON = 1e-6;
   point_t points[3];
   initPoints(points, pointOne, pointTwo, pointThree);
   center_ = points[0];
   pointOne_ = points[1];
   pointTwo_ = points[2];
-  const bool CONDITION = ((std::abs(center_.x - pointOne_.x) <= EPSILON) && (std::abs(center_.y - pointTwo_.y) <= EPSILON)) ||
-    ((std::abs(center_.x - pointTwo_.x) <= EPSILON) && (std::abs(center_.y - pointOne_.y) <= EPSILON));
+  const bool CONDITION = ((std::abs(center_.x - pointOne_.x) == 0.0) && (std::abs(center_.y - pointTwo_.y) == 0.0)) ||
+    ((std::abs(center_.x - pointTwo_.x) == 0.0) && (std::abs(center_.y - pointOne_.y) == 0.0));
   if (!CONDITION)
   {
     throw std::invalid_argument("These points do not define a diamond");

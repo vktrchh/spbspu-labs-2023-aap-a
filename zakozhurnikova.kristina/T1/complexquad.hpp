@@ -9,7 +9,7 @@ namespace zakozhurnikova
   class Complexquad: public Shape
   {
   public:
-    Complexquad(const point_t vertexes[4]);
+    Complexquad(const point_t& p1, const point_t& p2, const point_t& p3, const point_t& p4);
     double getArea() const;
     rectangle_t getFrameRect() const;
     void move(const point_t& p);

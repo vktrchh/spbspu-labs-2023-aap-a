@@ -1,5 +1,6 @@
 #include "square.hpp"
 #include "geometryFunc.hpp"
+#include <stdexcept>
 
 zakozhurnikova::Square::Square(const point_t& downLeft, double length) :
   downLeft_(downLeft),

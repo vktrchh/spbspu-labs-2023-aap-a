@@ -1,6 +1,5 @@
 #ifndef BASE_TYPES_HPP
 #define BASE_TYPES_HPP
-#include <iosfwd>
 
 namespace zakozhurnikova
 {

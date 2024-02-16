@@ -1,31 +1,29 @@
 #include "removeSpaces.h"
+#include <cctype>
 
-void zakozhurnikova::removeSpaces(char *dest, const char *src, size_t buff)
+void zakozhurnikova::removeSpaces(char *dest, const char *src)
 {
-  if (!src || !dest)
+  if (!dest || !src)
   {
     return;
   }
-  size_t index = 0;
-  for (size_t i = 1; i < buff; i++)
+  ++src;
+  for (; *(src - 1) != '\0'; ++src)
   {
-    if (src[i] == '\0')
+    if (!std::isspace(*(src - 1)))
     {
-      break;
+      *dest = *(src - 1);
+      ++dest;
     }
-    if (src[i - 1] != ' ')
+    if (std::isspace(*src) && !std::isspace(*(src - 1)))
     {
-      dest[index] = src[i - 1];
-      index++;
-    }
-    if (src[i] == ' ' && src[i - 1] != ' ')
-    {
-      dest[index] = src[i];
-      index++;
+      *dest = *src;
+      ++dest;
     }
   }
-  if (dest[index - 1] == ' ')
+
+  if (std::isspace(*(dest - 1)))
   {
-    dest[index - 1] = '\0';
+    *(dest - 1) = '\0';
   }
 }

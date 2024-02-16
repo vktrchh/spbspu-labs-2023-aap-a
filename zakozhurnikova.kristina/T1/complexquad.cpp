@@ -2,8 +2,8 @@
 #include <cmath>
 #include <stdexcept>
 
-zakozhurnikova::Complexquad::Complexquad(const point_t vertexes[4]) :
-  vertexes_{vertexes[0], vertexes[1], vertexes[2], vertexes[3]}
+zakozhurnikova::Complexquad::Complexquad(const point_t& p1, const point_t& p2, const point_t& p3, const point_t& p4) :
+  vertexes_{p1, p2, p3, p4}
 {
   if (!hasIntersection(vertexes_))
   {

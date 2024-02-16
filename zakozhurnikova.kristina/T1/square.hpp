@@ -1,7 +1,6 @@
 #ifndef SQUARE_HPP
 #define SQUARE_HPP
 #include "shape.hpp"
-#include <stdexcept>
 
 namespace zakozhurnikova
 {
@@ -9,7 +8,6 @@ namespace zakozhurnikova
   class Square: public Shape
   {
   public:
-    Square() = delete;
     Square(const point_t& downLeft, double length);
     double getArea() const;
     rectangle_t getFrameRect() const;

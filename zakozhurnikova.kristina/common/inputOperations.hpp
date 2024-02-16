@@ -1,6 +1,6 @@
 #ifndef INPUT_OPERATIONS_HPP
 #define INPUT_OPERATIONS_HPP
-#include <iosfwd>
+#include <iostream>
 
 namespace zakozhurnikova
 {

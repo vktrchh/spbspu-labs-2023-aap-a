@@ -37,7 +37,7 @@ void zakozhurnikova::Rectangle::move(const point_t& p)
 
 void zakozhurnikova::Rectangle::move(double dx, double dy)
 {
- point_t shift = {dx, dy};
+  point_t shift = {dx, dy};
   downLeft_ += shift;
   upRight_ += shift;
 }

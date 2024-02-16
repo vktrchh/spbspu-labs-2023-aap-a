@@ -81,10 +81,9 @@ zakozhurnikova::Shape* readComplexquad(const char* string)
   zakozhurnikova::point_t pointOne = { complexquadData[0], complexquadData[1] };
   zakozhurnikova::point_t pointTwo = { complexquadData[2], complexquadData[3] };
   zakozhurnikova::point_t pointThree = { complexquadData[4], complexquadData[5] };
-  zakozhurnikova::point_t pointFour = { complexquadData[6], complexquadData[7]};
+  zakozhurnikova::point_t pointFour = { complexquadData[6], complexquadData[7] };
 
-  zakozhurnikova::point_t vertexes[4] {pointOne, pointTwo, pointThree, pointFour};
-  return new zakozhurnikova::Complexquad{vertexes};
+  return new zakozhurnikova::Complexquad{pointOne, pointTwo, pointThree, pointFour};
 }
 
 zakozhurnikova::Shape* zakozhurnikova::readShape(const char* string)
@@ -140,7 +139,7 @@ void zakozhurnikova::inputShapesArray(std::istream& in, Shape** shapes, size_t& 
     {
       size_t stringSize = 20;
       string = zakozhurnikova::readString(in, stringSize);
-      if (string && strncmp(string, "SCALE", 5) == 0)
+      if (string && areSame(string, "SCALE"))
       {
         readScale(string, scalePoint, k);
         delete[] string;
