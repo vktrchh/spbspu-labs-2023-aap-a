@@ -14,10 +14,10 @@ namespace zakozhurnikova
     rectangle_t getFrameRect() const;
     void move(const point_t& p);
     void move(double dx, double dy);
-    void scale(double k);
 
   private:
     point_t vertexes_[4];
+    void doScale(double k);
   };
 }
 #endif

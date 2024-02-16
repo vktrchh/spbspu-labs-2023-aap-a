@@ -38,7 +38,7 @@ void zakozhurnikova::Square::move(const point_t& p)
 }
 
 
-void zakozhurnikova::Square::scale(double k)
+void zakozhurnikova::Square::doScale(double k)
 {
   point_t center = {downLeft_.x + (length_ / 2.0), downLeft_.y + (length_ / 2.0)};
   downLeft_ = center - (center - downLeft_) * k;

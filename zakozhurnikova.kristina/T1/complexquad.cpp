@@ -69,12 +69,8 @@ void zakozhurnikova::Complexquad::move(double dx, double dy)
   vertexes_[3] += shift;
 }
 
-void zakozhurnikova::Complexquad::scale(double k)
+void zakozhurnikova::Complexquad::doScale(double k)
 {
-  if (k <= 0)
-  {
-    throw std::invalid_argument("Scale coefficient should be a positive real number.");
-  }
   point_t center = getComplexquadCenter(vertexes_);
   vertexes_[0] = scaleShift(k, vertexes_[0], center);
   vertexes_[1] = scaleShift(k, vertexes_[1], center);

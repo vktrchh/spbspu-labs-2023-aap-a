@@ -42,12 +42,8 @@ void zakozhurnikova::Rectangle::move(double dx, double dy)
   upRight_ += shift;
 }
 
-void zakozhurnikova::Rectangle::scale(double k)
+void zakozhurnikova::Rectangle::doScale(double k)
 {
-  if (k <= 0)
-  {
-    throw std::invalid_argument("Scale coefficient should be a positive real number.");
-  }
   point_t pos{(downLeft_ + upRight_) / 2.0};
   downLeft_ = scaleShift(k, downLeft_, pos);
   upRight_ = scaleShift(k, upRight_, pos);

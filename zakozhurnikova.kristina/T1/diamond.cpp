@@ -56,12 +56,8 @@ void zakozhurnikova::Diamond::move(const point_t& p)
 }
 
 
-void zakozhurnikova::Diamond::scale(double k)
+void zakozhurnikova::Diamond::doScale(double k)
 {
-  if (k <= 0)
-  {
-    throw std::invalid_argument("Scale coefficient should be a positive real number.");
-  }
   pointOne_ = center_ - (center_ - pointOne_) * k;
   pointTwo_ = center_ - (center_ - pointTwo_) * k;
 }
