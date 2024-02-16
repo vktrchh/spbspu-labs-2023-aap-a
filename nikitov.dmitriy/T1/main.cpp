@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <stdexcept>
+#include <iomanip>
 #include "shape.hpp"
 #include "input_array.hpp"
 #include "scale_figures.hpp"
@@ -27,17 +28,48 @@ int main()
     return 1;
   }
 
-  if (!composition.empty())
+  try
   {
-    point_t isoScaleCenter = {};
-    double ratio = 0;
-    recognizeScaleParameters(line, isoScaleCenter, ratio);
-    scaleFigures(composition, isoScaleCenter, ratio, std::cout);
+    if (!composition.empty())
+    {
+      point_t isoScaleCenter = {};
+      double ratio = 0;
+      recognizeScaleParameters(line, isoScaleCenter, ratio);
+
+      std::cout << std::fixed << std::setprecision(1);
+      if (ratio > 0)
+      {
+        std::cout << composition.getArea();
+        for (size_t i = 0; i != composition.size(); ++i)
+        {
+          outputFrame(&composition[i], std::cout);
+        }
+        std::cout << '\n';
+
+        scaleComposition(composition, isoScaleCenter, ratio);
+
+        std::cout << composition.getArea();
+        for (size_t i = 0; i != composition.size(); ++i)
+        {
+          outputFrame(&composition[i], std::cout);
+        }
+        std::cout << '\n';
+      }
+      else
+      {
+        throw std::invalid_argument("Error: Wrong argument for scaling");
+      }
+    }
+    else
+    {
+      std::cerr << "Error: Not enough figures for scaling\n";
+      return 2;
+    }
   }
-  else
+  catch(std::invalid_argument& e)
   {
-    std::cerr << "Error: Not enough figures for scaling\n";
-    return 2;
+    std::cerr << e.what() << '\n';
+    return 3;
   }
 
   if (isErrorInProgram)
