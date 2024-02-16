@@ -5,10 +5,10 @@
 void nikitov::outputFrame(Shape* figure, std::ostream& output)
 {
   rectangle_t frame = figure->getFrameRect();
-  output << ' ' << frame.pos.x - frame.width / 2;
-  output << ' ' << frame.pos.y - frame.height / 2;
-  output << ' ' << frame.pos.x + frame.width / 2;
-  output << ' ' << frame.pos.y + frame.height / 2;
+  output << ' ' << frame.pos.x - frame.width / 2.0;
+  output << ' ' << frame.pos.y - frame.height / 2.0;
+  output << ' ' << frame.pos.x + frame.width / 2.0;
+  output << ' ' << frame.pos.y + frame.height / 2.0;
 }
 
 void nikitov::scaleComposition(CompositeShape& composition, const point_t& isoScaleCenter, double ratio)

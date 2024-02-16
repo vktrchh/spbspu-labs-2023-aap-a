@@ -111,7 +111,7 @@ bool nikitov::CompositeShape::empty() const
 
 double nikitov::CompositeShape::getArea() const
 {
-  double sumOfAreas = 0;
+  double sumOfAreas = 0.0;
   for (size_t i = 0; i != sizeOfArray_; ++i)
   {
     sumOfAreas += figures_[i]->getArea();
@@ -133,7 +133,7 @@ nikitov::rectangle_t nikitov::CompositeShape::getFrameRect() const
     minX = std::min(minX, frame.pos.x - (frame.width / 2));
     minY = std::min(minY, frame.pos.y - (frame.height / 2));
   }
-  point_t center = { minX + (maxX - minX) / 2, minY + (maxY - minY) / 2 };
+  point_t center = { minX + (maxX - minX) / 2.0, minY + (maxY - minY) / 2.0 };
   return { maxX - minX, maxY - minY, center };
 }
 

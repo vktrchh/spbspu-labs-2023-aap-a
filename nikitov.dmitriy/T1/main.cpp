@@ -33,7 +33,7 @@ int main()
     if (!composition.empty())
     {
       point_t isoScaleCenter = {};
-      double ratio = 0;
+      double ratio = 0.0;
       recognizeScaleParameters(line, isoScaleCenter, ratio);
 
       std::cout << std::fixed << std::setprecision(1);

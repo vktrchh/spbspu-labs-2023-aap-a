@@ -88,13 +88,13 @@ nikitov::Diamond::Diamond(const point_t& first, const point_t& second, const poi
 double nikitov::Diamond::getArea() const
 {
   rectangle_t frame = getFrameRect();
-  return frame.width * frame.height / 2;
+  return frame.width * frame.height / 2.0;
 }
 
 nikitov::rectangle_t nikitov::Diamond::getFrameRect() const
 {
-  double width = std::abs(first_.x - third_.x) * 2;
-  double height = std::abs(first_.y - second_.y) * 2;
+  double width = std::abs(first_.x - third_.x) * 2.0;
+  double height = std::abs(first_.y - second_.y) * 2.0;
   return { width, height, first_ };
 }
 
