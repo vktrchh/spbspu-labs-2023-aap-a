@@ -3,8 +3,8 @@
 #include <stdexcept>
 
 zakozhurnikova::Rectangle::Rectangle(const point_t& pointOne, const point_t& pointTwo) :
-      downLeft_(pointOne),
-      upRight_(pointTwo)
+   downLeft_(pointOne),
+   upRight_(pointTwo)
 {
   if (pointOne.x >= pointTwo.x || pointOne.y >= pointTwo.y)
   {

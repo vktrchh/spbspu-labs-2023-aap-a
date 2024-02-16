@@ -35,8 +35,9 @@ zakozhurnikova::Shape* readRectangle(const char* string)
   size_t pos = 0;
   string += RECT_WORD_LEN;
   readArray(rectData, ARRAY_LEN, string, pos);
-  zakozhurnikova::point_t downLeft = { rectData[0], rectData[1] };
-  zakozhurnikova::point_t upRight = { rectData[2], rectData[3] };
+  using point_t = zakozhurnikova::point_t;
+  point_t downLeft = { rectData[0], rectData[1] };
+  point_t upRight = { rectData[2], rectData[3] };
   return new zakozhurnikova::Rectangle(downLeft, upRight);
 }
 
@@ -62,9 +63,10 @@ zakozhurnikova::Shape* readDiamond(const char* string)
   size_t pos = 0;
   string += SQUARE_WORD_LEN;
   readArray(diamondData, ARRAY_LEN, string, pos);
-  zakozhurnikova::point_t pointOne = { diamondData[0], diamondData[1] };
-  zakozhurnikova::point_t pointTwo = { diamondData[2], diamondData[3] };
-  zakozhurnikova::point_t center = { diamondData[4], diamondData[5] };
+  using point_t = zakozhurnikova::point_t;
+  point_t pointOne = { diamondData[0], diamondData[1] };
+  point_t pointTwo = { diamondData[2], diamondData[3] };
+  point_t center = { diamondData[4], diamondData[5] };
 
   return new zakozhurnikova::Diamond(pointOne, pointTwo, center);
 }
@@ -77,11 +79,11 @@ zakozhurnikova::Shape* readComplexquad(const char* string)
   size_t pos = 0;
   string += COMPLEXQUAD_WORD_LEN;
   readArray(complexquadData, ARRAY_LEN, string, pos);
-
-  zakozhurnikova::point_t pointOne = { complexquadData[0], complexquadData[1] };
-  zakozhurnikova::point_t pointTwo = { complexquadData[2], complexquadData[3] };
-  zakozhurnikova::point_t pointThree = { complexquadData[4], complexquadData[5] };
-  zakozhurnikova::point_t pointFour = { complexquadData[6], complexquadData[7] };
+  using point_t = zakozhurnikova::point_t;
+  point_t pointOne = { complexquadData[0], complexquadData[1] };
+  point_t pointTwo = { complexquadData[2], complexquadData[3] };
+  point_t pointThree = { complexquadData[4], complexquadData[5] };
+  point_t pointFour = { complexquadData[6], complexquadData[7] };
 
   return new zakozhurnikova::Complexquad{pointOne, pointTwo, pointThree, pointFour};
 }

@@ -16,6 +16,7 @@ namespace zakozhurnikova
     rectangle_t getFrameRect() const;
     void move(const point_t& p);
     void move(double dx, double dy);
+
   private:
     point_t pointOne_;
     point_t pointTwo_;

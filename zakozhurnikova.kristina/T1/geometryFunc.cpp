@@ -112,14 +112,14 @@ void zakozhurnikova::initPoints(point_t* points, const point_t& pointOne, const 
     points[2] = pointOne;
     return;
   }
-  else if(sqrB == sqrA + sqrC)
+  else if (sqrB == sqrA + sqrC)
   {
     points[0] = pointTwo;
     points[1] = pointOne;
     points[2] = pointThree;
     return;
   }
-  else if(sqrC == sqrA + sqrB)
+  else if (sqrC == sqrA + sqrB)
   {
     points[0] = pointOne;
     points[1] = pointTwo;
@@ -137,6 +137,13 @@ bool zakozhurnikova::arePointsOnAxis(const point_t& p1, const point_t& p2, const
   const bool isTriangleOnAxisFirst = (p1.x - p2.x == 0.0) && (p1.y - p3.y == 0.0);
   const bool isTriangleOnAxixSecond = (p1.x - p3.x == 0.0) && (p1.y - p2.y == 0.0);
   return isTriangleOnAxisFirst || isTriangleOnAxixSecond;
+}
+
+bool zakozhurnikova::isOnAxis(const point_t& center, const point_t& pointOne, const point_t& pointTwo)
+{
+  const bool isParallelFirst = ((center.x - pointOne.x == 0.0) && (center.y - pointTwo.y == 0.0));
+  const bool isParallelSecond = ((center.x - pointTwo.x == 0.0) && (center.y - pointOne.y == 0.0));
+  return isParallelFirst || isParallelSecond;
 }
 
 void zakozhurnikova::operator+=(point_t& dest, const point_t& src)

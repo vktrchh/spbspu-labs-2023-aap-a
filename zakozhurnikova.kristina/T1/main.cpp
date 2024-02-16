@@ -22,7 +22,6 @@ int main()
     {
       isoScale(shapes[i], scalePoint, k);
     }
-
     printShapes(std::cout, shapes, size);
   }
   catch(const std::exception& e)

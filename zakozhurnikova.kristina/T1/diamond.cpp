@@ -12,9 +12,7 @@ zakozhurnikova::Diamond::Diamond(const point_t& pointOne, const point_t& pointTw
   center_ = points[0];
   pointOne_ = points[1];
   pointTwo_ = points[2];
-  const bool CONDITION = ((std::abs(center_.x - pointOne_.x) == 0.0) && (std::abs(center_.y - pointTwo_.y) == 0.0)) ||
-    ((std::abs(center_.x - pointTwo_.x) == 0.0) && (std::abs(center_.y - pointOne_.y) == 0.0));
-  if (!CONDITION)
+  if (!isOnAxis(center_, pointOne_, pointTwo_))
   {
     throw std::invalid_argument("These points do not define a diamond");
   }
