@@ -16,9 +16,7 @@ namespace gladyshev
       virtual void move(const point_t& pos);
       virtual void scale(double factor);
     private:
-      point_t p1_;
-      point_t p2_;
-      point_t p3_;
+      point_t p_[3];
   };
 }
 
