@@ -7,11 +7,13 @@
 
 namespace nikitov
 {
+  void recognizeScaleParameters(std::string line, point_t& isoScaleCenter, double& ratio);
+
   void outputFrame(Shape* figure, std::ostream& output);
 
-  void scaleComposition(CompositeShape&, const point_t& isoScaleCenter, double ratio);
-
   void scaleFigure(Shape* figure, const point_t& isoScaleCenter, double ratio);
+
+  void scaleComposition(CompositeShape&, const point_t& isoScaleCenter, double ratio);
 }
 
 #endif

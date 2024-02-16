@@ -1,63 +1,94 @@
 #include "input_array.hpp"
 #include <iostream>
 #include <string>
-#include <limits>
 #include "shape.hpp"
-#include "insert_figures.hpp"
+#include "rectangle.hpp"
+#include "diamond.hpp"
+#include "regular.hpp"
 
-void nikitov::recognizeScaleParameters(std::string line, point_t& isoScaleCenter, double& ratio)
+double* insertCoordinates(const char* cLine, size_t numberOfParameters)
 {
-  std::string name = "SCALE";
-  line = line.substr(name.length());
-  const char* cLine = line.c_str();
   size_t coordinatePointer = 0;
-  double coordinates[3] = {};
-  for (size_t i = 0; i != 3; ++i)
+  double* coordinates = new double[numberOfParameters]{};
+  for (size_t i = 0; i != numberOfParameters; ++i)
   {
     coordinates[i] = std::stod(cLine, std::addressof(coordinatePointer));
     cLine += coordinatePointer;
   }
-  isoScaleCenter = { coordinates[0], coordinates[1] };
-  ratio = coordinates[2];
+  return coordinates;
+}
+
+nikitov::Shape* nikitov::insertRectangle(std::string line)
+{
+  std::string name = "RECTANGLE";
+  line = line.substr(name.length());
+  const char* cLine = line.c_str();
+  double* coordinates = insertCoordinates(cLine, 4);
+  point_t leftCorner = { coordinates[0], coordinates[1] };
+  point_t rightCorner = { coordinates[2], coordinates[3] };
+
+  delete[] coordinates;
+  return new Rectangle(leftCorner, rightCorner);
+}
+
+nikitov::Shape* nikitov::insertDiamond(std::string line)
+{
+  std::string name = "DIAMOND";
+  line = line.substr(name.length());
+  const char* cLine = line.c_str();
+  double* coordinates = insertCoordinates(cLine, 6);
+  point_t firstPoint = { coordinates[0], coordinates[1] };
+  point_t secondPoint = { coordinates[2], coordinates[3] };
+  point_t thirdPoint = { coordinates[4], coordinates[5] };
+
+  delete[] coordinates;
+  return new Diamond(firstPoint, secondPoint, thirdPoint);
+}
+
+nikitov::Shape* nikitov::insertRegular(std::string line)
+{
+  std::string name = "REGULAR";
+  line = line.substr(name.length());
+  const char* cLine = line.c_str();
+  double* coordinates = insertCoordinates(cLine, 6);
+  point_t firstPoint = { coordinates[0], coordinates[1] };
+  point_t secondPoint = { coordinates[2], coordinates[3] };
+  point_t thirdPoint = { coordinates[4], coordinates[5] };
+
+  delete[] coordinates;
+  return new Regular(firstPoint, secondPoint, thirdPoint);
 }
 
 void nikitov::inputArray(CompositeShape& composition, std::string& line, std::istream& input)
 {
   bool isErrorInProgram = false;
-  try
+  while (input && line.find("SCALE") != 0)
   {
-    while (input && line.find("SCALE") != 0)
+    std::getline(input, line);
+    if (!input)
     {
-      std::getline(input, line);
-      if (!input)
-      {
-        throw std::logic_error("Error: Wrong input");
-      }
+      throw std::logic_error("Error: Wrong input");
+    }
 
-      try
+    try
+    {
+      if (line.find("RECTANGLE") == 0)
       {
-        if (line.find("RECTANGLE") == 0)
-        {
-          composition.push_back(insertRectangle(line));
-        }
-        else if (line.find("DIAMOND") == 0)
-        {
-          composition.push_back(insertDiamond(line));
-        }
-        else if (line.find("REGULAR") == 0)
-        {
-          composition.push_back(insertRegular(line));
-        }
+        composition.push_back(insertRectangle(line));
       }
-      catch (const std::invalid_argument&)
+      else if (line.find("DIAMOND") == 0)
       {
-        isErrorInProgram = true;
+        composition.push_back(insertDiamond(line));
+      }
+      else if (line.find("REGULAR") == 0)
+      {
+        composition.push_back(insertRegular(line));
       }
     }
-  }
-  catch (...)
-  {
-    throw;
+    catch (const std::invalid_argument&)
+    {
+      isErrorInProgram = true;
+    }
   }
   if (isErrorInProgram)
   {

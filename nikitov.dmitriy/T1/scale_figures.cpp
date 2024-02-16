@@ -2,6 +2,22 @@
 #include <iostream>
 #include "shape.hpp"
 
+void nikitov::recognizeScaleParameters(std::string line, point_t& isoScaleCenter, double& ratio)
+{
+  std::string name = "SCALE";
+  line = line.substr(name.length());
+  const char* cLine = line.c_str();
+  size_t coordinatePointer = 0;
+  double coordinates[3] = {};
+  for (size_t i = 0; i != 3; ++i)
+  {
+    coordinates[i] = std::stod(cLine, std::addressof(coordinatePointer));
+    cLine += coordinatePointer;
+  }
+  isoScaleCenter = { coordinates[0], coordinates[1] };
+  ratio = coordinates[2];
+}
+
 void nikitov::outputFrame(Shape* figure, std::ostream& output)
 {
   rectangle_t frame = figure->getFrameRect();

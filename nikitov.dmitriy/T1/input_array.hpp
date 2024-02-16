@@ -8,7 +8,11 @@
 
 namespace nikitov
 {
-  void recognizeScaleParameters(std::string line, point_t& isoScaleCenter, double& ratio);
+  Shape* insertRectangle(std::string line);
+
+  Shape* insertDiamond(std::string line);
+
+  Shape* insertRegular(std::string line);
 
   void inputArray(CompositeShape& composition, std::string& line, std::istream& input);
 }
