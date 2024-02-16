@@ -1,4 +1,5 @@
 #include "concave.hpp"
+#include "othersFun.hpp"
 #include <stdexcept>
 
 sivkov::Concave::Concave(const point_t ver1, const point_t ver2, const point_t ver3, const point_t ver4) :

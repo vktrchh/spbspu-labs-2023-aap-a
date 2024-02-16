@@ -11,6 +11,7 @@ namespace sivkov
   bool isTriangle(point_t first, point_t second, point_t third);
   bool isInsideTriangle(const point_t& A, const point_t& B, const point_t& C, const point_t& D);
   void scale(Shape* shape, point_t center, double k);
+  bool areSegmentsIntersecting(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4);
+  point_t findCenter(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4);
 }
 #endif
-
