@@ -49,13 +49,13 @@ void sivkov::Rectangle::move(double dx, double dy)
   rightTop_.y += dy;
 }
 
-void sivkov::Rectangle::scale(double factor)
+void sivkov::Rectangle::scale(double k)
 {
-  if (factor > 0)
+  if (k > 0)
   {
     point_t pos = getFrameRect().pos;
-    double newWidth = (rightTop_.x - leftBottom_.x) * factor;
-    double newHeight = (rightTop_.y - leftBottom_.y) * factor;
+    double newWidth = (rightTop_.x - leftBottom_.x) * k;
+    double newHeight = (rightTop_.y - leftBottom_.y) * k;
     leftBottom_ = { pos.x - newWidth / 2, pos.y - newHeight / 2 };
     rightTop_ = { pos.x + newWidth / 2, pos.y + newHeight / 2 };
   }

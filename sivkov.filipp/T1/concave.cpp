@@ -78,14 +78,7 @@ void sivkov::Concave::move(point_t newPos)
   point_t oldPos = ver4_;
   double dx = newPos.x - oldPos.x;
   double dy = newPos.y - oldPos.y;
-  ver4_.x += dx;
-  ver4_.y += dy;
-  ver1_.x += dx;
-  ver1_.y += dy;
-  ver2_.x += dx;
-  ver2_.y += dy;
-  ver3_.x += dx;
-  ver3_.y += dy;
+  move(dx,dy);
 }
 
 void sivkov::Concave::move(double x, double y)

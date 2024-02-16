@@ -13,7 +13,7 @@ namespace sivkov
     rectangle_t getFrameRect() const;
     void move(point_t newPos);
     void move(double dx, double dy);
-    void scale(double factor);
+    void scale(double k);
   private:
     point_t leftBottom_;
     point_t rightTop_;

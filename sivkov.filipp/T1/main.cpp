@@ -4,7 +4,6 @@
 #include "base-types.hpp"
 #include "rectangle.hpp"
 #include "shape.hpp"
-#include "scale.hpp"
 #include "othersFun.hpp"
 #include "output.hpp"
 #include <iostream>
