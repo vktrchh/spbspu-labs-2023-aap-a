@@ -32,7 +32,7 @@ nikitov::CompositeShape::~CompositeShape()
 {
   for (size_t i = 0; i != sizeOfArray_; ++i)
   {
-    delete[] figures_[i];
+    delete figures_[i];
   }
   delete[] figures_;
 }
