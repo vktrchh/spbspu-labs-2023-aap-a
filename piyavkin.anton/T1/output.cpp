@@ -8,11 +8,6 @@ namespace piyavkin
     {
       throw std::logic_error("No figures");
     }
-//    double sum = 0;
-//    for (size_t i = 0; i < shapeCount; ++i)
-//    {
-//      sum += shapes[i]->getArea();
-//    }
     out << shapes.getArea();
     for (size_t i = 0; i < shapes.size(); ++i)
     {

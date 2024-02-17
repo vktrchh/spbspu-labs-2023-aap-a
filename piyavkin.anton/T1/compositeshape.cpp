@@ -107,7 +107,7 @@ namespace piyavkin
   {
     if (i > size_)
     {
-      throw std::logic_error("Segmential f");
+      throw std::logic_error("Segmential fault");
     }
     return *shapes_[i];
   }
@@ -115,7 +115,7 @@ namespace piyavkin
   {
     if (i > size_)
     {
-      throw std::logic_error("Segmential f");
+      throw std::logic_error("Segmential fault");
     }
     return *shapes_[i];
   }

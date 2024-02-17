@@ -37,6 +37,11 @@ int main()
     output(std::cout, cs);
     std::cout << '\n';
   }
+  catch (const std::invalid_argument& e)
+  {
+    std::cerr << e.what() << '\n';
+    return 1;
+  }
   catch (const std::exception& e)
   {
     std::cerr << e.what() << "\n";
