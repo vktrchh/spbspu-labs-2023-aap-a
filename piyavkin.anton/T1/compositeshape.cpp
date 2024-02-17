@@ -86,16 +86,15 @@ namespace piyavkin
     if (capacity_ == size_ + 1)
     {
       capacity_ += 10;
-      Shape** oldShapes = nullptr;
-      oldShapes = shapes_;
-      shapes_ = new Shape* [capacity_]{};
+      Shape** oldShapes = shapes_;
+      shapes_ = new Shape* [capacity_] {};
       if (oldShapes)
       {
         for (size_t i = 0; i < size_; ++i)
         {
           shapes_[i] = oldShapes[i];
         }
-        clearMemory(oldShapes, size_);
+        delete[] oldShapes;
       }
     }
     shapes_[size_++] = shape;

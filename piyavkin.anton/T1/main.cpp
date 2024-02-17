@@ -17,18 +17,7 @@ int main()
   {
     using namespace piyavkin;
     shapes = inputShape(std::cin, shapeCount);
-    CompositeShape cs(100);
-    std::cout << cs.empty() << '\n';
-    for (size_t i = 0; i < shapeCount; ++i)
-    {
-      cs.push_back(shapes[i]);
-    }
-    std::cout << cs.empty() << ' ' << cs.size() << '\n';
-    for (size_t i = 0; i < cs.size(); ++i)
-    {
-      std::cout << cs[i].getFrameRect().pos.x << ' ' << cs[i].getFrameRect().pos.y << '\n';
-    }
-    std::cout << cs.getArea() << '\n';
+    CompositeShape cs(2);
 //    double k = 0;
 //    point_t center = {0, 0};
 //    std::cin >> center.x >> center.y >> k;
