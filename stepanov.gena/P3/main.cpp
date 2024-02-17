@@ -8,8 +8,15 @@ int main()
   using namespace stepanov;
   char* newString = nullptr;
   size_t sizeString = 20;
-  char* resultString = inputArray(std::cin, sizeString);
-
+  try
+  {
+    char* resultString = inputArray(std::cin, sizeString);
+  }
+  catch (const std::bad_alloc& e)
+  {
+    std::cerr << "Not enough memory: " << e.what() << '\n';
+    return 1;
+  }
   try
   {
     newString = new char[sizeString] {};

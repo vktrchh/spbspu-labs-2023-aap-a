@@ -6,15 +6,8 @@ char* stepanov::inputArray(std::istream& input, size_t& sizeString)
   char* string = nullptr;
   char symbol = 0;
   size_t index = 0;
-  try
-  {
-    string = new char[sizeString] {};
-  }
-  catch (const std::bad_alloc& e)
-  {
-    std::cerr << "Not enough memory: " << e.what() << '\n';
-    return nullptr;
-  }
+
+  string = new char[sizeString] {};
   input >> std::noskipws;
   while (input >> symbol)
   {
@@ -28,20 +21,19 @@ char* stepanov::inputArray(std::istream& input, size_t& sizeString)
       try
       {
         char* newString = new char[sizeString] {};
-        for (size_t i = 0; i < index; i++)
-        {
-          newString[i] = string[i];
-        }
-        delete[] string;
-        string = newString;
       }
       catch (const std::bad_alloc& e)
       {
-        std::cerr << "Not enough memory: " << e.what() << '\n';
         delete[] string;
         input >> std::skipws;
-        return nullptr;
+        throw;
       }
+      for (size_t i = 0; i < index; i++)
+      {
+        newString[i] = string[i];
+      }
+      delete[] string;
+      string = newString;
     }
     string[index++] = symbol;
   }
