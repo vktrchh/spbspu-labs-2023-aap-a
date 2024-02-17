@@ -16,7 +16,7 @@ void serter::CountOfSignsChangesInSeq::operator()(int number)
    {
       ++count_;
    }
- currentNumber_ = number;
+     currentNumber_ = number;
 }
 
 size_t serter::CountOfSignsChangesInSeq::operator()() const
