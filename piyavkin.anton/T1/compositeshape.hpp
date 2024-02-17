@@ -28,6 +28,7 @@ namespace piyavkin
     void pop_back();
     ~CompositeShape();
   private:
+    void swap(CompositeShape& cs);
     Shape** shapes_;
     size_t size_;
     size_t capacity_;

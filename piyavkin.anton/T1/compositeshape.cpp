@@ -25,11 +25,11 @@ namespace piyavkin
     swap(cs);
     return *this;
   }
-  void swap(CompositeShape& cs)
+  void CompositeShape::swap(CompositeShape& cs)
   {
     std::swap(shapes_, cs.shapes_);
     std::swap(size_, cs.size_);
-    std::swap(capacity, cs.capacity);
+    std::swap(capacity_, cs.capacity_);
   }
   double CompositeShape::getArea() const
   {
