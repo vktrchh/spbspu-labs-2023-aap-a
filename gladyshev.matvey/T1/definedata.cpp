@@ -35,7 +35,7 @@ namespace gladyshev
     }
   }
 
-  Shape * identifyShape(std::string& inputName, std::istream& in)
+  Shape * identifyShape(const std::string& inputName, std::istream& in)
   {
     const char * names[] = { "RECTANGLE", "PARALLELOGRAM", "CIRCLE" };
     double p[6]{};
