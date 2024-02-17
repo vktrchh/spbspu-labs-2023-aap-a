@@ -52,4 +52,8 @@ namespace piyavkin
     b_ = scalePoint(b_, pos, k);
     c_ = scalePoint(c_, pos, k);
   }
+  Shape* Triangle::clone() const
+  {
+    return new Triangle(*this);
+  }
 }

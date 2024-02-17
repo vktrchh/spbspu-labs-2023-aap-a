@@ -12,6 +12,7 @@ namespace piyavkin
     rectangle_t getFrameRect() const override;
     void move(const point_t& bias) override;
     void move(double dx, double dy) override;
+    Shape* clone() const override;
   private:
     point_t a_;
     point_t b_;

@@ -13,6 +13,7 @@ namespace piyavkin
     virtual void move(double dx, double dy) = 0;
     void scale(double k);
     virtual ~Shape() = default;
+    virtual Shape* clone() const = 0;
   private:
     virtual void scaleFigure(double k) = 0;
   };

@@ -16,7 +16,7 @@ namespace piyavkin
       throw std::logic_error("It is not parallelogram");
     }
   }
-  double piyavkin::Parallelogram::getArea() const
+  double Parallelogram::getArea() const
   {
     double a = 0;
     double h = (a_.y == c_.y) ? std::abs(b_.y - a_.y) : std::abs(a_.y - c_.y);
@@ -30,7 +30,7 @@ namespace piyavkin
     }
     return a * h;
   }
-  rectangle_t piyavkin::Parallelogram::getFrameRect() const
+  rectangle_t Parallelogram::getFrameRect() const
   {
     double height = 0;
     double width = 0;
@@ -57,22 +57,26 @@ namespace piyavkin
     }
     return {width, height, pos};
   }
-  void piyavkin::Parallelogram::move(const point_t& bias)
+  void Parallelogram::move(const point_t& bias)
   {
     point_t pos = {(b_.x + c_.x) / 2, (b_.y + c_.y) / 2};
     move(bias.x - pos.x, bias.y - pos.y);
   }
-  void piyavkin::Parallelogram::move(double dx, double dy)
+  void Parallelogram::move(double dx, double dy)
   {
     a_ = addShift(a_, dx, dy);
     b_ = addShift(b_, dx, dy);
     c_ = addShift(c_, dx, dy);
   }
-  void piyavkin::Parallelogram::scaleFigure(double k)
+  void Parallelogram::scaleFigure(double k)
   {
     point_t pos = {(b_.x + c_.x) / 2, (b_.y + c_.y) / 2};
     a_ = scalePoint(a_, pos, k);
     b_ = scalePoint(b_, pos, k);
     c_ = scalePoint(c_, pos, k);
+  }
+  Shape* Parallelogram::clone() const
+  {
+    return new Parallelogram(*this);
   }
 }

@@ -14,6 +14,7 @@ namespace piyavkin
     rectangle_t getFrameRect() const override;
     void move(const point_t& bias) override;
     void move(double dx, double dy) override;
+    Shape* clone() const override;
   private:
     void scaleFigure(double k) override;
     point_t a_;
