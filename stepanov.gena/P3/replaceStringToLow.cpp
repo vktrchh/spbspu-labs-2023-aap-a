@@ -1,5 +1,6 @@
 #include <cctype>
 #include <cstddef>
+
 #include "replaceStringToLow.hpp"
 
 char* stepanov::replaceStringToLow(char* string)
