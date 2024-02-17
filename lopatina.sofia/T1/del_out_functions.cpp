@@ -1,40 +1,7 @@
-#include "side_functions.hpp"
+#include "del_out_functions.hpp"
 #include <cmath>
 #include <iomanip>
 #include <algorithm>
-
-bool lopatina::isCentralPoint(point_t point1, point_t point2, point_t point3)
-{
-  if (((point1.x_ == point2.x_) && (point1.y_ == point3.y_)) || ((point1.x_ == point3.x_) && (point1.y_ == point2.y_)))
-  {
-    return true;
-  }
-  return false;
-}
-
-lopatina::point_t lopatina::defineSidePointX(point_t point1, point_t point2, point_t point3)
-{
-  if (point1.x_ == point2.x_)
-  {
-    return point3;
-  }
-  else
-  {
-    return point2;
-  }
-}
-
-lopatina::point_t lopatina::defineSidePointY(point_t point1, point_t point2, point_t point3)
-{
-    if (point1.y_ == point2.y_)
-  {
-    return point3;
-  }
-  else
-  {
-    return point2;
-  }
-}
 
 void lopatina::outputResult(std::ostream & output, Shape ** array, size_t counter)
 {
