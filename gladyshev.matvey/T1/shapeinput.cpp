@@ -4,53 +4,50 @@
 
 #include "definedata.hpp"
 
-namespace gladyshev
+void gladyshev::shapeInput(std::istream& in, Shape ** shapes, point_t& pos, size_t& counter, double& factor)
 {
-  void shapeInput(std::istream& in, Shape ** shapes, point_t& pos, size_t& counter, double& factor)
+  size_t mainCounter = 0;
+  bool unsupFig = false;
+  std::string inputName = "";
+  while (in >> inputName)
   {
-    size_t mainCounter = 0;
-    bool unsupFig = false;
-    std::string inputName = "";
-    while (in >> inputName)
+    try
     {
-      try
+      if (inputName == "SCALE")
       {
-        if (inputName == "SCALE")
+        if (mainCounter == 0)
         {
-          if (mainCounter == 0)
-          {
-            throw std::out_of_range("lack of supported data");
-          }
-          counter = mainCounter;
-          inputScale(in, pos, factor);
-          if (unsupFig)
-          {
-            throw std::runtime_error("there are incorrect or unsupported figures");
-          }
-          return;
+          throw std::out_of_range("lack of supported data");
         }
-        Shape * checkedShape = identifyShape(inputName, in);
-        if (in.get() != '\n')
+        counter = mainCounter;
+        inputScale(in, pos, factor);
+        if (unsupFig)
         {
-          delete checkedShape;
-          throw std::logic_error("too many args");
+          throw std::runtime_error("there are incorrect or unsupported figures");
         }
-        shapes[mainCounter++] = checkedShape;
+        return;
       }
-      catch (const std::invalid_argument& e)
+      Shape * checkedShape = identifyShape(inputName, in);
+      if (in.get() != '\n')
       {
-        unsupFig = true;
+        delete checkedShape;
+        throw std::logic_error("too many args");
       }
-      catch (const std::logic_error& e)
-      {
-        freeMemory(shapes, mainCounter);
-        throw;
-      }
+      shapes[mainCounter++] = checkedShape;
     }
-    if (in.eof())
+    catch (const std::invalid_argument& e)
+    {
+      unsupFig = true;
+    }
+    catch (const std::logic_error& e)
     {
       freeMemory(shapes, mainCounter);
-      throw std::out_of_range("EOF");
+      throw;
     }
+  }
+  if (in.eof())
+  {
+    freeMemory(shapes, mainCounter);
+    throw std::out_of_range("EOF");
   }
 }
