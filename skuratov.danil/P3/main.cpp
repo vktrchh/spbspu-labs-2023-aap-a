@@ -24,14 +24,11 @@ int main()
     }
     size += lineSize;
 
-    char* result1 = mergeTwoLines(inputLine, lineOfProgram, size);
-    std::cout << result1 << '\n';
+    char* result = new char[size];
 
-    char* result2 = removeDuplicate(lineOfProgram, inputLine, size);
-    std::cout << result2 << '\n';
-
-    delete[] result1;
-    delete[] result2;
+    std::cout << skuratov::mergeTwoLines(result, inputLine, lineOfProgram) << '\n';
+    std::cout << skuratov::removeDuplicate(result, lineOfProgram, inputLine) << '\n';
+    delete[] result;
     delete[] inputLine;
   }
   catch (const std::exception& e)

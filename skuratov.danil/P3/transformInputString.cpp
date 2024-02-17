@@ -3,7 +3,6 @@
 #include <iomanip>
 #include <iostream>
 #include <stdexcept>
-#include <cstddef>
 
 char* skuratov::transformInputString(std::istream& in, size_t& size)
 {

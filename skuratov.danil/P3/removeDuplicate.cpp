@@ -1,32 +1,33 @@
 #include "removeDuplicate.h"
 #include "transformInputString.h"
 
-#include <cstddef>
-
-char* skuratov::removeDuplicate(const char* lineOfProgram, const char* lineOfInput, size_t size)
+char* skuratov::removeDuplicate(char* result, const char* lineOfProgram, const char* lineOfInput)
 {
-  char* result = new char[size];
-  size_t index = 0;
-  size_t i = 0;
-  while (lineOfInput[i] != '\0')
+  char* resPtr = result;
+  const char* inputPtr = lineOfInput;
+
+  while (*inputPtr != '\0')
   {
-    size_t j = 0;
+    const char* programPtr = lineOfProgram;
     bool isDuplicate = false;
-    while (lineOfProgram[j] != '\0')
+
+    while (*programPtr != '\0')
     {
-      if (lineOfInput[i] == lineOfProgram[j])
+      if (*inputPtr == *programPtr)
       {
         isDuplicate = true;
         break;
       }
-      ++j;
+      ++programPtr;
     }
+
     if (!isDuplicate)
     {
-      result[index++] = lineOfInput[i];
+      *resPtr = *inputPtr;
+      ++resPtr;
     }
-    ++i;
+    ++inputPtr;
   }
-  result[index] = '\0';
+  *resPtr = '\0';
   return result;
 }
