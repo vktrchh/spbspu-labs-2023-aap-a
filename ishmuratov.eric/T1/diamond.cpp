@@ -10,8 +10,10 @@ ishmuratov::Diamond::Diamond(const point_t & point1, const point_t & point2, con
     throw std::invalid_argument("This is not a triangle!");
   }
 
-  if (((corner1_.x != corner2_.x) && (corner1_.x != corner3_.x) && (corner2_.x != corner3_.x)) || \
-     ((corner1_.y != corner2_.y) && (corner1_.y != corner3_.y) && (corner2_.y != corner3_.y)))
+  if (((corner1_.x != corner2_.x) && (corner1_.x != corner3_.x) \
+                              && (corner2_.x != corner3_.x)) || \
+     ((corner1_.y != corner2_.y) \
+     && (corner1_.y != corner3_.y) && (corner2_.y != corner3_.y)))
   {
     throw std::invalid_argument("Diagonals of diamond must be parallel to axis!");
   }
@@ -57,7 +59,8 @@ void ishmuratov::Diamond::scale(double factor)
   point_t diffArray[3] = {};
   for (int i = 0; i < 3; ++i)
   {
-    diffArray[i] = { (pointArray[i].x - center.x) * factor, (pointArray[i].y - center.y) * factor };
+    diffArray[i] = { (pointArray[i].x - center.x) * factor, \
+                     (pointArray[i].y - center.y) * factor };
     pointArray[i] = { center.x + diffArray[i].x, center.y + diffArray[i].y };
   }
   corner1_ = pointArray[0];
