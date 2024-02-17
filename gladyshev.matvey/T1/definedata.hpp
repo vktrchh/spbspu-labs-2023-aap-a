@@ -15,6 +15,7 @@ namespace gladyshev
   void freeMemory(Shape ** shapes, size_t amount);
   Shape * identifyShape(const std::string& inputName, std::istream& in);
   void isoScale(Shape * shapes, point_t pos, double factor);
+  void scalePoint(point_t& p, double factor, rectangle_t frame);
 }
 
 #endif

@@ -2,6 +2,8 @@
 
 #include <stdexcept>
 
+#include "definedata.hpp"
+
 gladyshev::Parallelogram::Parallelogram(const point_t& p1, const point_t& p2, const point_t& p3):
   p_{ p1, p2, p3 }
 {
@@ -53,7 +55,6 @@ void gladyshev::Parallelogram::scale(double factor)
   rectangle_t frameRect = getFrameRect();
   for (size_t i = 0; i < 3; ++i)
   {
-    p_[i].x = p_[i].x - (frameRect.pos.x - p_[i].x) * (factor - 1);
-    p_[i].y = p_[i].y - (frameRect.pos.y - p_[i].y) * (factor - 1);
+    scalePoint(p_[i], factor, frameRect);
   }
 }

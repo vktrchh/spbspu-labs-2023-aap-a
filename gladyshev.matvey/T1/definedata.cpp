@@ -1,9 +1,10 @@
 #include "definedata.hpp"
+
+#include <iostream>
+
 #include "circle.hpp"
 #include "rectangle.hpp"
 #include "parallelogram.hpp"
-
-#include <iostream>
 
 namespace gladyshev
 {
@@ -68,5 +69,10 @@ namespace gladyshev
     shapes->move(pos);
     shapes->scale(factor);
     shapes->move(-(pos.x - posfinishx) * factor, -(pos.y - posfinishy) * factor);
+  }
+  void scalePoint(point_t& p, double factor, rectangle_t frame)
+  {
+    p.x = p.x - (frame.pos.x - p.x) * (factor - 1);
+    p.y = p.y - (frame.pos.y - p.y) * (factor - 1);
   }
 }

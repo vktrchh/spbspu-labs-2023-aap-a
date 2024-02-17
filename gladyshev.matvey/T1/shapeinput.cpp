@@ -1,7 +1,8 @@
 #include "shapeinput.hpp"
-#include "definedata.hpp"
 
 #include <iostream>
+
+#include "definedata.hpp"
 
 namespace gladyshev
 {

@@ -2,6 +2,8 @@
 
 #include <stdexcept>
 
+#include "definedata.hpp"
+
 gladyshev::Rectangle::Rectangle(const point_t& p1, const point_t& p2):
   p1FrameRec_(p1),
   p2FrameRec_(p2)
@@ -47,8 +49,6 @@ void gladyshev::Rectangle::scale(double factor)
     throw std::underflow_error("factor must be positive");
   }
   rectangle_t frameRect = getFrameRect();
-  p1FrameRec_.x = p1FrameRec_.x - (frameRect.pos.x - p1FrameRec_.x) * (factor - 1);
-  p1FrameRec_.y = p1FrameRec_.y - (frameRect.pos.y - p1FrameRec_.y) * (factor - 1);
-  p2FrameRec_.x = p2FrameRec_.x - (frameRect.pos.x - p2FrameRec_.x) * (factor - 1);
-  p2FrameRec_.y = p2FrameRec_.y - (frameRect.pos.y - p2FrameRec_.y) * (factor - 1);
+  scalePoint(p1FrameRec_, factor, frameRect);
+  scalePoint(p2FrameRec_, factor, frameRect);
 }
