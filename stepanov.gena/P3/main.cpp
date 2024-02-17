@@ -18,6 +18,12 @@ int main()
     std::cerr << "Not enough memory: " << e.what() << '\n';
     return 1;
   }
+  if (resultString[0] == '\0')
+  {
+    std::cerr << "Empty string" << '\n';
+    delete[] resultString;
+    return 1;
+  }
   try
   {
     newString = new char[sizeString] {};
@@ -29,13 +35,6 @@ int main()
   catch (const std::bad_alloc& e)
   {
     std::cerr << "Not enough memory:" << e.what() << '\n';
-    return 1;
-  }
-  if (resultString[0] == '\0')
-  {
-    std::cerr << "Empty string" << '\n';
-    delete[] resultString;
-    delete[] newString;
     return 1;
   }
 
