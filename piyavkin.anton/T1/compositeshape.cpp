@@ -129,15 +129,25 @@ namespace piyavkin
     if (capacity_ == size_)
     {
       capacity_ += 10;
-      Shape** oldShapes = shapes_;
-      shapes_ = new Shape* [capacity_] {};
-      if (oldShapes)
+      Shape** oldShapes = nullptr;
+      try
       {
-        for (size_t i = 0; i < size_; ++i)
+        oldShapes = shapes_;
+        shapes_ = new Shape* [capacity_] {};
+        if (oldShapes)
         {
-          shapes_[i] = oldShapes[i];
+          for (size_t i = 0; i < size_; ++i)
+          {
+            shapes_[i] = oldShapes[i];
+          }
+          delete[] oldShapes;
         }
-        delete[] oldShapes;
+      }
+      catch (const std::bad_alloc& e)
+      {
+        capacity_ -= 10;
+        shapes_ = oldShapes;
+        return;
       }
     }
     shapes_[size_++] = shape;
