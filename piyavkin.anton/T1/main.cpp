@@ -22,6 +22,7 @@ int main()
     {
       cs.push_back(shapes[i]);
     }
+    delete[] shapes;
     double k = 0;
     point_t center = {0, 0};
     std::cin >> center.x >> center.y >> k;
@@ -29,8 +30,10 @@ int main()
     std::cout.precision(1);
     output(std::cout, cs);
     std::cout << '\n';
-    cs.move(center);
-    cs.scale(k);
+    for (size_t i = 0; i < cs.size(); ++i)
+    {
+      isoScale(&cs[i], center, k);
+    }
     output(std::cout, cs);
     std::cout << '\n';
   }
