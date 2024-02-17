@@ -1,5 +1,5 @@
-#ifndef countOfSignsChangesInSeq_hpp
-#define countOfSignsChangesInSeq_hpp
+#ifndef COUNTOFSIGNSCHANGESINSEQ_HPP
+#define COUNTOFSIGNSCHANGESINSEQ_HPP
 
 #include <cstddef>
 namespace serter
@@ -9,8 +9,8 @@ namespace serter
     CountOfSignsChangesInSeq();
     void operator()(int);
     size_t operator()() const;
-    size_t countOfMembersOfSeq_;
   private:
+    size_t countOfMembersOfSeq_;
     int currentNumber_;
     size_t count_;
   };
