@@ -11,7 +11,7 @@ namespace lopatina
     virtual rectangle_t getFrameRect() = 0;
     virtual void move(point_t s) = 0;
     virtual void move(double x, double y) = 0;
-    virtual rectangle_t scale(point_t s, double k) = 0;
+    virtual void scale(point_t s, double k) = 0;
   };
 }
 

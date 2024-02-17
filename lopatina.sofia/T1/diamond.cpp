@@ -22,25 +22,23 @@ lopatina::rectangle_t lopatina::Diamond::getFrameRect()
   return newRect;
 }
 
-void lopatina::Diamond::move(point_t s)
+void lopatina::Diamond::move(point_t new_pos)
 {
-  pos_diam_.x_ = s.x_;
-  pos_diam_.y_ = s.y_;
+  pos_diam_.x_ = new_pos.x_;
+  pos_diam_.y_ = new_pos.y_;
 }
 
-void lopatina::Diamond::move(double x, double y)
+void lopatina::Diamond::move(double dx, double dy)
 {
-  pos_diam_.x_ += x;
-  pos_diam_.y_ += y;
+  pos_diam_.x_ += dx;
+  pos_diam_.y_ += dy;
 }
 
-lopatina::rectangle_t lopatina::Diamond::scale(point_t s, double k)
+void lopatina::Diamond::scale(point_t new_pos, double k)
 {
-  point_t point{pos_diam_.x_, pos_diam_.y_};
-  move(s);
+  point_t old_pos{pos_diam_.x_, pos_diam_.y_};
+  move(new_pos);
   height_diam_ = height_diam_ * k;
   width_diam_ = width_diam_ * k;
-  move(k * (point.x_ - pos_diam_.x_), k * (point.y_ - pos_diam_.y_));
-  rectangle_t newRect{ height_diam_, width_diam_, pos_diam_ };
-  return newRect;
+  move(k * (old_pos.x_ - pos_diam_.x_), k * (old_pos.y_ - pos_diam_.y_));
 }

@@ -13,7 +13,7 @@ namespace lopatina
     virtual rectangle_t getFrameRect();
     virtual void move(point_t s);
     virtual void move(double x, double y);
-    virtual rectangle_t scale(point_t s, double k);
+    virtual void scale(point_t s, double k);
   private:
     double side_;
     point_t pos_sq_;

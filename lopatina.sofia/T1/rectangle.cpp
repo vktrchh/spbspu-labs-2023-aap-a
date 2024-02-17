@@ -21,25 +21,23 @@ lopatina::rectangle_t lopatina::Rectangle::getFrameRect()
   return newRect;
 }
 
-void lopatina::Rectangle::move(point_t s)
+void lopatina::Rectangle::move(point_t new_pos)
 {
-  pos_rect_.x_ = s.x_;
-  pos_rect_.y_ = s.y_;
+  pos_rect_.x_ = new_pos.x_;
+  pos_rect_.y_ = new_pos.y_;
 }
 
-void lopatina::Rectangle::move(double x, double y)
+void lopatina::Rectangle::move(double dx, double dy)
 {
-  pos_rect_.x_ += x;
-  pos_rect_.y_ += y;
+  pos_rect_.x_ += dx;
+  pos_rect_.y_ += dy;
 }
 
-lopatina::rectangle_t lopatina::Rectangle::scale(point_t s, double k)
+void lopatina::Rectangle::scale(point_t new_pos, double k)
 {
-  point_t point{pos_rect_.x_, pos_rect_.y_};
-  move(s);
+  point_t old_pos{pos_rect_.x_, pos_rect_.y_};
+  move(new_pos);
   height_rect_ = height_rect_ * k;
   width_rect_ = width_rect_ * k;
-  move(k * (point.x_ - pos_rect_.x_), k * (point.y_ - pos_rect_.y_));
-  rectangle_t newRect{height_rect_, width_rect_, pos_rect_};
-  return newRect;
+  move(k * (old_pos.x_ - pos_rect_.x_), k * (old_pos.y_ - pos_rect_.y_));
 }
