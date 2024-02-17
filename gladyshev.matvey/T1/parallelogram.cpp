@@ -27,8 +27,7 @@ gladyshev::rectangle_t gladyshev::Parallelogram::getFrameRect() const
   double width = std::abs(p1FramePar_.x - p2FramePar_.x);
   double height = std::abs(p1FramePar_.y - p2FramePar_.y);
   point_t pos = { (p1FramePar_.x + p2FramePar_.x) / 2, (p1FramePar_.y + p2FramePar_.y) / 2 };
-  rectangle_t frameRect = { pos, width, height };
-  return frameRect;
+  return { pos, width, height };
 }
 
 void gladyshev::Parallelogram::move(double dx, double dy)

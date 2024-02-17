@@ -24,8 +24,7 @@ gladyshev::rectangle_t gladyshev::Circle::getFrameRect() const
   double height = 2 * radius_;
   double width = 2 * radius_;
   point_t pos = { center_.x, center_.y };
-  rectangle_t frameRect = { pos, width, height };
-  return frameRect;
+  return { pos, width, height };
 }
 
 void gladyshev::Circle::move(double dx, double dy)

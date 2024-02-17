@@ -37,8 +37,7 @@ gladyshev::rectangle_t gladyshev::Rectangle::getFrameRect() const
   double height = std::abs(p1FrameRec_.y - p2FrameRec_.y);
   double width = std::abs(p1FrameRec_.x - p2FrameRec_.x);
   point_t pos = { (p1FrameRec_.x + p2FrameRec_.x) / 2, (p1FrameRec_.y + p2FrameRec_.y) / 2 };
-  rectangle_t frameRect = { pos, width, height };
-  return frameRect;
+  return { pos, width, height };
 }
 
 void gladyshev::Rectangle::scale(double factor)
