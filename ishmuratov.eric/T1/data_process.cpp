@@ -2,7 +2,8 @@
 
 double ishmuratov::triangleArea(const point_t & point1, const point_t & point2, const point_t & point3)
 {
-  return 0.5 * std::abs(point1.x * (point2.y - point3.y) + point2.x * (point3.y - point1.y) + point3.x * (point1.y - point2.y));
+  return 0.5 * std::abs(point1.x * (point2.y - point3.y) + point2.x * \
+        (point3.y - point1.y) + point3.x * (point1.y - point2.y));
 }
 
 ishmuratov::point_t ishmuratov::triangleCenter(const point_t & point1, const point_t & point2, const point_t & point3)
