@@ -48,8 +48,7 @@ void lebedev::Rectangle::scale(double ratio)
   }
   double center_x = (leftDownCorner_.x + rightUpCorner_.x) / 2;
   double center_y = (leftDownCorner_.y + rightUpCorner_.y) / 2;
-  rightUpCorner_.x = (rightUpCorner_.x - center_x) * ratio + center_x;
-  rightUpCorner_.y = (rightUpCorner_.y - center_y) * ratio + center_y;
-  leftDownCorner_.x = center_x - (center_x - leftDownCorner_.x) * ratio;
-  leftDownCorner_.y = center_y - (center_y - leftDownCorner_.y) * ratio;
+  point_t center = {center_x, center_y};
+  rightUpCorner_ = scalePoint(rightUpCorner_, center, ratio);
+  leftDownCorner_ = scalePoint(leftDownCorner_, center, ratio);
 }
