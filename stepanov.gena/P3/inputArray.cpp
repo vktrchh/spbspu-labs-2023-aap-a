@@ -18,9 +18,10 @@ char* stepanov::inputArray(std::istream& input, size_t& sizeString)
     else if (index == sizeString - 1)
     {
       sizeString += 20;
+      char* newString = nullptr;
       try
       {
-        char* newString = new char[sizeString] {};
+        newString = new char[sizeString] {};
       }
       catch (const std::bad_alloc& e)
       {

@@ -8,9 +8,10 @@ int main()
   using namespace stepanov;
   char* newString = nullptr;
   size_t sizeString = 20;
+  char* resultString = nullptr;
   try
   {
-    char* resultString = inputArray(std::cin, sizeString);
+    resultString = inputArray(std::cin, sizeString);
   }
   catch (const std::bad_alloc& e)
   {
