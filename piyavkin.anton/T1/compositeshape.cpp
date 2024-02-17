@@ -154,7 +154,10 @@ namespace piyavkin
   }
   void CompositeShape::pop_back()
   {
-    delete shapes_[size_--];
+    if (!empty())
+    {
+      delete shapes_[size_--];
+    }
   }
   Shape& CompositeShape::at(size_t i)
   {
