@@ -14,9 +14,9 @@ namespace gladyshev
       virtual rectangle_t getFrameRect() const;
       virtual void move(double dx, double dy);
       virtual void move(const point_t& pos);
-      virtual void scale(double factor);
     private:
       point_t p_[3];
+      virtual void doScale(double factor);
   };
 }
 

@@ -42,12 +42,8 @@ gladyshev::rectangle_t gladyshev::Rectangle::getFrameRect() const
   return { pos, width, height };
 }
 
-void gladyshev::Rectangle::scale(double factor)
+void gladyshev::Rectangle::doScale(double factor)
 {
-  if (factor <= 0)
-  {
-    throw std::underflow_error("factor must be positive");
-  }
   rectangle_t frameRect = getFrameRect();
   scalePoint(p1FrameRec_, factor, frameRect);
   scalePoint(p2FrameRec_, factor, frameRect);

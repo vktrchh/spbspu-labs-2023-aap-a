@@ -46,12 +46,8 @@ void gladyshev::Parallelogram::move(const point_t& newPos)
   move(newPos.x - getFrameRect().pos.x, newPos.y - getFrameRect().pos.y);
 }
 
-void gladyshev::Parallelogram::scale(double factor)
+void gladyshev::Parallelogram::doScale(double factor)
 {
-  if (factor <= 0)
-  {
-    throw std::underflow_error("factor must be positive");
-  }
   rectangle_t frameRect = getFrameRect();
   for (size_t i = 0; i < 3; ++i)
   {

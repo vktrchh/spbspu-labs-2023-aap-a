@@ -37,11 +37,7 @@ void gladyshev::Circle::move(const point_t& newPos)
   move(newPos.x - getFrameRect().pos.x, newPos.y - getFrameRect().pos.y);
 }
 
-void gladyshev::Circle::scale(double factor)
+void gladyshev::Circle::doScale(double factor)
 {
-  if (factor <= 0)
-  {
-    throw std::underflow_error("factor mast be positive");
-  }
   radius_ *= factor;
 }
