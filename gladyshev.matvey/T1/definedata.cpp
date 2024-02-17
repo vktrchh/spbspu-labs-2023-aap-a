@@ -41,20 +41,21 @@ namespace gladyshev
     double p[6]{};
     for (size_t i = 0; i < 3; ++i)
     {
-      if (inputName == names[i])
+      if (inputName != names[i])
       {
-        switch (i)
-        {
-          case 0:
-            inputPoints(in, p, 4);
-            return new Rectangle({ p[0], p[1] }, { p[2], p[3] });
-          case 1:
-            inputPoints(in, p, 6);
-            return new Parallelogram({ p[0], p[1] }, { p[2], p[3] }, { p[4], p[5] });
-          case 2:
-            inputPoints(in, p, 3);
-            return new Circle({ p[0], p[1] }, p[2]);
-        }
+        continue;
+      }
+      switch (i)
+      {
+        case 0:
+          inputPoints(in, p, 4);
+          return new Rectangle({ p[0], p[1] }, { p[2], p[3] });
+        case 1:
+          inputPoints(in, p, 6);
+          return new Parallelogram({ p[0], p[1] }, { p[2], p[3] }, { p[4], p[5] });
+        case 2:
+          inputPoints(in, p, 3);
+          return new Circle({ p[0], p[1] }, p[2]);
       }
     }
     throw std::invalid_argument("not a figure");
