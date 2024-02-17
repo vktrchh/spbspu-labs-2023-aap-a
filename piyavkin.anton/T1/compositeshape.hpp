@@ -17,6 +17,8 @@ namespace piyavkin
     void move(double dx, double dy);
     CompositeShape(CompositeShape&& cs);
     CompositeShape& operator=(CompositeShape&& cs);
+    CompositeShape(const CompositeShape& cs);
+    CompositeShape& operator=(const CompositeShape& cs);
     size_t size() const;
     bool empty() const;
     const Shape& at(size_t i) const;

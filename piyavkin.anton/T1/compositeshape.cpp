@@ -8,7 +8,7 @@ namespace piyavkin
     CompositeShape(0)
   {}
   CompositeShape::CompositeShape(size_t capacity):
-    shapes_(new Shape* [capacity]{}),
+    shapes_(new Shape* [capacity] {}),
     size_(0),
     capacity_(capacity)
   {}
@@ -19,6 +19,31 @@ namespace piyavkin
   CompositeShape::CompositeShape(CompositeShape&& cs)
   {
     swap(cs);
+  }
+  CompositeShape::CompositeShape(const CompositeShape& cs):
+    shapes_(new Shape* [cs.capacity_] {}),
+    size_(cs.size_),
+    capacity_(cs.capacity_)
+  {
+    for (size_t i = 0; i < size_; ++i)
+    {
+      shapes_[i] = cs.shapes_[i]->clone();
+    }
+  }
+  CompositeShape& CompositeShape::operator=(const CompositeShape& cs)
+  {
+    if (this != &cs)
+    {
+      clearMemory(shapes_, size_);
+      size_ = cs.size_;
+      capacity_ = cs.capacity_;
+      shapes_ = new Shape* [capacity_] {};
+      for (size_t i = 0; i < size_; ++i)
+      {
+        shapes_[i] = cs.shapes_[i]->clone();
+      }
+    }
+    return *this;
   }
   CompositeShape& CompositeShape::operator=(CompositeShape&& cs)
   {
