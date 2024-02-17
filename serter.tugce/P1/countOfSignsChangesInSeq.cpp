@@ -12,7 +12,7 @@ void serter::CountOfSignsChangesInSeq::operator()(int number)
    {
      ++count_;
    }
-   else if (currentNumber <= 0 && number > 0)
+   else if (currentNumber_ <= 0 && number > 0)
    {
       ++count_;
    }
