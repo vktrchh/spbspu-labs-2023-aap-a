@@ -13,7 +13,6 @@ namespace agarkov
     int getCount() const;
   private:
     size_t count;
-    int first;
     int second;
     int third;
   };

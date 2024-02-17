@@ -4,19 +4,27 @@
 #include <limits>
 #include <cstddef>
 
+namespace agarkov
+{
+  bool isPithTriple(int a, int b, int c)
+  {
+    return ((a * a) == (b * b) + (c * c)) && (b > 0) && (c > 0);
+  }
+
+  bool isPithTripleInAnyComb(int a, int b, int c)
+  {
+    return isPithTriple(a, b ,c) || isPithTriple(b, c ,a) || isPithTriple(c, a, b);
+  }
+}
 agarkov::PythTripleCounter::PythTripleCounter():
   count(0),
-  first(0),
   second(0),
   third(0)
 {}
 
 void agarkov::PythTripleCounter::operator()(int num)
 {
-  third = second;
-  second = first;
-  first = num;
-  if ((first * first) == (second * second + third * third) && second > 0 && third > 0)
+  if (isPithTripleInAnyComb(num, second, third))
   {
     if (count == std::numeric_limits< size_t >::max())
     {
@@ -24,6 +32,8 @@ void agarkov::PythTripleCounter::operator()(int num)
     }
     count++;
   }
+  third = second;
+  second = num;
 }
 
 int agarkov::PythTripleCounter::getCount() const
