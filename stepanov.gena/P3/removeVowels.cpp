@@ -7,12 +7,12 @@ char* stepanov::removeVowels(char* string)
   const char* listVowels = "AEIOUaeiou";
   for (size_t i = 0; string[i] != '\0'; ++i)
   {
-    int isConsonat = 1;
+    bool isConsonat = true;
     for (size_t j = 0; listVowels[j] != '\0'; ++j)
     {
       if (string[i] == listVowels[j])
       {
-        isConsonat = 0;
+        isConsonat = false;
         break;
       }
     }
