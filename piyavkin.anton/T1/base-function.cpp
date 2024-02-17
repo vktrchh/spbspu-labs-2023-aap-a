@@ -1,6 +1,7 @@
 #include "base-function.hpp"
 #include <cmath>
 #include "shape.hpp"
+
 namespace piyavkin
 {
   void Shape::scale(double k)

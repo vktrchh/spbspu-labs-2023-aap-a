@@ -1,5 +1,6 @@
 #include "compositeshape.hpp"
 #include "inputshape.hpp"
+#include "isoscale.hpp"
 
 namespace piyavkin
 {
@@ -77,11 +78,7 @@ namespace piyavkin
     point_t posComposite = getFrameRect().pos;
     for (size_t i = 0; i < size_; ++i)
     {
-      point_t posFigure = shapes_[i]->getFrameRect().pos;
-      shapes_[i]->move(posComposite);
-      point_t newPosFigure = shapes_[i]->getFrameRect().pos;
-      shapes_[i]->scale(k);
-      shapes_[i]->move(k * (posFigure.x - newPosFigure.x), k * (posFigure.y - newPosFigure.y));
+      isoScale(shapes_[i], posComposite, k);
     }
   }
   void CompositeShape::push_back(Shape* shape)
@@ -90,26 +87,18 @@ namespace piyavkin
     {
       capacity_ += 10;
       Shape** oldShapes = nullptr;
-      try
+      oldShapes = shapes_;
+      shapes_ = new Shape* [capacity_]{};
+      if (oldShapes)
       {
-        oldShapes = shapes_;
-        shapes_ = new Shape* [capacity_]{};
-        if (oldShapes)
+        for (size_t i = 0; i < size_; ++i)
         {
-          for (size_t i = 0; i < size_; ++i)
-          {
-            shapes_[i] = oldShapes[i];
-          }
-          clearMemory(oldShapes, size_);
+          shapes_[i] = oldShapes[i];
         }
-      }
-      catch (const std::bad_alloc& e)
-      {
-        shapes_ = oldShapes;
-        return;
+        clearMemory(oldShapes, size_);
       }
     }
-    shapes_[++size_] = shape;
+    shapes_[size_++] = shape;
   }
   void CompositeShape::pop_back()
   {
