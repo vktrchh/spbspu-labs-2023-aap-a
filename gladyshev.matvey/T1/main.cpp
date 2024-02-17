@@ -20,11 +20,6 @@ int main()
   {
     unsupFig = true;
   }
-  catch (const std::bad_alloc& e)
-  {
-    std::cerr << "Error in memory allocating" << "\n";
-    return 2;
-  }
   catch (const std::exception& e)
   {
     std::cerr << "Error: " << e.what() << "\n";
