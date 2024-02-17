@@ -1,4 +1,6 @@
 #include "parallelogram.hpp"
+#include <stdexcept>
+#include <cmath>
 #include "base-function.hpp"
 
 namespace piyavkin

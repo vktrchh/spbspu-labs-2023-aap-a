@@ -1,5 +1,5 @@
 #include "isoscale.hpp"
-#include <iostream>
+#include <stdexcept>
 
 namespace piyavkin
 {

@@ -1,4 +1,5 @@
 #include "base-function.hpp"
+#include <stdexcept>
 #include <cmath>
 #include "shape.hpp"
 

@@ -1,5 +1,6 @@
 #include "inputshape.hpp"
 #include <string>
+#include <iostream>
 #include "rectangle.hpp"
 #include "triangle.hpp"
 #include "parallelogram.hpp"

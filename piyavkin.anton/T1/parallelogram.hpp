@@ -1,9 +1,8 @@
 #ifndef PARALLELOGRAM_HPP
 #define PARALLELOGRAM_HPP
-#include <iostream>
-#include <cmath>
 #include "shape.hpp"
 #include "base-types.hpp"
+
 namespace piyavkin
 {
   class Parallelogram: public Shape

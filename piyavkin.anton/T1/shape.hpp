@@ -1,7 +1,7 @@
 #ifndef SHAPE_HPP
 #define SHAPE_HPP
-#include <stdexcept>
 #include "base-types.hpp"
+
 namespace piyavkin
 {
   class Shape
