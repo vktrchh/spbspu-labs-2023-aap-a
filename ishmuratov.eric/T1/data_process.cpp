@@ -38,4 +38,3 @@ ishmuratov::point_t ishmuratov::diamondCenter(const point_t & point1, const poin
   }
   return { 0, 0 };
 }
-

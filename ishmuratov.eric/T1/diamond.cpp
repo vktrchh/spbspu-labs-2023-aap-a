@@ -65,6 +65,3 @@ void ishmuratov::Diamond::scale(double factor)
   corner2_ = pointArray[1];
   corner3_ = pointArray[2];
 }
-
-
-
