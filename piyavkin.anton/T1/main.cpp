@@ -17,7 +17,7 @@ int main()
   {
     using namespace piyavkin;
     shapes = inputShape(std::cin, shapeCount);
-    CompositeShape cs(2);
+    CompositeShape cs;
     for (size_t i = 0; i < shapeCount; ++i)
     {
       cs.push_back(shapes[i]);

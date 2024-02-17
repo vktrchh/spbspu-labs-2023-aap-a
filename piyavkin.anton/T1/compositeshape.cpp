@@ -4,6 +4,9 @@
 
 namespace piyavkin
 {
+  CompositeShape::CompositeShape():
+    CompositeShape(0)
+  {}
   CompositeShape::CompositeShape(size_t capacity):
     shapes_(new Shape* [capacity]{}),
     size_(0),
@@ -12,6 +15,21 @@ namespace piyavkin
   CompositeShape::~CompositeShape()
   {
     clearMemory(shapes_, size_);
+  }
+  CompositeShape::CompositeShape(CompositeShape&& cs)
+  {
+    swap(cs);
+  }
+  CompositeShape& CompositeShape::operator=(CompositeShape&& cs)
+  {
+    swap(cs);
+    return *this;
+  }
+  void swap(CompositeShape& cs)
+  {
+    std::swap(shapes_, cs.shapes_);
+    std::swap(size_, cs.size_);
+    std::swap(capacity, cs.capacity);
   }
   double CompositeShape::getArea() const
   {
@@ -83,7 +101,7 @@ namespace piyavkin
   }
   void CompositeShape::push_back(Shape* shape)
   {
-    if (capacity_ == size_ + 1)
+    if (capacity_ == size_)
     {
       capacity_ += 10;
       Shape** oldShapes = shapes_;
@@ -105,11 +123,7 @@ namespace piyavkin
   }
   Shape& CompositeShape::at(size_t i)
   {
-    if (i > size_)
-    {
-      throw std::logic_error("Segmential fault");
-    }
-    return *shapes_[i];
+    return const_cast< Shape& >(static_cast< const CompositeShape& >(*this).at(i));
   }
   const Shape& CompositeShape::at(size_t i) const
   {

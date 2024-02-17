@@ -9,6 +9,7 @@ namespace piyavkin
   class CompositeShape
   {
   public:
+    CompositeShape();
     CompositeShape(size_t size);
     double getArea() const;
     rectangle_t getFrameRect() const;
