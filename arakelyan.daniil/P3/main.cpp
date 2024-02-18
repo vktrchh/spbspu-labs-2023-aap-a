@@ -25,7 +25,7 @@ int main()
   if (inputString[0] == '\0')
   {
     delete [] inputString;
-    std::cerr << "empty input!\n";
+    std::cerr << "Empty input!\n";
     return 1;
   }
 
