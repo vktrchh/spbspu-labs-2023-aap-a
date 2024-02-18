@@ -2,14 +2,16 @@
 
 bool lopatina::isRectangleCorrect(point_t low_left, point_t up_right)
 {
-  if ((low_left.x_ == up_right.x_) || (low_left.y_ == up_right.y_))
+  if ((low_left.x_ >= up_right.x_) || (low_left.y_ >= up_right.y_))
   {
     return false;
   }
+/*
   if (((low_left.x_ > up_right.x_) && (low_left.y_ < up_right.y_)) || ((low_left.y_ > up_right.y_) && (low_left.x_ < up_right.x_)))
   {
     return false;
   }
+*/
   return true;
 }
 
