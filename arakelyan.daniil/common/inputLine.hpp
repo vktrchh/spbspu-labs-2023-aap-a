@@ -3,6 +3,6 @@
 #include <iostream>
 namespace arakelyan
 {
-  char * inputString(std::istream &input);
+  char * inputLine(std::istream &input);
 }
 #endif

@@ -1,8 +1,9 @@
 #include <cstddef>
 #include <stdexcept>
+
 #include "inputLine.hpp"
 
-char * arakelyan::inputString(std::istream &input)
+char * arakelyan::inputLine(std::istream &input)
 {
   size_t arrSize = 10;
 
