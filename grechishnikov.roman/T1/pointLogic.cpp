@@ -1,5 +1,6 @@
 #include "pointLogic.hpp"
 #include <algorithm>
+#include <stdexcept>
 
 grechishnikov::point_t grechishnikov::getAveragePoint(const point_t* points, size_t size)
 {
@@ -38,6 +39,10 @@ grechishnikov::rectangle_t grechishnikov::getFrameRectGeneral(const point_t* poi
 
 void grechishnikov::scalePoints(point_t* points, size_t size, size_t rate)
 {
+  if (rate <= 0)
+  {
+    throw std::logic_error("Incorrect scale ratio");
+  }
   point_t aPos = getAveragePoint(points, size);
   for (size_t i = 0; i < size; i++)
   {
@@ -59,4 +64,3 @@ void grechishnikov::movePoints(point_t* points, size_t size, double dx, double d
     points[i].y += dy;
   }
 }
-

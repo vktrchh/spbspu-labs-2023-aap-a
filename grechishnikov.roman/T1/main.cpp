@@ -43,14 +43,17 @@ int main()
 
       if (!isEqualStr(name, "SCALE\0"))
       {
-        try
+        if (name != nullptr)
         {
-          shapes[count] = inputShape(str);
-          count++;
-        }
-        catch (const std::logic_error &e)
-        {
-          std::cerr << "Error: " << e.what() << '\n';
+          try
+          {
+            shapes[count] = inputShape(str);
+            count++;
+          }
+          catch (const std::logic_error &e)
+          {
+            std::cerr << "Error: " << e.what() << '\n';
+          }
         }
       }
       if (isEqualStr(name, "SCALE\0"))

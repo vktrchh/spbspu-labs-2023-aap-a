@@ -10,7 +10,7 @@ grechishnikov::Shape* grechishnikov::inputShape(const char* str)
 {
   if (str == nullptr)
   {
-    return nullptr;
+    throw std::logic_error("String wasn't given");
   }
   const size_t legalNameCount = 3;
   const char* legalName[] = { "RECTANGLE\0", "TRIANGLE\0", "POLYGON\0" };
