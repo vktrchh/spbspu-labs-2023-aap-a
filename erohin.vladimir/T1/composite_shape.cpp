@@ -1,5 +1,4 @@
 #include "composite_shape.hpp"
-#include <utility>
 #include <stdexcept>
 #include "geom_func.hpp"
 
