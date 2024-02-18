@@ -47,15 +47,15 @@
 //     }
 //
 //     string[i] = sym;
-//
-//     if (sym == '\n' && i == 0)
-//     {
-//       continue;
-//     }
-//     else if (sym == '\n' && i != 0)
-//     {
-//       break;
-//     }
+// //
+// if (sym == '\n' && i == 0)
+// {
+//   continue;
+// }
+// else if (sym == '\n' && i != 0)
+// {
+//   break;
+// }
 //
 //     i++;
 //   }
@@ -113,15 +113,24 @@ char * arakelyan::inputLine(std::istream &input)
       }
     }
     mainBuffer[i] = sym;
+    if (sym == '\n' && i == 0)
+    {
+      continue;
+    }
+    else if (sym == '\n' && i != 0)
+    {
+      break;
+    }
+//
     i++;
   }
   mainBuffer[i] = '\0';
 
-  if (mainBuffer[0] == '\0')
-  {
-    delete [] mainBuffer;
-    throw std::logic_error("Empty input!");
-  }
+  // if (mainBuffer[0] == '\0')
+  // {
+  //   delete [] mainBuffer;
+  //   throw std::logic_error("Empty input!");
+  // }
 
   input >> std::skipws;
   return mainBuffer;
