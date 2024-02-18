@@ -1,6 +1,7 @@
 #include "concave.hpp"
 #include "othersFun.hpp"
 #include <stdexcept>
+#include <algorithm>
 
 sivkov::Concave::Concave(const point_t ver1, const point_t ver2, const point_t ver3, const point_t ver4) :
   ver1_(ver1),
@@ -82,15 +83,8 @@ void sivkov::Concave::move(double x, double y)
 
 void sivkov::Concave::scale(double k)
 {
-  double centerX = ver4_.x;
-  double centerY = ver4_.y;
-
-  ver1_.x = centerX + (ver1_.x - centerX) * k;
-  ver1_.y = centerY + (ver1_.y - centerY) * k;
-
-  ver2_.x = centerX + (ver2_.x - centerX) * k;
-  ver2_.y = centerY + (ver2_.y - centerY) * k;
-
-  ver3_.x = centerX + (ver3_.x - centerX) * k;
-  ver3_.y = centerY + (ver3_.y - centerY) * k;
+  point_t center = ver4_;
+  ver1_ = doCenterShift(k, center, ver1_);
+  ver2_ = doCenterShift(k, center, ver2_);
+  ver3_ = doCenterShift(k, center, ver3_);
 }
