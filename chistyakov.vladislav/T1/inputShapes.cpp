@@ -104,8 +104,15 @@ void chistyakov::inputRectangle(std::string str, Shape ** array)
     }
   }
 
-  Rectangle * shape = new Rectangle({ {cords[0], cords[1]}, {cords[2], cords[3]} });
-  writeShapeInArray(shape, array, 1000);
+  try
+  {
+    Rectangle * shape = new Rectangle({ {cords[0], cords[1]}, {cords[2], cords[3]} });
+    writeShapeInArray(shape, array, 1000);
+  }
+  catch(const std::invalid_argument & e)
+  {
+    std::cout << "Error: " << e.what() << "\n";
+  }
 }
 
 void chistyakov::inputSquare(std::string str, Shape ** array)
@@ -139,8 +146,15 @@ void chistyakov::inputSquare(std::string str, Shape ** array)
     }
   }
 
-  Square * shape = new Square({ cords[0], cords[1] }, cords[2]);
-  writeShapeInArray(shape, array, 1000);
+  try
+  {
+    Square * shape = new Square({ cords[0], cords[1] }, cords[2]);
+    writeShapeInArray(shape, array, 1000);
+  }
+  catch(const std::invalid_argument & e)
+  {
+    std::cout << "Error: " << e.what() << "\n";
+  }
 }
 
 void chistyakov::inputComplexquad(std::string str, Shape ** array)
@@ -170,6 +184,7 @@ void chistyakov::inputComplexquad(std::string str, Shape ** array)
   {
     if (str[i] != ' ')
     {
+      std::cerr << "Too much cords for COMPLEXQUAD!..\n";
     }
   }
 
@@ -178,8 +193,15 @@ void chistyakov::inputComplexquad(std::string str, Shape ** array)
   point_t pnt3 = { cords[4], cords[5] };
   point_t pnt4 = { cords[6], cords[7] };
 
-  Complexquad * shape = new Complexquad(pnt1, pnt2, pnt3, pnt4);
-  writeShapeInArray(shape, array, 1000);
+  try
+  {
+    Complexquad * shape = new Complexquad(pnt1, pnt2, pnt3, pnt4);
+    writeShapeInArray(shape, array, 1000);
+  }
+  catch(const std::invalid_argument & e)
+  {
+    std::cout << "Error: " << e.what() << "\n";
+  }
 }
 
 void chistyakov::writeShapeInArray(Shape * shape, Shape ** array, size_t size)
