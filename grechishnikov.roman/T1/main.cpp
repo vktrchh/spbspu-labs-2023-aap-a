@@ -1,7 +1,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <string.h>
-#include "inputString.hpp"
+#include <inputString.hpp>
 #include "inputShapes.hpp"
 #include "parametersLogic.hpp"
 #include "base-types.hpp"

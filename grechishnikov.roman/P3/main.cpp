@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstddef>
 #include <exception>
-#include "inputStr.hpp"
+#include <inputString.hpp>
 #include "countUnique.hpp"
 
 int main()
@@ -24,6 +24,11 @@ int main()
     delete[] str;
     std::cerr << e.what() << "\n";
     return 1;
+  }
+  if (str == nullptr)
+  {
+    std::cerr << "String is empty\n";
+    return 2;
   }
   std::cout << countUnique(str) << "\n";
   delete[] str;
