@@ -35,7 +35,6 @@ int main()
         delete[] name;
         continue;
       }
-
       delete[] str;
       str = tempStr;
       const char* tempName = parseName(str);
@@ -44,13 +43,19 @@ int main()
 
       if (!isEqualStr(name, "SCALE\0"))
       {
-        shapes[count] = inputShape(str);
-        count++;
+        try
+        {
+          shapes[count] = inputShape(str);
+          count++;
+        }
+        catch (const std::logic_error &e)
+        {
+          std::cerr << "Error: " << e.what() << '\n';
+        }
       }
       if (isEqualStr(name, "SCALE\0"))
       {
         endOfInput = true;
-
         if (count == 0)
         {
           throw std::logic_error("Nothing to scale");
@@ -99,15 +104,12 @@ int main()
     std::cerr << "Error: " << e.what() << '\n';
     return 1;
   }
+
   if (!scaleHappened)
   {
     freeShapes(shapes, count);
     std::cerr << "Scale was not inputted" << '\n';
     return 3;
-  }
-  if (!checkEnteredShapes(shapes, count))
-  {
-    std::cerr << "Some shapes were not processed" << '\n';
   }
 
   freeShapes(shapes, count);

@@ -9,9 +9,9 @@ void grechishnikov::isoScale(grechishnikov::Shape* shape, grechishnikov::point_t
   }
   if (shape != nullptr)
   {
-    grechishnikov::point_t initPoint = shape->getFrameRect().pos;
+    point_t initPoint = shape->getFrameRect().pos;
     shape->move(scalePoint);
-    grechishnikov::point_t isoPoint = shape->getFrameRect().pos;
+    point_t isoPoint = shape->getFrameRect().pos;
     shape->scale(ratio);
     shape->move((initPoint.x - isoPoint.x) * ratio, (initPoint.y - isoPoint.y) * ratio);
   }

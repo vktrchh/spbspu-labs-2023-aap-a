@@ -65,34 +65,21 @@ grechishnikov::Shape* grechishnikov::inputShape(const char* str)
   }
 
   delete[] name;
-  return nullptr;
+  throw std::logic_error("Unknown name");
 }
 
 grechishnikov::Shape* grechishnikov::inputRectangle(const grechishnikov::point_t* points, size_t size)
 {
-  if (size != 2)
-  {
-    return nullptr;
-  }
-  return new grechishnikov::Rectangle(points[0], points[1]);
+  return new grechishnikov::Rectangle(points, size);
 }
 
 grechishnikov::Shape* grechishnikov::inputTriangle(const grechishnikov::point_t* points, size_t size)
 {
-  if (size != 3)
-  {
-    return nullptr;
-  }
-  return new grechishnikov::Triangle(points[0], points[1], points[2]);
-
+  return new grechishnikov::Triangle(points, size);
 }
 
 grechishnikov::Shape* grechishnikov::inputPolygon(const grechishnikov::point_t* points, size_t size)
 {
-  if (size < 3)
-  {
-    return nullptr;
-  }
   return new grechishnikov::Polygon(points, size);
 }
 
@@ -108,7 +95,7 @@ const char* grechishnikov::parseName(const char* str)
 {
   if (str == nullptr)
   {
-    return nullptr;
+    throw std::logic_error("No name was entered");
   }
   char* name = new char[20] { '0' };
   size_t i = 0;
@@ -146,19 +133,6 @@ bool grechishnikov::isEqualStr(const char* fStr, const char* sStr)
   if (fStr[i] != sStr[i])
   {
     check = 0;
-  }
-  return check;
-}
-
-bool grechishnikov::checkEnteredShapes(grechishnikov::Shape* const* shapes, size_t size)
-{
-  bool check = 1;
-  for (size_t i = 0; i < size; i++)
-  {
-    if (shapes[i] == nullptr)
-    {
-      check = 0;
-    }
   }
   return check;
 }

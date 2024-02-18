@@ -1,50 +1,56 @@
 #include "rectangle.hpp"
 #include <stdexcept>
+#include "pointLogic.hpp"
 
-grechishnikov::Rectangle::Rectangle(const point_t& lowerLeftCorner, const point_t& upperRightCorner):
-  lowerLeftCorner_(lowerLeftCorner),
-  upperRightCorner_(upperRightCorner)
+grechishnikov::Rectangle::Rectangle(const point_t* points, size_t size):
+  points_(new point_t[size]),
+  size_(size)
 {
-  if (upperRightCorner.x <= lowerLeftCorner.x || upperRightCorner.y <= lowerLeftCorner.y)
+  if (size != 2)
   {
-    throw std::invalid_argument("Invalid parameters");
+    delete[] points_;
+    throw std::invalid_argument("Invalid parameters (Wrong number of  arguments for rectangle)");
   }
+  if (points[0].x >= points[1].x || points[0].y >= points[1].y)
+  {
+    delete[] points_;
+    throw std::invalid_argument("Invalid parameters (Points were entered incorrectly)");
+  }
+  for (size_t i = 0; i < size; i++)
+  {
+    points_[i] = points[i];
+  }
+}
+
+grechishnikov::Rectangle::~Rectangle()
+{
+  delete[] points_;
 }
 
 double grechishnikov::Rectangle::getArea() const
 {
-  return (upperRightCorner_.x - lowerLeftCorner_.x) * (upperRightCorner_.y - lowerLeftCorner_.y);
+  return (points_[1].x - points_[0].x) * (points_[1].y - points_[0].y);
 }
 
 grechishnikov::rectangle_t grechishnikov::Rectangle::getFrameRect() const
 {
-  double width = upperRightCorner_.x - lowerLeftCorner_.x;
-  double height = upperRightCorner_.y - lowerLeftCorner_.y;
-  point_t pos = { lowerLeftCorner_.x + width / 2, lowerLeftCorner_.y + height / 2 };
-  return { width, height, pos };
+  return getFrameRectGeneral(points_, size_);
 }
 
 void grechishnikov::Rectangle::move(const point_t& pos)
 {
-  point_t aPos = { (upperRightCorner_.x + lowerLeftCorner_.x) / 2, (upperRightCorner_.y + lowerLeftCorner_.y) / 2 };
-  move(pos.x - aPos.x, pos.y - aPos.y);
+  point_t aPos = getAveragePoint(points_, size_);
+  double dx = pos.x - aPos.x;
+  double dy = pos.y - aPos.y;
+  move(dx, dy);
 }
 
 void grechishnikov::Rectangle::move(double dx, double dy)
 {
-  lowerLeftCorner_.x += dx;
-  lowerLeftCorner_.y += dy;
-  upperRightCorner_.x += dx;
-  upperRightCorner_.y += dy;
+  movePoints(points_, size_, dx, dy);
 }
 
 void grechishnikov::Rectangle::scale(double rate)
 {
-  point_t aPos = { (upperRightCorner_.x + lowerLeftCorner_.x) / 2, (upperRightCorner_.y + lowerLeftCorner_.y) / 2 };
-  point_t* points[2] = { &lowerLeftCorner_, &upperRightCorner_ };
-  for (size_t i = 0; i < 2; i++)
-  {
-    points[i]->x = aPos.x + (points[i]->x - aPos.x) * rate;
-    points[i]->y = aPos.y + (points[i]->y - aPos.y) * rate;
-  }
+  scalePoints(points_, size_, rate);
 }

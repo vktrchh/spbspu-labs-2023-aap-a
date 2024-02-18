@@ -2,61 +2,68 @@
 #include <stdexcept>
 #include <cmath>
 #include <algorithm>
+#include "pointLogic.hpp"
+
+grechishnikov::Triangle::Triangle(const point_t* points, size_t size):
+  points_(new point_t[size]),
+  size_(size)
+{
+  if (size != 3)
+  {
+    delete[] points_;
+    throw std::invalid_argument("Invalid parameters (Wrong number of  arguments for triangle)");
+  }
+  for (size_t i = 0; i < size; i++)
+  {
+    points_[i] = points[i];
+  }
+  if (this->getArea() == 0)
+  {
+    delete[] points_;
+    throw std::invalid_argument("Invalid parameters (Points were entered incorrectly)");
+  }
+}
 
 grechishnikov::Triangle::Triangle(const point_t& a, const point_t& b, const point_t& c):
-  a_(a),
-  b_(b),
-  c_(c)
+  points_(new point_t[3] { a, b, c }),
+  size_(3)
 {
-  double sq = this->getArea();
-  if (sq == 0)
+  if (this->getArea() == 0)
   {
-    throw std::invalid_argument("Invalid parameters (Not a triangle)");
+    delete[] points_;
+    throw std::invalid_argument("Invalid parameters (Points don't form a triangle)");
   }
+}
+
+grechishnikov::Triangle::~Triangle()
+{
+  delete[] points_;
 }
 
 double grechishnikov::Triangle::getArea() const
 {
-  double sq = ((b_.x - a_.x) * (c_.y - a_.y) - (c_.x - a_.x) * (b_.y - a_.y)) / 2;
+  double sq = ((points_[1].x - points_[0].x) * (points_[2].y - points_[0].y) - (points_[2].x - points_[0].x) * (points_[1].y - points_[0].y)) / 2;
   sq = std::abs(sq);
   return sq;
 }
 
 grechishnikov::rectangle_t grechishnikov::Triangle::getFrameRect() const
 {
-  double max_x = std::max( { a_.x, b_.x, c_.x } );
-  double max_y = std::max( { a_.y, b_.y, c_.y } );
-  double min_x = std::min( { a_.x, b_.x, c_.x } );
-  double min_y = std::min( { a_.y, b_.y, c_.y } );
-  double width = max_x - min_x;
-  double height = max_y - min_y;
-  point_t pos = { min_x + width / 2.0, min_y + height / 2.0 };
-  return { width, height, pos };
+  return getFrameRectGeneral(points_, 2);
 }
 
 void grechishnikov::Triangle::move(const point_t& pos)
 {
-  point_t aPos = { (a_.x + b_.x + c_.x) / 3.0, (a_.y + b_.y + c_.y) / 3.0 };
+  point_t aPos = getAveragePoint(points_, 2);
   move(pos.x - aPos.x, pos.y - aPos.y);
 }
 
 void grechishnikov::Triangle::move(double dx, double dy)
 {
-  point_t* points[3] = { &a_, &b_, &c_ };
-  for (size_t i = 0; i < 3; i++)
-  {
-    points[i]->x += dx;
-    points[i]->y += dy;
-  }
+  movePoints(points_, size_, dx, dy);
 }
 
 void grechishnikov::Triangle::scale(double rate)
 {
-  point_t aPos = { (a_.x + b_.x + c_.x) / 3.0, (a_.y + b_.y + c_.y) / 3.0 };
-  point_t* points[3] = { &a_, &b_, &c_ };
-  for (size_t i = 0; i < 3; i++)
-  {
-    points[i]->x = aPos.x + (points[i]->x - aPos.x) * rate;
-    points[i]->y = aPos.y + (points[i]->y - aPos.y) * rate;
-  }
+  scalePoints(points_, size_, rate);
 }
