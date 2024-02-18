@@ -1,4 +1,5 @@
 #include "square.hpp"
+#include <stdexcept>
 
 stepanov::Square::Square(const point_t& leftCorner, double length):
   leftCorner_(leftCorner)

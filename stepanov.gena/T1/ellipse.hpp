@@ -1,23 +1,23 @@
-#ifndef CIRCLE_HPP
-#define CIRCLE_HPP
+#ifndef ELLIPSE_HPP
+#define ELLIPSE_HPP
 
 #include "shape.hpp"
 
 namespace stepanov
 {
-  class Circle : public Shape
+  class Ellipse : public Shape
   {
   public:
-    Circle(const point_t& center, double radius);
-    ~Circle() = default;
+    Ellipse(const point_t& center, double radiusY, double radiusX);
+    ~Ellipse() = default;
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move();
     virtual void scale();
   private:
     point_t center_;
-    double raduis_;
+    double radiusY_;
+    double radiusX_;
   };
 }
-
 #endif

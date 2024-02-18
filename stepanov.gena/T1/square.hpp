@@ -17,7 +17,7 @@ namespace stepanov
   private:
     point_t leftCorner_;
     double length_;
-  }
+  };
 }
 
 #endif
