@@ -9,7 +9,6 @@ int main()
   try
   {
     string = inputString(std::cin);
-    std::cout << string << "\n";
   }
   catch (const std::bad_alloc& e)
   {
