@@ -61,7 +61,7 @@
 //   }
 //
 //   string[i] = '\0';
-
+//
 //
 //   input >> std::skipws;
 //   return string;
@@ -127,7 +127,7 @@ char * arakelyan::inputLine(std::istream &input)
   // {
   //   delete [] mainBuffer;
   //   throw std::logic_error("Empty input!");
-  // } 
+  // }
   if (!input)
   {
     delete [] mainBuffer;
