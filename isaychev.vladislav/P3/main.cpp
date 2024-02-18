@@ -17,11 +17,6 @@ int main()
     std::cerr << "can't allocate memory for first string\n";
     return 1;
   }
-  if (std::cin.eof())
-  {
-    std::cerr << "input was executed with eof symbol\n";
-    return 2;
-  }
   if (checkForEmptyStr(str))
   {
     delete [] str;
