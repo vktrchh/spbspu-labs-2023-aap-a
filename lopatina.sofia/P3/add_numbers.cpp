@@ -15,7 +15,7 @@ size_t lopatina::countDigits(const char * str)
   return count;
 }
 
-char * lopatina::addNumbers(char * first_str, const char * second_str, char * result)
+char * lopatina::addNumbers(const char * first_str, const char * second_str, char * result)
 {
   size_t last = 0;
   size_t i = 0, j = 0;

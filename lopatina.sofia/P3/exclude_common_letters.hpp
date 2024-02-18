@@ -3,7 +3,7 @@
 
 namespace lopatina
 {
-  char *  excludeCommonLetters(char * first_str, const char * second_str, char * result);
+  char *  excludeCommonLetters(const char * first_str, const char * second_str, char * result);
 }
 
 #endif

@@ -1,7 +1,7 @@
 #include "exclude_common_letters.hpp"
 #include <cstddef>
 
-char * lopatina::excludeCommonLetters(char * first_str, const char * second_str, char * result)
+char * lopatina::excludeCommonLetters(const char * first_str, const char * second_str, char * result)
 {
   int flag = 0;
   size_t i = 0, k = 0;
