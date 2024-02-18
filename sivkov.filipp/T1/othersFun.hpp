@@ -13,5 +13,6 @@ namespace sivkov
   void scale(Shape* shape, point_t center, double k);
   bool areSegmentsIntersecting(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4);
   point_t findCenter(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4);
+  point_t doCenterShift(size_t k, point_t center, point_t ver);
 }
 #endif

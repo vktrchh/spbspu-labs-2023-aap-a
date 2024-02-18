@@ -110,4 +110,11 @@ namespace sivkov
     bool check2 = ((line1x * line2y - line1y * line2x) * (line1x * line3y - line1y * line3x) < 0);
     return check1 && check2;
   }
+
+  point_t doCenterShift(size_t k, point_t center, point_t ver)
+  {
+    double x = center.x + (ver.x - center.x) * k;
+    double y = center.y + (ver.y - center.y) * k;
+    return point_t{ x,y };
+  }
 }

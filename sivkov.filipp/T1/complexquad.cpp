@@ -35,24 +35,10 @@ double sivkov::Complexquad::getArea() const
 
 sivkov::rectangle_t sivkov::Complexquad::getFrameRect() const
 {
-  double xmin = cqVer1_.x;
-  double ymin = cqVer1_.y;
-  double xmax = cqVer1_.x;
-  double ymax = cqVer1_.y;
-  if (cqVer2_.x < xmin) xmin = cqVer2_.x;
-  if (cqVer2_.x > xmax) xmax = cqVer2_.x;
-  if (cqVer2_.y < ymin) ymin = cqVer2_.y;
-  if (cqVer2_.y > ymax) ymax = cqVer2_.y;
-
-  if (cqVer3_.x < xmin) xmin = cqVer3_.x;
-  if (cqVer3_.x > xmax) xmax = cqVer3_.x;
-  if (cqVer3_.y < ymin) ymin = cqVer3_.y;
-  if (cqVer3_.y > ymax) ymax = cqVer3_.y;
-
-  if (cqVer4_.x < xmin) xmin = cqVer4_.x;
-  if (cqVer4_.x > xmax) xmax = cqVer4_.x;
-  if (cqVer4_.y < ymin) ymin = cqVer4_.y;
-  if (cqVer4_.y > ymax) ymax = cqVer4_.y;
+  double xmin = std::min({ cqVer1_.x, cqVer2_.x, cqVer3_.x, cqVer4_.x });
+  double xmax = std::max({ cqVer1_.x, cqVer2_.x, cqVer3_.x, cqVer4_.x });
+  double ymin = std::min({ cqVer1_.y, cqVer2_.y, cqVer3_.y, cqVer4_.y });
+  double ymax = std::max({ cqVer1_.y, cqVer2_.y, cqVer3_.y, cqVer4_.y });
 
   return rectangle_t{ point_t{xmin + (xmax - xmin) / 2, ymin + (ymax - ymin) / 2} ,(xmax - xmin), (ymax - ymin) };
 }
@@ -79,20 +65,9 @@ void sivkov::Complexquad::move(const double dx, const double dy)
 
 void sivkov::Complexquad::scale(const double k)
 {
-  if (k <= 0.0)
-  {
-    throw std::invalid_argument("k must be > 0\n");
-  }
-  else
-  {
-    point_t centerPoint = findCenter(cqVer1_, cqVer2_, cqVer3_, cqVer4_);
-    cqVer1_.x = centerPoint.x + (cqVer1_.x - centerPoint.x) * k;
-    cqVer1_.y = centerPoint.y + (cqVer1_.y - centerPoint.y) * k;
-    cqVer2_.x = centerPoint.x + (cqVer2_.x - centerPoint.x) * k;
-    cqVer2_.y = centerPoint.y + (cqVer2_.y - centerPoint.y) * k;
-    cqVer3_.x = centerPoint.x + (cqVer3_.x - centerPoint.x) * k;
-    cqVer3_.y = centerPoint.y + (cqVer3_.y - centerPoint.y) * k;
-    cqVer4_.x = centerPoint.x + (cqVer4_.x - centerPoint.x) * k;
-    cqVer4_.y = centerPoint.y + (cqVer4_.y - centerPoint.y) * k;
-  }
+  point_t centerPoint = findCenter(cqVer1_, cqVer2_, cqVer3_, cqVer4_);
+  cqVer1_ = doCenterShift(k, centerPoint, cqVer1_);
+  cqVer2_ = doCenterShift(k, centerPoint, cqVer2_);
+  cqVer3_ = doCenterShift(k, centerPoint, cqVer3_);
+  cqVer4_ = doCenterShift(k, centerPoint, cqVer4_);
 }
