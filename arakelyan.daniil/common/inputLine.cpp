@@ -51,11 +51,11 @@ char * arakelyan::inputLine(std::istream &input)
   mainBuffer[i] = '\0';
 
 
-  // if (!input)
-  // {
-  //   delete [] mainBuffer;
-  //   throw std::logic_error("Error input!");
-  // }
+  if (!input)
+  {
+    delete [] mainBuffer;
+    throw std::logic_error("Error input!");
+  }
 
   input >> std::skipws;
   return mainBuffer;
