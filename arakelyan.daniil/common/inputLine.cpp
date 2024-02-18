@@ -47,24 +47,14 @@ char * arakelyan::inputLine(std::istream &input)
     }
 
     string[i] = sym;
-
-    // if (sym == '\n' && i == 0)
-    // {
-    //   continue;
-    // }
-    if (sym == '\n' && i != 0)
-    {
-      break;
-    }
-
     i++;
   }
 
   string[i] = '\0';
-  if (!input)
+  if (string[0] == '\0')
   {
     delete [] string;
-    throw std::logic_error("Error input!");
+    throw std::logic_error("Empty input!");
   }
 
   input >> std::skipws;

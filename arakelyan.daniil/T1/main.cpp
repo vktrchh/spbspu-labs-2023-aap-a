@@ -1,7 +1,6 @@
 #include <iostream>
 #include <stdexcept>
 #include <cstring>
-#include <inputLine.hpp>
 
 #include "base-types.hpp"
 #include "inputAndOutputOperations.hpp"
@@ -34,7 +33,7 @@ int main()
   {
     try
     {
-      string = inputLine(std::cin);
+      string = inputString(std::cin);
     }
     catch (const std::exception &e)
     {
