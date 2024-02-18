@@ -1,8 +1,7 @@
 #include "concave.hpp"
-#include "figureFunction.hpp"
-
 #include <cstddef>
 #include <stdexcept>
+#include "figureFunction.hpp"
 
 rebdev::Concave::Concave(const point_t & firstVertex, const point_t & secondVertex,
   const point_t & thirdVertex, const point_t & fourthVertex):
