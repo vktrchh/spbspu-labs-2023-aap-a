@@ -22,51 +22,51 @@ double arakelyan::Diamond::getArea() const
 
 arakelyan::rectangle_t arakelyan::Diamond::getFrameRect() const
 {
-  double width = 0;
-  if (p1_.y == p2_.y)
-  {
-    width = std::abs(p2_.x - p1_.x) * 2.0;
-  }
-  else if (p1_.y == p3_.y)
-  {
-    width = std::abs(p3_.x - p1_.x) * 2.0;
-  }
-  else
-  {
-    width = std::abs(p2_.x - p3_.x) * 2.0;
-  }
+  double width = p2_.x - p1_.x;
+  // if (p1_.y == p2_.y)
+  // {
+  //   width = std::abs(p2_.x - p1_.x) * 2.0;
+  // }
+  // else if (p1_.y == p3_.y)
+  // {
+  //   width = std::abs(p3_.x - p1_.x) * 2.0;
+  // }
+  // else
+  // {
+  //   width = std::abs(p2_.x - p3_.x) * 2.0;
+  // }
 
-  double height = 0;
-  if (p2_.x == p3_.x)
-  {
-    height = std::abs(p3_.y - p2_.y) * 2.0;
-  }
-  else if (p1_.x == p2_.x)
-  {
-    height = std::abs(p3_.y - p1_.y) * 2.0;
-  }
-  else
-  {
-    height = std::abs(p1_.y - p2_.y) * 2.0;
-  }
+  double height = p3_.y - p2_.y;
+  // if (p2_.x == p3_.x)
+  // {
+  //   height = std::abs(p3_.y - p2_.y) * 2.0;
+  // }
+  // else if (p1_.x == p2_.x)
+  // {
+  //   height = std::abs(p3_.y - p1_.y) * 2.0;
+  // }
+  // else
+  // {
+  //   height = std::abs(p1_.y - p2_.y) * 2.0;
+  // }
 
-  point_t midPoint = {0, 0};
+  point_t midPoint = p2_;
 
-  if (p2_.x == p3_.x && p2_.y == p1_.y)
-  {
-    midPoint = p2_;
-  }
-  else if (p1_.y == p2_.y && p1_.x == p3_.x)
-  {
-    midPoint = p1_;
-  }
-  else
-  {
-    midPoint = p3_;
-  }
+  // if (p2_.x == p3_.x && p2_.y == p1_.y)
+  // {
+  //   midPoint = p2_;
+  // }
+  // else if (p1_.y == p2_.y && p1_.x == p3_.x)
+  // {
+  //   midPoint = p1_;
+  // }
+  // else
+  // {
+  //   midPoint = p3_;
+  // }
 
-  rectangle_t dataOfFrameRect = {width, height, midPoint};
-  return dataOfFrameRect;
+  ;
+  return {width, height, midPoint};
 }
 
 void arakelyan::Diamond::move(const point_t point)

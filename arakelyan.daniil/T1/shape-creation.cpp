@@ -80,7 +80,18 @@ arakelyan::Shape * arakelyan::createDiam(const char * string)
   point_t p2 = {0.0, 0.0};
   point_t p3 = {0.0, 0.0};
   dataExtractionParAndDiam(string, p1, p2, p3, wordLen);
-  return new Diamond(p1, p2, p3);
+  if (p2.y == p1.y && p2.x == p3.x) // 2 midpoint
+  {
+    return new Diamond(p1,p2,p3);
+  }
+  else if (p3.y == p2.y && p3.x == p1.x)
+  {
+    return new Diamond(p2,p3,p1);
+  }
+  else
+  {
+    return new Diamond(p3,p1,p2);
+  }
 }
 
 arakelyan::Shape * arakelyan::createRect(const char * string)
