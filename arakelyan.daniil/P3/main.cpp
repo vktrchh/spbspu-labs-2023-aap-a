@@ -22,13 +22,6 @@ int main()
     return 1;
   }
 
-  if (inputString[0] == '\0')
-  {
-    delete [] inputString;
-    std::cerr << "Empty input!\n";
-    return 1;
-  }
-
   size_t answerTaskOne = countOfDifferentLetters(inputString);
 
   size_t sizeOfAlphabet = 'z' - 'a' + 1;
