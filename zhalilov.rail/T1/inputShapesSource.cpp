@@ -118,7 +118,6 @@ void zhalilov::inputShapesSource(Shape **shapes, point_t &point, double &ratio, 
         throw std::ios_base::failure("input interrupted");
       }
 
-      shapeIndex++;
       using shapeCreatingFunc = Shape *(*)(const double *points, size_t length);
       size_t namesSize = 3;
       const std::string shapeNames[] = {"RECTANGLE", "CIRCLE", "POLYGON"};
