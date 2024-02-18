@@ -57,11 +57,8 @@ int main()
     std::cerr << "input was finished with eof symbol; scale wasn't inputed\n";
     return 3;
   }
-/*  else if (countWSpaces(currDesc) >= 1)
+  else if (countWSpaces(currDesc) > 1)
   {
-    constexpr size_t numOfScalePars = 3;
-    double scaleParams[numOfScalePars] = {};
-    parseParams(currDesc, numOfScalePars, scaleParams);
     try
     {
       if (scaleParams[2] > 0)
@@ -85,7 +82,13 @@ int main()
       delete [] currDesc;
       return 5;
     }
-  }*/
+  }
+   /* std::cout << cShape.getArea() << "\n";
+    constexpr size_t numOfScalePars = 3;
+    double scaleParams[numOfScalePars] = {};
+    parseParams(currDesc, numOfScalePars, scaleParams);
+      cShape.scale(scaleParams);
+    std::cout << cShape.getArea() << "\n";*/
   if (figDescMistakeCheck > 0)
   {
     std::cerr << "There were mistakes in figure descriptions\n";
