@@ -35,10 +35,6 @@ int main()
     try
     {
       string = inputLine(std::cin);
-      if (string[0] == '\n')
-      {
-        continue;
-      }
     }
     catch (const std::exception &e)
     {
