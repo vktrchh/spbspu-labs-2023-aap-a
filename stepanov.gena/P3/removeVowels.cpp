@@ -1,28 +1,19 @@
 #include "removeVowels.hpp"
-#include <cstddef>
+#include "isConsonat.hpp"
 
 char* stepanov::removeVowels(char* string)
 {
   char* result = string;
-  const char* listVowels = "AEIOUaeiou";
-  for (size_t i = 0; string[i] != '\0'; ++i)
+  while (*string != '\0')
   {
-    bool isConsonat = true;
-    for (size_t j = 0; listVowels[j] != '\0'; ++j)
+    if (stepanov::isConsonat(*string))
     {
-      if (string[i] == listVowels[j])
-      {
-        isConsonat = false;
-        break;
-      }
-    }
-    if (isConsonat)
-    {
-      *result = string[i];
+      *result = *string;
       ++result;
     }
+    ++string;
   }
   *result = '\0';
 
-  return string;
+  return result;
 }
