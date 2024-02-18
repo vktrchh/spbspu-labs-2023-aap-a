@@ -5,7 +5,7 @@
 
 namespace vyzhanov
 {
-  char* deleteAllNumbers(char* string, size_t stringLength);
+  char* deleteAllNumbers(char* string, char* newString, size_t stringLength);
 }
 
 #endif

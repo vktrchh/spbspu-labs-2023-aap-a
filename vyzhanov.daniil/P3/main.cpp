@@ -33,7 +33,7 @@ int main()
   try
   {
     newString = new char[stringLength];
-    std::cout vyzhanov::deleteAllNumbers(string, stringLength]);
+    std::cout << vyzhanov::deleteAllNumbers(string, newString, stringLength) << "\n";
   }
   catch (const std::exception& e)
   {

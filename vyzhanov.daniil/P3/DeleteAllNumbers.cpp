@@ -1,7 +1,7 @@
 #include "DeleteAllNumbers.hpp"
-#include <cctypes>
+#include <cctype>
 
-void vyzhanov::deleteAllNumbers(char* string, size_t stringLength)
+char* vyzhanov::deleteAllNumbers(char* string, char* newString, size_t stringLength)
 {
   size_t j = 0;
   for (size_t i = 0; i < stringLength; i++)
