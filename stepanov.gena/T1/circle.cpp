@@ -1,11 +1,11 @@
 #include "circle.hpp"
 #include <stdexcept>
 
-stepanov::Circle::Circle(const point_t& center, double radius):
+stepanov::Circle::Circle(const point_t& center, const double radius):
   center_(center),
   raduis_(radius)
 {
-  if (!(radius_ > 0))
+  if (radius_ <= 0)
   {
     throw std::invalid_argument(" Radius must be positive ");
   }
@@ -24,4 +24,19 @@ stepanov::rectangle_t stepanov::Circle::getFrameRect() const
   return {  width, height, center };
 }
 
+stepanov::Circle move(const point_t& p)
+{
+  center_.x = p.x;
+  center_.y = p.y;
+}
 
+stepanov::Circle move(const double dx, const double dy)
+{
+  center_.x += dx;
+  center_.y += dy;
+}
+
+stepanov::Circle scale(const double ratio)
+{
+  radius_ *= ratio;
+}
