@@ -1,7 +1,7 @@
 #include "polygon.hpp"
+#include <stdexcept>
 #include "figureFunction.hpp"
 
-#include <iostream>
 
 rebdev::Polygon::Polygon(const point_t * vertexs, size_t numOfVertexs):
   vertexs_(nullptr),
@@ -51,7 +51,7 @@ double rebdev::Polygon::getArea() const
   }
   sum += (vertexs_[numOfVertexs_ - 1].x - vertexs_[0].x) * (vertexs_[numOfVertexs_ - 1].y + vertexs_[0].y);
   sum /= 2;
-  return  abs(sum);
+  return abs(sum);
 }
 
 rebdev::rectangle_t rebdev::Polygon::getFrameRect() const

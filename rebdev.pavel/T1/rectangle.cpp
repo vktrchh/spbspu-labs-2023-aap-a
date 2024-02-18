@@ -1,7 +1,6 @@
 #include "rectangle.hpp"
-#include "figureFunction.hpp"
-
 #include <stdexcept>
+#include "figureFunction.hpp"
 
 rebdev::Rectangle::Rectangle(const point_t & firstAngle, const point_t & secondAngle):
   angles_{firstAngle, secondAngle}
