@@ -5,7 +5,7 @@ char* vyzhanov::inputString(std::istream& input)
 {
   size_t sizeOfString = 50;
   size_t index = 0;
-  char *string = new char[sizeOfString];
+  char* string = new char[sizeOfString];
   input >> std::noskipws;
   char currentChar = 0;
   while (input >> currentChar)
