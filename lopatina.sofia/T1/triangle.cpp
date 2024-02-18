@@ -1,7 +1,6 @@
 #include "triangle.hpp"
 #include <cmath>
 #include <algorithm>
-#include "base-types.hpp"
 
 lopatina::Triangle::Triangle(point_t point1, point_t point2, point_t point3)
 {

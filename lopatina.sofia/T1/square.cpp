@@ -1,5 +1,4 @@
 #include "square.hpp"
-#include "base-types.hpp"
 
 lopatina::Square::Square(point_t a, double side)
 {

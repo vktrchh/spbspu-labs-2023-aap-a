@@ -1,7 +1,4 @@
 #include <iostream>
-#include <cmath>
-#include <iomanip>
-#include <algorithm>
 #include "base-types.hpp"
 #include "shape.hpp"
 #include "rectangle.hpp"
@@ -127,7 +124,7 @@ int main()
         point_t central_point = {0.0, 0.0};
         point_t side_point_x = {0.0, 0.0};
         point_t side_point_y = {0.0, 0.0};
-        int flag = 0;
+        int flag_diamond_condition = 0;
 
         for (size_t i = 1; i < 4; ++i)
         {
@@ -151,13 +148,13 @@ int main()
           }
           if (isCentralPoint(point1, point2, point3))
           {
-            flag = 1;
+            flag_diamond_condition = 1;
             central_point = {point1.x_, point1.y_};
             side_point_x = defineSidePointX(point1, point2, point3);
             side_point_y = defineSidePointY(point1, point2, point3);
           }
         }
-        if (flag == 0)
+        if (flag_diamond_condition == 0)
         {
           error_flag = 1;
         }
