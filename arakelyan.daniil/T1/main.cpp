@@ -34,7 +34,7 @@ int main()
   {
     try
     {
-      string = inputString(std::cin);
+      string = inputLine(std::cin);
     }
     catch (const std::exception &e)
     {

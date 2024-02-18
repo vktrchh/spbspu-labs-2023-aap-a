@@ -1,8 +1,8 @@
 #include <exception>
 #include <iostream>
-#include <new>
 #include <stdexcept>
 #include <inputLine.hpp>
+
 #include "difLetters.hpp"
 #include "difLettersInTwoLines.hpp"
 
@@ -11,9 +11,10 @@ int main()
   char *inputString = nullptr;
   const char *defaultStringForTaskTwo = "def ghk";
 
+  using namespace arakelyan;
   try
   {
-    inputString = arakelyan::inputString(std::cin);
+    inputString = inputLine(std::cin);
   }
   catch (const std::exception & e)
   {
@@ -22,7 +23,6 @@ int main()
   }
 
 
-  using namespace arakelyan;
   size_t answerTaskOne = countOfDifferentLetters(inputString);
 
   size_t sizeOfAlphabet = 'z' - 'a' + 1;
