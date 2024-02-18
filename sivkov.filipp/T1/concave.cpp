@@ -2,17 +2,18 @@
 #include "othersFun.hpp"
 #include <stdexcept>
 #include <algorithm>
-sivkov::Concave::Concave(const point_t ver1, const point_t ver2, const point_t ver3, const point_t ver4) :
-  ver1_(ver1),
-  ver2_(ver2),
-  ver3_(ver3),
-  ver4_(ver4)
+
+sivkov::Concave::Concave(const point_t cvVer1, const point_t cvVer2, const point_t cvVer3, const point_t cvVer4) :
+  cvVer1_(cvVer1),
+  cvVer2_(cvVer2),
+  cvVer3_(cvVer3),
+  cvVer4_(cvVer4)
 {
-  if (!isTriangle(ver1_, ver2_, ver3_))
+  if (!isTriangle(cvVer1_, cvVer2_, cvVer3_))
   {
     throw std::invalid_argument("The first three points do not form a triangle.");
   }
-  if (!isInsideTriangle(ver1_, ver2_, ver3_, ver4_))
+  if (!isInsideTriangle(cvVer1_, cvVer2_, cvVer3_, cvVer4_))
   {
     throw std::invalid_argument("The fourth point is not inside the triangle formed by the first three points.");
   }
@@ -22,7 +23,7 @@ sivkov::Concave::~Concave() = default;
 
 double sivkov::Concave::getArea() const
 {
-  double area = ((ver2_.x - ver1_.x) * (ver3_.y - ver1_.x)) - ((ver3_.x - ver1_.x) * (ver2_.y - ver1_.y));
+  double area = ((cvVer2_.x - cvVer1_.x) * (cvVer3_.y - cvVer1_.x)) - ((cvVer3_.x - cvVer1_.x) * (cvVer2_.y - cvVer1_.y));
   if (area < 0)
   {
     area = area * -0.5;
@@ -31,7 +32,7 @@ double sivkov::Concave::getArea() const
   {
     area = area * 0.5;
   }
-  double secondArea = ((ver4_.x - ver1_.x) * (ver3_.y - ver1_.x)) - ((ver3_.x - ver1_.x) * (ver4_.y - ver1_.y));
+  double secondArea = ((cvVer4_.x - cvVer1_.x) * (cvVer3_.y - cvVer1_.x)) - ((cvVer3_.x - cvVer1_.x) * (cvVer4_.y - cvVer1_.y));
   if (secondArea < 0)
   {
     secondArea = secondArea * -0.5;
@@ -52,17 +53,17 @@ double sivkov::Concave::getArea() const
 
 sivkov::rectangle_t sivkov::Concave::getFrameRect() const
 {
-  double xmin = std::min({ ver1_.x, ver2_.x, ver3_.x, ver4_.x });
-  double xmax = std::max({ ver1_.x, ver2_.x, ver3_.x, ver4_.x });
-  double ymin = std::min({ ver1_.y, ver2_.y, ver3_.y, ver4_.y });
-  double ymax = std::max({ ver1_.y, ver2_.y, ver3_.y, ver4_.y });
+  double xmin = std::min({ cvVer1_.x, cvVer2_.x, cvVer3_.x, cvVer4_.x });
+  double xmax = std::max({ cvVer1_.x, cvVer2_.x, cvVer3_.x, cvVer4_.x });
+  double ymin = std::min({ cvVer1_.y, cvVer2_.y, cvVer3_.y, cvVer4_.y });
+  double ymax = std::max({ cvVer1_.y, cvVer2_.y, cvVer3_.y, cvVer4_.y });
 
   return rectangle_t{point_t{xmin + (xmax - xmin) / 2, ymin + (ymax - ymin) / 2} ,(xmax - xmin), (ymax - ymin)};
 }
 
 void sivkov::Concave::move(point_t newPos)
 {
-  point_t oldPos = ver4_;
+  point_t oldPos = cvVer4_;
   double dx = newPos.x - oldPos.x;
   double dy = newPos.y - oldPos.y;
   move(dx,dy);
@@ -71,17 +72,17 @@ void sivkov::Concave::move(point_t newPos)
 void sivkov::Concave::move(double x, double y)
 {
   point_t newXY = { x,y };
-  ver1_ = shift(newXY, ver1_);
-  ver2_ = shift(newXY, ver2_);
-  ver3_ = shift(newXY, ver3_);
+  cvVer1_ = shift(newXY, cvVer1_);
+  cvVer2_ = shift(newXY, cvVer2_);
+  cvVer3_ = shift(newXY, cvVer3_);
 
 }
 
 void sivkov::Concave::scale(double k)
 {
-  point_t center = ver4_;
-  ver1_ = doCenterShift(k, center, ver1_);
-  ver2_ = doCenterShift(k, center, ver2_);
-  ver3_ = doCenterShift(k, center, ver3_);
+  point_t center = cvVer4_;
+  cvVer1_ = doCenterShift(k, center, cvVer1_);
+  cvVer2_ = doCenterShift(k, center, cvVer2_);
+  cvVer3_ = doCenterShift(k, center, cvVer3_);
 }
 

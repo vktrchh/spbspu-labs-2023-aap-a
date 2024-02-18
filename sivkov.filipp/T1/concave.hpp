@@ -8,7 +8,7 @@ namespace sivkov
   class Concave: public Shape
   {
   public:
-    Concave(const point_t ver1, const point_t ver2, const point_t ver3, const point_t ver4);
+    Concave(const point_t cvVer1, const point_t cvVer2, const point_t cvVer3, const point_t cvVer4);
     ~Concave();
     double getArea() const;
     rectangle_t getFrameRect() const;
@@ -16,10 +16,10 @@ namespace sivkov
     void move(double x, double y);
     void scale(double k);
   private:
-    point_t ver1_;
-    point_t ver2_;
-    point_t ver3_;
-    point_t ver4_;
+    point_t cvVer1_;
+    point_t cvVer2_;
+    point_t cvVer3_;
+    point_t cvVer4_;
   };
 }
 
