@@ -4,9 +4,9 @@
 size_t lopatina::countDigits(const char * str)
 {
   size_t i = 0, count = 0;
-  while (*(str + i) != '\0')
+  while (*(str++) != '\0')
   {
-    if (std::isdigit(*(str + i)))
+    if (std::isdigit(*str))
     {
       count += 1;
     }

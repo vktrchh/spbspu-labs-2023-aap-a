@@ -3,7 +3,7 @@
 
 char * lopatina::excludeCommonLetters(const char * first_str, const char * second_str, char * result)
 {
-  int flag = 0;
+  int flag_match_found = 0;
   size_t i = 0, k = 0;
   while (first_str[i] != '\0')
   {
@@ -12,15 +12,15 @@ char * lopatina::excludeCommonLetters(const char * first_str, const char * secon
     {
       if (first_str[i] == second_str[j])
       {
-        flag = 1;
+        flag_match_found = 1;
       }
       j++;
     }
-    if (flag == 0)
+    if (flag_match_found == 0)
     {
       result[k++] = first_str[i];
     }
-    flag = 0;
+    flag_match_found = 0;
     i++;
   }
   return result;
