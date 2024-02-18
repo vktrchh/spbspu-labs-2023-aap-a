@@ -9,12 +9,12 @@
 #include "diamond.hpp"
 #include "rectangle.hpp"
 
-void arakelyan::extractDataForParAndDiam(const char * string, point_t &p1, point_t &p2, point_t &p3, const size_t wordLen)
+double * arakelyan::extractDataForShape(const char * string, const size_t pointsCount, const size_t wordLen)
 {
   string += wordLen;
-  double coordStorage[6] = {};
+  double coordStorage[pointsCount];
 
-  for (size_t i = 0; i < 6; ++i)
+  for (size_t i = 0; i < pointsCount; ++i)
   {
     while ((*string == ' ') || (*string == '\t'))
     {
@@ -31,55 +31,28 @@ void arakelyan::extractDataForParAndDiam(const char * string, point_t &p1, point
     throw std::logic_error("Invalid input of shape coordinates, too many arg for PARALLELOGRAM or DIAMOND!");
   }
 
-  p1 = {coordStorage[0], coordStorage[1]};
-  p2 = {coordStorage[2], coordStorage[3]};
-  p3 = {coordStorage[4], coordStorage[5]};
-}
-
-void arakelyan::extractDataForRect(const char * string, point_t &p1, point_t &p2)
-{
-  double coordStorage[4] = {};
-  size_t wordLen = 9;
-  string += wordLen;
-
-  for (size_t i = 0; i < 4; ++i)
-  {
-    while ((*string == ' ') || (*string == '\t'))
-    {
-      ++string;
-    }
-
-    char * endPtr;
-    coordStorage[i] = std::strtod(string, & endPtr);
-
-    string = endPtr;
-  }
-  if (*string != '\0')
-  {
-    throw std::logic_error("Invalid input of shape coordinates, too many arg for RECTANGLE!");
-  }
-
-  p1 = {coordStorage[0], coordStorage[1]};
-  p2 = {coordStorage[2], coordStorage[3]};
+  double * asnwerArray = coordStorage;
+  return asnwerArray;
 }
 
 arakelyan::Shape * arakelyan::createPar(const char * string)
 {
   size_t wordLen = 13;
-  point_t p1 = {0.0, 0.0};
-  point_t p2 = {0.0, 0.0};
-  point_t p3 = {0.0, 0.0};
-  extractDataForParAndDiam(string, p1, p2, p3, wordLen);
+
+  double * coordStorage = extractDataForShape(string, 6, wordLen);
+  point_t p1 = {coordStorage[0], coordStorage[1]};
+  point_t p2 = {coordStorage[2], coordStorage[3]};
+  point_t p3 = {coordStorage[4], coordStorage[5]};
   return new Parallelogram(p1, p2, p3);
 }
 
 arakelyan::Shape * arakelyan::createDiam(const char * string)
 {
   size_t wordLen = 7;
-  point_t p1 = {0.0, 0.0};
-  point_t p2 = {0.0, 0.0};
-  point_t p3 = {0.0, 0.0};
-  extractDataForParAndDiam(string, p1, p2, p3, wordLen);
+  double * coordStorage = extractDataForShape(string, 6, wordLen);
+  point_t p1 = {coordStorage[0], coordStorage[1]};
+  point_t p2 = {coordStorage[2], coordStorage[3]};
+  point_t p3 = {coordStorage[4], coordStorage[5]};
   if (p2.y == p1.y && p2.x == p3.x)
   {
     return new Diamond(p1,p2,p3);
@@ -96,9 +69,10 @@ arakelyan::Shape * arakelyan::createDiam(const char * string)
 
 arakelyan::Shape * arakelyan::createRect(const char * string)
 {
-  point_t p1 = {0.0, 0.0};
-  point_t p2 = {0.0, 0.0};
-  extractDataForRect(string, p1, p2);
+  size_t wordLen = 9;
+  double * coordStorage = extractDataForShape(string, 6, wordLen);
+  point_t p1 = {coordStorage[0], coordStorage[1]};
+  point_t p2 = {coordStorage[2], coordStorage[3]};
   return new Rectangle(p1, p2);
 }
 
