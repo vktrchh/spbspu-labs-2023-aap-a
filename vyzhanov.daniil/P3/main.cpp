@@ -15,6 +15,12 @@ int main()
     std::cerr << "Error: " << e.what() << "\n";
     return 1;
   }
+  if (string[0] == '\0')
+  {
+    delete[] string;
+    std::cerr << "Error: Empty string!" << "\n";
+    return 1;
+  }
   try
   {
     std::cout << vyzhanov::deleteAllNumbers(string) << "\n";
@@ -22,6 +28,10 @@ int main()
   catch (const std::exception& e)
   {
     std::cerr << "Error";
+    delete[] newString;
     return 1;
   }
+  delete[] newString;
+  delete[] string;
+  return 0;
 }
