@@ -50,11 +50,7 @@ char * arakelyan::inputLine(std::istream &input)
   }
   mainBuffer[i] = '\0';
 
-  if (mainBuffer[0] == '\0')
-  {
-    delete [] mainBuffer;
-    throw std::logic_error("Empty input!");
-  }
+
   // if (!input)
   // {
   //   delete [] mainBuffer;
