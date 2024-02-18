@@ -15,7 +15,7 @@ void chistyakov::outputShape(std::ostream & output, const Shape * const * shapes
     fullArea += shapes[i]->getArea();
   }
 
-  output << fullArea << "\n";
+  output << fullArea;
 
   point_t downLeft = { 0.0, 0.0 };
   point_t topRight = { 0.0, 0.0 };
