@@ -9,7 +9,7 @@
 
 namespace chistyakov
 {
-  std::ostream & getShapeCords(std::ostream & out, const rectangle_t & rectangle);
+  void outputShape(std::ostream & out, const Shape * const * shapes);
 }
 
 #endif
