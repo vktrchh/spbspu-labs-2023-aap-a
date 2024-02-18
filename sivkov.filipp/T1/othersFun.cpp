@@ -41,7 +41,8 @@ namespace sivkov
   {
     return std::sqrt(std::abs(a.x - b.x) * std::abs(a.x - b.x) + std::abs(a.y - b.y) * std::abs(a.y - b.y));
   }
-  bool isTriangle(point_t first, point_t second, point_t third)
+
+  bool isTriangle(const point_t& first, const point_t& second, const point_t& third)
   {
     return (((third.x - first.x) / (second.x - first.x)) != ((third.y - first.y) / (second.y - first.y)));
   }
