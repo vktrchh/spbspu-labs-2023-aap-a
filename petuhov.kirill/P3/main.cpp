@@ -34,6 +34,7 @@ int main()
   {
     delete[] firstString;
     std::cerr << "Error while creating cloneString";
+    return 1;
   }
   try
   {
