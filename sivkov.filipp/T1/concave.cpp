@@ -52,24 +52,10 @@ double sivkov::Concave::getArea() const
 
 sivkov::rectangle_t sivkov::Concave::getFrameRect() const
 {
-  double xmin = 0.0;
-  double ymin = 0.0;
-  double xmax = 0.0;
-  double ymax = 0.0;
-  if (ver2_.x < xmin) xmin = ver2_.x;
-  if (ver2_.x > xmax) xmax = ver2_.x;
-  if (ver2_.y < ymin) ymin = ver2_.y;
-  if (ver2_.y > ymax) ymax = ver2_.y;
-
-  if (ver3_.x < xmin) xmin = ver3_.x;
-  if (ver3_.x > xmax) xmax = ver3_.x;
-  if (ver3_.y < ymin) ymin = ver3_.y;
-  if (ver3_.y > ymax) ymax = ver3_.y;
-
-  if (ver4_.x < xmin) xmin = ver4_.x;
-  if (ver4_.x > xmax) xmax = ver4_.x;
-  if (ver4_.y < ymin) ymin = ver4_.y;
-  if (ver4_.y > ymax) ymax = ver4_.y;
+  double xmin = std::min({ ver1_.x, ver2_.x, ver3_.x, ver4_.x });
+  double xmax = std::max({ ver1_.x, ver2_.x, ver3_.x, ver4_.x });
+  double ymin = std::min({ ver1_.y, ver2_.y, ver3_.y, ver4_.y });
+  double ymax = std::max({ ver1_.y, ver2_.y, ver3_.y, ver4_.y });
 
   return rectangle_t{point_t{xmin + (xmax - xmin) / 2, ymin + (ymax - ymin) / 2} ,(xmax - xmin), (ymax - ymin)};
 }
