@@ -33,18 +33,18 @@ int main()
     return 2;
   }
 
+  outputShape(std::cin, shapes, 1000);
+
   for (size_t i = 0; i < 1000; ++i)
   {
     if (shapes[i] == nullptr)
     {
       break;
     }
-    std::cout << shapes[i]->getArea() << " ";
-    shapes[i]->printCords();
     isotropScale(shapes[i], {scaleInfo[0], scaleInfo[1]}, scaleInfo[2]);
-    std::cout << shapes[i]->getArea() << " ";
-    shapes[i]->printCords();
   }
+
+  outputShape(std::cin, shapes, 1000);
 
   freeArray(shapes, 1000);
 
