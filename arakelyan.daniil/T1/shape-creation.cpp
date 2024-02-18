@@ -9,10 +9,9 @@
 #include "diamond.hpp"
 #include "rectangle.hpp"
 
-double * arakelyan::extractDataForShape(const char * string, const size_t pointsCount, const size_t wordLen)
+double * arakelyan::extractDataForShape(const char * string, double coordStorage[], const size_t pointsCount, const size_t wordLen)
 {
   string += wordLen;
-  double coordStorage[pointsCount];
 
   for (size_t i = 0; i < pointsCount; ++i)
   {
@@ -39,17 +38,20 @@ arakelyan::Shape * arakelyan::createPar(const char * string)
 {
   size_t wordLen = 13;
 
-  double * coordStorage = extractDataForShape(string, 6, wordLen);
+  double coordStorage[6] = {};
+  extractDataForShape(string, coordStorage, 6, wordLen);
   point_t p1 = {coordStorage[0], coordStorage[1]};
   point_t p2 = {coordStorage[2], coordStorage[3]};
   point_t p3 = {coordStorage[4], coordStorage[5]};
+
   return new Parallelogram(p1, p2, p3);
 }
 
 arakelyan::Shape * arakelyan::createDiam(const char * string)
 {
   size_t wordLen = 7;
-  double * coordStorage = extractDataForShape(string, 6, wordLen);
+  double coordStorage[6] = {};
+  extractDataForShape(string, coordStorage, 6, wordLen);
   point_t p1 = {coordStorage[0], coordStorage[1]};
   point_t p2 = {coordStorage[2], coordStorage[3]};
   point_t p3 = {coordStorage[4], coordStorage[5]};
@@ -70,7 +72,8 @@ arakelyan::Shape * arakelyan::createDiam(const char * string)
 arakelyan::Shape * arakelyan::createRect(const char * string)
 {
   size_t wordLen = 9;
-  double * coordStorage = extractDataForShape(string, 6, wordLen);
+  double coordStorage[6] = {};
+  extractDataForShape(string, coordStorage, 4, wordLen);
   point_t p1 = {coordStorage[0], coordStorage[1]};
   point_t p2 = {coordStorage[2], coordStorage[3]};
   return new Rectangle(p1, p2);
