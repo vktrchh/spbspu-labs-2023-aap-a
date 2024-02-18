@@ -9,7 +9,7 @@
 #include "diamond.hpp"
 #include "rectangle.hpp"
 
-void arakelyan::dataExtractionParAndDiam(const char * string, point_t &p1, point_t &p2, point_t &p3, const size_t wordLen)
+void arakelyan::extractDataForParAndDiam(const char * string, point_t &p1, point_t &p2, point_t &p3, const size_t wordLen)
 {
   string += wordLen;
   double coordStorage[6] = {};
@@ -36,7 +36,7 @@ void arakelyan::dataExtractionParAndDiam(const char * string, point_t &p1, point
   p3 = {coordStorage[4], coordStorage[5]};
 }
 
-void arakelyan::dataExtractionRect(const char * string, point_t &p1, point_t &p2)
+void arakelyan::extractDataForRect(const char * string, point_t &p1, point_t &p2)
 {
   double coordStorage[4] = {};
   size_t wordLen = 9;
@@ -69,7 +69,7 @@ arakelyan::Shape * arakelyan::createPar(const char * string)
   point_t p1 = {0.0, 0.0};
   point_t p2 = {0.0, 0.0};
   point_t p3 = {0.0, 0.0};
-  dataExtractionParAndDiam(string, p1, p2, p3, wordLen);
+  extractDataForParAndDiam(string, p1, p2, p3, wordLen);
   return new Parallelogram(p1, p2, p3);
 }
 
@@ -79,8 +79,8 @@ arakelyan::Shape * arakelyan::createDiam(const char * string)
   point_t p1 = {0.0, 0.0};
   point_t p2 = {0.0, 0.0};
   point_t p3 = {0.0, 0.0};
-  dataExtractionParAndDiam(string, p1, p2, p3, wordLen);
-  if (p2.y == p1.y && p2.x == p3.x) // 2 midpoint
+  extractDataForParAndDiam(string, p1, p2, p3, wordLen);
+  if (p2.y == p1.y && p2.x == p3.x)
   {
     return new Diamond(p1,p2,p3);
   }
@@ -98,7 +98,7 @@ arakelyan::Shape * arakelyan::createRect(const char * string)
 {
   point_t p1 = {0.0, 0.0};
   point_t p2 = {0.0, 0.0};
-  dataExtractionRect(string, p1, p2);
+  extractDataForRect(string, p1, p2);
   return new Rectangle(p1, p2);
 }
 
