@@ -59,6 +59,9 @@ int main()
   }
   else if (countWSpaces(currDesc) > 1)
   {
+    constexpr size_t numOfScalePars = 3;
+    double scaleParams[numOfScalePars] = {};
+    parseParams(currDesc, numOfScalePars, scaleParams);
     try
     {
       if (scaleParams[2] > 0)
