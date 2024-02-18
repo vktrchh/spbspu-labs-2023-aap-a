@@ -12,8 +12,9 @@ namespace stepanov
     ~Square() = default;
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
-    virtual void move();
-    virtual void scale();
+    virtual void move(const point_t& p);
+    virtual void move(double dx, double dy);
+    virtual void scale(double ratio);
   private:
     point_t leftCorner_;
     double length_;

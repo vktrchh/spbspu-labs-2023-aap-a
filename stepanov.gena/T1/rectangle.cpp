@@ -54,10 +54,3 @@ void stepanov::Rectangle::scale(const double ratio)
   rightCorner_.x += (rightCorner_.x - center.x) * (ratio - 1);
   rightCorner_.y += (rightCorner_.y - center.y) * (ratio - 1);
 }
-
-
-
-
-
-
-
