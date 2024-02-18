@@ -13,8 +13,6 @@ namespace grechishnikov
   Shape* inputPolygon(const point_t* points, size_t size);
   void freeShapes(Shape* const* shapes, size_t size);
   const char* parseName(const char* str);
-  bool isEqualStr(const char* fStr, const char* sStr);
-  bool checkEnteredShapes(Shape* const* shapes, size_t size);
 }
 
 #endif

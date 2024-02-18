@@ -1,5 +1,6 @@
 #include <stdexcept>
 #include <iostream>
+#include <string.h>
 #include "inputString.hpp"
 #include "inputShapes.hpp"
 #include "parametersLogic.hpp"
@@ -41,9 +42,9 @@ int main()
       delete[] name;
       name = tempName;
 
-      if (!isEqualStr(name, "SCALE\0"))
+      if (name != nullptr)
       {
-        if (name != nullptr)
+        if (strcmp(name, "SCALE") != 0)
         {
           try
           {
@@ -55,39 +56,39 @@ int main()
             std::cerr << "Error: " << e.what() << '\n';
           }
         }
-      }
-      if (isEqualStr(name, "SCALE\0"))
-      {
-        endOfInput = true;
-        if (count == 0)
+        if (strcmp(name, "SCALE") == 0)
         {
-          throw std::logic_error("Nothing to scale");
-        }
-        size_t size = 0;
-        const double* values = parseValues(str + 5, size);
-        if (size != 3)
-        {
-          delete[] values;
-          throw std::logic_error("Incorrect number of parameters to scale");
-        }
-        if (values[2] <= 0)
-        {
-          delete[] values;
-          throw std::logic_error("Incorrect scale ratio");
-        }
+          endOfInput = true;
+         if (count == 0)
+          {
+            throw std::logic_error("Nothing to scale");
+          }
+          size_t size = 0;
+          const double* values = parseValues(str + 5, size);
+          if (size != 3)
+          {
+            delete[] values;
+            throw std::logic_error("Incorrect number of parameters to scale");
+          }
+          if (values[2] <= 0)
+          {
+            delete[] values;
+            throw std::logic_error("Incorrect scale ratio");
+          }
 
-        outputShapes(std::cout, shapes, count);
-        std::cout << '\n';
-        for (size_t g = 0; g < count; g++)
-        {
-          isoScale(shapes[g], { values[0], values[1] }, values[2]);
-        }
-        outputShapes(std::cout, shapes, count);
-        std::cout << '\n';
+          outputShapes(std::cout, shapes, count);
+          std::cout << '\n';
+          for (size_t g = 0; g < count; g++)
+          {
+            isoScale(shapes[g], { values[0], values[1] }, values[2]);
+          }
+          outputShapes(std::cout, shapes, count);
+          std::cout << '\n';
 
-        delete[] values;
-        delete[] str;
-        delete[] name;
+          delete[] values;
+          delete[] str;
+          delete[] name;
+        }
       }
     }
   }
