@@ -25,16 +25,16 @@ int main()
     {
       ++length;
     }
-  }
-  try
-  {
-    cloneString = new char[length + 1];
-  }
-  catch (std::exception &e)
-  {
-    delete[] firstString;
-    std::cerr << "Error while creating cloneString";
-    return 1;
+    try
+    {
+      cloneString = new char[length + 1];
+    }
+    catch (std::exception &e)
+    {
+      delete[] firstString;
+      std::cerr << "Error while creating cloneString";
+      return 1;
+    }
   }
   try
   {
