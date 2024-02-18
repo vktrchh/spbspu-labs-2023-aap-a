@@ -3,6 +3,74 @@
 
 #include "inputLine.hpp"
 
+// char * arakelyan::inputLine(std::istream &input)
+// {
+//   size_t arrSize = 10;
+//
+//   size_t i = 0;
+//   char sym = 0;
+//
+//   char * string = nullptr;
+//   string = new char[arrSize];
+//
+//   input >> std::noskipws;
+//   while (input >> sym)
+//   {
+//     if (!input)
+//     {
+//       delete [] string;
+//       throw std::logic_error("Input error!");
+//     }
+//
+//     if (i == (arrSize - 1))
+//     {
+//       arrSize *= 2;
+//
+//       try
+//       {
+//         char * tempBuffer = new char[arrSize];
+//
+//         for (size_t j = 0; j < i; j++)
+//         {
+//           tempBuffer[j] = string[j];
+//         }
+//
+//         delete [] string;
+//
+//         string = tempBuffer;
+//       }
+//       catch (const std::bad_alloc &e)
+//       {
+//         delete [] string;
+//         throw;
+//       }
+//     }
+//
+//     string[i] = sym;
+//
+//     if (sym == '\n' && i == 0)
+//     {
+//       continue;
+//     }
+//     else if (sym == '\n' && i != 0)
+//     {
+//       break;
+//     }
+//
+//     i++;
+//   }
+//
+//   string[i] = '\0';
+//   if (!input)
+//   {
+//     delete [] string;
+//     throw std::logic_error("Error input!");
+//   }
+//
+//   input >> std::skipws;
+//   return string;
+// }
+
 char * arakelyan::inputLine(std::istream &input)
 {
   size_t arrSize = 10;
@@ -10,15 +78,14 @@ char * arakelyan::inputLine(std::istream &input)
   size_t i = 0;
   char sym = 0;
 
-  char * string = nullptr;
-  string = new char[arrSize];
+  char * mainBuffer = new char[arrSize];
 
   input >> std::noskipws;
-  while (input >> sym)
+  while ((input >> sym) && (sym != '\n'))
   {
     if (!input)
     {
-      delete [] string;
+      delete [] mainBuffer;
       throw std::logic_error("Input error!");
     }
 
@@ -32,41 +99,30 @@ char * arakelyan::inputLine(std::istream &input)
 
         for (size_t j = 0; j < i; j++)
         {
-          tempBuffer[j] = string[j];
+          tempBuffer[j] = mainBuffer[j];
         }
 
-        delete [] string;
+        delete [] mainBuffer;
 
-        string = tempBuffer;
+        mainBuffer = tempBuffer;
       }
       catch (const std::bad_alloc &e)
       {
-        delete [] string;
+        delete [] mainBuffer;
         throw;
       }
     }
-
-    string[i] = sym;
-
-    if (sym == '\n' && i == 0)
-    {
-      continue;
-    }
-    else if (sym == '\n' && i != 0)
-    {
-      break;
-    }
-
+    mainBuffer[i] = sym;
     i++;
   }
+  mainBuffer[i] = '\0';
 
-  string[i] = '\0';
-  if (!input)
+  if (mainBuffer[0] == '\0')
   {
-    delete [] string;
-    throw std::logic_error("Error input!");
+    delete [] mainBuffer;
+    throw std::logic_error("Empty input!");
   }
 
   input >> std::skipws;
-  return string;
+  return mainBuffer;
 }
