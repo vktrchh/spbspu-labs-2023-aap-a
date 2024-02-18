@@ -27,7 +27,7 @@ belokurskaya::Concave::Concave(const point_t & vertex1, const point_t & vertex2,
 double belokurskaya::Concave::getArea() const
 {
   double triangle1_area = calculateTriangleArea(vertex1_, vertex2_, vertex4_);
-  double triangle2_area = calculateTriangleArea(vertex2_, vertex3_, vertex4_);
+  double triangle2_area = calculateTriangleArea(vertex1_, vertex3_, vertex4_);
   return triangle1_area + triangle2_area;
 }
 
@@ -77,12 +77,12 @@ void belokurskaya::Concave::scale(double factor)
   vertex4_ = {center.x + factor * (vertex4_.x - center.x), center.y + factor * (vertex4_.y - center.y)};
 }
 
-bool belokurskaya::Concave::isTriangle(const point_t& p1, const point_t& p2, const point_t& p3) const
+bool belokurskaya::Concave::isTriangle(const point_t & p1, const point_t & p2, const point_t & p3) const
 {
   return ((p1.x - p2.x) * (p3.y - p2.y) - (p1.y - p2.y) * (p3.x - p2.x)) != 0;
 }
 
-bool belokurskaya::Concave::isInsideTriangle(const point_t& p1, const point_t& p2, const point_t& p3, const point_t& p4) const
+bool belokurskaya::Concave::isInsideTriangle(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4) const
 {
   return ((p2.y - p3.y) * (p1.x - p3.x) + (p3.x - p2.x) * (p1.y - p3.y)) *
          ((p2.y - p3.y) * (p4.x - p3.x) + (p3.x - p2.x) * (p4.y - p3.y)) >= 0 &&
