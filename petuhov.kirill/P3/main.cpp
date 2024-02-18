@@ -53,7 +53,6 @@ int main()
   {
     std::cerr << "first string is empty";
     return 2;
-    
   }
   std::cout << firstString << "\n" << cloneString << "\n";
   delete[] firstString;
