@@ -32,62 +32,50 @@ void sivkov::inputComplexQuad(std::istream& input, Shape** shapes, size_t count)
 
 sivkov::Shape** sivkov::inputShape(std::istream& input, size_t& count)
 {
-  std::string shapeNames[3] = { "RECTANGLE", "CONCAVE", "COMPLEXQUAD" };
   std::string shape = "";
   Shape** arrayWithShape = nullptr;
   Shape** buffer = nullptr;
-  char c = 0;
   while (input >> shape && shape != "SCALE")
   {
-    for (size_t i = 0; i < 3; ++i)
+    buffer = arrayWithShape;
+    arrayWithShape = new Shape * [count + 1] {};
+    if (buffer != nullptr)
     {
-      if (shape == shapeNames[i])
+      for (size_t i = 0; i < count; ++i)
       {
-        buffer = arrayWithShape;
-        arrayWithShape = new Shape * [count + 1] {};
-        if (buffer != nullptr)
-        {
-          for (size_t i = 0; i < count; ++i)
-          {
-            arrayWithShape[i] = buffer[i];
-          }
-        }
-        delete[] buffer;
-        try
-        {
-          if (shape == "RECTANGLE")
-          {
-            sivkov::inputRectangle(input, arrayWithShape, count);
-          }
-          if (shape == "CONCAVE")
-          {
-            sivkov::inputConcave(input, arrayWithShape, count);
-          }
-          if (shape == "COMPLEXQUAD")
-          {
-            sivkov::inputComplexQuad(input, arrayWithShape, count);
-          }
-        }
-        catch (const std::bad_alloc& e)
-        {
-          deleteMemory(arrayWithShape, count);
-          throw;
-        }
-        catch (const std::logic_error& e)
-        {
-          std::cerr << e.what() << '\n';
-          continue;
-        }
+        arrayWithShape[i] = buffer[i];
+      }
+    }
+    delete[] buffer;
+    try
+    {
+      if (shape == "RECTANGLE")
+      {
+        sivkov::inputRectangle(input, arrayWithShape, count);
+        ++count;
+      }
+      if (shape == "CONCAVE")
+      {
+        sivkov::inputConcave(input, arrayWithShape, count);
+        ++count;
+      }
+      if (shape == "COMPLEXQUAD")
+      {
+        sivkov::inputComplexQuad(input, arrayWithShape, count);
         ++count;
       }
     }
+    catch (const std::bad_alloc& e)
+    {
+      deleteMemory(arrayWithShape, count);
+      throw;
+    }
+    catch (const std::logic_error& e)
+    {
+      std::cerr << e.what() << '\n';
+      continue;
+    }
   }
-  input >> std::noskipws;
-  while (c != '\n')
-  {
-    input >> c;
-  }
-  input >> std::skipws;
   if (!input)
   {
     deleteMemory(arrayWithShape, count);
@@ -95,3 +83,4 @@ sivkov::Shape** sivkov::inputShape(std::istream& input, size_t& count)
   }
   return arrayWithShape;
 }
+
