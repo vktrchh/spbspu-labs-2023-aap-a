@@ -5,7 +5,7 @@
 
 namespace grechishnikov
 {
-  char* inputString(std::istream &in);
+  const char* inputString(std::istream &in);
 }
 
 #endif
