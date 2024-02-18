@@ -3,6 +3,7 @@
 
 char* stepanov::removeVowels(char* string)
 {
+  char* begin = string;
   char* result = string;
   while (*string != '\0')
   {
@@ -15,5 +16,5 @@ char* stepanov::removeVowels(char* string)
   }
   *result = '\0';
 
-  return result;
+  return begin;
 }

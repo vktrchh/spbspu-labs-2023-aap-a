@@ -1,17 +1,17 @@
 #include "isConsonat.hpp"
-#include <cstddef>
 
 bool stepanov::isConsonat(char symbol)
 {
   const char* listVowels = "AEIOUaeiou";
   bool flag = true;
-  for (size_t j = 0; listVowels[j] != '\0'; ++j)
+  while ((*listVowels != '\0'))
   {
-    if (symbol == listVowels[j])
+    if (symbol == *listVowels)
     {
       flag = false;
       break;
     }
+    ++listVowels;
   }
   return flag;
 }
