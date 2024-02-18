@@ -3,8 +3,7 @@
 #include <cctype>
 #include <stdexcept>
 #include "expand_array.hpp"
-#include "define_len.hpp"
-#include "exclude_common.hpp"
+#include "exclude_common_letters.hpp"
 #include "add_numbers.hpp"
 
 int main()
@@ -52,42 +51,33 @@ int main()
   }
 
   char * result1 = nullptr;
-  try
-  {
-    result1 = new char[amount]{};
-    const char * string1 = "abc";
-    const size_t size1 = defineLen(string1);
-    excludeCommon(input, string1, amount, size1, result1);
-    std::cout << "EXC-SND: " << result1 << '\n';
-    delete [] result1;
-  }
-  catch(const std::exception & e)
-  {
-    std::cerr << e.what();
-    delete [] result1;
-    delete [] input;
-    return 1;
-  }
-
   char * result2 = nullptr;
   try
   {
+    const char * string1 = "abc";
     const char * string2 = "g1h2k";
-    const size_t size2 = defineLen(string2);
-    size_t num_dig = countNumbers(string2);
+    size_t num_dig = countDigits(string2);
+
+    result1 = new char[amount]{};
+    result1 = excludeCommonLetters(input, string1, result1);
+
     result2 = new char[amount + num_dig]{};
-    addNumbers(input, string2, amount, size2, result2);
+    result2 = addNumbers(input, string2, result2);
+
+    std::cout << "EXC-SND: " << result1 << '\n';
     std::cout << "DGT-SND: " << result2 << '\n';
-    delete [] result2;
   }
   catch(const std::exception & e)
   {
     std::cerr << e.what();
+    delete [] result1;
     delete [] result2;
     delete [] input;
     return 1;
   }
 
+  delete [] result1;
+  delete [] result2;
   delete [] input;
   return 0;
 }

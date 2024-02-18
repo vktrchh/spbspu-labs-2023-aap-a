@@ -1,11 +1,12 @@
 #include "add_numbers.hpp"
+#include <cctype>
 
-size_t lopatina::countNumbers(const char * str)
+size_t lopatina::countDigits(const char * str)
 {
   size_t i = 0, count = 0;
-  while (str[i] != 0)
+  while (*(str + i) != '\0')
   {
-    if (isdigit(str[i]))
+    if (std::isdigit(*(str + i)))
     {
       count += 1;
     }
@@ -14,25 +15,25 @@ size_t lopatina::countNumbers(const char * str)
   return count;
 }
 
-void lopatina::addNumbers(char * first_str, const char * second_str, size_t size1, size_t size2, char * result)
+char * lopatina::addNumbers(char * first_str, const char * second_str, char * result)
 {
   size_t last = 0;
-  for (size_t i = 0; i < size1; ++i)
+  size_t i = 0, j = 0;
+  while (first_str[i] != '\0')
   {
-    if (first_str[i] == '\0')
-    {
-      last = i - 1;
-      break;
-    }
     result[i] = first_str[i];
+    i++;
   }
-  for (size_t j = 0; j < size2; ++j)
+  last = i - 1;
+  while (second_str[j] != '\0')
   {
-    if (isdigit(second_str[j]))
+    if (std::isdigit(second_str[j]))
     {
       last += 1;
       result[last] = second_str[j];
     }
+    j++;
   }
   result[last + 1] = '\0';
+  return result;
 }
