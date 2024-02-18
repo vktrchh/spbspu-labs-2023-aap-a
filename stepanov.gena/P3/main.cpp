@@ -1,7 +1,7 @@
-#include <iostream>
 #include "inputArray.hpp"
 #include "replaceStringToLow.hpp"
 #include "removeVowels.hpp"
+#include <iostream>
 
 int main()
 {

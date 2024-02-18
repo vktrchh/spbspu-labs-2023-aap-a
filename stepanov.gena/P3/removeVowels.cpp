@@ -1,5 +1,5 @@
-#include <cstddef>
 #include "removeVowels.hpp"
+#include <cstddef>
 
 char* stepanov::removeVowels(char* string)
 {
