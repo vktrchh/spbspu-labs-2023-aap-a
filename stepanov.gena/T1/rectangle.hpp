@@ -8,15 +8,15 @@ namespace stepanov
   class Rectangle : public Shape
   {
   public:
-    Rectangle(const point_t& lowerLeftCorner_, const point_t& rightTopCorner_);
+    Rectangle(const point_t& leftCorner, const point_t& rightCorner);
     ~Rectangle() = default;
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move();
     virtual void scale();
   private:
-    point_t lowerLeftCorner_;
-    point_t rightTopCorner_;
+    point_t leftCorner_;
+    point_t rightCorner_;
   };
 }
 #endif
