@@ -84,13 +84,7 @@ void namestnikov::isoScale(Shape * shape, const point_t & point, const double co
   }
   else
   {
-    point_t oldCenterPoint = shape->getCenter();
-    shape->move(point);
-    shape->scale(coefficient);
-    point_t newCenterPoint = shape->getCenter();
-    double dx = (oldCenterPoint.x - newCenterPoint.x) * coefficient;
-    double dy = (oldCenterPoint.y - newCenterPoint.y) * coefficient;
-    shape->move(dx, dy);
+    unsafeIsoScale(shape, point, coefficient);
   }
 }
 
