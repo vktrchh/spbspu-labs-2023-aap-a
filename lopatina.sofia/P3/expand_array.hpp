@@ -4,7 +4,7 @@
 #include <cstddef>
 namespace lopatina
 {
-  char * expandArray(const char * arr, const size_t size);
+  char * expandArray(const char * arr, size_t size);
 }
 
 #endif
