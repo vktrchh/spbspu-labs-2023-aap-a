@@ -9,8 +9,8 @@ ishmuratov::Diamond::Diamond(const point_t & point1, const point_t & point2, con
   {
     throw std::invalid_argument("This is not a triangle!");
   }
-  bool diagx = (corner1_.x != corner2_.x) && (corner1_.x != corner3_.x) && (corner2_.x != corner3_.x)
-  bool diagy = (corner1_.y != corner2_.y) && (corner1_.y != corner3_.y) && (corner2_.y != corner3_.y)
+  bool diagx = (corner1_.x != corner2_.x) && (corner1_.x != corner3_.x) && (corner2_.x != corner3_.x);
+  bool diagy = (corner1_.y != corner2_.y) && (corner1_.y != corner3_.y) && (corner2_.y != corner3_.y);
   if (diagx || diagy)
   {
     throw std::invalid_argument("Diagonals of diamond must be parallel to axis!");
