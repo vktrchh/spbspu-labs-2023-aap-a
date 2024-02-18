@@ -97,6 +97,6 @@ void arakelyan::Diamond::scale(const double k)
   for (size_t i = 0; i < 3; i++)
   {
     pointsArray[i]->x = dataOfFrameRect.pos.x + ((pointsArray[i]->x - dataOfFrameRect.pos.x) * k);
-    pointsArray[i]->y = dataOfFrameRect.pos.y +((pointsArray[i]-> x - dataOfFrameRect.pos.y) * k);
+    pointsArray[i]->y = dataOfFrameRect.pos.y + ((pointsArray[i]->y - dataOfFrameRect.pos.y) * k);
   }
 }
