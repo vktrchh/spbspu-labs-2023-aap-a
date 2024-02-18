@@ -85,20 +85,29 @@ void zaitsev::CompositeShape::push_back(Shape* shape)
   {
     return;
   }
-  if (size_ == capacity_)
+  try
   {
-    if (capacity_ == 0)
+    if (size_ == capacity_)
     {
-      capacity_ = 4;
+      if (capacity_ == 0)
+      {
+        capacity_ = 4;
+      }
+      Shape** temp = new Shape * [capacity_ * 2];
+      std::memcpy(temp, shapes_, sizeof(Shape*) * size_);
+      delete[] shapes_;
+      shapes_ = temp;
+      capacity_ *= 2;
     }
-    Shape** temp = new Shape*[capacity_ * 2];
-    std::memcpy(temp, shapes_, sizeof(Shape*) * size_);
-    delete[] shapes_;
-    shapes_ = temp;
-    capacity_ *= 2;
+
+    shapes_[size_] = shape;
+    ++size_;
   }
-  shapes_[size_] = shape;
-  ++size_;
+  catch (const std::bad_alloc&)
+  {
+    delete shape;
+    throw;
+  }
 }
 
 void zaitsev::CompositeShape::pop_back()
