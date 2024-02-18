@@ -6,8 +6,7 @@ zhalilov::Rectangle::Rectangle(const point_t &leftCorner, const point_t &rightCo
   m_leftCorner(leftCorner),
   m_rightCorner(rightCorner)
 {
-  if (m_leftCorner.x >= m_rightCorner.x
-    || m_leftCorner.y >= m_rightCorner.y)
+  if (m_leftCorner.x >= m_rightCorner.x || m_leftCorner.y >= m_rightCorner.y)
   {
     throw std::invalid_argument("invalid rectangle source");
   }
