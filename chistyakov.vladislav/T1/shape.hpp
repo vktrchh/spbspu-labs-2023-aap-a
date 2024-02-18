@@ -15,7 +15,6 @@ namespace chistyakov
     virtual void move(const point_t & point) = 0;
     virtual void move(const double mx, const double my) = 0;
     virtual void scale(const double ratio) = 0;
-    virtual void printCords() const = 0;
   };
 }
 
