@@ -15,11 +15,6 @@ int main()
   try
   {
     inputString = inputLine(std::cin);
-    if (inputString[0] == '\0')
-    {
-      delete [] inputString;
-      throw std::logic_error("empty input!");
-    }
   }
   catch (const std::exception & e)
   {
@@ -27,6 +22,12 @@ int main()
     return 1;
   }
 
+  if (inputString[0] == '\0')
+  {
+    delete [] inputString;
+    std::cerr << "empty input!\n";
+    return 1;
+  }
 
   size_t answerTaskOne = countOfDifferentLetters(inputString);
 
