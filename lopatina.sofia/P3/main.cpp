@@ -67,7 +67,7 @@ int main()
     std::cout << "EXC-SND: " << result1 << '\n';
     std::cout << "DGT-SND: " << result2 << '\n';
   }
-  catch(const std::exception & e)
+  catch (const std::exception & e)
   {
     std::cerr << e.what();
     delete [] result1;
