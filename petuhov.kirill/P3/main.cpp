@@ -49,14 +49,13 @@ int main()
 
   petuhov::removeSpaces(firstString, cloneString);
   petuhov::substractString(firstString, secondString);
-  if (firstString)
-  {
-    std::cout << firstString << "\n" << cloneString << "\n";
-  }
-  else
+  if (!firstString)
   {
     std::cerr << "first string is empty";
+    return 2;
+    
   }
+  std::cout << firstString << "\n" << cloneString << "\n";
   delete[] firstString;
   delete[] cloneString;
   delete[] secondString;
