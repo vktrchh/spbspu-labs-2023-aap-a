@@ -1,16 +1,8 @@
 #include "DeleteAllNumbers.hpp"
-#include <cstddef>
-#include <iostream>
+#include <cctypes>
 
-void vyzhanov::deleteAllNumbers(char* string)
+void vyzhanov::deleteAllNumbers(char* string, size_t stringLength)
 {
-
-  size_t stringLength = 0;
-  while (string[stringLength])
-  {
-    stringLength++;
-  }
-  char *newString = new char[stringLength];
   size_t j = 0;
   for (size_t i = 0; i < stringLength; i++)
   {
@@ -20,6 +12,5 @@ void vyzhanov::deleteAllNumbers(char* string)
       j++;
     }
   }
-  std::cout << newString << "\n";
-  delete[] newString;
+  return newString;
 }

@@ -1,9 +1,11 @@
 #ifndef DELETEALLNUMBERS_HPP
 #define DELETEALLNUMBERS_HPP
 
+#include <cstddef>
+
 namespace vyzhanov
 {
-  void deleteAllNumbers(char* string);
+  char* deleteAllNumbers(char* string, size_t stringLength);
 }
 
 #endif
