@@ -50,8 +50,8 @@ int main()
       }
 
       rebdev::printSum(shapes, numOfShape, std::cout);
-      out << std::fixed;
-      out.precision(1);
+      std::cout << std::fixed;
+      std::cout.precision(1);
       std::cout << ' ';
       rebdev::printShapes(shapes, numOfShape, std::cout);
       std::cout << '\n';
