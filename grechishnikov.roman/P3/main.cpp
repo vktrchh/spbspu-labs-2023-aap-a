@@ -11,7 +11,7 @@ int main()
   char* str = nullptr;
   try
   {
-    str = inputStr(std::cin);
+    str = inputString(std::cin);
   }
   catch (const std::bad_alloc &e)
   {
