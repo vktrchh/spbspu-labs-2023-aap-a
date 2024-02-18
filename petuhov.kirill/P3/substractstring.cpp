@@ -2,6 +2,8 @@
 
 void petuhov::substractString(char * firstString, const char * secondString)
 {
+  if (!firstString || !secondString) return;
+
   size_t index = 0;
 
   for (int i = 0; firstString[i] != '\0'; ++i)
