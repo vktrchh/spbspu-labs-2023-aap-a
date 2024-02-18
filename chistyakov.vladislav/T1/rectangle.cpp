@@ -55,8 +55,3 @@ void chistyakov::Rectangle::scale(const double ratio)
   rightUpCorner_.x += (area.width * ratio - area.width) / 2.0;
   rightUpCorner_.y += (area.height * ratio - area.height) / 2.0;
 }
-
-void chistyakov::Rectangle::printCords() const
-{
-  std::cout << leftDownCorner_.x << " " << leftDownCorner_.y << " " << rightUpCorner_.x << " " << rightUpCorner_.y << "\n";
-}
