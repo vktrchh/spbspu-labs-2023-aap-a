@@ -30,7 +30,6 @@ int main()
       if (figure != nullptr)
       {
         cShape.pushBack(figure);
-        std::cout << cShape.size();
       }
     }
     catch (const std::bad_alloc &)
