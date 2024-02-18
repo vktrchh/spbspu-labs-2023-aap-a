@@ -1,8 +1,9 @@
 #include "outputShape.hpp"
 
-void chistyakov::outputShapes(std::ostream & output, const Shape * const * shapes, size_t size)
+void chistyakov::outputShape(std::ostream & output, const Shape * const * shapes, size_t size)
 {
   output << std::fixed;
+  output.precision(1);
 
   double fullArea = 0.0;
   for (size_t i = 0; i < size; ++i)
@@ -11,14 +12,14 @@ void chistyakov::outputShapes(std::ostream & output, const Shape * const * shape
     {
       break;
     }
-    fullArea += shapes[i].getArea();
+    fullArea += shapes[i]->getArea();
   }
 
   output << fullArea << "\n";
 
   point_t downLeft = { 0.0, 0.0 };
   point_t topRight = { 0.0, 0.0 };
-  rectangle_t rectangle = { 0.0, 0.0, { 0.0, 0.0 } }
+  rectangle_t rectangle = { 0.0, 0.0, { 0.0, 0.0 } };
 
   for (size_t i = 0; i < size; ++i)
   {

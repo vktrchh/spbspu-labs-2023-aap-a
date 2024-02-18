@@ -9,7 +9,7 @@
 
 namespace chistyakov
 {
-  void outputShape(std::ostream & out, const Shape * const * shapes);
+  void outputShape(std::ostream & out, const Shape * const * shapes, size_t size);
 }
 
 #endif
