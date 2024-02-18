@@ -1,11 +1,11 @@
 #include "polygon.hpp"
+#include <iostream>
 #include <stdexcept>
 #include "figureFunction.hpp"
 
-
 rebdev::Polygon::Polygon(const point_t * vertexes, size_t numOfVertexes):
-  vertexs_(nullptr),
-  numOfVertexs_(numOfVertexs)
+  vertexes_(nullptr),
+  numOfVertexes_(numOfVertexes)
 {
   if (numOfVertexes < 3)
   {
@@ -69,8 +69,8 @@ void rebdev::Polygon::move(double x, double y)
 {
   for (size_t i = 0; i < numOfVertexes_; ++i)
   {
-    vertexs_[i].x += x;
-    vertexs_[i].y += y;
+    vertexes_[i].x += x;
+    vertexes_[i].y += y;
   }
 }
 
