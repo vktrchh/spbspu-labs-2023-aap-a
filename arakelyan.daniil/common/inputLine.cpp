@@ -81,7 +81,7 @@ char * arakelyan::inputLine(std::istream &input)
   char * mainBuffer = new char[arrSize];
 
   input >> std::noskipws;
-  while ((input >> sym) && (sym != '\n'))
+  while (input >> sym)
   {
     if (!input)
     {
@@ -113,6 +113,7 @@ char * arakelyan::inputLine(std::istream &input)
       }
     }
     mainBuffer[i] = sym;
+
     if (sym == '\n' && i == 0)
     {
       continue;

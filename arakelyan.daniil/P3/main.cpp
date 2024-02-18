@@ -15,6 +15,10 @@ int main()
   try
   {
     inputString = inputLine(std::cin);
+    if (inputString[0] == '\0')
+    {
+      throw std::logic_error("empty input!");
+    }
   }
   catch (const std::exception & e)
   {
