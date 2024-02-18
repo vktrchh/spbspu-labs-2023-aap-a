@@ -17,6 +17,7 @@ int main()
     inputString = inputLine(std::cin);
     if (inputString[0] == '\0')
     {
+      delete [] inputString;
       throw std::logic_error("empty input!");
     }
   }
