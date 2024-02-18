@@ -1,7 +1,7 @@
 #include "isoScale.hpp"
 #include <stdexcept>
 
-void grechishnikov::isoScale(grechishnikov::Shape* shape, grechishnikov::point_t scalePoint, double ratio)
+void grechishnikov::isoScale(Shape* shape, point_t scalePoint, double ratio)
 {
   if (ratio <= 0)
   {

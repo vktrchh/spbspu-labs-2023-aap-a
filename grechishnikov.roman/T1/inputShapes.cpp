@@ -14,15 +14,15 @@ grechishnikov::Shape* grechishnikov::inputShape(const char* str)
   }
   const size_t legalNameCount = 3;
   const char* legalName[] = { "RECTANGLE\0", "TRIANGLE\0", "POLYGON\0" };
-  Shape* (*correspondingFunctions[])(const grechishnikov::point_t* points, size_t size) = {
-    grechishnikov::inputRectangle,
-    grechishnikov::inputTriangle,
-    grechishnikov::inputPolygon
+  Shape* (*correspondingFunctions[])(const point_t* points, size_t size) = {
+    inputRectangle,
+    inputTriangle,
+    inputPolygon
   };
 
   const char* name = nullptr;
   const double* values = nullptr;
-  const grechishnikov::point_t* points = nullptr;
+  const point_t* points = nullptr;
   size_t size = 0;
 
   try
@@ -37,8 +37,8 @@ grechishnikov::Shape* grechishnikov::inputShape(const char* str)
         {
           pos++;
         }
-        values = grechishnikov::parseValues(str + pos, size);
-        points = grechishnikov::makePairs(values, size);
+        values = parseValues(str + pos, size);
+        points = makePairs(values, size);
 
         Shape* returnShape = (*correspondingFunctions[i])(points, size / 2);
 
@@ -61,19 +61,19 @@ grechishnikov::Shape* grechishnikov::inputShape(const char* str)
   throw std::logic_error("Unknown name");
 }
 
-grechishnikov::Shape* grechishnikov::inputRectangle(const grechishnikov::point_t* points, size_t size)
+grechishnikov::Shape* grechishnikov::inputRectangle(const point_t* points, size_t size)
 {
-  return new grechishnikov::Rectangle(points, size);
+  return new Rectangle(points, size);
 }
 
-grechishnikov::Shape* grechishnikov::inputTriangle(const grechishnikov::point_t* points, size_t size)
+grechishnikov::Shape* grechishnikov::inputTriangle(const point_t* points, size_t size)
 {
-  return new grechishnikov::Triangle(points, size);
+  return new Triangle(points, size);
 }
 
-grechishnikov::Shape* grechishnikov::inputPolygon(const grechishnikov::point_t* points, size_t size)
+grechishnikov::Shape* grechishnikov::inputPolygon(const point_t* points, size_t size)
 {
-  return new grechishnikov::Polygon(points, size);
+  return new Polygon(points, size);
 }
 
 void grechishnikov::freeShapes(Shape* const* shapes, size_t size)

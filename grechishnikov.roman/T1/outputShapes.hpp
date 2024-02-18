@@ -7,7 +7,7 @@
 
 namespace grechishnikov
 {
-  void outputShapes(std::ostream& out, Shape* const* shapes, size_t size);
+  void outputShapes(std::ostream& out, const Shape* const* shapes, size_t size);
 }
 
 #endif
