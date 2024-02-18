@@ -49,8 +49,3 @@ void chistyakov::Square::scale(const double ratio)
   leftDownCorner_.y -= (side_ * ratio - side_)/2.0;
   side_ = side_ * ratio;
 }
-
-void chistyakov::Square::printCords() const
-{
-  std::cout << leftDownCorner_.x << " " << leftDownCorner_.y << " " << side_ << "\n";
-}
