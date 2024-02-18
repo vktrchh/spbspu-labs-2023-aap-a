@@ -91,5 +91,5 @@ rebdev::point_t rebdev::Concave::scalePoint(const point_t & pointToScale, const 
 
 bool rebdev::isTriangle(const point_t & f, const point_t & s, const point_t & t)
 {
-    return (((t.x - f.x) / (s.x - f.x)) != ((t.y - f.y) / (s.y - f.y)));
+  return (((t.x - f.x) / (s.x - f.x)) != ((t.y - f.y) / (s.y - f.y)));
 }
