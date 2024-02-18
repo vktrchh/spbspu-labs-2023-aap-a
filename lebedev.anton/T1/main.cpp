@@ -10,9 +10,7 @@ int main()
 {
   using namespace lebedev;
   Shape ** shapes = nullptr;
-  size_t shapes_count = 0;
-  point_t point = {0, 0};
-  double ratio = 0.0;
+  size_t shapes_count = 0;;
   try
   {
     shapes = inputShapes(std::cin, shapes_count);

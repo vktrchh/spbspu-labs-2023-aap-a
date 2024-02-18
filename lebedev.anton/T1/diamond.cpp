@@ -3,11 +3,11 @@
 
 lebedev::point_t findCenter(const lebedev::point_t & p1, const lebedev::point_t & p2, const lebedev::point_t & p3)
 {
-  if (p1.x == p2.x && p1.y == p3.y || p1.x == p3.x && p1.y == p2.y)
+  if ((p1.x == p2.x && p1.y == p3.y) || (p1.x == p3.x && p1.y == p2.y))
   {
     return p1;
   }
-  else if (p2.x == p1.x && p2.y == p3.y || p2.x == p3.x && p2.y == p1.y)
+  else if ((p2.x == p1.x && p2.y == p3.y) || (p2.x == p3.x && p2.y == p1.y))
   {
     return p2;
   }
@@ -57,7 +57,7 @@ lebedev::Diamond::Diamond(const point_t & p1, const point_t & p2, const point_t 
   p3_(findThird(p1, p2, p3))
 {
   bool correct_figure = true;
-  if (!(p1_.x == p2_.x && p1_.y == p3_.y || p1_.x == p3_.x && p1_.y == p2_.y))
+  if (!((p1_.x == p2_.x && p1_.y == p3_.y) || (p1_.x == p3_.x && p1_.y == p2_.y)))
   {
     correct_figure = false;
   }

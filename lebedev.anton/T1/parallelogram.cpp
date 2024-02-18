@@ -81,7 +81,7 @@ lebedev::rectangle_t lebedev::Parallelogram::getFrameRect() const
 void lebedev::Parallelogram::move(const point_t & p)
 {
   double center_x = 0;
-  double center_y = center_y = (p1_.y + p3_.y) / 2;
+  double center_y = (p1_.y + p3_.y) / 2;
   double width = 0;
   if (p1_.y == p2_.y)
   {
@@ -141,7 +141,7 @@ void lebedev::Parallelogram::scale(double ratio)
     throw std::invalid_argument("Error: invalid argument for the Scale");
   }
   double center_x = 0;
-  double center_y = center_y = (p1_.y + p3_.y) / 2;
+  double center_y = (p1_.y + p3_.y) / 2;
   double width = 0;
   if (p1_.y == p2_.y)
   {
