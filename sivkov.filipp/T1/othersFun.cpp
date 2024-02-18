@@ -9,11 +9,10 @@ namespace sivkov
 {
   void outputFrameRectInfo(std::ostream& out, Shape* shape)
   {
-    out << " ";
     out << shape->getFrameRect().pos.x - shape->getFrameRect().width / 2 << " ";
     out << shape->getFrameRect().pos.y - shape->getFrameRect().height / 2 << " ";
     out << shape->getFrameRect().pos.x + shape->getFrameRect().width / 2 << " ";
-    out << shape->getFrameRect().pos.y + shape->getFrameRect().height / 2;
+    out << shape->getFrameRect().pos.y + shape->getFrameRect().height / 2 << " ";
   }
 
   void findCoefficient(double& a, double& b, double& c, const point_t ver1, const point_t ver2)
