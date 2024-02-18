@@ -117,13 +117,8 @@ void zhalilov::Polygon::move(const double dx, const double dy)
   }
 }
 
-void zhalilov::Polygon::scale(const double ratio)
+void zhalilov::Polygon::doScale(const double ratio)
 {
-  if (ratio <= 0.0)
-  {
-    throw std::invalid_argument("ratio should be greater than zero");
-  }
-
   double deltaX = 0.0;
   double deltaY = 0.0;
   point_t center = getCenter();

@@ -40,13 +40,8 @@ void zhalilov::Rectangle::move(const double dx, const double dy)
   m_rightCorner.y += dy;
 }
 
-void zhalilov::Rectangle::scale(const double ratio)
+void zhalilov::Rectangle::doScale(const double ratio)
 {
-  if (ratio <= 0.0)
-  {
-    throw std::invalid_argument("scaling ratio should be more than zero");
-  }
-
   rectangle_t rect = getFrameRect();
   m_leftCorner.x = rect.pos.x - (rect.pos.x - m_leftCorner.x) * ratio;
   m_leftCorner.y = rect.pos.y - (rect.pos.y - m_leftCorner.y) * ratio;

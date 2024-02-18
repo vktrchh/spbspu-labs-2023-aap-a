@@ -33,11 +33,7 @@ void zhalilov::Circle::move(const double dx, const double dy)
   m_center.y += dy;
 }
 
-void zhalilov::Circle::scale(const double ratio)
+void zhalilov::Circle::doScale(const double ratio)
 {
-  if (ratio <= 0.0)
-  {
-    throw std::invalid_argument("scaling ratio should be more than zero");
-  }
   m_radius *= ratio;
 }
