@@ -19,7 +19,6 @@ namespace arakelyan
   private:
     point_t pointRightUp_;
     point_t pointLeftDown_;
-    point_t midpoint_;
   };
 }
 #endif

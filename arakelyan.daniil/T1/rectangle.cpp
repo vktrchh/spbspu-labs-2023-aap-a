@@ -5,8 +5,7 @@
 
 arakelyan::Rectangle::Rectangle(point_t fp, point_t sp):
   pointRightUp_(sp),
-  pointLeftDown_(fp),
-  midpoint_{((pointRightUp_.x + pointLeftDown_.x) / 2), ((pointRightUp_.y + pointLeftDown_.y) / 2)}
+  pointLeftDown_(fp)
 {
   if (pointLeftDown_.y > pointRightUp_.y || pointLeftDown_.x > pointRightUp_.x)
   {
@@ -25,7 +24,8 @@ arakelyan::rectangle_t arakelyan::Rectangle::getFrameRect() const
 {
   double width = std::abs(pointRightUp_.x - pointLeftDown_.x);
   double height = std::abs(pointRightUp_.y - pointLeftDown_.y);
-  return {width, height, midpoint_};
+  point_t midpoint = {((pointRightUp_.x + pointLeftDown_.x) / 2), ((pointRightUp_.y + pointLeftDown_.y) / 2)};
+  return {width, height, midpoint};
 }
 
 void arakelyan::Rectangle::move(const double delX, const double delY)
@@ -36,16 +36,14 @@ void arakelyan::Rectangle::move(const double delX, const double delY)
     pointsArray[i]->x += delX;
     pointsArray[i]->y += delY;
   }
-  midpoint_.x += delX;
-  midpoint_.y += delY;
 }
 
 void arakelyan::Rectangle::move(const point_t point)
 {
-  double delX = point.x - midpoint_.x;
-  double delY = point.y - midpoint_.y;
+  rectangle_t data = getFrameRect();
+  double delX = point.x - data.pos.x;
+  double delY = point.y - data.pos.y;
   move(delX, delY);
-  midpoint_ = point;
 }
 
 void arakelyan::Rectangle::scale(const double k)
