@@ -2,7 +2,7 @@
 #include <iostream>
 #include <new>
 #include <stdexcept>
-#include "inputLine.hpp"
+#include <inputLine.hpp>
 #include "difLetters.hpp"
 #include "difLettersInTwoLines.hpp"
 
@@ -13,7 +13,7 @@ int main()
 
   try
   {
-    inputString = arakelyan::inputArray(std::cin);
+    inputString = arakelyan::inputString(std::cin);
   }
   catch (const std::exception & e)
   {
