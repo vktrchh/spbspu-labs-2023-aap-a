@@ -1,4 +1,5 @@
 #include <stdexcept>
+#include <iostream>
 
 #include "diamond.hpp"
 #include "base-types.hpp"
@@ -22,7 +23,7 @@ double arakelyan::Diamond::getArea() const
 
 arakelyan::rectangle_t arakelyan::Diamond::getFrameRect() const
 {
-  double width = p2_.x - p1_.x;
+  double width = std::abs(p2_.x - p1_.x) * 2.0;
   // if (p1_.y == p2_.y)
   // {
   //   width = std::abs(p2_.x - p1_.x) * 2.0;
@@ -36,7 +37,7 @@ arakelyan::rectangle_t arakelyan::Diamond::getFrameRect() const
   //   width = std::abs(p2_.x - p3_.x) * 2.0;
   // }
 
-  double height = p3_.y - p2_.y;
+  double height = std::abs(p3_.y - p2_.y) * 2.0;
   // if (p2_.x == p3_.x)
   // {
   //   height = std::abs(p3_.y - p2_.y) * 2.0;
@@ -64,8 +65,6 @@ arakelyan::rectangle_t arakelyan::Diamond::getFrameRect() const
   // {
   //   midPoint = p3_;
   // }
-
-  ;
   return {width, height, midPoint};
 }
 
