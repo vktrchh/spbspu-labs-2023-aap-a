@@ -5,15 +5,16 @@
 
 namespace stepanov
 {
-  class Ellipse : public Shape
+  class Ellipse: public Shape
   {
   public:
     Ellipse(const point_t& center, double radiusY, double radiusX);
     ~Ellipse() = default;
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
-    virtual void move();
-    virtual void scale();
+    virtual void move(const point_t& p);
+    virtual void move(double dx, double dy);
+    virtual void scale(double ratio);
   private:
     point_t center_;
     double radiusY_;

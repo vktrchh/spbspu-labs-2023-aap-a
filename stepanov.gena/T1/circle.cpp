@@ -24,19 +24,21 @@ stepanov::rectangle_t stepanov::Circle::getFrameRect() const
   return {  width, height, center };
 }
 
-stepanov::Circle move(const point_t& p)
+void stepanov::Circle move(const point_t& p)
 {
-  center_.x = p.x;
-  center_.y = p.y;
+  center_ = p;
 }
 
-stepanov::Circle move(const double dx, const double dy)
+void stepanov::Circle move(const double dx, const double dy)
 {
-  center_.x += dx;
-  center_.y += dy;
+  center_ = {center_.x + dx, center_.y + dy};
 }
 
-stepanov::Circle scale(const double ratio)
+void stepanov::Circle scale(const double ratio)
 {
+  if (ratio <= 0.0)
+  {
+    throw std::invalid_argument("The ratio must be positive")
+  }
   radius_ *= ratio;
 }

@@ -22,3 +22,23 @@ stepanov::rectangle_t stepanov::Ellipse::getFrameRect() const
   return (2 * radiusX_, 2 * radiusY_, cenetr_))
 }
 
+void stepanov::Ellipse::move(const point_t& p)
+{
+  center_ = p;
+}
+
+void stepanov::Ellipse::move(const double dx, const double dy)
+{
+  center_ = {center_.x + dx, ceneter_.y + dy};
+}
+
+void stepanov::Ellipse::scale(const double ratio)
+{
+  if (ratio <= 0.0)
+  {
+    throw std::invalid_argument("The ratio must be positive")
+  }
+  radiusY_ *= ratio;
+  radiusX_ *= ratio;
+}
+

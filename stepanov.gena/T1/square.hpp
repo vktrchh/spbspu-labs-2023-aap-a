@@ -5,7 +5,7 @@
 
 namespace stepanov
 {
-  class Square : public Shape
+  class Square: public Shape
   {
   public:
     Square(const point_t& leftCorner, double length);

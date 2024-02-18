@@ -28,18 +28,14 @@ void stepanov::Rectangle::move(const point_t &p)
 {
   point_t center = {(rightCorner_.x + leftCorner_.x) / 2, (rightCorner_.y + leftCorner_.y) / 2};
   point_t moveVector = {p.x - center.x, p.y - center.y};
-  leftCorner_.x += moveVector.x;
-  leftCorner_.y += moveVector.y;
-  rightCorner_.x += moveVector.x;
-  rightCorner_.y += moveVector.y;
+  leftCorner_ = {leftCorner_.x + moveVector.x, leftCorner_.y + moveVector.y};
+  rightCorner_ = {rightCorner_.x + moveVector.x, rightCorner_.y + moveVector.y};
 }
 
 void stepanov::Rectangle::move(const double dx, const double dy)
 {
-  leftCorner_.x += dx;
-  leftCorner_.y += dy;
-  rightCorner_.x += dx;
-  rightCorner_.y += dy;
+  leftCorner_ = {leftCorner_.x + dx, leftCorner_.y + dy};
+  rightCorner_ = {rightCorner_.x + dx, rightCorner_.y + dy};
 }
 
 void stepanov::Rectangle::scale(const double ratio)
@@ -49,8 +45,6 @@ void stepanov::Rectangle::scale(const double ratio)
     throw std::invalid_argument("The ratio must be positive")
   }
   point_t center = {(rightCorner_.x + leftCorner_.x) / 2, (rightCorner_.y + leftCorner_.y) / 2};
-  leftCorner_.x += (leftCorner_.x - center.x) * (ratio - 1);
-  leftCorner_.y += (leftCorner_.y - center.y) * (ratio - 1);
-  rightCorner_.x += (rightCorner_.x - center.x) * (ratio - 1);
-  rightCorner_.y += (rightCorner_.y - center.y) * (ratio - 1);
+  leftCorner_ =  {(leftCorner_.x - center.x) * (ratio - 1), (leftCorner_.y - center.y) * (ratio - 1)}
+  rightCorner_ = {(rightCorner_.x - center.x) * (ratio - 1), (rightCorner_.y - center.y) * (ratio - 1)}
 }
