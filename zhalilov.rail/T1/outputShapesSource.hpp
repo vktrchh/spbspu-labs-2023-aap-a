@@ -8,7 +8,7 @@
 
 namespace zhalilov
 {
-  std::ostream &outputShapesSource(Shape **shapes, size_t size, std::ostream &output);
+  std::ostream &outputShapesSource(const Shape * const *shapes, size_t size, std::ostream &output);
 }
 
 #endif

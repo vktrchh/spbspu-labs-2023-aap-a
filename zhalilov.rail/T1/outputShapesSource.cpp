@@ -4,7 +4,7 @@
 
 #include "base-types.hpp"
 
-std::ostream &zhalilov::outputShapesSource(Shape **shapes, size_t size, std::ostream &output)
+std::ostream &zhalilov::outputShapesSource(const Shape * const *shapes, size_t size, std::ostream &output)
 {
   double square = 0.0;
   for (size_t i = 0; i < size; i++)
