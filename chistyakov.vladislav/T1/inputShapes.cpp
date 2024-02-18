@@ -100,7 +100,7 @@ void chistyakov::inputRectangle(std::string str, Shape ** array)
   {
     if (str[i] != ' ')
     {
-      throw std::invalid_argument("Too much cords for RECTANGLE!..");
+      std::cerr << "Too much cords for RECTANGLE!..\n";
     }
   }
 
@@ -135,6 +135,7 @@ void chistyakov::inputSquare(std::string str, Shape ** array)
   {
     if (str[i] != ' ')
     {
+      std::cerr << "Too much cords for SQUARE!..\n";
     }
   }
 
@@ -169,7 +170,6 @@ void chistyakov::inputComplexquad(std::string str, Shape ** array)
   {
     if (str[i] != ' ')
     {
-      throw std::invalid_argument("Too much cords for COMPLEXQUAD!..");
     }
   }
 
