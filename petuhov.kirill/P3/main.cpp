@@ -19,9 +19,12 @@ int main()
     std::cerr << e.what();
     return 1;
   }
-  while (firstString[length] != '\0')
+  if (firstString != nullptr)
   {
-    ++length;
+    while (firstString[length] != '\0')
+    {
+      ++length;
+    }
   }
   try
   {
