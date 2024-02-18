@@ -8,7 +8,7 @@ int main()
 {
   using namespace grechishnikov;
 
-  char* str = nullptr;
+  const char* str = nullptr;
   try
   {
     str = inputString(std::cin);
