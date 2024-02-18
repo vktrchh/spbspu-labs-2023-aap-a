@@ -5,7 +5,7 @@
 
 namespace sivkov
 {
-  void output(std::ostream& out, Shape** shapes, size_t count);
+  void output(std::ostream& out, Shape* const* shapes, size_t count);
 }
 
 #endif

@@ -7,6 +7,7 @@
 
 void sivkov::inputRectangle(std::istream& input, Shape** shapes, size_t count)
 {
+  size_t numberOfTops = 4;
   double tops[4] = {};
   readTops(input, tops, numberOfTops);
   shapes[count] = new Rectangle({ tops[0], tops[1] }, { tops[2], tops[3] });
@@ -14,6 +15,7 @@ void sivkov::inputRectangle(std::istream& input, Shape** shapes, size_t count)
 
 void sivkov::inputConcave(std::istream& input, Shape** shapes, size_t count)
 {
+  size_t numberOfTops = 8;
   double tops[8] = {};
   readTops(input, tops, numberOfTops);
   shapes[count] = new Concave({ tops[0], tops[1] }, { tops[2], tops[3] }, { tops[4], tops[5] }, { tops[6], tops[7] });
@@ -22,6 +24,7 @@ void sivkov::inputConcave(std::istream& input, Shape** shapes, size_t count)
 
 void sivkov::inputComplexQuad(std::istream& input, Shape** shapes, size_t count)
 {
+  size_t numberOfTops = 8;
   double tops[8] = {};
   readTops(input, tops, numberOfTops);
   shapes[count] = new Complexquad({ tops[0], tops[1] }, { tops[2], tops[3] }, { tops[4], tops[5] }, { tops[6], tops[7] });
