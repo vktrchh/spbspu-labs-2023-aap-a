@@ -2,8 +2,9 @@
 #include <cstddef>
 #include <iostream>
 
-char* vyzhanov::deleteAllNumbers(char* string)
+void vyzhanov::deleteAllNumbers(char* string)
 {
+
   size_t stringLength = 0;
   while (string[stringLength])
   {
@@ -19,5 +20,6 @@ char* vyzhanov::deleteAllNumbers(char* string)
       j++;
     }
   }
-  return newString;
+  std::cout << newString << "\n";
+  delete[] newString;
 }

@@ -3,7 +3,7 @@
 
 namespace vyzhanov
 {
-  char* deleteAllNumbers(char* string);
+  void deleteAllNumbers(char* string);
 }
 
 #endif

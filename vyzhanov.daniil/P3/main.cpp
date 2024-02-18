@@ -13,6 +13,7 @@ int main()
   catch (const std::bad_alloc& e)
   {
     std::cerr << "Error: " << e.what() << "\n";
+    delete[] string;
     return 1;
   }
   if (string[0] == '\0')
@@ -23,15 +24,14 @@ int main()
   }
   try
   {
-    std::cout << vyzhanov::deleteAllNumbers(string) << "\n";
+    vyzhanov::deleteAllNumbers(string);
   }
   catch (const std::exception& e)
   {
     std::cerr << "Error";
-    delete[] newString;
+    delete[] string;
     return 1;
   }
-  delete[] newString;
   delete[] string;
   return 0;
 }
