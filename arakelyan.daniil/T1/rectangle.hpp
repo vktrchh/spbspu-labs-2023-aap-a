@@ -3,6 +3,7 @@
 
 #include "base-types.hpp"
 #include "shape.hpp"
+#include <stdexcept>
 
 namespace arakelyan
 {
@@ -14,9 +15,16 @@ namespace arakelyan
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t point);
     virtual void move(const double delX, const double delY);
-    virtual void scale(const double k);
+    virtual void scaleShape(const double k);
     virtual ~Rectangle() = default;
   private:
+    virtual void scale(const double k)
+    {
+      if (k < 0.0)
+      {
+        throw std::logic_error("k cannot be less than zero!");
+      }
+    };
     point_t pointRightUp_;
     point_t pointLeftDown_;
   };
