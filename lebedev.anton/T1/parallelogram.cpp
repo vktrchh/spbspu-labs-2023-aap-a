@@ -33,22 +33,20 @@ double lebedev::Parallelogram::getArea() const
 }
 lebedev::rectangle_t lebedev::Parallelogram::getFrameRect() const
 {
-  double width = 0;
+  double width = std::abs(p2_.x - p3_.x) + std::abs(p1_.x - p2_.x);
   double height = 0;
   double center_x = 0;
   double center_y = (p1_.y + p3_.y) / 2;
   if (p1_.y == p2_.y)
   {
     height = std::abs(p2_.y - p3_.y);
-    if (p1_.x <= p2_.x && p2_.x <= p3_.x)
+    if ((p1_.x <= p2_.x && p2_.x <= p3_.x) || (p1_.x >= p2_.x && p2_.x >= p3_.x))
     {
-      width = std::abs(p1_.x - p3_.x);
       center_x = (p1_.x + p3_.x) / 2;
     }
     else
     {
-      width = std::abs(p2_.x - p3_.x) + std::abs(p1_.x - p2_.x);
-      if ((p1_.x - p2_.x) >= 0)
+      if (p2_.x <= p3_.x)
       {
         center_x = p2_.x + width / 2;
       }
@@ -61,21 +59,19 @@ lebedev::rectangle_t lebedev::Parallelogram::getFrameRect() const
   else
   {
     height = std::abs(p1_.y - p2_.y);
-    if (p1_.x <= p2_.x && p2_.x <= p3_.x)
+    if ((p1_.x <= p2_.x && p2_.x <= p3_.x) || (p1_.x >= p2_.x && p2_.x >= p3_.x))
     {
-      width = std::abs(p1_.x - p3_.x);
       center_x = (p1_.x + p3_.x) / 2;
     }
     else
     {
-      width = std::abs(p2_.x - p3_.x) + std::abs(p1_.x - p2_.x);
-      if ((p2_.x - p3_.x) >= 0)
+      if (p2_.x <= p3_.x)
       {
-        center_x = p2_.x - width / 2;
+        center_x = p2_.x + width / 2;
       }
       else
       {
-        center_x = p2_.x + width / 2;
+        center_x = p2_.x - width / 2;
       }
     }
   }
@@ -84,19 +80,18 @@ lebedev::rectangle_t lebedev::Parallelogram::getFrameRect() const
 }
 void lebedev::Parallelogram::move(const point_t & p)
 {
+  double width = std::abs(p2_.x - p3_.x) + std::abs(p1_.x - p2_.x);
   double center_x = 0;
   double center_y = (p1_.y + p3_.y) / 2;
-  double width = 0;
   if (p1_.y == p2_.y)
   {
-    if (p1_.x <= p2_.x && p2_.x <= p3_.x)
+    if ((p1_.x <= p2_.x && p2_.x <= p3_.x) || (p1_.x >= p2_.x && p2_.x >= p3_.x))
     {
       center_x = (p1_.x + p3_.x) / 2;
     }
     else
     {
-      width = std::abs(p2_.x - p3_.x) + std::abs(p1_.x - p2_.x);
-      if ((p1_.x - p2_.x) >= 0)
+      if (p2_.x <= p3_.x)
       {
         center_x = p2_.x + width / 2;
       }
@@ -108,20 +103,19 @@ void lebedev::Parallelogram::move(const point_t & p)
   }
   else
   {
-    if (p1_.x <= p2_.x && p2_.x <= p3_.x)
+    if ((p1_.x <= p2_.x && p2_.x <= p3_.x) || (p1_.x >= p2_.x && p2_.x >= p3_.x))
     {
       center_x = (p1_.x + p3_.x) / 2;
     }
     else
     {
-      width = std::abs(p2_.x - p3_.x) + std::abs(p1_.x - p2_.x);
-      if ((p2_.x - p3_.x) >= 0)
+      if (p2_.x <= p3_.x)
       {
-        center_x = p2_.x - width / 2;
+        center_x = p2_.x + width / 2;
       }
       else
       {
-        center_x = p2_.x + width / 2;
+        center_x = p2_.x - width / 2;
       }
     }
   }
@@ -144,19 +138,18 @@ void lebedev::Parallelogram::scale(double ratio)
   {
     throw std::invalid_argument("Error: invalid argument for the Scale");
   }
+  double width = std::abs(p2_.x - p3_.x) + std::abs(p1_.x - p2_.x);
   double center_x = 0;
   double center_y = (p1_.y + p3_.y) / 2;
-  double width = 0;
   if (p1_.y == p2_.y)
   {
-    if (p1_.x <= p2_.x && p2_.x <= p3_.x)
+    if ((p1_.x <= p2_.x && p2_.x <= p3_.x) || (p1_.x >= p2_.x && p2_.x >= p3_.x))
     {
       center_x = (p1_.x + p3_.x) / 2;
     }
     else
     {
-      width = std::abs(p2_.x - p3_.x) + std::abs(p1_.x - p2_.x);
-      if ((p1_.x - p2_.x) >= 0)
+      if (p2_.x <= p3_.x)
       {
         center_x = p2_.x + width / 2;
       }
@@ -168,20 +161,19 @@ void lebedev::Parallelogram::scale(double ratio)
   }
   else
   {
-    if (p1_.x <= p2_.x && p2_.x <= p3_.x)
+    if ((p1_.x <= p2_.x && p2_.x <= p3_.x) || (p1_.x >= p2_.x && p2_.x >= p3_.x))
     {
       center_x = (p1_.x + p3_.x) / 2;
     }
     else
     {
-      width = std::abs(p2_.x - p3_.x) + std::abs(p1_.x - p2_.x);
-      if ((p2_.x - p3_.x) >= 0)
+      if (p2_.x <= p3_.x)
       {
-        center_x = p2_.x - width / 2;
+        center_x = p2_.x + width / 2;
       }
       else
       {
-        center_x = p2_.x + width / 2;
+        center_x = p2_.x - width / 2;
       }
     }
   }
