@@ -4,10 +4,11 @@
 #include <cstddef>
 #include <iosfwd>
 #include "shape.hpp"
+#include "compositeShape.hpp"
 
 namespace isaychev
 {
-  void outputResults(std::ostream & out, Shape *const* figures, size_t figureCount);
+  void outputResults(std::ostream & out, CompositeShape *const cShape);
 }
 
 #endif
