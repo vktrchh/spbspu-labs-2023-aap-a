@@ -11,11 +11,11 @@
 int main()
 {
   using namespace sivkov;
-  Shape** figures = nullptr;
+  Shape** shapes = nullptr;
   size_t count = 0;
   try
   {
-    figures = inputShape(std::cin, count);
+    shapes = inputShape(std::cin, count);
     if (count == 0)
     {
       throw std::runtime_error("No shapes entered before scaling");
@@ -29,29 +29,28 @@ int main()
     }
     std::cout << std::fixed;
     std::cout.precision(1);
-    output(std::cout, figures, count);
+    output(std::cout, shapes, count);
     std::cout << '\n';
     for (size_t i = 0; i < count; ++i)
     {
-      scale(figures[i], center, k);
+      scale(shapes[i], center, k);
     }
-    output(std::cout, figures, count);
+    output(std::cout, shapes, count);
     std::cout << '\n';
     for (size_t i = 0; i < count; ++i)
     {
-      delete figures[i];
+      delete shapes[i];
     }
-    delete[] figures;
+    delete[] shapes;
   }
   catch (const std::exception& e)
   {
     std::cerr << "Exception caught: " << e.what() << std::endl;
-    if (figures != nullptr)
+    if (shapes != nullptr)
     {
-      deleteMemory(figures, count);
+      deleteMemory(shapes, count);
     }
     return 1;
   }
   return 0;
 }
-
