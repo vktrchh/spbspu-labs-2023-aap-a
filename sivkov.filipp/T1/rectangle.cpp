@@ -1,4 +1,5 @@
 #include "rectangle.hpp"
+#include "othersFun.hpp"
 #include <stdexcept>
 
 sivkov::Rectangle::Rectangle(point_t leftBottom, point_t rightTop) :
@@ -13,24 +14,14 @@ sivkov::Rectangle::Rectangle(point_t leftBottom, point_t rightTop) :
 
 double sivkov::Rectangle::getArea() const
 {
-  double area = getFrameRect().width * getFrameRect().height;
-  return area;
+  return getFrameRect().width * getFrameRect().height;;
 }
 
 sivkov::rectangle_t sivkov::Rectangle::getFrameRect() const
 {
-  double width = rightTop_.x - leftBottom_.x;
-  if (width < 0)
-  {
-    width = width * -1;
-  }
-  double height = rightTop_.y - leftBottom_.y;
-  if (height < 0)
-  {
-    height = height * -1;
-  }
+  point_t pos = calculateVector(leftBottom_, rightTop_);
   point_t center = { (leftBottom_.x + rightTop_.x) / 2, (leftBottom_.y + rightTop_.y) / 2 };
-  return { center, width, height };
+  return { center, pos.x, pos.y };
 }
 
 void sivkov::Rectangle::move(point_t newPos)
@@ -51,12 +42,10 @@ void sivkov::Rectangle::move(double dx, double dy)
 
 void sivkov::Rectangle::scale(double k)
 {
-  if (k > 0)
-  {
-    point_t pos = getFrameRect().pos;
-    double newWidth = (rightTop_.x - leftBottom_.x) * k;
-    double newHeight = (rightTop_.y - leftBottom_.y) * k;
-    leftBottom_ = { pos.x - newWidth / 2, pos.y - newHeight / 2 };
-    rightTop_ = { pos.x + newWidth / 2, pos.y + newHeight / 2 };
-  }
+  point_t pos = getFrameRect().pos;
+  double newWidth = (rightTop_.x - leftBottom_.x) * k;
+  double newHeight = (rightTop_.y - leftBottom_.y) * k;
+  leftBottom_ = { pos.x - newWidth / 2, pos.y - newHeight / 2 };
+  rightTop_ = { pos.x + newWidth / 2, pos.y + newHeight / 2 };
 }
+

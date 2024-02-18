@@ -9,7 +9,7 @@
 
 namespace sivkov
 {
-  class Complexquad : public Shape
+  class Complexquad: public Shape
   {
   public:
     Complexquad(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4);

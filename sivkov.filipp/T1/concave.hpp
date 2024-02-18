@@ -5,7 +5,7 @@
 
 namespace sivkov
 {
-  class Concave : public Shape
+  class Concave: public Shape
   {
   public:
     Concave(const point_t ver1, const point_t ver2, const point_t ver3, const point_t ver4);

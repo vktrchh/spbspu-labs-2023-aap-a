@@ -5,7 +5,7 @@
 
 namespace sivkov
 {
-  class Rectangle : public Shape
+  class Rectangle: public Shape
   {
   public:
     Rectangle(point_t leftBotton, point_t rightTop);

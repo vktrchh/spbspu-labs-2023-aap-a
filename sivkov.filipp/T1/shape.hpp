@@ -4,7 +4,8 @@
 #include "base-types.hpp"
 namespace sivkov
 {
-  class Shape {
+  class Shape
+  {
   public:
     virtual ~Shape() = default;
     virtual double getArea() const = 0;

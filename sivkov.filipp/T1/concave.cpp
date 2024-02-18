@@ -2,7 +2,6 @@
 #include "othersFun.hpp"
 #include <stdexcept>
 #include <algorithm>
-
 sivkov::Concave::Concave(const point_t ver1, const point_t ver2, const point_t ver3, const point_t ver4) :
   ver1_(ver1),
   ver2_(ver2),
@@ -85,3 +84,4 @@ void sivkov::Concave::scale(double k)
   ver2_ = doCenterShift(k, center, ver2_);
   ver3_ = doCenterShift(k, center, ver3_);
 }
+

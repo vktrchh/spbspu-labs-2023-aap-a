@@ -95,4 +95,3 @@ sivkov::Shape** sivkov::inputShape(std::istream& input, size_t& count)
   }
   return arrayWithShape;
 }
-

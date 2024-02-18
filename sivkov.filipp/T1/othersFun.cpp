@@ -7,13 +7,12 @@
 
 namespace sivkov
 {
-  void outputFrameRectInfo(std::ostream& out, const Shape* shape)
+  void outputFrameRectInfo(std::ostream& out, Shape* shape)
   {
-    out << " ";
     out << shape->getFrameRect().pos.x - shape->getFrameRect().width / 2 << " ";
     out << shape->getFrameRect().pos.y - shape->getFrameRect().height / 2 << " ";
     out << shape->getFrameRect().pos.x + shape->getFrameRect().width / 2 << " ";
-    out << shape->getFrameRect().pos.y + shape->getFrameRect().height / 2 << "";
+    out << shape->getFrameRect().pos.y + shape->getFrameRect().height / 2;
   }
 
   void findCoefficient(double& a, double& b, double& c, const point_t ver1, const point_t ver2)
@@ -44,11 +43,11 @@ namespace sivkov
   }
   bool isTriangle(point_t first, point_t second, point_t third)
   {
-    bool is = (((third.x - first.x) / (second.x - first.x)) != ((third.y - first.y) / (second.y - first.y)));
-    return is;
+    return (((third.x - first.x) / (second.x - first.x)) != ((third.y - first.y) / (second.y - first.y)));
   }
 
-  bool isInsideTriangle(const point_t& A, const point_t& B, const point_t& C, const point_t& D) {
+  bool isInsideTriangle(const point_t& A, const point_t& B, const point_t& C, const point_t& D)
+  {
     double ab = (B.y - A.y) * D.x + (A.x - B.x) * D.y + (B.x * A.y - A.x * B.y);
     double bc = (B.y - C.y) * D.x + (C.x - B.x) * D.y + (B.x * C.y - C.x * B.y);
     double ac = (C.y - A.y) * D.x + (A.x - C.x) * D.y + (C.x * A.y - A.x * C.y);
@@ -78,7 +77,8 @@ namespace sivkov
     {
       throw std::invalid_argument("no intersection");
     }
-    else {
+    else
+    {
       double x = 0, y = 0;
       double dx = c2 * b1 - c1 * b2;
       double dy = c1 * a2 - a1 * c2;
@@ -89,29 +89,33 @@ namespace sivkov
     }
   }
 
+  point_t calculateVector(const point_t& p1, const point_t& p2)
+  {
+    return { p2.x - p1.x, p2.y - p1.y };
+  }
+
   bool areSegmentsIntersecting(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4)
   {
-    double line1x = ver2.x - ver1.x;
-    double line1y = ver2.y - ver1.y;
-    double line2x = ver3.x - ver1.x;
-    double line2y = ver3.y - ver1.y;
-    double line3x = ver4.x - ver1.x;
-    double line3y = ver4.y - ver1.y;
+    point_t line1 = calculateVector(ver1, ver2);
+    point_t line2 = calculateVector(ver1, ver3);
+    point_t line3 = calculateVector(ver1, ver4);
 
-    bool check1 = ((line1x * line2y - line1y * line2x) * (line1x * line3y - line1y * line3x) < 0);
+    bool check1 = ((line1.x * line2.y - line1.y * line2.x) * (line1.x * line3.y - line1.y * line3.x) < 0);
 
-    line1x = ver4.x - ver3.x;
-    line1y = ver4.y - ver3.y;
-    line2x = ver1.x - ver3.x;
-    line2y = ver1.y - ver3.y;
-    line3x = ver2.x - ver3.x;
-    line3y = ver2.y - ver3.y;
+    if(!check1)
+    {
+      return false;
+    }
 
-    bool check2 = ((line1x * line2y - line1y * line2x) * (line1x * line3y - line1y * line3x) < 0);
+    point_t line4 = calculateVector(ver3, ver4);
+    point_t line5 = calculateVector(ver3, ver1);
+    point_t line6 = calculateVector(ver3, ver2);
+
+    bool check2 = ((line4.x * line5.y - line4.y * line5.x) * (line4.x * line6.y - line4.y * line6.x) < 0);
     return check1 && check2;
   }
 
-  point_t doCenterShift(size_t k, point_t center, point_t ver)
+  point_t doCenterShift(double k, point_t center, point_t ver)
   {
     double x = center.x + (ver.x - center.x) * k;
     double y = center.y + (ver.y - center.y) * k;
@@ -146,4 +150,6 @@ namespace sivkov
     }
     delete[] shapes;
   }
+
 }
+

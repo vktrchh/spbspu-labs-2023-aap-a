@@ -1,17 +1,20 @@
 #include "output.hpp"
 #include "othersFun.hpp"
 
-void sivkov::output(std::ostream& out, sivkov::Shape** shapes, size_t count)
+namespace sivkov
 {
-  using namespace sivkov;
-  double sumOfArea = 0;
-  for (size_t i = 0; i < count; ++i)
+  void output(std::ostream& out, Shape** shapes, size_t count)
   {
-    sumOfArea = shapes[i]->getArea() + sumOfArea;
-  }
-  out << sumOfArea;
-  for (size_t i = 0; i < count; ++i)
-  {
-    outputFrameRectInfo(out, shapes[i]);
+    using namespace sivkov;
+    double sumOfArea = 0;
+    for (size_t i = 0; i < count; ++i)
+    {
+      sumOfArea = shapes[i]->getArea() + sumOfArea;
+    }
+    out << sumOfArea;
+    for (size_t i = 0; i < count; ++i)
+    {
+      outputFrameRectInfo(out, shapes[i]);
+    }
   }
 }
