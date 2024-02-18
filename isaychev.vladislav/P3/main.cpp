@@ -20,7 +20,7 @@ int main()
   if (std::cin.eof())
   {
     std::cerr << "input was executed with eof symbol\n";
-    return 2
+    return 2;
   }
   if (checkForEmptyStr(str))
   {
