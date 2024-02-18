@@ -17,7 +17,6 @@ namespace chistyakov
     virtual void move(const point_t & point);
     virtual void move(const double mx, const double my);
     virtual void scale(const double ratio);
-    virtual void printCords() const;
   private:
     point_t pnt1_;
     point_t pnt2_;
