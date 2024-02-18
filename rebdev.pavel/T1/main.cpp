@@ -49,6 +49,9 @@ int main()
         break;
       }
 
+      std::cout << std::fixed;
+      std::cout.precision(1);
+
       rebdev::printSum(shapes, numOfShape, std::cout);
       std::cout << ' ';
       rebdev::printShapes(shapes, numOfShape, std::cout);
