@@ -48,11 +48,7 @@ int main()
     std::cerr << "Exception caught: " << e.what() << std::endl;
     if (figures != nullptr)
     {
-      for (size_t i = 0; i < count; ++i)
-      {
-        delete figures[i];
-      }
-      delete[] figures;
+      deleteMemory(figures, count);
     }
     return 1;
   }

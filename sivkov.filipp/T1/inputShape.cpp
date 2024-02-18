@@ -2,20 +2,14 @@
 #include "rectangle.hpp"
 #include "concave.hpp"
 #include "complexquad.hpp"
+#include "othersFun.hpp"
 #include <string>
 
 void sivkov::inputRectangle(std::istream& input, Shape** shapes, size_t count)
 {
   const size_t numberOfTops = 4;
   double tops[numberOfTops] = {};
-  for (size_t i = 0; i < numberOfTops; ++i)
-  {
-    input >> tops[i];
-  }
-  if (!input)
-  {
-    throw std::runtime_error("Invalid tops");
-  }
+  readTops(input, tops, numberOfTops);
   shapes[count] = new Rectangle({ tops[0], tops[1] }, { tops[2], tops[3] });
 }
 
@@ -23,14 +17,7 @@ void sivkov::inputConcave(std::istream& input, Shape** shapes, size_t count)
 {
   const size_t numberOfTops = 8;
   double tops[numberOfTops] = {};
-  for (size_t i = 0; i < numberOfTops; ++i)
-  {
-    input >> tops[i];
-  }
-  if (!input)
-  {
-    throw std::runtime_error("Invalid tops");
-  }
+  readTops(input, tops, numberOfTops);
   shapes[count] = new Concave({ tops[0], tops[1] }, { tops[2], tops[3] }, { tops[4], tops[5] }, { tops[6], tops[7] });
 }
 
@@ -39,25 +26,18 @@ void sivkov::inputComplexQuad(std::istream& input, Shape** shapes, size_t count)
 {
   const size_t numberOfTops = 8;
   double tops[numberOfTops] = {};
-  for (size_t i = 0; i < numberOfTops; ++i)
-  {
-    input >> tops[i];
-  }
-  if (!input)
-  {
-    throw std::runtime_error("Invalid tops");
-  }
+  readTops(input, tops, numberOfTops);
   shapes[count] = new Complexquad({ tops[0], tops[1] }, { tops[2], tops[3] }, { tops[4], tops[5] }, { tops[6], tops[7] });
 }
 
 sivkov::Shape** sivkov::inputShape(std::istream& input, size_t& count)
 {
-  std::string shapeNames[3] = { "RECTANGLE","CONCAVE","COMPLEXQUAD" };
+  std::string shapeNames[3] = { "RECTANGLE", "CONCAVE", "COMPLEXQUAD" };
   std::string shape = "";
   Shape** arrayWithShape = nullptr;
   Shape** buffer = nullptr;
   char c = 0;
-  while (input >> shape)
+  while (input >> shape && shape != "SCALE")
   {
     for (size_t i = 0; i < 3; ++i)
     {
@@ -85,16 +65,12 @@ sivkov::Shape** sivkov::inputShape(std::istream& input, size_t& count)
           }
           if (shape == "COMPLEXQUAD")
           {
-           sivkov::inputComplexQuad(input, arrayWithShape, count);
+            sivkov::inputComplexQuad(input, arrayWithShape, count);
           }
         }
         catch (const std::bad_alloc& e)
         {
-          for (size_t i = 0; i < count; ++i)
-          {
-            delete arrayWithShape[i];
-          }
-          delete[] arrayWithShape;
+          deleteMemory(arrayWithShape, count);
           throw;
         }
         catch (const std::logic_error& e)
@@ -105,25 +81,18 @@ sivkov::Shape** sivkov::inputShape(std::istream& input, size_t& count)
         ++count;
       }
     }
-    if (shape == "SCALE")
-    {
-      break;
-    }
-    input >> std::noskipws;
-    while (c != '\n')
-    {
-      input >> c;
-    }
-    input >> std::skipws;
   }
+  input >> std::noskipws;
+  while (c != '\n')
+  {
+    input >> c;
+  }
+  input >> std::skipws;
   if (!input)
   {
-    for (size_t i = 0; i < count; ++i)
-    {
-      delete arrayWithShape[i];
-    }
-    delete[] arrayWithShape;
+    deleteMemory(arrayWithShape, count);
     throw;
   }
   return arrayWithShape;
 }
+

@@ -71,14 +71,11 @@ void sivkov::Concave::move(point_t newPos)
 
 void sivkov::Concave::move(double x, double y)
 {
-  ver1_.x += x;
-  ver1_.y += y;
-  ver2_.x += x;
-  ver2_.y += y;
-  ver3_.x += x;
-  ver3_.y += y;
-  ver4_.x += x;
-  ver4_.y += y;
+  point_t newXY = { x,y };
+  ver1_ = shift(newXY, ver1_);
+  ver2_ = shift(newXY, ver2_);
+  ver3_ = shift(newXY, ver3_);
+
 }
 
 void sivkov::Concave::scale(double k)

@@ -117,4 +117,33 @@ namespace sivkov
     double y = center.y + (ver.y - center.y) * k;
     return point_t{ x,y };
   }
+
+  point_t shift(point_t newXY, point_t ver)
+  {
+    double newX = ver.x + newXY.x;
+    double newY = ver.y + newXY.y;
+    return point_t{ newX, newY };
+  }
+
+  void readTops(std::istream& input, double tops[], size_t numberOfTops)
+  {
+    for (size_t i = 0; i < numberOfTops; ++i)
+    {
+      input >> tops[i];
+    }
+
+    if (!input)
+    {
+      throw std::runtime_error("Invalid tops");
+    }
+  }
+
+  void deleteMemory(Shape** shapes, size_t count)
+  {
+    for (size_t i = 0; i < count; ++i)
+    {
+      delete shapes[i];
+    }
+    delete[] shapes;
+  }
 }

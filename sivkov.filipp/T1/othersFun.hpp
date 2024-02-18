@@ -14,5 +14,8 @@ namespace sivkov
   bool areSegmentsIntersecting(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4);
   point_t findCenter(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4);
   point_t doCenterShift(size_t k, point_t center, point_t ver);
+  point_t shift(point_t newXY, point_t ver);
+  void readTops(std::istream& input, double tops[], size_t numberOfTops);
+  void deleteMemory(Shape** shapes, size_t count);
 }
 #endif
