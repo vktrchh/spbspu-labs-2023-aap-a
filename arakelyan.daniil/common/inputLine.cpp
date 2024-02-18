@@ -121,7 +121,7 @@ char * arakelyan::inputLine(std::istream &input)
     {
       break;
     }
-//
+
     i++;
   }
   mainBuffer[i] = '\0';
