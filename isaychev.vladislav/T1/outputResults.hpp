@@ -8,7 +8,7 @@
 
 namespace isaychev
 {
-  void outputResults(std::ostream & out, CompositeShape *const cShape);
+  void outputResults(std::ostream & out, const CompositeShape & cShape);
 }
 
 #endif

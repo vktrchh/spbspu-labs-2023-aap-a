@@ -47,7 +47,8 @@ isaychev::CompositeShape & isaychev::CompositeShape::operator=(CompositeShape &&
 
 void isaychev::CompositeShape::pushBack(Shape * figure)
 {
-  figures_[currNumOfFigures_++] = figure;
+  figures_[currNumOfFigures_] = figure;
+  currNumOfFigures_++;
 }
 
 void isaychev::CompositeShape::popBack()
@@ -56,7 +57,8 @@ void isaychev::CompositeShape::popBack()
   {
     throw std::out_of_range("There is nothing to delete");
   }
-  delete figures_[currNumOfFigures_--];
+  delete figures_[currNumOfFigures_ - 1];
+  currNumOfFigures_--;
 }
 
 void checkPosition(size_t n, size_t numOfPositions)
@@ -82,13 +84,13 @@ const isaychev::Shape & isaychev::CompositeShape::at(size_t n) const
 isaychev::Shape & isaychev::CompositeShape::operator[](size_t n)
 {
   checkPosition(n, currNumOfFigures_);
-  return *figures_[n];
+  return *(figures_[n]);
 }
 
 const isaychev::Shape & isaychev::CompositeShape::operator[](size_t n) const
 {
   checkPosition(n, currNumOfFigures_);
-  return *figures_[n];
+  return *(figures_[n]);
 }
 
 bool isaychev::CompositeShape::empty() const

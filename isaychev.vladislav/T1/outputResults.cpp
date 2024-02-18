@@ -4,11 +4,11 @@
 #include <iomanip>
 #include "regular.hpp"
 
-void isaychev::outputResults(std::ostream & out, CompositeShape *const cShape)
+void isaychev::outputResults(std::ostream & out, const CompositeShape & cShape)
 {
   out << std::fixed;
-  out << std::setprecision(1) << cShape->getArea();
-  for (size_t j = 0; j < cShape->size(); j++)
+  out << std::setprecision(1) << cShape.getArea();
+  for (size_t j = 0; j < cShape.size(); j++)
   {
     rectangle_t rect = cShape[j].getFrameRect();
     out << std::setprecision(1) << " " << std::round((rect.pos.x - (rect.width / 2)) * 10) / 10;

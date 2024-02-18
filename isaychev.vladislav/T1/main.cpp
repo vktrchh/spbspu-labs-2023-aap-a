@@ -10,19 +10,10 @@ int main()
   using namespace isaychev;
   const char * scaleStr = "SCALE ";
   char * currDesc = nullptr;
-  CompositeShape * cShape = nullptr;
-  try
-  {
-    cShape = new CompositeShape();
-  }
-  catch (const std::bad_alloc &)
-  {
-    std::cerr << "can't allocate memory for c. shape or array\n";
-    return 1;
-  }
-  size_t figDescMistakeCheck = 0, capacity = 10, upperBorder =cShape->maxSize();
+  CompositeShape cShape;
+  size_t figDescMistakeCheck = 0, capacity = 10, upperBorder = cShape.maxSize();
   bool eofCheck = false;
-  while (cShape->size() < upperBorder)
+  while (cShape.size() < upperBorder)
   {
     try
     {
@@ -38,15 +29,15 @@ int main()
       Shape * figure = createFigure(currDesc);
       if (figure != nullptr)
       {
-        cShape->pushBack(figure);
+        cShape.pushBack(figure);
+        std::cout << cShape.size();
       }
-   }
+    }
     catch (const std::bad_alloc &)
     {
-      delete cShape;
       delete [] currDesc;
       std::cerr << "can't allocate memory for description of figure or a figure itself\n";
-      return 2;
+      return 1;
     }
     catch (const std::logic_error &)
     {
@@ -54,21 +45,19 @@ int main()
     }
     delete [] currDesc;
   }
-  if (cShape->size() == 0 && checkString(currDesc, scaleStr) == 1)
+  if (cShape.size() == 0 && checkString(currDesc, scaleStr) == 1)
   {
-    delete cShape;
     delete [] currDesc;
     std::cerr << "nothing to scale\n";
-    return 3;
+    return 2;
   }
   else if (eofCheck == 1 && checkString(currDesc, scaleStr) == 0)
   {
-    delete cShape;
     delete [] currDesc;
     std::cerr << "input was finished with eof symbol; scale wasn't inputed\n";
-    return 4;
+    return 3;
   }
-  else if (countWSpaces(currDesc) >= 1)
+/*  else if (countWSpaces(currDesc) >= 1)
   {
     constexpr size_t numOfScalePars = 3;
     double scaleParams[numOfScalePars] = {};
@@ -80,29 +69,26 @@ int main()
         outputResults(std::cout, cShape);
         std::cout << "\n";
       }
-      cShape->scale(scaleParams);
+      cShape.scale(scaleParams);
       outputResults(std::cout, cShape);
       std::cout << "\n";
     }
     catch (const std::invalid_argument & e)
     {
       std::cerr << e.what() << "\n";
-      delete cShape;
       delete [] currDesc;
-      return 5;
+      return 4;
     }
     catch (const std::out_of_range & e)
     {
       std::cerr << e.what() << "\n";
-      delete cShape;
       delete [] currDesc;
-      return 6;
+      return 5;
     }
-  }
+  }*/
   if (figDescMistakeCheck > 0)
   {
     std::cerr << "There were mistakes in figure descriptions\n";
   }
-  delete cShape;
   delete [] currDesc;
 }
