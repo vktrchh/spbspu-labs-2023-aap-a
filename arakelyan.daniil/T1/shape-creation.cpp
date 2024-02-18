@@ -102,7 +102,7 @@ arakelyan::Shape * arakelyan::createRect(const char * string)
   return new Rectangle(p1, p2);
 }
 
-arakelyan::Shape * arakelyan::defineAndCreateShape(const char * string)
+void arakelyan::defineAndCreateShape(Shape **myShapes, size_t shapesCoutnt, const char * string)
 {
   const char * targetWordRectangle = "RECTANGLE";
   const char * targetWordParallelogram = "PARALLELOGRAM";
@@ -114,18 +114,14 @@ arakelyan::Shape * arakelyan::defineAndCreateShape(const char * string)
 
   if (foundPar != nullptr)
   {
-    return createPar(string);
+    myShapes[shapesCoutnt] = createPar(string);
   }
   else if (foundRect != nullptr)
   {
-    return createRect(string);
+    myShapes[shapesCoutnt] = createRect(string);
   }
   else if (foundDia != nullptr)
   {
-    return createDiam(string);
-  }
-  else
-  {
-    return nullptr;
+    myShapes[shapesCoutnt] = createDiam(string);
   }
 }

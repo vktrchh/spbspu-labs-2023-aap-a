@@ -7,7 +7,7 @@
 
 namespace arakelyan
 {
-  Shape * defineAndCreateShape(const char * sting);
+  void defineAndCreateShape(Shape **myShapes, const size_t shapesCount, const char * sting);
   Shape * createPar(const char * string);
   Shape * createRect(const char * string);
   Shape * createDiam(const char * string);

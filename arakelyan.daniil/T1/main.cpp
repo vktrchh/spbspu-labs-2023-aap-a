@@ -66,7 +66,7 @@ int main()
     {
       try
       {
-        myShapes[currentShapesCount] = defineAndCreateShape(string);
+        defineAndCreateShape(myShapes, currentShapesCount, string);
       }
       catch (const std::exception &e)
       {
