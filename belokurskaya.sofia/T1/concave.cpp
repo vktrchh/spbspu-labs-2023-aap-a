@@ -1,8 +1,8 @@
-#include "shape.hpp"
-#include "concave.hpp"
-
 #include <stdexcept>
 #include <cmath>
+
+#include "shape.hpp"
+#include "concave.hpp"
 
 belokurskaya::Concave::Concave(const point_t & vertex1, const point_t & vertex2, const point_t & vertex3, const point_t & vertex4):
   vertex1_(vertex1), vertex2_(vertex2), vertex3_(vertex3), vertex4_(vertex4)
@@ -69,20 +69,12 @@ void belokurskaya::Concave::move(double dx, double dy)
 
 void belokurskaya::Concave::scale(double factor)
 {
-  point_t center{(vertex1_.x + vertex2_.x + vertex3_.x + vertex4_.x) / 4.0,
-  (vertex1_.y + vertex2_.y + vertex3_.y + vertex4_.y) / 4.0};
+  point_t center = calculateCentroid();
 
-  vertex1_.x = center.x + (vertex1_.x - center.x) * factor;
-  vertex1_.y = center.y + (vertex1_.y - center.y) * factor;
-
-  vertex2_.x = center.x + (vertex2_.x - center.x) * factor;
-  vertex2_.y = center.y + (vertex2_.y - center.y) * factor;
-
-  vertex3_.x = center.x + (vertex3_.x - center.x) * factor;
-  vertex3_.y = center.y + (vertex3_.y - center.y) * factor;
-
-  vertex4_.x = center.x + (vertex4_.x - center.x) * factor;
-  vertex4_.y = center.y + (vertex4_.y - center.y) * factor;
+  vertex1_ = {center.x + factor * (vertex1_.x - center.x), center.y + factor * (vertex1_.y - center.y)};
+  vertex2_ = {center.x + factor * (vertex2_.x - center.x), center.y + factor * (vertex2_.y - center.y)};
+  vertex3_ = {center.x + factor * (vertex3_.x - center.x), center.y + factor * (vertex3_.y - center.y)};
+  vertex4_ = {center.x + factor * (vertex4_.x - center.x), center.y + factor * (vertex4_.y - center.y)};
 }
 
 bool belokurskaya::Concave::isTriangle(const point_t& p1, const point_t& p2, const point_t& p3) const
@@ -108,10 +100,22 @@ bool belokurskaya::Concave::isConcave(const point_t & p1, const point_t & p2, co
   double cross_product4 = (p1.x - p4.x) * (p2.y - p4.y) - (p1.y - p4.y) * (p2.x - p4.x);
 
   int sign_changes = 0;
-  if ((cross_product1 > 0) != (cross_product2 > 0)) sign_changes++;
-  if ((cross_product2 > 0) != (cross_product3 > 0)) sign_changes++;
-  if ((cross_product3 > 0) != (cross_product4 > 0)) sign_changes++;
-  if ((cross_product4 > 0) != (cross_product1 > 0)) sign_changes++;
+  if ((cross_product1 > 0) != (cross_product2 > 0))
+  {
+    sign_changes++;
+  }
+  if ((cross_product2 > 0) != (cross_product3 > 0))
+  {
+    sign_changes++;
+  }
+  if ((cross_product3 > 0) != (cross_product4 > 0))
+  {
+    sign_changes++;
+  }
+  if ((cross_product4 > 0) != (cross_product1 > 0))
+  {
+    sign_changes++;
+  }
   return sign_changes > 0;
 }
 
@@ -122,8 +126,20 @@ double belokurskaya::Concave::calculateTriangleArea(const point_t & p1, const po
 
 void belokurskaya::Concave::getVertices(point_t & vertex1, point_t & vertex2, point_t & vertex3, point_t & vertex4) const
 {
-    vertex1 = vertex1_;
-    vertex2 = vertex2_;
-    vertex3 = vertex3_;
-    vertex4 = vertex4_;
+  vertex1 = vertex1_;
+  vertex2 = vertex2_;
+  vertex3 = vertex3_;
+  vertex4 = vertex4_;
+}
+
+belokurskaya::point_t belokurskaya::Concave::calculateCentroid() const
+{
+  double cx = (vertex1_.x + vertex2_.x + vertex3_.x + vertex4_.x) / 4.0;
+  double cy = (vertex1_.y + vertex2_.y + vertex3_.y + vertex4_.y) / 4.0;
+  return {cx, cy};
+}
+
+belokurskaya::Shape::ShapeType belokurskaya::Concave::getShapeType()
+{
+  return belokurskaya::Shape::CONCAVE;
 }

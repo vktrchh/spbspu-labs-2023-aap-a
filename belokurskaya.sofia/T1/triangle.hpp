@@ -16,6 +16,7 @@ namespace belokurskaya
       void move(double dx, double dy) override;
       void scale(double factor) override;
       void getVertices(point_t & vertex1, point_t & vertex2, point_t & vertex3) const;
+      ShapeType getShapeType() override;
 
     private:
       point_t vertex1_;

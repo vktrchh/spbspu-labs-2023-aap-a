@@ -15,6 +15,7 @@ namespace belokurskaya
       void move(const point_t & new_pos) override;
       void move(double dx, double dy) override;
       void scale(double factor) override;
+      ShapeType getShapeType() override;
 
     private:
       point_t lower_left_;

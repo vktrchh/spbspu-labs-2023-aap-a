@@ -18,6 +18,7 @@ namespace belokurskaya
       double calculateTriangleArea(const point_t & p1, const point_t & p2, const point_t & p3) const;
       static bool isConcave(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4);
       void getVertices(point_t &vertex1, point_t &vertex2, point_t &vertex3, point_t &vertex4) const;
+      ShapeType getShapeType() override;
 
     private:
       point_t vertex1_;
@@ -26,6 +27,7 @@ namespace belokurskaya
       point_t vertex4_;
 
       bool isTriangle(const point_t & p1, const point_t & p2, const point_t & p3) const;
+      point_t calculateCentroid() const;
   };
 }
 #endif

@@ -1,7 +1,7 @@
+#include <stdexcept>
+
 #include "rectangle.hpp"
 #include "base-types.hpp"
-
-#include <stdexcept>
 
 belokurskaya::Rectangle::Rectangle(const point_t & lower_left, const point_t & upper_right):
   lower_left_(lower_left), upper_right_(upper_right)
@@ -57,4 +57,9 @@ void belokurskaya::Rectangle::scale(double factor)
   lower_left_.y = old_center.y - height / 2;
   upper_right_.x = old_center.x + width / 2;
   upper_right_.y = old_center.y + height / 2;
+}
+
+belokurskaya::Shape::ShapeType belokurskaya::Rectangle::getShapeType()
+{
+  return belokurskaya::Shape::RECTANGLE;
 }

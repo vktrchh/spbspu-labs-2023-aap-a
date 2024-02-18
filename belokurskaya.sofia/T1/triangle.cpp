@@ -1,8 +1,8 @@
-#include "triangle.hpp"
-#include "base-types.hpp"
-
 #include <stdexcept>
 #include <cmath>
+
+#include "triangle.hpp"
+#include "base-types.hpp"
 
 belokurskaya::Triangle::Triangle(const point_t& vertex1, const point_t& vertex2, const point_t& vertex3):
   vertex1_(vertex1), vertex2_(vertex2), vertex3_(vertex3)
@@ -93,4 +93,9 @@ void belokurskaya::Triangle::getVertices(point_t & vertex1, point_t & vertex2, p
   vertex1 = vertex1_;
   vertex2 = vertex2_;
   vertex3 = vertex3_;
+}
+
+belokurskaya::Shape::ShapeType belokurskaya::Triangle::getShapeType()
+{
+    return belokurskaya::Shape::TRIANGLE;
 }

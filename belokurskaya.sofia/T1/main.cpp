@@ -7,8 +7,8 @@
 #include "rectangle.hpp"
 #include "triangle.hpp"
 #include "concave.hpp"
-#include "iso_scale.hpp"
 #include "results_printer.hpp"
+#include "iso_scale.hpp"
 
 int main()
 {
