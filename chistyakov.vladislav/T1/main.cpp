@@ -4,6 +4,7 @@
 #include "shape.hpp"
 #include "inputShapes.hpp"
 #include "isotropScale.hpp"
+#include "outputShape.hpp"
 
 int main()
 {
@@ -33,7 +34,7 @@ int main()
     return 2;
   }
 
-  outputShape(std::cin, shapes, 1000);
+  outputShape(std::cout, shapes, 1000);
 
   for (size_t i = 0; i < 1000; ++i)
   {
@@ -44,7 +45,7 @@ int main()
     isotropScale(shapes[i], {scaleInfo[0], scaleInfo[1]}, scaleInfo[2]);
   }
 
-  outputShape(std::cin, shapes, 1000);
+  outputShape(std::cout, shapes, 1000);
 
   freeArray(shapes, 1000);
 
