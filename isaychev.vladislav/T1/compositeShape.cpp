@@ -84,13 +84,13 @@ const isaychev::Shape & isaychev::CompositeShape::at(size_t n) const
 isaychev::Shape & isaychev::CompositeShape::operator[](size_t n)
 {
   checkPosition(n, currNumOfFigures_);
-  return *(figures_[n]);
+  return *figures_[n];
 }
 
 const isaychev::Shape & isaychev::CompositeShape::operator[](size_t n) const
 {
   checkPosition(n, currNumOfFigures_);
-  return *(figures_[n]);
+  return *figures_[n];
 }
 
 bool isaychev::CompositeShape::empty() const
@@ -111,7 +111,7 @@ size_t isaychev::CompositeShape::maxSize() const
 double isaychev::CompositeShape::getArea() const
 {
   double sumOfAreas = 0;
-  for (size_t i =0; i < currNumOfFigures_; i++)
+  for (size_t i = 0; i < currNumOfFigures_; i++)
   {
     sumOfAreas += figures_[i]->getArea();
   }

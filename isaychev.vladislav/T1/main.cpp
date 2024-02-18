@@ -85,12 +85,6 @@ int main()
       return 5;
     }
   }
-   /* std::cout << cShape.getArea() << "\n";
-    constexpr size_t numOfScalePars = 3;
-    double scaleParams[numOfScalePars] = {};
-    parseParams(currDesc, numOfScalePars, scaleParams);
-      cShape.scale(scaleParams);
-    std::cout << cShape.getArea() << "\n";*/
   if (figDescMistakeCheck > 0)
   {
     std::cerr << "There were mistakes in figure descriptions\n";

@@ -60,4 +60,3 @@ void isaychev::parseParams(char * str, const size_t numOfParameters, double * pa
     str2 += pos;
   }
 }
-
