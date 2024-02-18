@@ -42,9 +42,9 @@ void stepanov::Rectangle::scale(const double ratio)
 {
   if (ratio <= 0.0)
   {
-    throw std::invalid_argument("The ratio must be positive")
+    throw std::invalid_argument("The ratio must be positive");
   }
   point_t center = {(rightCorner_.x + leftCorner_.x) / 2, (rightCorner_.y + leftCorner_.y) / 2};
-  leftCorner_ =  {(leftCorner_.x - center.x) * (ratio - 1), (leftCorner_.y - center.y) * (ratio - 1)}
-  rightCorner_ = {(rightCorner_.x - center.x) * (ratio - 1), (rightCorner_.y - center.y) * (ratio - 1)}
+  leftCorner_ =  {(leftCorner_.x - center.x) * (ratio - 1), (leftCorner_.y - center.y) * (ratio - 1)};
+  rightCorner_ = {(rightCorner_.x - center.x) * (ratio - 1), (rightCorner_.y - center.y) * (ratio - 1)};
 }

@@ -17,7 +17,7 @@ namespace stepanov
     virtual void scale(double ratio);
   private:
     point_t center_;
-    double raduis_;
+    double radius_;
   };
 }
 
