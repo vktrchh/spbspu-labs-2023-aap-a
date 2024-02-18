@@ -16,12 +16,18 @@ void rebdev::printSum(Shape ** const shapes, const size_t numOfShapes, std::ostr
 
 void rebdev::printShapes(Shape ** const shapes, const size_t numOfShapes, std::ostream & out)
 {
+  out << std::fixed;
+  out.precision(1);
   for (size_t i = 0; i < numOfShapes; ++i)
   {
     rectangle_t rect = shapes[i]->getFrameRect();
     point_t lowLeft = {rect.pos.x - (rect.width / 2), rect.pos.y - (rect.height / 2)};
     point_t upRight = {rect.pos.x + (rect.width / 2), rect.pos.y + (rect.height / 2)};
     out << lowLeft.x << ' ' << lowLeft.y << ' ';
-    out << upRight.x << ' ' << upRight.y << ' ';
+    out << upRight.x << ' ' << upRight.y;
+    if (i < (numOfShapes - 1))
+    {
+      out << ' ';
+    }
   }
 }
