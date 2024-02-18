@@ -46,26 +46,12 @@ void arakelyan::Rectangle::move(const point_t point)
   move(delX, delY);
 }
 
-// void arakelyan::Rectangle::scale(const double k)
-// {
-//   if (k < 0.0)
-//   {
-//     throw std::logic_error("The coefficient cannot be less than zero! (Rectangle)");
-//   }
-//   rectangle_t data = getFrameRect();
-//   double widthWithScale = data.width * k;
-//   double heightWithScale = data.height * k;
-//   double widthHalf = widthWithScale / 2.0;
-//   double heightHalf = heightWithScale / 2.0;
-//   pointLeftDown_.x = data.pos.x - widthHalf;
-//   pointLeftDown_.y = data.pos.y - heightHalf;
-//   pointRightUp_.x = data.pos.x + widthHalf;
-//   pointRightUp_.y = data.pos.y + heightHalf;
-// }
-
-void arakelyan::Rectangle::scaleShape(const double k)
+void arakelyan::Rectangle::scale(const double k)
 {
-  scale(k);
+  if (k < 0.0)
+  {
+    throw std::logic_error("The coefficient cannot be less than zero! (Rectangle)");
+  }
   rectangle_t data = getFrameRect();
   double widthWithScale = data.width * k;
   double heightWithScale = data.height * k;

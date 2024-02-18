@@ -12,16 +12,8 @@ namespace arakelyan
     virtual rectangle_t getFrameRect() const = 0;
     virtual void move(point_t) = 0;
     virtual void move(double, double) = 0;
-    virtual void scaleShape(double);
+    virtual void scale(double k) = 0;
     virtual ~Shape() = default;
-    private:
-    virtual void scale(double k)
-    {
-      if (k < 0.0)
-      {
-        throw std::logic_error("k cannot be less than zero!");
-      }
-    };
   };
 }
 #endif
