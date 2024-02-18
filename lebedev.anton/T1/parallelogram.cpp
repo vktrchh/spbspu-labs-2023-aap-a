@@ -10,6 +10,10 @@ lebedev::Parallelogram::Parallelogram(const point_t & p1, const point_t & p2, co
   {
     throw std::invalid_argument("Error: invalid arguments for the Parallelogram");
   }
+  if ((p1_.x == p2_.x && p1_.y == p2_.y) && (p1_.x == p3_.x && p1_.y == p3_.y) && (p2_.x == p3_.x && p2_.y == p3_.y))
+  {
+    throw std::invalid_argument("Error: invalid arguments for the Parallelogram");
+  }
 }
 double lebedev::Parallelogram::getArea() const
 {
