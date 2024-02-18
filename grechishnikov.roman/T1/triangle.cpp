@@ -50,12 +50,12 @@ double grechishnikov::Triangle::getArea() const
 
 grechishnikov::rectangle_t grechishnikov::Triangle::getFrameRect() const
 {
-  return getFrameRectGeneral(points_, 2);
+  return getFrameRectGeneral(points_, 3);
 }
 
 void grechishnikov::Triangle::move(const point_t& pos)
 {
-  point_t aPos = getAveragePoint(points_, 2);
+  point_t aPos = getAveragePoint(points_, 3);
   move(pos.x - aPos.x, pos.y - aPos.y);
 }
 

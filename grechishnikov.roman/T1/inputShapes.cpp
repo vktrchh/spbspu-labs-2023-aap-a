@@ -88,7 +88,7 @@ const char* grechishnikov::parseName(const char* str)
 {
   if (str == nullptr)
   {
-    throw std::logic_error("No name was entered");
+    return nullptr;
   }
   char* name = new char[20] { '0' };
   size_t i = 0;
