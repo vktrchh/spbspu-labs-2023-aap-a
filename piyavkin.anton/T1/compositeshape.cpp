@@ -1,4 +1,5 @@
 #include "compositeshape.hpp"
+#include <cmath>
 #include "inputshape.hpp"
 #include "isoscale.hpp"
 
@@ -32,7 +33,7 @@ namespace piyavkin
   }
   CompositeShape& CompositeShape::operator=(const CompositeShape& cs)
   {
-    if (this != &cs)
+    if (this != std::addressof(cs))
     {
       clearMemory(shapes_, size_);
       size_ = cs.size_;
@@ -81,22 +82,10 @@ namespace piyavkin
     double maxY = shapes_[0]->getFrameRect().pos.y + shapes_[0]->getFrameRect().height / 2;
     for (size_t i = 1; i < size_; ++i)
     {
-      if (minX > shapes_[i]->getFrameRect().pos.x - shapes_[i]->getFrameRect().width / 2)
-      {
-        minX = shapes_[i]->getFrameRect().pos.x - shapes_[i]->getFrameRect().width / 2;
-      }
-      else if (maxX < shapes_[i]->getFrameRect().pos.x + shapes_[i]->getFrameRect().width / 2)
-      {
-        maxX = shapes_[i]->getFrameRect().pos.x + shapes_[i]->getFrameRect().width / 2;
-      }
-      if (minY > shapes_[i]->getFrameRect().pos.y - shapes_[i]->getFrameRect().height / 2)
-      {
-        minY = shapes_[i]->getFrameRect().pos.y - shapes_[i]->getFrameRect().height / 2;
-      }
-      else if (maxY < shapes_[i]->getFrameRect().pos.y + shapes_[i]->getFrameRect().height / 2)
-      {
-        maxY = shapes_[i]->getFrameRect().pos.y + shapes_[i]->getFrameRect().height / 2;
-      }
+      minX = std::min(minX, shapes_[i]->getFrameRect().pos.x - shapes_[i]->getFrameRect().width / 2);
+      maxX = std::max(maxX, shapes_[i]->getFrameRect().pos.x + shapes_[i]->getFrameRect().width / 2);
+      minY = std::min(minY, shapes_[i]->getFrameRect().pos.y - shapes_[i]->getFrameRect().height / 2);
+      maxY = std::max(maxY, shapes_[i]->getFrameRect().pos.y + shapes_[i]->getFrameRect().height / 2);
     }
     return {maxX - minX, maxY - minY, {(maxX + minX) / 2, (maxY + minY) / 2}};
   }

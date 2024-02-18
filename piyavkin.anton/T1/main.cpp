@@ -32,7 +32,7 @@ int main()
     std::cout << '\n';
     for (size_t i = 0; i < cs.size(); ++i)
     {
-      isoScale(&cs[i], center, k);
+      isoScale(std::addressof(cs[i]), center, k);
     }
     output(std::cout, cs);
     std::cout << '\n';
