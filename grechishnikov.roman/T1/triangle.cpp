@@ -42,7 +42,8 @@ grechishnikov::Triangle::~Triangle()
 
 double grechishnikov::Triangle::getArea() const
 {
-  double sq = ((points_[1].x - points_[0].x) * (points_[2].y - points_[0].y) - (points_[2].x - points_[0].x) * (points_[1].y - points_[0].y)) / 2;
+  double sq = ((points_[1].x - points_[0].x) * (points_[2].y - points_[0].y)
+     - (points_[2].x - points_[0].x) * (points_[1].y - points_[0].y)) / 2;
   sq = std::abs(sq);
   return sq;
 }
