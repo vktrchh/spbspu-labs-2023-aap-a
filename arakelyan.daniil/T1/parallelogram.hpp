@@ -1,8 +1,10 @@
 #ifndef PARALLELOGRAM_HPP
 #define PARALLELOGRAM_HPP
+
 #include "base-types.hpp"
 #include "shape.hpp"
 #include "rectangle.hpp"
+
 namespace arakelyan
 {
   class Parallelogram: public Shape

@@ -1,8 +1,10 @@
 #ifndef SHAPE_CREATION_HPP
 #define SHAPE_CREATION_HPP
 #include <cstddef>
+
 #include "base-types.hpp"
 #include "shape.hpp"
+
 namespace arakelyan
 {
   Shape * defineAndCreateShape(const char * sting);

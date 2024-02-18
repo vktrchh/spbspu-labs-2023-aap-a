@@ -1,4 +1,5 @@
 #include <stdexcept>
+
 #include "scaleOperations.hpp"
 #include "inputAndOutputOperations.hpp"
 

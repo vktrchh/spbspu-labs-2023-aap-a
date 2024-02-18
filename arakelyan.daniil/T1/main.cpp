@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <cstring>
 #include <inputLine.hpp>
+
 #include "base-types.hpp"
 #include "inputAndOutputOperations.hpp"
 #include "scaleOperations.hpp"

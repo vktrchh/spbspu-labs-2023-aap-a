@@ -1,4 +1,5 @@
 #include <stdexcept>
+
 #include "parallelogram.hpp"
 #include "base-types.hpp"
 

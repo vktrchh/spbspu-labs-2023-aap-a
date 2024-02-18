@@ -1,4 +1,5 @@
 #include <stdexcept>
+
 #include "rectangle.hpp"
 #include "base-types.hpp"
 

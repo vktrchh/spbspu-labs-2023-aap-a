@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <stdexcept>
+
 #include "shape-creation.hpp"
 #include "base-types.hpp"
 #include "shape.hpp"
