@@ -1,7 +1,6 @@
 #include "transformInputString.h"
 
 #include <iomanip>
-#include <iostream>
 #include <stdexcept>
 
 char* skuratov::transformInputString(std::istream& in, size_t& size)

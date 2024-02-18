@@ -1,8 +1,8 @@
 #ifndef TRANSFORM_INPUT_STRING_H
 #define TRANSFORM_INPUT_STRING_H
 
-#include <cstddef>
 #include <istream>
+#include <cstddef>
 
 namespace skuratov
 {

@@ -1,10 +1,10 @@
+#include <iostream>
+#include <cstddef>
+#include <stdexcept>
+
 #include "mergeTwoLines.h"
 #include "removeDuplicate.h"
 #include "transformInputString.h"
-
-#include <cstddef>
-#include <iostream>
-#include <stdexcept>
 
 int main()
 {
