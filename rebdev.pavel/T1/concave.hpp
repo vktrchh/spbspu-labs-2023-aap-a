@@ -19,7 +19,7 @@ namespace rebdev
       virtual void move(double x, double y);
       virtual void scale(double k);
     private:
-      point_t vertexs_[4];
+      point_t vertexes_[4];
       point_t scalePoint(const point_t & pointToScale, const point_t & centerPoint, double k);
   };
 

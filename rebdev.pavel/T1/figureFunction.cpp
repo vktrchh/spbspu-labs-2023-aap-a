@@ -1,25 +1,26 @@
 #include "figureFunction.hpp"
+#include <algorithm>
 
-rebdev::rectangle_t rebdev::getFrameRectangle(const point_t vertexs[], size_t numOfVertexs)
+rebdev::rectangle_t rebdev::getFrameRectangle(const point_t vertexes[], size_t numOfVertexes)
 {
-  double xMin = vertexs[0].x, xMax = vertexs[0].x;
-  double yMin = vertexs[0].y, yMax = vertexs[0].y;
-  for (size_t i = 0; i < numOfVertexs; ++i)
+  double xMin = vertexes[0].x, xMax = vertexes[0].x;
+  double yMin = vertexes[0].y, yMax = vertexes[0].y;
+  for (size_t i = 0; i < numOfVertexes; ++i)
   {
-    xMin = ((xMin > vertexs[i].x) ? vertexs[i].x : xMin);
-    yMin = ((yMin > vertexs[i].y) ? vertexs[i].y : yMin);
-    xMax = ((xMax < vertexs[i].x) ? vertexs[i].x : xMax);
-    yMax = ((yMax < vertexs[i].y) ? vertexs[i].y : yMax);
+    xMin = std::min(xMin, vertexes[i].x);
+    yMin = std::min(yMin, vertexes[i].y);
+    xMax = std::max(xMax, vertexes[i].x);
+    yMax = std::max(yMax, vertexes[i].y);
   }
 
-  return rectangle_t{(xMax - xMin), (yMax - yMin), point_t{(xMax + xMin) / 2, (yMax + yMin)/2}};
+  return rectangle_t{(xMax - xMin), (yMax - yMin), point_t{(xMax + xMin) / 2, (yMax + yMin) / 2}};
 }
 
-void rebdev::scaleFigure(point_t vertexs[], size_t numOfVertexs, const point_t & center, double k)
+void rebdev::scaleFigure(point_t vertexes[], size_t numOfVertexes, const point_t & center, double k)
 {
-  for (size_t i = 0; i < numOfVertexs; ++i)
+  for (size_t i = 0; i < numOfVertexes; ++i)
   {
-    vertexs[i].x = (vertexs[i].x - center.x) * k + center.x;
-    vertexs[i].y = (vertexs[i].y - center.y) * k + center.y;
+    vertexes[i].x = (vertexes[i].x - center.x) * k + center.x;
+    vertexes[i].y = (vertexes[i].y - center.y) * k + center.y;
   }
 }

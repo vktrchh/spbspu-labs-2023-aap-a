@@ -5,14 +5,14 @@
 
 rebdev::Concave::Concave(const point_t & firstVertex, const point_t & secondVertex,
   const point_t & thirdVertex, const point_t & fourthVertex):
-  vertexs_{{0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}}
+  vertexes_{{0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}}
 {
-  point_t vertexs[4] = {firstVertex, secondVertex, thirdVertex, fourthVertex};
+  point_t vertexes[4] = {firstVertex, secondVertex, thirdVertex, fourthVertex};
   bool isConcave = false;
 
   for (size_t i = 0; ((i < 4) && (!isConcave)); ++i)
   {
-    if (!isTriangle(vertexs[i], vertexs[(i + 1) % 4], vertexs[(i + 2) % 4]))
+    if (!isTriangle(vertexes[i], vertexes[(i + 1) % 4], vertexes[(i + 2) % 4]))
     {
       continue;
     }
@@ -20,10 +20,10 @@ rebdev::Concave::Concave(const point_t & firstVertex, const point_t & secondVert
     double arr[3] = {0.0, 0.0, 0.0};
     for (size_t j = 0; j < 3; ++j)
     {
-      point_t vertexsArr[3] = {vertexs[(i + j) % 4], vertexs[(i + 3) % 4], vertexs[(i + (j + 1) % 3) % 4]};
+      point_t vertexesArr[3] = {vertexes[(i + j) % 4], vertexes[(i + 3) % 4], vertexes[(i + (j + 1) % 3) % 4]};
 
-      arr[j] = (vertexsArr[0].x - vertexsArr[1].x) * (vertexsArr[2].y - vertexsArr[0].y);
-      arr[j] -= (vertexsArr[2].x - vertexsArr[0].x) * (vertexsArr[0].y - vertexsArr[1].y);
+      arr[j] = (vertexesArr[0].x - vertexesArr[1].x) * (vertexesArr[2].y - vertexesArr[0].y);
+      arr[j] -= (vertexesArr[2].x - vertexesArr[0].x) * (vertexesArr[0].y - vertexesArr[1].y);
     }
 
     bool identicalSigns = ((arr[0] > 0) && (arr[1] > 0) && (arr[2] > 0));
@@ -31,10 +31,10 @@ rebdev::Concave::Concave(const point_t & firstVertex, const point_t & secondVert
 
     if (identicalSigns)
     {
-      vertexs_[0] = vertexs[i];
-      vertexs_[1] = vertexs[(i + 1) % 4];
-      vertexs_[2] = vertexs[(i + 3) % 4];
-      vertexs_[3] = vertexs[(i + 2) % 4];
+      vertexes_[0] = vertexes[i];
+      vertexes_[1] = vertexes[(i + 1) % 4];
+      vertexes_[2] = vertexes[(i + 3) % 4];
+      vertexes_[3] = vertexes[(i + 2) % 4];
       isConcave = true;
     }
   }
@@ -49,7 +49,7 @@ double rebdev::Concave::getArea() const
   double sum  = 0;
   for (size_t i = 0; i < 4; ++i)
   {
-    sum += (vertexs_[i].x * vertexs_[(i + 1) % 4].y) - (vertexs_[(i + 1) % 4].x * vertexs_[i].y);
+    sum += (vertexes_[i].x * vertexes_[(i + 1) % 4].y) - (vertexes_[(i + 1) % 4].x * vertexes_[i].y);
   }
   sum /= 2;
 
@@ -58,28 +58,28 @@ double rebdev::Concave::getArea() const
 
 rebdev::rectangle_t rebdev::Concave::getFrameRect() const
 {
-  return getFrameRectangle(vertexs_, 4);
+  return getFrameRectangle(vertexes_, 4);
 }
 
 void rebdev::Concave::move(const point_t & point)
 {
-  move(point.x - vertexs_[2].x, point.y - vertexs_[2].y);
+  move(point.x - vertexes_[2].x, point.y - vertexes_[2].y);
 }
 
 void rebdev::Concave::move(double x, double y)
 {
   for (size_t i = 0; i < 4; ++i)
   {
-    vertexs_[i].x += x;
-    vertexs_[i].y += y;
+    vertexes_[i].x += x;
+    vertexes_[i].y += y;
   }
 }
 
 void rebdev::Concave::scale(double k)
 {
-  vertexs_[0] = scalePoint(vertexs_[0], vertexs_[2], k);
-  vertexs_[1] = scalePoint(vertexs_[1], vertexs_[2], k);
-  vertexs_[3] = scalePoint(vertexs_[3], vertexs_[2], k);
+  vertexes_[0] = scalePoint(vertexes_[0], vertexes_[2], k);
+  vertexes_[1] = scalePoint(vertexes_[1], vertexes_[2], k);
+  vertexes_[3] = scalePoint(vertexes_[3], vertexes_[2], k);
 }
 
 rebdev::point_t rebdev::Concave::scalePoint(const point_t & pointToScale, const point_t & centerPoint, double k)

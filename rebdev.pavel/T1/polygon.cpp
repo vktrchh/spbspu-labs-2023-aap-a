@@ -3,19 +3,19 @@
 #include "figureFunction.hpp"
 
 
-rebdev::Polygon::Polygon(const point_t * vertexs, size_t numOfVertexs):
+rebdev::Polygon::Polygon(const point_t * vertexes, size_t numOfVertexes):
   vertexs_(nullptr),
   numOfVertexs_(numOfVertexs)
 {
-  if (numOfVertexs < 3)
+  if (numOfVertexes < 3)
   {
     throw std::logic_error("polygon error");
   }
-  for (size_t i = 0; i < (numOfVertexs - 1); ++i)
+  for (size_t i = 0; i < (numOfVertexes - 1); ++i)
   {
-    for (size_t j = (i + 1); j < numOfVertexs; ++j)
+    for (size_t j = (i + 1); j < numOfVertexes; ++j)
     {
-      if ((vertexs[i].x == vertexs[j].x) && (vertexs[i].y == vertexs[j].y))
+      if ((vertexes[i].x == vertexes[j].x) && (vertexes[i].y == vertexes[j].y))
       {
         throw std::logic_error("polygon error");
       }
@@ -24,39 +24,39 @@ rebdev::Polygon::Polygon(const point_t * vertexs, size_t numOfVertexs):
 
   try
   {
-    vertexs_ = new point_t[numOfVertexs_];
+    vertexes_ = new point_t[numOfVertexes_];
   }
   catch (const std::exception & e)
   {
     throw;
   }
 
-  for (size_t i = 0; i < numOfVertexs_; ++i)
+  for (size_t i = 0; i < numOfVertexes_; ++i)
   {
-    vertexs_[i] = vertexs[i];
+    vertexes_[i] = vertexes[i];
   }
 }
 
 rebdev::Polygon::~Polygon()
 {
-  delete[] vertexs_;
+  delete[] vertexes_;
 }
 
 double rebdev::Polygon::getArea() const
 {
   double sum = 0;
-  for (size_t i = 0; i < (numOfVertexs_ - 1); ++i)
+  for (size_t i = 0; i < (numOfVertexes_ - 1); ++i)
   {
-    sum += (vertexs_[i].x - vertexs_[i + 1].x) * (vertexs_[i].y + vertexs_[i + 1].y);
+    sum += (vertexes_[i].x - vertexes_[i + 1].x) * (vertexes_[i].y + vertexes_[i + 1].y);
   }
-  sum += (vertexs_[numOfVertexs_ - 1].x - vertexs_[0].x) * (vertexs_[numOfVertexs_ - 1].y + vertexs_[0].y);
+  sum += (vertexes_[numOfVertexes_ - 1].x - vertexes_[0].x) * (vertexes_[numOfVertexes_ - 1].y + vertexes_[0].y);
   sum /= 2;
   return abs(sum);
 }
 
 rebdev::rectangle_t rebdev::Polygon::getFrameRect() const
 {
-  return getFrameRectangle(vertexs_, numOfVertexs_);
+  return getFrameRectangle(vertexes_, numOfVertexes_);
 }
 
 void rebdev::Polygon::move(const point_t & point)
@@ -67,7 +67,7 @@ void rebdev::Polygon::move(const point_t & point)
 
 void rebdev::Polygon::move(double x, double y)
 {
-  for (size_t i = 0; i < numOfVertexs_; ++i)
+  for (size_t i = 0; i < numOfVertexes_; ++i)
   {
     vertexs_[i].x += x;
     vertexs_[i].y += y;
@@ -76,21 +76,21 @@ void rebdev::Polygon::move(double x, double y)
 
 void rebdev::Polygon::scale(double k)
 {
-  scaleFigure(vertexs_, numOfVertexs_, getPolygonCenter(), k);
+  scaleFigure(vertexes_, numOfVertexes_, getPolygonCenter(), k);
 }
 
 rebdev::point_t rebdev::Polygon::getPolygonCenter()
 {
   point_t center{0.0, 0.0};
 
-  for (size_t i = 0; i < numOfVertexs_; ++i)
+  for (size_t i = 0; i < numOfVertexes_; ++i)
   {
-    center.x += vertexs_[i].x;
-    center.y += vertexs_[i].y;
+    center.x += vertexes_[i].x;
+    center.y += vertexes_[i].y;
   }
 
-  center.x /= numOfVertexs_;
-  center.y /= numOfVertexs_;
+  center.x /= numOfVertexes_;
+  center.y /= numOfVertexes_;
 
   return center;
 }

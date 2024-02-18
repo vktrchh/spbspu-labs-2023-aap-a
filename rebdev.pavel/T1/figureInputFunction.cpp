@@ -6,75 +6,75 @@
 
 rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name)
 {
-  Shape * ShapePointer = nullptr;
-  point_t * vertexs = nullptr;
+  Shape * pointerToFigure = nullptr;
+  point_t * points = nullptr;
 
-  size_t numOfVertexs = 0;
-  vertexs = inputVertexs(input, numOfVertexs);
+  size_t numOfPoints = 0;
+  points = inputPoints(input, numOfPoints);
   try
   {
     if (name.find("RECTANGLE") != std::string::npos)
     {
-      ShapePointer = new Rectangle(vertexs[0], vertexs[1]);
+      pointerToFigure = new Rectangle(points[0], points[1]);
     }
     else if (name.find("CONCAVE") != std::string::npos)
     {
-      ShapePointer = new Concave(vertexs[0], vertexs[1], vertexs[2], vertexs[3]);
+      pointerToFigure = new Concave(points[0], points[1], points[2], points[3]);
     }
     else if (name.find("POLYGON") != std::string::npos)
     {
-      ShapePointer = new Polygon(vertexs, numOfVertexs);
+      pointerToFigure = new Polygon(points, numOfPoints);
     }
   }
-  catch(const std::logic_error & e)
+  catch (const std::logic_error & e)
   {
-    delete[] vertexs;
+    delete[] points;
     throw;
   }
 
-  delete[] vertexs;
-  return ShapePointer;
+  delete[] points;
+  return pointerToFigure;
 }
 
-rebdev::point_t * rebdev::inputVertexs(std::istream & input, size_t & numOfVertexs)
+rebdev::point_t * rebdev::inputPoints(std::istream & input, size_t & numOfPoints)
 {
-    point_t * vertexs = new point_t[1];
+    point_t * points = new point_t[1];
     point_t * bufferArr = nullptr;
     size_t bufferSize = 0;
 
-    while (input >> vertexs[numOfVertexs].x >> vertexs[numOfVertexs].y)
+    while (input >> points[numOfPoints].x >> points[numOfPoints].y)
     {
-      if (numOfVertexs == bufferSize)
+      if (numOfPoints == bufferSize)
       {
         bufferSize += 10;
         bufferArr = new point_t[bufferSize];
-        bufferArr[0] = vertexs[0];
+        bufferArr[0] = points[0];
 
-        for (size_t i = 1; i < numOfVertexs; ++i)
+        for (size_t i = 1; i < numOfPoints; ++i)
         {
-          bufferArr[i] = vertexs[i];
+          bufferArr[i] = points[i];
         }
 
-        delete[] vertexs;
-        vertexs = bufferArr;
+        delete[] points;
+        points = bufferArr;
         bufferArr = nullptr;
       }
 
-      numOfVertexs += 1;
+      numOfPoints += 1;
     }
 
     input.clear();
 
-    bufferArr = new point_t[numOfVertexs];
+    bufferArr = new point_t[numOfPoints];
 
-    for (size_t i = 0; i < numOfVertexs; ++i)
+    for (size_t i = 0; i < numOfPoints; ++i)
     {
-      bufferArr[i] = vertexs[i];
+      bufferArr[i] = points[i];
     }
 
-    delete[] vertexs;
-    vertexs = bufferArr;
+    delete[] points;
+    points = bufferArr;
     bufferArr = nullptr;
 
-    return vertexs;
+    return points;
 }
