@@ -4,7 +4,7 @@
 #include "square.hpp"
 #include "complexquad.hpp"
 
-void chistyakov::inputShapes(std::istream & input, Shape ** array, double * scaleInfo)
+void chistyakov::inputShapes(std::istream & input, Shape ** array, double * scaleInfo, size_t & size)
 {
   std::string rectangle = "RECTANGLE";
   std::string square = "SQUARE";
@@ -53,15 +53,15 @@ void chistyakov::inputShapes(std::istream & input, Shape ** array, double * scal
 
     if (shapeName == rectangle)
     {
-      inputRectangle(str, array);
+      inputRectangle(str, array, size);
     }
     else if (shapeName == square)
     {
-      inputSquare(str, array);
+      inputSquare(str, array, size);
     }
     else if (shapeName == complexquad)
     {
-      inputComplexquad(str, array);
+      inputComplexquad(str, array, size);
     }
     else if (shapeName == "SCALE")
     {
@@ -73,7 +73,7 @@ void chistyakov::inputShapes(std::istream & input, Shape ** array, double * scal
   input >> std::skipws;
 }
 
-void chistyakov::inputRectangle(std::string str, Shape ** array)
+void chistyakov::inputRectangle(std::string str, Shape ** array, size_t & size)
 {
   double cords[4]{};
   size_t index = 10;
@@ -108,6 +108,7 @@ void chistyakov::inputRectangle(std::string str, Shape ** array)
   {
     Rectangle * shape = new Rectangle({ {cords[0], cords[1]}, {cords[2], cords[3]} });
     writeShapeInArray(shape, array, 1000);
+    size++;
   }
   catch(const std::invalid_argument & e)
   {
@@ -115,7 +116,7 @@ void chistyakov::inputRectangle(std::string str, Shape ** array)
   }
 }
 
-void chistyakov::inputSquare(std::string str, Shape ** array)
+void chistyakov::inputSquare(std::string str, Shape ** array, size_t & size)
 {
   double cords[3]{};
   size_t index = 7;
@@ -150,6 +151,7 @@ void chistyakov::inputSquare(std::string str, Shape ** array)
   {
     Square * shape = new Square({ cords[0], cords[1] }, cords[2]);
     writeShapeInArray(shape, array, 1000);
+    size++;
   }
   catch(const std::invalid_argument & e)
   {
@@ -157,7 +159,7 @@ void chistyakov::inputSquare(std::string str, Shape ** array)
   }
 }
 
-void chistyakov::inputComplexquad(std::string str, Shape ** array)
+void chistyakov::inputComplexquad(std::string str, Shape ** array, size_t & size)
 {
   double cords[8]{};
   size_t index = 12;
@@ -197,6 +199,7 @@ void chistyakov::inputComplexquad(std::string str, Shape ** array)
   {
     Complexquad * shape = new Complexquad(pnt1, pnt2, pnt3, pnt4);
     writeShapeInArray(shape, array, 1000);
+    size++;
   }
   catch(const std::invalid_argument & e)
   {
