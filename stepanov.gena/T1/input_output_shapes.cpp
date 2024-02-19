@@ -133,9 +133,9 @@ void stepanov::outputShapes(std::ostream& output, const Shape * const * shapes, 
     {
       double width = shapes[i]->getFrameRect().width;
       double height = shapes[i]->getFrameRect().height;
-      point_t center = shapes[i]->getFrameRect().center;
-      point_t leftCorner = {center.x - width / 2, center.y - height/ 2};
-      point_t rightCorner = {center.x + width / 2, center.y + height / 2};
+      point_t pos = shapes[i]->getFrameRect().pos;
+      point_t leftCorner = {pos.x - width / 2, pos.y - height/ 2};
+      point_t rightCorner = {pos.x + width / 2, pos.y + height / 2};
       output << " " << leftCorner.x << " " << leftCorner.y << " " << rightCorner.x << " " << rightCorner.y;
     }
   }

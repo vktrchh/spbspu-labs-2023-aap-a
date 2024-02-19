@@ -13,8 +13,8 @@ stepanov::Circle::Circle(const point_t& center, const double radius):
 
 double stepanov::Circle::getArea() const
 {
-  double PI = 3.1415926535
-  return 3.14 * radius_ * radius_;
+  double PI = 3.1415926535;
+  return PI * radius_ * radius_;
 }
 
 stepanov::rectangle_t stepanov::Circle::getFrameRect() const
