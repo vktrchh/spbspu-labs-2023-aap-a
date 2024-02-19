@@ -101,11 +101,7 @@ zhalilov::point_t zhalilov::Polygon::getCenter()
 void zhalilov::Polygon::move(const point_t &point)
 {
   point_t center = getCenter();
-  for (size_t i = 0; i < m_size; i++)
-  {
-    m_points[i].x += point.x - center.x;
-    m_points[i].y += point.y - center.y;
-  }
+  move(point.x - center.x, point.y - center.y);
 }
 
 void zhalilov::Polygon::move(const double dx, const double dy)
