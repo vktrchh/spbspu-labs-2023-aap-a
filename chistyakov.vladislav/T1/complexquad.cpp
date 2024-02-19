@@ -11,7 +11,7 @@ chistyakov::Complexquad::Complexquad(const point_t & pnt1, const point_t & pnt2,
   {
     chistyakov::point_t nowPoint = points[i];
 
-    for (int j = i; j < 4; ++j)
+    for (int j = i + 1; j < 4; ++j)
     {
       if (nowPoint.x == points[j].x && nowPoint.y == points[j].y)
       {
