@@ -31,11 +31,8 @@ void lopatina::Rectangle::move(double dx, double dy)
   pos_rect_.y += dy;
 }
 
-void lopatina::Rectangle::scale(point_t new_pos, double k)
+void lopatina::Rectangle::scale(double k)
 {
-  point_t old_pos{pos_rect_.x, pos_rect_.y};
-  move(new_pos);
   height_rect_ = height_rect_ * k;
   width_rect_ = width_rect_ * k;
-  move(k * (old_pos.x - pos_rect_.x), k * (old_pos.y - pos_rect_.y));
 }

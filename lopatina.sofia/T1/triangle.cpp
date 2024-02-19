@@ -51,15 +51,12 @@ void lopatina::Triangle::move(double dx, double dy)
   p3_.y += dy;
 }
 
-void lopatina::Triangle::scale(point_t new_pos, double k)
+void lopatina::Triangle::scale(double k)
 {
-  point_t old_pos{pos_tri_.x, pos_tri_.y};
-  move(new_pos);
   p1_.x = pos_tri_.x + (p1_.x - pos_tri_.x) * k;
   p1_.y = pos_tri_.y + (p1_.y - pos_tri_.y) * k;
   p2_.x = pos_tri_.x + (p2_.x - pos_tri_.x) * k;
   p2_.y = pos_tri_.y + (p2_.y - pos_tri_.y) * k;
   p3_.x = pos_tri_.x + (p3_.x - pos_tri_.x) * k;
   p3_.y = pos_tri_.y + (p3_.y - pos_tri_.y) * k;
-  move(k * (old_pos.x - pos_tri_.x), k * (old_pos.y - pos_tri_.y));
 }

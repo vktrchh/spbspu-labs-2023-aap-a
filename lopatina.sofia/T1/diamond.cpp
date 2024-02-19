@@ -33,11 +33,8 @@ void lopatina::Diamond::move(double dx, double dy)
   pos_diam_.y += dy;
 }
 
-void lopatina::Diamond::scale(point_t new_pos, double k)
+void lopatina::Diamond::scale(double k)
 {
-  point_t old_pos{pos_diam_.x, pos_diam_.y};
-  move(new_pos);
   height_diam_ = height_diam_ * k;
   width_diam_ = width_diam_ * k;
-  move(k * (old_pos.x - pos_diam_.x), k * (old_pos.y - pos_diam_.y));
 }

@@ -7,6 +7,7 @@
 #include "diamond.hpp"
 #include "check_functions.hpp"
 #include "del_out_functions.hpp"
+#include "isoscale.hpp"
 
 int main()
 {
@@ -42,7 +43,7 @@ int main()
         outputResult(std::cout, array, counter);
         for (size_t i = 0; i < counter; ++i)
         {
-          array[i]->scale({center_x, center_y}, index);
+          isoScale(array[i], {center_x, center_y}, index);
         }
         outputResult(std::cout, array, counter);
       }

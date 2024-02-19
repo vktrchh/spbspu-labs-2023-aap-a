@@ -30,10 +30,7 @@ void lopatina::Square::move(double dx, double dy)
   pos_sq_.y += dy;
 }
 
-void lopatina::Square::scale(point_t new_pos, double k)
+void lopatina::Square::scale(double k)
 {
-  point_t old_pos{pos_sq_.x, pos_sq_.y};
-  move(new_pos);
   side_ = side_ * k;
-  move(k * (old_pos.x - pos_sq_.x), k * (old_pos.y - pos_sq_.y));
 }

@@ -14,7 +14,7 @@ namespace lopatina
     virtual rectangle_t getFrameRect() const;
     virtual void move(point_t s);
     virtual void move(double x, double y);
-    virtual void scale(point_t s, double k);
+    virtual void scale(double k);
   private:
     point_t p1_;
     point_t p2_;
