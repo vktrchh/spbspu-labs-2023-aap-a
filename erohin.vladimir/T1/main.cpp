@@ -33,7 +33,7 @@ int main()
   std::cout << "\n";
   if (isWrongFigureCreation)
   {
-    std::cerr << "Wrong parametres to create a figure\n";
+    std::cerr << "Wrong parameters to create a figure\n";
   }
   return 0;
 }
