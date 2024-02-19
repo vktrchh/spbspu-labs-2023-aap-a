@@ -6,6 +6,8 @@
 
 int main()
 {
-  return 0;
+  using namespace stepanov;
+  Shape ** shapes = nullptr;
+  size_t size_shapes = 0;
 }
 
