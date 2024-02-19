@@ -29,17 +29,6 @@ int main()
 
     mergedString = kovtun::mergeStrings(firstString, secondString);
   }
-  catch (const std::bad_alloc & e)
-  {
-    // как лучше все это проверять и чистить?
-    delete [] firstString;
-    delete [] secondString;
-    delete [] loweredString;
-    delete [] mergedString;
-
-    std::cerr << e.what() << "\n";
-    return 1;
-  }
   catch (...)
   {
     delete [] firstString;
@@ -48,7 +37,7 @@ int main()
     delete [] mergedString;
 
     std::cerr << "unexpected error occurred\n";
-    return 3;
+    return 1;
   }
 
   std::cout << loweredString << "\n";
