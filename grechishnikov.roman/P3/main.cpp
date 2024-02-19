@@ -19,12 +19,6 @@ int main()
     std::cerr << "Cannot allocate enough\n";
     return 1;
   }
-  catch (const std::logic_error &e)
-  {
-    delete[] str;
-    std::cerr << e.what() << "\n";
-    return 1;
-  }
   if (str == nullptr)
   {
     std::cerr << "String is empty\n";
