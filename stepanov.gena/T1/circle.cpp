@@ -13,6 +13,7 @@ stepanov::Circle::Circle(const point_t& center, const double radius):
 
 double stepanov::Circle::getArea() const
 {
+  double PI = 3.1415926535
   return 3.14 * radius_ * radius_;
 }
 

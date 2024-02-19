@@ -26,7 +26,7 @@ stepanov::rectangle_t stepanov::Rectangle::getFrameRect() const
 
 void stepanov::Rectangle::move(const point_t &p)
 {
-  point_t center = {(rightCorner_.x + leftCorner_.x) / 2, (rightCorner_.y + leftCorner_.y) / 2};
+  point_t center = {(rightCorner_.x / 2) + leftCorner_.x, (rightCorner_.y / 2) +leftCorner_.y};
   point_t moveVector = {p.x - center.x, p.y - center.y};
   leftCorner_ = {leftCorner_.x + moveVector.x, leftCorner_.y + moveVector.y};
   rightCorner_ = {rightCorner_.x + moveVector.x, rightCorner_.y + moveVector.y};

@@ -14,7 +14,8 @@ stepanov::Ellipse::Ellipse(const point_t &center, double radiusY, double radiusX
 
 double stepanov::Ellipse::getArea() const
 {
-  return 3.14 * radiusY_ * radiusX_;
+  double PI = 3.1415926535
+  return PI * radiusY_ * radiusX_;
 }
 
 stepanov::rectangle_t stepanov::Ellipse::getFrameRect() const
