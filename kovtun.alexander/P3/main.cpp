@@ -25,7 +25,6 @@ int main()
     }
 
     loweredString = new char[firstStringLength + 1]();
-    loweredString[firstStringLength] = '\0';
     kovtun::convertToLowercase(loweredString, firstString);
 
     mergedString = kovtun::mergeStrings(firstString, secondString);
