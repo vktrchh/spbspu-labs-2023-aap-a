@@ -37,7 +37,7 @@ int main()
     std::cerr << "Error with memory allocation\n";
     return 1;
   }
-  catch (const std::except& e)
+  catch (const std::exceptions& e)
   {
     std::cerr << "Error: " << e.what();
     return 1;
