@@ -8,5 +8,5 @@ void gladyshev::Shape::scale(double factor)
   {
     throw std::underflow_error("factor mast be positive");
   }
-  doScale(factor);
+  unsafeScale(factor);
 }

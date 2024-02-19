@@ -42,7 +42,7 @@ gladyshev::rectangle_t gladyshev::Rectangle::getFrameRect() const
   return { pos, width, height };
 }
 
-void gladyshev::Rectangle::doScale(double factor)
+void gladyshev::Rectangle::unsafeScale(double factor)
 {
   rectangle_t frameRect = getFrameRect();
   scalePoint(p1FrameRec_, factor, frameRect);

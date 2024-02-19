@@ -37,7 +37,7 @@ void gladyshev::Circle::move(const point_t& newPos)
   move(newPos.x - getFrameRect().pos.x, newPos.y - getFrameRect().pos.y);
 }
 
-void gladyshev::Circle::doScale(double factor)
+void gladyshev::Circle::unsafeScale(double factor)
 {
   radius_ *= factor;
 }

@@ -46,7 +46,7 @@ void gladyshev::Parallelogram::move(const point_t& newPos)
   move(newPos.x - getFrameRect().pos.x, newPos.y - getFrameRect().pos.y);
 }
 
-void gladyshev::Parallelogram::doScale(double factor)
+void gladyshev::Parallelogram::unsafeScale(double factor)
 {
   rectangle_t frameRect = getFrameRect();
   for (size_t i = 0; i < 3; ++i)

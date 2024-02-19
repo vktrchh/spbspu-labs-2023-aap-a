@@ -14,10 +14,10 @@ namespace gladyshev
       virtual rectangle_t getFrameRect() const;
       virtual void move(double dx, double dy);
       virtual void move(const point_t& pos);
+      virtual void unsafeScale(double factor);
     private:
       double radius_;
       point_t center_;
-      virtual void doScale(double factor);
   };
 }
 
