@@ -147,7 +147,7 @@ int main()
           if (isCentralPoint(point1, point2, point3))
           {
             flag_diamond_condition = 1;
-            central_point = {point1.x_, point1.y_};
+            central_point = {point1.x, point1.y};
             side_point_x = defineSidePointX(point1, point2, point3);
             side_point_y = defineSidePointY(point1, point2, point3);
           }

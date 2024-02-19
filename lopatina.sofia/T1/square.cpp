@@ -3,8 +3,8 @@
 lopatina::Square::Square(point_t a, double side)
 {
   side_ = side;
-  pos_sq_.x_ = a.x_ + (side_ / 2.0);
-  pos_sq_.y_ = a.y_ + (side_ / 2.0);
+  pos_sq_.x = a.x + (side_ / 2.0);
+  pos_sq_.y = a.y + (side_ / 2.0);
 }
 
 double lopatina::Square::getArea()
@@ -20,20 +20,20 @@ lopatina::rectangle_t lopatina::Square::getFrameRect()
 
 void lopatina::Square::move(point_t new_pos)
 {
-  pos_sq_.x_ = new_pos.x_;
-  pos_sq_.y_ = new_pos.y_;
+  pos_sq_.x = new_pos.x;
+  pos_sq_.y = new_pos.y;
 }
 
 void lopatina::Square::move(double dx, double dy)
 {
-  pos_sq_.x_ += dx;
-  pos_sq_.y_ += dy;
+  pos_sq_.x += dx;
+  pos_sq_.y += dy;
 }
 
 void lopatina::Square::scale(point_t new_pos, double k)
 {
-  point_t old_pos{pos_sq_.x_, pos_sq_.y_};
+  point_t old_pos{pos_sq_.x, pos_sq_.y};
   move(new_pos);
   side_ = side_ * k;
-  move(k * (old_pos.x_ - pos_sq_.x_), k * (old_pos.y_ - pos_sq_.y_));
+  move(k * (old_pos.x - pos_sq_.x), k * (old_pos.y - pos_sq_.y));
 }

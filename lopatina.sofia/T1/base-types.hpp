@@ -5,15 +5,15 @@ namespace lopatina
 {
   struct point_t
   {
-    double x_;
-    double y_;
+    double x;
+    double y;
   };
 
   struct rectangle_t
   {
-    double height_;
-    double width_;
-    point_t pos_;
+    double height;
+    double width;
+    point_t pos;
   };
 }
 

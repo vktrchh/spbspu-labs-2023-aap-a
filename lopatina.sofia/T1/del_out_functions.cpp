@@ -14,10 +14,10 @@ void lopatina::outputResult(std::ostream & output, Shape ** array, size_t counte
   for (size_t i = 0; i < counter; ++i)
   {
     rectangle_t frame = array[i]->getFrameRect();
-    double height = frame.height_;
-    double width = frame.width_;
-    double pos_x = frame.pos_.x_;
-    double pos_y = frame.pos_.y_;
+    double height = frame.height;
+    double width = frame.width;
+    double pos_x = frame.pos.x;
+    double pos_y = frame.pos.y;
     output << ' ' << round((pos_x - (width / 2.0)) * 10) / 10 << ' ' << round((pos_y - (height / 2.0)) * 10) / 10;
     output << ' ' << round((pos_x + (width / 2.0)) * 10) / 10 << ' ' << round((pos_y + (height / 2.0)) * 10) / 10;
   }
