@@ -5,16 +5,7 @@ char * kovtun::readString(std::istream & in)
   size_t stringSize = 50;
   size_t charIndex = 0;
   char c = '\n';
-  char * input = nullptr;
-  try
-  {
-    input = new char[stringSize]();
-  }
-  catch (const std::bad_alloc & e)
-  {
-   std::cerr << "failed to allocate new memory for string\n";
-   throw e;
-  }
+  char * input = new char[stringSize]();
 
   in >> std::noskipws;
   while (in >> c)
@@ -30,7 +21,6 @@ char * kovtun::readString(std::istream & in)
 
     if (charIndex == stringSize)
     {
-      // possible wrapping around
       stringSize *= 2;
       char * copy = nullptr;
       try
@@ -41,8 +31,7 @@ char * kovtun::readString(std::istream & in)
       {
         delete [] input;
         in >> std::skipws;
-        std::cerr << "failed to allocate new memory for string\n";
-        throw e;
+        throw;
       }
 
       for (size_t i = 0; i < charIndex; i++)
