@@ -53,33 +53,21 @@ double zhalilov::Polygon::getArea() const
 
 zhalilov::rectangle_t zhalilov::Polygon::getFrameRect() const
 {
-  point_t maxY = m_points[0], minY = m_points[0];
-  point_t maxX = m_points[0], minX = m_points[0];
+  double maxY = m_points[0].y, minY = m_points[0].y;
+  double maxX = m_points[0].x, minX = m_points[0].x;
 
   for (size_t i = 1; i < m_size; i++)
   {
-    if (m_points[i].x > maxX.x)
-    {
-      maxX = m_points[i];
-    }
-    if (m_points[i].x < minX.x)
-    {
-      minX = m_points[i];
-    }
-    if (m_points[i].y > maxY.y)
-    {
-      maxY = m_points[i];
-    }
-    if (m_points[i].y < minY.y)
-    {
-      minY = m_points[i];
-    }
+    maxX = std::max(maxX, m_points[i].x);
+    maxY = std::max(maxY, m_points[i].y);
+    minX = std::min(minX, m_points[i].x);
+    minY = std::min(minY, m_points[i].y);
   }
 
-  double width = maxX.x - minX.x;
-  double height = maxY.y - minY.y;
-  double posX = minX.x + width / 2.0;
-  double posY = minY.y + height / 2.0;
+  double width = maxX - minX;
+  double height = maxY - minY;
+  double posX = minX + width / 2.0;
+  double posY = minY + height / 2.0;
   rectangle_t frameRect = { width, height, { posX, posY }};
   return frameRect;
 }
