@@ -28,6 +28,14 @@ arakelyan::rectangle_t arakelyan::Rectangle::getFrameRect() const
   return {width, height, midpoint};
 }
 
+void arakelyan::Rectangle::move(const point_t point)
+{
+  rectangle_t data = getFrameRect();
+  double delX = point.x - data.pos.x;
+  double delY = point.y - data.pos.y;
+  move(delX, delY);
+}
+
 void arakelyan::Rectangle::move(const double delX, const double delY)
 {
   point_t * pointsArray[2] = {&pointLeftDown_, &pointRightUp_};
@@ -36,14 +44,6 @@ void arakelyan::Rectangle::move(const double delX, const double delY)
     pointsArray[i]->x += delX;
     pointsArray[i]->y += delY;
   }
-}
-
-void arakelyan::Rectangle::move(const point_t point)
-{
-  rectangle_t data = getFrameRect();
-  double delX = point.x - data.pos.x;
-  double delY = point.y - data.pos.y;
-  move(delX, delY);
 }
 
 void arakelyan::Rectangle::scale(const double k)

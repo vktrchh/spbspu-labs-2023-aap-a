@@ -17,7 +17,6 @@ namespace arakelyan
     virtual void scale(const double k);
     virtual ~Diamond() = default;
   private:
-
     point_t p1_;
     point_t p2_;
     point_t p3_;
