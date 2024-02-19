@@ -10,8 +10,7 @@ int main()
 
   char * firstString = nullptr;
   char * secondString = nullptr;
-  char * loweredString = nullptr;
-  char * mergedString = nullptr;
+  char * result = nullptr;
   try
   {
     firstString = kovtun::readString(std::cin);
@@ -25,30 +24,26 @@ int main()
       return 2;
     }
 
-    loweredString = new char[defaultSize]();
-    kovtun::convertToLowercase(loweredString, firstString);
+    result = new char[defaultSize]();
+    kovtun::convertToLowercase(result, firstString);
+    std::cout << result << '\n';
 
-    mergedString = new char[defaultSize]();
-    mergedString = kovtun::mergeStrings(mergedString, firstString, secondString);
+    result = kovtun::mergeStrings(result, firstString, secondString);
+    std::cout << result << '\n';
   }
   catch (...)
   {
     delete [] firstString;
     delete [] secondString;
-    delete [] loweredString;
-    delete [] mergedString;
+    delete [] result;
 
     std::cerr << "unexpected error occurred\n";
     return 1;
   }
 
-  std::cout << loweredString << "\n";
-  std::cout << mergedString << "\n";
-
   delete [] firstString;
   delete [] secondString;
-  delete [] loweredString;
-  delete [] mergedString;
+  delete [] result;
 
   return 0;
 }
