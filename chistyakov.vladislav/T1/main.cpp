@@ -33,7 +33,7 @@ int main()
   }
   catch (const std::logic_error & e)
   {
-    std::cout << "Error: " << e.what() << "\n";
+    std::cerr << "Error: " << e.what() << "\n";
     freeArray(shapes, 1000);
     return 2;
   }
