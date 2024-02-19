@@ -37,9 +37,9 @@ double * arakelyan::extractDataForShape(const char * string, double coordStorage
 arakelyan::Shape * arakelyan::createPar(const char * string)
 {
   size_t wordLen = 13;
-
+  const size_t arrayWeight = 6;
   double coordStorage[6] = {};
-  extractDataForShape(string, coordStorage, 6, wordLen);
+  extractDataForShape(string, coordStorage, arrayWeight, wordLen);
   point_t p1 = {coordStorage[0], coordStorage[1]};
   point_t p2 = {coordStorage[2], coordStorage[3]};
   point_t p3 = {coordStorage[4], coordStorage[5]};
@@ -50,8 +50,9 @@ arakelyan::Shape * arakelyan::createPar(const char * string)
 arakelyan::Shape * arakelyan::createDiam(const char * string)
 {
   size_t wordLen = 7;
+  const size_t arrayWeight = 6;
   double coordStorage[6] = {};
-  extractDataForShape(string, coordStorage, 6, wordLen);
+  extractDataForShape(string, coordStorage, arrayWeight, wordLen);
   point_t p1 = {coordStorage[0], coordStorage[1]};
   point_t p2 = {coordStorage[2], coordStorage[3]};
   point_t p3 = {coordStorage[4], coordStorage[5]};
@@ -72,8 +73,9 @@ arakelyan::Shape * arakelyan::createDiam(const char * string)
 arakelyan::Shape * arakelyan::createRect(const char * string)
 {
   size_t wordLen = 9;
+  const size_t arrayWeight = 4;
   double coordStorage[6] = {};
-  extractDataForShape(string, coordStorage, 4, wordLen);
+  extractDataForShape(string, coordStorage, arrayWeight, wordLen);
   point_t p1 = {coordStorage[0], coordStorage[1]};
   point_t p2 = {coordStorage[2], coordStorage[3]};
   return new Rectangle(p1, p2);

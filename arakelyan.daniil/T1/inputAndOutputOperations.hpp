@@ -4,6 +4,7 @@
 
 #include "base-types.hpp"
 #include "shape.hpp"
+
 namespace arakelyan
 {
   char * inputString(std::istream &input);

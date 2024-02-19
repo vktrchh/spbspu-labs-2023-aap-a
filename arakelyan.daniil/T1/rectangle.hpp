@@ -3,7 +3,6 @@
 
 #include "base-types.hpp"
 #include "shape.hpp"
-#include <stdexcept>
 
 namespace arakelyan
 {

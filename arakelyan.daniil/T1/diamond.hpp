@@ -1,6 +1,6 @@
 #ifndef DIAMOND_HPP
 #define DIAMOND_HPP
-#include <stdexcept>
+
 #include "shape.hpp"
 #include "base-types.hpp"
 

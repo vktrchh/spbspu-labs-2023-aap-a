@@ -4,7 +4,6 @@
 #include "base-types.hpp"
 #include "shape.hpp"
 #include "rectangle.hpp"
-#include <stdexcept>
 
 namespace arakelyan
 {
