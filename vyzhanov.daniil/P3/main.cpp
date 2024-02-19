@@ -10,35 +10,34 @@ int main()
   try
   {
     string = inputString(std::cin);
-  }
-  catch (const std::bad_alloc& e)
-  {
-    std::cerr << "Error" << "\n";
-    return 1;
-  }
-  if (string[0] == '\0')
-  {
-    delete[] string;
-    std::cerr << "Empty string!" << "\n";
-    return 1;
-  }
-  size_t stringLength = 0;
-  while (string[stringLength])
-  {
-    stringLength++;
-  }
-  try
-  {
+    if (string[0] == '\0')
+    {
+      delete[] string;
+      std::cerr << "Empty string!" << "\n";
+      return 1;
+    }
+    size_t stringLength = 0;
+    while (string[stringLength])
+    {
+      stringLength++;
+    }
     newString = new char[stringLength];
     std::cout << vyzhanov::deleteAllNumbers(string, newString, stringLength) << "\n";
   }
-  catch (const std::exception& e)
+  catch (const std::bad_alloc& e)
   {
-    std::cerr << "Error";
     delete[] string;
     delete[] newString;
+    std::cerr << "Error: " << e.what() << '\n';
     return 1;
   }
-  delete[] string;
-  delete[] newString;
+  catch (const std::logic_error & e)
+  {
+    delete[] string;
+    delete[] newString;
+    std::cerr << "Error: " << e.what() << '\n';
+    return 2;
+  }
+    delete[] string;
+    delete[] newString;
 }
