@@ -16,7 +16,7 @@ int main()
   catch (const std::bad_alloc &e)
   {
     delete[] str;
-    std::cerr << "Cannot allocate enough\n";
+    std::cerr << "Cannot allocate enough memory\n";
     return 1;
   }
   if (str == nullptr)
