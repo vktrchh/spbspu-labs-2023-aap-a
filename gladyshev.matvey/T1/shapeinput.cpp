@@ -31,6 +31,11 @@ void gladyshev::shapeInput(std::istream& in, Shape ** shapes, size_t& counter)
       throw;
     }
   }
+  if (in.eof())
+  {
+    freeMemory(shapes, mainCounter);
+    throw std::out_of_range("EOF");
+  }
   counter = mainCounter;
   if (counter == 0)
   {
@@ -39,10 +44,5 @@ void gladyshev::shapeInput(std::istream& in, Shape ** shapes, size_t& counter)
   if (unsupFig)
   {
     throw std::runtime_error("there are incorrect or unsupported figures");
-  }
-  if (in.eof())
-  {
-    freeMemory(shapes, mainCounter);
-    throw std::out_of_range("EOF");
   }
 }
