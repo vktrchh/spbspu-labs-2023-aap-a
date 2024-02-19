@@ -117,10 +117,6 @@ stepanov::Shape** stepanov::inputShapes(std::istream& input, size_t& size_shapes
 
 void stepanov::outputShapes(std::ostream& output, const Shape * const * shapes, size_t size_shapes)
 {
-  if (size_shapes == 0)
-  {
-    throw std::logic_error("Zero shapes");
-  }
   double area = 0.0;
   for (size_t i = 0; i < size_shapes; ++i)
   {

@@ -18,12 +18,14 @@ int main()
     shapes = inputShapes(std::cin, size_shapes);
     outputShapes(std::cout, shapes, size_shapes);
     std::cin >> center.x >> center.y >> ratio;
-    if (!std::cin)
+    if (!std::cin || size_shapes == 0)
     {
+      deleteShapes(shapes, size_shapes);
       throw std::invalid_argument("Wrong input scale");
     }
     if (ratio <= 0)
     {
+      deleteShapes(shapes, size_shapes);
       throw std::invalid_argument("Ratio must be positive");
     }
     for (size_t i = 0; i < size_shapes; ++i)
@@ -37,7 +39,7 @@ int main()
     std::cerr << "Error with memory allocation\n";
     return 1;
   }
-  catch (const std::exceptions& e)
+  catch (const std::exception& e)
   {
     std::cerr << "Error: " << e.what();
     return 1;
