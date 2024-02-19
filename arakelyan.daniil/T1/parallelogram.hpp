@@ -18,7 +18,6 @@ namespace arakelyan
     virtual void scale(const double k);
     virtual ~Parallelogram() = default;
   private:
-
     point_t p1_;
     point_t p2_;
     point_t p3_;
