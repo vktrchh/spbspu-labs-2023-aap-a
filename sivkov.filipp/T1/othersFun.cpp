@@ -1,6 +1,6 @@
+#include "othersFun.hpp"
 #include "base-types.hpp"
 #include "shape.hpp"
-#include "othersFun.hpp"
 #include <cmath>
 #include <stdexcept>
 #include <iostream>
