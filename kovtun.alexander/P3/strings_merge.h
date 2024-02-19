@@ -7,7 +7,7 @@
 
 namespace kovtun
 {
-  char * mergeStrings(const char * first, const char * second);
+  char * mergeStrings(char * destination, const char * first, const char * second);
 }
 
 #endif
