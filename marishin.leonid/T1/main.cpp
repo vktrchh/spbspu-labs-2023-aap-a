@@ -1,6 +1,7 @@
 #include "inputshape.hpp"
 #include "displayoutput.hpp"
 #include "scale.hpp"
+#include "isoScale.hpp"
 #include <iostream>
 #include "ring.hpp"
 #include "rectangle.hpp"
@@ -33,7 +34,7 @@ int main()
     }
     for (size_t i = 0; i < numberOfShapes; i++)
     {
-      scale(myShapes[i], center, scalingFactor);
+      isoBaseScale(myShapes[i], center, scalingFactor);
     }
     outputShapesInfo(std::cout, myShapes, numberOfShapes);
     std::cout << "\n";
