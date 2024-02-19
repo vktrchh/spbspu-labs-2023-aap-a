@@ -1,5 +1,5 @@
-#ifndef concave_hpp
-#define concave_hpp
+#ifndef CONCAVE_HPP
+#define CONCAVE_HPP
 
 #include "shape.hpp"
 
