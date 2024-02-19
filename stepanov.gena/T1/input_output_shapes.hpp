@@ -7,11 +7,12 @@
 
 namespace stepanov
 {
-  void intputRectangle(std::istream& input, Shape ** shapes, size_t& size_shapes);
-  void intputCircle(std::istream& input, Shape ** shapes, size_t& size_shapes);
-  void intputEllipse(std::istream& input, Shape ** shapes, size_t& size_shapes);
-  void intputSquare(std::istream& input, Shape ** shapes, size_t& size_shapes);
-  void deleteShapes(Shape ** shapes, size_t size_shapes);
-  Shape ** inputShapes(std::istream& input, size_t& size_shapes);
+  void inputRectangle(std::istream& input, Shape** shapes, size_t& size_shapes);
+  void inputCircle(std::istream& input, Shape** shapes, size_t& size_shapes);
+  void inputEllipse(std::istream& input, Shape** shapes, size_t& size_shapes);
+  void inputSquare(std::istream& input, Shape** shapes, size_t& size_shapes);
+  void deleteShapes(Shape** shapes, size_t size_shapes);
+  Shape** inputShapes(std::istream& input, size_t& size_shapes);
+  void outputShapes(std::ostream& output, const Shape * const * shapes,size_t size_shapes);
 }
 #endif
