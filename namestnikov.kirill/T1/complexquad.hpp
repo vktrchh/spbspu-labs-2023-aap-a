@@ -1,11 +1,11 @@
 #ifndef COMPLEXQUAD_HPP
 #define COMPLEXQUAD_HPP
 
-#include "shape.hpp"
-#include "base-types.hpp"
 #include <stdexcept>
 #include <cmath>
 #include <cstddef>
+#include "shape.hpp"
+#include "base-types.hpp"
 
 namespace namestnikov
 {

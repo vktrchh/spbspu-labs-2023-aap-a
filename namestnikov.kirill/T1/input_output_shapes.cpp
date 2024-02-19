@@ -94,7 +94,7 @@ namestnikov::Shape ** namestnikov::inputShapes(std::istream & in, size_t & count
       std::cerr << "Error: " << e.what() << "\n";
     }
     std::string skippedLine = "";
-    getline(in, skippedLine);
+    std::getline(std::cin, skippedLine);
   }
   return currentShapes;
 }
