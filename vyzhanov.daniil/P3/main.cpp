@@ -13,10 +13,9 @@ int main()
   }
   catch (const std::bad_alloc& e)
   {
-    std::cerr << "Error: " << e.what() << "\n";
+    std::cerr << "Error" << "\n";
     return 1;
   }
-
   if (string[0] == '\0')
   {
     delete[] string;
@@ -24,12 +23,10 @@ int main()
     return 1;
   }
   size_t stringLength = 0;
-
   while (string[stringLength])
   {
     stringLength++;
   }
-
   try
   {
     newString = new char[stringLength];
