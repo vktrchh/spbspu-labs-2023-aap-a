@@ -11,5 +11,7 @@ namespace stepanov
   void intputCircle(std::istream& input, Shape ** shapes, size_t& size_shapes);
   void intputEllipse(std::istream& input, Shape ** shapes, size_t& size_shapes);
   void intputSquare(std::istream& input, Shape ** shapes, size_t& size_shapes);
+  void deleteShapes(Shape ** shapes, size_t size_shapes);
+  Shape ** inputShapes(std::istream& input, size_t& size_shapes);
 }
 #endif
