@@ -41,6 +41,11 @@ char* vyzhanov::inputString(std::istream& input)
     }
     index++;
   }
+  if (string[0] == 0)
+  {
+    delete[] string;
+    throw std::logic_error("Empty string");
+  }
   input >> std::skipws;
   return string;
 }
