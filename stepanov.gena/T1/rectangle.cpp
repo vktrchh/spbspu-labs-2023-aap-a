@@ -20,7 +20,7 @@ stepanov::rectangle_t stepanov::Rectangle::getFrameRect() const
 {
   double width = rightCorner_.x - leftCorner_.x;
   double height = rightCorner_.y - leftCorner_.y;
-  point_t center = { (leftCorner_.x + width) / 2, (leftCorner_.y + height) / 2 };
+  point_t center = { leftCorner_.x + width / 2, leftCorner_.y + height / 2 };
   return { width, height, center };
 }
 
