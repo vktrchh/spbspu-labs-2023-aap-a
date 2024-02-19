@@ -35,10 +35,6 @@ void novokhatskiy::Ellipse::move(double x, double y)
 
 void novokhatskiy::Ellipse::scale(double ratio)
 {
-  if (ratio < 0.0)
-  {
-    throw std::invalid_argument("The ratio can't be negative");
-  }
   vert_ *= ratio;
   horizon_ *= ratio;
 }

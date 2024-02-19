@@ -1,9 +1,9 @@
 #include "inputShapes.hpp"
+#include <iostream>
+#include <string>
 #include "rectangle.hpp"
 #include "ring.hpp"
 #include "ellipse.hpp"
-#include <iostream>
-#include <string>
 
 void novokhatskiy::freeShapes(Shape** shapes, size_t shapeCounter)
 {
@@ -66,17 +66,18 @@ novokhatskiy::Shape** novokhatskiy::inputShapes(std::istream& input, size_t& sha
         delete[] oldShapes;
         try
         {
+          double* cP = currentParameters;
           if (currentName == "RECTANGLE")
           {
-            currentShapes[shapeCounter] = new Rectangle({ currentParameters[0], currentParameters[1] }, { currentParameters[2], currentParameters[3] });
+            currentShapes[shapeCounter] = new Rectangle({ cP[0], cP[1] }, { cP[2], cP[3] });
           }
           else if (currentName == "RING")
           {
-            currentShapes[shapeCounter] = new Ring({ currentParameters[0], currentParameters[1] }, currentParameters[2], currentParameters[3]);
+            currentShapes[shapeCounter] = new Ring({ cP[0], cP[1] }, cP[2], cP[3]);
           }
           else if (currentName == "ELLIPSE")
           {
-            currentShapes[shapeCounter] = new Ellipse({ currentParameters[0], currentParameters[1] }, currentParameters[2], currentParameters[3]);
+            currentShapes[shapeCounter] = new Ellipse({ cP[0], cP[1] }, cP[2], cP[3]);
           }
           ++shapeCounter;
         }

@@ -31,10 +31,6 @@ void novokhatskiy::Ring::move(double x, double y)
 }
 void novokhatskiy::Ring::scale(double ratio)
 {
-  if (ratio < 0.0)
-  {
-    throw std::invalid_argument("The ratio can't be negative");
-  }
   innerRadius_ *= ratio;
   outerRadius_ *= ratio;
 }

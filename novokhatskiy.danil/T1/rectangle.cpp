@@ -23,8 +23,7 @@ novokhatskiy::rectangle_t novokhatskiy::Rectangle::getFrameRect() const
 }
 void novokhatskiy::Rectangle::move(const point_t &p)
 {
-  point_t center = {((rightCorner_.x + leftCorner_.x) / 2),
-  ((rightCorner_.y + leftCorner_.y) / 2)};
+  point_t center = {((rightCorner_.x + leftCorner_.x) / 2), ((rightCorner_.y + leftCorner_.y) / 2)};
   point_t moveVec = {p.x - center.x, p.y - center.y};
   leftCorner_.x += moveVec.x;
   leftCorner_.y += moveVec.y;
@@ -40,12 +39,7 @@ void novokhatskiy::Rectangle::move(double x, double y)
 }
 void novokhatskiy::Rectangle::scale(double ratio)
 {
-  if (ratio <= 0.0)
-  {
-    throw std::invalid_argument("The ratio can't be negative or zero");
-  }
-  point_t center = {((rightCorner_.x + leftCorner_.x) / 2),
-   ((rightCorner_.y + leftCorner_.y) / 2)};
+  point_t center = {((rightCorner_.x + leftCorner_.x) / 2), ((rightCorner_.y + leftCorner_.y) / 2)};
   leftCorner_.x += (leftCorner_.x - center.x) * (ratio - 1);
   leftCorner_.y += (leftCorner_.y - center.y) * (ratio - 1);
   rightCorner_.x += (rightCorner_.x - center.x) * (ratio - 1);
