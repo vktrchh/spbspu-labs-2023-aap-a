@@ -32,9 +32,14 @@ int main()
     }
     outputShapes(std::cout, shapes, size_shapes);
   }
-  catch (const std::bad_alloc &)
+  catch (const std::bad_alloc&)
   {
     std::cerr << "Error with memory allocation\n";
+    return 1;
+  }
+  catch (const std::except& e)
+  {
+    std::cerr << "Error: " << e.what();
     return 1;
   }
   deleteShapes(shapes, size_shapes);
