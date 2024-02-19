@@ -1,4 +1,5 @@
 #include "check_functions.hpp"
+#include <cmath>
 
 bool lopatina::isRectangleCorrect(point_t low_left, point_t up_right)
 {
@@ -6,27 +7,21 @@ bool lopatina::isRectangleCorrect(point_t low_left, point_t up_right)
   {
     return false;
   }
-/*
-  if (((low_left.x_ > up_right.x_) && (low_left.y_ < up_right.y_)) || ((low_left.y_ > up_right.y_) && (low_left.x_ < up_right.x_)))
-  {
-    return false;
-  }
-*/
   return true;
 }
 
 bool lopatina::isTriangleCorrect(point_t p1, point_t p2, point_t p3)
 {
-  if (((p1.x_ == p2.x_) && (p1.y_ == p2.y_)) || ((p2.x_ == p3.x_) && (p2.y_ == p3.y_)) || ((p3.x_ == p1.x_) && (p3.y_ == p1.y_)))
-  {
-    return false;
-  }
-  if (((p1.x_ == p2.x_) && (p2.x_  == p3.x_)) || ((p1.y_ == p2.y_) && (p2.y_ == p3.y_)))
+  double a = std::sqrt(std::pow(p1.x_ - p2.x_, 2.0) + std::pow(p1.y_ - p2.y_, 2.0));
+  double b = std::sqrt(std::pow(p2.x_ - p3.x_, 2.0) + std::pow(p2.y_ - p3.y_, 2.0));
+  double c = std::sqrt(std::pow(p1.x_ - p3.x_, 2.0) + std::pow(p1.y_ - p3.y_, 2.0));
+  if ((a >= (b + c)) || (b >= (a + c)) || (c >= (a + b)))
   {
     return false;
   }
   return true;
 }
+
 
 bool lopatina::isCentralPoint(point_t point1, point_t point2, point_t point3)
 {

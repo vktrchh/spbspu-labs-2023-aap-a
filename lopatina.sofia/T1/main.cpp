@@ -71,20 +71,6 @@ int main()
       }
       else
       {
-/*
-        if (low_left_x > up_right_x)
-        {
-          double x1 = low_left_x, x2 = up_right_x;
-          low_left_x = x2;
-          up_right_x = x1;
-        }
-        if (low_left_y > up_right_y)
-        {
-          double y1 = low_left_y, y2 = up_right_y;
-          low_left_y = y2;
-          up_right_y = y1;
-        }
-*/
         array[counter++] = new Rectangle({low_left_x, low_left_y}, {up_right_x, up_right_y});
       }
     }
