@@ -37,3 +37,8 @@ ishmuratov::point_t ishmuratov::diamondCenter(const point_t & point1, const poin
   }
   return { 0, 0 };
 }
+
+double ishmuratov::pseudoScalar(const point_t & point1, const point_t & point2)
+{
+  return point1.x * point2.y - point1.y * point2.x;
+}
