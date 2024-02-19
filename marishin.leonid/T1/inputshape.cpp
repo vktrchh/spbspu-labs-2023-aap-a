@@ -2,9 +2,8 @@
 
 void marishin::readRectangle(std::istream& in, Shape** currentShapes, size_t& shapeCount)
 {
-  const size_t num = 4;
-  double option[num] = {};
-  for (size_t j = 0; j < num; j++)
+  double option[4]{};
+  for (size_t j = 0; j < 4; j++)
   {
     in >> option[j];
   }
@@ -19,9 +18,8 @@ void marishin::readRectangle(std::istream& in, Shape** currentShapes, size_t& sh
 
 void marishin::readTriangle(std::istream& in, Shape** currentShapes, size_t& shapeCount)
 {
-  const size_t num = 6;
-  double option[num] = {};
-  for (size_t j = 0; j < num; j++)
+  double option[6]{};
+  for (size_t j = 0; j < 6; j++)
   {
     in >> option[j];
   }
@@ -36,9 +34,8 @@ void marishin::readTriangle(std::istream& in, Shape** currentShapes, size_t& sha
 
 void marishin::readRing(std::istream& in, Shape** currentShapes, size_t& shapeCount)
 {
-  const size_t num = 4;
-  double option[num] = {};
-  for (size_t j = 0; j < num; j++)
+  double option[4] = {};
+  for (size_t j = 0; j < 4; j++)
   {
     in >> option[j];
   }
