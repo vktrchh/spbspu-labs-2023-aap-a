@@ -6,7 +6,7 @@
 
 int main()
 {
-  const size_t defaultSize = 100;
+  const size_t defaultSize = 1000;
 
   char * firstString = nullptr;
   char * secondString = nullptr;
