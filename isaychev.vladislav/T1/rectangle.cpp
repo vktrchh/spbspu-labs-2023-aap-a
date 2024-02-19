@@ -1,5 +1,6 @@
 #include "rectangle.hpp"
 #include <stdexcept>
+#include "geometryFunctions.hpp"
 
 isaychev::Rectangle::Rectangle(const point_t & p1, const point_t & p2):
   botL_(p1),
@@ -34,16 +35,14 @@ void isaychev::Rectangle::move(const point_t & newPos)
 
 void isaychev::Rectangle::move(double dX, double dY)
 {
-  topR_.x += dX;
-  botL_.x += dX;
-  topR_.y += dY;
-  botL_.y += dY;
+  changeCoords(topR_, dX, dY);
+  changeCoords(botL_, dX, dY);
 }
 
 void isaychev::Rectangle::doScale(double coeff)
 {
   double width05 = (topR_.x - botL_.x) / 2;
-  double height05 = (topR_.y - botL_.y)  / 2;
+  double height05 = (topR_.y - botL_.y) / 2;
   topR_.x += (coeff - 1.0) * width05;
   topR_.y += (coeff - 1.0) * height05;
   botL_.x -= (coeff - 1.0) * width05;

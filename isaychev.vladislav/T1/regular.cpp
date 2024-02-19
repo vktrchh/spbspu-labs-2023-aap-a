@@ -1,6 +1,7 @@
 #include "regular.hpp"
 #include <stdexcept>
 #include <cmath>
+#include "geometryFunctions.hpp"
 
 bool canBeReg(double a, double c)
 {
@@ -29,14 +30,19 @@ bool isTriangle(double a, double b, double c)
   return false;
 }
 
+double getSideSquare(const isaychev::point_t & p1, const isaychev::point_t & p2)
+{
+  return std::pow((p1.x - p2.x), 2) + std::pow((p1.y - p2.y), 2);
+}
+
 isaychev::Regular::Regular(const point_t & p1, const point_t & p2, const point_t & p3):
   center_(p1),
   closePnt_(p2),
   distPnt_(p3)
 {
-  double side1 = std::pow((p1.x - p2.x), 2) + std::pow((p1.y - p2.y), 2);
-  double side2 = std::pow((p1.x - p3.x), 2) + std::pow((p1.y - p3.y), 2);
-  double bottom = std::pow((p2.x - p3.x), 2) + std::pow((p2.y - p3.y), 2);
+  double side1 = getSideSquare(p1, p2);
+  double side2 = getSideSquare(p1, p3);
+  double bottom = getSideSquare(p2, p3);
   bool regCheck = canBeReg(side1, side2);
   bool triCheck = isTriangle(side1, side2, bottom);
   if (side2 == side1 + bottom && regCheck == 1 && triCheck == 1)
@@ -52,14 +58,19 @@ isaychev::Regular::Regular(const point_t & p1, const point_t & p2, const point_t
   }
 }
 
+double getCoordSquared(double coord1, double coord2)
+{
+  return std::pow((coord1 - coord2), 2);
+}
+
 double isaychev::Regular::getArea() const
 {
   double inRad = 0.0, bottom = 0.0, radX = 0.0, radY = 0.0;
-  radX = (distPnt_.x - closePnt_.x) * (distPnt_.x - closePnt_.x);
-  radY = (distPnt_.y - closePnt_.y) * (distPnt_.y - closePnt_.y);
+  radX = getCoordSquared(distPnt_.x, closePnt_.x);
+  radY = getCoordSquared(distPnt_.y, closePnt_.y);
   bottom = std::sqrt(radX + radY);
-  radX = (center_.x - closePnt_.x) * (center_.x - closePnt_.x);
-  radY = (center_.y - closePnt_.y) * (center_.y - closePnt_.y);
+  radX = getCoordSquared(center_.x, closePnt_.x);
+  radY = getCoordSquared(center_.y, closePnt_.y);
   inRad = std::sqrt(radX + radY);
   int numOfSides = std::round(3.1415926535 / std::atan(bottom / inRad));
   return bottom * inRad * numOfSides;
@@ -68,8 +79,8 @@ double isaychev::Regular::getArea() const
 isaychev::rectangle_t isaychev::Regular::getFrameRect() const
 {
   double radX = 0.0, radY = 0.0;
-  radX = (center_.x - closePnt_.x) * (center_.x - closePnt_.x);
-  radY = (center_.y - closePnt_.y) * (center_.y - closePnt_.y);
+  radX = getCoordSquared(center_.x, closePnt_.x);
+  radY = getCoordSquared(center_.y, closePnt_.y);
   double leg = std::sqrt(radX + radY);
   radX = (distPnt_.x - center_.x);
   radY = (distPnt_.y - center_.y);
@@ -83,23 +94,11 @@ isaychev::rectangle_t isaychev::Regular::getFrameRect() const
   for (size_t i = 1.0; i < numOfSides; i++)
   {
     double currX = center_.x + outRad * std::cos(initXAngle + i * steerAngle);
-    if (currX < minX)
-    {
-      minX = currX;
-    }
-    if (currX > maxX)
-    {
-      maxX = currX;
-    }
     double currY = center_.y + outRad * std::sin(initXAngle + i * steerAngle);
-    if (currY < minY)
-    {
-      minY = currY;
-    }
-    if (currY > maxY)
-    {
-      maxY = currY;
-    }
+    minX = std::min(minX, currX);
+    maxX = std::max(maxX, currX);
+    minY = std::min(minY, currY);
+    maxY = std::max(maxY, currY);
   }
   double width = maxX - minX;
   double height = maxY - minY;
@@ -109,29 +108,28 @@ isaychev::rectangle_t isaychev::Regular::getFrameRect() const
 
 void isaychev::Regular::move(double dX, double dY)
 {
-  center_.x += dX;
-  closePnt_.x += dX;
-  distPnt_.x += dX;
-  center_.y += dY;
-  closePnt_.y += dY;
-  distPnt_.y += dY;
+  changeCoords(center_, dX, dY);
+  changeCoords(closePnt_, dX, dY);
+  changeCoords(distPnt_, dX, dY);
 }
 
 void isaychev::Regular::move(const point_t & newPos)
 {
   double dX = newPos.x - center_.x;
-  closePnt_.x += dX;
-  distPnt_.x += dX;
   double dY = newPos.y - center_.y;
-  closePnt_.y += dY;
-  distPnt_.y += dY;
+  changeCoords(closePnt_, dX, dY);
+  changeCoords(distPnt_, dX, dY);
   center_ = {newPos.x, newPos.y};
+}
+
+void scaleRegPnt(isaychev::point_t & p1, const isaychev::point_t & p2, double coeff)
+{
+  p1.x = p2.x + (p1.x - p2.x) * coeff;
+  p1.y = p2.y + (p1.y - p2.y) * coeff;
 }
 
 void isaychev::Regular::doScale(double coeff)
 {
-  distPnt_.x = center_.x + (distPnt_.x - center_.x) * coeff;
-  closePnt_.x = center_.x + (closePnt_.x - center_.x) * coeff;
-  distPnt_.y = center_.y + (distPnt_.y - center_.y) * coeff;
-  closePnt_.y = center_.y + (closePnt_.y - center_.y) * coeff;
+  scaleRegPnt(distPnt_, center_, coeff);
+  scaleRegPnt(closePnt_, center_, coeff);
 }

@@ -130,22 +130,10 @@ isaychev::rectangle_t isaychev::CompositeShape::getFrameRect() const
     double lY = rec.pos.y - rec.height / 2;
     double rX = rec.pos.x + rec.width / 2;
     double rY = rec.pos.y + rec.height / 2;
-    if (minX > lX)
-    {
-      minX = lX;
-    }
-    if (minY > lY)
-    {
-      minY = lY;
-    }
-    if (maxX < rX)
-    {
-      maxX = rX;
-    }
-    if (maxY < rY)
-    {
-      maxY = rY;
-    }
+    minX = std::min(minX, lX);
+    maxX = std::max(maxX, rX);
+    minY = std::min(minY, lY);
+    maxY = std::max(maxY, rY);
   }
   double width = maxX - minX;
   double height = maxY - minY;

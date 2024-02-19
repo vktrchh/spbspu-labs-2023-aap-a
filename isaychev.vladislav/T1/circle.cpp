@@ -1,5 +1,6 @@
 #include "circle.hpp"
 #include <stdexcept>
+#include "geometryFunctions.hpp"
 
 isaychev::Circle::Circle(const point_t & p, double rad):
   center_(p),
@@ -28,8 +29,7 @@ void isaychev::Circle::move(const point_t & newPos)
 
 void isaychev::Circle::move(double dX, double dY)
 {
-  center_.x += dX;
-  center_.y += dY;
+  changeCoords(center_, dX, dY);
 }
 
 void isaychev::Circle::doScale(double coeff)
