@@ -10,7 +10,6 @@ void marishin::readRectangle(std::istream& in, Shape** currentShapes, size_t& sh
 
   if (!in)
   {
-    cleanupShapes(currentShapes, shapeCount);
     throw std::invalid_argument("Invalid rectangle parameters");
   }
   currentShapes[shapeCount] = new Rectangle({ option[0], option[1] }, { option[2], option[3] });
@@ -26,7 +25,6 @@ void marishin::readTriangle(std::istream& in, Shape** currentShapes, size_t& sha
 
   if (!in)
   {
-    cleanupShapes(currentShapes, shapeCount);
     throw std::invalid_argument("Invalid triangle parameters");
   }
   currentShapes[shapeCount] = new Triangle({ option[0], option[1] }, { option[2], option[3] }, { option[4], option[5] });
@@ -42,7 +40,6 @@ void marishin::readRing(std::istream& in, Shape** currentShapes, size_t& shapeCo
 
   if (!in)
   {
-    cleanupShapes(currentShapes, shapeCount);
     throw std::invalid_argument("Invalid ring parameters");
   }
   currentShapes[shapeCount] = new Ring({ option[0], option[1] }, option[2], option[3]);
