@@ -21,18 +21,51 @@ arakelyan::Parallelogram::Parallelogram(point_t fp, point_t sp, point_t tp):
 double arakelyan::Parallelogram::getArea() const
 {
   rectangle_t dataFrameOfPar = getFrameRect();
-  return std::abs((p2_.x - p1_.x) * dataFrameOfPar.height);
+  if (p1_.y == p2_.y)
+  {
+    return std::abs((p1_.x - p2_.x) * dataFrameOfPar.height);
+  }
+  else
+  {
+    return std::abs((p2_.x - p3_.x) * dataFrameOfPar.height);
+  }
 }
 
 arakelyan::rectangle_t arakelyan::Parallelogram::getFrameRect() const
 {
-  double width = (p2_.x - p1_.x) + (p3_.x - p1_.x);
-  double height = std::abs(p3_.y - p2_.y);
+  double width = std::abs(p2_.x - p1_.x) + std::abs(p2_.x - p3_.x);
+  double height = 0;
+  if (p2_.y == p1_.y)
+  {
+    height = std::abs(p3_.y - p2_.y);
+  }
+  else
+  {
+    height = std::abs(p2_.y - p1_.y);
+  }
 
   point_t midPointOfRect = {0, 0};
+  if (p1_.x <= p2_.x && p1_.x <= p3_.x)
+  {
+    midPointOfRect.x = p1_.x + (width / 2.0);
+  }
+  else if (p2_.x <= p1_.x && p2_.x <= p3_.x)
+  {
+    midPointOfRect.x = p2_.x + (width / 2.0);
+  }
+  else
+  {
+    midPointOfRect.x = p3_.x + (width / 2.0);
+  }
 
-  midPointOfRect.x = p1_.x + (width / 2.0);
-  midPointOfRect.y = p1_.y + (height / 2.0);
+  if (p1_.y > p2_.y || p1_.y > p3_.y)
+  {
+    midPointOfRect.y = p1_.y - (height / 2.0);
+  }
+  else
+  {
+    midPointOfRect.y = p1_.y + (height / 2.0);
+  }
 
   return {width, height, midPointOfRect};
 }
