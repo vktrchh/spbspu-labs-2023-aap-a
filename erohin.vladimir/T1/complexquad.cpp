@@ -60,13 +60,7 @@ void erohin::Complexquad::move(point_t point)
   move(dx, dy);
 }
 
-erohin::Shape* erohin::Complexquad::clone() const
-{
-  Shape* shape = new Complexquad(vertex_[0], vertex_[1], vertex_[2], vertex_[3]);
-  return shape;
-}
-
-void erohin::Complexquad::doScaling(double ratio)
+void erohin::Complexquad::unsafeScale(double ratio)
 {
   point_t center = getCenter();
   for (size_t i = 0; i < 4; ++i)
@@ -74,4 +68,10 @@ void erohin::Complexquad::doScaling(double ratio)
     vertex_[i].x = center.x + (vertex_[i].x - center.x) * ratio;
     vertex_[i].y = center.y + (vertex_[i].y - center.y) * ratio;
   }
+}
+
+erohin::Shape* erohin::Complexquad::clone() const
+{
+  Shape* shape = new Complexquad(vertex_[0], vertex_[1], vertex_[2], vertex_[3]);
+  return shape;
 }

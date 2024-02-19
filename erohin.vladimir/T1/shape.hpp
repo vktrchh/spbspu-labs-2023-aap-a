@@ -14,9 +14,8 @@ namespace erohin
     virtual void move(double dx, double dy) = 0;
     virtual void move(point_t point) = 0;
     void scale(double ratio);
+    virtual void unsafeScale(double ratio) = 0;
     virtual Shape* clone() const = 0;
-  private:
-    virtual void doScaling(double ratio) = 0;
   };
 }
 

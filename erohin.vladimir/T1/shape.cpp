@@ -7,5 +7,5 @@ void erohin::Shape::scale(double ratio)
   {
     throw std::invalid_argument("Wrong figure creation");
   }
-  doScaling(ratio);
+  unsafeScale(ratio);
 }

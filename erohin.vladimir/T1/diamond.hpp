@@ -15,10 +15,10 @@ namespace erohin
     virtual rectangle_t getFrameRect() const;
     virtual void move(double dx, double dy);
     virtual void move(point_t point);
+    virtual void unsafeScale(double ratio);
     virtual Shape* clone() const;
   private:
     rectangle_t frameRect_;
-    virtual void doScaling(double ratio);
   };
 }
 

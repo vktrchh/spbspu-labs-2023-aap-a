@@ -70,13 +70,7 @@ void erohin::Triangle::move(point_t point)
   move(dx, dy);
 }
 
-erohin::Shape* erohin::Triangle::clone() const
-{
-  Shape* shape = new Triangle(vertex_[0], vertex_[1], vertex_[2]);
-  return shape;
-}
-
-void erohin::Triangle::doScaling(double ratio)
+void erohin::Triangle::unsafeScale(double ratio)
 {
   point_t center = getCenter();
   for (size_t i = 0; i < 3; ++i)
@@ -84,4 +78,10 @@ void erohin::Triangle::doScaling(double ratio)
     vertex_[i].x = center.x + (vertex_[i].x - center.x) * ratio;
     vertex_[i].y = center.y + (vertex_[i].y - center.y) * ratio;
   }
+}
+
+erohin::Shape* erohin::Triangle::clone() const
+{
+  Shape* shape = new Triangle(vertex_[0], vertex_[1], vertex_[2]);
+  return shape;
 }
