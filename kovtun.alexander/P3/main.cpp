@@ -6,6 +6,8 @@
 
 int main()
 {
+  const char defaultSize = 100;
+
   char * firstString = nullptr;
   char * secondString = nullptr;
   char * loweredString = nullptr;
@@ -13,7 +15,6 @@ int main()
   try
   {
     firstString = kovtun::readString(std::cin);
-    size_t firstStringLength = kovtun::getStringLength(firstString);
     secondString = kovtun::readString(std::cin);
 
     if (firstString[0] == '\0' && secondString[0] == '\0')
@@ -24,10 +25,11 @@ int main()
       return 2;
     }
 
-    loweredString = new char[firstStringLength + 1]();
+    loweredString = new char[defaultSize]();
     kovtun::convertToLowercase(loweredString, firstString);
 
-    mergedString = kovtun::mergeStrings(firstString, secondString);
+    mergedString = new char[defaultSize]();
+    mergedString = kovtun::mergeStrings(mergedString, firstString, secondString);
   }
   catch (...)
   {
