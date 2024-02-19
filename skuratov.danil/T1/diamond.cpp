@@ -44,7 +44,15 @@ void skuratov::Diamond::move(const point_t& A)
 }
 
 void skuratov::Diamond::move(double dx, double dy)
-{}
+{
+  corner1_.x += dx;
+  corner2_.x += dx;
+  corner3_.x += dx;
+
+  corner1_.y += dy;
+  corner2_.y += dy;
+  corner3_.y += dy;
+}
 
 void skuratov::Diamond::scale(double scalingFactor)
 {
@@ -52,4 +60,13 @@ void skuratov::Diamond::scale(double scalingFactor)
   {
     throw std::invalid_argument("Error: scale factor of diamond should be a positive");
   }
+
+  rectangle_t B = getFrameRect();
+  point_t center = B.pos;
+  corner1_.x = center.x + scalingFactor * (corner1_.x - center.x);
+  corner1_.y = center.y + scalingFactor * (corner1_.y - center.y);
+  corner2_.x = center.x + scalingFactor * (corner2_.x - center.x);
+  corner2_.y = center.y + scalingFactor * (corner2_.y - center.y);
+  corner3_.x = center.x + scalingFactor * (corner3_.x - center.x);
+  corner3_.y = center.y + scalingFactor * (corner3_.y - center.y);  
 }
