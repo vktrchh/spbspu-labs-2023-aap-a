@@ -37,10 +37,7 @@ int main()
   std::cout << '\n';
   for (size_t i = 0; i < length; i++)
   {
-    if (shapes[i])
-    {
-      isoScale(shapes[i], point, ratio);
-    }
+    isoScale(shapes[i], point, ratio);
   }
   outputShapesSource(shapes, length, std::cout);
   std::cout << '\n';
