@@ -4,29 +4,15 @@
 
 #include "definedata.hpp"
 
-void gladyshev::shapeInput(std::istream& in, Shape ** shapes, point_t& pos, size_t& counter, double& factor)
+void gladyshev::shapeInput(std::istream& in, Shape ** shapes, size_t& counter)
 {
   size_t mainCounter = 0;
   bool unsupFig = false;
   std::string inputName = "";
-  while (in >> inputName)
+  while ((in >> inputName) && (inputName != "SCALE"))
   {
     try
     {
-      if (inputName == "SCALE")
-      {
-        if (mainCounter == 0)
-        {
-          throw std::out_of_range("lack of supported data");
-        }
-        counter = mainCounter;
-        inputScale(in, pos, factor);
-        if (unsupFig)
-        {
-          throw std::runtime_error("there are incorrect or unsupported figures");
-        }
-        return;
-      }
       Shape * checkedShape = identifyShape(inputName, in);
       if (in.get() != '\n')
       {
@@ -44,6 +30,11 @@ void gladyshev::shapeInput(std::istream& in, Shape ** shapes, point_t& pos, size
       freeMemory(shapes, mainCounter);
       throw;
     }
+  }
+  counter = mainCounter;
+  if (unsupFig)
+  {
+    throw std::runtime_error("there are incorrect or unsupported figures");
   }
   if (in.eof())
   {

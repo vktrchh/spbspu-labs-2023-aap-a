@@ -18,14 +18,6 @@ void gladyshev::inputPoints(std::istream& in, double * arrcords, size_t counter)
   }
 }
 
-void gladyshev::inputScale(std::istream& in, point_t& pos, double& factor)
-{
-  double dataScale[3]{};
-  inputPoints(in, dataScale, 3);
-  pos = { dataScale[0], dataScale[1] };
-  factor = dataScale[2];
-}
-
 void gladyshev::freeMemory(Shape ** shapes, size_t amount)
 {
   for (size_t i = 0; i < amount; ++i)

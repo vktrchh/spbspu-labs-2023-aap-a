@@ -14,7 +14,11 @@ int main()
   double factor = 0;
   try
   {
-    shapeInput(std::cin, shapes, pos, counter, factor);
+    shapeInput(std::cin, shapes, counter);
+    if (counter == 0)
+    {
+      throw std::logic_error("lack of support data");
+    }
   }
   catch (const std::runtime_error& e)
   {
@@ -27,6 +31,11 @@ int main()
   }
   try
   {
+    std::cin >> pos.x >> pos.y >> factor;
+    if (!std::cin)
+    {
+      throw std::underflow_error("bad input of scale data");
+    }
     outData(std::cout, shapes, counter);
     std::cout << "\n";
     for (size_t i = 0; i < counter; ++i)

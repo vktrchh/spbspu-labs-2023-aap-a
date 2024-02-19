@@ -8,7 +8,7 @@
 
 namespace gladyshev
 {
-  void shapeInput(std::istream& in, Shape ** shapes, point_t& pos, size_t& counter, double& factor);
+  void shapeInput(std::istream& in, Shape ** shapes, size_t& counter);
 }
 
 #endif
