@@ -5,7 +5,7 @@
 
 namespace belokurskaya
 {
-  class Triangle : public Shape
+  class Triangle: public Shape
   {
     public:
       Triangle(const point_t & vertex1, const point_t & vertex2, const point_t & vertex3);

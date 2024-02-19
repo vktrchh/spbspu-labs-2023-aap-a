@@ -5,7 +5,7 @@
 
 namespace belokurskaya
 {
-  class Rectangle : public Shape
+  class Rectangle: public Shape
   {
     public:
       Rectangle(const point_t & lower_left, const point_t & upper_right);

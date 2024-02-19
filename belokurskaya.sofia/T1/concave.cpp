@@ -46,14 +46,7 @@ void belokurskaya::Concave::move(const point_t & new_pos)
 {
   double dx = new_pos.x - getFrameRect().pos.x;
   double dy = new_pos.y - getFrameRect().pos.y;
-  vertex1_.x += dx;
-  vertex1_.y += dy;
-  vertex2_.x += dx;
-  vertex2_.y += dy;
-  vertex3_.x += dx;
-  vertex3_.y += dy;
-  vertex4_.x += dx;
-  vertex4_.y += dy;
+  move(dx, dy);
 }
 
 void belokurskaya::Concave::move(double dx, double dy)
@@ -85,12 +78,14 @@ bool belokurskaya::Concave::isTriangle(const point_t & p1, const point_t & p2, c
 
 bool belokurskaya::Concave::isInsideTriangle(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4) const
 {
-  return ((p2.y - p3.y) * (p1.x - p3.x) + (p3.x - p2.x) * (p1.y - p3.y)) *
-         ((p2.y - p3.y) * (p4.x - p3.x) + (p3.x - p2.x) * (p4.y - p3.y)) >= 0 &&
-         ((p3.y - p1.y) * (p2.x - p1.x) + (p1.x - p3.x) * (p2.y - p1.y)) *
-         ((p3.y - p1.y) * (p4.x - p1.x) + (p1.x - p3.x) * (p4.y - p1.y)) >= 0 &&
-         ((p1.y - p2.y) * (p3.x - p2.x) + (p2.x - p1.x) * (p3.y - p2.y)) *
-         ((p1.y - p2.y) * (p4.x - p2.x) + (p2.x - p1.x) * (p4.y - p2.y)) >= 0;
+  double a = ((p2.y - p3.y) * (p1.x - p3.x) + (p3.x - p2.x) * (p1.y - p3.y));
+  double b = ((p2.y - p3.y) * (p4.x - p3.x) + (p3.x - p2.x) * (p4.y - p3.y));
+  double c = ((p3.y - p1.y) * (p2.x - p1.x) + (p1.x - p3.x) * (p2.y - p1.y));
+  double d = ((p3.y - p1.y) * (p4.x - p1.x) + (p1.x - p3.x) * (p4.y - p1.y));
+  double e = ((p1.y - p2.y) * (p3.x - p2.x) + (p2.x - p1.x) * (p3.y - p2.y));
+  double f = ((p1.y - p2.y) * (p4.x - p2.x) + (p2.x - p1.x) * (p4.y - p2.y));
+
+  return a * b >= 0 && c * d >= 0 && e * f >= 0;
 }
 
 bool belokurskaya::Concave::isConcave(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4)

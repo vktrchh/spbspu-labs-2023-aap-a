@@ -5,7 +5,7 @@
 
 namespace belokurskaya
 {
-  class Concave : public Shape
+  class Concave: public Shape
   {
     public:
       Concave(const point_t & vertex1, const point_t & vertex2, const point_t & vertex3, const point_t & vertex4);
