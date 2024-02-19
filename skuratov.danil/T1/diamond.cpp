@@ -2,6 +2,7 @@
 
 #include <stdexcept>
 #include <cmath>
+#include <algorithm>
 
 skuratov::Diamond::Diamond(const point_t& corner1, const point_t& corner2, const point_t& corner3) :
   corner1_(corner1),
@@ -24,10 +25,23 @@ double skuratov::Diamond::getArea() const
 }
 
 skuratov::rectangle_t skuratov::Diamond::getFrameRect() const
-{}
+{
+  double minX = std::min({ corner1_.x, corner2_.x, corner3_.x });
+  double maxX = std::max({ corner1_.x, corner2_.x, corner3_.x });
+  double minY = std::min({ corner1_.y, corner2_.y, corner3_.y });
+  double maxY = std::max({ corner1_.y, corner2_.y, corner3_.y });
+
+  double width = maxX - minX;
+  double height = maxY - minY;
+  point_t pos = { minX + width / 2, minY + height / 2 };
+  return { width, height, pos };
+}
 
 void skuratov::Diamond::move(const point_t& A)
-{}
+{
+  rectangle_t B = getFrameRect();
+  move(A.x - B.pos.x, A.y - B.pos.y);
+}
 
 void skuratov::Diamond::move(double dx, double dy)
 {}
