@@ -4,12 +4,11 @@
 
 int main()
 {
-  using namespace vyzhanov;
   char* string = nullptr;
   char* newString = nullptr;
   try
   {
-    string = inputString(std::cin);
+    string = vyzhanov::inputString(std::cin);
     if (string[0] == '\0')
     {
       delete[] string;
