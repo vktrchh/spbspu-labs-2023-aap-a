@@ -18,8 +18,12 @@ double ishmuratov::Triangle::getArea()
 
 ishmuratov::rectangle_t ishmuratov::Triangle::getFrameRect() const
 {
-  point_t botLeft = { std::min(corners_[0].x, std::min(corners_[1].x, corners_[2].x)), std::min(corners_[0].y, std::min(corners_[1].y, corners_[2].y)) };
-  point_t topRight = { std::max(corners_[0].x, std::max(corners_[1].x, corners_[2].x)), std::max(corners_[0].y, std::max(corners_[1].y, corners_[2].y)) };
+  double minx = std::min(corners_[1].x, corners_[2].x);
+  double miny = std::min(corners_[1].y, corners_[2].y);
+  double maxx = std::max(corners_[1].x, corners_[2].x);
+  double maxy = std::max(corners_[1].y, corners_[2].y);
+  point_t botLeft = { std::min(corners_[0].x, minx), std::min(corners_[0].y, miny) };
+  point_t topRight = { std::max(corners_[0].x, maxx), std::max(corners_[0].y, maxy) };
   double frame_width = topRight.x - botLeft.x;
   double frame_height = topRight.y - botLeft.y;
   point_t frame_pos = { botLeft.x + (frame_width / 2), botLeft.y + (frame_height / 2) };
