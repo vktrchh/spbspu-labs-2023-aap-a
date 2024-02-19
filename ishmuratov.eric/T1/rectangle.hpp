@@ -12,8 +12,8 @@ namespace ishmuratov
     public:
       Rectangle(const point_t & point1, const point_t & point2);
       virtual ~Rectangle();
-      virtual Triangle * triangleCut() const;
-      virtual double getArea() const;
+      virtual void triangleCut(Triangle * array);
+      virtual double getArea();
       virtual rectangle_t getFrameRect() const;
       virtual void move(point_t& position);
       virtual void move(double dx, double dy);

@@ -12,31 +12,23 @@ ishmuratov::Rectangle::Rectangle(const point_t & point1, const point_t & point2)
 
 ishmuratov::Rectangle::~Rectangle() = default;
 
-ishmuratov::Triangle * ishmuratov::Rectangle::triangleCut() const
+void ishmuratov::Rectangle::triangleCut(Triangle * array)
 {
-  ishmuratov::Triangle topTri = { botLeft_, {botLeft_.x, topRight_.y}, topRight_ };
-  ishmuratov::Triangle botTri = { botLeft_, {topRight_.x, botLeft_.y}, topRight_ };
-  ishmuratov::Triangle * array = new ishmuratov::Triangle[2]{topTri, botTri};
-  array[0] = topTri;
-  array[1] = botTri;
-  return array;
+  array[0] = { botLeft_, {botLeft_.x, topRight_.y}, topRight_ };
+  array[1] = { botLeft_, {topRight_.x, botLeft_.y}, topRight_ };
 }
 
-double ishmuratov::Rectangle::getArea() const
+double ishmuratov::Rectangle::getArea()
 {
-  ishmuratov::Triangle * triangles = triangleCut();
-  ishmuratov::Triangle tri1 = triangles[0];
-  ishmuratov::Triangle tri2 = triangles[1];
-  delete [] triangles;
-  return tri1.getArea() + tri2.getArea();
+  Triangle array[2] = { { { 0, 0 }, { 0, 1 }, { 1, 0 } }, { { 0, 0 }, { 0, 1 }, { 1, 0 } } };
+  triangleCut(array);
+  return array[0].getArea() + array[1].getArea();
 }
 
 ishmuratov::rectangle_t ishmuratov::Rectangle::getFrameRect() const
 {
-  double frame_width = topRight_.x - botLeft_.x;
-  double frame_height = topRight_.y - botLeft_.y;
-  point_t frame_pos = { botLeft_.x + (frame_width / 2), botLeft_.y + (frame_height / 2) };
-  return { frame_width, frame_height, frame_pos };
+  Triangle tri = { botLeft_, {botLeft_.x, topRight_.y}, topRight_ };
+  return tri.getFrameRect();
 }
 
 void ishmuratov::Rectangle::move(point_t & position)

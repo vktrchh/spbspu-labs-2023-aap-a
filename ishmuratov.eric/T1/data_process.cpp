@@ -42,3 +42,13 @@ double ishmuratov::pseudoScalar(const point_t & point1, const point_t & point2)
 {
   return point1.x * point2.y - point1.y * point2.x;
 }
+
+void ishmuratov::scaleTriangle(point_t * pointArray, point_t center, double factor)
+{
+  point_t diffArray[3] = {};
+  for (int i = 0; i < 3; ++i)
+  {
+    diffArray[i] = { (pointArray[i].x - center.x) * factor, (pointArray[i].y - center.y) * factor };
+    pointArray[i] = { center.x + diffArray[i].x, center.y + diffArray[i].y };
+  }
+}
