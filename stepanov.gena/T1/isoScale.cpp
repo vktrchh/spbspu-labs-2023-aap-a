@@ -1,7 +1,7 @@
 #include "isoScale.hpp"
 #include <stdexcept>
 
-void stepanov::isoScale(Shape* figure, const point_t& p, double ratio)
+void stepanov::isoScale(Shape* figure, point_t& p, double ratio)
 {
   if (ratio <= 0.0)
   {

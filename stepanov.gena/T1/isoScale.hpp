@@ -5,7 +5,7 @@
 
 namespace stepanov
 {
-  void isoScale(Shape * figure, const point_t& p, double ratio);
+  void isoScale(Shape * figure, point_t& p, double ratio);
 }
 
 #endif
