@@ -4,8 +4,8 @@
 
 lopatina::Diamond::Diamond(point_t central, point_t side_x, point_t side_y)
 {
-  height_diam_ = std::abs (side_y.y_ - central.y_);
-  width_diam_ = std::abs (side_x.x_ - central.x_);
+  height_diam_ = 2.0 * std::abs (side_y.y_ - central.y_);
+  width_diam_ = 2.0 * std::abs (side_x.x_ - central.x_);
   pos_diam_.x_ = central.x_;
   pos_diam_.y_ = central.y_;
 }
