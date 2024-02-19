@@ -46,6 +46,6 @@ void stepanov::Rectangle::scale(const double ratio)
   }
   rectangle_t frame = getFrameRect();
   point_t center = frame.pos;
-  leftCorner_ =  {leftCorner_.x + (center.x - leftCorner_.x) * ratio, leftCorner_.y + (center.y - leftCorner_.y) * ratio}};
+  leftCorner_ =  {leftCorner_.x + (center.x - leftCorner_.x) * ratio, leftCorner_.y + (center.y - leftCorner_.y) * ratio};
   rightCorner_ = {center.x + (center.x - leftCorner_.x) * ratio, center.y + (center.y - leftCorner_.y) * ratio};
 }
