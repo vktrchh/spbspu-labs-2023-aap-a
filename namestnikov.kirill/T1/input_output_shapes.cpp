@@ -21,28 +21,28 @@ void inputParametersArray(std::istream & in, double * parametersArray, const siz
 void inputRectangle(std::istream & in, namestnikov::Shape ** shapes, size_t & count)
 {
   const size_t size = 4;
-  double rectangleParameters[size] = {};
-  inputParametersArray(in, rectangleParameters, size);
-  shapes[count++] = new namestnikov::Rectangle({rectangleParameters[0], rectangleParameters[1]}, {rectangleParameters[2], rectangleParameters[3]});
+  double shapeParameters[size] = {};
+  inputParametersArray(in, shapeParameters, size);
+  shapes[count++] = new namestnikov::Rectangle({shapeParameters[0], shapeParameters[1]}, {shapeParameters[2], shapeParameters[3]});
 }
 
 void inputCircle(std::istream & in, namestnikov::Shape ** shapes, size_t & count)
 {
   const size_t size = 3;
-  double circleParameters[size] = {};
-  inputParametersArray(in, circleParameters, size);
-  shapes[count++] = new namestnikov::Circle({circleParameters[0], circleParameters[1]}, circleParameters[2]);
+  double shapeParameters[size] = {};
+  inputParametersArray(in, shapeParameters, size);
+  shapes[count++] = new namestnikov::Circle({shapeParameters[0], shapeParameters[1]}, shapeParameters[2]);
 }
 
 void inputComplexquad(std::istream & in, namestnikov::Shape ** shapes, size_t & count)
 {
   const size_t size = 8;
-  double complexquadParameters[size] = {};
-  inputParametersArray(in, complexquadParameters, size);
+  double shapeParameters[size] = {};
+  inputParametersArray(in, shapeParameters, size);
   namestnikov::point_t points[4] = {};
   for (size_t i = 0; i < 8; i += 2)
   {
-    points[i / 2] = {complexquadParameters[i], complexquadParameters[i + 1]};
+    points[i / 2] = {shapeParameters[i], shapeParameters[i + 1]};
   }
   shapes[count++] = new namestnikov::Complexquad(points[0], points[1], points[2], points[3]);
 }
