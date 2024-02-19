@@ -1,7 +1,8 @@
+#include "triangle.hpp"
+
 #include <stdexcept>
 #include <cmath>
 
-#include "triangle.hpp"
 #include "base-types.hpp"
 
 belokurskaya::Triangle::Triangle(const point_t& vertex1, const point_t& vertex2, const point_t& vertex3):

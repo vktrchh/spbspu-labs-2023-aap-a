@@ -1,5 +1,5 @@
 #include "iso_scale.hpp"
-#include "stdexcept"
+#include <stdexcept>
 
 void belokurskaya::isoScale(Shape * shapes, const point_t & pos, double ratio)
 {

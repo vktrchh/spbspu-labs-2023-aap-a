@@ -1,7 +1,7 @@
+#include "results_printer.hpp"
+
 #include <iostream>
 #include <iomanip>
-
-#include "results_printer.hpp"
 
 void belokurskaya::printResults(Shape** shapes, int shape_count)
 {

@@ -1,7 +1,7 @@
+#include "base-types.hpp"
+
 #include <cmath>
 #include <iostream>
-
-#include "base-types.hpp"
 
 double belokurskaya::roundOff(double value)
 {

@@ -1,6 +1,7 @@
+#include "rectangle.hpp"
+
 #include <stdexcept>
 
-#include "rectangle.hpp"
 #include "base-types.hpp"
 
 belokurskaya::Rectangle::Rectangle(const point_t & lower_left, const point_t & upper_right):
