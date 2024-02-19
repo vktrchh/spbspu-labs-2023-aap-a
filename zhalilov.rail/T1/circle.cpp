@@ -33,7 +33,7 @@ void zhalilov::Circle::move(const double dx, const double dy)
   m_center.y += dy;
 }
 
-void zhalilov::Circle::doScale(const double ratio)
+void zhalilov::Circle::unsafeScale(const double ratio)
 {
   m_radius *= ratio;
 }

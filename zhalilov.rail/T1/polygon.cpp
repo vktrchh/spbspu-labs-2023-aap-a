@@ -101,7 +101,7 @@ void zhalilov::Polygon::move(const double dx, const double dy)
   }
 }
 
-void zhalilov::Polygon::doScale(const double ratio)
+void zhalilov::Polygon::unsafeScale(const double ratio)
 {
   double deltaX = 0.0;
   double deltaY = 0.0;

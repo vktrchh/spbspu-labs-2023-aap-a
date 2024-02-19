@@ -40,7 +40,7 @@ void zhalilov::Rectangle::move(const double dx, const double dy)
   m_rightCorner.y += dy;
 }
 
-void zhalilov::Rectangle::doScale(const double ratio)
+void zhalilov::Rectangle::unsafeScale(const double ratio)
 {
   rectangle_t rect = getFrameRect();
   m_leftCorner.x = rect.pos.x - (rect.pos.x - m_leftCorner.x) * ratio;

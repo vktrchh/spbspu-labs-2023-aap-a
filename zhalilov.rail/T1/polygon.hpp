@@ -16,11 +16,11 @@ namespace zhalilov
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t &point);
     virtual void move(double dx, double dy);
+    virtual void unsafeScale(double ratio);
   private:
     point_t *m_points;
     size_t m_size;
 
-    virtual void doScale(double ratio);
     point_t getCenter();
   };
 }

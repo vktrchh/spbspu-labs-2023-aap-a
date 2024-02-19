@@ -8,5 +8,5 @@ void zhalilov::Shape::scale(double ratio)
   {
     throw std::underflow_error("scale ratio should be more than zero");
   }
-  doScale(ratio);
+  unsafeScale(ratio);
 }
