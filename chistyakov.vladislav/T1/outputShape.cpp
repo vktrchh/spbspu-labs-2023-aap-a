@@ -30,6 +30,8 @@ void chistyakov::outputShape(std::ostream & output, const Shape * const * shapes
     rectangle = shapes[i]->getFrameRect();
     downLeft = {rectangle.pos.x - rectangle.width / 2.0, rectangle.pos.y - rectangle.height / 2.0};
     topRight = {rectangle.pos.x + rectangle.width / 2.0, rectangle.pos.y + rectangle.height / 2.0};
-    output << " " << downLeft.x << " " << downLeft.y << " " << topRight.x << " " << topRight.y << "\n";
+    output << " " << downLeft.x << " " << downLeft.y << " " << topRight.x << " " << topRight.y;
   }
+
+  output << "\n";
 }
