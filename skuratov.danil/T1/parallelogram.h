@@ -8,7 +8,7 @@ namespace skuratov
   class Parallelogram: public Shape
   {
   public:
-    Parallelogram();
+    Parallelogram(const point_t& point1, const point_t& point2, const point_t& point3);
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t& A);
@@ -16,6 +16,9 @@ namespace skuratov
     virtual void scale(double scalingFactor);
     virtual ~Parallelogram() = default;
   private:
+    point_t point1_;
+    point_t point2_;
+    point_t point3_;
   };
 }
 
