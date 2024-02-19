@@ -1,7 +1,7 @@
 #include "complexquad.hpp"
 #include <stdexcept>
 
-lebedev::Complexquad::Complexquad(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4) :
+lebedev::Complexquad::Complexquad(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4):
   p1_(p1),
   p2_(p2),
   p3_(p3),

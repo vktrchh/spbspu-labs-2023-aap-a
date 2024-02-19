@@ -51,7 +51,7 @@ lebedev::point_t findThird(const lebedev::point_t & p1, const lebedev::point_t &
   }
 }
 
-lebedev::Diamond::Diamond(const point_t & p1, const point_t & p2, const point_t & p3) :
+lebedev::Diamond::Diamond(const point_t & p1, const point_t & p2, const point_t & p3):
   p1_(findCenter(p1, p2, p3)),
   p2_(findSecond(p1, p2, p3)),
   p3_(findThird(p1, p2, p3))

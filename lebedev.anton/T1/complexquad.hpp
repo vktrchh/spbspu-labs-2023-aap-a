@@ -6,7 +6,7 @@
 
 namespace lebedev
 {
-  class Complexquad : public Shape
+  class Complexquad: public Shape
   {
   public:
     Complexquad(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4);

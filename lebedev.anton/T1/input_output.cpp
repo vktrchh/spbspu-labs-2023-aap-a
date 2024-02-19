@@ -23,7 +23,7 @@ void lebedev::inputRectangle(std::istream & input, Shape ** shapes, size_t & sha
     input >> args[i];
     if (!input)
     {
-      throw std::invalid_argument("invalid arguments for the Rectangle in input");
+      throw std::invalid_argument("Invalid arguments for the Rectangle in input");
     }
   }
   shapes[shapes_count] = new Rectangle({args[0], args[1]}, {args[2], args[3]});
@@ -38,7 +38,7 @@ void lebedev::inputParallelogram(std::istream & input, Shape ** shapes, size_t &
     input >> args[i];
     if (!input)
     {
-      throw std::invalid_argument("invalid arguments for the Parallelogram in input");
+      throw std::invalid_argument("Invalid arguments for the Parallelogram in input");
     }
   }
   shapes[shapes_count] = new Parallelogram({args[0], args[1]}, {args[2], args[3]}, {args[4], args[5]});
@@ -53,7 +53,7 @@ void lebedev::inputDiamond(std::istream & input, Shape ** shapes, size_t & shape
     input >> args[i];
     if (!input)
     {
-      throw std::invalid_argument("invalid arguments for the Diamond in input");
+      throw std::invalid_argument("Invalid arguments for the Diamond in input");
     }
   }
   shapes[shapes_count] = new Diamond({args[0], args[1]}, {args[2], args[3]}, {args[4], args[5]});
@@ -68,7 +68,7 @@ void lebedev::inputComplexquad(std::istream & input, Shape ** shapes, size_t & s
     input >> args[i];
     if (!input)
     {
-      throw std::invalid_argument("invalid arguments for the Complexquad in input");
+      throw std::invalid_argument("Invalid arguments for the Complexquad in input");
     }
   }
   shapes[shapes_count] = new Complexquad({args[0], args[1]}, {args[2], args[3]}, {args[4], args[5]}, {args[6], args[7]});
