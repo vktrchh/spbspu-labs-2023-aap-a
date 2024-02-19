@@ -10,12 +10,12 @@ lopatina::Diamond::Diamond(point_t central, point_t side_x, point_t side_y)
   pos_diam_.y = central.y;
 }
 
-double lopatina::Diamond::getArea()
+double lopatina::Diamond::getArea() const
 {
   return (height_diam_ * width_diam_) / 2.0;
 }
 
-lopatina::rectangle_t lopatina::Diamond::getFrameRect()
+lopatina::rectangle_t lopatina::Diamond::getFrameRect() const
 {
   rectangle_t newRect{height_diam_, width_diam_, pos_diam_};
   return newRect;

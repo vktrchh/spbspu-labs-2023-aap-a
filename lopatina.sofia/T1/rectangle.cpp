@@ -8,12 +8,12 @@ lopatina::Rectangle::Rectangle(point_t a, point_t b)
   pos_rect_.y = (a.y + b.y) / 2.0;
 }
 
-double lopatina::Rectangle::getArea()
+double lopatina::Rectangle::getArea() const
 {
   return height_rect_ * width_rect_;
 }
 
-lopatina::rectangle_t lopatina::Rectangle::getFrameRect()
+lopatina::rectangle_t lopatina::Rectangle::getFrameRect() const
 {
   rectangle_t newRect{height_rect_, width_rect_, pos_rect_};
   return newRect;

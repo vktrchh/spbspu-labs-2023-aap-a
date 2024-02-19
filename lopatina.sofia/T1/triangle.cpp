@@ -14,12 +14,12 @@ lopatina::Triangle::Triangle(point_t point1, point_t point2, point_t point3)
   pos_tri_.y = (point1.y + point2.y + point3.y) / 3.0;
 }
 
-double lopatina::Triangle::getArea()
+double lopatina::Triangle::getArea() const
 {
   return 0.5 * (std::abs ((p2_.x - p1_.x) * (p3_.y - p1_.y) - (p3_.x - p1_.x) * (p2_.y - p1_.y)));
 }
 
-lopatina::rectangle_t lopatina::Triangle::getFrameRect()
+lopatina::rectangle_t lopatina::Triangle::getFrameRect() const
 {
   double max_x = std::max({p1_.x, p2_.x, p3_.x});
   double min_x = std::min({p1_.x, p2_.x, p3_.x});

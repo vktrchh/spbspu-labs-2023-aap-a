@@ -10,8 +10,8 @@ namespace lopatina
   public:
     Diamond(point_t central, point_t side_x, point_t side_y);
     virtual ~Diamond() = default;
-    virtual double getArea();
-    virtual rectangle_t getFrameRect();
+    virtual double getArea() const;
+    virtual rectangle_t getFrameRect() const;
     virtual void move(point_t s);
     virtual void move(double x, double y);
     virtual void scale(point_t s, double k);

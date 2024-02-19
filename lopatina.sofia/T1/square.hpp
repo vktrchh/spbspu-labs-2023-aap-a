@@ -10,8 +10,8 @@ namespace lopatina
   public:
     Square(point_t a, double side);
     virtual ~Square() = default;
-    virtual double getArea();
-    virtual rectangle_t getFrameRect();
+    virtual double getArea() const;
+    virtual rectangle_t getFrameRect() const;
     virtual void move(point_t s);
     virtual void move(double x, double y);
     virtual void scale(point_t s, double k);

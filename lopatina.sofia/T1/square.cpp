@@ -7,12 +7,12 @@ lopatina::Square::Square(point_t a, double side)
   pos_sq_.y = a.y + (side_ / 2.0);
 }
 
-double lopatina::Square::getArea()
+double lopatina::Square::getArea() const
 {
   return side_ * side_;
 }
 
-lopatina::rectangle_t lopatina::Square::getFrameRect()
+lopatina::rectangle_t lopatina::Square::getFrameRect() const
 {
   rectangle_t newRect{side_, side_, pos_sq_};
   return newRect;
