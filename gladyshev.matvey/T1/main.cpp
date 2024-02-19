@@ -15,10 +15,6 @@ int main()
   try
   {
     shapeInput(std::cin, shapes, counter);
-    if (counter == 0)
-    {
-      throw std::logic_error("lack of support data");
-    }
   }
   catch (const std::runtime_error& e)
   {

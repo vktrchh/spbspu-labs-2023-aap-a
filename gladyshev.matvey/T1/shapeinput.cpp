@@ -32,6 +32,10 @@ void gladyshev::shapeInput(std::istream& in, Shape ** shapes, size_t& counter)
     }
   }
   counter = mainCounter;
+  if (counter == 0)
+  {
+    throw std::logic_error("lack of support data");
+  }
   if (unsupFig)
   {
     throw std::runtime_error("there are incorrect or unsupported figures");
