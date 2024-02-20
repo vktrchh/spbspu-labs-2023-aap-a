@@ -25,7 +25,7 @@ void strelyaev::toScaleIso(Shape* shape, const point_t point, const double k)
   point_t moved = shape->getFrameRect().pos;
   double dx = (moved.x - start.x) * k;
   double dy = (moved.y - start.y) * k;
-  shape->scale(k);
+  shape->unsafeScale(k);
   shape->move(-dx, -dy);
 }
 

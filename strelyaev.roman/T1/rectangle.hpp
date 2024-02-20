@@ -11,8 +11,8 @@ namespace strelyaev
      virtual rectangle_t getFrameRect() const;
      virtual void move(point_t);
      virtual void move(double, double);
+     void unsafeScale(double k) override;
     private:
-     void doScale(double k) override;
      point_t p1_;
      point_t p2_;
   };

@@ -72,7 +72,7 @@ void strelyaev::Triangle::move(double offset_x, double offset_y)
   }
 }
 
-void strelyaev::Triangle::doScale(double k)
+void strelyaev::Triangle::unsafeScale(double k)
 {
   double center_x = (p1_.x + p2_.x + p3_.x) / 3;
   double center_y = (p1_.y + p2_.y + p3_.y) / 3;

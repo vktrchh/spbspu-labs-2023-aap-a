@@ -12,8 +12,7 @@ namespace strelyaev
      virtual void move(point_t) = 0;
      virtual void move(double, double) = 0;
      void scale(double);
-    private:
-     virtual void doScale(double) = 0;
+     virtual void unsafeScale(double) = 0;
   };
 }
 #endif

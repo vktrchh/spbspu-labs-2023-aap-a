@@ -7,5 +7,5 @@ void strelyaev::Shape::scale(double k)
   {
     throw std::logic_error("Invalid SCALE argument.");
   }
-  doScale(k);
+  unsafeScale(k);
 }
