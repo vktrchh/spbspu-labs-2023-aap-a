@@ -13,11 +13,11 @@ namespace piyavkin
     void move(const point_t& bias) override;
     void move(double dx, double dy) override;
     Shape* clone() const override;
+    void unsafeScale(double k) override;
   private:
     point_t a_;
     point_t b_;
     point_t c_;
-    void scaleFigure(double k) override;
   };
 }
 #endif

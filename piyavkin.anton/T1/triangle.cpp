@@ -45,7 +45,7 @@ namespace piyavkin
     b_ = addShift(b_, dx, dy);
     c_ = addShift(c_, dx, dy);
   }
-  void Triangle::scaleFigure(double k)
+  void Triangle::unsafeScale(double k)
   {
     point_t pos = {(a_.x + b_.x + c_.x) / 3, (a_.y + b_.y + c_.y) / 3};
     a_ = scalePoint(a_, pos, k);

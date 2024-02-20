@@ -32,7 +32,7 @@ namespace piyavkin
     lowerLeftCorner_ = addShift(lowerLeftCorner_, dx, dy);
     topRightCorner_ = addShift(topRightCorner_, dx, dy);
   }
-  void Rectangle::scaleFigure(double k)
+  void Rectangle::unsafeScale(double k)
   {
     point_t pos = {(lowerLeftCorner_.x + topRightCorner_.x) / 2, (lowerLeftCorner_.y + topRightCorner_.y) / 2};
     lowerLeftCorner_ = scalePoint(lowerLeftCorner_, pos, k);

@@ -70,7 +70,7 @@ namespace piyavkin
     b_ = addShift(b_, dx, dy);
     c_ = addShift(c_, dx, dy);
   }
-  void Parallelogram::scaleFigure(double k)
+  void Parallelogram::unsafeScale(double k)
   {
     point_t pos = {(b_.x + c_.x) / 2, (b_.y + c_.y) / 2};
     a_ = scalePoint(a_, pos, k);

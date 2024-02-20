@@ -14,7 +14,7 @@ namespace piyavkin
     void scale(double k);
     virtual ~Shape() = default;
     virtual Shape* clone() const = 0;
-    virtual void scaleFigure(double k) = 0;
+    virtual void unsafeScale(double k) = 0;
   };
 }
 #endif
