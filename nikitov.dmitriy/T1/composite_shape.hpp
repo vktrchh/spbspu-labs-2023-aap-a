@@ -38,5 +38,7 @@ namespace nikitov
     void decreaseArray();
     void swap(CompositeShape& other);
   };
+
+  void deleteArray(Shape** figures, size_t numberOfFigures);
 }
 #endif

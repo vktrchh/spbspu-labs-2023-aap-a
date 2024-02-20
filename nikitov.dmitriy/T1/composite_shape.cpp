@@ -15,16 +15,18 @@ nikitov::CompositeShape::CompositeShape(const CompositeShape& other):
   sizeOfArray_(other.sizeOfArray_),
   figures_(new Shape*[sizeOfArray_])
 {
+  size_t i = 0;
   try
   {
-    for (size_t i = 0; i != sizeOfArray_; ++i)
+    for (i = 0; i != sizeOfArray_; ++i)
     {
       figures_[i] = other[i].clone();
     }
   }
   catch (const std::bad_alloc&)
   {
-    this->~CompositeShape();
+    deleteArray(figures_, i);
+    delete[] figures_;
     throw;
   }
 }
@@ -205,4 +207,12 @@ void nikitov::CompositeShape::swap(CompositeShape& other)
 {
   std::swap(sizeOfArray_, other.sizeOfArray_);
   std::swap(figures_, other.figures_);
+}
+
+void nikitov::deleteArray(nikitov::Shape** figures, size_t numberOfFigures)
+{
+  for (size_t i = 0; i != numberOfFigures; ++i)
+  {
+    delete figures[i];
+  }
 }
