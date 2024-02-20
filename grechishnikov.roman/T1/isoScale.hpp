@@ -5,8 +5,8 @@
 
 namespace grechishnikov
 {
-  void isoScale(Shape* shape, point_t scalePoint, double ratio);
   void unsafeIsoScale(Shape* shape, point_t scalePoint, double ratio);
+  void isoScale(Shape* shape, point_t scalePoint, double ratio);
 }
 
 #endif
