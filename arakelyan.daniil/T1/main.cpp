@@ -68,7 +68,10 @@ int main()
     {
       try
       {
-        defineAndCreateShape(myShapes, currentShapesCount, string);
+        if (string[0] != '\0')
+        {
+          defineAndCreateShape(myShapes, currentShapesCount, string);
+        }
       }
       catch (const std::logic_error &e)
       {
@@ -91,7 +94,6 @@ int main()
   {
     std::cerr << "Something went wrong with scale process, might be incorrect k of scale!\n";
     freeMem(myShapes, currentShapesCount);
-    delete [] string;
     return 2;
   }
 

@@ -1,5 +1,6 @@
 #include "shape-creation.hpp"
 
+#include <cmath>
 #include <memory>
 #include <stdexcept>
 #include <cstring>
@@ -97,6 +98,10 @@ void arakelyan::defineAndCreateShape(Shape **myShapes, size_t shapesCount, const
   else if (foundDia != nullptr)
   {
     myShapes[shapesCount] = createDiam(string);
+  }
+  else 
+  {
+    throw std::logic_error("no shape!");
   }
 }
 
