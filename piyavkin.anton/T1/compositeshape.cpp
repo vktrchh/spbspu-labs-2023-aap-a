@@ -143,10 +143,11 @@ namespace piyavkin
   }
   void CompositeShape::pop_back()
   {
-    if (!empty())
+    if (empty())
     {
-      delete shapes_[size_--];
+      throw std::logic_error("Out of array");
     }
+    delete shapes_[size_--];
   }
   Shape& CompositeShape::at(size_t i)
   {
@@ -154,7 +155,7 @@ namespace piyavkin
   }
   const Shape& CompositeShape::at(size_t i) const
   {
-    if (i > size_)
+    if (i >= size_)
     {
       throw std::logic_error("Segmential fault");
     }

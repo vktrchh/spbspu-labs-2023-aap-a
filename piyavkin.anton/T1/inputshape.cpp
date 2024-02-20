@@ -16,7 +16,7 @@ void piyavkin::clearMemory(Shape** shapes, size_t shapeCount)
 
 void piyavkin::inputRectangle(std::istream& in, Shape** shapes, size_t shapeCount)
 {
-  const size_t parametersCount = 4;
+  constexpr size_t parametersCount = 4;
   double parameters[parametersCount] = {};
   for (size_t j = 0; j < parametersCount; ++j)
   {
@@ -31,7 +31,7 @@ void piyavkin::inputRectangle(std::istream& in, Shape** shapes, size_t shapeCoun
 
 void piyavkin::inputTriangle(std::istream& in, Shape** shapes, size_t shapeCount)
 {
-  const size_t parametersCount = 6;
+  constexpr size_t parametersCount = 6;
   double parameters[parametersCount] = {};
   for (size_t j = 0; j < parametersCount; ++j)
   {
@@ -46,7 +46,7 @@ void piyavkin::inputTriangle(std::istream& in, Shape** shapes, size_t shapeCount
 
 void piyavkin::inputParallelogram(std::istream& in, Shape** shapes, size_t shapeCount)
 {
-  const size_t parametersCount = 6;
+  constexpr size_t parametersCount = 6;
   double parameters[parametersCount] = {};
   for (size_t j = 0; j < parametersCount; ++j)
   {
