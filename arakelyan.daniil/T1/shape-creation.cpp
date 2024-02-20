@@ -7,7 +7,7 @@
 #include "diamond.hpp"
 #include "rectangle.hpp"
 
-double * arakelyan::extractDataForShape(const char * string, double coordStorage[], const size_t pointsCount, const size_t wordLen)
+void arakelyan::extractDataForShape(const char * string, double *coordStorage, const size_t pointsCount, const size_t wordLen)
 {
   string += wordLen;
 
@@ -27,9 +27,6 @@ double * arakelyan::extractDataForShape(const char * string, double coordStorage
   {
     throw std::logic_error("Invalid input of shape coordinates, too many arg for PARALLELOGRAM or DIAMOND!");
   }
-
-  double * asnwerArray = coordStorage;
-  return asnwerArray;
 }
 
 arakelyan::Shape * arakelyan::createPar(const char * string)

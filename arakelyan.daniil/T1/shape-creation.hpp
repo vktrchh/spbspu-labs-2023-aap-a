@@ -11,7 +11,7 @@ namespace arakelyan
   Shape * createPar(const char * string);
   Shape * createRect(const char * string);
   Shape * createDiam(const char * string);
-  double * extractDataForShape(const char * string, double coordStorage[], size_t pointsCount, size_t wordLen);
+  void extractDataForShape(const char * string, double *coordStorage, size_t pointsCount, size_t wordLen);
   void freeMem(Shape **myShapes, size_t shapesCount);
 }
 #endif
