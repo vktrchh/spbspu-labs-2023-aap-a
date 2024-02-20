@@ -15,9 +15,17 @@ nikitov::CompositeShape::CompositeShape(const CompositeShape& other):
   sizeOfArray_(other.sizeOfArray_),
   figures_(new Shape*[sizeOfArray_])
 {
-  for (size_t i = 0; i != sizeOfArray_; ++i)
+  try
   {
-    figures_[i] = other[i].clone();
+    for (size_t i = 0; i != sizeOfArray_; ++i)
+    {
+      figures_[i] = other[i].clone();
+    }
+  }
+  catch (const std::bad_alloc&)
+  {
+    this->~CompositeShape();
+    throw;
   }
 }
 
