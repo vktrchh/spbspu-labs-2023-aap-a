@@ -113,7 +113,7 @@ lebedev::Shape ** lebedev::inputShapes(std::istream & input, size_t & shapes_cou
     }
     catch (const std::bad_alloc &)
     {
-      lebedev::clearShapes(shapes, shapes_count);
+      clearShapes(shapes, shapes_count);
       throw;
     }
     catch (const std::invalid_argument & e)
