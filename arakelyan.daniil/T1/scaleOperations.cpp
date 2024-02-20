@@ -18,7 +18,7 @@ void arakelyan::scaleFunction(Shape **shapes, const size_t shapesCount, const po
 {
   if (scaleK < 0.0)
   {
-    throw std::invalid_argument("k of scale cannot be less than zero!");
+    throw std::logic_error("k of scale cannot be less than zero!");
   }
   shapeOutput(out, shapes, shapesCount);
   for (size_t i = 0; i < shapesCount; i++)

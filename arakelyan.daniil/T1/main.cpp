@@ -20,6 +20,7 @@ int main()
   Shape **myShapes = new Shape *[maxShapesCount]{nullptr};
 
   bool errorsFlagShapes = false;
+  bool errorsFlagScale = false;
 
   point_t scalePoint = {0.0, 0.0};
   double scaleK = 0;
@@ -29,65 +30,69 @@ int main()
 
   bool scaleEntered = false;
 
-  try
+  while (!scaleEntered)
   {
-    while (!scaleEntered)
+    if (!std::cin.good())
     {
-      if (!std::cin.good())
-      {
-        freeMem(myShapes, currentShapesCount);
-        std::cerr << "Somthing went wrong with input, might be EOF!\n";
-        return 1;
-      }
+      freeMem(myShapes, currentShapesCount);
+      std::cerr << "Somthing went wrong with input, might be EOF!\n";
+      return 1;
+    }
 
+    try
+    {
+      string = inputLine(std::cin);
+    }
+    catch (const std::exception &e)
+    {
+      freeMem(myShapes, currentShapesCount);
+      std::cerr << "Error: " << e.what() << "\n";
+      return 1;
+    }
+
+    const char * foundScale = std::strstr(string, targetWordScale);
+    if (foundScale != nullptr)
+    {
+      inputScaleParam(string, scalePoint, scaleK);
       try
       {
-        string = inputLine(std::cin);
-      }
-      catch (const std::exception &e)
-      {
-        freeMem(myShapes, currentShapesCount);
-        std::cerr << "Error: " << e.what() << "\n";
-        return 1;
-      }
-
-      const char * foundScale = std::strstr(string, targetWordScale);
-      if (foundScale != nullptr)
-      {
-        inputScaleParam(string, scalePoint, scaleK);
         scaleFunction(myShapes, currentShapesCount, scalePoint, scaleK, std::cout);
-        scaleEntered = true;
       }
-      else
+      catch (const std::logic_error &e)
       {
-        try
-        {
-          defineAndCreateShape(myShapes, currentShapesCount, string);
-        }
-        catch (const std::logic_error &e)
-        {
-          errorsFlagShapes = true;
-        }
-
-        if (myShapes[currentShapesCount] != nullptr)
-        {
-          currentShapesCount++;
-        }
+        errorsFlagScale = true;
       }
-      delete [] string;
+      scaleEntered = true;
     }
-  }
-  catch (const std::invalid_argument &e)
-  {
-    std::cerr << "Something went wrong with scale process, might be incorrect k of scale!\n";
-    freeMem(myShapes, currentShapesCount);
+    else
+    {
+      try
+      {
+        defineAndCreateShape(myShapes, currentShapesCount, string);
+      }
+      catch (const std::logic_error &e)
+      {
+        errorsFlagShapes = true;
+      }
+
+      if (myShapes[currentShapesCount] != nullptr)
+      {
+        currentShapesCount++;
+      }
+    }
     delete [] string;
-    return 2;
   }
 
   if (errorsFlagShapes)
   {
     std::cerr << "\nSomething went wrong with shapes creation!\n";
+  }
+  if (errorsFlagScale)
+  {
+    std::cerr << "Something went wrong with scale process, might be incorrect k of scale!\n";
+    freeMem(myShapes, currentShapesCount);
+    delete [] string;
+    return 2;
   }
 
   if (currentShapesCount == 0)
