@@ -42,6 +42,10 @@ void sivkov::Rectangle::move(double dx, double dy)
 
 void sivkov::Rectangle::scale(double k)
 {
+  if (k <= 0.0)
+  {
+    throw std::invalid_argument("k must be > 0\n");
+  }
   point_t pos = getFrameRect().pos;
   double newWidth = (rightTop_.x - leftBottom_.x) * k;
   double newHeight = (rightTop_.y - leftBottom_.y) * k;

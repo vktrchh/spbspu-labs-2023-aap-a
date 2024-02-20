@@ -62,6 +62,10 @@ void sivkov::Complexquad::move(const double dx, const double dy)
 
 void sivkov::Complexquad::scale(const double k)
 {
+  if (k <= 0.0)
+  {
+    throw std::invalid_argument("k must be > 0\n");
+  }
   point_t centerPoint = findCenter(cqVer1_, cqVer2_, cqVer3_, cqVer4_);
   cqVer1_ = doCenterShift(k, centerPoint, cqVer1_);
   cqVer2_ = doCenterShift(k, centerPoint, cqVer2_);

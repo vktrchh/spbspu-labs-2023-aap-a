@@ -80,6 +80,10 @@ void sivkov::Concave::move(double x, double y)
 
 void sivkov::Concave::scale(double k)
 {
+  if (k <= 0.0)
+  {
+    throw std::invalid_argument("k must be > 0\n");
+  }
   point_t center = cvVer4_;
   cvVer1_ = doCenterShift(k, center, cvVer1_);
   cvVer2_ = doCenterShift(k, center, cvVer2_);
