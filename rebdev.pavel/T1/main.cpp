@@ -88,7 +88,6 @@ int main()
     {
       delete shapes[i];
     }
-    delete[] shapes;
     return 1;
   }
 
@@ -102,6 +101,5 @@ int main()
     delete shapes[i];
   }
 
-  delete[] shapes;
   return 0;
 }

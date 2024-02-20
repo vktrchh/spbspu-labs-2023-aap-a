@@ -23,11 +23,12 @@ void rebdev::printShapes(Shape ** const shapes, const size_t numOfShapes, std::o
     rectangle_t rect = shapes[i]->getFrameRect();
     point_t lowLeft = {rect.pos.x - (rect.width / 2), rect.pos.y - (rect.height / 2)};
     point_t upRight = {rect.pos.x + (rect.width / 2), rect.pos.y + (rect.height / 2)};
-    out << lowLeft.x << ' ' << lowLeft.y << ' ';
-    out << upRight.x << ' ' << upRight.y;
-    if (i < (numOfShapes - 1))
-    {
-      out << ' ';
-    }
+    printVertexes(upRight, lowLeft, out);
   }
+}
+
+void rebdev::printVertexes(const point_t & upRight, const point_t & lowLeft, std::ostream & out)
+{
+  out << lowLeft.x << ' ' << lowLeft.y << ' ';
+  out << upRight.x << ' ' << upRight.y << ' ';
 }
