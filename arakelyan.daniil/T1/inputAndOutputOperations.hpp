@@ -8,6 +8,6 @@
 namespace arakelyan
 {
   void inputScaleParam(const char *string, point_t &point, double &k);
-  void shapeOutput(std::ostream &output, Shape * const * shapes, const size_t shapesCount);
+  void shapeOutput(std::ostream &output, Shape * const * shapes, size_t shapesCount);
 }
 #endif

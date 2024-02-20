@@ -7,7 +7,7 @@
 
 namespace arakelyan
 {
-  void scaleFunction(arakelyan::Shape ** shapes, const size_t shapesCount, const point_t scalePoint, const double scaleK);
-  void isoScale(Shape * shapeObj, const point_t scalePoint, const double scaleK);
+  void scaleFunction(arakelyan::Shape ** shapes, size_t shapesCount, point_t scalePoint, double scaleK);
+  void isoScale(Shape * shapeObj, point_t scalePoint, double scaleK);
 }
 #endif
