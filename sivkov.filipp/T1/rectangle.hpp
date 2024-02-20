@@ -8,7 +8,7 @@ namespace sivkov
   class Rectangle: public Shape
   {
   public:
-    Rectangle(point_t leftBotton, point_t rightTop);
+    Rectangle(const point_t leftBotton, const point_t rightTop);
     double getArea() const;
     rectangle_t getFrameRect() const;
     void move(point_t newPos);

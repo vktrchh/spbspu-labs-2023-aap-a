@@ -2,7 +2,7 @@
 #include <stdexcept>
 #include "othersFun.hpp"
 
-sivkov::Rectangle::Rectangle(point_t leftBottom, point_t rightTop):
+sivkov::Rectangle::Rectangle(const point_t leftBottom, const  point_t rightTop):
   leftBottom_(leftBottom),
   rightTop_(rightTop)
 {

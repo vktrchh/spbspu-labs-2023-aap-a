@@ -12,7 +12,7 @@ namespace sivkov
   class Complexquad: public Shape
   {
   public:
-    Complexquad(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4);
+    Complexquad(const point_t ver1, const point_t ver2, const point_t ver3, const point_t ver4);
     double getArea() const;
     rectangle_t getFrameRect() const;
     void move(point_t newPos);
