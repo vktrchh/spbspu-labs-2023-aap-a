@@ -10,12 +10,12 @@ namespace arakelyan
   class Parallelogram: public Shape
   {
   public:
-    Parallelogram(const point_t fp, const point_t sp, const point_t tp);
+    Parallelogram(point_t fp, point_t sp, point_t tp);
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
-    virtual void move(const point_t point);
-    virtual void move(const double delX, const double delY);
-    virtual void scale(const double k);
+    virtual void move(point_t point);
+    virtual void move(double delX, double delY);
+    virtual void scale(double k);
     virtual ~Parallelogram() = default;
   private:
     point_t p1_;

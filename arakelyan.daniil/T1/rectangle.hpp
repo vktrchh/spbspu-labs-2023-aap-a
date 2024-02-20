@@ -12,9 +12,9 @@ namespace arakelyan
     Rectangle(point_t fp, point_t sp);
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
-    virtual void move(const point_t point);
-    virtual void move(const double delX, const double delY);
-    virtual void scale(const double k);
+    virtual void move(point_t point);
+    virtual void move(double delX, double delY);
+    virtual void scale(double k);
     virtual ~Rectangle() = default;
   private:
     point_t pointRightUp_;
