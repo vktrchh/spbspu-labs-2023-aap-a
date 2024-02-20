@@ -24,21 +24,19 @@ zaitsev::CompositeShape::~CompositeShape()
 
 zaitsev::CompositeShape& zaitsev::CompositeShape::operator=(const CompositeShape& other)
 {
-  if (this == std::addressof(other))
+  if (this != std::addressof(other))
   {
-    return *this;
-  }
-  Shape** temp = new Shape* [other.capacity_];
-  freeShapesArray(shapes_, size_);
+    Shape** temp = new Shape * [other.capacity_];
+    freeShapesArray(shapes_, size_);
 
-  size_ = other.size_;
-  capacity_ = other.capacity_;
-  shapes_ = temp;
-  for (size_t i = 0; i < size_; ++i)
-  {
-    shapes_[i] = other[i].clone();
+    size_ = other.size_;
+    capacity_ = other.capacity_;
+    shapes_ = temp;
+    for (size_t i = 0; i < size_; ++i)
+    {
+      shapes_[i] = other[i].clone();
+    }
   }
-
   return *this;
 }
 
@@ -55,17 +53,16 @@ zaitsev::CompositeShape::CompositeShape(const CompositeShape& other):
 
 zaitsev::CompositeShape& zaitsev::CompositeShape::operator=(CompositeShape&& other)
 {
-  if (this == std::addressof(other))
+  if (this != std::addressof(other))
   {
-    return *this;
+    freeShapesArray(shapes_, size_);
+    size_ = other.size_;
+    capacity_ = other.capacity_;
+    shapes_ = other.shapes_;
+    other.size_ = 0;
+    other.capacity_ = 0;
+    other.shapes_ = nullptr;
   }
-  freeShapesArray(shapes_, size_);
-  size_ = other.size_;
-  capacity_ = other.capacity_;
-  shapes_ = other.shapes_;
-  other.size_ = 0;
-  other.capacity_ = 0;
-  other.shapes_ = nullptr;
   return *this;
 }
 
@@ -73,7 +70,7 @@ void zaitsev::CompositeShape::push_back(Shape* shape)
 {
   if (!shape)
   {
-    return;
+    throw std::invalid_argument("Shape to add is empty");
   }
   try
   {
@@ -104,7 +101,7 @@ void zaitsev::CompositeShape::pop_back()
 {
   if (size_ == 0)
   {
-    return;
+    throw std::invalid_argument("No shapes to delete");
   }
 
   delete shapes_[size_ - 1];
@@ -151,7 +148,7 @@ const zaitsev::Shape& zaitsev::CompositeShape::operator[](size_t pos) const
 
 bool zaitsev::CompositeShape::empty() const
 {
-  return size_ == 0 ? true : false;
+  return !size_;
 }
 
 size_t zaitsev::CompositeShape::size() const
