@@ -46,14 +46,7 @@ rebdev::Concave::Concave(const point_t & firstVertex, const point_t & secondVert
 
 double rebdev::Concave::getArea() const
 {
-  double sum  = 0;
-  for (size_t i = 0; i < 4; ++i)
-  {
-    sum += (vertexes_[i].x * vertexes_[(i + 1) % 4].y) - (vertexes_[(i + 1) % 4].x * vertexes_[i].y);
-  }
-  sum /= 2;
-
-  return std::abs(sum);
+  return getFigureArea(vertexes_, 4);
 }
 
 rebdev::rectangle_t rebdev::Concave::getFrameRect() const

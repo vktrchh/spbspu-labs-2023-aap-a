@@ -1,5 +1,4 @@
 #include "polygon.hpp"
-#include <iostream>
 #include <stdexcept>
 #include "figureFunction.hpp"
 
@@ -37,14 +36,7 @@ rebdev::Polygon::~Polygon()
 
 double rebdev::Polygon::getArea() const
 {
-  double sum = 0;
-  for (size_t i = 0; i < (numOfVertexes_ - 1); ++i)
-  {
-    sum += (vertexes_[i].x - vertexes_[i + 1].x) * (vertexes_[i].y + vertexes_[i + 1].y);
-  }
-  sum += (vertexes_[numOfVertexes_ - 1].x - vertexes_[0].x) * (vertexes_[numOfVertexes_ - 1].y + vertexes_[0].y);
-  sum /= 2;
-  return abs(sum);
+  return getFigureArea(vertexes_, numOfVertexes_);
 }
 
 rebdev::rectangle_t rebdev::Polygon::getFrameRect() const

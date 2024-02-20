@@ -39,3 +39,17 @@ void rebdev::movePoints(double x, double y, point_t * points, size_t numOfPoint)
     points[i].y += y;
   }
 }
+
+double rebdev::getFigureArea(const point_t * points, size_t numOfPoint)
+{
+  double sum = 0;
+
+  for (size_t i = 0; i < (numOfPoint - 1); ++i)
+  {
+    sum += (points[i].x - points[i + 1].x) * (points[i].y + points[i + 1].y);
+  }
+
+  sum += (points[numOfPoint - 1].x - points[0].x) * (points[numOfPoint - 1].y + points[0].y);
+  sum /= 2;
+  return abs(sum);
+}
