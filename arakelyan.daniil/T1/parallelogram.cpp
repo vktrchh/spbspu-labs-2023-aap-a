@@ -92,11 +92,5 @@ void arakelyan::Parallelogram::move(const double delX, const double delY)
 void arakelyan::Parallelogram::scaleShape(const double k)
 {
   rectangle_t rectOfParal = getFrameRect();
-  // point_t * pointsArray[3] = {&p1_, &p2_, &p3_};
-  // for (size_t i = 0; i < 3; i++)
-  // {
-  //   pointsArray[i]->x = rectOfParal.pos.x + ((pointsArray[i]->x - rectOfParal.pos.x) * k);
-  //   pointsArray[i]->y = rectOfParal.pos.y + ((pointsArray[i]->y - rectOfParal.pos.y) * k);
-  // }
   scaleForParAndDiam(rectOfParal, p1_, p2_, p3_, k);
 }
