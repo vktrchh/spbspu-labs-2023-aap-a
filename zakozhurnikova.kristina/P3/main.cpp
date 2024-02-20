@@ -21,13 +21,7 @@ int main()
   }
 
   zakozhurnikova::removeSpaces(tmp, string);
-  char *head = tmp;
-  while (*head)
-  {
-    std::cout << *head;
-    head++;
-  }
-  std::cout << '\n';
+  std::cout << *tmp << '\n';
   delete[] tmp;
   delete[] string;
   return 0;
