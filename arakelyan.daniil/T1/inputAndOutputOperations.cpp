@@ -24,7 +24,7 @@ void arakelyan::inputScaleParam(const char *string, point_t &point, double &k)
   k = arrayOfScaleData[2];
 }
 
-void arakelyan::shapeOutput(std::ostream &output, Shape *const *shapes, const size_t shapesCount)
+void arakelyan::shapeOutput(std::ostream &output, const Shape *const *shapes, const size_t shapesCount)
 {
   output << std::fixed;
   output.precision(1);

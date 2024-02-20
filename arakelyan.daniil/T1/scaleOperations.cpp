@@ -14,16 +14,17 @@ void arakelyan::isoScale(Shape *shapeObj, const point_t scalePoint, const double
    shapeObj->move(-dx, -dy);
 }
 
-void arakelyan::scaleFunction(Shape **shapes, const size_t shapesCount, const point_t scalePoint, const double scaleK)
+void arakelyan::scaleFunction(Shape **shapes, const size_t shapesCount, const point_t scalePoint, const double scaleK, std::ostream &out)
 {
   if (scaleK < 0.0)
   {
-    throw std::logic_error("k of scale cannot be less than zero!");
+    throw std::invalid_argument("k of scale cannot be less than zero!");
   }
-  shapeOutput(std::cout, shapes, shapesCount);
+  shapeOutput(out, shapes, shapesCount);
   for (size_t i = 0; i < shapesCount; i++)
   {
     isoScale(shapes[i], scalePoint, scaleK);
   }
-  shapeOutput(std::cout, shapes, shapesCount);
+  out << "\n";
+  shapeOutput(out, shapes, shapesCount);
 }
