@@ -31,7 +31,7 @@ double marishin::getAreaTriangle(const point_t& first, const point_t& second, co
   return std::sqrt(abc * (abc - ab) * (abc - bc) * (abc - ac));
 }
 
-marishin::rectangle_t marishin::getFrameRectTriangle(point_t first, point_t second, point_t third)
+marishin::rectangle_t marishin::getFrameRectTriangle(const point_t& first, const point_t& second, const point_t& third)
 {
   const point_t& p1 = first;
   const point_t& p2 = second;
@@ -43,7 +43,7 @@ marishin::rectangle_t marishin::getFrameRectTriangle(point_t first, point_t seco
   return { pos, width, height };
 }
 
-marishin::point_t marishin::scaleCorner(point_t corner, point_t pos, double factor)
+marishin::point_t marishin::scaleCorner(const point_t& corner, const point_t& pos, double factor)
 {
   corner.x = factor * (corner.x - pos.x) + pos.x;
   corner.y = factor * (corner.y - pos.y) + pos.y;

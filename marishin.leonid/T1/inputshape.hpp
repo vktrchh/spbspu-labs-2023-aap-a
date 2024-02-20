@@ -1,11 +1,11 @@
 #ifndef INPUTSHAPE_HPP
 #define INPUTSHAPE_HPP
 
+#include <iostream>
 #include <readArray.hpp>
 #include "rectangle.hpp"
 #include "triangle.hpp"
 #include "ring.hpp"
-#include <iostream>
 
 namespace marishin
 {

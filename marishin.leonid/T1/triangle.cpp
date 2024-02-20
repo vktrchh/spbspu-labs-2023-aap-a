@@ -2,7 +2,7 @@
 #include <stdexcept>
 #include "checkTriangle.hpp"
 
-marishin::Triangle::Triangle(point_t first, point_t second, point_t third):
+marishin::Triangle::Triangle(const point_t& first, const point_t& second, const point_t& third):
   first_(first),
   second_(second),
   third_(third)
@@ -20,7 +20,7 @@ marishin::rectangle_t marishin::Triangle::getFrameRect() const
   return getFrameRectTriangle(first_, second_, third_);
 }
 
-void marishin::Triangle::move(point_t newPos)
+void marishin::Triangle::move(const point_t& newPos)
 {
   point_t pos = { (first_.x + second_.x + third_.x) / 3, (first_.y + second_.y + third_.y) / 3 };
   move(newPos.x - pos.x, newPos.y - pos.y);
