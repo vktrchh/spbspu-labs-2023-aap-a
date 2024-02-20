@@ -93,6 +93,7 @@ void piyavkin::inputShape(std::istream& in, CompositeShape& cs)
         catch (const std::bad_alloc& e)
         {
           delete shape;
+          throw std::logic_error(e.what());
         }
       }
     }
