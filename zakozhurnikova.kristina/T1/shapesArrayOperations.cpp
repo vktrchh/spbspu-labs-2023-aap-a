@@ -1,9 +1,9 @@
+#include "shapesArrayOperations.hpp"
 #include <string>
 #include <iostream>
 #include <cstring>
 #include <stdexcept>
 #include <inputOperations.hpp>
-#include "shapesArrayOperations.hpp"
 #include "rectangle.hpp"
 #include "square.hpp"
 #include "diamond.hpp"
@@ -147,7 +147,7 @@ void zakozhurnikova::inputShapesArray(std::istream& in, Shape** shapes, size_t& 
     }
     catch (const std::invalid_argument& e)
     {
-      if(areSame(string, "SCALE"))
+      if (areSame(string, "SCALE"))
       {
         break;
       }

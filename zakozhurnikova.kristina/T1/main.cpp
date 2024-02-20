@@ -25,7 +25,7 @@ int main()
     }
     printShapes(std::cout, shapes, size);
   }
-  catch(const std::exception& e)
+  catch (const std::exception& e)
   {
     std::cerr << e.what() << '\n';
     freeShapesArray(shapes, size);
