@@ -53,14 +53,11 @@ void sivkov::Complexquad::move(point_t newPos)
 
 void sivkov::Complexquad::move(const double dx, const double dy)
 {
-  cqVer1_.x += dx;
-  cqVer1_.y += dy;
-  cqVer2_.x += dx;
-  cqVer2_.y += dy;
-  cqVer3_.x += dx;
-  cqVer3_.y += dy;
-  cqVer4_.x += dx;
-  cqVer4_.y += dy;
+  point_t newXY = { dx, dy };
+  cqVer1_ = shift(newXY, cqVer1_);
+  cqVer2_ = shift(newXY, cqVer2_);
+  cqVer3_ = shift(newXY, cqVer3_);
+  cqVer4_ = shift(newXY, cqVer4_);
 }
 
 void sivkov::Complexquad::scale(const double k)
