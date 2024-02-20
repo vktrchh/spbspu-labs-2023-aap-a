@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <cstring>
+#include <inputLine.hpp>
 
 #include "base-types.hpp"
 #include "inputAndOutputOperations.hpp"
@@ -31,9 +32,19 @@ int main()
 
   while (readingFromInput)
   {
+    if (!std::cin.good())
+    {
+      for (size_t i = 0; i < currentShapesCount; i++)
+      {
+        delete myShapes[i];
+      }
+      delete [] myShapes;
+      std::cerr << "somthing went wrong with input!\n";
+      return 1;
+    }
     try
     {
-      string = inputString(std::cin);
+      string = inputLine(std::cin);
     }
     catch (const std::exception &e)
     {
