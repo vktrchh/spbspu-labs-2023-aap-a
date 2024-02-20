@@ -15,7 +15,7 @@ int main()
     {
       sizeOfString++;
     }
-    newString = new char[sizeOfString];
+    newString = new char[sizeOfString + 1];
   }
   catch (const std::bad_alloc& e)
   {
