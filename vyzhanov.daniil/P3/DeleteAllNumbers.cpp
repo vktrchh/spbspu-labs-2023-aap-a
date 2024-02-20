@@ -14,6 +14,6 @@ char* vyzhanov::deleteAllNumbers(const char* string, char* newString)
     }
   i++;
   }
-  newString[j + 1] = '\0';
+  newString[j] = '\0';
   return newString;
 }
