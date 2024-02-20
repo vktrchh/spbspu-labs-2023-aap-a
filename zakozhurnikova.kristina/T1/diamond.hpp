@@ -1,9 +1,6 @@
 #ifndef DIAMOND_HPP
 #define DIAMOND_HPP
 #include "shape.hpp"
-#include "geometryFunc.hpp"
-#include <limits>
-#include <stdexcept>
 
 namespace zakozhurnikova
 {
@@ -16,12 +13,12 @@ namespace zakozhurnikova
     rectangle_t getFrameRect() const;
     void move(const point_t& p);
     void move(double dx, double dy);
+    void unsafeScale(double k);
 
   private:
     point_t pointOne_;
     point_t pointTwo_;
     point_t center_;
-    void doScale(double k);
   };
 }
 #endif

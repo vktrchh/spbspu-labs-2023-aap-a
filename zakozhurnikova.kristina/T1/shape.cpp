@@ -7,5 +7,5 @@ void zakozhurnikova::Shape::scale(double k)
   {
     throw std::invalid_argument("Scale coefficient should be a positive real number.");
   }
-  doScale(k);
+  unsafeScale(k);
 }

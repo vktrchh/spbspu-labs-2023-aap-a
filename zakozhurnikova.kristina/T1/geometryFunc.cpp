@@ -1,7 +1,6 @@
-#include "geometryFunc.hpp"
-#include <limits>
 #include <cmath>
 #include <stdexcept>
+#include "geometryFunc.hpp"
 
 zakozhurnikova::point_t zakozhurnikova::scaleShift(double k, const point_t& p1, const point_t& p2)
 {

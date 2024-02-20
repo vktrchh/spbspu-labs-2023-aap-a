@@ -13,8 +13,7 @@ namespace zakozhurnikova
     virtual void move(double dx, double dy) = 0;
     void scale(double k);
     virtual ~Shape() = default;
-  private:
-    virtual void doScale(double k) = 0;
+    virtual void unsafeScale(double k) = 0;
   };
 }
 #endif

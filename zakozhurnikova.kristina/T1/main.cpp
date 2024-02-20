@@ -1,10 +1,10 @@
+#include <iostream>
 #include "rectangle.hpp"
 #include "square.hpp"
 #include "isoScale.hpp"
 #include "shapesArrayOperations.hpp"
 #include "outputOperations.hpp"
 #include "diamond.hpp"
-#include <iostream>
 #include <inputOperations.hpp>
 
 int main()

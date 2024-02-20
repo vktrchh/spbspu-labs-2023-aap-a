@@ -1,8 +1,8 @@
 #ifndef COMPLEXQUAD_HPP
 #define COMPLEXQUAD_HPP
 #include "shape.hpp"
-#include "geometryFunc.hpp"
 #include <stdexcept>
+#include "geometryFunc.hpp"
 
 namespace zakozhurnikova
 {
@@ -14,10 +14,10 @@ namespace zakozhurnikova
     rectangle_t getFrameRect() const;
     void move(const point_t& p);
     void move(double dx, double dy);
+    void unsafeScale(double k);
 
   private:
     point_t vertexes_[4];
-    void doScale(double k);
   };
 }
 #endif

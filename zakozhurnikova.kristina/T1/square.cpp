@@ -1,6 +1,6 @@
 #include "square.hpp"
-#include "geometryFunc.hpp"
 #include <stdexcept>
+#include "geometryFunc.hpp"
 
 zakozhurnikova::Square::Square(const point_t& downLeft, double length) :
   downLeft_(downLeft),
@@ -38,7 +38,7 @@ void zakozhurnikova::Square::move(const point_t& p)
 }
 
 
-void zakozhurnikova::Square::doScale(double k)
+void zakozhurnikova::Square::unsafeScale(double k)
 {
   point_t center = {downLeft_.x + (length_ / 2.0), downLeft_.y + (length_ / 2.0)};
   downLeft_ = center - (center - downLeft_) * k;

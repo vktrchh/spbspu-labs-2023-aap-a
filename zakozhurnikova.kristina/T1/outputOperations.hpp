@@ -1,7 +1,7 @@
 #ifndef OUTPUT_OPERATIONS_HPP
 #define OUTPUT_OPERATIONS_HPP
-#include "shape.hpp"
 #include <iostream>
+#include "shape.hpp"
 
 namespace zakozhurnikova
 {

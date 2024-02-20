@@ -1,11 +1,10 @@
 #ifndef RECTANGLE_HPP
 #define RECTANGLE_HPP
-#include "shape.hpp"
 #include <stdexcept>
+#include "shape.hpp"
 
 namespace zakozhurnikova
 {
-
   class Rectangle: public Shape
   {
   public:
@@ -14,11 +13,11 @@ namespace zakozhurnikova
     rectangle_t getFrameRect() const;
     void move(const point_t& p);
     void move(double dx, double dy);
+    void unsafeScale(double k);
 
   private:
     point_t downLeft_;
     point_t upRight_;
-    void doScale(double k);
   };
 }
 #endif

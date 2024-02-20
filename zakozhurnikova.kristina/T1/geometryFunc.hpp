@@ -1,7 +1,7 @@
 #ifndef GEOMETRY_FUNC_HPP
 #define GEOMETRY_FUNC_HPP
-#include "base-types.hpp"
 #include <cstddef>
+#include "base-types.hpp"
 
 namespace zakozhurnikova
 {

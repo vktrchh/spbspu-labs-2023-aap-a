@@ -1,12 +1,12 @@
+#include <string>
+#include <iostream>
+#include <cstring>
+#include <stdexcept>
 #include "shapesArrayOperations.hpp"
 #include "rectangle.hpp"
 #include "square.hpp"
 #include "diamond.hpp"
 #include "complexquad.hpp"
-#include <string>
-#include <iostream>
-#include <cstring>
-#include <stdexcept>
 #include <inputOperations.hpp>
 
 void readArray(double* array, size_t size, const char* string, size_t pos)

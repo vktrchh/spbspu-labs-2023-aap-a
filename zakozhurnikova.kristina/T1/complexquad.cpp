@@ -69,7 +69,7 @@ void zakozhurnikova::Complexquad::move(double dx, double dy)
   vertexes_[3] += shift;
 }
 
-void zakozhurnikova::Complexquad::doScale(double k)
+void zakozhurnikova::Complexquad::unsafeScale(double k)
 {
   point_t center = getComplexquadCenter(vertexes_);
   vertexes_[0] = scaleShift(k, vertexes_[0], center);

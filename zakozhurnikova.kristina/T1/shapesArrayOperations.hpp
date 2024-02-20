@@ -1,8 +1,8 @@
 #ifndef SHAPES_ARRAY_OPERATIONS_HPP
 #define SHAPES_ARRAY_OPERATIONS_HPP
-#include "shape.hpp"
 #include <iosfwd>
 #include <cstddef>
+#include "shape.hpp"
 
 namespace zakozhurnikova
 {

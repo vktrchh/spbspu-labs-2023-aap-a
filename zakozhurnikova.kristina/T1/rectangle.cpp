@@ -1,6 +1,6 @@
 #include "rectangle.hpp"
-#include "geometryFunc.hpp"
 #include <stdexcept>
+#include "geometryFunc.hpp"
 
 zakozhurnikova::Rectangle::Rectangle(const point_t& pointOne, const point_t& pointTwo) :
    downLeft_(pointOne),
@@ -42,7 +42,7 @@ void zakozhurnikova::Rectangle::move(double dx, double dy)
   upRight_ += shift;
 }
 
-void zakozhurnikova::Rectangle::doScale(double k)
+void zakozhurnikova::Rectangle::unsafeScale(double k)
 {
   point_t pos{(downLeft_ + upRight_) / 2.0};
   downLeft_ = scaleShift(k, downLeft_, pos);
