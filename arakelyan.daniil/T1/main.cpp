@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdexcept>
+#include <cstring>
 #include <inputLine.hpp>
 
 #include "shape.hpp"
