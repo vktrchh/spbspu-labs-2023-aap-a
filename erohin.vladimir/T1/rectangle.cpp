@@ -43,12 +43,9 @@ void erohin::Rectangle::unsafeScale(double ratio)
 
 erohin::Shape* erohin::Rectangle::clone() const
 {
-  point_t corner[2] = { 0.0, 0.0 };
   rectangle_t framRect = getFrameRect();
-  corner[0].x = framRect.pos.x - framRect.width / 2.0;
-  corner[0].y = framRect.pos.y - framRect.height / 2.0;
-  corner[1].x = framRect.pos.x + framRect.width / 2.0;
-  corner[1].y = framRect.pos.y + framRect.height / 2.0;
-  Shape* shape = new Rectangle(corner[0], corner[1]);
+  point_t left_lower_corner = {framRect.pos.x - framRect.width / 2.0, framRect.pos.y - framRect.height / 2.0};
+  point_t right_upper_corner = {framRect.pos.x + framRect.width / 2.0, framRect.pos.y + framRect.height / 2.0};
+  Shape* shape = new Rectangle(left_lower_corner, right_upper_corner);
   return shape;
 }

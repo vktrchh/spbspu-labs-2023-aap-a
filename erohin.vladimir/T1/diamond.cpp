@@ -44,11 +44,10 @@ void erohin::Diamond::unsafeScale(double ratio)
 
 erohin::Shape* erohin::Diamond::clone() const
 {
-  point_t corner[3] = { 0.0, 0.0 };
   rectangle_t framRect = getFrameRect();
-  corner[0] = framRect.pos;
-  corner[1] = { framRect.pos.x, framRect.pos.y + framRect.height/ 2.0 };
-  corner[2] = { framRect.pos.x + framRect.width / 2.0 , framRect.pos.y };
-  Shape* shape = new Diamond(corner[0], corner[1], corner[2]);
+  point_t corner1 = framRect.pos;
+  point_t corner2 = {framRect.pos.x, framRect.pos.y + framRect.height/ 2.0};
+  point_t corner3 = {framRect.pos.x + framRect.width / 2.0 , framRect.pos.y};
+  Shape* shape = new Diamond(corner1, corner2, corner3);
   return shape;
 }

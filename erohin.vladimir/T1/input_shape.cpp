@@ -31,7 +31,8 @@ void erohin::inputShape(CompositeShape& result, std::istream& input, point_t& po
     {
       try
       {
-        result.push(createShape(name, par, par_size));
+        Shape* shape = createShape(name, par, par_size);
+        result.push(shape);
       }
       catch (const std::invalid_argument&)
       {

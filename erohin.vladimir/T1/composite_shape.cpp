@@ -21,11 +21,7 @@ erohin::CompositeShape::CompositeShape(const CompositeShape& rhs):
     }
     catch (const std::bad_alloc&)
     {
-      for (size_t j = 0; j < i; ++j)
-      {
-        delete shape_[j];
-      }
-      delete[] shape_;
+      this->~CompositeShape();
       throw;
     }
   }
@@ -43,7 +39,7 @@ erohin::CompositeShape::CompositeShape(CompositeShape&& rhs) noexcept:
 
 erohin::CompositeShape::~CompositeShape()
 {
-  for(size_t i = 0; i < size_; ++i)
+  for (size_t i = 0; i < size_; ++i)
   {
     delete shape_[i];
   }
@@ -52,7 +48,7 @@ erohin::CompositeShape::~CompositeShape()
 
 erohin::CompositeShape& erohin::CompositeShape::operator=(const CompositeShape& rhs)
 {
-  if (this != &rhs)
+  if (this != std::addressof(rhs))
   {
     CompositeShape temp(rhs);
     swap(temp);
@@ -62,7 +58,7 @@ erohin::CompositeShape& erohin::CompositeShape::operator=(const CompositeShape& 
 
 erohin::CompositeShape& erohin::CompositeShape::operator=(CompositeShape&& rhs) noexcept
 {
-  if (this != &rhs)
+  if (this != std::addressof(rhs))
   {
     CompositeShape temp(std::move(rhs));
     swap(temp);
