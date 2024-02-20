@@ -14,5 +14,5 @@ void skuratov::isoScale(Shape* shape, const point_t& p, const double scalingFact
   shape->scale(scalingFactor);
   double dx = (p.x - basCenter.x) * scalingFactor;
   double dy = (p.y - basCenter.y) * scalingFactor;
-  shape->move(dx, dy);
+  shape->move(-dx, -dy);
 }
