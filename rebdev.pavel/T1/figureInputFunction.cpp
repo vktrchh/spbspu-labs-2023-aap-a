@@ -10,7 +10,14 @@ rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name
   point_t * points = nullptr;
 
   size_t numOfPoints = 0;
-  points = inputPoints(input, numOfPoints);
+  try
+  {
+    points = inputPoints(input, numOfPoints);
+  }
+  catch (const std::bad_alloc & e)
+  {
+    throw;
+  }
   try
   {
     if (name.find("RECTANGLE") != std::string::npos)
@@ -47,7 +54,15 @@ rebdev::point_t * rebdev::inputPoints(std::istream & input, size_t & numOfPoints
       if (numOfPoints == bufferSize)
       {
         bufferSize += 10;
-        bufferArr = new point_t[bufferSize];
+        try
+        {
+          bufferArr = new point_t[bufferSize];
+        }
+        catch (const std::bad_alloc & e)
+        {
+          delete[] points;
+          throw;
+        }
         bufferArr[0] = points[0];
 
         for (size_t i = 1; i < numOfPoints; ++i)
