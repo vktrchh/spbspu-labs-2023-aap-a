@@ -86,10 +86,6 @@ void piyavkin::inputShape(std::istream& in, CompositeShape& cs)
           std::cerr << e.what() << '\n';
           continue;
         }
-        catch (const std::bad_alloc& e)
-        {
-          throw;
-        }
       }
     }
     if (name == "SCALE")

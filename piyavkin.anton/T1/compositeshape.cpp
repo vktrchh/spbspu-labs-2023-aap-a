@@ -146,6 +146,7 @@ namespace piyavkin
       }
       catch (const std::bad_alloc& e)
       {
+        delete shape;
         shapes_ = oldShapes;
         return;
       }
