@@ -33,7 +33,7 @@ int main()
     }
     for (size_t i = 0; i < numberOfShapes; i++)
     {
-      isoBaseScale(myShapes[i], center, scalingFactor);
+      isoScale(myShapes[i], center, scalingFactor);
     }
     outputShapesInfo(std::cout, myShapes, numberOfShapes);
     std::cout << "\n";
