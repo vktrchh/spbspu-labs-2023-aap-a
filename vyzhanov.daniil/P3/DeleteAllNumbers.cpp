@@ -10,7 +10,6 @@ char* vyzhanov::deleteAllNumbers(const char* string, char* newString)
     if (!std::isdigit(string[i]))
     {
       newString[j] = string[i];
-      j++;
     }
   i++;
   }
