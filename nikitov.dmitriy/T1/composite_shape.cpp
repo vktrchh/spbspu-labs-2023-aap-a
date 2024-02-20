@@ -130,9 +130,9 @@ nikitov::rectangle_t nikitov::CompositeShape::getFrameRect() const
   {
     throw std::logic_error("Error: Empty array");
   }
-  double maxX = std::numeric_limits < double >::lowest();
+  double maxX = std::numeric_limits< double >::lowest();
   double maxY = maxX;
-  double minX = std::numeric_limits < double >::max();
+  double minX = std::numeric_limits< double >::max();
   double minY = minX;
   for (size_t i = 0; i != sizeOfArray_; ++i)
   {
