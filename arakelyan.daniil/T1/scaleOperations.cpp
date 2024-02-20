@@ -26,4 +26,5 @@ void arakelyan::scaleFunction(Shape **shapes, const size_t shapesCount, const po
     isoScale(shapes[i], scalePoint, scaleK);
   }
   shapeOutput(out, shapes, shapesCount);
+  out << "\n";
 }
