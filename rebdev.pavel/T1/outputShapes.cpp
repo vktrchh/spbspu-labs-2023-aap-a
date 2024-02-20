@@ -2,12 +2,12 @@
 
 void printVertexes(const rebdev::point_t & upRight, const rebdev::point_t & lowLeft, std::ostream & out)
 {
-  out << lowLeft.x << ' ' << lowLeft.y << ' ';
-  out << upRight.x << ' ' << upRight.y << ' ';
+  out << ' ' << lowLeft.x << ' ' << lowLeft.y;
+  out << ' ' << upRight.x << ' ' << upRight.y;
 }
 
 
-void rebdev::printSum(const Shape * const * shapes, size_t numOfShapes, std::ostream & out)
+void rebdev::printShapes(const Shape * const * shapes, size_t numOfShapes, std::ostream & out)
 {
   double sum = 0;
   for (size_t i = 0; i < numOfShapes; ++i)
@@ -16,10 +16,7 @@ void rebdev::printSum(const Shape * const * shapes, size_t numOfShapes, std::ost
   }
 
   out << sum;
-}
 
-void rebdev::printShapes(const Shape * const * shapes, size_t numOfShapes, std::ostream & out)
-{
   for (size_t i = 0; i < numOfShapes; ++i)
   {
     rectangle_t rect = shapes[i]->getFrameRect();
@@ -28,3 +25,4 @@ void rebdev::printShapes(const Shape * const * shapes, size_t numOfShapes, std::
     printVertexes(upRight, lowLeft, out);
   }
 }
+

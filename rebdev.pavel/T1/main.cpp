@@ -35,10 +35,8 @@ int main()
         break;
       }
 
-      rebdev::printSum(shapes, numOfShape, std::cout);
       std::cout << std::fixed;
       std::cout.precision(1);
-      std::cout << ' ';
       rebdev::printShapes(shapes, numOfShape, std::cout);
       std::cout << '\n';
       try
@@ -79,8 +77,6 @@ int main()
     return 1;
   }
 
-  rebdev::printSum(shapes, numOfShape, std::cout);
-  std::cout << ' ';
   rebdev::printShapes(shapes, numOfShape, std::cout);
   std::cout << '\n';
 
