@@ -2,8 +2,10 @@
 #include <stdexcept>
 #include <cmath>
 #include <limits>
-#include <iostream>
 #include "stringManipulations.hpp"
+#include "regular.hpp"
+#include "circle.hpp"
+#include "rectangle.hpp"
 
 size_t determineShape(const char * str)
 {
@@ -45,7 +47,7 @@ isaychev::Regular * createRegular(const double * params)
 isaychev::Shape * isaychev::createFigure(char * str)
 {
   size_t numOfCurrFigure = determineShape(str);
-  isaychev::Shape * currFigure = nullptr;
+  Shape * currFigure = nullptr;
   try
   {
     if (numOfCurrFigure == 1)
@@ -68,10 +70,6 @@ isaychev::Shape * isaychev::createFigure(char * str)
     }
   }
   catch (const std::bad_alloc &)
-  {
-    throw;
-  }
-  catch (const std::logic_error &)
   {
     throw;
   }

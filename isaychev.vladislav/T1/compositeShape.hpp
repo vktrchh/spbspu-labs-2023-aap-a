@@ -26,12 +26,12 @@ namespace isaychev
     rectangle_t getFrameRect() const;
     void move(const point_t & newPos);
     void move(double dX, double dY);
-    void scale(const double * scaleParams);
+    void scale(double coeff);
 
    private:
     size_t capacity_;
     size_t currNumOfFigures_;
-    Shape ** figures_;
+    Shape * figures_[1000];
   };
 }
 

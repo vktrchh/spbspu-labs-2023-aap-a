@@ -1,9 +1,7 @@
 #ifndef CREATINGFIGURES_HPP
 #define CREATINGFIGURES_HPP
 
-#include "rectangle.hpp"
-#include "circle.hpp"
-#include "regular.hpp"
+#include "shape.hpp"
 
 namespace isaychev
 {

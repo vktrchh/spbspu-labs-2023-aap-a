@@ -4,32 +4,37 @@
 #include "stringManipulations.hpp"
 #include "outputResults.hpp"
 #include "compositeShape.hpp"
+#include "isoscale.hpp"
 
 int main()
 {
   using namespace isaychev;
-  const char * scaleStr = "SCALE ";
+  const char * scaleStr = "SCALE";
   char * currDesc = nullptr;
   CompositeShape cShape;
-  size_t figDescMistakeCheck = 0, capacity = 10, upperBorder = cShape.maxSize();
+  size_t figDescMistakeCheck = 0, capacity = 10;
   bool eofCheck = false;
-  while (cShape.size() < upperBorder)
+  while (!(checkString(currDesc, scaleStr)))
   {
     try
     {
       currDesc = inputString(std::cin, capacity);
-      if (checkString(currDesc, scaleStr) || std::cin.eof())
+      if (std::cin.eof())
       {
-        if (std::cin.eof())
-        {
-          eofCheck = true;
-        }
+        eofCheck = true;
         break;
       }
       Shape * figure = createFigure(currDesc);
       if (figure != nullptr)
       {
-        cShape.pushBack(figure);
+        try
+        {
+          cShape.pushBack(figure);
+        }
+        catch (const std::out_of_range & e)
+        {
+          std::cerr << e.what() << "\n";
+        }
       }
     }
     catch (const std::bad_alloc &)
@@ -56,7 +61,7 @@ int main()
     std::cerr << "input was finished with eof symbol; scale wasn't inputed\n";
     return 3;
   }
-  else if (countWSpaces(currDesc) > 1)
+  else if (countWSpaces(currDesc) >= 1)
   {
     constexpr size_t numOfScalePars = 3;
     double scaleParams[numOfScalePars] = {};
@@ -68,7 +73,10 @@ int main()
         outputResults(std::cout, cShape);
         std::cout << "\n";
       }
-      cShape.scale(scaleParams);
+      for (size_t i = 0; i < cShape.size(); i++)
+      {
+        isoscaleFigure({scaleParams[0], scaleParams[1]}, scaleParams[2], cShape[i]);
+      }
       outputResults(std::cout, cShape);
       std::cout << "\n";
     }
