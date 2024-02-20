@@ -8,6 +8,8 @@
 #include "geometric_functions.hpp"
 #include "shapes_i_o.hpp"
 
+void freeShapesArray(zaitsev::Shape** array, size_t size);
+
 zaitsev::CompositeShape::CompositeShape():
     size_(0),
     capacity_(8),
@@ -17,11 +19,7 @@ zaitsev::CompositeShape::CompositeShape():
 
 zaitsev::CompositeShape::~CompositeShape()
 {
-  for (size_t i = 0; i < size_; ++i)
-  {
-    delete shapes_[i];
-  }
-  delete[] shapes_;
+  freeShapesArray(shapes_, size_);
 }
 
 zaitsev::CompositeShape& zaitsev::CompositeShape::operator=(const CompositeShape& other)
@@ -31,14 +29,10 @@ zaitsev::CompositeShape& zaitsev::CompositeShape::operator=(const CompositeShape
     return *this;
   }
   Shape** temp = new Shape* [other.capacity_];
+  freeShapesArray(shapes_, size_);
+
   size_ = other.size_;
   capacity_ = other.capacity_;
-  for (size_t i = 0; i < size_; ++i)
-  {
-    delete shapes_[i];
-  }
-  delete[] shapes_;
-
   shapes_ = temp;
   for (size_t i = 0; i < size_; ++i)
   {
@@ -65,11 +59,7 @@ zaitsev::CompositeShape& zaitsev::CompositeShape::operator=(CompositeShape&& oth
   {
     return *this;
   }
-  for (size_t i = 0; i < size_; ++i)
-  {
-    delete shapes_[i];
-  }
-  delete[] shapes_;
+  freeShapesArray(shapes_, size_);
   size_ = other.size_;
   capacity_ = other.capacity_;
   shapes_ = other.shapes_;
@@ -253,4 +243,13 @@ std::ostream& zaitsev::operator<<(std::ostream& output, const CompositeShape& sh
   }
   output.copyfmt(format_holder);
   return output;
+}
+
+void freeShapesArray(zaitsev::Shape** array, size_t size)
+{
+  for (size_t i = 0; i < size; ++i)
+  {
+    delete array[i];
+  }
+  delete[] array;
 }
