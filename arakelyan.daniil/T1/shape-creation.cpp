@@ -99,7 +99,7 @@ void arakelyan::defineAndCreateShape(Shape **myShapes, size_t shapesCount, const
   {
     myShapes[shapesCount] = createDiam(string);
   }
-  else 
+  else
   {
     throw std::logic_error("no shape!");
   }
