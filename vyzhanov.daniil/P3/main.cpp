@@ -7,6 +7,7 @@ int main()
 {
   char* string = nullptr;
   char* newString = nullptr;
+  size_t sizeOfString = 0;
   try
   {
     string = vyzhanov::inputString(std::cin);
@@ -16,13 +17,12 @@ int main()
       std::cerr << "Empty string!" << "\n";
       return 1;
     }
-    size_t stringLength = 0;
-    while (string[stringLength])
+    while (string[sizeOfString])
     {
-      stringLength++;
+      sizeOfString++;
     }
-    newString = new char[stringLength];
-    std::cout << vyzhanov::deleteAllNumbers(string, newString, stringLength) << "\n";
+    newString = new char[sizeOfString];
+    std::cout << vyzhanov::deleteAllNumbers(string, newString) << "\n";
     std::cout << vyzhanov::countUniqueLetters(string) << "\n";
   }
   catch (const std::bad_alloc& e)
@@ -31,13 +31,6 @@ int main()
     delete[] newString;
     std::cerr << "Error: " << e.what() << '\n';
     return 1;
-  }
-  catch (const std::logic_error & e)
-  {
-    delete[] string;
-    delete[] newString;
-    std::cerr << "Error: " << e.what() << '\n';
-    return 2;
   }
     delete[] string;
     delete[] newString;
