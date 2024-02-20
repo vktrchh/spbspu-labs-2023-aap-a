@@ -29,7 +29,7 @@ strelyaev::Shape* strelyaev::inputRectangle(const char string[])
   {
     throw std::invalid_argument("Invalid RECTANGLE arguments");
   }
-  const size_t num_points = 2;
+  constexpr size_t num_points = 2;
   point_t points[num_points]{};
   createPoints(num_points, coords_array, points);
   return new Rectangle(points[0], points[1]);
@@ -49,7 +49,7 @@ strelyaev::Shape* strelyaev::inputTriangle(const char string[])
   {
     throw std::invalid_argument("Invalid TRIANGLE arguments");
   }
-  const size_t num_points = 3;
+  constexpr size_t num_points = 3;
   point_t points[num_points]{};
   createPoints(num_points, coords_array, points);
   return new Triangle(points[0], points[1], points[2]);
@@ -69,7 +69,7 @@ strelyaev::Shape* strelyaev::inputParallelogram(const char string[])
   {
     throw std::invalid_argument("Invalid PARALLELOGRAM arguments");
   }
-  const size_t num_points = 3;
+  constexpr size_t num_points = 3;
   point_t points[num_points]{};
   createPoints(num_points, coords_array, points);
   return new Parallelogram(points[0], points[1], points[2]);

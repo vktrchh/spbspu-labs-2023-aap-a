@@ -48,8 +48,8 @@ int main()
       }
       return 2;
     }
-    const char* shape_names[] = { "RECTANGLE", "TRIANGLE", "PARALLELOGRAM", "SCALE"};
-    const size_t shapes_count = 4;
+    constexpr size_t shapes_count = 4;
+    const char* shape_names[shapes_count] = { "RECTANGLE", "TRIANGLE", "PARALLELOGRAM", "SCALE"};
     try
     {
       for (size_t i = 0; i < shapes_count; i++)
