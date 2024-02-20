@@ -1,6 +1,7 @@
 #include <iostream>
 #include "InputString.hpp"
 #include "DeleteAllNumbers.hpp"
+#include "CountUniqueLetters.hpp"
 
 int main()
 {
@@ -16,6 +17,7 @@ int main()
     }
     newString = new char[stringLength];
     std::cout << vyzhanov::deleteAllNumbers(string, newString, stringLength) << "\n";
+    std::cout << vyzhanov::countUniqueLetters(string) << "\n";
   }
   catch (const std::bad_alloc& e)
   {

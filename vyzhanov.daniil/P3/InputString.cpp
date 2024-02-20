@@ -8,12 +8,12 @@ char* vyzhanov::inputString(std::istream& input)
   char* string = new char[sizeOfString];
   input >> std::noskipws;
   char currentChar = 0;
-  while (input >> currentChar)
+  while (input >> currentChar && currentChar != '\n')
   {
-    if (currentChar == '\n')
+    if (string[0] == '\n')
     {
-      string[index] = '\0';
-      break;
+      delete[] string;
+      throw std::logic_error("Empty string");
     }
     else
     {
@@ -35,16 +35,11 @@ char* vyzhanov::inputString(std::istream& input)
       catch (const std::bad_alloc &e)
       {
         input >> std::skipws;
-        delete [] string;
+        delete[] string;
         throw;
       }
     }
     index++;
-  }
-  if (string[0] == 0)
-  {
-    delete[] string;
-    throw std::logic_error("Empty string");
   }
   input >> std::skipws;
   return string;
