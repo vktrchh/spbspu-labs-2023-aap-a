@@ -49,7 +49,7 @@ void strelyaev::Rectangle::move(double dx, double dy)
   }
 }
 
-void strelyaev::Rectangle::doScale(double k) override
+void strelyaev::Rectangle::doScale(double k)
 {
   double width = std::abs(p1_.x - p2_.x);
   double height = std::abs(p1_.y - p2_.y);

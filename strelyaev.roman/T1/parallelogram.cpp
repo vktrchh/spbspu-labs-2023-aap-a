@@ -61,7 +61,7 @@ void strelyaev::Parallelogram::move(double dx, double dy)
   }
 }
 
-void strelyaev::Parallelogram::doScale(double k) override
+void strelyaev::Parallelogram::doScale(double k)
 {
   point_t center = {(p1_.x + p2_.x + p3_.x) / 3, (p1_.y + p2_.y + p3_.y) / 3};
   point_t* points[] = {&p1_, &p2_, &p3_};
