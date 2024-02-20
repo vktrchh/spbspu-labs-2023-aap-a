@@ -15,7 +15,8 @@ namespace sivkov
     out << (*shape)->getFrameRect().pos.x + (*shape)->getFrameRect().width / 2 << " ";
     out << (*shape)->getFrameRect().pos.y + (*shape)->getFrameRect().height / 2;
   }
-  void findCoefficient(double& a, double& b, double& c, point_t ver1, point_t ver2)
+
+  void findCoefficient(double a, double b, double c, const  point_t ver1, const point_t ver2)
   {
     if (ver1.x == ver2.x)
     {
@@ -37,17 +38,17 @@ namespace sivkov
     }
   }
 
-  double findLine(const point_t& a, const point_t& b)
+  double findLine(const point_t a, const point_t b)
   {
     return std::sqrt(std::abs(a.x - b.x) * std::abs(a.x - b.x) + std::abs(a.y - b.y) * std::abs(a.y - b.y));
   }
 
-  bool isTriangle(const point_t& first, const point_t& second, const point_t& third)
+  bool isTriangle(const point_t first, const point_t second, const point_t third)
   {
     return (((third.x - first.x) / (second.x - first.x)) != ((third.y - first.y) / (second.y - first.y)));
   }
 
-  bool isInsideTriangle(const point_t& A, const point_t& B, const point_t& C, const point_t& D)
+  bool isInsideTriangle(const point_t A, const point_t B, const point_t C, const point_t D)
   {
     double ab = (B.y - A.y) * D.x + (A.x - B.x) * D.y + (B.x * A.y - A.x * B.y);
     double bc = (B.y - C.y) * D.x + (C.x - B.x) * D.y + (B.x * C.y - C.x * B.y);
@@ -67,7 +68,8 @@ namespace sivkov
     shape->scale(k);
     shape->move(k * (pos.x - newPos.x), k * (pos.y - newPos.y));
   }
-  point_t findCenter(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4)
+
+  point_t findCenter(const point_t ver1, const point_t ver2, const point_t ver3, const point_t ver4)
   {
     double a1 = 0, b1 = 0, c1 = 0, a2 = 0, b2 = 0, c2 = 0;
 
@@ -90,12 +92,12 @@ namespace sivkov
     }
   }
 
-  point_t calculateVector(const point_t& p1, const point_t& p2)
+  point_t calculateVector(const point_t p1, const point_t p2)
   {
     return { p2.x - p1.x, p2.y - p1.y };
   }
 
-  bool areSegmentsIntersecting(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4)
+  bool areSegmentsIntersecting(const point_t ver1, const point_t ver2, const point_t ver3, const point_t ver4)
   {
     point_t line1 = calculateVector(ver1, ver2);
     point_t line2 = calculateVector(ver1, ver3);
