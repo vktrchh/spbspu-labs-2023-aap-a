@@ -42,8 +42,7 @@ void skuratov::Square::scale(double scalingFactor)
     throw std::invalid_argument("Error: scale factor of square should be a positive");
   }
 
-  sideLength_ *= scalingFactor;
-  point_t core = { bottomLeftCorner_.x + (sideLength_ / 2), bottomLeftCorner_.y + (sideLength_ / 2) };
+  point_t core = getFrameRect().pos;
   bottomLeftCorner_.x = core.x - (sideLength_ / 2);
   bottomLeftCorner_.y = core.y - (sideLength_ / 2);
 }
