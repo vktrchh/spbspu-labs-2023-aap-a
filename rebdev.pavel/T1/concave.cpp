@@ -68,11 +68,7 @@ void rebdev::Concave::move(const point_t & point)
 
 void rebdev::Concave::move(double x, double y)
 {
-  for (size_t i = 0; i < 4; ++i)
-  {
-    vertexes_[i].x += x;
-    vertexes_[i].y += y;
-  }
+  movePoints(x, y, vertexes_, 4);
 }
 
 void rebdev::Concave::scale(double k)

@@ -30,3 +30,12 @@ void rebdev::scaleFigure(point_t vertexes[], size_t numOfVertexes, const point_t
     vertexes[i].y = (vertexes[i].y - center.y) * k + center.y;
   }
 }
+
+void rebdev::movePoints(double x, double y, point_t * points, size_t numOfPoint)
+{
+  for (size_t i = 0; i < numOfPoint; ++i)
+  {
+    points[i].x += x;
+    points[i].y += y;
+  }
+}

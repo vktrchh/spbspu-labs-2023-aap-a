@@ -29,10 +29,7 @@ void rebdev::Rectangle::move(const point_t & point)
 
 void rebdev::Rectangle::move(double x, double y)
 {
-  angles_[0].x += x;
-  angles_[0].y += y;
-  angles_[1].x += x;
-  angles_[1].y += y;
+  movePoints(x, y, angles_, 2);
 }
 
 void rebdev::Rectangle::scale(double k)

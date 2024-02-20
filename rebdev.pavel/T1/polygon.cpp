@@ -60,11 +60,7 @@ void rebdev::Polygon::move(const point_t & point)
 
 void rebdev::Polygon::move(double x, double y)
 {
-  for (size_t i = 0; i < numOfVertexes_; ++i)
-  {
-    vertexes_[i].x += x;
-    vertexes_[i].y += y;
-  }
+  movePoints(x, y, vertexes_, numOfVertexes_);
 }
 
 void rebdev::Polygon::scale(double k)
