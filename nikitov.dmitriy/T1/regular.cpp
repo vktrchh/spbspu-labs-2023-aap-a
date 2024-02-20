@@ -95,7 +95,7 @@ void nikitov::Regular::move(double dx, double dy)
   third_.y += dy;
 }
 
-void nikitov::Regular::scale(double ratio)
+void nikitov::Regular::doScale(double ratio)
 {
   second_.x = first_.x + (second_.x - first_.x) * ratio;
   second_.y = first_.y + (second_.y - first_.y) * ratio;

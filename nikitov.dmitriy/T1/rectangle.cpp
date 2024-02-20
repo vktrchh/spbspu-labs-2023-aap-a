@@ -40,7 +40,7 @@ void nikitov::Rectangle::move(double dx, double dy)
   rightCorner_.y += dy;
 }
 
-void nikitov::Rectangle::scale(double ratio)
+void nikitov::Rectangle::doScale(double ratio)
 {
   point_t center = getFrameRect().pos;
   leftCorner_.x = center.x - (center.x - leftCorner_.x) * ratio;

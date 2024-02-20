@@ -115,7 +115,7 @@ void nikitov::Diamond::move(double dx, double dy)
   third_.y += dy;
 }
 
-void nikitov::Diamond::scale(double ratio)
+void nikitov::Diamond::doScale(double ratio)
 {
   second_.x = first_.x - (first_.x - second_.x) * ratio;
   second_.y = first_.y - (first_.y - second_.y) * ratio;

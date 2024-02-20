@@ -31,7 +31,7 @@ void nikitov::scaleFigure(Shape* figure, const point_t& isoScaleCenter, double r
 {
   point_t center = figure->getFrameRect().pos;
   figure->move(isoScaleCenter);
-  figure->scale(ratio);
+  figure->unsafeScale(ratio);
   double dx = (isoScaleCenter.x - center.x) * ratio;
   double dy = (isoScaleCenter.y - center.y) * ratio;
   figure->move(-dx, -dy);

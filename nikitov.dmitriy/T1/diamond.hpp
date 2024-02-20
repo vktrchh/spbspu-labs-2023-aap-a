@@ -14,12 +14,12 @@ namespace nikitov
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t& point);
     virtual void move(double dx, double dy);
-    virtual void scale(double ratio);
     virtual Shape* clone() const;
   private:
     point_t first_;
     point_t second_;
     point_t third_;
+    virtual void doScale(double ratio);
   };
 }
 #endif
