@@ -9,6 +9,8 @@
 
 namespace marishin
 {
+  template <typename T>
+  void readArray(std::istream& in, T* option, size_t size);
   void readRectangle(std::istream& in, Shape** currentShapes, size_t& shapeCount);
   void readTriangle(std::istream& in, Shape** currentShapes, size_t& shapeCount);
   void readRing(std::istream& in, Shape** currentShapes, size_t& shapeCount);
