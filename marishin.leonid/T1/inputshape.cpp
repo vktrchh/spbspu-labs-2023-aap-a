@@ -1,4 +1,3 @@
-#include <readArray.hpp>
 #include "inputshape.hpp"
 
 void marishin::readRectangle(std::istream& in, Shape** currentShapes, size_t& shapeCount)
