@@ -3,7 +3,7 @@
 void marishin::readRectangle(std::istream& in, Shape** currentShapes, size_t& shapeCount)
 {
   double option[4]{};
-  readArray(in, option, 4);
+  marishin::readArray(in, option, 4);
 
   if (!in)
   {
@@ -15,7 +15,7 @@ void marishin::readRectangle(std::istream& in, Shape** currentShapes, size_t& sh
 void marishin::readTriangle(std::istream& in, Shape** currentShapes, size_t& shapeCount)
 {
   double option[6]{};
-  readArray(in, option, 6);
+  marishin::readArray(in, option, 6);
 
   if (!in)
   {
@@ -26,8 +26,8 @@ void marishin::readTriangle(std::istream& in, Shape** currentShapes, size_t& sha
 
 void marishin::readRing(std::istream& in, Shape** currentShapes, size_t& shapeCount)
 {
-  double option[4] = {};
-  readArray(in, option, 4);
+  double option[4]{};
+  marishin::readArray(in, option, 4);
 
   if (!in)
   {
