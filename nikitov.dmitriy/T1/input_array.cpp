@@ -72,7 +72,7 @@ void nikitov::inputArray(CompositeShape& composition, std::string& line, std::is
 
     Shape* figure = nullptr;
     try
-    { 
+    {
       if (line.find("RECTANGLE") == 0)
       {
         figure = insertRectangle(line);
