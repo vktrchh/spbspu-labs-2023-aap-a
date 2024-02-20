@@ -1,13 +1,5 @@
+#include <readArray.hpp>
 #include "inputshape.hpp"
-
-template <typename T>
-void marishin::readArray(std::istream& in, T* option, size_t size)
-{
-  for (size_t i = 0; i < size; ++i)
-  {
-    in >> option[i];
-  }
-}
 
 void marishin::readRectangle(std::istream& in, Shape** currentShapes, size_t& shapeCount)
 {
