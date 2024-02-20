@@ -10,14 +10,8 @@ rebdev::Shape * rebdev::newFigure(std::istream & input, const std::string & name
   point_t * points = nullptr;
 
   size_t numOfPoints = 0;
-  try
-  {
-    points = inputPoints(input, numOfPoints);
-  }
-  catch (const std::bad_alloc & e)
-  {
-    throw;
-  }
+  points = inputPoints(input, numOfPoints);
+
   try
   {
     if (name.find("RECTANGLE") != std::string::npos)

@@ -6,9 +6,7 @@
 #include "rectangle.hpp"
 #include "base-types.hpp"
 #include "figureInputFunction.hpp"
-#include "isoScale.hpp"
 #include "outputShapes.hpp"
-#include "mainFunction.hpp"
 
 int main()
 {
@@ -76,7 +74,6 @@ int main()
       }
       catch (const std::exception & e)
       {
-        delete shapes[numOfShape];
         figureError = 1;
       }
     }

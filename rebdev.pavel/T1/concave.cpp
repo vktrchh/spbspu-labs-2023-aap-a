@@ -3,9 +3,8 @@
 #include <stdexcept>
 #include "figureFunction.hpp"
 
-rebdev::Concave::Concave(const point_t & firstVertex, const point_t & secondVertex,
-  const point_t & thirdVertex, const point_t & fourthVertex):
-  vertexes_{firstVertex, secondVertex, thirdVertex, fourthVertex}
+rebdev::Concave::Concave(const point_t & a, const point_t & b, const point_t & c, const point_t & d):
+  vertexes_{a, b, c, d}
 {
   bool isConcave = false;
 

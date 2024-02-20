@@ -1,6 +1,7 @@
 #ifndef SHAPE_HPP
 #define SHAPE_HPP
 
+#include <cstddef>
 #include "base-types.hpp"
 
 namespace rebdev
@@ -15,6 +16,9 @@ namespace rebdev
     virtual void move(double x, double y) = 0;
     virtual void scale(double k) = 0;
   };
+
+  void isoScale(Shape ** arr, size_t numOfShape, const point_t & scalePoint, double k);
+  void deleteShapes(Shape ** shapes, size_t numOfShape);
 }
 
 #endif
