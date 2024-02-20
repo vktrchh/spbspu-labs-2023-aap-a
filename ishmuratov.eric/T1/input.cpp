@@ -66,11 +66,7 @@ ishmuratov::Shape * ishmuratov::initShape(const std::string & shapeName, std::is
       inputPoint(input, pA, 8);
       return new Concave({ pA[0], pA[1] }, { pA[2], pA[3] }, { pA[4], pA[5] }, { pA[6], pA[7] });
     }
-    else
-    {
-      throw std::invalid_argument("Invalid Shape!");
-    }
-    return nullptr;
   }
+  throw std::invalid_argument("Invalid Shape!");
 }
 
