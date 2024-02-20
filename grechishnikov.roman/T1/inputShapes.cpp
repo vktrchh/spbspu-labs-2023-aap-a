@@ -1,7 +1,7 @@
 #include "inputShapes.hpp"
 #include <stdexcept>
 #include <cctype>
-#include <string.h>
+#include <cstring>
 #include "rectangle.hpp"
 #include "triangle.hpp"
 #include "polygon.hpp"
@@ -31,7 +31,7 @@ grechishnikov::Shape* grechishnikov::inputShape(const char* str)
     name = parseName(str);
     for (size_t i = 0; i < legalNameCount; i++)
     {
-      if (strcmp(legalName[i], name) == 0)
+      if (std::strcmp(legalName[i], name) == 0)
       {
         size_t pos = 0;
         for (size_t i = 0; str[i] != ' '; i++)

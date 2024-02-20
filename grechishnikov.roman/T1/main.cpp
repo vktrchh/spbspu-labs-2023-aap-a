@@ -1,6 +1,6 @@
 #include <stdexcept>
 #include <iostream>
-#include <string.h>
+#include <cstring>
 #include <inputString.hpp>
 #include "inputShapes.hpp"
 #include "parametersLogic.hpp"
@@ -44,7 +44,7 @@ int main()
 
       if (name != nullptr)
       {
-        if (strcmp(name, "SCALE") != 0)
+        if (std::strcmp(name, "SCALE") != 0)
         {
           try
           {
@@ -56,7 +56,7 @@ int main()
             std::cerr << "Error: " << e.what() << '\n';
           }
         }
-        if (strcmp(name, "SCALE") == 0)
+        if (std::strcmp(name, "SCALE") == 0)
         {
           endOfInput = true;
          if (count == 0)
