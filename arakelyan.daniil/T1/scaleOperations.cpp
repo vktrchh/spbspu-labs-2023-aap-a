@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include "inputAndOutputOperations.hpp"
 
-void arakelyan::isoScale(Shape * shapeObj, const point_t scalePoint, const double scaleK)
+void arakelyan::isoScale(Shape *shapeObj, const point_t scalePoint, const double scaleK)
 {
    point_t initialPos = shapeObj->getFrameRect().pos;
    shapeObj->move(scalePoint);
@@ -14,7 +14,7 @@ void arakelyan::isoScale(Shape * shapeObj, const point_t scalePoint, const doubl
    shapeObj->move(-dx, -dy);
 }
 
-void arakelyan::scaleFunction(Shape ** shapes, const size_t shapesCount, const point_t scalePoint, const double scaleK)
+void arakelyan::scaleFunction(Shape **shapes, const size_t shapesCount, const point_t scalePoint, const double scaleK)
 {
   if (scaleK < 0.0)
   {

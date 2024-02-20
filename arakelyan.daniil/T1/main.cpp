@@ -17,7 +17,7 @@ int main()
   using namespace arakelyan;
   size_t maxShapesCount = 1000;
   size_t currentShapesCount = 0;
-  Shape ** myShapes = new Shape * [maxShapesCount]{nullptr};
+  Shape **myShapes = new Shape * [maxShapesCount]{nullptr};
 
   bool errorsFlagShapes = false;
   bool errorsFlagScale = false;
@@ -26,7 +26,7 @@ int main()
   double scaleK = 0;
   const char * targetWordScale = "SCALE";
 
-  char * string = nullptr;
+  char *string = nullptr;
 
   bool readingFromInput = true;
 

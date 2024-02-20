@@ -7,7 +7,7 @@
 #include "diamond.hpp"
 #include "rectangle.hpp"
 
-void arakelyan::extractDataForShape(const char * string, double *coordStorage, const size_t pointsCount, const size_t wordLen)
+void arakelyan::extractDataForShape(const char *string, double *coordStorage, const size_t pointsCount, const size_t wordLen)
 {
   string += wordLen;
 
@@ -18,7 +18,7 @@ void arakelyan::extractDataForShape(const char * string, double *coordStorage, c
       ++string;
     }
 
-    char * endPtr;
+    char *endPtr;
     coordStorage[i] = std::strtod(string, & endPtr);
 
     string = endPtr;
@@ -29,7 +29,7 @@ void arakelyan::extractDataForShape(const char * string, double *coordStorage, c
   }
 }
 
-arakelyan::Shape * arakelyan::createPar(const char * string)
+arakelyan::Shape * arakelyan::createPar(const char *string)
 {
   size_t wordLen = 13;
   const size_t arrayWeight = 6;
@@ -41,7 +41,7 @@ arakelyan::Shape * arakelyan::createPar(const char * string)
   return new Parallelogram(p1, p2, p3);
 }
 
-arakelyan::Shape * arakelyan::createDiam(const char * string)
+arakelyan::Shape * arakelyan::createDiam(const char *string)
 {
   size_t wordLen = 7;
   const size_t arrayWeight = 6;
@@ -64,7 +64,7 @@ arakelyan::Shape * arakelyan::createDiam(const char * string)
   }
 }
 
-arakelyan::Shape * arakelyan::createRect(const char * string)
+arakelyan::Shape * arakelyan::createRect(const char *string)
 {
   size_t wordLen = 9;
   const size_t arrayWeight = 4;
@@ -75,7 +75,7 @@ arakelyan::Shape * arakelyan::createRect(const char * string)
   return new Rectangle(p1, p2);
 }
 
-void arakelyan::defineAndCreateShape(Shape **myShapes, size_t shapesCoutnt, const char * string)
+void arakelyan::defineAndCreateShape(Shape **myShapes, size_t shapesCoutnt, const char *string)
 {
   const char * targetWordRectangle = "RECTANGLE";
   const char * targetWordParallelogram = "PARALLELOGRAM";
