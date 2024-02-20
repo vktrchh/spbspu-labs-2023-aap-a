@@ -1,6 +1,5 @@
 #include "polygon.hpp"
 #include <stdexcept>
-#include <iostream>
 #include <algorithm>
 #include "triangle.hpp"
 #include "pointLogic.hpp"

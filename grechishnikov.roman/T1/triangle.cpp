@@ -4,48 +4,21 @@
 #include <algorithm>
 #include "pointLogic.hpp"
 
-grechishnikov::Triangle::Triangle(const point_t* points, size_t size):
-  points_(new point_t[size]),
-  size_(size)
-{
-  if (size != 3)
-  {
-    delete[] points_;
-    throw std::invalid_argument("Invalid parameters (Wrong number of  arguments for triangle)");
-  }
-  for (size_t i = 0; i < size; i++)
-  {
-    points_[i] = points[i];
-  }
-  if (this->getArea() == 0)
-  {
-    delete[] points_;
-    throw std::invalid_argument("Invalid parameters (Points were entered incorrectly)");
-  }
-}
+double findAreaOfTri(const grechishnikov::point_t& a, const grechishnikov::point_t& b, const grechishnikov::point_t& c);
 
 grechishnikov::Triangle::Triangle(const point_t& a, const point_t& b, const point_t& c):
-  points_(new point_t[3] { a, b, c }),
+  points_{ a, b, c },
   size_(3)
 {
-  if (this->getArea() == 0)
+  if (findAreaOfTri(a, b, c) == 0)
   {
-    delete[] points_;
     throw std::invalid_argument("Invalid parameters (Points don't form a triangle)");
   }
 }
 
-grechishnikov::Triangle::~Triangle()
-{
-  delete[] points_;
-}
-
 double grechishnikov::Triangle::getArea() const
 {
-  double sq = ((points_[1].x - points_[0].x) * (points_[2].y - points_[0].y)
-     - (points_[2].x - points_[0].x) * (points_[1].y - points_[0].y)) / 2;
-  sq = std::abs(sq);
-  return sq;
+   return findAreaOfTri(points_[0], points_[1], points_[2]);
 }
 
 grechishnikov::rectangle_t grechishnikov::Triangle::getFrameRect() const
@@ -67,4 +40,11 @@ void grechishnikov::Triangle::move(double dx, double dy)
 void grechishnikov::Triangle::scale(double rate)
 {
   scalePoints(points_, size_, rate);
+}
+
+double findAreaOfTri(const grechishnikov::point_t& a, const grechishnikov::point_t& b, const grechishnikov::point_t& c)
+{
+  double sq = ((b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y)) / 2;
+  sq = std::abs(sq);
+  return sq;
 }

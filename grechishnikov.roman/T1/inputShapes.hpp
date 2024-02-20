@@ -11,7 +11,7 @@ namespace grechishnikov
   Shape* inputRectangle(const point_t* points, size_t size);
   Shape* inputTriangle(const point_t* points, size_t size);
   Shape* inputPolygon(const point_t* points, size_t size);
-  void freeShapes(Shape* const* shapes, size_t size);
+  void freeShapes(const Shape* const* shapes, size_t size);
   const char* parseName(const char* str);
 }
 

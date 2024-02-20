@@ -2,29 +2,14 @@
 #include <stdexcept>
 #include "pointLogic.hpp"
 
-grechishnikov::Rectangle::Rectangle(const point_t* points, size_t size):
-  points_(new point_t[size]),
-  size_(size)
+grechishnikov::Rectangle::Rectangle(const point_t& dLeft, const point_t& uRight):
+  points_{ dLeft, uRight },
+  size_(2)
 {
-  if (size != 2)
+  if (dLeft.x >= uRight.x || dLeft.y >= uRight.y)
   {
-    delete[] points_;
-    throw std::invalid_argument("Invalid parameters (Wrong number of  arguments for rectangle)");
-  }
-  if (points[0].x >= points[1].x || points[0].y >= points[1].y)
-  {
-    delete[] points_;
     throw std::invalid_argument("Invalid parameters (Points were entered incorrectly)");
   }
-  for (size_t i = 0; i < size; i++)
-  {
-    points_[i] = points[i];
-  }
-}
-
-grechishnikov::Rectangle::~Rectangle()
-{
-  delete[] points_;
 }
 
 double grechishnikov::Rectangle::getArea() const

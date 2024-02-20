@@ -14,7 +14,7 @@ grechishnikov::Shape* grechishnikov::inputShape(const char* str)
     throw std::logic_error("String wasn't given");
   }
   const size_t legalNameCount = 3;
-  const char* legalName[] = { "RECTANGLE\0", "TRIANGLE\0", "POLYGON\0" };
+  const char* legalName[] = { "RECTANGLE", "TRIANGLE", "POLYGON" };
   Shape* (*correspondingFunctions[])(const point_t* points, size_t size) = {
     inputRectangle,
     inputTriangle,
@@ -64,12 +64,20 @@ grechishnikov::Shape* grechishnikov::inputShape(const char* str)
 
 grechishnikov::Shape* grechishnikov::inputRectangle(const point_t* points, size_t size)
 {
-  return new Rectangle(points, size);
+  if (size != 2)
+  {
+    throw std::invalid_argument("Invalid parameters (Wrong number of  arguments for rectangle)");
+  }
+  return new Rectangle(points[0], points[1]);
 }
 
 grechishnikov::Shape* grechishnikov::inputTriangle(const point_t* points, size_t size)
 {
-  return new Triangle(points, size);
+  if (size != 3)
+  {
+    throw std::invalid_argument("Invalid parameters (Wrong number of  arguments for triangle)");
+  }
+  return new Triangle(points[0], points[1], points[2]);
 }
 
 grechishnikov::Shape* grechishnikov::inputPolygon(const point_t* points, size_t size)
@@ -77,7 +85,7 @@ grechishnikov::Shape* grechishnikov::inputPolygon(const point_t* points, size_t 
   return new Polygon(points, size);
 }
 
-void grechishnikov::freeShapes(Shape* const* shapes, size_t size)
+void grechishnikov::freeShapes(const Shape* const* shapes, size_t size)
 {
   for (size_t i = 0; i < size; i++)
   {
