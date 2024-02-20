@@ -33,6 +33,6 @@ void rebdev::printVertexes(const point_t & upRight, const point_t & lowLeft, std
   out << upRight.x << ' ' << upRight.y;
   if (!shapeIsLast)
   {
-    ous << ' ';
+    out << ' ';
   }
 }
