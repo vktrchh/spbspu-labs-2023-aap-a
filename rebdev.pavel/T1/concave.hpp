@@ -20,7 +20,6 @@ namespace rebdev
       virtual void scale(double k);
     private:
       point_t vertexes_[4];
-      point_t scalePoint(const point_t & pointToScale, const point_t & centerPoint, double k);
   };
 
   bool isTriangle(const point_t & f, const point_t & s, const point_t & t);
