@@ -24,10 +24,6 @@ void readArray(double* array, size_t size, const char* string, size_t pos)
 
 bool areSame(const char* s1, const char* s2)
 {
-  if(s1 == nullptr)
-  {
-    return false;
-  }
   return std::strncmp(s1, s2, std::strlen(s2)) == 0;
 }
 
@@ -139,7 +135,7 @@ void zakozhurnikova::freeShapesArray(Shape** shapes, size_t size)
 void zakozhurnikova::inputShapesArray(std::istream& in, Shape** shapes, size_t& size, point_t& scalePoint, double& k)
 {
   char* string = nullptr;
-  while (!areSame(string, "SCALE"))
+  while (true)
   {
     try
     {
@@ -151,6 +147,10 @@ void zakozhurnikova::inputShapesArray(std::istream& in, Shape** shapes, size_t& 
     }
     catch (const std::invalid_argument& e)
     {
+      if(areSame(string, "SCALE"))
+      {
+        break;
+      }
       delete[] string;
       std::cerr << e.what() << '\n';
     }
