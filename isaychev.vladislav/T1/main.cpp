@@ -13,8 +13,8 @@ int main()
   char * currDesc = nullptr;
   CompositeShape cShape;
   size_t figDescMistakeCheck = 0, capacity = 10;
-  bool eofCheck = false;
-  while (std::cin)
+  bool eofCheck = false, scaleCheck = false;
+  while (!scaleCheck)
   {
     try
     {
@@ -26,7 +26,7 @@ int main()
       }
       if (checkString(currDesc, scaleStr) == 1)
       {
-        break;
+        scaleCheck = true;
       }
       Shape * figure = createFigure(currDesc);
       if (figure != nullptr)
@@ -48,7 +48,10 @@ int main()
     {
       figDescMistakeCheck++;
     }
-    delete [] currDesc;
+    if (!scaleCheck)
+    {
+      delete [] currDesc;
+    }
   }
   if (cShape.size() == 0 && checkString(currDesc, scaleStr) == 1)
   {
