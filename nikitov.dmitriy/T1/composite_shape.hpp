@@ -14,7 +14,7 @@ namespace nikitov
     CompositeShape(CompositeShape&& other);
     ~CompositeShape();
 
-    CompositeShape& operator=(CompositeShape& other);
+    CompositeShape& operator=(const CompositeShape& other);
     CompositeShape& operator=(CompositeShape&& other);
     Shape& operator[](size_t index);
     const Shape& operator[](size_t index) const;
