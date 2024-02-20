@@ -6,7 +6,7 @@
 
 namespace piyavkin
 {
-  Triangle::Triangle(point_t p1, point_t p2, point_t p3):
+  Triangle::Triangle(const point_t& p1, const point_t& p2, const point_t& p3):
     a_(p1),
     b_(p2),
     c_(p3)

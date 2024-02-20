@@ -5,7 +5,7 @@
 
 namespace piyavkin
 {
-  Parallelogram::Parallelogram(point_t p1, point_t p2, point_t p3):
+  Parallelogram::Parallelogram(const point_t& p1, const point_t& p2, const point_t& p3):
     a_(p1),
     b_(p2),
     c_(p3)

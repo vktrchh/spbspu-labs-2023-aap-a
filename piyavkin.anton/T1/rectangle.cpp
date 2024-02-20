@@ -4,7 +4,7 @@
 
 namespace piyavkin
 {
-  Rectangle::Rectangle(point_t p1, point_t p2):
+  Rectangle::Rectangle(const point_t& p1, const point_t& p2):
     lowerLeftCorner_(p1),
     topRightCorner_(p2)
   {
