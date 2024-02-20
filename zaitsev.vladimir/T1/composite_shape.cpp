@@ -197,7 +197,7 @@ zaitsev::rectangle_t zaitsev::CompositeShape::getFrameRect() const
   return transformRectangleBounds(left_corner, right_corner);
 }
 
-void zaitsev::CompositeShape::move(const point_t& dest_pos)
+void zaitsev::CompositeShape::move(point_t dest_pos)
 {
   point_t pos = getCenter();
   for (size_t i = 0; i < size_; ++i)

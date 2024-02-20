@@ -40,7 +40,7 @@ zaitsev::rectangle_t zaitsev::Parallelogram::getFrameRect() const
   return transformRectangleBounds(left_corner, right_corner);
 }
 
-void zaitsev::Parallelogram::move(const point_t& dest_pos)
+void zaitsev::Parallelogram::move(point_t dest_pos)
 {
   point_t pos = getCenter();
   move(dest_pos.x - pos.x, dest_pos.y - pos.y);

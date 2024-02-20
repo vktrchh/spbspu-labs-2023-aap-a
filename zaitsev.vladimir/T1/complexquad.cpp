@@ -6,14 +6,6 @@
 #include "base-types.hpp"
 #include "geometric_functions.hpp"
 
-void changeRectangleBounds(zaitsev::point_t& left_corner, zaitsev::point_t& right_corner, const zaitsev::point_t& new_pt)
-{
-  left_corner.x = std::min(left_corner.x, new_pt.x);
-  left_corner.y = std::min(left_corner.y, new_pt.y);
-  right_corner.x = std::max(right_corner.x, new_pt.x);
-  right_corner.y = std::max(right_corner.y, new_pt.y);
-}
-
 zaitsev::Complexquad::Complexquad(point_t vertex1, point_t vertex2, point_t vertex3, point_t vertex4):
   vertices_{ vertex1, vertex2, vertex3, vertex4 }
 {
@@ -40,7 +32,7 @@ zaitsev::rectangle_t zaitsev::Complexquad::getFrameRect() const
   return transformRectangleBounds(left_corner, right_corner);
 }
 
-void zaitsev::Complexquad::move(const point_t& dest_pos)
+void zaitsev::Complexquad::move(point_t dest_pos)
 {
   point_t pos = getCenter();
   move(dest_pos.x - pos.x, dest_pos.y - pos.y);

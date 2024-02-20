@@ -12,7 +12,7 @@ namespace zaitsev
     Complexquad(const Complexquad& other) = default;
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
-    virtual void move(const point_t& dest_pos);
+    virtual void move(point_t dest_pos);
     virtual void move(double x_shift, double y_shift);
     virtual void scale(double factor);
     virtual Shape* clone() const;

@@ -4,10 +4,10 @@
 #include "base-types.hpp"
 #include "shape.hpp"
 
-void setLineCoeff(const zaitsev::point_t& p1, const zaitsev::point_t& p2, double& a, double& b, double& c);
-double skewProduct(const zaitsev::point_t& vector1, const zaitsev::point_t& vector2);
+void setLineCoeff(zaitsev::point_t p1, zaitsev::point_t p2, double& a, double& b, double& c);
+double skewProduct(zaitsev::point_t vector1, zaitsev::point_t vector2);
 
-double skewProduct(const zaitsev::point_t& vector1, const zaitsev::point_t& vector2)
+double skewProduct(zaitsev::point_t vector1, zaitsev::point_t vector2)
 {
   return vector1.x * vector2.y - vector1.y * vector2.x;
 }
@@ -68,7 +68,7 @@ zaitsev::point_t zaitsev::findIntersection(const point_t* sections)
   return { x, y };
 }
 
-void setLineCoeff(const zaitsev::point_t& p1, const zaitsev::point_t& p2, double& a, double& b, double& c)
+void setLineCoeff(zaitsev::point_t p1, zaitsev::point_t p2, double& a, double& b, double& c)
 {
   if (p1.x == p2.x)
   {
@@ -90,12 +90,12 @@ void setLineCoeff(const zaitsev::point_t& p1, const zaitsev::point_t& p2, double
   c = -(p1.x * a + p1.y * b);
 }
 
-double zaitsev::getAreaOfTriangle(const point_t& p1, const point_t& p2, const point_t& p3)
+double zaitsev::getAreaOfTriangle(point_t p1, point_t p2, point_t p3)
 {
   return std::fabs(skewProduct(p2 - p1, p3 - p1)) / 2;
 }
 
-void zaitsev::changeRectangleBounds(point_t& left_corner, point_t& right_corner, const point_t& new_pt)
+void zaitsev::changeRectangleBounds(point_t& left_corner, point_t& right_corner, point_t new_pt)
 {
   left_corner.x = std::min(left_corner.x, new_pt.x);
   left_corner.y = std::min(left_corner.y, new_pt.y);
@@ -103,14 +103,14 @@ void zaitsev::changeRectangleBounds(point_t& left_corner, point_t& right_corner,
   right_corner.y = std::max(right_corner.y, new_pt.y);
 }
 
-zaitsev::rectangle_t zaitsev::transformRectangleBounds(const point_t& left_corner, const point_t& right_corner)
+zaitsev::rectangle_t zaitsev::transformRectangleBounds(point_t left_corner, point_t right_corner)
 {
   point_t size = right_corner - left_corner;
   point_t pos = (left_corner + right_corner) / 2;
   return { size.x, size.y, pos };
 }
 
-void zaitsev::scale(Shape* shape, double factor, const point_t& iso_center)
+void zaitsev::scale(Shape* shape, double factor, point_t iso_center)
 {
   if (factor <= 0)
   {
@@ -123,7 +123,7 @@ void zaitsev::scale(Shape* shape, double factor, const point_t& iso_center)
   shape->move(factor * (start_pos.x - iso_center_pos.x), factor * (start_pos.y - iso_center_pos.y));
 }
 
-void zaitsev::scale(CompositeShape& shape, double factor, const point_t& iso_center)
+void zaitsev::scale(CompositeShape& shape, double factor, point_t iso_center)
 {
   if (factor <= 0)
   {

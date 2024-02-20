@@ -24,7 +24,7 @@ zaitsev::rectangle_t zaitsev::Rectangle::getFrameRect() const
   return { width, height, getCenter()};
 }
 
-void zaitsev::Rectangle::move(const point_t& dest_pos)
+void zaitsev::Rectangle::move(point_t dest_pos)
 {
   point_t center = getCenter();
   move(dest_pos.x - center.x, dest_pos.y - center.y);

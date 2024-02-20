@@ -25,7 +25,7 @@ namespace zaitsev
     size_t size() const;
     double getArea() const;
     rectangle_t getFrameRect() const;
-    void move(const point_t& dest_pos);
+    void move(point_t dest_pos);
     void move(double x_shift, double y_shift);
     void scale(double factor);
   private:
