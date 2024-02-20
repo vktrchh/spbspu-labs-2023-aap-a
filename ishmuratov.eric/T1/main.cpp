@@ -1,22 +1,51 @@
 #include <iostream>
+#include <stdexcept>
 #include "shape.hpp"
 #include "rectangle.hpp"
 #include "triangle.hpp"
 #include "diamond.hpp"
 #include "concave.hpp"
+#include "data_process.hpp"
+#include "input.hpp"
+#include "output.hpp"
 
 int main()
 {
   using namespace ishmuratov;
-  double x1 = 0;
-  double y1 = 0;
-  double x2 = 0;
-  double y2 = 0;
-  double x3 = 0;
-  double y3 = 0;
-  double x4 = 0;
-  double y4 = 0;
-  std::cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3 >> x4 >> y4;
-  Concave con = Concave({ x1, y1 }, { x2, y2 }, { x3, y3 }, { x4, y4 });
+  Shape * shapes[1000]{};
+  point_t position = { 0, 0 };
+  double factor = 0;
+  bool invalidShape = false;
+  size_t count = 0;
+  try
+  {
+    inputShape(std::cin, shapes, count);
+    outputShape(std::cout, shapes, count);
+    std::cout << "\n";
+    std::cin >> position.x >> position.y >> factor;
+    if ((!std::cin) || (factor < 0))
+    {
+      throw std::out_of_range("Bad input!");
+    }
+    for (size_t i = 0; i < count; ++i)
+    {
+      scaleShapes(shapes[i], position, factor);
+    }
+    outputShape(std::cout, shapes, count);
+    std::cout << "\n";
+  }
+  catch (const std::invalid_argument & e)
+  {
+    invalidShape = true;
+  }
+  catch (const std::exception & e)
+  {
+    std::cerr << "Error: " << e.what() << "\n";
+    return 2;
+  }
+  if (invalidShape)
+  {
+    std::cerr << "Invalid shape!\n";
+  }
   return 0;
 }

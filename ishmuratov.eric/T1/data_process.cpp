@@ -59,3 +59,12 @@ void ishmuratov::scaleTriangle(point_t * pointArray, point_t center, double fact
     pointArray[i] = { center.x + diffArray[i].x, center.y + diffArray[i].y };
   }
 }
+
+void ishmuratov::scaleShapes(Shape * shapes, point_t position, double factor)
+{
+  point_t initialPos = shapes->getFrameRect().pos;
+  shapes->move(position);
+  point_t newPos = shapes->getFrameRect().pos;
+  shapes->scale(factor);
+  shapes->move(factor * (initialPos.x - newPos.x), factor * (initialPos.y - newPos.y));
+}
