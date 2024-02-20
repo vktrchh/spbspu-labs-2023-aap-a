@@ -1,6 +1,6 @@
 #include "shape.hpp"
 
-strelyaev::Shape::scale(double k)
+void strelyaev::Shape::scale(double k)
 {
   if (k < 0)
   {
