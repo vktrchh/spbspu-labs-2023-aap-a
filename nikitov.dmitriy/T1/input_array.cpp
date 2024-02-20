@@ -70,24 +70,29 @@ void nikitov::inputArray(CompositeShape& composition, std::string& line, std::is
       throw std::logic_error("Error: Wrong input");
     }
 
+    Shape* figure = nullptr;
     try
-    {
+    { 
       if (line.find("RECTANGLE") == 0)
       {
-        composition.push_back(insertRectangle(line));
+        figure = insertRectangle(line);
+        composition.push_back(figure);
       }
       else if (line.find("DIAMOND") == 0)
       {
-        composition.push_back(insertDiamond(line));
+        figure = insertDiamond(line);
+        composition.push_back(figure);
       }
       else if (line.find("REGULAR") == 0)
       {
-        composition.push_back(insertRegular(line));
+        figure = insertRegular(line);
+        composition.push_back(figure);
       }
     }
     catch (const std::invalid_argument&)
     {
       isErrorInProgram = true;
+      delete figure;
     }
   }
   if (isErrorInProgram)
