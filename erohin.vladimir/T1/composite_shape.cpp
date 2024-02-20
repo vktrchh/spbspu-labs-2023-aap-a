@@ -21,7 +21,7 @@ erohin::CompositeShape::CompositeShape(const CompositeShape& rhs):
     }
     catch (const std::bad_alloc&)
     {
-      this->~CompositeShape();
+      freeShape(shape_, i);
       throw;
     }
   }
@@ -39,11 +39,7 @@ erohin::CompositeShape::CompositeShape(CompositeShape&& rhs) noexcept:
 
 erohin::CompositeShape::~CompositeShape()
 {
-  for (size_t i = 0; i < size_; ++i)
-  {
-    delete shape_[i];
-  }
-  delete[] shape_;
+  freeShape(shape_, size_);
 }
 
 erohin::CompositeShape& erohin::CompositeShape::operator=(const CompositeShape& rhs)
@@ -201,4 +197,13 @@ void erohin::CompositeShape::resize(size_t length)
     capacity_ = length;
     shape_ = resized;
   }
+}
+
+void erohin::freeShape(Shape** shape, size_t size)
+{
+  for (size_t i = 0; i < size; ++i)
+  {
+    delete shape[i];
+  }
+  delete[] shape;
 }

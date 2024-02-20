@@ -36,6 +36,7 @@ namespace erohin
     void swap(CompositeShape& rhs);
     void resize(size_t length);
   };
+  void freeShape(Shape** shape, size_t size);
 }
 
 #endif
