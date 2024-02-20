@@ -49,7 +49,7 @@ int main()
         freeMem(myShapes, currentShapesCount);
         std::cerr << "Error: " << e.what() << "\n";
         return 1;
-      }
+      } 
 
       const char * foundScale = std::strstr(string, targetWordScale);
       if (foundScale != nullptr)

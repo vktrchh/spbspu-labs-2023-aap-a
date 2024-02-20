@@ -98,10 +98,6 @@ void arakelyan::defineAndCreateShape(Shape **myShapes, size_t shapesCount, const
   {
     myShapes[shapesCount] = createDiam(string);
   }
-  else
-  {
-    throw std::logic_error("This shape is not implemented by the program!");
-  }
 }
 
 void arakelyan::freeMem(Shape **myShapes, const size_t shapesCount)
