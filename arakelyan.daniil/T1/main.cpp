@@ -64,7 +64,7 @@ int main()
         {
           defineAndCreateShape(myShapes, currentShapesCount, string);
         }
-        catch (const std::exception &e)
+        catch (const std::logic_error &e)
         {
           errorsFlagShapes = true;
         }
@@ -86,12 +86,12 @@ int main()
 
   if (errorsFlagShapes)
   {
-    std::cerr << "Something went wrong with shapes creation!\n";
+    std::cerr << "\nSomething went wrong with shapes creation!\n";
   }
 
   if (currentShapesCount == 0)
   {
-    std::cerr << "Nothing to scale!\n";
+    std::cerr << "\nNothing to scale!\n";
     freeMem(myShapes, currentShapesCount);
     return 2;
   }

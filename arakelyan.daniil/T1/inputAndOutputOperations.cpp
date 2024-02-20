@@ -33,6 +33,7 @@ void arakelyan::shapeOutput(std::ostream &output, const Shape *const *shapes, co
   {
     totalArea += shapes[i]->getArea();
   }
+  output << "\n";
   output << totalArea;
   for (size_t i = 0; i < shapesCount; i++)
   {

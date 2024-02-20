@@ -1,5 +1,6 @@
 #include "shape-creation.hpp"
 
+#include <memory>
 #include <stdexcept>
 #include <cstring>
 
@@ -18,8 +19,8 @@ void arakelyan::extractDataForShape(const char *string, double *coordStorage, co
       ++string;
     }
 
-    char *endPtr;
-    coordStorage[i] = std::strtod(string, & endPtr);
+    char *endPtr = nullptr;
+    coordStorage[i] = std::strtod(string, std::addressof(endPtr));
 
     string = endPtr;
   }
@@ -75,7 +76,7 @@ arakelyan::Shape * arakelyan::createRect(const char *string)
   return new Rectangle(p1, p2);
 }
 
-void arakelyan::defineAndCreateShape(Shape **myShapes, size_t shapesCoutnt, const char *string)
+void arakelyan::defineAndCreateShape(Shape **myShapes, size_t shapesCount, const char *string)
 {
   const char * targetWordRectangle = "RECTANGLE";
   const char * targetWordParallelogram = "PARALLELOGRAM";
@@ -87,15 +88,19 @@ void arakelyan::defineAndCreateShape(Shape **myShapes, size_t shapesCoutnt, cons
 
   if (foundPar != nullptr)
   {
-    myShapes[shapesCoutnt] = createPar(string);
+    myShapes[shapesCount] = createPar(string);
   }
   else if (foundRect != nullptr)
   {
-    myShapes[shapesCoutnt] = createRect(string);
+    myShapes[shapesCount] = createRect(string);
   }
   else if (foundDia != nullptr)
   {
-    myShapes[shapesCoutnt] = createDiam(string);
+    myShapes[shapesCount] = createDiam(string);
+  }
+  else
+  {
+    throw std::logic_error("This shape is not implemented by the program!");
   }
 }
 
