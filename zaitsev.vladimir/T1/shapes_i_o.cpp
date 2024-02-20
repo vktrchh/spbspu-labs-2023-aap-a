@@ -62,6 +62,10 @@ void zaitsev::readScale(std::istream& input, point_t& center, double& factor)
 {
   readPoint(input, center);
   factor = readValue(input);
+  if (factor <= 0)
+  {
+    throw std::invalid_argument("Scale factor must be positive");
+  }
 }
 
 std::ostream& zaitsev::shapesOutput(std::ostream& output, const Shape* const* shapes, size_t size)
