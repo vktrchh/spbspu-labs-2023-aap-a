@@ -84,10 +84,7 @@ int main()
   if (!isScale || (numOfShape == 0))
   {
     std::cerr << "Programm end without scale!\n";
-    for (size_t i = 0; i < numOfShape; ++i)
-    {
-      delete shapes[i];
-    }
+    delete[] shapes;
     return 1;
   }
 
@@ -96,10 +93,7 @@ int main()
   rebdev::printShapes(shapes, numOfShape, std::cout);
   std::cout << '\n';
 
-  for (size_t i = 0; i < numOfShape; ++i)
-  {
-    delete shapes[i];
-  }
+  delete[] shapes;
 
   return 0;
 }
