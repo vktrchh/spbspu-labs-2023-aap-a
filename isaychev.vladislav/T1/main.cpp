@@ -9,12 +9,12 @@
 int main()
 {
   using namespace isaychev;
-  const char * scaleStr = "SCALE";
+  const char * scaleStr = "SCALE ";
   char * currDesc = nullptr;
   CompositeShape cShape;
   size_t figDescMistakeCheck = 0, capacity = 10;
   bool eofCheck = false;
-  while (!(checkString(currDesc, scaleStr)))
+  while (std::cin)
   {
     try
     {
@@ -24,17 +24,14 @@ int main()
         eofCheck = true;
         break;
       }
+      if (checkString(currDesc, scaleStr) == 1)
+      {
+        break;
+      }
       Shape * figure = createFigure(currDesc);
       if (figure != nullptr)
       {
-        try
-        {
-          cShape.pushBack(figure);
-        }
-        catch (const std::out_of_range & e)
-        {
-          std::cerr << e.what() << "\n";
-        }
+        cShape.pushBack(figure);
       }
     }
     catch (const std::bad_alloc &)
@@ -42,6 +39,10 @@ int main()
       delete [] currDesc;
       std::cerr << "can't allocate memory for description of figure or a figure itself\n";
       return 1;
+    }
+    catch (const std::out_of_range & e)
+    {
+      std::cerr << e.what() << "\n";
     }
     catch (const std::logic_error &)
     {
@@ -61,7 +62,7 @@ int main()
     std::cerr << "input was finished with eof symbol; scale wasn't inputed\n";
     return 3;
   }
-  else if (countWSpaces(currDesc) >= 1)
+  else if (countWSpaces(currDesc) > 1)
   {
     constexpr size_t numOfScalePars = 3;
     double scaleParams[numOfScalePars] = {};
@@ -73,10 +74,7 @@ int main()
         outputResults(std::cout, cShape);
         std::cout << "\n";
       }
-      for (size_t i = 0; i < cShape.size(); i++)
-      {
-        isoscaleFigure({scaleParams[0], scaleParams[1]}, scaleParams[2], cShape[i]);
-      }
+      isoscale(scaleParams, cShape);
       outputResults(std::cout, cShape);
       std::cout << "\n";
     }
