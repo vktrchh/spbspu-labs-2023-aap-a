@@ -11,7 +11,8 @@ namespace arakelyan
     virtual rectangle_t getFrameRect() const = 0;
     virtual void move(point_t) = 0;
     virtual void move(double, double) = 0;
-    virtual void scale(double k) = 0;
+    void scale(double k);
+    virtual void scaleShape(double k) = 0;
     virtual ~Shape() = default;
   };
 }

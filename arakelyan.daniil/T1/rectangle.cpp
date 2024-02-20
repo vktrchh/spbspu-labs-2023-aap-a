@@ -46,12 +46,8 @@ void arakelyan::Rectangle::move(const double delX, const double delY)
   }
 }
 
-void arakelyan::Rectangle::scale(const double k)
+void arakelyan::Rectangle::scaleShape(const double k)
 {
-  if (k < 0.0)
-  {
-    throw std::logic_error("The coefficient cannot be less than zero! (Rectangle)");
-  }
   rectangle_t data = getFrameRect();
   double widthWithScale = data.width * k;
   double heightWithScale = data.height * k;

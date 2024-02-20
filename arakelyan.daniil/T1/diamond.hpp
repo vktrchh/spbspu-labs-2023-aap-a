@@ -14,7 +14,7 @@ namespace arakelyan
     virtual rectangle_t getFrameRect() const;
     virtual void move(point_t point);
     virtual void move(double delX, double delY);
-    virtual void scale(double k);
+    virtual void scaleShape(double k);
     virtual ~Diamond() = default;
   private:
     point_t p1_;

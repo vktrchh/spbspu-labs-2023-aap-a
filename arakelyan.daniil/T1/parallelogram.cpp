@@ -88,12 +88,8 @@ void arakelyan::Parallelogram::move(const double delX, const double delY)
   }
 }
 
-void arakelyan::Parallelogram::scale(const double k)
+void arakelyan::Parallelogram::scaleShape(const double k)
 {
-  if (k < 0.0)
-  {
-    throw std::logic_error("The coefficient cannot be less than zero! (Parallelogram)");
-  }
   rectangle_t rectOfParal = getFrameRect();
   point_t * pointsArray[3] = {&p1_, &p2_, &p3_};
   for (size_t i = 0; i < 3; i++)
