@@ -60,7 +60,7 @@ nikitov::CompositeShape& nikitov::CompositeShape::operator=(const CompositeShape
 
 nikitov::CompositeShape& nikitov::CompositeShape::operator=(CompositeShape&& other)
 {
-  CompositeShape temp(other);
+  CompositeShape temp(std::move(other));
   if (std::addressof(other) != this)
   {
     swap(temp);
