@@ -18,6 +18,4 @@ void rebdev::deleteShapes(Shape ** shapes, size_t numOfShape)
   {
     delete shapes[i];
   }
-
-  delete[] shapes;
 }
