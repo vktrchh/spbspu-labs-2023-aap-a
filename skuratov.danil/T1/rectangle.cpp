@@ -21,7 +21,7 @@ skuratov::rectangle_t skuratov::Rectangle::getFrameRect() const
 {
   double width = upperRightCorner_.x - lowerLeftCorner_.x;
   double height = upperRightCorner_.y - lowerLeftCorner_.y;
-  point_t pos = { (lowerLeftCorner_.x + width) / 2, (lowerLeftCorner_.y + height) / 2 };
+  point_t pos = { lowerLeftCorner_.x + width / 2, lowerLeftCorner_.y + height / 2 };
   return { width, height, pos };
 }
 
