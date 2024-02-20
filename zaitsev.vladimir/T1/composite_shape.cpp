@@ -11,9 +11,9 @@
 void freeShapesArray(zaitsev::Shape** array, size_t size);
 
 zaitsev::CompositeShape::CompositeShape():
-    size_(0),
-    capacity_(8),
-    shapes_(new Shape*[8])
+  size_(0),
+  capacity_(8),
+  shapes_(new Shape*[8])
 {
 }
 
@@ -109,9 +109,9 @@ void zaitsev::CompositeShape::pop_back()
 }
 
 zaitsev::CompositeShape::CompositeShape(CompositeShape&& other):
-    size_(other.size_),
-    capacity_(other.capacity_),
-    shapes_(other.shapes_)
+  size_(other.size_),
+  capacity_(other.capacity_),
+  shapes_(other.shapes_)
 {
   other.size_ = 0;
   other.capacity_ = 0;
