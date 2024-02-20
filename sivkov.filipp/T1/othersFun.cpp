@@ -104,15 +104,13 @@ namespace sivkov
 
     bool check1 = ((line1.x * line2.y - line1.y * line2.x) * (line1.x * line3.y - line1.y * line3.x) < 0);
 
-    if(!check1)
+    if (!check1)
     {
       return false;
     }
-
     point_t line4 = calculateVector(ver3, ver4);
     point_t line5 = calculateVector(ver3, ver1);
     point_t line6 = calculateVector(ver3, ver2);
-
     bool check2 = ((line4.x * line5.y - line4.y * line5.x) * (line4.x * line6.y - line4.y * line6.x) < 0);
     return check1 && check2;
   }
