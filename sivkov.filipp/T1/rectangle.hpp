@@ -11,9 +11,9 @@ namespace sivkov
     Rectangle(const point_t leftBotton, const point_t rightTop);
     double getArea() const;
     rectangle_t getFrameRect() const;
-    void move(point_t newPos);
-    void move(double dx, double dy);
-    void scale(double k);
+    void move(const point_t newPos);
+    void move(const double dx, const double dy);
+    void scale(const double k);
   private:
     point_t leftBottom_;
     point_t rightTop_;

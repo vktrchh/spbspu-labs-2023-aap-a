@@ -43,7 +43,7 @@ sivkov::rectangle_t sivkov::Complexquad::getFrameRect() const
   return rectangle_t{ point_t{xmin + (xmax - xmin) / 2, ymin + (ymax - ymin) / 2} ,(xmax - xmin), (ymax - ymin) };
 }
 
-void sivkov::Complexquad::move(point_t newPos)
+void sivkov::Complexquad::move(const point_t newPos)
 {
   point_t center = findCenter(cqVer1_, cqVer2_, cqVer3_, cqVer4_);
   const double dx = newPos.x - center.x;

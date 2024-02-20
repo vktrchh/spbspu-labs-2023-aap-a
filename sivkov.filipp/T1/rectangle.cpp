@@ -24,7 +24,7 @@ sivkov::rectangle_t sivkov::Rectangle::getFrameRect() const
   return { center, pos.x, pos.y };
 }
 
-void sivkov::Rectangle::move(point_t newPos)
+void sivkov::Rectangle::move(const point_t newPos)
 {
   point_t center = { (leftBottom_.x + rightTop_.x) / 2, (leftBottom_.y + rightTop_.y) / 2 };
   double dx = newPos.x - center.x;
@@ -32,14 +32,14 @@ void sivkov::Rectangle::move(point_t newPos)
   move(dx, dy);
 }
 
-void sivkov::Rectangle::move(double dx, double dy)
+void sivkov::Rectangle::move(const double dx, const double dy)
 {
   point_t newXY = { dx, dy };
   leftBottom_ = shift(newXY, leftBottom_);
   rightTop_ = shift(newXY, rightTop_);
 }
 
-void sivkov::Rectangle::scale(double k)
+void sivkov::Rectangle::scale(const double k)
 {
   if (k <= 0.0)
   {

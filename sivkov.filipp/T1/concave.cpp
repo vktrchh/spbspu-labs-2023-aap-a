@@ -61,7 +61,7 @@ sivkov::rectangle_t sivkov::Concave::getFrameRect() const
   return rectangle_t{point_t{xmin + (xmax - xmin) / 2, ymin + (ymax - ymin) / 2} ,(xmax - xmin), (ymax - ymin)};
 }
 
-void sivkov::Concave::move(point_t newPos)
+void sivkov::Concave::move(const point_t newPos)
 {
   point_t oldPos = cvVer4_;
   double dx = newPos.x - oldPos.x;
@@ -69,7 +69,7 @@ void sivkov::Concave::move(point_t newPos)
   move(dx,dy);
 }
 
-void sivkov::Concave::move(double x, double y)
+void sivkov::Concave::move(const double x, const double y)
 {
   point_t newXY = { x,y };
   cvVer1_ = shift(newXY, cvVer1_);
@@ -78,7 +78,7 @@ void sivkov::Concave::move(double x, double y)
 
 }
 
-void sivkov::Concave::scale(double k)
+void sivkov::Concave::scale(const double k)
 {
   if (k <= 0.0)
   {

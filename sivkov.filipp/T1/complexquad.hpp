@@ -15,9 +15,9 @@ namespace sivkov
     Complexquad(const point_t ver1, const point_t ver2, const point_t ver3, const point_t ver4);
     double getArea() const;
     rectangle_t getFrameRect() const;
-    void move(point_t newPos);
-    void move(double x, double y);
-    void scale(double k);
+    void move(const point_t newPos);
+    void move(const double x, const double y);
+    void scale(const double k);
   private:
     point_t cqVer1_;
     point_t cqVer2_;

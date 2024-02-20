@@ -12,9 +12,9 @@ namespace sivkov
     ~Concave();
     double getArea() const;
     rectangle_t getFrameRect() const;
-    void move(point_t newPos);
-    void move(double x, double y);
-    void scale(double k);
+    void move(const point_t newPos);
+    void move(const double x, double y);
+    void scale(const double k);
   private:
     point_t cvVer1_;
     point_t cvVer2_;
