@@ -2,13 +2,97 @@
 #include <cmath>
 #include <stdexcept>
 
-zakozhurnikova::Complexquad::Complexquad(const point_t& p1, const point_t& p2, const point_t& p3, const point_t& p4) :
+bool zakozhurnikova::hasEqualPoints(const point_t* points, size_t size)
+{
+  for (size_t i = 0; i < size - 1; ++i)
+  {
+    for (size_t j = i + 1; j < size; ++j)
+    {
+      if (points[i] == points[j])
+      {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
+bool zakozhurnikova::isPointOnLine(const point_t& p1, const point_t& p2, const point_t& p)
+{
+  double leftSide = (p.y - p1.y) * (p2.x - p1.x);
+  double rightSide = (p.x - p1.x) * (p2.y - p1.y);
+  return leftSide == rightSide;
+}
+
+bool zakozhurnikova::hasContentPoint(const point_t* points, size_t size)
+{
+  for (size_t i = 0; i < size - 2; ++i)
+  {
+    for (size_t j = i + 2; j < size; ++j)
+    {
+      if (isPointOnLine(points[i], points[i + 1], points[i + 2]))
+      {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+bool zakozhurnikova::hasIntersection(const point_t* points)
+{
+  const size_t POINTS_COUNT = 4;
+  if (hasEqualPoints(points, POINTS_COUNT)  || hasContentPoint(points, POINTS_COUNT))
+  {
+    return false;
+  }
+
+  double x1 = points[0].x;
+  double y1 = points[0].y;
+  double x2 = points[1].x;
+  double y2 = points[1].y;
+  double x3 = points[2].x;
+  double y3 = points[2].y;
+  double x4 = points[3].x;
+  double y4 = points[3].y;
+  double denominator = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
+  if (std::abs(denominator) <= 1e-6)
+  {
+    return false;
+  }
+  double x = ((x1 * y2 - y1 * x2) * (x3 - x4) - (x1 - x2) * (x3 * y4 - y3 * x4)) / denominator;
+  double y = ((x1 * y2 - y1 * x2) * (y3 - y4) - (y1 - y2) * (x3 * y4 - y3 * x4)) / denominator;
+  const bool IS_DOT_OUT_LINE_FIRST = x < std::min(x1, x2) || x > std::max(x1, x2) || x < std::min(x3, x4) || x > std::max(x3, x4);
+  const bool IS_DOT_OUT_LINE_SECOND = y < std::min(y1, y2) || y > std::max(y1, y2) || y < std::min(y3, y4) || y > std::max(y3, y4);
+  return  !(IS_DOT_OUT_LINE_FIRST || IS_DOT_OUT_LINE_SECOND);
+}
+
+
+zakozhurnikova::Complexquad::Complexquad(const point_t& p1, const point_t& p2, const point_t& p3, const point_t& p4):
   vertexes_{p1, p2, p3, p4}
 {
   if (!hasIntersection(vertexes_))
   {
     throw std::invalid_argument("Incorrect complexquad parameters");
   }
+}
+
+zakozhurnikova::point_t getComplexquadCenter(const zakozhurnikova::point_t* points)
+{
+  double x1 = points[0].x;
+  double y1 = points[0].y;
+  double x2 = points[1].x;
+  double y2 = points[1].y;
+  double x3 = points[2].x;
+  double y3 = points[2].y;
+  double x4 = points[3].x;
+  double y4 = points[3].y;
+  double determinant = (x2 - x1) * (y4 - y3) - (x4 - x3) * (y2 - y1);
+  double determinantX = (x2 - x1) * (y3 * (x4 - x3) - x3 * (y4 - y3)) - (x4 - x3) * (y1 * (x2 - x1) - x1 * (y2 - y1));
+  double determinantY = (y2 - y1) * (y3 * (x4 - x3) - x3 * (y4 - y3)) - (y4 - y3) * (y1 * (x2 - x1) - x1 * (y2 - y1));
+  zakozhurnikova::point_t center = {-determinantX / determinant, -determinantY / determinant};
+  return center;
 }
 
 double zakozhurnikova::Complexquad::getArea() const

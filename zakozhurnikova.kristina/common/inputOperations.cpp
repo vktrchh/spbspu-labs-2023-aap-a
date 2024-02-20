@@ -33,7 +33,6 @@ char* zakozhurnikova::readString(std::istream& input, size_t& stringSize)
         char* extendedString = extendBuffer(string, stringSize + bufferSize);
         delete[] string;
         string = extendedString;
-
         stringSize += bufferSize;
       }
       string[counter] = c;
@@ -42,9 +41,9 @@ char* zakozhurnikova::readString(std::istream& input, size_t& stringSize)
       {
         if (counter == 1)
         {
-           delete[] string;
-           input >> std::skipws;
-           throw std::logic_error("Empty string");
+          delete[] string;
+          input >> std::skipws;
+          throw std::logic_error("Empty string");
         }
         string[counter - 1] = '\0';
         break;

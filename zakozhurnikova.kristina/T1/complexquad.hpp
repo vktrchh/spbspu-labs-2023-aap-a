@@ -19,6 +19,10 @@ namespace zakozhurnikova
   private:
     point_t vertexes_[4];
   };
+  bool hasIntersection(const point_t* points);
+  bool hasEqualPoints(const point_t* points, size_t size);
+  bool hasContentPoint(const point_t* points, size_t size);
+  bool isPointOnLine(const point_t& p1, const point_t& p2, const point_t& p);
 }
 #endif
 

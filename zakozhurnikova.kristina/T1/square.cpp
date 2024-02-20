@@ -2,7 +2,7 @@
 #include <stdexcept>
 #include "geometryFunc.hpp"
 
-zakozhurnikova::Square::Square(const point_t& downLeft, double length) :
+zakozhurnikova::Square::Square(const point_t& downLeft, double length):
   downLeft_(downLeft),
   length_(length)
 {

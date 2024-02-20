@@ -2,12 +2,12 @@
 #include <iostream>
 #include <cstring>
 #include <stdexcept>
+#include <inputOperations.hpp>
 #include "shapesArrayOperations.hpp"
 #include "rectangle.hpp"
 #include "square.hpp"
 #include "diamond.hpp"
 #include "complexquad.hpp"
-#include <inputOperations.hpp>
 
 void readArray(double* array, size_t size, const char* string, size_t pos)
 {
@@ -30,7 +30,7 @@ bool areSame(const char* s1, const char* s2)
 zakozhurnikova::Shape* readRectangle(const char* string)
 {
   const size_t RECT_WORD_LEN = 9;
-  const size_t ARRAY_LEN = 4;
+  constexpr size_t ARRAY_LEN = 4;
   double rectData[ARRAY_LEN]{};
   size_t pos = 0;
   string += RECT_WORD_LEN;
@@ -44,7 +44,7 @@ zakozhurnikova::Shape* readRectangle(const char* string)
 zakozhurnikova::Shape* readSquare(const char* string)
 {
   const size_t SQUARE_WORD_LEN = 6;
-  const size_t ARRAY_LEN = 3;
+  constexpr size_t ARRAY_LEN = 3;
   double squareData[ARRAY_LEN]{};
   size_t pos = 0;
   string += SQUARE_WORD_LEN;
@@ -58,7 +58,7 @@ zakozhurnikova::Shape* readSquare(const char* string)
 zakozhurnikova::Shape* readDiamond(const char* string)
 {
   const size_t SQUARE_WORD_LEN = 7;
-  const size_t ARRAY_LEN = 6;
+  constexpr size_t ARRAY_LEN = 6;
   double diamondData[ARRAY_LEN]{};
   size_t pos = 0;
   string += SQUARE_WORD_LEN;
@@ -74,7 +74,7 @@ zakozhurnikova::Shape* readDiamond(const char* string)
 zakozhurnikova::Shape* readComplexquad(const char* string)
 {
   const size_t COMPLEXQUAD_WORD_LEN = 11;
-  const size_t ARRAY_LEN = 8;
+  constexpr size_t ARRAY_LEN = 8;
   double complexquadData[ARRAY_LEN]{};
   size_t pos = 0;
   string += COMPLEXQUAD_WORD_LEN;
@@ -114,7 +114,7 @@ zakozhurnikova::Shape* zakozhurnikova::readShape(const char* string)
 
 void zakozhurnikova::readScale(const char* string, zakozhurnikova::point_t& scalePoint, double& k)
 {
-  const size_t SCALE_PARAM_COUNT = 3;
+  constexpr size_t SCALE_PARAM_COUNT = 3;
   const size_t SCALE_WORD_LEN = 5;
   double scaleData[SCALE_PARAM_COUNT]{};
   size_t pos = 0;
@@ -135,18 +135,12 @@ void zakozhurnikova::freeShapesArray(Shape** shapes, size_t size)
 void zakozhurnikova::inputShapesArray(std::istream& in, Shape** shapes, size_t& size, point_t& scalePoint, double& k)
 {
   char* string = nullptr;
-  while (true)
+  while (!areSame(string, "SCALE"))
   {
     try
     {
       size_t stringSize = 20;
       string = zakozhurnikova::readString(in, stringSize);
-      if (string && areSame(string, "SCALE"))
-      {
-        readScale(string, scalePoint, k);
-        delete[] string;
-        return;
-      }
       shapes[size] = zakozhurnikova::readShape(string);
       ++size;
       delete[] string;
@@ -160,4 +154,7 @@ void zakozhurnikova::inputShapesArray(std::istream& in, Shape** shapes, size_t& 
     {
     }
   }
+  readScale(string, scalePoint, k);
+  delete[] string;
+  return;
 }

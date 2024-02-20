@@ -20,5 +20,7 @@ namespace zakozhurnikova
     point_t pointTwo_;
     point_t center_;
   };
+  void initPoints(point_t* points, const point_t& pointOne, const point_t& pointTwo, const point_t& pointThree);
+  bool isOnAxis(const point_t& center, const point_t& pointOne, const point_t& pointTwo);
 }
 #endif

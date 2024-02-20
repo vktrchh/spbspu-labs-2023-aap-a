@@ -3,7 +3,47 @@
 #include <cmath>
 #include "geometryFunc.hpp"
 
-zakozhurnikova::Diamond::Diamond(const point_t& pointOne, const point_t& pointTwo, const point_t& pointThree) :
+
+void zakozhurnikova::initPoints(point_t* points, const point_t& pointOne, const point_t& pointTwo, const point_t& pointThree)
+{
+  double sqrA = std::pow(getDistance(pointOne, pointTwo), 2.0);
+  double sqrB = std::pow(getDistance(pointOne, pointThree), 2.0);
+  double sqrC = std::pow(getDistance(pointTwo, pointThree), 2.0);
+  if (sqrA == sqrB + sqrC)
+  {
+    points[0] = pointThree;
+    points[1] = pointTwo;
+    points[2] = pointOne;
+    return;
+  }
+  else if (sqrB == sqrA + sqrC)
+  {
+    points[0] = pointTwo;
+    points[1] = pointOne;
+    points[2] = pointThree;
+    return;
+  }
+  else if (sqrC == sqrA + sqrB)
+  {
+    points[0] = pointOne;
+    points[1] = pointTwo;
+    points[2] = pointThree;
+    return;
+  }
+  else
+  {
+    throw std::invalid_argument("Invalid diamond parameters");
+  }
+}
+
+bool zakozhurnikova::isOnAxis(const point_t& center, const point_t& pointOne, const point_t& pointTwo)
+{
+  const bool isParallelFirst = ((center.x - pointOne.x == 0.0) && (center.y - pointTwo.y == 0.0));
+  const bool isParallelSecond = ((center.x - pointTwo.x == 0.0) && (center.y - pointOne.y == 0.0));
+  return isParallelFirst || isParallelSecond;
+}
+
+zakozhurnikova::Diamond::Diamond(const point_t& pointOne, const point_t& pointTwo, const point_t& pointThree):
   pointOne_(pointOne),
   pointTwo_(pointTwo),
   center_(pointThree)
