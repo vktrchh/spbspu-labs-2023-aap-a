@@ -17,21 +17,21 @@ int main()
   using namespace arakelyan;
   size_t maxShapesCount = 1000;
   size_t currentShapesCount = 0;
-  Shape **myShapes = new Shape * [maxShapesCount]{nullptr};
+  Shape **myShapes = new Shape *[maxShapesCount]{nullptr};
 
   bool errorsFlagShapes = false;
 
   point_t scalePoint = {0.0, 0.0};
   double scaleK = 0;
-  const char * targetWordScale = "SCALE";
+  const char *targetWordScale = "SCALE";
 
   char *string = nullptr;
 
-  bool readingFromInput = true;
+  bool scaleEntered = false;
 
   try
   {
-    while (readingFromInput)
+    while (!scaleEntered)
     {
       if (!std::cin.good())
       {
@@ -56,7 +56,7 @@ int main()
       {
         inputScaleParam(string, scalePoint, scaleK);
         scaleFunction(myShapes, currentShapesCount, scalePoint, scaleK, std::cout);
-        readingFromInput = false;
+        scaleEntered = true;
       }
       else
       {
@@ -81,6 +81,7 @@ int main()
   {
     std::cerr << "Something went wrong with scale process, might be incorrect k of scale!\n";
     freeMem(myShapes, currentShapesCount);
+    delete [] string;
     return 2;
   }
 
