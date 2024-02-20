@@ -10,15 +10,7 @@ char* vyzhanov::inputString(std::istream& input)
   char currentChar = 0;
   while (input >> currentChar && currentChar != '\n')
   {
-    if (string[0] == '\n')
-    {
-      delete[] string;
-      throw std::logic_error("Empty string");
-    }
-    else
-    {
-      string[index] = currentChar;
-    }
+    string[index] = currentChar;
     if (index + 1 == sizeOfString)
     {
       try
@@ -41,6 +33,7 @@ char* vyzhanov::inputString(std::istream& input)
     }
     index++;
   }
+  string[index] = '\0';
   input >> std::skipws;
   return string;
 }

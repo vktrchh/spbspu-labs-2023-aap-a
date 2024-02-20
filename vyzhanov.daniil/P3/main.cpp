@@ -10,6 +10,12 @@ int main()
   try
   {
     string = vyzhanov::inputString(std::cin);
+    if (string[0] == '\0')
+    {
+      delete[] string;
+      std::cerr << "Empty string!" << "\n";
+      return 1;
+    }
     size_t stringLength = 0;
     while (string[stringLength])
     {
