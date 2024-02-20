@@ -1,22 +1,24 @@
-#include "inputLine.hpp"
 #include <cstddef>
 #include <stdexcept>
 
-char * arakelyan::inputArray(std::istream &input)
+#include "inputLine.hpp"
+
+char * arakelyan::inputLine(std::istream &input)
 {
   size_t arrSize = 10;
 
   size_t i = 0;
   char sym = 0;
 
-  char * mainBuffer = new char[arrSize];
+  char * string = nullptr;
+  string = new char[arrSize];
 
   input >> std::noskipws;
-  while ((input >> sym) && (sym != '\n'))
+  while (input >> sym && sym != '\n')
   {
     if (!input)
     {
-      delete [] mainBuffer;
+      delete [] string;
       throw std::logic_error("Input error!");
     }
 
@@ -30,30 +32,26 @@ char * arakelyan::inputArray(std::istream &input)
 
         for (size_t j = 0; j < i; j++)
         {
-          tempBuffer[j] = mainBuffer[j];
+          tempBuffer[j] = string[j];
         }
 
-        delete [] mainBuffer;
+        delete [] string;
 
-        mainBuffer = tempBuffer;
+        string = tempBuffer;
       }
       catch (const std::bad_alloc &e)
       {
-        delete [] mainBuffer;
+        delete [] string;
         throw;
       }
     }
-    mainBuffer[i] = sym;
+
+    string[i] = sym;
     i++;
   }
-  mainBuffer[i] = '\0';
 
-  if (mainBuffer[0] == '\0')
-  {
-    delete [] mainBuffer;
-    throw std::logic_error("Empty input!");
-  }
+  string[i] = '\0';
 
   input >> std::skipws;
-  return mainBuffer;
+  return string;
 }
