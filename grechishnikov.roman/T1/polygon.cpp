@@ -63,7 +63,7 @@ void grechishnikov::Polygon::move(double dx, double dy)
   movePoints(points_, size_, dx, dy);
 }
 
-void grechishnikov::Polygon::scale(double rate)
+void grechishnikov::Polygon::unsafeScale(double rate)
 {
-  scalePoints(points_, size_, rate);
+  unsafeScalePoints(points_, size_, rate);
 }

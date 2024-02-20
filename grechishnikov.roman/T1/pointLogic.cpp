@@ -37,12 +37,18 @@ grechishnikov::rectangle_t grechishnikov::getFrameRectGeneral(const point_t* poi
   return { width, height, pos };
 }
 
+
 void grechishnikov::scalePoints(point_t* points, size_t size, size_t rate)
 {
   if (rate <= 0)
   {
     throw std::logic_error("Incorrect scale ratio");
   }
+  unsafeScalePoints(points, size, rate);
+}
+
+void grechishnikov::unsafeScalePoints(point_t* points, size_t size, size_t rate)
+{
   point_t aPos = getAveragePoint(points, size);
   for (size_t i = 0; i < size; i++)
   {

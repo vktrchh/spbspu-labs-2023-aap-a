@@ -15,7 +15,7 @@ namespace grechishnikov
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t& pos);
     virtual void move(double dx, double dy);
-    virtual void scale(double rate);
+    virtual void unsafeScale(double rate);
   private:
     point_t points_[3];
     size_t size_;

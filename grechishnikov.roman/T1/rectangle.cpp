@@ -35,7 +35,7 @@ void grechishnikov::Rectangle::move(double dx, double dy)
   movePoints(points_, size_, dx, dy);
 }
 
-void grechishnikov::Rectangle::scale(double rate)
+void grechishnikov::Rectangle::unsafeScale(double rate)
 {
-  scalePoints(points_, size_, rate);
+  unsafeScalePoints(points_, size_, rate);
 }

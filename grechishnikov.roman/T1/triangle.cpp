@@ -37,9 +37,9 @@ void grechishnikov::Triangle::move(double dx, double dy)
   movePoints(points_, size_, dx, dy);
 }
 
-void grechishnikov::Triangle::scale(double rate)
+void grechishnikov::Triangle::unsafeScale(double rate)
 {
-  scalePoints(points_, size_, rate);
+  unsafeScalePoints(points_, size_, rate);
 }
 
 double findAreaOfTri(const grechishnikov::point_t& a, const grechishnikov::point_t& b, const grechishnikov::point_t& c)
