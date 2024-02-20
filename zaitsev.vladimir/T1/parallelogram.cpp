@@ -1,10 +1,8 @@
 #include "parallelogram.hpp"
 #include <stdexcept>
-#include <cstring>
 #include <cstddef>
 #include "base-types.hpp"
 #include "geometric_functions.hpp"
-
 
 zaitsev::Parallelogram::Parallelogram(point_t vertex1, point_t vertex2, point_t vertex3):
   def_vertices_{ vertex1, vertex2, vertex3 }

@@ -2,7 +2,6 @@
 #include <stdexcept>
 #include "base-types.hpp"
 
-
 zaitsev::Rectangle::Rectangle(point_t left_corner, point_t right_corner):
   left_corner_(left_corner),
   right_corner_(right_corner)
