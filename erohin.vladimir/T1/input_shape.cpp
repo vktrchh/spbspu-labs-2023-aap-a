@@ -29,14 +29,20 @@ void erohin::inputShape(CompositeShape& result, std::istream& input, point_t& po
     }
     else
     {
+      Shape* shape = nullptr;
       try
       {
-        Shape* shape = createShape(name, par, par_size);
+        shape = createShape(name, par, par_size);
         result.push(shape);
       }
       catch (const std::invalid_argument&)
       {
         isFigureCreationFullSuccesful = false;
+      }
+      catch (const std::bad_alloc&)
+      {
+        delete shape;
+        throw;
       }
       catch (const std::runtime_error&)
       {}
