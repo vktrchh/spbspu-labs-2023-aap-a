@@ -5,7 +5,7 @@
 
 namespace sivkov
 {
-  void outputFrameRectInfo(std::ostream& out, Shape* shape);
+  void outputFrameRectInfo(std::ostream& out, const Shape* const* shape);
   void findCoefficient(double& a, double& b, double& c, point_t ver1, point_t ver2);
   double findLine(const point_t& a, const point_t& b);
   bool isTriangle(const point_t& first, const point_t& second, const point_t& third);

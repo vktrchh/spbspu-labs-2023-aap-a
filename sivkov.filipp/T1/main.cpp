@@ -1,3 +1,4 @@
+#include <iostream>
 #include "concave.hpp"
 #include "complexquad.hpp"
 #include "inputShape.hpp"
@@ -6,7 +7,6 @@
 #include "shape.hpp"
 #include "othersFun.hpp"
 #include "output.hpp"
-#include <iostream>
 
 int main()
 {

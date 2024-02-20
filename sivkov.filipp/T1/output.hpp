@@ -1,11 +1,12 @@
 #ifndef OUTPUT_HPP
 #define OUTPUT_HPP
-#include "shape.hpp"
 #include <iostream>
+#include "shape.hpp"
 
 namespace sivkov
 {
-  void output(std::ostream& out, Shape* const* shapes, size_t count);
+  void output(std::ostream& out, const Shape* const* shapes, size_t count);
 }
 
 #endif
+

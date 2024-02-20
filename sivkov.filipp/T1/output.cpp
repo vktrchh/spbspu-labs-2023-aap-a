@@ -3,17 +3,17 @@
 
 namespace sivkov
 {
-  void output(std::ostream& out, Shape* const* shapes, size_t count)
+  void output(std::ostream& out, const Shape* const* shapes, size_t count)
   {
     double sumOfArea = 0;
     for (size_t i = 0; i < count; ++i)
     {
       sumOfArea += shapes[i]->getArea();
     }
-    out << sumOfArea;
+    out << sumOfArea << " ";
     for (size_t i = 0; i < count; ++i)
     {
-      outputFrameRectInfo(out, shapes[i]);
+      outputFrameRectInfo(out, &shapes[i]);
     }
   }
 }
