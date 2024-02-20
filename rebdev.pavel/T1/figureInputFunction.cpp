@@ -64,7 +64,7 @@ rebdev::point_t * rebdev::inputPoints(std::istream & input, size_t & numOfPoints
           throw;
         }
 
-        for (size_t i = 0; i < numOfPoints; ++i)
+        for (size_t i = 0; i <= numOfPoints; ++i)
         {
           bufferArr[i] = points[i];
         }
