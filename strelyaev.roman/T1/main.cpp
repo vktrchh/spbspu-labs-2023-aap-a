@@ -38,7 +38,7 @@ int main()
     {
       string = getString(std::cin);
     }
-    catch(const std::logic_error& e)
+    catch (const std::logic_error& e)
     {
       std::cerr << e.what() << "\n";
       delete [] string;
@@ -89,11 +89,11 @@ int main()
         }
       }
     }
-    catch(const std::invalid_argument& e)
+    catch (const std::invalid_argument& e)
     {
       errors = true;
     }
-    catch(const std::logic_error& e)
+    catch (const std::logic_error& e)
     {
       std::cerr << e.what() << "\n";
       delete [] string;
