@@ -125,6 +125,10 @@ double nikitov::CompositeShape::getArea() const
 
 nikitov::rectangle_t nikitov::CompositeShape::getFrameRect() const
 {
+  if (empty())
+  {
+    throw std::logic_error("Error: Empty array");
+  }
   double maxX = std::numeric_limits< double >::lowest();
   double maxY = maxX;
   double minX = std::numeric_limits< double >::max();
