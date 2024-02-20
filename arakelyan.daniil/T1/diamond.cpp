@@ -1,6 +1,7 @@
 #include "diamond.hpp"
 
 #include <stdexcept>
+#include "shape-creation.hpp"
 
 arakelyan::Diamond::Diamond(const point_t fp, const point_t sp, const point_t tp):
   p1_(fp),
@@ -48,10 +49,11 @@ void arakelyan::Diamond::move(const double delX, const double delY)
 void arakelyan::Diamond::scaleShape(const double k)
 {
   rectangle_t dataOfFrameRect = getFrameRect();
-  point_t * pointsArray[3] = {&p1_, &p2_, &p3_};
-  for (size_t i = 0; i < 3; i++)
-  {
-    pointsArray[i]->x = dataOfFrameRect.pos.x + ((pointsArray[i]->x - dataOfFrameRect.pos.x) * k);
-    pointsArray[i]->y = dataOfFrameRect.pos.y + ((pointsArray[i]->y - dataOfFrameRect.pos.y) * k);
-  }
+  // point_t * pointsArray[3] = {&p1_, &p2_, &p3_};
+  // for (size_t i = 0; i < 3; i++)
+  // {
+  //   pointsArray[i]->x = dataOfFrameRect.pos.x + ((pointsArray[i]->x - dataOfFrameRect.pos.x) * k);
+  //   pointsArray[i]->y = dataOfFrameRect.pos.y + ((pointsArray[i]->y - dataOfFrameRect.pos.y) * k);
+  // }
+  scaleForParAndDiam(dataOfFrameRect, p1_, p2_, p3_, k);
 }

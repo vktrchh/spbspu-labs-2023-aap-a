@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <cstring>
 
+#include "base-types.hpp"
 #include "parallelogram.hpp"
 #include "diamond.hpp"
 #include "rectangle.hpp"
@@ -112,4 +113,15 @@ void arakelyan::freeMem(Shape **myShapes, const size_t shapesCount)
     delete myShapes[i];
   }
   delete [] myShapes;
+}
+
+
+void arakelyan::scaleForParAndDiam(const rectangle_t dataOfFrameRect, point_t &p1_, point_t &p2_, point_t &p3_, const double k)
+{
+  point_t * pointsArray[3] = {&p1_, &p2_, &p3_};
+  for (size_t i = 0; i < 3; i++)
+  {
+    pointsArray[i]->x = dataOfFrameRect.pos.x + ((pointsArray[i]->x - dataOfFrameRect.pos.x) * k);
+    pointsArray[i]->y = dataOfFrameRect.pos.y + ((pointsArray[i]->y - dataOfFrameRect.pos.y) * k);
+  }
 }

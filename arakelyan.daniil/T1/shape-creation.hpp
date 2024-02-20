@@ -13,5 +13,6 @@ namespace arakelyan
   Shape * createDiam(const char *string);
   void extractDataForShape(const char *string, double *coordStorage, size_t pointsCount, size_t wordLen);
   void freeMem(Shape **myShapes, size_t shapesCount);
+  void scaleForParAndDiam(rectangle_t dataOfFrameRect, point_t &p1_, point_t &p2_, point_t &p3_, const double k);
 }
 #endif
