@@ -35,7 +35,7 @@ zaitsev::CompositeShape& zaitsev::CompositeShape::operator=(const CompositeShape
         temp[i] = other[i].clone();
       }
     }
-    catch (std::bad_alloc&)
+    catch (const std::bad_alloc&)
     {
       freeShapesArray(temp, i);
       throw;
@@ -49,13 +49,22 @@ zaitsev::CompositeShape& zaitsev::CompositeShape::operator=(const CompositeShape
 }
 
 zaitsev::CompositeShape::CompositeShape(const CompositeShape& other):
-    size_(other.size_),
-    capacity_(other.capacity_),
-    shapes_(new Shape* [other.capacity_])
+  size_(other.size_),
+  capacity_(other.capacity_),
+  shapes_(new Shape* [other.capacity_])
 {
-  for (size_t i = 0; i < size_; ++i)
+  size_t i = 0;
+  try
   {
-    shapes_[i] = other[i].clone();
+    for (i = 0; i < other.size_; ++i)
+    {
+      shapes_[i] = other[i].clone();
+    }
+  }
+  catch (const std::bad_alloc&)
+  {
+    freeShapesArray(shapes_, i);
+    throw;
   }
 }
 
