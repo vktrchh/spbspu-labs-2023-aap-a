@@ -43,10 +43,11 @@ namespace piyavkin
   {
     if (this != std::addressof(cs))
     {
+      Shape** tempShape = new Shape* [cs.capacity_] {};
       clearMemory(shapes_, size_);
+      shapes_ = tempShape;
       size_ = cs.size_;
       capacity_ = cs.capacity_;
-      shapes_ = new Shape* [capacity_] {};
       for (size_t i = 0; i < size_; ++i)
       {
         shapes_[i] = cs.shapes_[i]->clone();

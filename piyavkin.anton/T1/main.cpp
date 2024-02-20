@@ -11,18 +11,11 @@
 
 int main()
 {
-  piyavkin::Shape** shapes = nullptr;
-  size_t shapeCount = 0;
   try
   {
     using namespace piyavkin;
-    shapes = inputShape(std::cin, shapeCount);
     CompositeShape cs;
-    for (size_t i = 0; i < shapeCount; ++i)
-    {
-      cs.push_back(shapes[i]);
-    }
-    delete[] shapes;
+    inputShape(std::cin, cs);
     double k = 0;
     point_t center = {0, 0};
     std::cin >> center.x >> center.y >> k;
@@ -37,18 +30,9 @@ int main()
     output(std::cout, cs);
     std::cout << '\n';
   }
-  catch (const std::invalid_argument& e)
-  {
-    std::cerr << e.what() << '\n';
-    return 1;
-  }
   catch (const std::exception& e)
   {
-    std::cerr << e.what() << "\n";
-    if (shapes)
-    {
-      clearMemory(shapes, shapeCount);
-    }
+    std::cerr << e.what() << '\n';
     return 1;
   }
 }

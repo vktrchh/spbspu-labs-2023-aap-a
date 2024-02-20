@@ -1,6 +1,7 @@
 #include "inputshape.hpp"
 #include <string>
 #include <iostream>
+#include "compositeshape.hpp"
 #include "rectangle.hpp"
 #include "triangle.hpp"
 #include "parallelogram.hpp"
@@ -26,58 +27,38 @@ void piyavkin::clearMemory(Shape** shapes, size_t shapeCount)
   delete[] shapes;
 }
 
-void piyavkin::inputRectangle(std::istream& in, Shape** shapes, size_t shapeCount)
+piyavkin::Shape* piyavkin::inputRectangle(std::istream& in)
 {
   constexpr size_t parametersCount = 4;
   double parameters[parametersCount] = {};
-  try
-  {
-    inputParameters(in, parameters, parametersCount);
-  }
-  catch (const std::logic_error& e)
-  {
-    throw;
-  }
-  shapes[shapeCount] = new Rectangle({parameters[0], parameters[1]}, {parameters[2], parameters[3]});
+  inputParameters(in, parameters, parametersCount);
+  Shape* shape = new Rectangle({parameters[0], parameters[1]}, {parameters[2], parameters[3]});
+  return shape;
 }
 
-void piyavkin::inputTriangle(std::istream& in, Shape** shapes, size_t shapeCount)
+piyavkin::Shape* piyavkin::inputTriangle(std::istream& in)
 {
   constexpr size_t parametersCount = 6;
   double parameters[parametersCount] = {};
-  try
-  {
-    inputParameters(in, parameters, parametersCount);
-  }
-  catch (const std::logic_error& e)
-  {
-    throw;
-  }
-  shapes[shapeCount] = new Triangle({parameters[0], parameters[1]}, {parameters[2], parameters[3]}, {parameters[4], parameters[5]});
+  inputParameters(in, parameters, parametersCount);
+  Shape* shape = new Triangle({parameters[0], parameters[1]}, {parameters[2], parameters[3]}, {parameters[4], parameters[5]});
+  return shape;
 }
 
-void piyavkin::inputParallelogram(std::istream& in, Shape** shapes, size_t shapeCount)
+piyavkin::Shape* piyavkin::inputParallelogram(std::istream& in)
 {
   constexpr size_t parametersCount = 6;
   double parameters[parametersCount] = {};
-  try
-  {
-    inputParameters(in, parameters, parametersCount);
-  }
-  catch (const std::logic_error& e)
-  {
-    throw;
-  }
-  shapes[shapeCount] = new Parallelogram({parameters[0], parameters[1]}, {parameters[2], parameters[3]}, {parameters[4], parameters[5]});
+  inputParameters(in, parameters, parametersCount);
+  Shape* shape = new Parallelogram({parameters[0], parameters[1]}, {parameters[2], parameters[3]}, {parameters[4], parameters[5]});
+  return shape;
 }
 
-piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
+void piyavkin::inputShape(std::istream& in, CompositeShape& cs)
 {
   std::string name = "";
-  const size_t numbersFigures = 3;
+  constexpr size_t numbersFigures = 3;
   std::string shapeNames[numbersFigures] = {"RECTANGLE", "TRIANGLE", "PARALLELOGRAM"};
-  Shape** shapeArray = nullptr;
-  Shape** oldShapeArray = nullptr;
   char symbol = 0;
   while (in >> name)
   {
@@ -85,29 +66,19 @@ piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
     {
       if (name == shapeNames[i])
       {
-        oldShapeArray = shapeArray;
-        shapeArray = new Shape* [shapeCount + 1] {};
-        if (oldShapeArray)
-        {
-          for (size_t i = 0; i < shapeCount; ++i)
-          {
-            shapeArray[i] = oldShapeArray[i];
-          }
-        }
-        delete[] oldShapeArray;
         try
         {
           if (name == "RECTANGLE")
           {
-            inputRectangle(in, shapeArray, shapeCount);
+            cs.push_back(inputRectangle(in));
           }
           else if (name == "TRIANGLE")
           {
-            inputTriangle(in, shapeArray, shapeCount);
+            cs.push_back(inputTriangle(in));
           }
           else if (name == "PARALLELOGRAM")
           {
-            inputParallelogram(in, shapeArray, shapeCount);
+            cs.push_back(inputParallelogram(in));
           }
         }
         catch (const std::logic_error& e)
@@ -117,10 +88,8 @@ piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
         }
         catch (const std::bad_alloc& e)
         {
-          clearMemory(shapeArray, shapeCount);
           throw;
         }
-        ++shapeCount;
       }
     }
     if (name == "SCALE")
@@ -136,9 +105,7 @@ piyavkin::Shape** piyavkin::inputShape(std::istream& in, size_t& shapeCount)
   }
   if (!in)
   {
-    clearMemory(shapeArray, shapeCount);
     throw std::logic_error("It is not shape");
   }
-  return shapeArray;
 }
 
