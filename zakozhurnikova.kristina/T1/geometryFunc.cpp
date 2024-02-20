@@ -1,6 +1,6 @@
+#include "geometryFunc.hpp"
 #include <cmath>
 #include <stdexcept>
-#include "geometryFunc.hpp"
 
 zakozhurnikova::point_t zakozhurnikova::scaleShift(double k, const point_t& p1, const point_t& p2)
 {
@@ -11,8 +11,7 @@ zakozhurnikova::point_t zakozhurnikova::scaleShift(double k, const point_t& p1, 
 
 double zakozhurnikova::getDistance(const point_t& p1, const point_t& p2)
 {
-  double distance = std::sqrt((p1.x - p2.x) * (p1.x - p2.x) +
-    (p1.y - p2.y) * (p1.y - p2.y));
+  double distance = std::sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
   return distance;
 }
 
