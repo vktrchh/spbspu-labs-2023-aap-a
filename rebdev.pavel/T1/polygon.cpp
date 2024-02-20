@@ -22,14 +22,7 @@ rebdev::Polygon::Polygon(const point_t * vertexes, size_t numOfVertexes):
     }
   }
 
-  try
-  {
-    vertexes_ = new point_t[numOfVertexes_];
-  }
-  catch (const std::exception & e)
-  {
-    throw;
-  }
+  vertexes_ = new point_t[numOfVertexes_];
 
   for (size_t i = 0; i < numOfVertexes_; ++i)
   {

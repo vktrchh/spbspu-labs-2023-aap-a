@@ -1,6 +1,6 @@
 #include "outputShapes.hpp"
 
-void rebdev::printSum(Shape ** const shapes, const size_t numOfShapes, std::ostream & out)
+void rebdev::printSum(const Shape * const * shapes, const size_t numOfShapes, std::ostream & out)
 {
   double sum = 0;
   for (size_t i = 0; i < numOfShapes; ++i)
@@ -14,7 +14,7 @@ void rebdev::printSum(Shape ** const shapes, const size_t numOfShapes, std::ostr
   out << sum;
 }
 
-void rebdev::printShapes(Shape ** const shapes, const size_t numOfShapes, std::ostream & out)
+void rebdev::printShapes(const Shape * const * shapes, const size_t numOfShapes, std::ostream & out)
 {
   out << std::fixed;
   out.precision(1);
