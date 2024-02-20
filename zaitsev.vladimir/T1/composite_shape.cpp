@@ -216,7 +216,7 @@ void zaitsev::CompositeShape::scale(double factor)
   point_t center = getCenter();
   for (size_t i = 0; i < size_; ++i)
   {
-    zaitsev::scale(shapes_[i], factor, center);
+    zaitsev::scale(*shapes_[i], factor, center);
   }
 }
 
