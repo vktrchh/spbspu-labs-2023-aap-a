@@ -39,9 +39,10 @@ int main()
         delete myShapes[i];
       }
       delete [] myShapes;
-      std::cerr << "somthing went wrong with input!\n";
+      std::cerr << "Somthing went wrong with input, might be EOF!\n";
       return 1;
     }
+
     try
     {
       string = inputLine(std::cin);
