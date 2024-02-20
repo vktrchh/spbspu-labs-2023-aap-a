@@ -11,7 +11,9 @@ namespace strelyaev
      virtual rectangle_t getFrameRect() const = 0;
      virtual void move(point_t) = 0;
      virtual void move(double, double) = 0;
-     virtual void scale(double) = 0;
+     void scale(double);
+    private:
+     virtual void doScale(double) = 0;
   };
 }
 #endif

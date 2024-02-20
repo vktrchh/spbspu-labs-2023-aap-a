@@ -49,12 +49,8 @@ void strelyaev::Rectangle::move(double dx, double dy)
   }
 }
 
-void strelyaev::Rectangle::scale(double k)
+void strelyaev::Rectangle::doScale(double k) override
 {
-  if (k < 0)
-  {
-    throw std::logic_error("Invalid SCALE argument.");
-  }
   double width = std::abs(p1_.x - p2_.x);
   double height = std::abs(p1_.y - p2_.y);
 
