@@ -80,7 +80,7 @@ int main()
           std::cout << '\n';
           for (size_t g = 0; g < count; g++)
           {
-            unsaveIsoScale(shapes[g], { values[0], values[1] }, values[2]);
+            unsafeIsoScale(shapes[g], { values[0], values[1] }, values[2]);
           }
           outputShapes(std::cout, shapes, count);
           std::cout << '\n';
