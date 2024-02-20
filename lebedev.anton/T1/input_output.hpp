@@ -13,6 +13,7 @@ namespace lebedev
   void inputDiamond(std::istream & input, Shape ** shapes, size_t & shapes_count);
   void inputComplexquad(std::istream & input, Shape ** shapes, size_t & shapes_count);
   Shape ** inputShapes(std::istream & input, size_t & shapes_count);
+  void outputFrameRect(std::ostream & output, const Shape * const * shapes, size_t shape_num);
   void outputShapes(std::ostream & output, const Shape * const * shapes, size_t shapes_count);
 }
 

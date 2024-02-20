@@ -126,6 +126,16 @@ lebedev::Shape ** lebedev::inputShapes(std::istream & input, size_t & shapes_cou
   return shapes;
 }
 
+void lebedev::outputFrameRect(std::ostream & output, const Shape * const * shapes, size_t shape_num)
+{
+  double width = shapes[shape_num]->getFrameRect().width;
+  double height = shapes[shape_num]->getFrameRect().height;
+  point_t center = shapes[shape_num]->getFrameRect().pos;
+  point_t leftDownCorner = { center.x - width / 2, center.y - height / 2 };
+  point_t rightUpCorner = { center.x + width / 2, center.y + height / 2 };
+  output << " " << leftDownCorner.x << " " << leftDownCorner.y << " " << rightUpCorner.x << " " << rightUpCorner.y;
+}
+
 void lebedev::outputShapes(std::ostream & output, const Shape * const * shapes, size_t shapes_count)
 {
   if (shapes_count == 0)
@@ -145,12 +155,7 @@ void lebedev::outputShapes(std::ostream & output, const Shape * const * shapes, 
   {
     if (shapes[i])
     {
-      double width = shapes[i]->getFrameRect().width;
-      double height = shapes[i]->getFrameRect().height;
-      point_t center = shapes[i]->getFrameRect().pos;
-      point_t leftDownCorner = {center.x - width / 2, center.y - height / 2};
-      point_t rightUpCorner = {center.x + width / 2, center.y + height / 2};
-      output << " " << leftDownCorner.x << " " << leftDownCorner.y << " " << rightUpCorner.x << " " << rightUpCorner.y;
+      outputFrameRect(output, shapes, i);
     }
   }
 }
