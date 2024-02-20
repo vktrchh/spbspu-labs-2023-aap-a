@@ -40,12 +40,8 @@ void lebedev::Rectangle::move(double dx, double dy)
   rightUpCorner_.x += dx;
   rightUpCorner_.y += dy;
 }
-void lebedev::Rectangle::scale(double ratio)
+void lebedev::Rectangle::doScale(double ratio)
 {
-  if (ratio <= 0)
-  {
-    throw std::invalid_argument("Error: invalid argument for the Scale");
-  }
   double center_x = (leftDownCorner_.x + rightUpCorner_.x) / 2;
   double center_y = (leftDownCorner_.y + rightUpCorner_.y) / 2;
   point_t center = {center_x, center_y};

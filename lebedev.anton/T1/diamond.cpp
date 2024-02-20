@@ -51,7 +51,7 @@ lebedev::point_t findThird(const lebedev::point_t & p1, const lebedev::point_t &
   }
 }
 
-lebedev::Diamond::Diamond(const point_t & p1, const point_t & p2, const point_t & p3):
+lebedev::Diamond::Diamond(const point_t & p1, const point_t & p2, const point_t & p3) :
   p1_(findCenter(p1, p2, p3)),
   p2_(findSecond(p1, p2, p3)),
   p3_(findThird(p1, p2, p3))
@@ -101,12 +101,8 @@ void lebedev::Diamond::move(double dx, double dy)
   p3_.x += dx;
   p3_.y += dy;
 }
-void lebedev::Diamond::scale(double ratio)
+void lebedev::Diamond::doScale(double ratio)
 {
-  if (ratio <= 0)
-  {
-    throw std::invalid_argument("Error: invalid argument for the Scale");
-  }
   p2_ = scalePoint(p2_, p1_, ratio);
   p3_ = scalePoint(p3_, p1_, ratio);
 }

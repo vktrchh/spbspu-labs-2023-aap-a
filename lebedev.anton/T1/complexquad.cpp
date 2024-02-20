@@ -49,7 +49,7 @@ void lebedev::Complexquad::move(double dx, double dy)
   p4_.x += dx;
   p4_.y += dy;
 }
-void lebedev::Complexquad::scale(double ratio)
+void lebedev::Complexquad::doScale(double ratio)
 {
   point_t center = findLinesIntersection(p1_, p2_, p3_, p4_);
   p1_ = scalePoint(p1_, center, ratio);

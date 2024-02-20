@@ -106,12 +106,8 @@ void lebedev::Parallelogram::move(double dx, double dy)
   p3_.x += dx;
   p3_.y += dy;
 }
-void lebedev::Parallelogram::scale(double ratio)
+void lebedev::Parallelogram::doScale(double ratio)
 {
-  if (ratio <= 0)
-  {
-    throw std::invalid_argument("Error: invalid argument for the Scale");
-  }
   point_t center = findCenterOfParallelogram(p1_, p2_, p3_);
   p1_ = scalePoint(p1_, center, ratio);
   p2_ = scalePoint(p2_, center, ratio);
