@@ -21,4 +21,5 @@ namespace stepanov
     double radiusX_;
   };
 }
+
 #endif

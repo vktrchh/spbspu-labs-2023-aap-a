@@ -21,7 +21,6 @@ void stepanov::inputRectangle(std::istream& input, Shape** shapes, size_t& size_
   ++size_shapes;
 }
 
-
 void stepanov::inputCircle(std::istream& input, Shape** shapes, size_t& size_shapes)
 {
   double arguments[3] = {};
@@ -134,7 +133,7 @@ void stepanov::outputShapes(std::ostream& output, const Shape * const * shapes, 
       double width = shapes[i]->getFrameRect().width;
       double height = shapes[i]->getFrameRect().height;
       point_t pos = shapes[i]->getFrameRect().pos;
-      point_t leftCorner = {pos.x - width / 2, pos.y - height/ 2};
+      point_t leftCorner = {pos.x - width / 2, pos.y - height / 2};
       point_t rightCorner = {pos.x + width / 2, pos.y + height / 2};
       output << " " << leftCorner.x << " " << leftCorner.y << " " << rightCorner.x << " " << rightCorner.y;
     }

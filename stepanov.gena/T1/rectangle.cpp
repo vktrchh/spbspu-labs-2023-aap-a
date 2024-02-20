@@ -5,7 +5,7 @@ stepanov::Rectangle::Rectangle(const point_t& leftCorner, const point_t& rightCo
   leftCorner_(leftCorner),
   rightCorner_(rightCorner)
 {
-  if (rightCorner_.x <= leftCorner_.x || rightCorner_.y <= leftCorner_.y)
+  if ((rightCorner_.x <= leftCorner_.x) || (rightCorner_.y <= leftCorner_.y))
   {
     throw std::invalid_argument("Invalid rectangle arguments");
   }
