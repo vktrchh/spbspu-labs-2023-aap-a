@@ -1,8 +1,8 @@
-#include "inputOutputShapes.h"
-#include "rectangle.h"
-#include "square.h"
-#include "diamond.h"
-#include "parallelogram.h"
+#include "inputOutputShapes.hpp"
+#include "rectangle.hpp"
+#include "square.hpp"
+#include "diamond.hpp"
+#include "parallelogram.hpp"
 
 void skuratov::clearingShapes(Shape** shapes, size_t count)
 {

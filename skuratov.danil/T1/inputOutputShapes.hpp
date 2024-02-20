@@ -4,7 +4,7 @@
 #include <iostream>
 #include <cstddef>
 
-#include "shape.h"
+#include "shape.hpp"
 
 namespace skuratov
 {

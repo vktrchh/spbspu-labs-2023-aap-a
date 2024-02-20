@@ -1,9 +1,9 @@
 #include <iostream>
-#include "inputOutputShapes.h"
-#include "diamond.h"
-#include "rectangle.h"
-#include "square.h"
-#include "isoScale.h"
+#include "inputOutputShapes.hpp"
+#include "diamond.hpp"
+#include "rectangle.hpp"
+#include "square.hpp"
+#include "isoScale.hpp"
 
 int main()
 {

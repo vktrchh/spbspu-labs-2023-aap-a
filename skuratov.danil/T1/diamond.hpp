@@ -1,23 +1,24 @@
-#ifndef SQUARE_H
-#define SQUARE_H
+#ifndef DIAMOND_HPP
+#define DIAMOND_HPP
 
-#include "shape.h"
+#include "shape.hpp"
 
 namespace skuratov
 {
-  class Square: public Shape
+  class Diamond: public Shape
   {
   public:
-    Square(const point_t& bottomLeftCorner, double sideLength);
+    Diamond(const point_t& corner1, const point_t& corner2, const point_t& corner3);
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t& A);
     virtual void move(double dx, double dy);
     virtual void scale(double scalingFactor);
-    virtual ~Square() = default;
+    virtual ~Diamond() = default;
   private:
-    point_t bottomLeftCorner_;
-    double sideLength_;
+    point_t corner1_;
+    point_t corner2_;
+    point_t corner3_;
   };
 }
 

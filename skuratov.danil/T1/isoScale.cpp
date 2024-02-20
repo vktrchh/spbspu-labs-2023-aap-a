@@ -1,4 +1,4 @@
-#include "isoScale.h"
+#include "isoScale.hpp"
 
 #include <stdexcept>
 

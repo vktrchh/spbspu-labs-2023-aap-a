@@ -1,7 +1,7 @@
 #ifndef PARALLELOGRAM_HPP
 #define PARALLELOGRAM_HPP
 
-#include "shape.h"
+#include "shape.hpp"
 
 namespace skuratov
 {

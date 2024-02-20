@@ -1,7 +1,7 @@
 #ifndef ISO_SCALE_HPP
 #define ISO_SCALE_HPP
 
-#include "shape.h"
+#include "shape.hpp"
 
 namespace skuratov
 {
