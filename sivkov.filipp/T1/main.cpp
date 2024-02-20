@@ -15,7 +15,7 @@ int main()
   size_t count = 0;
   try
   {
-    shapes = inputShape(std::cin, count);
+    shapes = inputShapes(std::cin, count);
     if (count == 0)
     {
       throw std::runtime_error("No shapes entered before scaling");

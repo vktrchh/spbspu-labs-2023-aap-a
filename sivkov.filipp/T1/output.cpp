@@ -10,7 +10,7 @@ namespace sivkov
     {
       sumOfArea += shapes[i]->getArea();
     }
-    out << sumOfArea << " ";
+    out << sumOfArea;
     for (size_t i = 0; i < count; ++i)
     {
       outputFrameRectInfo(out, &shapes[i]);
