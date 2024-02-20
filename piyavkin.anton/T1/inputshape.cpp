@@ -5,6 +5,18 @@
 #include "triangle.hpp"
 #include "parallelogram.hpp"
 
+void piyavkin::inputParameters(std::istream& in, double* parameters, size_t parametersCount)
+{
+  for (size_t j = 0; j < parametersCount; ++j)
+  {
+    in >> parameters[j];
+  }
+  if (!in)
+  {
+    throw std::logic_error("Invalid arguments");
+  }
+}
+
 void piyavkin::clearMemory(Shape** shapes, size_t shapeCount)
 {
   for (size_t i = 0; i < shapeCount; ++i)
@@ -18,13 +30,13 @@ void piyavkin::inputRectangle(std::istream& in, Shape** shapes, size_t shapeCoun
 {
   constexpr size_t parametersCount = 4;
   double parameters[parametersCount] = {};
-  for (size_t j = 0; j < parametersCount; ++j)
+  try
   {
-    in >> parameters[j];
+    inputParameters(in, parameters, parametersCount);
   }
-  if (!in)
+  catch (const std::logic_error& e)
   {
-    throw std::logic_error("Invalid arguments");
+    throw;
   }
   shapes[shapeCount] = new Rectangle({parameters[0], parameters[1]}, {parameters[2], parameters[3]});
 }
@@ -33,13 +45,13 @@ void piyavkin::inputTriangle(std::istream& in, Shape** shapes, size_t shapeCount
 {
   constexpr size_t parametersCount = 6;
   double parameters[parametersCount] = {};
-  for (size_t j = 0; j < parametersCount; ++j)
+  try
   {
-    in >> parameters[j];
+    inputParameters(in, parameters, parametersCount);
   }
-  if (!in)
+  catch (const std::logic_error& e)
   {
-    throw std::logic_error("Invalid arguments");
+    throw;
   }
   shapes[shapeCount] = new Triangle({parameters[0], parameters[1]}, {parameters[2], parameters[3]}, {parameters[4], parameters[5]});
 }
@@ -48,13 +60,13 @@ void piyavkin::inputParallelogram(std::istream& in, Shape** shapes, size_t shape
 {
   constexpr size_t parametersCount = 6;
   double parameters[parametersCount] = {};
-  for (size_t j = 0; j < parametersCount; ++j)
+  try
   {
-    in >> parameters[j];
+    inputParameters(in, parameters, parametersCount);
   }
-  if (!in)
+  catch (const std::logic_error& e)
   {
-    throw std::logic_error("Invalid arguments");
+    throw;
   }
   shapes[shapeCount] = new Parallelogram({parameters[0], parameters[1]}, {parameters[2], parameters[3]}, {parameters[4], parameters[5]});
 }

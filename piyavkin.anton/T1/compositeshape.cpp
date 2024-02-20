@@ -28,7 +28,15 @@ namespace piyavkin
   {
     for (size_t i = 0; i < size_; ++i)
     {
-      shapes_[i] = cs.shapes_[i]->clone();
+      try
+      {
+        shapes_[i] = cs.shapes_[i]->clone();
+      }
+      catch (const std::bad_alloc& e)
+      {
+        clearMemory(shapes_, i);
+        throw;
+      }
     }
   }
   CompositeShape& CompositeShape::operator=(const CompositeShape& cs)
@@ -48,6 +56,9 @@ namespace piyavkin
   }
   CompositeShape& CompositeShape::operator=(CompositeShape&& cs)
   {
+    clearMemory(shapes_, size_);
+    size_ = 0;
+    capacity_ = 0;
     swap(cs);
     return *this;
   }
@@ -117,12 +128,12 @@ namespace piyavkin
   {
     if (capacity_ == size_)
     {
-      capacity_ += 10;
       Shape** oldShapes = nullptr;
       try
       {
         oldShapes = shapes_;
-        shapes_ = new Shape* [capacity_] {};
+        shapes_ = new Shape* [capacity_ + 10] {};
+        capacity_ += 10;
         if (oldShapes)
         {
           for (size_t i = 0; i < size_; ++i)
@@ -134,7 +145,6 @@ namespace piyavkin
       }
       catch (const std::bad_alloc& e)
       {
-        capacity_ -= 10;
         shapes_ = oldShapes;
         return;
       }
