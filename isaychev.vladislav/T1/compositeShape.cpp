@@ -40,7 +40,7 @@ isaychev::CompositeShape::CompositeShape(CompositeShape && diffCShape):
 
 isaychev::CompositeShape & isaychev::CompositeShape::operator=(CompositeShape && diffCShape)
 {
-  if ( this != &diffCShape)
+  if (this != std::addressof(diffCShape))
   {
     deleteFigures(figures_, currNumOfFigures_);
     moveFigures(figures_, diffCShape.figures_, diffCShape.currNumOfFigures_);

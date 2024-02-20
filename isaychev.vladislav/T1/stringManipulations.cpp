@@ -49,7 +49,7 @@ void isaychev::skipParameter(char * str)
   }
 }
 
-void isaychev::parseParams(char * str, const size_t numOfParameters, double * parameters)
+void isaychev::parseParams(char * str, size_t numOfParameters, double * parameters)
 {
   size_t pos = 0;
   skipParameter(str);

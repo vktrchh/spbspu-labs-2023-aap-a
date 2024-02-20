@@ -72,6 +72,8 @@ int main()
     parseParams(currDesc, numOfScalePars, scaleParams);
     try
     {
+      std::cout << std::fixed;
+      std::cout.precision(1);
       if (scaleParams[2] > 0)
       {
         outputResults(std::cout, cShape);
