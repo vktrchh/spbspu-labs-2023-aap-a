@@ -31,7 +31,7 @@ int main()
       double k = 0;
       std::cin >> isoPoint.x >> isoPoint.y >> k;
 
-      if ((!std::cin) || (k <= 0))
+      if (!std::cin)
       {
         break;
       }
@@ -42,8 +42,14 @@ int main()
       std::cout << ' ';
       rebdev::printShapes(shapes, numOfShape, std::cout);
       std::cout << '\n';
-      rebdev::isoScale(shapes, numOfShape, isoPoint, k);
-
+      try
+      {
+        rebdev::isoScale(shapes, numOfShape, isoPoint, k);
+      }
+      catch (const std::logic_error & e)
+      {
+        break;
+      }
       isScale = 1;
       break;
     }

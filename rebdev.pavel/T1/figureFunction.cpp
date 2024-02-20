@@ -1,5 +1,6 @@
 #include "figureFunction.hpp"
 #include <algorithm>
+#include <stdexcept>
 
 rebdev::rectangle_t rebdev::getFrameRectangle(const point_t vertexes[], size_t numOfVertexes)
 {
@@ -18,6 +19,11 @@ rebdev::rectangle_t rebdev::getFrameRectangle(const point_t vertexes[], size_t n
 
 void rebdev::scaleFigure(point_t vertexes[], size_t numOfVertexes, const point_t & center, double k)
 {
+  if (k <= 0)
+  {
+    throw std::logic_error("Bad koeff");
+  }
+
   for (size_t i = 0; i < numOfVertexes; ++i)
   {
     vertexes[i].x = (vertexes[i].x - center.x) * k + center.x;
