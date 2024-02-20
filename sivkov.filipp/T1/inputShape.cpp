@@ -1,9 +1,9 @@
 #include "inputShape.hpp"
+#include <string>
 #include "rectangle.hpp"
 #include "concave.hpp"
 #include "complexquad.hpp"
 #include "othersFun.hpp"
-#include <string>
 
 void sivkov::inputRectangle(std::istream& input, Shape** shapes, size_t count)
 {

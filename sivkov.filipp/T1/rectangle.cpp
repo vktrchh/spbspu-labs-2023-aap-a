@@ -1,6 +1,6 @@
 #include "rectangle.hpp"
-#include "othersFun.hpp"
 #include <stdexcept>
+#include "othersFun.hpp"
 
 sivkov::Rectangle::Rectangle(point_t leftBottom, point_t rightTop):
   leftBottom_(leftBottom),

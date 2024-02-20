@@ -1,7 +1,7 @@
 #include "complexquad.hpp"
-#include "othersFun.hpp"
 #include <stdexcept>
 #include <algorithm>
+#include "othersFun.hpp"
 sivkov::Complexquad::Complexquad(const point_t& ver1, const point_t& ver2, const point_t& ver3, const point_t& ver4):
   cqVer1_(ver1),
   cqVer2_(ver2),

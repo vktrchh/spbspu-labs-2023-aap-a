@@ -1,7 +1,7 @@
 #include "concave.hpp"
-#include "othersFun.hpp"
 #include <stdexcept>
 #include <algorithm>
+#include "othersFun.hpp"
 
 sivkov::Concave::Concave(const point_t cvVer1, const point_t cvVer2, const point_t cvVer3, const point_t cvVer4):
   cvVer1_(cvVer1),

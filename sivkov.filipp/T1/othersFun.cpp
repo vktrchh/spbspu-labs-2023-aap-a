@@ -1,9 +1,9 @@
 #include "othersFun.hpp"
-#include "base-types.hpp"
-#include "shape.hpp"
 #include <cmath>
 #include <stdexcept>
 #include <iostream>
+#include "base-types.hpp"
+#include "shape.hpp"
 
 namespace sivkov
 {
