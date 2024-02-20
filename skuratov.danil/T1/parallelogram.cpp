@@ -44,14 +44,26 @@ skuratov::rectangle_t skuratov::Parallelogram::getFrameRect() const
   double height = (point1_.y == point2_.y) * std::abs(point2_.y - point3_.y) + (point1_.y != point2_.y) * std::abs(point1_.y - point2_.y);
   point_t center = findCenOfParal(point1_, point2_, point3_);
   return { width, height, center };
-
 }
 
 void skuratov::Parallelogram::move(const point_t& A)
-{}
+{
+  point_t center = findCenOfParal(point1_, point2_, point3_);
+  double dx = A.x - center.x;
+  double dy = A.y - center.y;
+  move(dx, dy);
+}
 
 void skuratov::Parallelogram::move(double dx, double dy)
-{}
+{
+  point1_.x += dx;
+  point2_.x += dx;
+  point3_.x += dx;
+
+  point1_.y += dy;
+  point2_.y += dy;
+  point3_.y += dy;
+}
 
 void skuratov::Parallelogram::scale(double scalingFactor)
 {
@@ -59,4 +71,15 @@ void skuratov::Parallelogram::scale(double scalingFactor)
   {
     throw std::invalid_argument("Error: scale factor of parallelogram should be a positive");
   }
+
+  point_t center = findCenOfParal(point1_, point2_, point3_);
+
+  point1_.x = center.x + scalingFactor * (point1_.x - center.x);
+  point1_.y = center.y + scalingFactor * (point1_.y - center.y);
+
+  point2_.x = center.x + scalingFactor * (point2_.x - center.x);
+  point2_.y = center.y + scalingFactor * (point2_.y - center.y);
+
+  point3_.x = center.x + scalingFactor * (point3_.x - center.x);
+  point3_.y = center.y + scalingFactor * (point3_.y - center.y);
 }
