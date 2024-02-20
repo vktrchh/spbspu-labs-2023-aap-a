@@ -43,6 +43,7 @@ void skuratov::Square::scale(double scalingFactor)
   }
 
   point_t core = getFrameRect().pos;
+  sideLength_ *= scalingFactor;
   bottomLeftCorner_.x = core.x - (sideLength_ / 2);
   bottomLeftCorner_.y = core.y - (sideLength_ / 2);
 }
