@@ -27,15 +27,23 @@ zaitsev::CompositeShape& zaitsev::CompositeShape::operator=(const CompositeShape
   if (this != std::addressof(other))
   {
     Shape** temp = new Shape * [other.capacity_];
+    size_t i = 0;
+    try
+    {
+      for (i = 0; i < other.size_; ++i)
+      {
+        temp[i] = other[i].clone();
+      }
+    }
+    catch (std::bad_alloc&)
+    {
+      freeShapesArray(temp, i);
+      throw;
+    }
     freeShapesArray(shapes_, size_);
-
     size_ = other.size_;
     capacity_ = other.capacity_;
     shapes_ = temp;
-    for (size_t i = 0; i < size_; ++i)
-    {
-      shapes_[i] = other[i].clone();
-    }
   }
   return *this;
 }
@@ -72,29 +80,22 @@ void zaitsev::CompositeShape::push_back(Shape* shape)
   {
     throw std::invalid_argument("Shape to add is empty");
   }
-  try
-  {
-    if (size_ == capacity_)
-    {
-      if (capacity_ == 0)
-      {
-        capacity_ = 4;
-      }
-      Shape** temp = new Shape * [capacity_ * 2];
-      std::memcpy(temp, shapes_, sizeof(Shape*) * size_);
-      delete[] shapes_;
-      shapes_ = temp;
-      capacity_ *= 2;
-    }
 
-    shapes_[size_] = shape;
-    ++size_;
-  }
-  catch (const std::bad_alloc&)
+  if (size_ == capacity_)
   {
-    delete shape;
-    throw;
+    if (capacity_ == 0)
+    {
+      capacity_ = 4;
+    }
+    Shape** temp = new Shape * [capacity_ * 2];
+    std::memcpy(temp, shapes_, sizeof(Shape*) * size_);
+    delete[] shapes_;
+    shapes_ = temp;
+    capacity_ *= 2;
   }
+
+  shapes_[size_] = shape;
+  ++size_;
 }
 
 void zaitsev::CompositeShape::pop_back()

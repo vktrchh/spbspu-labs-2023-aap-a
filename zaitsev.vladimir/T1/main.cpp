@@ -13,47 +13,47 @@ int main()
   CompositeShape shape;
   bool wrong_args = false;
 
-  try
+  std::cin >> shape_type;
+  while (shape_type != "SCALE")
   {
-    std::cin >> shape_type;
-    while (shape_type != "SCALE")
+    Shape* new_shape = nullptr;
+    try
     {
-      try
+      if (!std::cin)
       {
-        if (!std::cin)
-        {
-          std::cerr << "No scale command entered\n";
-          return 1;
-        }
-
-        if (shape_type == "RECTANGLE")
-        {
-          shape.push_back(readRectangle(std::cin));
-        }
-        else if (shape_type == "COMPLEXQUAD")
-        {
-          shape.push_back(readComplexquad(std::cin));
-        }
-        else if (shape_type == "PARALLELOGRAM")
-        {
-          shape.push_back(readParallelogram(std::cin));
-        }
-        else
-        {
-          std::getline(std::cin, shape_type);
-        }
+        std::cerr << "No scale command entered\n";
+        return 1;
       }
-      catch (const std::invalid_argument&)
+      if (shape_type == "RECTANGLE")
       {
-        wrong_args = true;
+        new_shape = readRectangle(std::cin);
       }
-      std::cin >> shape_type;
+      else if (shape_type == "COMPLEXQUAD")
+      {
+        new_shape = readComplexquad(std::cin);
+      }
+      else if (shape_type == "PARALLELOGRAM")
+      {
+        new_shape = readParallelogram(std::cin);
+      }
+      else
+      {
+        std::getline(std::cin, shape_type);
+      }
+      shape.push_back(new_shape);
+      new_shape = nullptr;
     }
-  }
-  catch (const std::bad_alloc&)
-  {
-    std::cerr << "Error: Failed to allocate memory\n";
-    return 1;
+    catch (const std::invalid_argument&)
+    {
+      wrong_args = true;
+    }
+    catch (const std::bad_alloc&)
+    {
+      delete new_shape;
+      std::cerr << "Error: Failed to allocate memory\n";
+      return 1;
+    }
+    std::cin >> shape_type;
   }
 
   double factor = 0;
