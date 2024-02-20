@@ -34,10 +34,9 @@ void sivkov::Rectangle::move(point_t newPos)
 
 void sivkov::Rectangle::move(double dx, double dy)
 {
-  leftBottom_.x += dx;
-  leftBottom_.y += dy;
-  rightTop_.x += dx;
-  rightTop_.y += dy;
+  point_t newXY = { dx, dy };
+  leftBottom_ = shift(newXY, leftBottom_);
+  rightTop_ = shift(newXY, rightTop_);
 }
 
 void sivkov::Rectangle::scale(double k)
