@@ -44,7 +44,7 @@ void skuratov::inputSquare(std::istream& input, Shape** shapes, size_t& count)
 {
   double args[3] = {};
   size_t i = 0;
-  while (i < 4)
+  while (i < 3)
   {
     input >> args[i];
     if (!input)
