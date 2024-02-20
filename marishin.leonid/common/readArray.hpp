@@ -5,8 +5,7 @@
 
 namespace marishin
 {
-  template <typename T>
-  void readArray(std::istream& in, T* option, size_t size);
+  void readArray(std::istream& in, double* option, size_t size);
 }
 
 #endif
