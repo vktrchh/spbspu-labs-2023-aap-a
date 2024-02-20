@@ -66,25 +66,33 @@ void piyavkin::inputShape(std::istream& in, CompositeShape& cs)
     {
       if (name == shapeNames[i])
       {
+        Shape* shape = nullptr;
         try
         {
           if (name == "RECTANGLE")
           {
-            cs.push_back(inputRectangle(in));
+            shape = inputRectangle(in);
+            cs.push_back(shape);
           }
           else if (name == "TRIANGLE")
           {
-            cs.push_back(inputTriangle(in));
+            shape = inputTriangle(in);
+            cs.push_back(shape);
           }
           else if (name == "PARALLELOGRAM")
           {
-            cs.push_back(inputParallelogram(in));
+            shape = inputParallelogram(in);
+            cs.push_back(shape);
           }
         }
         catch (const std::logic_error& e)
         {
           std::cerr << e.what() << '\n';
           continue;
+        }
+        catch (const std::bad_alloc& e)
+        {
+          delete shape;
         }
       }
     }

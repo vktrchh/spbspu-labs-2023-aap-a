@@ -143,7 +143,7 @@ namespace piyavkin
       catch (const std::bad_alloc& e)
       {
         shapes_ = oldShapes;
-        return;
+        throw;
       }
     }
     shapes_[size_++] = shape;
