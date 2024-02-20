@@ -8,12 +8,26 @@
 #include "figureInputFunction.hpp"
 #include "isoScale.hpp"
 #include "outputShapes.hpp"
+#include "mainFunction.hpp"
 
 int main()
 {
   std::string figureName;
 
-  rebdev::Shape * shapes[1000] = {nullptr};
+  rebdev::Shape ** shapes = nullptr;
+  try
+  {
+    shapes = new rebdev::Shape * [1000];
+    for (size_t i = 0; i < 1000; ++i)
+    {
+      shapes[i] = nullptr;
+    }
+  }
+  catch (const std::exception & e)
+  {
+    std::cerr << "Error in allocat dynamic memory";
+    return 2;
+  }
 
   size_t numOfShape = 0;
   bool isScale = 0, figureError = 0;
@@ -77,10 +91,7 @@ int main()
   if (!isScale || (numOfShape == 0))
   {
     std::cerr << "Programm end without scale!\n";
-    for (size_t i = 0; i < numOfShape; ++i)
-    {
-      delete shapes[i];
-    }
+    rebdev::deleteShapes(shapes, numOfShape);
     return 1;
   }
 
@@ -89,10 +100,7 @@ int main()
   rebdev::printShapes(shapes, numOfShape, std::cout);
   std::cout << '\n';
 
-  for (size_t i = 0; i < numOfShape; ++i)
-  {
-    delete shapes[i];
-  }
+  rebdev::deleteShapes(shapes, numOfShape);
 
   return 0;
 }
