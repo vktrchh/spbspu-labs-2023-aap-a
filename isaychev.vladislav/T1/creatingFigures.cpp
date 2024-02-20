@@ -48,30 +48,23 @@ isaychev::Shape * isaychev::createFigure(char * str)
 {
   size_t numOfCurrFigure = determineShape(str);
   Shape * currFigure = nullptr;
-  try
+  if (numOfCurrFigure == 1)
   {
-    if (numOfCurrFigure == 1)
-    {
-      double parameters[4] = {};
-      parseParams(str, 4, parameters);
-      currFigure = createRectangle(parameters);
-    }
-    else if (numOfCurrFigure == 2)
-    {
-      double parameters[3] = {};
-      parseParams(str, 3, parameters);
-      currFigure = createCircle(parameters);
-    }
-    else if (numOfCurrFigure == 3)
-    {
-      double parameters[6] = {};
-      parseParams(str, 6, parameters);
-      currFigure = createRegular(parameters);
-    }
+    double parameters[4] = {};
+    parseParams(str, 4, parameters);
+    currFigure = createRectangle(parameters);
   }
-  catch (const std::bad_alloc &)
+  else if (numOfCurrFigure == 2)
   {
-    throw;
+    double parameters[3] = {};
+    parseParams(str, 3, parameters);
+    currFigure = createCircle(parameters);
+  }
+  else if (numOfCurrFigure == 3)
+  {
+    double parameters[6] = {};
+    parseParams(str, 6, parameters);
+    currFigure = createRegular(parameters);
   }
   return currFigure;
 }
