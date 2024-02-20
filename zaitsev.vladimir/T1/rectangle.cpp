@@ -42,7 +42,7 @@ zaitsev::point_t zaitsev::Rectangle::getCenter() const
   return (right_corner_ + left_corner_) / 2;
 }
 
-void zaitsev::Rectangle::scale(double factor)
+void zaitsev::Rectangle::unsafeScale(double factor)
 {
   point_t center = getCenter();
   left_corner_ = center + (left_corner_ - center) * factor;

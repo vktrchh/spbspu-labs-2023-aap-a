@@ -52,7 +52,7 @@ zaitsev::point_t zaitsev::Complexquad::getCenter() const
   return findIntersection(vertices_);
 }
 
-void zaitsev::Complexquad::scale(double factor)
+void zaitsev::Complexquad::unsafeScale(double factor)
 {
   point_t center = getCenter();
   for (size_t i = 0; i < 4; ++i)

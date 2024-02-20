@@ -55,7 +55,7 @@ void zaitsev::Parallelogram::move(double x_shift, double y_shift)
   }
 }
 
-void zaitsev::Parallelogram::scale(double factor)
+void zaitsev::Parallelogram::unsafeScale(double factor)
 {
   point_t center = getCenter();
   for (size_t i = 0; i < 3; ++i)

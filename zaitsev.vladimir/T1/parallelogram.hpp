@@ -14,7 +14,7 @@ namespace zaitsev
     virtual rectangle_t getFrameRect() const;
     virtual void move(point_t dest_pos);
     virtual void move(double x_shift, double y_shift);
-    virtual void scale(double factor);
+    virtual void unsafeScale(double factor);
     virtual Shape* clone() const;
   private:
     point_t def_vertices_[3];
