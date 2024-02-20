@@ -109,29 +109,3 @@ zaitsev::rectangle_t zaitsev::transformRectangleBounds(point_t left_corner, poin
   point_t pos = (left_corner + right_corner) / 2;
   return { size.x, size.y, pos };
 }
-
-void zaitsev::scale(Shape* shape, double factor, point_t iso_center)
-{
-  if (factor <= 0)
-  {
-    throw std::invalid_argument("Scale factor must be positive");
-  }
-  point_t start_pos = shape->getFrameRect().pos;
-  shape->move(iso_center);
-  point_t iso_center_pos = shape->getFrameRect().pos;
-  shape->scale(factor);
-  shape->move(factor * (start_pos.x - iso_center_pos.x), factor * (start_pos.y - iso_center_pos.y));
-}
-
-void zaitsev::scale(CompositeShape& shape, double factor, point_t iso_center)
-{
-  if (factor <= 0)
-  {
-    throw std::invalid_argument("Scale factor must be positive");
-  }
-  point_t start_pos = shape.getFrameRect().pos;
-  shape.move(iso_center);
-  point_t iso_center_pos = shape.getFrameRect().pos;
-  shape.scale(factor);
-  shape.move(factor * (start_pos.x - iso_center_pos.x), factor * (start_pos.y - iso_center_pos.y));
-}

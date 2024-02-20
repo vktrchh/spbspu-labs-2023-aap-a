@@ -62,7 +62,7 @@ int main()
   {
     readScale(std::cin, center, factor);
     std::cout << shape << "\n";
-    scale(shape, factor, center);
+    scale(std::addressof(shape), factor, center);
     std::cout << shape << "\n";
     if (wrong_args)
     {
