@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include <algorithm>
 
-sivkov::Concave::Concave(const point_t cvVer1, const point_t cvVer2, const point_t cvVer3, const point_t cvVer4) :
+sivkov::Concave::Concave(const point_t cvVer1, const point_t cvVer2, const point_t cvVer3, const point_t cvVer4):
   cvVer1_(cvVer1),
   cvVer2_(cvVer2),
   cvVer3_(cvVer3),
