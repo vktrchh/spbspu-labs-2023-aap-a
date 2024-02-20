@@ -4,12 +4,7 @@
 
 bool isaychev::checkForEmptyStr(const char * str)
 {
-  size_t i = 0;
-  while (str[i] != '\0')
-  {
-    i++;
-  }
-  if (i == 0)
+  if (str[0] == '\0')
   {
     return true;
   }
@@ -38,8 +33,7 @@ char * isaychev::inputString(std::istream & input, size_t & capacity)
       if (length == capacity - 1)
       {
         capacity += 10;
-        char * bigger_str = nullptr;
-        bigger_str = new char[capacity]{};
+        char * bigger_str = new char[capacity]{};
         copyString(str, bigger_str);
         delete [] str;
         str = bigger_str;
