@@ -9,11 +9,11 @@ sivkov::Concave::Concave(const point_t cvVer1, const point_t cvVer2, const point
   cvVer3_(cvVer3),
   cvVer4_(cvVer4)
 {
-  if (!isTriangle(cvVer1_, cvVer2_, cvVer3_))
+  if (!checkIsTriangle(cvVer1_, cvVer2_, cvVer3_))
   {
     throw std::invalid_argument("The first three points do not form a triangle.");
   }
-  if (!isInsideTriangle(cvVer1_, cvVer2_, cvVer3_, cvVer4_))
+  if (!checkIsInsideTriangle(cvVer1_, cvVer2_, cvVer3_, cvVer4_))
   {
     throw std::invalid_argument("The fourth point is not inside the triangle formed by the first three points.");
   }

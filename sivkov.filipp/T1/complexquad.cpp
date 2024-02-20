@@ -8,7 +8,7 @@ sivkov::Complexquad::Complexquad(const point_t ver1, const point_t ver2, const p
   cqVer3_(ver3),
   cqVer4_(ver4)
 {
-  if (!areSegmentsIntersecting(ver1, ver2, ver3, ver4))
+  if (!checkAreSegmentsIntersecting(ver1, ver2, ver3, ver4))
   {
     throw std::invalid_argument("Sides of the complex quad intersect. Invalid configuration.");
   }

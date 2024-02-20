@@ -42,12 +42,12 @@ namespace sivkov
     return std::sqrt(std::abs(a.x - b.x) * std::abs(a.x - b.x) + std::abs(a.y - b.y) * std::abs(a.y - b.y));
   }
 
-  bool isTriangle(const point_t first, const point_t second, const point_t third)
+  bool checkIsTriangle(const point_t first, const point_t second, const point_t third)
   {
     return (((third.x - first.x) / (second.x - first.x)) != ((third.y - first.y) / (second.y - first.y)));
   }
 
-  bool isInsideTriangle(const point_t A, const point_t B, const point_t C, const point_t D)
+  bool checkIsInsideTriangle(const point_t A, const point_t B, const point_t C, const point_t D)
   {
     double ab = (B.y - A.y) * D.x + (A.x - B.x) * D.y + (B.x * A.y - A.x * B.y);
     double bc = (B.y - C.y) * D.x + (C.x - B.x) * D.y + (B.x * C.y - C.x * B.y);
@@ -55,7 +55,7 @@ namespace sivkov
     return (ab < 0 && bc > 0 && ac > 0);
   }
 
-  void scale(Shape* shape, point_t center, double k)
+  void doScale(Shape* shape, point_t center, double k)
   {
     if (k < 0)
     {
@@ -96,7 +96,7 @@ namespace sivkov
     return { p2.x - p1.x, p2.y - p1.y };
   }
 
-  bool areSegmentsIntersecting(const point_t ver1, const point_t ver2, const point_t ver3, const point_t ver4)
+  bool checkAreSegmentsIntersecting(const point_t ver1, const point_t ver2, const point_t ver3, const point_t ver4)
   {
     point_t line1 = calculateVector(ver1, ver2);
     point_t line2 = calculateVector(ver1, ver3);

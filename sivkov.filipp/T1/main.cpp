@@ -33,7 +33,7 @@ int main()
     std::cout << '\n';
     for (size_t i = 0; i < count; ++i)
     {
-      scale(shapes[i], center, k);
+      doScale(shapes[i], center, k);
     }
     output(std::cout, shapes, count);
     std::cout << '\n';
