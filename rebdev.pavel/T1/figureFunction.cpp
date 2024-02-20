@@ -51,5 +51,5 @@ double rebdev::getFigureArea(const point_t * points, size_t numOfPoint)
 
   sum += (points[numOfPoint - 1].x - points[0].x) * (points[numOfPoint - 1].y + points[0].y);
   sum /= 2;
-  return abs(sum);
+  return std::abs(sum);
 }

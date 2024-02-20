@@ -63,9 +63,8 @@ rebdev::point_t * rebdev::inputPoints(std::istream & input, size_t & numOfPoints
           delete[] points;
           throw;
         }
-        bufferArr[0] = points[0];
 
-        for (size_t i = 1; i < numOfPoints; ++i)
+        for (size_t i = 0; i < numOfPoints; ++i)
         {
           bufferArr[i] = points[i];
         }
@@ -80,7 +79,15 @@ rebdev::point_t * rebdev::inputPoints(std::istream & input, size_t & numOfPoints
 
     input.clear();
 
-    bufferArr = new point_t[numOfPoints];
+    try
+    {
+      bufferArr = new point_t[numOfPoints];
+    }
+    catch (const std::bad_alloc & e)
+    {
+      delete[] points;
+      throw;
+    }
 
     for (size_t i = 0; i < numOfPoints; ++i)
     {
