@@ -21,7 +21,7 @@ void nikitov::recognizeScaleParameters(std::string line, point_t& isoScaleCenter
 void nikitov::outputFrame(Shape* figure, std::ostream& output)
 {
   rectangle_t frame = figure->getFrameRect();
-  output << ' ' << frame.pos.x - frame.width / 2.0;
+  output << frame.pos.x - frame.width / 2.0;
   output << ' ' << frame.pos.y - frame.height / 2.0;
   output << ' ' << frame.pos.x + frame.width / 2.0;
   output << ' ' << frame.pos.y + frame.height / 2.0;

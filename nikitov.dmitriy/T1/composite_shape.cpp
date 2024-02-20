@@ -38,10 +38,10 @@ nikitov::CompositeShape::~CompositeShape()
   delete[] figures_;
 }
 
-nikitov::CompositeShape& nikitov::CompositeShape::operator=(CompositeShape& other)
+nikitov::CompositeShape& nikitov::CompositeShape::operator=(const CompositeShape& other)
 {
   CompositeShape temp(other);
-  if (&other != this)
+  if (std::addressof(other) != this)
   {
     swap(temp);
   }
@@ -51,7 +51,7 @@ nikitov::CompositeShape& nikitov::CompositeShape::operator=(CompositeShape& othe
 nikitov::CompositeShape& nikitov::CompositeShape::operator=(CompositeShape&& other)
 {
   CompositeShape temp(other);
-  if (&other != this)
+  if (std::addressof(other) != this)
   {
     swap(temp);
     other.sizeOfArray_ = 0;

@@ -42,7 +42,8 @@ int main()
         std::cout << composition.getArea();
         for (size_t i = 0; i != composition.size(); ++i)
         {
-          outputFrame(&composition[i], std::cout);
+          std::cout << ' ';
+          outputFrame(std::addressof(composition[i]), std::cout);
         }
         std::cout << '\n';
 
@@ -51,7 +52,8 @@ int main()
         std::cout << composition.getArea();
         for (size_t i = 0; i != composition.size(); ++i)
         {
-          outputFrame(&composition[i], std::cout);
+          std::cout << ' ';
+          outputFrame(std::addressof(composition[i]), std::cout);
         }
         std::cout << '\n';
       }
@@ -66,7 +68,7 @@ int main()
       return 2;
     }
   }
-  catch(std::invalid_argument& e)
+  catch (const std::invalid_argument& e)
   {
     std::cerr << e.what() << '\n';
     return 3;
