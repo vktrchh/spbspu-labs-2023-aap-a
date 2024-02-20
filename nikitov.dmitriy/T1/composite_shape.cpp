@@ -82,7 +82,6 @@ void nikitov::CompositeShape::pop_back()
   {
     throw std::logic_error("Error: Nothing to delete");
   }
-  delete figures_[sizeOfArray_];
   decreaseArray();
 }
 
@@ -126,10 +125,6 @@ double nikitov::CompositeShape::getArea() const
 
 nikitov::rectangle_t nikitov::CompositeShape::getFrameRect() const
 {
-  if(empty())
-  {
-    throw std::logic_error("Error: Empty array");
-  }
   double maxX = std::numeric_limits< double >::lowest();
   double maxY = maxX;
   double minX = std::numeric_limits< double >::max();
@@ -184,6 +179,7 @@ void nikitov::CompositeShape::increaseArray()
 void nikitov::CompositeShape::decreaseArray()
 {
   Shape** temp = new Shape*[sizeOfArray_ - 1];
+  delete figures_[sizeOfArray_];
   for (size_t i = 0; i != sizeOfArray_ - 1; ++i)
   {
     temp[i] = figures_[i];
