@@ -87,12 +87,6 @@ int main()
       delete [] currDesc;
       return 4;
     }
-    catch (const std::out_of_range & e)
-    {
-      std::cerr << e.what() << "\n";
-      delete [] currDesc;
-      return 5;
-    }
   }
   if (figDescMistakeCheck > 0)
   {
