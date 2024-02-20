@@ -37,11 +37,7 @@ int main()
     }
     output(std::cout, shapes, count);
     std::cout << '\n';
-    for (size_t i = 0; i < count; ++i)
-    {
-      delete shapes[i];
-    }
-    delete[] shapes;
+    deleteMemory(shapes, count);
   }
   catch (const std::exception& e)
   {
