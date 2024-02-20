@@ -34,11 +34,7 @@ int main()
   {
     if (!std::cin.good())
     {
-      for (size_t i = 0; i < currentShapesCount; i++)
-      {
-        delete myShapes[i];
-      }
-      delete [] myShapes;
+      freeMem(myShapes, currentShapesCount);
       std::cerr << "Somthing went wrong with input, might be EOF!\n";
       return 1;
     }
@@ -49,11 +45,7 @@ int main()
     }
     catch (const std::exception &e)
     {
-      for (size_t i = 0; i < currentShapesCount; i++)
-      {
-        delete myShapes[i];
-      }
-      delete [] myShapes;
+      freeMem(myShapes, currentShapesCount);
       std::cerr << "Error: " << e.what() << "\n";
       return 1;
     }
@@ -62,15 +54,6 @@ int main()
     if (foundScale != nullptr)
     {
       inputScaleParam(string, scalePoint, scaleK);
-
-      try
-      {
-        scaleFunction(myShapes, currentShapesCount, scalePoint, scaleK);
-      }
-      catch (const std::logic_error &e)
-      {
-        errorsFlagScale = true;
-      }
 
       readingFromInput = false;
     }
@@ -94,6 +77,15 @@ int main()
     delete [] string;
   }
 
+  try
+  {
+    scaleFunction(myShapes, currentShapesCount, scalePoint, scaleK);
+  }
+  catch (const std::logic_error &e)
+  {
+    errorsFlagScale = true;
+  }
+
   if (errorsFlagShapes)
   {
     std::cerr << "Something went wrong with shapes creation!\n";
@@ -101,29 +93,17 @@ int main()
   if (errorsFlagScale)
   {
     std::cerr << "Something went wrong with scale process!\n";
-    for (size_t i = 0; i < currentShapesCount; i++)
-    {
-      delete myShapes[i];
-    }
-    delete [] myShapes;
+    freeMem(myShapes, currentShapesCount);
     return 2;
   }
 
   if (currentShapesCount == 0)
   {
     std::cerr << "Nothing to scale!\n";
-    for (size_t i = 0; i < currentShapesCount; i++)
-    {
-      delete myShapes[i];
-    }
-    delete [] myShapes;
+    freeMem(myShapes, currentShapesCount);
     return 2;
   }
 
-  for (size_t i = 0; i < currentShapesCount; i++)
-  {
-    delete myShapes[i];
-  }
-  delete [] myShapes;
+  freeMem(myShapes, currentShapesCount);
   return 0;
 }

@@ -101,3 +101,12 @@ void arakelyan::defineAndCreateShape(Shape **myShapes, size_t shapesCoutnt, cons
     myShapes[shapesCoutnt] = createDiam(string);
   }
 }
+
+void arakelyan::freeMem(Shape **myShapes, const size_t shapesCount)
+{
+  for (size_t i = 0; i < shapesCount; i++)
+  {
+    delete myShapes[i];
+  }
+  delete [] myShapes;
+}
