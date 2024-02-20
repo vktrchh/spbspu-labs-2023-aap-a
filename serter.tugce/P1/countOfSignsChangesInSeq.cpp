@@ -14,10 +14,10 @@ void serter::CountOfSignsChangesInSeq::operator()(int number)
    }
    else if (currentNumber_ <= 0 && number > 0)
    {
-      ++count_;
+     ++count_;
    }
    currentNumber_ = number;
- }
+}
 
 size_t serter::CountOfSignsChangesInSeq::operator()() const
 {
