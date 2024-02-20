@@ -1,6 +1,6 @@
-#include <stdexcept>
-
 #include "parallelogram.hpp"
+
+#include <stdexcept>
 #include "base-types.hpp"
 
 arakelyan::Parallelogram::Parallelogram(point_t fp, point_t sp, point_t tp):

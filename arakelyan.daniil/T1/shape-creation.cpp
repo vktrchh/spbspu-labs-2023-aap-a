@@ -1,10 +1,8 @@
-#include <cstdlib>
-#include <cstring>
-#include <stdexcept>
-
 #include "shape-creation.hpp"
-#include "base-types.hpp"
-#include "shape.hpp"
+
+#include <stdexcept>
+#include <cstring>
+
 #include "parallelogram.hpp"
 #include "diamond.hpp"
 #include "rectangle.hpp"

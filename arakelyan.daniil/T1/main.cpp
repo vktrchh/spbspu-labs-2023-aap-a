@@ -3,11 +3,11 @@
 #include <cstring>
 #include <inputLine.hpp>
 
+#include "shape.hpp"
 #include "base-types.hpp"
 #include "inputAndOutputOperations.hpp"
 #include "scaleOperations.hpp"
 #include "shape-creation.hpp"
-#include "shape.hpp"
 #include "rectangle.hpp"
 #include "diamond.hpp"
 #include "parallelogram.hpp"

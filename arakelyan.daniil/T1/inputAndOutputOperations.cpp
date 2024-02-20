@@ -1,9 +1,6 @@
-#include <stdexcept>
-
-#include "base-types.hpp"
 #include "inputAndOutputOperations.hpp"
-#include "shape-creation.hpp"
-#include "shape.hpp"
+
+#include <stdexcept>
 
 void arakelyan::inputScaleParam(const char *string, point_t &point, double &k)
 {

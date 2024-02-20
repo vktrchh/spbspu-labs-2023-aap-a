@@ -1,6 +1,6 @@
-#include <stdexcept>
-
 #include "scaleOperations.hpp"
+
+#include <stdexcept>
 #include "inputAndOutputOperations.hpp"
 
 void arakelyan::isoScale(Shape * shapeObj, const point_t scalePoint, const double scaleK)
