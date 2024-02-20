@@ -27,7 +27,7 @@ skuratov::Parallelogram::Parallelogram(const point_t& point1, const point_t& poi
     || (point1_.x != point3_.x || point1_.y != point3_.y)
     || (point2_.x != point3_.x || point2_.y != point3_.y))
   {
-    throw std::invalid_argument("All sides of the parallelogram must be parallel to the coordinate axes!");
+    throw std::invalid_argument("At least one of the sides must be parallel to the abscissa axis!");
   }
 }
 

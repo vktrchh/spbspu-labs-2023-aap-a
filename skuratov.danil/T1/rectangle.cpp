@@ -28,7 +28,7 @@ skuratov::rectangle_t skuratov::Rectangle::getFrameRect() const
 void skuratov::Rectangle::move(const point_t& A)
 {
   rectangle_t B = getFrameRect();
-  move(B.pos.x - A.x, B.pos.y - A.y);
+  move(A.x - B.pos.x, A.y - B.pos.y);
 }
 
 void skuratov::Rectangle::move(double dx, double dy)
@@ -47,8 +47,8 @@ void skuratov::Rectangle::scale(double scalingFactor)
   }
 
   rectangle_t B = getFrameRect();
-  lowerLeftCorner_.x = B.pos.x - (B.pos.x - lowerLeftCorner_.x) * scalingFactor;
-  upperRightCorner_.x = B.pos.x + (B.pos.x - lowerLeftCorner_.x);
-  lowerLeftCorner_.y = B.pos.y - (B.pos.y - lowerLeftCorner_.y) * scalingFactor;
-  upperRightCorner_.y = B.pos.y + (B.pos.y - lowerLeftCorner_.y);
+  lowerLeftCorner_.x = { B.pos.x - (B.pos.x - lowerLeftCorner_.x) * scalingFactor };
+  lowerLeftCorner_.y = { B.pos.y - (B.pos.y - lowerLeftCorner_.y) * scalingFactor };
+  upperRightCorner_.x = { B.pos.x + (B.pos.x - lowerLeftCorner_.x) };
+  upperRightCorner_.y = { B.pos.y + (B.pos.y - lowerLeftCorner_.y) };
 }
