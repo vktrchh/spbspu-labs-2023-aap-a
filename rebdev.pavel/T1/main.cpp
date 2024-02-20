@@ -12,20 +12,7 @@ int main()
 {
   std::string figureName;
 
-  rebdev::Shape ** shapes = nullptr;
-  try
-  {
-    shapes = new rebdev::Shape * [1000];
-    for (size_t i = 0; i < 1000; ++i)
-    {
-      shapes[i] = nullptr;
-    }
-  }
-  catch (const std::exception & e)
-  {
-    std::cerr << "Error in allocat dynamic memory";
-    return 2;
-  }
+  rebdev::Shape * shapes[1000] = {};
 
   size_t numOfShape = 0;
   bool isScale = 0, figureError = 0;
