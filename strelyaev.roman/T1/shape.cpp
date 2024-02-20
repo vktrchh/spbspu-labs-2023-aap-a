@@ -1,4 +1,5 @@
 #include "shape.hpp"
+#include <stdexcept>
 
 void strelyaev::Shape::scale(double k)
 {
