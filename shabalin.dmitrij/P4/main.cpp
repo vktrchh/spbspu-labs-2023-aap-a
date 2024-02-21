@@ -95,14 +95,12 @@ int main(int argc, char *argv[])
     {
       throw std::logic_error("Error of output");
     }
-    shabalin::makeUpSmoothMatrix(matrix, smoothedMatrix, rows, cols);
+    smoothedMatrix = shabalin::makeUpSmoothMatrix(matrix, smoothedMatrix, rows, cols);
     shabalin::matrixOutput(output, smoothedMatrix, rows, cols);
   }
   catch (const std::exception &e)
   {
     std::cerr << e.what() << '\n';
-    delete[] matrix;
-    delete[] smoothedMatrix;
     return 1;
   }
 

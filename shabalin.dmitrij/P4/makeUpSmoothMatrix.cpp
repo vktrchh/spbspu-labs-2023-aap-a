@@ -1,6 +1,6 @@
 #include "makeUpSmoothMatrix.hpp"
 
-void shabalin::makeUpSmoothMatrix(const int *matrix, double *smoothedMatrix, size_t rows, size_t cols)
+double *shabalin::makeUpSmoothMatrix(const int *matrix, double *smooth, size_t rows, size_t cols)
 {
   for (size_t i = 0; i < cols * rows; ++i)
   {
@@ -26,6 +26,7 @@ void shabalin::makeUpSmoothMatrix(const int *matrix, double *smoothedMatrix, siz
         }
       }
     }
-    smoothedMatrix[i] = sum / count;
+    smooth[i] = sum / count;
   }
+  return smooth;
 }
