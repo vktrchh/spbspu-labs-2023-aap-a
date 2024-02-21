@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
   }
 
   char * en = nullptr;
-  
+
   size_t task = std::strtoll(argv[1], std::addressof(en), 10);
 
   if(*en != '\n')
