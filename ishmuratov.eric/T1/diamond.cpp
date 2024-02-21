@@ -43,7 +43,7 @@ void ishmuratov::Diamond::move(point_t & position)
 
 void ishmuratov::Diamond::move(double dx, double dy)
 {
-  for (size_t i; i < 3; ++i)
+  for (size_t i = 0; i < 3; ++i)
   {
     corners_[i] = { corners_[i].x + dx, corners_[i].y + dy };
   }
