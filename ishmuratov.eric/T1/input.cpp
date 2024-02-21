@@ -18,10 +18,6 @@ void ishmuratov::inputShape(std::istream& input, Shape ** shapeArray, size_t & c
       invalidShape = true;
     }
   }
-  if (input.eof())
-  {
-    throw std::logic_error("Reached end of file!");
-  }
   count = new_count;
   if (invalidShape)
   {

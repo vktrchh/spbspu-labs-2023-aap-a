@@ -25,12 +25,6 @@ int main()
   {
     invalidShape = true;
   }
-  catch (const std::logic_error & e)
-  {
-    freeMemory(shapes, count);
-    std::cerr << "Error: " << e.what() << "\n";
-    return 2;
-  }
   catch (const std::exception & e)
   {
     freeMemory(shapes, count);
@@ -42,7 +36,7 @@ int main()
     std::cin >> position.x >> position.y >> factor;
     if ((!std::cin) || (factor < 0))
     {
-      throw std::out_of_range("Bad input!");
+      throw std::runtime_error("Bad input!");
     }
     outputShape(std::cout, shapes, count);
     std::cout << "\n";
