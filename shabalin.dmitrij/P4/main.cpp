@@ -12,11 +12,10 @@ int main(int argc, char *argv[])
     return 1;
   }
 
-  char * en = nullptr;
+  char * analysEnd = nullptr;
+  size_t task = std::strtoll(argv[1], std::addressof(analysEnd), 10);
 
-  size_t task = std::strtoll(argv[1], std::addressof(en), 10);
-
-  if(*en != '\n')
+  if(*analysEnd != '\0')
   {
     std::cerr << "Invalid first argument" << "\n";
     return 1;
