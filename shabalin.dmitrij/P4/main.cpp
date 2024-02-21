@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     std::cerr << "Error in command line arguments" << "\n";
     return 1;
   }
-  
+
   char * en = nullptr;
   
   size_t task = std::strtoll(argv[1], std::addressof(en), 10);
