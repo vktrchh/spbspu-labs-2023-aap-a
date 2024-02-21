@@ -12,17 +12,17 @@ ishmuratov::Rectangle::Rectangle(const point_t & point1, const point_t & point2)
 
 ishmuratov::Rectangle::~Rectangle() = default;
 
-void ishmuratov::Rectangle::triangleCut(Triangle * array)
-{
-  array[0] = { botLeft_, {botLeft_.x, topRight_.y}, topRight_ };
-  array[1] = { botLeft_, {topRight_.x, botLeft_.y}, topRight_ };
-}
-
-double ishmuratov::Rectangle::getArea()
+double ishmuratov::Rectangle::triangleCut() const
 {
   Triangle array[2] = { { { 0, 0 }, { 0, 1 }, { 1, 0 } }, { { 0, 0 }, { 0, 1 }, { 1, 0 } } };
-  triangleCut(array);
+  array[0] = { botLeft_, {botLeft_.x, topRight_.y}, topRight_ };
+  array[1] = { botLeft_, {topRight_.x, botLeft_.y}, topRight_ };
   return array[0].getArea() + array[1].getArea();
+}
+
+double ishmuratov::Rectangle::getArea() const
+{
+  return triangleCut();
 }
 
 ishmuratov::rectangle_t ishmuratov::Rectangle::getFrameRect() const

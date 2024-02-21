@@ -17,7 +17,7 @@ ishmuratov::Diamond::Diamond(const point_t & point1, const point_t & point2, con
 
 ishmuratov::Diamond::~Diamond() = default;
 
-double ishmuratov::Diamond::getArea()
+double ishmuratov::Diamond::getArea() const
 {
   Triangle tri = { corners_[0], corners_[1], corners_[2] };
   return tri.getArea() * 4;

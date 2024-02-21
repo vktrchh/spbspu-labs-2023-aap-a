@@ -25,17 +25,17 @@ ishmuratov::Concave::Concave(const point_t & point1, const point_t & point2, con
 
 ishmuratov::Concave::~Concave() = default;
 
-void ishmuratov::Concave::triangleCut(Triangle * array)
-{
-  array[0] = { corners_[0], corners_[1], corners_[2] };
-  array[1] = { corners_[1], corners_[2], center_ };
-}
-
-double ishmuratov::Concave::getArea()
+double ishmuratov::Concave::triangleCut() const
 {
   Triangle array[2] = { { { 0, 0 }, { 0, 1 }, { 1, 0 } }, { { 0, 0 }, { 0, 1 }, { 1, 0 } } };
-  triangleCut(array);
+  array[0] = { corners_[0], corners_[1], corners_[2] };
+  array[1] = { corners_[1], corners_[2], center_ };
   return array[0].getArea() - array[1].getArea();
+}
+
+double ishmuratov::Concave::getArea() const
+{
+  return triangleCut();
 }
 
 ishmuratov::rectangle_t ishmuratov::Concave::getFrameRect() const

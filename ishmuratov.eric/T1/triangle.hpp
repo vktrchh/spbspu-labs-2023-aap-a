@@ -13,7 +13,7 @@ namespace ishmuratov
     public:
       Triangle(const point_t & point1, const point_t & point2, const point_t & point3);
       virtual ~Triangle();
-      virtual double getArea();
+      virtual double getArea() const;
       virtual rectangle_t getFrameRect() const;
       virtual void move(point_t & position);
       virtual void move(double dx, double dy);

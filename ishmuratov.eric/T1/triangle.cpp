@@ -11,7 +11,7 @@ ishmuratov::Triangle::Triangle(const point_t & point1, const point_t & point2, c
 
 ishmuratov::Triangle::~Triangle() = default;
 
-double ishmuratov::Triangle::getArea()
+double ishmuratov::Triangle::getArea() const
 {
   return triangleArea(corners_[0], corners_[1], corners_[2]);
 }

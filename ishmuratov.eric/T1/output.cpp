@@ -2,6 +2,7 @@
 
 void ishmuratov::outputShape(std::ostream & output, Shape ** shapes, size_t count)
 {
+  output << std::fixed << std::setprecision(1);
   double sumArea = 0;
   for (size_t i = 0; i < count; ++i)
   {

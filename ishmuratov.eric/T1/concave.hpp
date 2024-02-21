@@ -13,8 +13,8 @@ namespace ishmuratov
     public:
       Concave(const point_t & point1, const point_t & point2, const point_t & point3, const point_t & point4);
       virtual ~Concave();
-      virtual void triangleCut(Triangle * array);
-      virtual double getArea();
+      virtual double triangleCut() const;
+      virtual double getArea() const;
       virtual rectangle_t getFrameRect() const;
       virtual void move(point_t & position);
       virtual void move(double dx, double dy);
