@@ -105,7 +105,7 @@ int main(int argc, char *argv[])
     return 1;
   }
 
-  if (task = 2)
+  if (task == 2)
   {
     delete[] matrix;
     delete[] smoothedMatrix;
