@@ -25,6 +25,12 @@ int main()
   {
     invalidShape = true;
   }
+  catch (const std::logic_error & e)
+  {
+    freeMemory(shapes, count);
+    std::cerr << "Error: " << e.what() << "\n";
+    return 2;
+  }
   catch (const std::exception & e)
   {
     freeMemory(shapes, count);
