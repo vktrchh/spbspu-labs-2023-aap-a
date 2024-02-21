@@ -33,6 +33,14 @@ void ishmuratov::inputShape(std::istream& input, Shape ** shapeArray, size_t & c
   }
 }
 
+void ishmuratov::freeMemory(Shape ** shapeArray, size_t & count)
+{
+  for (size_t i = 0; i < count; ++i)
+  {
+    delete shapeArray[i];
+  }
+}
+
 void ishmuratov::inputPoint(std::istream & input, double * pointArray, size_t count)
 {
   for (size_t i = 0; i < count; ++i)

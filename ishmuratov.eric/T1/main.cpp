@@ -27,6 +27,7 @@ int main()
   }
   catch (const std::exception & e)
   {
+    freeMemory(shapes, count);
     std::cerr << "Error: " << e.what() << "\n";
     return 2;
   }
@@ -48,12 +49,16 @@ int main()
   }
   catch (const std::exception & e)
   {
+    freeMemory(shapes, count);
     std::cerr << "Error: " << e.what() << "\n";
+    return 2;
   }
   if (invalidShape)
   {
+    freeMemory(shapes, count);
     std::cerr << "Invalid shape!\n";
     return 2;
   }
+  freeMemory(shapes, count);
   return 0;
 }

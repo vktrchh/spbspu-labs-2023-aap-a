@@ -14,6 +14,7 @@
 namespace ishmuratov
 {
   void inputShape(std::istream & input, Shape ** shapeArray, size_t & count);
+  void freeMemory(Shape ** shapeArray, size_t & count);
   void inputPoint(std::istream & input, double * pointArray, size_t count);
   Shape * initShape(const std::string & shapeName, std::istream & input);
 }
