@@ -30,22 +30,30 @@ int main()
     std::cerr << "Error: " << e.what() << "\n";
     return 2;
   }
-  outputShape(std::cout, shapes, count);
-  std::cout << "\n";
-  std::cin >> position.x >> position.y >> factor;
-  if ((!std::cin) || (factor < 0))
+  try
   {
-    throw std::out_of_range("Bad input!");
+    std::cin >> position.x >> position.y >> factor;
+    if ((!std::cin) || (factor < 0))
+    {
+      throw std::out_of_range("Bad input!");
+    }
+    outputShape(std::cout, shapes, count);
+    std::cout << "\n";
+    for (size_t i = 0; i < count; ++i)
+    {
+      scaleShapes(shapes[i], position, factor);
+    }
+    outputShape(std::cout, shapes, count);
+    std::cout << "\n";
   }
-  for (size_t i = 0; i < count; ++i)
+  catch (const std::exception & e)
   {
-    scaleShapes(shapes[i], position, factor);
+    std::cerr << "Error: " << e.what() << "\n";
   }
-  outputShape(std::cout, shapes, count);
-  std::cout << "\n";
   if (invalidShape)
   {
     std::cerr << "Invalid shape!\n";
+    return 2;
   }
   return 0;
 }
