@@ -4,7 +4,7 @@
 
 namespace shabalin
 {
-  int findLargeSeriesOfEqualElements(const int* matrix, size_t rows, size_t cols);
+  size_t findLargeSeriesOfEqualElements(const int* matrix, size_t rows, size_t cols);
 }
 
 #endif

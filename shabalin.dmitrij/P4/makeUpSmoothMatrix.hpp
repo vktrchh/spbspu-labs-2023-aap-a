@@ -5,7 +5,7 @@
 
 namespace shabalin
 {
-  double* makeUpSmoothMatrix(const int* matrix, double* smooth, size_t rows, size_t cols);
+  double *makeUpSmoothMatrix(const int *matrix, double *smooth, size_t rows, size_t cols);
 }
 
 #endif
