@@ -57,7 +57,6 @@ int main()
   {
     freeMemory(shapes, count);
     std::cerr << "Invalid shape!\n";
-    return 2;
   }
   freeMemory(shapes, count);
   return 0;
