@@ -79,7 +79,7 @@ void chistyakov::inputShapes(std::istream & input, Shape ** array, double * scal
           throw std::invalid_argument("Bad input, maybe try again?..");
         }
 
-        if (now == "\n")
+        if (now == '\n')
         {
           break;
         }
