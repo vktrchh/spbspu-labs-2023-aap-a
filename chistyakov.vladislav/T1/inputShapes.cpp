@@ -9,6 +9,7 @@ void chistyakov::inputShapes(std::istream & input, Shape ** array, double * scal
   std::string rectangle = "RECTANGLE";
   std::string square = "SQUARE";
   std::string complexquad = "COMPLEXQUAD";
+  bool isScale = false;
 
   input >> std::noskipws;
 
@@ -66,8 +67,14 @@ void chistyakov::inputShapes(std::istream & input, Shape ** array, double * scal
     else if (shapeName == "SCALE")
     {
       parseInfoScale(str, scaleInfo);
+      isScale = true;
       break;
     }
+  }
+
+  if (!isScale)
+  {
+    throw std::logic_error("Not scale command!");
   }
 
   input >> std::skipws;
