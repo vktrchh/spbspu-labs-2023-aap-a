@@ -8,7 +8,7 @@ char *inputOfString(std::istream &input)
 {
   size_t stringSize = 50;
   char *inputString = nullptr;
-  
+
   size_t stringSize_ = stringSize;
 
   try 
@@ -19,7 +19,7 @@ char *inputOfString(std::istream &input)
     size_t i = 0;
 
     input >> std::noskipws;
-    
+
     while (input >> process && process != '\n')
     {
       inputString[i] = process;
@@ -34,8 +34,8 @@ char *inputOfString(std::istream &input)
         inputString = temporaryString;
       }
     }
-    //inputString[stringSize] = '\0';
-    //return inputString;
+//inputString[stringSize] = '\0';
+//return inputString;
     if (i == 0 || inputString[0] == '\n')
     {
       delete[] inputString;
