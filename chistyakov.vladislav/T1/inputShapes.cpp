@@ -119,7 +119,7 @@ void chistyakov::inputRectangle(std::string str, Shape ** array, size_t & size)
   }
   catch(const std::invalid_argument & e)
   {
-    std::cout << "Error: " << e.what() << "\n";
+    std::cerr << "Error: " << e.what() << "\n";
   }
 }
 
@@ -162,7 +162,7 @@ void chistyakov::inputSquare(std::string str, Shape ** array, size_t & size)
   }
   catch(const std::invalid_argument & e)
   {
-    std::cout << "Error: " << e.what() << "\n";
+    std::cerr << "Error: " << e.what() << "\n";
   }
 }
 
@@ -210,7 +210,7 @@ void chistyakov::inputComplexquad(std::string str, Shape ** array, size_t & size
   }
   catch(const std::invalid_argument & e)
   {
-    std::cout << "Error: " << e.what() << "\n";
+    std::cerr << "Error: " << e.what() << "\n";
   }
 }
 
