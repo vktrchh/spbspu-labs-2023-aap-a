@@ -3,12 +3,11 @@
 
 #include "shape.hpp"
 
+#include <iostream>
+
 namespace belokurskaya
 {
-  struct rectangle_t;
-
-  void printResults(Shape** shapes, int shape_count);
-
+  void printResults(std::ostream & output, const Shape * const * shapes, size_t shape_count);
 }
 
 #endif

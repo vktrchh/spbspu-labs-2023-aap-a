@@ -5,7 +5,8 @@
 #include "base-types.hpp"
 
 belokurskaya::Rectangle::Rectangle(const point_t & lower_left, const point_t & upper_right):
-  lower_left_(lower_left), upper_right_(upper_right)
+  lower_left_(lower_left),
+  upper_right_(upper_right)
 {
   if (lower_left_.x >= upper_right_.x || lower_left_.y >= upper_right_.y)
   {
@@ -47,20 +48,15 @@ void belokurskaya::Rectangle::scale(double factor)
     throw std::invalid_argument("Invalid scaling factor");
   }
   rectangle_t frameRect = getFrameRect();
-  point_t old_center = frameRect.pos;
+  point_t center = frameRect.pos;
   double width = frameRect.width;
   double height = frameRect.height;
 
   width *= factor;
   height *= factor;
 
-  lower_left_.x = old_center.x - width / 2;
-  lower_left_.y = old_center.y - height / 2;
-  upper_right_.x = old_center.x + width / 2;
-  upper_right_.y = old_center.y + height / 2;
-}
-
-belokurskaya::Shape::ShapeType belokurskaya::Rectangle::getShapeType()
-{
-  return belokurskaya::Shape::RECTANGLE;
+  lower_left_.x = center.x - width / 2;
+  lower_left_.y = center.y - height / 2;
+  upper_right_.x = center.x + width / 2;
+  upper_right_.y = center.y + height / 2;
 }

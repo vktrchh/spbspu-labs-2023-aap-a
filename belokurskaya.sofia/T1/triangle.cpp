@@ -5,41 +5,37 @@
 
 #include "base-types.hpp"
 
-belokurskaya::Triangle::Triangle(const point_t& vertex1, const point_t& vertex2, const point_t& vertex3):
-  vertex1_(vertex1), vertex2_(vertex2), vertex3_(vertex3)
+belokurskaya::Triangle::Triangle(const point_t & a, const point_t & b, const point_t & c):
+  a_(a), b_(b), c_(c)
 {
-    double a = std::hypot(vertex1_.x - vertex2_.x, vertex1_.y - vertex2_.y);
-    double b = std::hypot(vertex2_.x - vertex3_.x, vertex2_.y - vertex3_.y);
-    double c = std::hypot(vertex3_.x - vertex1_.x, vertex3_.y - vertex1_.y);
-    double s = (a + b + c) / 2.0;
-    double area = std::sqrt(s * (s - a) * (s - b) * (s - c));
+  double area = getArea();
 
-    if (area == 0)
-    {
-        throw std::invalid_argument("Invalid triangle: degenerate triangle (zero area).");
-    }
+  if (area == 0)
+  {
+    throw std::invalid_argument("Invalid triangle: degenerate triangle (zero area).");
+  }
 
-    if (vertex1_ == vertex2_ || vertex1_ == vertex3_ || vertex2_ == vertex3_)
-    {
-        throw std::invalid_argument("Invalid triangle: vertices cannot be equal.");
-    }
+  if (a_ == b_ || a_ == c_ || b_ == c_)
+  {
+    throw std::invalid_argument("Invalid triangle: vertices cannot be equal.");
+  }
 }
 
 double belokurskaya::Triangle::getArea() const
 {
-  double a = std::hypot(vertex1_.x - vertex2_.x, vertex1_.y - vertex2_.y);
-  double b = std::hypot(vertex2_.x - vertex3_.x, vertex2_.y - vertex3_.y);
-  double c = std::hypot(vertex3_.x - vertex1_.x, vertex3_.y - vertex1_.y);
-  double s = (a + b + c) / 2.0;
-  return std::sqrt(s * (s - a) * (s - b) * (s - c));
+  double ab = std::hypot(a_.x - b_.x, a_.y - b_.y);
+  double bc = std::hypot(b_.x - c_.x, b_.y - c_.y);
+  double ca = std::hypot(c_.x - a_.x, c_.y - a_.y);
+  double s = (ab + bc + ca) / 2.0;
+  return std::sqrt(s * (s - ab) * (s - bc) * (s - ca));
 }
 
 belokurskaya::rectangle_t belokurskaya::Triangle::getFrameRect() const
 {
-  double min_x = std::min(std::min(vertex1_.x, vertex2_.x), vertex3_.x);
-  double max_x = std::max(std::max(vertex1_.x, vertex2_.x), vertex3_.x);
-  double min_y = std::min(std::min(vertex1_.y, vertex2_.y), vertex3_.y);
-  double max_y = std::max(std::max(vertex1_.y, vertex2_.y), vertex3_.y);
+  double min_x = std::min(std::min(a_.x, b_.x), c_.x);
+  double max_x = std::max(std::max(a_.x, b_.x), c_.x);
+  double min_y = std::min(std::min(a_.y, b_.y), c_.y);
+  double max_y = std::max(std::max(a_.y, b_.y), c_.y);
 
   double width = max_x - min_x;
   double height = max_y - min_y;
@@ -49,7 +45,7 @@ belokurskaya::rectangle_t belokurskaya::Triangle::getFrameRect() const
   return {center, width, height};
 }
 
-void belokurskaya::Triangle::move(const point_t& new_pos)
+void belokurskaya::Triangle::move(const point_t & new_pos)
 {
   point_t centroid = calculateCentroid();
   double dx = new_pos.x - centroid.x;
@@ -60,43 +56,38 @@ void belokurskaya::Triangle::move(const point_t& new_pos)
 
 void belokurskaya::Triangle::move(double dx, double dy)
 {
-  vertex1_.x += dx;
-  vertex1_.y += dy;
-  vertex2_.x += dx;
-  vertex2_.y += dy;
-  vertex3_.x += dx;
-  vertex3_.y += dy;
+  a_.x += dx;
+  a_.y += dy;
+  b_.x += dx;
+  b_.y += dy;
+  c_.x += dx;
+  c_.y += dy;
 }
 
 void belokurskaya::Triangle::scale(double factor)
 {
   point_t centroid = calculateCentroid();
 
-  vertex1_.x = centroid.x + (vertex1_.x - centroid.x) * factor;
-  vertex1_.y = centroid.y + (vertex1_.y - centroid.y) * factor;
+  a_.x = centroid.x + (a_.x - centroid.x) * factor;
+  a_.y = centroid.y + (a_.y - centroid.y) * factor;
 
-  vertex2_.x = centroid.x + (vertex2_.x - centroid.x) * factor;
-  vertex2_.y = centroid.y + (vertex2_.y - centroid.y) * factor;
+  b_.x = centroid.x + (b_.x - centroid.x) * factor;
+  b_.y = centroid.y + (b_.y - centroid.y) * factor;
 
-  vertex3_.x = centroid.x + (vertex3_.x - centroid.x) * factor;
-  vertex3_.y = centroid.y + (vertex3_.y - centroid.y) * factor;
+  c_.x = centroid.x + (c_.x - centroid.x) * factor;
+  c_.y = centroid.y + (c_.y - centroid.y) * factor;
 }
 
 belokurskaya::point_t belokurskaya::Triangle::calculateCentroid() const
 {
-  double centroid_x = (vertex1_.x + vertex2_.x + vertex3_.x) / 3.0;
-  double centroid_y = (vertex1_.y + vertex2_.y + vertex3_.y) / 3.0;
+  double centroid_x = (a_.x + b_.x + c_.x) / 3.0;
+  double centroid_y = (a_.y + b_.y + c_.y) / 3.0;
   return {centroid_x, centroid_y};
 }
 
-void belokurskaya::Triangle::getVertices(point_t & vertex1, point_t & vertex2, point_t & vertex3) const
+void belokurskaya::Triangle::getVertices(point_t & a, point_t & b, point_t & c) const
 {
-  vertex1 = vertex1_;
-  vertex2 = vertex2_;
-  vertex3 = vertex3_;
-}
-
-belokurskaya::Shape::ShapeType belokurskaya::Triangle::getShapeType()
-{
-    return belokurskaya::Shape::TRIANGLE;
+  a = a_;
+  b = b_;
+  c = c_;
 }

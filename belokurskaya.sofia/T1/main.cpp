@@ -12,8 +12,7 @@
 
 int main()
 {
-  const int max_shapes = 1000;
-  belokurskaya::Shape* shapes[max_shapes];
+  belokurskaya::Shape* shapes[1000];
   int shape_count = 0;
 
   try
@@ -63,56 +62,54 @@ int main()
       }
       else if (command == "TRIANGLE")
       {
-        double vertex1_x = 0.0, vertex1_y = 0.0, vertex2_x = 0.0, vertex2_y = 0.0, vertex3_x = 0.0, vertex3_y = 0.0;
-        if (!(inputStream >> vertex1_x >> vertex1_y >> vertex2_x >> vertex2_y >> vertex3_x >> vertex3_y))
+        double a_x = 0.0, a_y = 0.0, b_x = 0.0, b_y = 0.0, c_x = 0.0, c_y = 0.0;
+        if (!(inputStream >> a_x >> a_y >> b_x >> b_y >> c_x >> c_y))
         {
           continue;
         }
 
-        double a = sqrt(pow(vertex2_x - vertex1_x, 2) + pow(vertex2_y - vertex1_y, 2));
-        double b = sqrt(pow(vertex3_x - vertex2_x, 2) + pow(vertex3_y - vertex2_y, 2));
-        double c = sqrt(pow(vertex1_x - vertex3_x, 2) + pow(vertex1_y - vertex3_y, 2));
-        if (a + b <= c || a + c <= b || b + c <= a)
+        double ab = sqrt(pow(b_x - a_x, 2) + pow(b_y - a_y, 2));
+        double bc = sqrt(pow(c_x - b_x, 2) + pow(c_y - b_y, 2));
+        double ca = sqrt(pow(a_x - c_x, 2) + pow(a_y - c_y, 2));
+        if (ab + bc <= ca || ab + ca <= bc || bc + ca <= ab)
         {
           std::cerr << "Is not a triangle\n";
           continue;
         }
 
-        if (std::labs((vertex2_x - vertex1_x) * (vertex3_y - vertex1_y) - (vertex3_x - vertex1_x) * (vertex2_y - vertex1_y)) < 1e-9)
+        if (std::labs((b_x - a_x) * (c_y - a_y) - (c_x - a_x) * (b_y - a_y)) < 1e-9)
         {
           std::cerr << "Is not a triangle\n";
           continue;
         }
-        shapes[shape_count] = new belokurskaya::Triangle({vertex1_x, vertex1_y}, {vertex2_x, vertex2_y}, {vertex3_x, vertex3_y});
+        shapes[shape_count] = new belokurskaya::Triangle({a_x, a_y}, {b_x, b_y}, {c_x, c_y});
         shape_count++;
       }
       else if (command == "CONCAVE")
       {
-        double vertex1_x = 0.0;
-        double vertex1_y = 0.0;
-        double vertex2_x = 0.0;
-        double vertex2_y = 0.0;
-        double vertex3_x = 0.0;
-        double vertex3_y = 0.0;
-        double vertex4_x = 0.0;
-        double vertex4_y = 0.0;
-        if (!(inputStream >> vertex1_x >> vertex1_y >> vertex2_x >> vertex2_y >> vertex3_x >> vertex3_y >> vertex4_x >> vertex4_y))
+        double a_x = 0.0;
+        double a_y = 0.0;
+        double b_x = 0.0;
+        double b_y = 0.0;
+        double c_x = 0.0;
+        double c_y = 0.0;
+        double d_x = 0.0;
+        double d_y = 0.0;
+        if (!(inputStream >> a_x >> a_y >> b_x >> b_y >> c_x >> c_y >> d_x >> d_y))
         {
           continue;
         }
-        if (!belokurskaya::Concave::isConcave({vertex1_x, vertex1_y},
-        {vertex2_x, vertex2_y}, {vertex3_x, vertex3_y}, {vertex4_x, vertex4_y}))
+        if (!belokurskaya::Concave::isConcave({a_x, a_y}, {b_x, b_y}, {c_x, c_y}, {d_x, d_y}))
         {
           std::cerr << "Is not a concave\n";
           continue;
         }
         try
         {
-          shapes[shape_count] = new belokurskaya::Concave({vertex1_x, vertex1_y},
-          {vertex2_x, vertex2_y}, {vertex3_x, vertex3_y}, {vertex4_x, vertex4_y});
+          shapes[shape_count] = new belokurskaya::Concave({a_x, a_y}, {b_x, b_y}, {c_x, c_y}, {d_x, d_y});
           shape_count++;
         }
-        catch(const std::invalid_argument& e)
+        catch (const std::invalid_argument & e)
         {
           std::cerr << e.what() << "\n";
         }
@@ -137,7 +134,7 @@ int main()
           return 1;
         }
         const belokurskaya::point_t scale_point = {scale_point_x, scale_point_y};
-        belokurskaya::printResults(shapes, shape_count);
+        belokurskaya::printResults(std::cout, shapes, shape_count);
         for (int i = 0; i < shape_count; ++i)
         {
           try
@@ -149,7 +146,7 @@ int main()
             std::cerr << "Error: " << e.what() << "\n";
           }
         }
-        belokurskaya::printResults(shapes, shape_count);
+        belokurskaya::printResults(std::cout, shapes, shape_count);
         break;
       }
       else

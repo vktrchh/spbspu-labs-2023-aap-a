@@ -20,7 +20,6 @@ namespace belokurskaya
     double width;
     double height;
   };
-  double roundOff(double value);
 }
 
 #endif

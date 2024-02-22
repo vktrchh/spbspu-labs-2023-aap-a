@@ -5,16 +5,16 @@
 
 #include "shape.hpp"
 
-belokurskaya::Concave::Concave(const point_t & vertex1, const point_t & vertex2, const point_t & vertex3, const point_t & vertex4):
-  vertex1_(vertex1), vertex2_(vertex2), vertex3_(vertex3), vertex4_(vertex4)
+belokurskaya::Concave::Concave(const point_t & a, const point_t & b, const point_t & c, const point_t & d):
+  a_(a), b_(b), c_(c), d_(d)
 {
-  if (isTriangle(vertex1_, vertex2_, vertex3_))
+  if (isTriangle(a_, b_, c_))
   {
-    if (!isInsideTriangle(vertex1_, vertex2_, vertex3_, vertex4_))
+    if (!isInsideTriangle(a_, b_, c_, d_))
     {
       throw std::invalid_argument("Fourth vertex must be inside the triangle formed by the first three vertices");
     }
-    if (!isConcave(vertex1_, vertex2_, vertex3_, vertex4_))
+    if (!isConcave(a_, b_, c_, d_))
     {
       throw std::invalid_argument("The vertices do not form a concave quadrilateral");
     }
@@ -27,17 +27,17 @@ belokurskaya::Concave::Concave(const point_t & vertex1, const point_t & vertex2,
 
 double belokurskaya::Concave::getArea() const
 {
-  double triangle1_area = calculateTriangleArea(vertex1_, vertex2_, vertex4_);
-  double triangle2_area = calculateTriangleArea(vertex1_, vertex3_, vertex4_);
+  double triangle1_area = calculateTriangleArea(a_, b_, d_);
+  double triangle2_area = calculateTriangleArea(a_, c_, d_);
   return triangle1_area + triangle2_area;
 }
 
 belokurskaya::rectangle_t belokurskaya::Concave::getFrameRect() const
 {
-  double min_x = std::min(std::min(std::min(vertex1_.x, vertex2_.x), vertex3_.x), vertex4_.x);
-  double min_y = std::min(std::min(std::min(vertex1_.y, vertex2_.y), vertex3_.y), vertex4_.y);
-  double max_x = std::max(std::max(std::max(vertex1_.x, vertex2_.x), vertex3_.x), vertex4_.x);
-  double max_y = std::max(std::max(std::max(vertex1_.y, vertex2_.y), vertex3_.y), vertex4_.y);
+  double min_x = std::min(std::min(std::min(a_.x, b_.x), c_.x), d_.x);
+  double min_y = std::min(std::min(std::min(a_.y, b_.y), c_.y), d_.y);
+  double max_x = std::max(std::max(std::max(a_.x, b_.x), c_.x), d_.x);
+  double max_y = std::max(std::max(std::max(a_.y, b_.y), c_.y), d_.y);
   point_t center = {(min_x + max_x) / 2, (min_y + max_y) / 2};
   return {center, max_x - min_x, max_y - min_y};
 }
@@ -51,24 +51,24 @@ void belokurskaya::Concave::move(const point_t & new_pos)
 
 void belokurskaya::Concave::move(double dx, double dy)
 {
-  vertex1_.x += dx;
-  vertex1_.y += dy;
-  vertex2_.x += dx;
-  vertex2_.y += dy;
-  vertex3_.x += dx;
-  vertex3_.y += dy;
-  vertex4_.x += dx;
-  vertex4_.y += dy;
+  a_.x += dx;
+  a_.y += dy;
+  b_.x += dx;
+  b_.y += dy;
+  c_.x += dx;
+  c_.y += dy;
+  d_.x += dx;
+  d_.y += dy;
 }
 
 void belokurskaya::Concave::scale(double factor)
 {
   point_t center = calculateCentroid();
 
-  vertex1_ = {center.x + factor * (vertex1_.x - center.x), center.y + factor * (vertex1_.y - center.y)};
-  vertex2_ = {center.x + factor * (vertex2_.x - center.x), center.y + factor * (vertex2_.y - center.y)};
-  vertex3_ = {center.x + factor * (vertex3_.x - center.x), center.y + factor * (vertex3_.y - center.y)};
-  vertex4_ = {center.x + factor * (vertex4_.x - center.x), center.y + factor * (vertex4_.y - center.y)};
+  a_ = {center.x + factor * (a_.x - center.x), center.y + factor * (a_.y - center.y)};
+  b_ = {center.x + factor * (b_.x - center.x), center.y + factor * (b_.y - center.y)};
+  c_ = {center.x + factor * (c_.x - center.x), center.y + factor * (c_.y - center.y)};
+  d_ = {center.x + factor * (d_.x - center.x), center.y + factor * (d_.y - center.y)};
 }
 
 bool belokurskaya::Concave::isTriangle(const point_t & p1, const point_t & p2, const point_t & p3) const
@@ -120,22 +120,15 @@ double belokurskaya::Concave::calculateTriangleArea(const point_t & p1, const po
   return std::abs((p1.x * (p2.y - p3.y) + p2.x * (p3.y - p1.y) + p3.x * (p1.y - p2.y)) / 2.0);
 }
 
-void belokurskaya::Concave::getVertices(point_t & vertex1, point_t & vertex2, point_t & vertex3, point_t & vertex4) const
+void belokurskaya::Concave::getVertices(point_t & a, point_t & b, point_t & c, point_t & d) const
 {
-  vertex1 = vertex1_;
-  vertex2 = vertex2_;
-  vertex3 = vertex3_;
-  vertex4 = vertex4_;
+  a = a_;
+  b = b_;
+  c = c_;
+  d = d_;
 }
 
 belokurskaya::point_t belokurskaya::Concave::calculateCentroid() const
 {
-  double cx = (vertex1_.x + vertex2_.x + vertex3_.x + vertex4_.x) / 4.0;
-  double cy = (vertex1_.y + vertex2_.y + vertex3_.y + vertex4_.y) / 4.0;
-  return {cx, cy};
-}
-
-belokurskaya::Shape::ShapeType belokurskaya::Concave::getShapeType()
-{
-  return belokurskaya::Shape::CONCAVE;
+  return d_;
 }
