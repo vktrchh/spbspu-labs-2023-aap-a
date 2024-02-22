@@ -1,3 +1,4 @@
+#include <cctype>
 #include <cstring>
 #include <exception>
 #include <iostream>
@@ -33,8 +34,6 @@ char *inputOfString(std::istream &input)
         inputString = temporaryString;
       }
     }
-//inputString[stringSize] = '\0';
-//return inputString;
     if (i == 0 || inputString[0] == '\n')
     {
       delete[] inputString;
@@ -58,11 +57,11 @@ int duplicateNumbers(const char *str)
     return 0;
   }
 
-  for (size_t i = 0; i < str[i] != '\0'; ++i)
+  for (size_t i = 1; i < str[i] != '\0'; ++i)
   {
     for (size_t j = 0; j < str[j] != '\0' ; ++j)
     {
-      if ((str[i] == str[j]) && (isdigit(str[i])) && (i != j))
+      if ((str[i] == str[j]) && (isdigit(str[i])))
       {
         return 1;
       }
@@ -71,9 +70,26 @@ int duplicateNumbers(const char *str)
   return 0;
 }
 
+char *makeLowerCaseString(char *str)
+{
+  if (str == nullptr || *str == '\0')
+  {
+    return 0;
+  }
+  for (size_t i = 0; i < str[i] != '\0'; ++i)
+  {
+    if(isupper(str[i]))
+      {
+        str[i] = tolower(str[i]);
+      }
+  }
+  return str;
+}
+
 int main()
 {
   char *finalyString = nullptr;
+  size_t stringSize = 50;
 
   try
   {
@@ -93,5 +109,8 @@ int main()
   }
   size_t answer = duplicateNumbers(finalyString);
   std::cout << answer << "\n";
+  char *answer2 = new char[stringSize];
+  answer2 = makeLowerCaseString(finalyString);
+  std::cout << answer2;
   return 0;
 }
