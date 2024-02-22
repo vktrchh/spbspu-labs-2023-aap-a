@@ -11,7 +11,7 @@ char *inputOfString(std::istream &input)
 
   size_t stringSize_ = stringSize;
 
-  try 
+  try
   {
     inputString = new char[stringSize]();
 
