@@ -10,7 +10,7 @@ char *inputOfString(std::istream &input)
   char *inputString = nullptr;
   
   size_t stringSize_ = stringSize;
-  
+
   try 
   {
     inputString = new char[stringSize]();
@@ -52,23 +52,6 @@ char *inputOfString(std::istream &input)
   return inputString;
 }
 
-/*
-int replacingUpperCaseLetters(const char *str)
-{
-  if (str == nullptr || str == '\0')
-  {
-    return 0;
-  }
-
-  const char *current = str;
-
-  while (*current)
-  {
-    
-  }
-}
-*/
-
 int duplicateNumbers(const char *str)
 {
   if (str == nullptr || *str == '\0')
@@ -102,7 +85,7 @@ int main()
     std::cerr << "Error: " << e.what() << "\n";
     return 1;
   }
-  
+
   if (finalyString[0] == '\0')
   {
     delete[] finalyString;
