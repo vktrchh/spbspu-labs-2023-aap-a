@@ -76,7 +76,7 @@ int main()
 {
   char *finalyString = nullptr;
 
-  try 
+  try
   {
     finalyString = inputOfString(std::cin);
   }
