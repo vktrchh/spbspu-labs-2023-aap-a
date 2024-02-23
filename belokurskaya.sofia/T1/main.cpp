@@ -43,17 +43,15 @@ int main()
 
       if (command == "RECTANGLE")
       {
-        double lower_left_x = 0.0, lower_left_y = 0.0, upper_right_x = 0.0, upper_right_y = 0.0;
+        double lower_left_x = 0.0;
+        double lower_left_y = 0.0;
+        double upper_right_x = 0.0;
+        double upper_right_y = 0.0;
         if (!(inputStream >> lower_left_x >> lower_left_y >> upper_right_x >> upper_right_y))
         {
           continue;
         }
 
-        if (lower_left_x >= upper_right_x || lower_left_y >= upper_right_y)
-        {
-          std::cerr << "Is not a rectangle\n";
-          continue;
-        }
         belokurskaya::point_t lower_left = {lower_left_x, lower_left_y};
         belokurskaya::point_t upper_right = {upper_right_x, upper_right_y};
 
@@ -65,15 +63,6 @@ int main()
         double a_x = 0.0, a_y = 0.0, b_x = 0.0, b_y = 0.0, c_x = 0.0, c_y = 0.0;
         if (!(inputStream >> a_x >> a_y >> b_x >> b_y >> c_x >> c_y))
         {
-          continue;
-        }
-
-        double ab = sqrt(pow(b_x - a_x, 2) + pow(b_y - a_y, 2));
-        double bc = sqrt(pow(c_x - b_x, 2) + pow(c_y - b_y, 2));
-        double ca = sqrt(pow(a_x - c_x, 2) + pow(a_y - c_y, 2));
-        if (ab + bc <= ca || ab + ca <= bc || bc + ca <= ab)
-        {
-          std::cerr << "Is not a triangle\n";
           continue;
         }
 
@@ -99,20 +88,9 @@ int main()
         {
           continue;
         }
-        if (!belokurskaya::Concave::isConcave({a_x, a_y}, {b_x, b_y}, {c_x, c_y}, {d_x, d_y}))
-        {
-          std::cerr << "Is not a concave\n";
-          continue;
-        }
-        try
-        {
-          shapes[shape_count] = new belokurskaya::Concave({a_x, a_y}, {b_x, b_y}, {c_x, c_y}, {d_x, d_y});
-          shape_count++;
-        }
-        catch (const std::invalid_argument & e)
-        {
-          std::cerr << e.what() << "\n";
-        }
+
+        shapes[shape_count] = new belokurskaya::Concave({a_x, a_y}, {b_x, b_y}, {c_x, c_y}, {d_x, d_y});
+        shape_count++;
       }
       else if (command == "SCALE")
       {
@@ -137,15 +115,9 @@ int main()
         belokurskaya::printResults(std::cout, shapes, shape_count);
         for (int i = 0; i < shape_count; ++i)
         {
-          try
-          {
-            belokurskaya::isoScale(shapes[i], scale_point, scale_factor);
-          }
-          catch (const std::invalid_argument& e)
-          {
-            std::cerr << "Error: " << e.what() << "\n";
-          }
+          belokurskaya::isoScale(shapes[i], scale_point, scale_factor);
         }
+
         belokurskaya::printResults(std::cout, shapes, shape_count);
         break;
       }

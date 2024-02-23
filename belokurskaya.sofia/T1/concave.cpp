@@ -4,17 +4,22 @@
 #include <cmath>
 
 #include "shape.hpp"
+#include "triangle.hpp"
+
 
 belokurskaya::Concave::Concave(const point_t & a, const point_t & b, const point_t & c, const point_t & d):
-  a_(a), b_(b), c_(c), d_(d)
+  a_(a),
+  b_(b),
+  c_(c),
+  d_(d)
 {
-  if (isTriangle(a_, b_, c_))
+  if (isTriangle())
   {
-    if (!isInsideTriangle(a_, b_, c_, d_))
+    if (!isInsideTriangle())
     {
       throw std::invalid_argument("Fourth vertex must be inside the triangle formed by the first three vertices");
     }
-    if (!isConcave(a_, b_, c_, d_))
+    if (!isConcave())
     {
       throw std::invalid_argument("The vertices do not form a concave quadrilateral");
     }
@@ -25,11 +30,13 @@ belokurskaya::Concave::Concave(const point_t & a, const point_t & b, const point
   }
 }
 
+
 double belokurskaya::Concave::getArea() const
 {
-  double triangle1_area = calculateTriangleArea(a_, b_, d_);
-  double triangle2_area = calculateTriangleArea(a_, c_, d_);
-  return triangle1_area + triangle2_area;
+  Triangle triangle1(a_, b_, d_);
+  Triangle triangle2(a_, c_, d_);
+
+  return triangle1.getArea() + triangle2.getArea();
 }
 
 belokurskaya::rectangle_t belokurskaya::Concave::getFrameRect() const
@@ -63,6 +70,11 @@ void belokurskaya::Concave::move(double dx, double dy)
 
 void belokurskaya::Concave::scale(double factor)
 {
+  if (factor <= 0)
+  {
+    throw std::invalid_argument("Invalid scaling factor");
+  }
+
   point_t center = calculateCentroid();
 
   a_ = {center.x + factor * (a_.x - center.x), center.y + factor * (a_.y - center.y)};
@@ -71,29 +83,29 @@ void belokurskaya::Concave::scale(double factor)
   d_ = {center.x + factor * (d_.x - center.x), center.y + factor * (d_.y - center.y)};
 }
 
-bool belokurskaya::Concave::isTriangle(const point_t & p1, const point_t & p2, const point_t & p3) const
+bool belokurskaya::Concave::isTriangle() const
 {
-  return ((p1.x - p2.x) * (p3.y - p2.y) - (p1.y - p2.y) * (p3.x - p2.x)) != 0;
+  return ((a_.x - b_.x) * (c_.y - b_.y) - (a_.y - b_.y) * (c_.x - b_.x)) != 0;
 }
 
-bool belokurskaya::Concave::isInsideTriangle(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4) const
+bool belokurskaya::Concave::isInsideTriangle() const
 {
-  double a = ((p2.y - p3.y) * (p1.x - p3.x) + (p3.x - p2.x) * (p1.y - p3.y));
-  double b = ((p2.y - p3.y) * (p4.x - p3.x) + (p3.x - p2.x) * (p4.y - p3.y));
-  double c = ((p3.y - p1.y) * (p2.x - p1.x) + (p1.x - p3.x) * (p2.y - p1.y));
-  double d = ((p3.y - p1.y) * (p4.x - p1.x) + (p1.x - p3.x) * (p4.y - p1.y));
-  double e = ((p1.y - p2.y) * (p3.x - p2.x) + (p2.x - p1.x) * (p3.y - p2.y));
-  double f = ((p1.y - p2.y) * (p4.x - p2.x) + (p2.x - p1.x) * (p4.y - p2.y));
+  double a = ((b_.y - c_.y) * (a_.x - c_.x) + (c_.x - b_.x) * (a_.y - c_.y));
+  double b = ((b_.y - c_.y) * (d_.x - c_.x) + (c_.x - b_.x) * (d_.y - c_.y));
+  double c = ((c_.y - a_.y) * (b_.x - a_.x) + (a_.x - c_.x) * (b_.y - a_.y));
+  double d = ((c_.y - a_.y) * (d_.x - a_.x) + (a_.x - c_.x) * (d_.y - a_.y));
+  double e = ((a_.y - b_.y) * (c_.x - b_.x) + (b_.x - a_.x) * (c_.y - b_.y));
+  double f = ((a_.y - b_.y) * (d_.x - b_.x) + (b_.x - a_.x) * (d_.y - b_.y));
 
   return a * b >= 0 && c * d >= 0 && e * f >= 0;
 }
 
-bool belokurskaya::Concave::isConcave(const point_t & p1, const point_t & p2, const point_t & p3, const point_t & p4)
+bool belokurskaya::Concave::isConcave()
 {
-  double cross_product1 = (p2.x - p1.x) * (p3.y - p1.y) - (p2.y - p1.y) * (p3.x - p1.x);
-  double cross_product2 = (p3.x - p2.x) * (p4.y - p2.y) - (p3.y - p2.y) * (p4.x - p2.x);
-  double cross_product3 = (p4.x - p3.x) * (p1.y - p3.y) - (p4.y - p3.y) * (p1.x - p3.x);
-  double cross_product4 = (p1.x - p4.x) * (p2.y - p4.y) - (p1.y - p4.y) * (p2.x - p4.x);
+  double cross_product1 = (b_.x - a_.x) * (c_.y - a_.y) - (b_.y - a_.y) * (c_.x - a_.x);
+  double cross_product2 = (c_.x - b_.x) * (d_.y - b_.y) - (c_.y - b_.y) * (d_.x - b_.x);
+  double cross_product3 = (d_.x - c_.x) * (a_.y - c_.y) - (d_.y - c_.y) * (a_.x - c_.x);
+  double cross_product4 = (a_.x - d_.x) * (b_.y - d_.y) - (a_.y - d_.y) * (b_.x - d_.x);
 
   int sign_changes = 0;
   if ((cross_product1 > 0) != (cross_product2 > 0))
@@ -113,19 +125,6 @@ bool belokurskaya::Concave::isConcave(const point_t & p1, const point_t & p2, co
     sign_changes++;
   }
   return sign_changes > 0;
-}
-
-double belokurskaya::Concave::calculateTriangleArea(const point_t & p1, const point_t & p2, const point_t & p3) const
-{
-  return std::abs((p1.x * (p2.y - p3.y) + p2.x * (p3.y - p1.y) + p3.x * (p1.y - p2.y)) / 2.0);
-}
-
-void belokurskaya::Concave::getVertices(point_t & a, point_t & b, point_t & c, point_t & d) const
-{
-  a = a_;
-  b = b_;
-  c = c_;
-  d = d_;
 }
 
 belokurskaya::point_t belokurskaya::Concave::calculateCentroid() const

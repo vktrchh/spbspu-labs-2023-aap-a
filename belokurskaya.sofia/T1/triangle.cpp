@@ -6,7 +6,9 @@
 #include "base-types.hpp"
 
 belokurskaya::Triangle::Triangle(const point_t & a, const point_t & b, const point_t & c):
-  a_(a), b_(b), c_(c)
+  a_(a),
+  b_(b),
+  c_(c)
 {
   double area = getArea();
 
@@ -18,6 +20,11 @@ belokurskaya::Triangle::Triangle(const point_t & a, const point_t & b, const poi
   if (a_ == b_ || a_ == c_ || b_ == c_)
   {
     throw std::invalid_argument("Invalid triangle: vertices cannot be equal.");
+  }
+
+  if (std::labs((b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y)) < 1e-9)
+  {
+    throw std::invalid_argument("Is not a triangle.");
   }
 }
 
@@ -66,6 +73,11 @@ void belokurskaya::Triangle::move(double dx, double dy)
 
 void belokurskaya::Triangle::scale(double factor)
 {
+  if (factor <= 0)
+  {
+    throw std::invalid_argument("Invalid scaling factor");
+  }
+
   point_t centroid = calculateCentroid();
 
   a_.x = centroid.x + (a_.x - centroid.x) * factor;
@@ -83,11 +95,4 @@ belokurskaya::point_t belokurskaya::Triangle::calculateCentroid() const
   double centroid_x = (a_.x + b_.x + c_.x) / 3.0;
   double centroid_y = (a_.y + b_.y + c_.y) / 3.0;
   return {centroid_x, centroid_y};
-}
-
-void belokurskaya::Triangle::getVertices(point_t & a, point_t & b, point_t & c) const
-{
-  a = a_;
-  b = b_;
-  c = c_;
 }
