@@ -70,20 +70,9 @@ void chistyakov::inputShapes(std::istream & input, Shape ** array, double * scal
       isScale = true;
       break;
     }
-    else
+    else if (shapeName == "")
     {
-      while (input >> now)
-      {
-        if (!input)
-        {
-          throw std::invalid_argument("Bad input, maybe try again?..");
-        }
-
-        if (now == '\n')
-        {
-          break;
-        }
-      }
+      break;
     }
   }
 
