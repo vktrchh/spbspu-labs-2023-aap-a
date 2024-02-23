@@ -70,7 +70,7 @@ void chistyakov::inputShapes(std::istream & input, Shape ** array, double * scal
       isScale = true;
       break;
     }
-    else if (shapeName == "")
+    else if (shapeName == "" && isScale)
     {
       break;
     }
