@@ -9,6 +9,7 @@
 #include "concave.hpp"
 #include "results_printer.hpp"
 #include "iso_scale.hpp"
+#include "reader.hpp"
 
 int main()
 {
@@ -43,54 +44,32 @@ int main()
 
       if (command == "RECTANGLE")
       {
-        double lower_left_x = 0.0;
-        double lower_left_y = 0.0;
-        double upper_right_x = 0.0;
-        double upper_right_y = 0.0;
-        if (!(inputStream >> lower_left_x >> lower_left_y >> upper_right_x >> upper_right_y))
-        {
-          continue;
-        }
+        belokurskaya::point_t * points = readPointsArray(inputStream, 2);
 
-        belokurskaya::point_t lower_left = {lower_left_x, lower_left_y};
-        belokurskaya::point_t upper_right = {upper_right_x, upper_right_y};
-
-        shapes[shape_count] = new belokurskaya::Rectangle(lower_left, upper_right);
+        shapes[shape_count] = new belokurskaya::Rectangle(points[0], points[1]);
         shape_count++;
+        delete[] points;
       }
       else if (command == "TRIANGLE")
       {
-        double a_x = 0.0, a_y = 0.0, b_x = 0.0, b_y = 0.0, c_x = 0.0, c_y = 0.0;
-        if (!(inputStream >> a_x >> a_y >> b_x >> b_y >> c_x >> c_y))
-        {
-          continue;
-        }
-
-        if (std::labs((b_x - a_x) * (c_y - a_y) - (c_x - a_x) * (b_y - a_y)) < 1e-9)
+        belokurskaya::point_t * points = readPointsArray(inputStream, 3);
+        if (std::labs((points[1].x - points[0].x) * (points[2].y - points[0].y)
+        - (points[2].x - points[0].x) * (points[1].y - points[0].y)) < 1e-9)
         {
           std::cerr << "Is not a triangle\n";
           continue;
         }
-        shapes[shape_count] = new belokurskaya::Triangle({a_x, a_y}, {b_x, b_y}, {c_x, c_y});
+        shapes[shape_count] = new belokurskaya::Triangle(points[0], points[1], points[2]);
         shape_count++;
+        delete[] points;
       }
       else if (command == "CONCAVE")
       {
-        double a_x = 0.0;
-        double a_y = 0.0;
-        double b_x = 0.0;
-        double b_y = 0.0;
-        double c_x = 0.0;
-        double c_y = 0.0;
-        double d_x = 0.0;
-        double d_y = 0.0;
-        if (!(inputStream >> a_x >> a_y >> b_x >> b_y >> c_x >> c_y >> d_x >> d_y))
-        {
-          continue;
-        }
+        belokurskaya::point_t * points = readPointsArray(inputStream, 4);
 
-        shapes[shape_count] = new belokurskaya::Concave({a_x, a_y}, {b_x, b_y}, {c_x, c_y}, {d_x, d_y});
+        shapes[shape_count] = new belokurskaya::Concave(points[0], points[1], points[2], points[3]);
         shape_count++;
+        delete[] points;
       }
       else if (command == "SCALE")
       {
@@ -136,6 +115,7 @@ int main()
   for (int i = 0; i < shape_count; ++i)
   {
     delete shapes[i];
+    delete[] shapes;
   }
   return 0;
 }
