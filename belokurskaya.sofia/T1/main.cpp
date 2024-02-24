@@ -15,10 +15,9 @@ int main()
 {
   belokurskaya::Shape* shapes[1000];
   int shape_count = 0;
-
-  try
+  while (true)
   {
-    while (true)
+    try
     {
       std::string input;
       if (!std::getline(std::cin, input))
@@ -53,6 +52,7 @@ int main()
       else if (command == "TRIANGLE")
       {
         belokurskaya::point_t * points = belokurskaya::readPointsArray(inputStream, 3);
+
         shapes[shape_count] = new belokurskaya::Triangle(points[0], points[1], points[2]);
         shape_count++;
         delete[] points;
@@ -99,18 +99,17 @@ int main()
         continue;
       }
     }
-  }
-  catch (const std::invalid_argument & e)
-  {
-    std::cerr << e.what() << "\n";
-    return 1;
-  }
+    catch (const std::invalid_argument & e)
+    {
+      std::cerr << e.what() << "\n";
+      return 1;
+    }
 
-  catch (const std::logic_error & e)
-  {
-    std::cerr << e.what() << "\n";
+    catch (const std::logic_error & e)
+    {
+      std::cerr << e.what() << "\n";
+    }
   }
-
   for (int i = 0; i < shape_count; ++i)
   {
     delete shapes[i];

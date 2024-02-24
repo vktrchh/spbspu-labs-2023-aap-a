@@ -18,7 +18,7 @@ belokurskaya::Concave::Concave(const point_t & a, const point_t & b, const point
   {
     if (!isInsideTriangle())
     {
-      throw std::invalid_argument("Fourth vertex must be inside the triangle formed by the first three vertices");
+      throw std::logic_error("Fourth vertex must be inside the triangle formed by the first three vertices");
     }
     if (!isConcave())
     {
@@ -27,7 +27,7 @@ belokurskaya::Concave::Concave(const point_t & a, const point_t & b, const point
   }
   else
   {
-    throw std::invalid_argument("The first three vertices do not form a triangle");
+    throw std::logic_error("The first three vertices do not form a triangle");
   }
 }
 
