@@ -24,7 +24,7 @@ belokurskaya::Triangle::Triangle(const point_t & a, const point_t & b, const poi
 
   if (std::labs((b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y)) < 1e-9)
   {
-    throw std::invalid_argument("Is not a triangle.");
+    throw std::logic_error("Is not a triangle.");
   }
 }
 
