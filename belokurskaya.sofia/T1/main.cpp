@@ -20,8 +20,7 @@ int main()
     belokurskaya::point_t * points = nullptr;
     try
     {
-      std::string input;
-      if (!std::getline(std::cin, input))
+      if (std::cin.peek())
       {
         if (std::cin.eof())
         {
@@ -32,20 +31,18 @@ int main()
           std::cerr << "EOF reached\n";
           return 1;
         }
-        continue;
       }
-      if (input.empty())
+      else
       {
         continue;
       }
-      std::istringstream inputStream(input);
       std::string command;
-      inputStream >> command;
+      std::cin >> command;
 
       if (command == "RECTANGLE")
       {
         points = new belokurskaya::point_t[2];
-        belokurskaya::readPointsArray(inputStream, points, 2);
+        belokurskaya::readPointsArray(std::cin, points, 2);
 
         shapes[shape_count] = new belokurskaya::Rectangle(points[0], points[1]);
         shape_count++;
@@ -54,7 +51,7 @@ int main()
       else if (command == "TRIANGLE")
       {
         points = new belokurskaya::point_t[3];
-        belokurskaya::readPointsArray(inputStream, points, 3);
+        belokurskaya::readPointsArray(std::cin, points, 3);
 
         shapes[shape_count] = new belokurskaya::Triangle(points[0], points[1], points[2]);
         shape_count++;
@@ -63,7 +60,7 @@ int main()
       else if (command == "CONCAVE")
       {
         points = new belokurskaya::point_t[4];
-        belokurskaya::readPointsArray(inputStream, points, 4);
+        belokurskaya::readPointsArray(std::cin, points, 4);
 
         shapes[shape_count] = new belokurskaya::Concave(points[0], points[1], points[2], points[3]);
         shape_count++;
@@ -72,7 +69,7 @@ int main()
       else if (command == "SCALE")
       {
         double scale_point_x = 0.0, scale_point_y = 0.0, scale_factor = 0.0;
-        if (!(inputStream >> scale_point_x >> scale_point_y >> scale_factor))
+        if (!(std::cin >> scale_point_x >> scale_point_y >> scale_factor))
         {
           throw std::invalid_argument("Invalid input for scale");
         }
