@@ -7,17 +7,12 @@
 
 namespace belokurskaya
 {
-  point_t * readPointsArray(std::istream & inputStream, int numPoints)
+  void readPointsArray(std::istream & inputStream, point_t * points, int numPoints)
   {
-    point_t * points = new belokurskaya::point_t[numPoints];
     for (int i = 0; i < numPoints; ++i)
     {
-      if (!(inputStream >> points[i].x >> points[i].y))
-      {
-        continue;
-      }
+      inputStream >> points[i].x >> points[i].y;
     }
-    return points;
   }
 }
 
