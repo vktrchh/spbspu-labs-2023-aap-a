@@ -3,9 +3,9 @@
 
 #include <iostream>
 
-#include "base-types.h"
+#include "base-types.hpp"
 
-namespace belokurskaya;
+namespace belokurskaya
 {
   point_t * readPointsArray(std::istream& inputStream, int numPoints)
   {

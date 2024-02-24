@@ -44,7 +44,7 @@ int main()
 
       if (command == "RECTANGLE")
       {
-        belokurskaya::point_t * points = readPointsArray(inputStream, 2);
+        belokurskaya::point_t * points = belokurskaya::readPointsArray(inputStream, 2);
 
         shapes[shape_count] = new belokurskaya::Rectangle(points[0], points[1]);
         shape_count++;
@@ -52,7 +52,7 @@ int main()
       }
       else if (command == "TRIANGLE")
       {
-        belokurskaya::point_t * points = readPointsArray(inputStream, 3);
+        belokurskaya::point_t * points = belokurskaya::readPointsArray(inputStream, 3);
         if (std::labs((points[1].x - points[0].x) * (points[2].y - points[0].y)
         - (points[2].x - points[0].x) * (points[1].y - points[0].y)) < 1e-9)
         {
@@ -65,7 +65,7 @@ int main()
       }
       else if (command == "CONCAVE")
       {
-        belokurskaya::point_t * points = readPointsArray(inputStream, 4);
+        belokurskaya::point_t * points = belokurskaya::readPointsArray(inputStream, 4);
 
         shapes[shape_count] = new belokurskaya::Concave(points[0], points[1], points[2], points[3]);
         shape_count++;
@@ -115,7 +115,6 @@ int main()
   for (int i = 0; i < shape_count; ++i)
   {
     delete shapes[i];
-    delete[] shapes;
   }
   return 0;
 }
