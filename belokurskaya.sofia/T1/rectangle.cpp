@@ -10,7 +10,7 @@ belokurskaya::Rectangle::Rectangle(const point_t & lower_left, const point_t & u
 {
   if (lower_left_.x >= upper_right_.x || lower_left_.y >= upper_right_.y)
   {
-    throw std::invalid_argument("Invalid rectangle dimensions");
+    throw std::logic_error("Invalid rectangle dimensions");
   }
 }
 

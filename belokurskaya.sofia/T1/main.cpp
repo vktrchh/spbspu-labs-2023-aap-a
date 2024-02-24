@@ -53,12 +53,6 @@ int main()
       else if (command == "TRIANGLE")
       {
         belokurskaya::point_t * points = belokurskaya::readPointsArray(inputStream, 3);
-        if (std::labs((points[1].x - points[0].x) * (points[2].y - points[0].y)
-        - (points[2].x - points[0].x) * (points[1].y - points[0].y)) < 1e-9)
-        {
-          std::cerr << "Is not a triangle\n";
-          continue;
-        }
         shapes[shape_count] = new belokurskaya::Triangle(points[0], points[1], points[2]);
         shape_count++;
         delete[] points;
@@ -106,10 +100,15 @@ int main()
       }
     }
   }
-  catch (const std::exception & e)
+  catch (const std::invalid_argument & e)
   {
     std::cerr << e.what() << "\n";
     return 1;
+  }
+
+  catch (const std::logic_error & e)
+  {
+    std::cerr << e.what() << "\n";
   }
 
   for (int i = 0; i < shape_count; ++i)

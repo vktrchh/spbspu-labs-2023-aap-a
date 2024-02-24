@@ -21,7 +21,7 @@ belokurskaya::Concave::Concave(const point_t & a, const point_t & b, const point
     }
     if (!isConcave())
     {
-      throw std::invalid_argument("The vertices do not form a concave quadrilateral");
+      throw std::logic_error("The vertices do not form a concave quadrilateral");
     }
   }
   else
