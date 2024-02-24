@@ -52,8 +52,9 @@ belokurskaya::rectangle_t belokurskaya::Concave::getFrameRect() const
 
 void belokurskaya::Concave::move(const point_t & new_pos)
 {
-  double dx = new_pos.x - getFrameRect().pos.x;
-  double dy = new_pos.y - getFrameRect().pos.y;
+  point_t center = calculateCentroid();
+  double dx = new_pos.x - center.x;
+  double dy = new_pos.y - center.y;
   move(dx, dy);
 }
 
