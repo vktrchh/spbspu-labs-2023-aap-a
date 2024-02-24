@@ -17,6 +17,7 @@ int main()
   int shape_count = 0;
   while (true)
   {
+    belokurskaya::point_t * points = nullptr;
     try
     {
       std::string input;
@@ -43,7 +44,7 @@ int main()
 
       if (command == "RECTANGLE")
       {
-        belokurskaya::point_t * points = new belokurskaya::point_t[2];
+        points = new belokurskaya::point_t[2];
         belokurskaya::readPointsArray(inputStream, points, 2);
 
         shapes[shape_count] = new belokurskaya::Rectangle(points[0], points[1]);
@@ -52,7 +53,7 @@ int main()
       }
       else if (command == "TRIANGLE")
       {
-        belokurskaya::point_t * points = new belokurskaya::point_t[3];
+        points = new belokurskaya::point_t[3];
         belokurskaya::readPointsArray(inputStream, points, 3);
 
         shapes[shape_count] = new belokurskaya::Triangle(points[0], points[1], points[2]);
@@ -61,7 +62,7 @@ int main()
       }
       else if (command == "CONCAVE")
       {
-        belokurskaya::point_t * points = new belokurskaya::point_t[4];
+        points = new belokurskaya::point_t[4];
         belokurskaya::readPointsArray(inputStream, points, 4);
 
         shapes[shape_count] = new belokurskaya::Concave(points[0], points[1], points[2], points[3]);
@@ -105,6 +106,7 @@ int main()
     catch (const std::invalid_argument & e)
     {
       std::cerr << e.what() << "\n";
+      delete[] points;
       return 1;
     }
 
