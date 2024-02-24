@@ -1,5 +1,6 @@
 #include "concave.hpp"
 
+#include <iostream>
 #include <stdexcept>
 #include <cmath>
 
@@ -21,7 +22,7 @@ belokurskaya::Concave::Concave(const point_t & a, const point_t & b, const point
     }
     if (!isConcave())
     {
-      throw std::logic_error("The vertices do not form a concave quadrilateral");
+      std::cerr << "The vertices do not form a concave quadrilateral";
     }
   }
   else

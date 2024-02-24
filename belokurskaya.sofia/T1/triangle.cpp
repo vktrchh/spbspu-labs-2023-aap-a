@@ -14,12 +14,12 @@ belokurskaya::Triangle::Triangle(const point_t & a, const point_t & b, const poi
 
   if (area == 0)
   {
-    throw std::invalid_argument("Invalid triangle: degenerate triangle (zero area).");
+    throw std::logic_error("Invalid triangle: degenerate triangle (zero area).");
   }
 
   if (a_ == b_ || a_ == c_ || b_ == c_)
   {
-    throw std::invalid_argument("Invalid triangle: vertices cannot be equal.");
+    throw std::logic_error("Invalid triangle: vertices cannot be equal.");
   }
 
   if (std::labs((b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y)) < 1e-9)
