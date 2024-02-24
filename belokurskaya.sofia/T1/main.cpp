@@ -111,6 +111,7 @@ int main()
     catch (const std::logic_error & e)
     {
       std::cerr << e.what() << "\n";
+      delete[] points;
     }
   }
   for (int i = 0; i < shape_count; ++i)
