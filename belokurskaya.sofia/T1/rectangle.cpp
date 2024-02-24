@@ -1,6 +1,5 @@
 #include "rectangle.hpp"
 
-#include <iostream>
 #include <stdexcept>
 
 #include "base-types.hpp"
@@ -11,7 +10,7 @@ belokurskaya::Rectangle::Rectangle(const point_t & lower_left, const point_t & u
 {
   if (lower_left_.x >= upper_right_.x || lower_left_.y >= upper_right_.y)
   {
-    std::cerr << "Invalid rectangle dimensions\n";
+    throw std::logic_error("Invalid rectangle dimensions");
   }
 }
 
