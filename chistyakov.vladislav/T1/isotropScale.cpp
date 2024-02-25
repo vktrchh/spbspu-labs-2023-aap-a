@@ -11,7 +11,8 @@ void chistyakov::isotropScale(Shape ** shapes, const point_t & point, const doub
   {
     point_t startPoint = shapes[i]->getFrameRect().pos;
     shapes[i]->move(point);
+    point_t scalePoint = shapes[i]->getFrameRect().pos;
     shapes[i]->scale(ratio);
-    shapes[i]->move(-(point.x - startPoint.x) * ratio, -(pos.y - startPoint.y) * ratio));
+    shapes[i]->move((startPoint.x - scalePoint.x) * ratio, (startPoint.y - scalePoint.y) * ratio);
   }
 }
