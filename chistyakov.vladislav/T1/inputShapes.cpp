@@ -9,20 +9,26 @@ void chistyakov::inputShapes(std::istream & input, Shape ** array, double * scal
   std::string rectangle = "RECTANGLE";
   std::string square = "SQUARE";
   std::string complexquad = "COMPLEXQUAD";
-  bool isScale = false;
+  std::string shapeName = "";
+  std::string str = "";
+  char now = 0;
 
   input >> std::noskipws;
 
-  while (true)
+  while (shapeName != "SCALE")
   {
-    std::string str = "";
-    char now = 0;
+    str = "";
 
     while (input >> now)
     {
       if (!input)
       {
         throw std::invalid_argument("Bad input, maybe try again?..");
+      }
+
+      if (input.eof())
+      {
+        throw std::logic_error("Input eof!");
       }
 
       if (str.size() == str.max_size() - 1)
@@ -41,7 +47,6 @@ void chistyakov::inputShapes(std::istream & input, Shape ** array, double * scal
       }
     }
 
-    std::string shapeName = "";
     for (size_t j = 0; j < str.size(); ++j)
     {
       if (str[j] == ' ')
@@ -64,22 +69,9 @@ void chistyakov::inputShapes(std::istream & input, Shape ** array, double * scal
     {
       inputComplexquad(str, array, size);
     }
-    else if (shapeName == "SCALE")
-    {
-      parseInfoScale(str, scaleInfo);
-      isScale = true;
-      break;
-    }
-    else if (shapeName == "" && isScale)
-    {
-      break;
-    }
   }
 
-  if (!isScale)
-  {
-    throw std::logic_error("Not scale command!");
-  }
+  parseInfoScale(str, scaleInfo);
 
   input >> std::skipws;
 }
