@@ -6,7 +6,7 @@
 namespace skopchenko
 {
 
-double * smoothMatrix(int * matrix, double * smoothMatrix , size_t rows , size_t cols);
+  void smoothedMatrix(int * matrix, double * smoothMatrix , size_t rows , size_t cols);
 
 }
 

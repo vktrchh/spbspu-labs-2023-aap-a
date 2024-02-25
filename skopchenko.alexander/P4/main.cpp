@@ -1,3 +1,4 @@
+#include "smoothed.h"
 #include "topclock.h"
 #include "input.h"
 #include <fstream>
@@ -58,16 +59,19 @@ int main(int argc, char * argv[])
   else
   {
     int *matrix = nullptr;
+    double *smooth = nullptr;
 
     if (arrType == 1)
     {
       int fixedArray[10000] = {};
       matrix = fixedArray;
+      double smooth[10000] = {};
     } else
     {
       try
       {
         matrix = new int[cols * rows];
+        smooth = new double[cols * rows];
       }
       catch (const std::bad_alloc &e)
       {
@@ -95,20 +99,22 @@ int main(int argc, char * argv[])
       size_t counter = 1;
       int top = 0;
       int left = 0;
-      skopchenko::topClock(matrix, rows , cols , counter , top , rows - 1 , left , cols - 1);
+      skopchenko::smoothedMatrix(matrix, smooth, rows, cols);
+      skopchenko::topClock(matrix, rows, cols, counter, top, left);
     }
     catch (std::logic_error &e)
     {
-      std::cerr << "Error while executing first func";
+      std::cerr << "Error while executing one of functions";
       if (arrType == 2)
       {
         delete[] matrix;
+        delete[] smooth;
       }
       return 1;
     }
     for (size_t i = 0; i < rows * cols; i++)
     {
-      std::cout << matrix[i] << " ";
+      std::cout << smooth[i] << " ";
       if (i > 0 && (i + 1) % 5 == 0)
       {
         std::cout << "\n";
@@ -117,3 +123,4 @@ int main(int argc, char * argv[])
     std::cout << "\n";
   }
 }
+
