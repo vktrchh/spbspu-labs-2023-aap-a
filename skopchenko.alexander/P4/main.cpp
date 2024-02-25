@@ -65,7 +65,8 @@ int main(int argc, char * argv[])
     {
       int fixedArray[10000] = {};
       matrix = fixedArray;
-      double smooth[10000] = {};
+      double smoothArray[10000] = {};
+      smooth = smoothArray;
     } else
     {
       try
@@ -77,6 +78,7 @@ int main(int argc, char * argv[])
       {
         std::cerr << "Error while allocating dynamic array\n";
         delete[] matrix;
+        delete[] smooth;
         return 2;
       }
     }
@@ -100,8 +102,7 @@ int main(int argc, char * argv[])
       int top = 0;
       int left = 0;
       skopchenko::smoothedMatrix(matrix, smooth, rows, cols);
-      skopchenko::topClock(matrix, rows, cols, counter, top, left);
-    }
+      skopchenko::topClock(matrix, rows , cols , counter , top , rows - 1 , left , cols - 1);    }
     catch (std::logic_error &e)
     {
       std::cerr << "Error while executing one of functions";
@@ -114,13 +115,13 @@ int main(int argc, char * argv[])
     }
     for (size_t i = 0; i < rows * cols; i++)
     {
-      std::cout << smooth[i] << " ";
-      if (i > 0 && (i + 1) % 5 == 0)
-      {
-        std::cout << "\n";
-      }
+      std::cout << matrix[i] << " ";
     }
     std::cout << "\n";
+    for (size_t i = 0; i < rows * cols; i++)
+    {
+      std::cout << smooth[i] << " ";
+    }
   }
 }
 
