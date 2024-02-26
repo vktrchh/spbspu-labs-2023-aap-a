@@ -9,25 +9,25 @@ void sakovskaia::countCounterclockwiseMatrix(int * a, size_t rows, size_t column
   size_t circle = 1;
   size_t index = 0;
   size_t cnt_columns = columns;
-  for (circle = 1; circle <= (ceil((std::min(rows, columns)) / 2)); ++circle)
+  for (circle = 1; circle <= (ceil((std::min(rows, columns)) / 2)); circle += 1)
   {
     for (index = cnt; index <= (rows * columns - columns * circle + cnt); index = index + rows)
     {
-      a[index] = ++n;
+      a[index] = n += 1;
     }
-    for (index = (rows * columns - columns * circle + cnt + 1); index <= (rows * columns - columns * circle + cnt + cnt_columns - 1); ++index)
+    for (index = (rows * columns - columns * circle + cnt + 1); index <= (rows * columns - columns * circle + cnt + cnt_columns - 1); index += 1)
     {
-      a[index] = ++n;
+      a[index] = n += 1;
     }
     for (index = (rows * columns - columns * circle - circle); index <= (circle * (columns - 1)); index = index - rows)
     {
-      a[index] = ++n;
+      a[index] = n += 1;
     }
-    for (index = (circle * (columns - 1) - 1); index <= (cnt * columns + circle); --index)
+    for (index = (circle * (columns - 1) - 1 + cnt); index <= (cnt * columns + circle); index -= 1)
     {
-      a[index] = ++n;
+      a[index] = n += 1;
     }
-    ++cnt;
+    cnt += 1;
     cnt_columns = cnt_columns - 2;
   }
 }
