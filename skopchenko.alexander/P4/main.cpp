@@ -1,6 +1,7 @@
 #include "smoothed.h"
 #include "topclock.h"
 #include "input.h"
+#include "output.h"
 #include <fstream>
 #include <iostream>
 
@@ -52,7 +53,6 @@ int main(int argc, char * argv[])
   }
   else if (rows == 0 && cols == 0)
   {
-    //std::cout << "Matrix dimensions: 0;0\n";
     //ADD TO OFSTREAM
     return 0;
   }
@@ -113,14 +113,31 @@ int main(int argc, char * argv[])
       }
       return 1;
     }
-    for (size_t i = 0; i < rows * cols; i++)
+
+    std::ofstream oFile(argv[3]);
+    if (!oFile.is_open())
     {
-      std::cout << matrix[i] << " ";
+      std::cerr << "Couldn't open output file\n";
+      return 2;
     }
-    std::cout << "\n";
-    for (size_t i = 0; i < rows * cols; i++)
+
+    try
     {
-      std::cout << smooth[i] << " ";
+      oFile << rows << " " << cols << " ";
+      skopchenko::output(oFile, matrix, rows, cols);
+      oFile << "\n";
+      oFile << rows << " " << cols << " ";
+      skopchenko::output(oFile, smooth, rows, cols);
+    }
+    catch (std::runtime_error &e)
+    {
+      std::cerr << "Couldn't output matrix\n";
+      if (arrType == 2)
+      {
+        delete[] matrix;
+        delete[] smooth;
+      }
+      return 2;
     }
   }
 }
