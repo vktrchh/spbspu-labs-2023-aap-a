@@ -108,11 +108,8 @@ int main(int argc, char *argv[])
     return 2;
   }
 
-  if (task == 2)
-  {
-    delete[] matrix;
-    delete[] smoothedMatrix;
-  }
+  delete[] matrix;
+  delete[] smoothedMatrix;
 
   return 0;
 }
