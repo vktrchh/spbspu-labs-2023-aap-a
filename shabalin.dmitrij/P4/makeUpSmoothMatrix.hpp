@@ -1,6 +1,5 @@
 #ifndef MAKEUPSMOOTHMATRIX_HPP
 #define MAKEUPSMOOTHMATRIX_HPP
-#include <iostream>
 #include <cstddef>
 
 namespace shabalin

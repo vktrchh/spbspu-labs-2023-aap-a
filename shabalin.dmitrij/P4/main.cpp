@@ -1,5 +1,4 @@
 #include <fstream>
-#include <cctype>
 #include "ioprocessing.hpp"
 #include "makeUpSmoothMatrix.hpp"
 #include "findLargeSeriesofElements.hpp"
@@ -106,7 +105,7 @@ int main(int argc, char *argv[])
       delete[] matrix;
       delete[] smoothedMatrix;
     }
-    return 1;
+    return 2;
   }
 
   if (task == 2)
