@@ -9,7 +9,7 @@ int main()
 {
   using namespace chernov;
   size_t sizeOfInput = 20;
-  char* input = new char[sizeOfInput];
+  char* input = new char[sizeOfInput]();
 
   char c = 0;
   size_t i = 0;
@@ -52,7 +52,7 @@ int main()
 
       for(size_t k = 0; k < i; ++k)
       {
-            oldInput[k] = input[k];
+        oldInput[k] = input[k];
       }
 
       delete[] input;
@@ -86,8 +86,8 @@ int main()
       delete[] oldInput;
     }
   }
-  char* stringWithDecimalDigitsRemoved = new char[sizeOfInput];
-  char* stringWithVowelsRemoved = new char[sizeOfInput];
+  char* stringWithDecimalDigitsRemoved = new char[sizeOfInput]();
+  char* stringWithVowelsRemoved = new char[sizeOfInput]();
 
   char* withoutDecimalDigits = removeDecimalDigits(input, stringWithDecimalDigitsRemoved, sizeOfInput);
   char* withoutVowels = removeVowels(input, stringWithVowelsRemoved, sizeOfInput);
