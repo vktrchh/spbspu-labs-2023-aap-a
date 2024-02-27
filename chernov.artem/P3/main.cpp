@@ -1,5 +1,5 @@
 #include "deleteDecimalDigits.hpp"
-#include "deleteVowels.hpp"
+#include "removeVowels.hpp"
 
 #include <iomanip>
 #include <iostream>
@@ -9,7 +9,7 @@ int main()
 {
   using namespace chernov;
   size_t sizeOfInput = 20;
-  char* input = new char[sizeOfInput]{};
+  char* input = new char[sizeOfInput] {};
 
   char c = 0;
   size_t i = 0;
@@ -29,7 +29,7 @@ int main()
       input[i++] = c;
       if (c == '\n')
       {
-        if(i == 1)
+        if (i == 1)
         {
           std::cerr << "Empty string\n";
           delete[] input;
@@ -43,20 +43,24 @@ int main()
     {
       char* oldInput = new char[sizeOfInput];
       sizeOfInput *= 2;
-      for(size_t k = 0; i < k; ++k)
+
+      for (size_t k = 0; k < i; ++k)
       {
         oldInput[k] = input[k];
       }
+
       delete[] input;
       input = new char[sizeOfInput];
+
       for (size_t k = 0; k < i; k++)
       {
         input[k] = oldInput[k];
       }
+
       input[i++] = c;
       if (c == '\n')
       {
-        if(i == 1)
+        if (i == 1)
         {
           std::cerr << "Empty string\n";
           delete[] input;
