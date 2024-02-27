@@ -1,5 +1,5 @@
 #include "deleteDecimalDigits.hpp"
-#include "removeVowels.hpp"
+#include "deleteVowels.hpp"
 
 #include <iomanip>
 #include <iostream>
