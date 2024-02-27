@@ -60,12 +60,13 @@ int main()
         {
           std::cerr << "Empty string\n";
           delete[] input;
+          delete[] oldInput;
           return 1;
         }
         input[i - 1] = 0;
         break;
       }
-      oldInput = nullptr;
+      delete[] oldInput;
     }
   }
 
