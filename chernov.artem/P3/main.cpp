@@ -1,5 +1,5 @@
 #include "deleteDecimalDigits.hpp"
-#include "deleteVowels.hpp"
+#include "removeVowels.hpp"
 
 #include <iomanip>
 #include <iostream>
@@ -41,10 +41,14 @@ int main()
     }
     else
     {
+      char* oldInput = new char[sizeOfInput];
       sizeOfInput *= 2;
-      char* oldInput = input;
+      for(int k = 0; i < k; ++k)
+      {
+        oldInput[k] = input[k];
+      }
       delete[] input;
-      input = new char[sizeOfInput]{};
+      input = new char[sizeOfInput];
       for (size_t k = 0; k < i; k++)
       {
         input[k] = oldInput[k];
