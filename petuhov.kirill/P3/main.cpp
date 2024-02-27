@@ -14,7 +14,7 @@ int main()
   {
     firstString = petuhov::streamToString(std::cin);
   }
-  catch (std::exception &e)
+  catch (const std::exception &e)
   {
     std::cerr << e.what();
     return 1;
@@ -29,7 +29,7 @@ int main()
     {
       cloneString = new char[length + 1];
     }
-    catch (std::exception &e)
+    catch (const std::exception &e)
     {
       delete[] firstString;
       std::cerr << "Error while creating cloneString";
@@ -40,7 +40,7 @@ int main()
   {
     secondString = petuhov::streamToString(std::cin);
   }
-  catch (std::exception &e)
+  catch (const std::exception &e)
   {
     delete[] firstString;
     std::cerr << e.what();
