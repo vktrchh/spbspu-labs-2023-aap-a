@@ -21,6 +21,7 @@ int main()
     if (!std::cin)
     {
       std::cerr << "Error input\n";
+      delete[] input;
       return 1;
     }
     if (i < sizeOfInput)
@@ -28,6 +29,12 @@ int main()
       input[i++] = c;
       if (c == '\n')
       {
+        if(i == 1)
+        {
+          std::cerr << "Empty string\n";
+          delete[] input;
+          return 1;
+        }
         input[i - 1] = 0;
         break;
       }
@@ -44,13 +51,19 @@ int main()
       input[i++] = c;
       if (c == '\n')
       {
+        if(i == 1)
+        {
+          std::cerr << "Empty string\n";
+          delete[] input;
+          return 1;
+        }
         input[i - 1] = 0;
         break;
       }
       oldInput = nullptr;
     }
   }
-  std::cin >> std::skipws;
+
   char* stringWithDecimalDigitsRemoved = new char[sizeOfInput] {};
   char* stringWithVowelsRemoved = new char[sizeOfInput] {};
 
