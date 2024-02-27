@@ -43,7 +43,7 @@ int main()
     {
       char* oldInput = new char[sizeOfInput];
       sizeOfInput *= 2;
-      for(int k = 0; i < k; ++k)
+      for(size_t k = 0; i < k; ++k)
       {
         oldInput[k] = input[k];
       }
