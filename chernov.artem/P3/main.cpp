@@ -24,7 +24,7 @@ int main()
       delete[] input;
       return 1;
     }
-    if (i < sizeOfInput)
+    if (i < sizeOfInput - 1)
     {
       input[i++] = c;
       if (c == '\n')
@@ -35,7 +35,7 @@ int main()
           delete[] input;
           return 1;
         }
-        input[i - 1] = 0;
+        input[i - 1] = '\n';
         break;
       }
     }
@@ -43,6 +43,7 @@ int main()
     {
       char* oldInput = new char[sizeOfInput];
       sizeOfInput *= 2;
+
       for(size_t k = 0; k < i; ++k)
       {
         oldInput[k] = input[k];
@@ -66,13 +67,12 @@ int main()
           delete[] oldInput;
           return 1;
         }
-        input[i - 1] = 0;
+        input[i - 1] = '\0';
         break;
       }
       delete[] oldInput;
     }
   }
-
   char* stringWithDecimalDigitsRemoved = new char[sizeOfInput] {};
   char* stringWithVowelsRemoved = new char[sizeOfInput] {};
 
