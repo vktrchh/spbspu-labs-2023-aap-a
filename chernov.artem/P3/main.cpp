@@ -73,6 +73,7 @@ int main()
       delete[] oldInput;
     }
   }
+  std::cin >> std::skipws;
   char* stringWithDecimalDigitsRemoved = new char[sizeOfInput] {};
   char* stringWithVowelsRemoved = new char[sizeOfInput] {};
 
