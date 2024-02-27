@@ -43,6 +43,7 @@ int main()
     {
       sizeOfInput *= 2;
       char* oldInput = input;
+      delete[] input;
       input = new char[sizeOfInput]{};
       for (size_t k = 0; k < i; k++)
       {
