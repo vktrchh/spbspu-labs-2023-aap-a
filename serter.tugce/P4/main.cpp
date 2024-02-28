@@ -1,11 +1,11 @@
-#include "ReadingMatrix.hpp"
-#include "findRowThatHasABigSeries.hpp"
-
 #include <cstddef>
 #include <cstring>
 #include <fstream>
 #include <iostream>
 #include <stdexcept>
+
+#include "readMatrix.hpp"
+#include "findRowThatHasABigSeries.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -36,45 +36,45 @@ int main(int argc, char* argv[])
   int rangedMatrix[10000] = {};
   int* matrix = nullptr;
 
-  if (taskNumber == 1 || taskNumber == 2)
-  {
-    try
-    {
-      if (taskNumber == 1)
-      {
-        matrix = new int[sizeArray];
-      }
-      else
-      {
-        matrix = rangedMatrix;
-      }
-      serter::ReadingMatrix(in, matrix, sizeArray);
-      size_t result = serter::findRowThatHasABigSeries(matrix, rows, cols);
-      out << '\n' << result;
-      if (!out)
-      {
-        throw std::invalid_argument("Error of output result\n");
-      }
-    }
-    catch (const std::exception& e)
-    {
-      if (taskNumber == 1)
-      {
-        delete[] matrix;
-      }
-      std::cerr << e.what() << '\n';
-      return 1;
-    }
-    if (taskNumber == 1)
-    {
-      delete[] matrix;
-    }
-  }
-  else
+  if (taskNumber != 1 && taskNumber != 2)
   {
     std::cerr << "Non-correct task number\n";
     return 2;
   }
+
+  try
+  {
+    if (taskNumber == 1)
+    {
+      matrix = new int[sizeArray];
+    }
+    else
+    {
+      matrix = rangedMatrix;
+    }
+    serter::readMatrix(in, matrix, sizeArray);
+    size_t result = serter::findRowThatHasABigSeries(matrix, rows, cols);
+    out << '\n' << result;
+    if (!out)
+    {
+      throw std::invalid_argument("Error of output result\n");
+    }
+  }
+  catch (const std::exception& e)
+  {
+    if (taskNumber == 1)
+    {
+      delete[] matrix;
+    }
+    std::cerr << e.what() << '\n';
+    return 1;
+  }
+
+  if (taskNumber == 1)
+  {
+      delete[] matrix;
+  }
+
   return 0;
 }
 
