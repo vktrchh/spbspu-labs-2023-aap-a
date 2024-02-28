@@ -15,97 +15,34 @@ void chistyakov::inputShapes(std::istream & input, Shape ** array, double * scal
 
   input >> std::noskipws;
 
-  while (shapeName != "SCALE")
+  while (std::getline(input, shapeName, " "))
   {
-    str = "";
-
-    while (input >> now)
+    if (shapeName.find(rectangle))
     {
-      if (!input)
-      {
-        throw std::invalid_argument("Bad input, maybe try again?..");
-      }
-
-      if (input.eof())
-      {
-        throw std::logic_error("Input eof!");
-      }
-
-      if (str.size() == str.max_size() - 1)
-      {
-        throw std::logic_error("Seq too long");
-      }
-
-      if (now == '\n')
-      {
-        str += ' ';
-        break;
-      }
-      else
-      {
-        str += now;
-      }
+      inputRectangle(input, array, size);
     }
-
-    for (size_t j = 0; j < str.size(); ++j)
+    else if (shapeName.find(square))
     {
-      if (str[j] == ' ')
-      {
-        shapeName = str;
-        shapeName.resize(j);
-        break;
-      }
+      inputSquare(input, array, size);
     }
-
-    if (shapeName == rectangle)
+    else if (shapeName.find(complexquad))
     {
-      inputRectangle(str, array, size);
+      inputComplexquad(input, array, size);
     }
-    else if (shapeName == square)
+    else if (shapeName.find("SCALE"))
     {
-      inputSquare(str, array, size);
-    }
-    else if (shapeName == complexquad)
-    {
-      inputComplexquad(str, array, size);
+      parseInfoScale(str, scaleInfo);
+      break;
     }
   }
-
-  parseInfoScale(str, scaleInfo);
 
   input >> std::skipws;
 }
 
-void chistyakov::inputRectangle(std::string str, Shape ** array, size_t & size)
+void chistyakov::inputRectangle(std::istream & input, Shape ** array, size_t & size)
 {
   double cords[4]{};
-  size_t index = 10;
-
-  for (size_t tr = 0; tr < 4; ++tr)
-  {
-    if (index + 1 == str.size())
-    {
-      throw std::logic_error("Not enough coordinates for the shape (RECTANGLE)!");
-    }
-
-    for (size_t i = index; i < str.size(); ++i)
-    {
-      if (str[i] == ' ' || i + 1 == str.size())
-      {
-        cords[tr] = stod(str.substr(index, i - index));
-        index = i + 1;
-        break;
-      }
-    }
-  }
-
-  for (size_t i = index; i < str.size(); ++i)
-  {
-    if (str[i] != ' ')
-    {
-      std::cerr << "Too much cords for RECTANGLE!..\n";
-    }
-  }
+  inputDouble(input, 4, cords);
 
   try
   {
@@ -119,36 +56,10 @@ void chistyakov::inputRectangle(std::string str, Shape ** array, size_t & size)
   }
 }
 
-void chistyakov::inputSquare(std::string str, Shape ** array, size_t & size)
+void chistyakov::inputSquare(std::istream & input, Shape ** array, size_t & size)
 {
   double cords[3]{};
-  size_t index = 7;
-
-  for (size_t tr = 0; tr < 3; ++tr)
-  {
-    if (index + 1 == str.size())
-    {
-      throw std::logic_error("Not enough coordinates for the shape (SQUARE)!");
-    }
-
-    for (size_t i = index; i < str.size(); ++i)
-    {
-      if (str[i] == ' ')
-      {
-        cords[tr] = stod(str.substr(index, i - index));
-        index = i + 1;
-        break;
-      }
-    }
-  }
-
-  for (size_t i = index; i < str.size(); ++i)
-  {
-    if (str[i] != ' ')
-    {
-      std::cerr << "Too much cords for SQUARE!..\n";
-    }
-  }
+  inputDouble(input, 3, cords);
 
   try
   {
@@ -162,36 +73,10 @@ void chistyakov::inputSquare(std::string str, Shape ** array, size_t & size)
   }
 }
 
-void chistyakov::inputComplexquad(std::string str, Shape ** array, size_t & size)
+void chistyakov::inputComplexquad(std::istream & input, Shape ** array, size_t & size)
 {
   double cords[8]{};
-  size_t index = 12;
-
-  for (size_t tr = 0; tr < 8; ++tr)
-  {
-    if (index + 1 == str.size())
-    {
-      throw std::logic_error("Not enough coordinates for the shape (COMPLEXQUAD)!");
-    }
-
-    for (size_t i = index; i < str.size(); ++i)
-    {
-      if (str[i] == ' ')
-      {
-        cords[tr] = stod(str.substr(index, i - index));
-        index = i + 1;
-        break;
-      }
-    }
-  }
-
-  for (size_t i = index; i < str.size(); ++i)
-  {
-    if (str[i] != ' ')
-    {
-      std::cerr << "Too much cords for COMPLEXQUAD!..\n";
-    }
-  }
+  inputDouble(input, 8, cords);
 
   point_t pnt1 = { cords[0], cords[1] };
   point_t pnt2 = { cords[2], cords[3] };
@@ -207,6 +92,21 @@ void chistyakov::inputComplexquad(std::string str, Shape ** array, size_t & size
   catch(const std::invalid_argument & e)
   {
     std::cerr << "Error: " << e.what() << "\n";
+  }
+}
+
+void chistyakov::inputDouble(std::istream & input, size_t numOfPoints, double * pointsArray)
+{
+  double num = 0;
+
+  for (size_t i = 0; i < numOfPoints; ++i)
+  {
+    if (!input >> num)
+    {
+      throw std::logic_error("Bad input!\n");
+    }
+
+    pointsArray[i] = num;
   }
 }
 
@@ -237,25 +137,7 @@ void chistyakov::freeArray(Shape ** array, size_t size)
 void chistyakov::parseInfoScale(std::string str, double * scaleInfo)
 {
   double cords[3]{};
-  size_t index = 6;
-
-  for (size_t tr = 0; tr < 8; ++tr)
-  {
-    if (index + 1 == str.size())
-    {
-      throw std::logic_error("Not enough arguments for isoScale!");
-    }
-
-    for (size_t i = index; i < str.size(); ++i)
-    {
-      if (str[i] == ' ')
-      {
-        cords[tr] = stod(str.substr(index, i - index));
-        index = i + 1;
-        break;
-      }
-    }
-  }
+  inputDouble(input, 8, cords);
 
   for (size_t i = index; i < str.size(); ++i)
   {
