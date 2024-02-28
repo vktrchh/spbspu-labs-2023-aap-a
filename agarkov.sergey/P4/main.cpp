@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <cstring>
 
 int main(int argc, char* argv[])
 {
@@ -21,6 +22,44 @@ int main(int argc, char* argv[])
     std::cerr << "Error output file\n";
     return 1;
   }
-  return 0;
-  
+
+  size_t rows = 0;
+  input_file >> rows;
+  if (!input_file)
+  {
+    std::cerr << "Error while reading rows\n";
+    return 1;
+  }
+  size_t columns = 0;
+  input_file >> columns;
+  if (!input_file)
+  {
+    std::cerr << "Error while reading columns\n";
+    return 1;
+  }
+  if ((rows == 0) || (columns == 0) || (rows * columns > 1000))
+  {
+    std::cout << "Incorrect input\n";
+    return 0;
+  }
+
+  if (!std::strcmp(argv[1], "1"))
+  {
+    int array[1000];
+    size_t arr_size = rows * columns;
+    for (size_t i = 0; i < arr_size; i++)
+    {
+      input_file >> array[i];
+      if (!input_file)
+      {
+        std::cerr << "Error while reading";
+        return 1;
+      }
+    }
+    for (size_t i = 0; i < arr_size; i++)
+    {
+      std::cout << array[i];
+    }
+    std::cout << "\n";
+  }
 }
