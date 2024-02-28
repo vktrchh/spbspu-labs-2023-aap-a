@@ -6,7 +6,7 @@ chistyakov::Rectangle::Rectangle(const point_t & leftDownCorner, const point_t &
   leftDownCorner_(leftDownCorner),
   rightUpCorner_(rightUpCorner)
 {
-  if (leftDownCorner.x >= rightUpCorner.x || leftDownCorner.y >= rightUpCorner.y)
+  if (leftDownCorner.x >= rightUpCorner.x && leftDownCorner.y >= rightUpCorner.y)
   {
     throw std::invalid_argument("Invalid argument for rectangle");
   }
