@@ -1,7 +1,7 @@
 #include "isUpperTriangularMatrix.hpp"
 #include <cstddef>
 
-bool isUpperTriangularMatrix(const int* array, size_t size)
+bool agarkov::isUpperTriangularMatrix(const int* array, size_t size)
 {
   for (size_t i = 0; i < size; i++)
   {
