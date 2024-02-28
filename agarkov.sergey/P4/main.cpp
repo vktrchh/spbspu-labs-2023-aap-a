@@ -4,12 +4,13 @@
 #include <cstddef>
 
 #include "islowertrianglematrix.hpp"
+#include "transformMatrixAPeriph.hpp"
 
 int main(int argc, char* argv[])
 {
   if (argc != 4)
   {
-    std::cerr << "Incorrect arg\n";
+    std::cerr << "Incorrect args\n";
     return 1;
   }
 
@@ -46,58 +47,35 @@ int main(int argc, char* argv[])
     return 0;
   }
 
-  if (!std::strcmp(argv[1], "1"))
-  {
-    int array[1000];
-    size_t arr_size = rows * columns;
-    for (size_t i = 0; i < arr_size; i++)
-    {
-      input_file >> array[i];
-      if (!input_file)
-      {
-        std::cerr << "Error while reading";
-        return 1;
-      }
-    }
-    for (size_t i = 0; i < arr_size; i++)
-    {
-      std::cout << array[i];
-    }
-    std::cout << "\n";
-  }
-    else
-  {
-    if (rows != columns)
-    {
-      std::cerr << "Its not square matrix\n";
-    }
-    int* array = nullptr;
-    size_t arr_size = rows * rows;
-    try
-    {
-      array = new int[arr_size];
-      for (size_t i = 0; i < arr_size; i++)
-      {
-        input_file >> array[i];
-        if (!input_file)
-        {
-          std::cerr << "Error while reading";
-          delete[] array;
-          return 1;
-        }
-      }
-      for (size_t i = 0; i < arr_size; i++)
-      {
-        std::cout << array[i];
-      }
-      std::cout << "\n";
-    }
+  size_t size = rows * cols;
+  int static_array[10000] = {};
+  int* array = nullptr;
 
-    catch (const std::bad_alloc& e)
+  try
+  {
+    if (!std::strcmp(argv[1], "1"))
     {
-      std::cerr << "Error while creating array\n";
-      delete[] array;
+      array = new int[size];
+    }
+    else if (!std::strcmp(argv[1], "2"))
+    {
+      array = static_array;
+    }
+    else
+    {
+      std::cerr << "Incorrect num";
       return 1;
     }
   }
+  catch (const std::bad_alloc& e)
+  {
+    std::cerr << "Error while creating dynamic array\n";
+    delete[] array;
+    return 1;
+  }
+  if (!std::strcmp(argv[1], "1"))
+  {
+    delete[] array;
+  }
+  return 0;
 }
