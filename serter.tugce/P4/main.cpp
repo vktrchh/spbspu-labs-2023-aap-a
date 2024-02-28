@@ -4,7 +4,7 @@
 #include <iostream>
 #include <stdexcept>
 
-#include "readMatrix.hpp"
+#include "ReadMatrix.hpp"
 #include "findRowThatHasABigSeries.hpp"
 
 int main(int argc, char* argv[])
