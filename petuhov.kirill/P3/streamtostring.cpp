@@ -21,15 +21,15 @@ char * petuhov::streamToString(std::istream & input)
     {
       stringBuffer = new char[stringBufferSize + 2];
     }
-    catch (std::bad_alloc & e)
+    catch (const std::bad_alloc & e)
     {
-      delete[] string;
       throw;
     }
 
     if (string != nullptr)
     {
-      for (size_t i = 0; i < stringBufferSize; ++i) {
+      for (size_t i = 0; i < stringBufferSize; ++i)
+      {
         stringBuffer[i] = string[i];
       }
       delete[] string;
