@@ -66,6 +66,19 @@ int main(int argc, char* argv[])
       std::cerr << "Incorrect num";
       return 1;
     }
+    for (size_t i = 0; i < arr_size * arr_size; i++)
+    {
+      input_file >> array[i];
+      if (!input_file)
+      {
+        std::cerr << "Error while reading";
+        if (!std::strcmp(argv[1], "1"))
+        {
+          delete[] array;
+        }
+        return 1;
+      }
+    }
   }
   catch (const std::bad_alloc& e)
   {
