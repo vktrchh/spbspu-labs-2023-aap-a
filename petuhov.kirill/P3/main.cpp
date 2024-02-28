@@ -1,8 +1,7 @@
-#include <cstddef>
-#include <stdexcept>
 #include "streamtostring.hpp"
 #include "substractstring.hpp"
 #include "removespaces.hpp"
+#include <cstddef>
 
 int main()
 {
@@ -14,46 +13,48 @@ int main()
   try
   {
     firstString = petuhov::streamToString(std::cin);
-    if (firstString == nullptr)
-    {
-      throw std::runtime_error("Failed to read the first string");
-    }
-
+  }
+  catch (const std::exception &e)
+  {
+    std::cerr << "Error while filling first string: " << e.what();
+    return 1;
+  }
+  if (firstString != nullptr)
+  {
     while (firstString[length] != '\0')
     {
       ++length;
     }
-
-    cloneString = new char[length + 1];
-    if (cloneString == nullptr)
+    try
     {
-      throw std::runtime_error("Failed to allocate memory for cloneString");
+      cloneString = new char[length + 1];
     }
-
+    catch (const std::exception &e)
+    {
+      delete[] firstString;
+      std::cerr << "Error while allocating memory for cloneString";
+      return 1;
+    }
+  }
+  try
+  {
     secondString = petuhov::streamToString(std::cin);
-    if (secondString == nullptr)
-    {
-      throw std::runtime_error("Failed to read the second string");
-    }
-
-    petuhov::removeSpaces(firstString, cloneString);
-    petuhov::substractString(firstString, secondString);
-    if (!firstString)
-    {
-      throw std::runtime_error("First string is empty after subtraction");
-    }
-
-    std::cout << firstString << "\n" << cloneString << "\n";
   }
   catch (const std::exception &e)
   {
-    std::cerr << e.what();
     delete[] firstString;
-    delete[] cloneString;
-    delete[] secondString;
+    std::cerr << "Error while filling second string: " << e.what();
     return 1;
   }
 
+  petuhov::removeSpaces(firstString, cloneString);
+  petuhov::substractString(firstString, secondString);
+  if (!firstString)
+  {
+    std::cerr << "first string is empty";
+    return 2;
+  }
+  std::cout << firstString << "\n" << cloneString << "\n";
   delete[] firstString;
   delete[] cloneString;
   delete[] secondString;
