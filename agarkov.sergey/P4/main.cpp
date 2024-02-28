@@ -62,4 +62,39 @@ int main(int argc, char* argv[])
     }
     std::cout << "\n";
   }
+    else
+  {
+    if (rows != columns)
+    {
+      std::cerr << "Its not square matrix\n";
+    }
+    int* array = nullptr;
+    size_t arr_size = rows * rows;
+    try
+    {
+      array = new int[arr_size];
+      for (size_t i = 0; i < arr_size; i++)
+      {
+        input_file >> array[i];
+        if (!input_file)
+        {
+          std::cerr << "Error while reading";
+          delete[] array;
+          return 1;
+        }
+      }
+      for (size_t i = 0; i < arr_size; i++)
+      {
+        std::cout << array[i];
+      }
+      std::cout << "\n";
+    }
+
+    catch (const std::bad_alloc& e)
+    {
+      std::cerr << "Error while creating array\n";
+      delete[] array;
+      return 1;
+    }
+  }
 }
