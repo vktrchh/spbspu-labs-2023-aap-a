@@ -1,9 +1,9 @@
 #include "deleteDecimalDigits.hpp"
 #include "deleteVowels.hpp"
 
-#include <iomanip>
 #include <iostream>
 #include <cstddef>
+#include <cctype>
 
 int main()
 {
@@ -16,6 +16,8 @@ int main()
 
   std::cin >> std::noskipws;
 
+  bool hasNonSpace = false;
+
   while (std::cin >> c)
   {
     if (!std::cin)
@@ -27,20 +29,12 @@ int main()
     if (i < sizeOfInput - 1)
     {
       input[i++] = c;
+      if (!std::isspace(c))
+      {
+        hasNonSpace = true;
+      }
       if (c == '\n')
       {
-        if(i == 1)
-        {
-          std::cerr << "Empty string\n";
-          delete[] input;
-          return 1;
-        }
-        else if (i == 0)
-        {
-          std::cerr << "Empty input\n";
-          delete[] input;
-          return 1;
-        }
         input[i - 1] = '\0';
         break;
       }
@@ -66,26 +60,20 @@ int main()
       input[i++] = c;
       if (c == '\n')
       {
-        if (i == 1)
-        {
-          std::cerr << "Empty string\n";
-          delete[] input;
-          delete[] oldInput;
-          return 1;
-        }
-        else if (i == 0)
-        {
-          std::cerr << "Empty input\n";
-          delete[] input;
-          delete[] oldInput;
-          return 1;
-        }
         input[i - 1] = '\0';
         break;
       }
       delete[] oldInput;
     }
   }
+
+  if (!hasNonSpace)
+  {
+    std::cerr << "Empty input\n";
+    delete[] input;
+    return 1;
+  }
+
   char* stringWithDecimalDigitsRemoved = new char[sizeOfInput]();
   char* stringWithVowelsRemoved = new char[sizeOfInput]();
 
