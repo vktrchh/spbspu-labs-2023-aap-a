@@ -47,7 +47,7 @@ int main()
     }
     else
     {
-      char* oldInput = new char[sizeOfInput];
+      char* oldInput = new char[sizeOfInput]();
       sizeOfInput *= 2;
 
       for(size_t k = 0; k < i; ++k)
@@ -56,7 +56,7 @@ int main()
       }
 
       delete[] input;
-      input = new char[sizeOfInput];
+      input = new char[sizeOfInput]();
 
       for (size_t k = 0; k < i; k++)
       {
