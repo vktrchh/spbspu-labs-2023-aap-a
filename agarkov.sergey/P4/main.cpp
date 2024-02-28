@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstddef>
 
-#include "islowertrianglematrix.hpp"
+#include "isUpperTriangularMatrix.hpp"
 #include "transformMatrixAPeriph.hpp"
 
 int main(int argc, char* argv[])
@@ -47,7 +47,6 @@ int main(int argc, char* argv[])
     return 0;
   }
 
-  size_t size = rows * cols;
   int static_array[10000] = {};
   int* array = nullptr;
 
@@ -55,7 +54,7 @@ int main(int argc, char* argv[])
   {
     if (!std::strcmp(argv[1], "1"))
     {
-      array = new int[size];
+      array = new int[rows * columns];
     }
     else if (!std::strcmp(argv[1], "2"))
     {
@@ -66,7 +65,7 @@ int main(int argc, char* argv[])
       std::cerr << "Incorrect num";
       return 1;
     }
-    for (size_t i = 0; i < arr_size * arr_size; i++)
+    for (size_t i = 0; i < rows * columns; i++)
     {
       input_file >> array[i];
       if (!input_file)
@@ -78,6 +77,10 @@ int main(int argc, char* argv[])
         }
         return 1;
       }
+    }
+    if (!std::strcmp(argv[1], "1"))
+    {
+      output_file << agarkov::isUpperTriangularMatrix(array, rows) << "\n";
     }
   }
   catch (const std::bad_alloc& e)
