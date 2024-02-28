@@ -82,6 +82,11 @@ int main(int argc, char* argv[])
     {
       output_file << agarkov::isUpperTriangularMatrix(array, rows) << "\n";
     }
+    agarkov::transformMatrixAPeriph(array, rows, columns);
+    for (size_t i = 0; i < rows * columns; i++)
+    {
+      output_file << array[i] << " ";
+    }
   }
   catch (const std::bad_alloc& e)
   {
