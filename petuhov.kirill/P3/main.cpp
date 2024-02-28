@@ -1,7 +1,8 @@
+#include <cstddef>
+#include <stdexcept>
 #include "streamtostring.hpp"
 #include "substractstring.hpp"
 #include "removespaces.hpp"
-#include <cstddef>
 
 int main()
 {
@@ -13,48 +14,46 @@ int main()
   try
   {
     firstString = petuhov::streamToString(std::cin);
-  }
-  catch (const std::exception &e)
-  {
-    std::cerr << e.what();
-    return 1;
-  }
-  if (firstString != nullptr)
-  {
+    if (firstString == nullptr)
+    {
+      throw std::runtime_error("Failed to read the first string");
+    }
+
     while (firstString[length] != '\0')
     {
       ++length;
     }
-    try
+
+    cloneString = new char[length + 1];
+    if (cloneString == nullptr)
     {
-      cloneString = new char[length + 1];
+      throw std::runtime_error("Failed to allocate memory for cloneString");
     }
-    catch (const std::exception &e)
-    {
-      delete[] firstString;
-      std::cerr << "Error while creating cloneString";
-      return 1;
-    }
-  }
-  try
-  {
+
     secondString = petuhov::streamToString(std::cin);
+    if (secondString == nullptr)
+    {
+      throw std::runtime_error("Failed to read the second string");
+    }
+
+    petuhov::removeSpaces(firstString, cloneString);
+    petuhov::substractString(firstString, secondString);
+    if (!firstString)
+    {
+      throw std::runtime_error("First string is empty after subtraction");
+    }
+
+    std::cout << firstString << "\n" << cloneString << "\n";
   }
   catch (const std::exception &e)
   {
-    delete[] firstString;
     std::cerr << e.what();
+    delete[] firstString;
+    delete[] cloneString;
+    delete[] secondString;
     return 1;
   }
 
-  petuhov::removeSpaces(firstString, cloneString);
-  petuhov::substractString(firstString, secondString);
-  if (!firstString)
-  {
-    std::cerr << "first string is empty";
-    return 2;
-  }
-  std::cout << firstString << "\n" << cloneString << "\n";
   delete[] firstString;
   delete[] cloneString;
   delete[] secondString;
