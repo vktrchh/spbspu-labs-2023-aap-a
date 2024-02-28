@@ -5,7 +5,7 @@
 
 namespace serter
 {
-  size_t findRowThatHasABigSeries(int matrix[], size_t rows, size_t cols);
+  size_t findRowThatHasABigSeries(const int matrix[], size_t rows, size_t cols);
 }
 
 #endif

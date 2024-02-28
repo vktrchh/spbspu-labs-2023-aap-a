@@ -1,9 +1,9 @@
-#include "ReadingMatrix.hpp"
+#include "readMatrix.hpp"
 #include <cstddef>
 #include <fstream>
 #include <stdexcept>
 
-void serter::ReadingMatrix(std::ifstream& in, int matrix[], size_t size)
+void serter::readMatrix(std::istream& in, int matrix[], size_t size)
 {
   for (size_t i = 0; i < size; ++i)
   {

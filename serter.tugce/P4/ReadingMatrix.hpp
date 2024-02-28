@@ -6,7 +6,7 @@
 
 namespace serter
 {
-  void ReadingMatrix(std::ifstream& in, int matrix[], size_t size);
+  void readMatrix(std::istream& in, int matrix[], size_t size);
 }
 
 #endif
