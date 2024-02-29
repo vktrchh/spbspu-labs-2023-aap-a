@@ -1,5 +1,4 @@
 #include "inputShapes.hpp"
-#include <string>
 #include "rectangle.hpp"
 #include "square.hpp"
 #include "complexquad.hpp"
@@ -10,40 +9,57 @@ void chistyakov::inputShapes(std::istream & input, Shape ** array, double * scal
   std::string square = "SQUARE";
   std::string complexquad = "COMPLEXQUAD";
   std::string shapeName = "";
-  std::string str = "";
-  char now = 0;
+  bool isScale = false;
 
-  input >> std::noskipws;
-
-  while (std::getline(input, shapeName, " "))
+  while (std::getline(input, shapeName, ' '))
   {
-    if (shapeName.find(rectangle))
+    if (shapeName.find('\n') == 0)
     {
-      inputRectangle(input, array, size);
+      shapeName.erase(0, 1);
     }
-    else if (shapeName.find(square))
+
+    if (shapeName.find("RECTANGLE") != std::string::npos)
     {
-      inputSquare(input, array, size);
+      double cords[4]{};
+      std::cout << "SYKA BLEAT!\n";
+      inputDouble(input, 4, cords);
+      inputRectangle(cords, array, size);
     }
-    else if (shapeName.find(complexquad))
+    else if (shapeName.find("SQUARE") != std::string::npos)
     {
-      inputComplexquad(input, array, size);
+      double cords[3]{};
+
+      inputDouble(input, 3, cords);
+      inputSquare(cords, array, size);
     }
-    else if (shapeName.find("SCALE"))
+    else if (shapeName.find(complexquad) != std::string::npos)
     {
-      parseInfoScale(str, scaleInfo);
+      double cords[8]{};
+
+      inputDouble(input, 8, cords);
+      inputComplexquad(cords, array, size);
+    }
+    else if (shapeName.find("SCALE") != std::string::npos)
+    {
+      double cords[3]{};
+      isScale = true;
+
+      inputDouble(input, 3, cords);
+      parseInfoScale(cords, scaleInfo);
       break;
     }
+
+    shapeName.clear();
   }
 
-  input >> std::skipws;
+  if (!isScale)
+  {
+    throw std::logic_error("No SCALE command!\n");
+  }
 }
 
-void chistyakov::inputRectangle(std::istream & input, Shape ** array, size_t & size)
-{
-  double cords[4]{};
-  inputDouble(input, 4, cords);
-
+void chistyakov::inputRectangle(double * cords, Shape ** array, size_t & size)
+{ 
   try
   {
     Rectangle * shape = new Rectangle({ {cords[0], cords[1]}, {cords[2], cords[3]} });
@@ -56,11 +72,8 @@ void chistyakov::inputRectangle(std::istream & input, Shape ** array, size_t & s
   }
 }
 
-void chistyakov::inputSquare(std::istream & input, Shape ** array, size_t & size)
+void chistyakov::inputSquare(double * cords, Shape ** array, size_t & size)
 {
-  double cords[3]{};
-  inputDouble(input, 3, cords);
-
   try
   {
     Square * shape = new Square({ cords[0], cords[1] }, cords[2]);
@@ -73,19 +86,11 @@ void chistyakov::inputSquare(std::istream & input, Shape ** array, size_t & size
   }
 }
 
-void chistyakov::inputComplexquad(std::istream & input, Shape ** array, size_t & size)
+void chistyakov::inputComplexquad(double * cords, Shape ** array, size_t & size)
 {
-  double cords[8]{};
-  inputDouble(input, 8, cords);
-
-  point_t pnt1 = { cords[0], cords[1] };
-  point_t pnt2 = { cords[2], cords[3] };
-  point_t pnt3 = { cords[4], cords[5] };
-  point_t pnt4 = { cords[6], cords[7] };
-
   try
   {
-    Complexquad * shape = new Complexquad(pnt1, pnt2, pnt3, pnt4);
+    Complexquad * shape = new Complexquad({ cords[0], cords[1] }, { cords[2], cords[3] }, { cords[4], cords[5] }, { cords[6], cords[7] });
     writeShapeInArray(shape, array, 1000);
     size++;
   }
@@ -97,16 +102,14 @@ void chistyakov::inputComplexquad(std::istream & input, Shape ** array, size_t &
 
 void chistyakov::inputDouble(std::istream & input, size_t numOfPoints, double * pointsArray)
 {
-  double num = 0;
-
   for (size_t i = 0; i < numOfPoints; ++i)
   {
-    if (!input >> num)
-    {
-      throw std::logic_error("Bad input!\n");
-    }
+    input >> pointsArray[i];
 
-    pointsArray[i] = num;
+    if (!input)
+    {
+      throw std::invalid_argument("Bad input!");
+    }
   }
 }
 
@@ -134,19 +137,8 @@ void chistyakov::freeArray(Shape ** array, size_t size)
   }
 }
 
-void chistyakov::parseInfoScale(std::string str, double * scaleInfo)
+void chistyakov::parseInfoScale(double * cords, double * scaleInfo)
 {
-  double cords[3]{};
-  inputDouble(input, 8, cords);
-
-  for (size_t i = index; i < str.size(); ++i)
-  {
-    if (str[i] != ' ')
-    {
-      throw std::invalid_argument("Too much cords for SCALE!..");
-    }
-  }
-
   scaleInfo[0] = cords[0];
   scaleInfo[1] = cords[1];
   scaleInfo[2] = cords[2];
