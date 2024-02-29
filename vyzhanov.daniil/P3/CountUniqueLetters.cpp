@@ -9,10 +9,11 @@ size_t vyzhanov::countUniqueLetters(const char* string)
     if (std::isalpha(string[i]))
     {
       int check = 1;
+      char symb = string[i];
       size_t j = 0;
       for (j = 0; j < i; ++j)
       {
-        if (string[i] == string[j])
+        if (symb == string[j])
         {
           check = 0;
           break;
