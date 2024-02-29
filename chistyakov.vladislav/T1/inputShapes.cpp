@@ -21,7 +21,6 @@ void chistyakov::inputShapes(std::istream & input, Shape ** array, double * scal
     if (shapeName.find("RECTANGLE") != std::string::npos)
     {
       double cords[4]{};
-      std::cout << "SYKA BLEAT!\n";
       inputDouble(input, 4, cords);
       inputRectangle(cords, array, size);
     }
@@ -59,7 +58,7 @@ void chistyakov::inputShapes(std::istream & input, Shape ** array, double * scal
 }
 
 void chistyakov::inputRectangle(double * cords, Shape ** array, size_t & size)
-{ 
+{
   try
   {
     Rectangle * shape = new Rectangle({ {cords[0], cords[1]}, {cords[2], cords[3]} });
