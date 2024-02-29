@@ -11,7 +11,7 @@ int main()
   try
   {
     string = vyzhanov::inputString(std::cin, sizeOfString);
-    newString = new char[sizeOfString + 1];
+    newString = new char[sizeOfString];
   }
   catch (const std::bad_alloc& e)
   {

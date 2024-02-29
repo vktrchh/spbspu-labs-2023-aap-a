@@ -4,8 +4,7 @@
 size_t vyzhanov::countUniqueLetters(const char* string)
 {
   size_t count = 0;
-  size_t i = 0;
-  for (i = 0; string[i] != '\0'; ++i)
+  for (size_t i = 0; string[i] != '\0'; ++i)
   {
     if (std::isalpha(string[i]))
     {
