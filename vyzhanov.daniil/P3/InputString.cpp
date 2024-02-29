@@ -1,7 +1,7 @@
 #include "InputString.hpp"
 #include <stdexcept>
 
-char* vyzhanov::inputString(std::istream& input, size_t sizeOfString)
+char* vyzhanov::inputString(std::istream& input, size_t& sizeOfString)
 {
   size_t index = 0;
   char* string = new char[sizeOfString];

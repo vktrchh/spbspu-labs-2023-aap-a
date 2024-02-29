@@ -6,10 +6,10 @@
 int main()
 {
   char* string = nullptr;
+  size_t sizeOfString = 50;
   char* newString = nullptr;
   try
   {
-    size_t sizeOfString = 50;
     string = vyzhanov::inputString(std::cin, sizeOfString);
     newString = new char[sizeOfString];
   }
