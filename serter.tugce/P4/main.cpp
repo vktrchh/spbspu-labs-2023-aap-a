@@ -72,7 +72,7 @@ int main(int argc, char* argv[])
 
   if (taskNumber == 1)
   {
-      delete[] matrix;
+    delete[] matrix;
   }
 
   return 0;
