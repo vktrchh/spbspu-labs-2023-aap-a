@@ -6,15 +6,11 @@
 int main()
 {
   char* string = nullptr;
-  size_t sizeOfString = 0;
+  size_t sizeOfString = 50;
   char* newString = nullptr;
   try
   {
-    string = vyzhanov::inputString(std::cin);
-    while (string[sizeOfString])
-    {
-      sizeOfString++;
-    }
+    string = vyzhanov::inputString(std::cin, sizeOfString);
     newString = new char[sizeOfString + 1];
   }
   catch (const std::bad_alloc& e)

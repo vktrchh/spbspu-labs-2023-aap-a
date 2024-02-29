@@ -5,7 +5,7 @@
 
 namespace vyzhanov
 {
-  char* inputString(std::istream &input);
+  char* inputString(std::istream &input, size_t sizeOfString);
 }
 
 #endif
