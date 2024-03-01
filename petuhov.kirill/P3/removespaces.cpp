@@ -7,13 +7,14 @@ void petuhov::removeSpaces(const char * string, char * output)
   {
     return;
   }
-  size_t index = 0;
-  for (size_t i = 0; string[i] != '\0'; ++i)
+  const char * start = string;
+  while (*string != '\0')
   {
-    if (string[i] != ' ' || (i > 0 && string[i-1] != ' '))
+    if (*string != ' ' || (string != start && *(string - 1) != ' '))
     {
-      output[index++] = string[i];
+      *output++ = *string;
     }
+    string++;
   }
-  output[index] = '\0';
+  *output = '\0';
 }
