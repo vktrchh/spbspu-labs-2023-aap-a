@@ -65,12 +65,12 @@ int main(int argc, char *argv[])
 
   using namespace shabalin;
 
-  if (task == 1)
+  if (task == 2)
   {
     matrix = tempMatrix;
     smoothedMatrix = tempSmoothedMatrix;
   }
-  else if (task == 2)
+  else if (task == 1)
   {
     try
     {
@@ -94,24 +94,20 @@ int main(int argc, char *argv[])
     {
       throw std::logic_error("Error of output");
     }
-    shabalin::makeUpSmoothMatrix(matrix, smoothedMatrix, rows, cols);
+    smoothedMatrix = shabalin::makeUpSmoothMatrix(matrix, smoothedMatrix, rows, cols);
     shabalin::matrixOutput(output, smoothedMatrix, rows, cols);
   }
   catch (const std::exception &e)
   {
     std::cerr << e.what() << '\n';
-    if (task == 2)
+    if (task == 1)
     {
       delete[] matrix;
       delete[] smoothedMatrix;
     }
     return 2;
   }
-
-  if (task == 2)
-  {
-    delete[] matrix;
-    delete[] smoothedMatrix;
-  }
+  delete[] matrix;
+  delete[] smoothedMatrix;
   return 0;
 }
