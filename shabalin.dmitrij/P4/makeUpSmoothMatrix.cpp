@@ -1,19 +1,21 @@
 #include "makeUpSmoothMatrix.hpp"
 
-double *shabalin::makeUpSmoothMatrix(const int *matrix, double *smooth, size_t rows, size_t cols)
+void *shabalin::makeUpSmoothMatrix(const int *matrix, double *smooth, size_t rows, size_t cols)
 {
   for (size_t i = 0; i < cols * rows; ++i)
   {
     double sum = 0.0;
     size_t count = 0;
+    size_t row = i / cols;
+    size_t column = i % cols;
     for (int j = -1; j <= 1; ++j)
     {
       for (int d = -1; d <= 1; ++d)
       {
         if (!((j == 0) && (d == 0)))
         {
-          int currentRow = (i / cols) + j;
-          int currentColumn = (i % cols) + d;
+          size_t currentRow = row + j;
+          size_t currentColumn = column + d;
           if ((currentRow > 0) && (currentColumn > 0))
           {
             if ((currentRow < rows) && (currentColumn < cols))
@@ -28,5 +30,4 @@ double *shabalin::makeUpSmoothMatrix(const int *matrix, double *smooth, size_t r
     }
     smooth[i] = sum / count;
   }
-  return smooth;
 }
