@@ -5,7 +5,6 @@
 
 int main(int argc, char *argv[])
 {
-
   if (argc != 4)
   {
     std::cerr << "Error in command line arguments" << "\n";
