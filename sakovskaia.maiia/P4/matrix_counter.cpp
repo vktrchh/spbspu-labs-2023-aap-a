@@ -45,7 +45,7 @@ sakovskaia::AnswerCounter::AnswerCounter():
 
 void sakovskaia::AnswerCounter::operator()(int * input_matrix, int * counterclockwise_matrix, size_t size)
 {
-  for (index = 0; index <= size; ++index)
+  for (index = 0; index < size; ++index)
   {
     input_matrix[index] += counterclockwise_matrix[index];
   }
