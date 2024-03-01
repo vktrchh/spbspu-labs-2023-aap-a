@@ -88,7 +88,7 @@ int main(int argc, char * argv[])
     countCounterclockwiseMatrix(counterclockwise_matrix, rows, columns);
     countanswer(input_matrix, counterclockwise_matrix, rows * columns);
     output << rows << " " << columns;
-    printAnswer(output, counterclockwise_matrix, rows * columns);
+    printAnswer(output, input_matrix, rows * columns);
     if (num == 2)
     {
       delete [] new_dynamic_matrix;
