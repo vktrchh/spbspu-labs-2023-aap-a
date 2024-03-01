@@ -65,12 +65,12 @@ int main(int argc, char *argv[])
 
   using namespace shabalin;
 
-  if (task == 2)
+  if (task == 1)
   {
     matrix = tempMatrix;
     smoothedMatrix = tempSmoothedMatrix;
   }
-  else if (task == 1)
+  else if (task == 2)
   {
     try
     {
@@ -100,7 +100,7 @@ int main(int argc, char *argv[])
   catch (const std::exception &e)
   {
     std::cerr << e.what() << '\n';
-    if (task == 1)
+    if (task == 2)
     {
       delete[] matrix;
       delete[] smoothedMatrix;
