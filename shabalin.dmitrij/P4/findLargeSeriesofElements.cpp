@@ -10,6 +10,7 @@ size_t shabalin::findLargeSeriesOfEqualElements(const int *matrix, size_t rows, 
 
   size_t maximumNumberSeries = 0;
   size_t numberSeries = 0;
+
   size_t rowNumber = 0;
 
   for (size_t i = 0; i < rows * cols - 1; ++i)
