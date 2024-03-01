@@ -15,7 +15,7 @@ double *shabalin::makeUpSmoothMatrix(const int *matrix, double *smooth, size_t r
         {
           size_t currentRow = (i / cols) + j;
           size_t currentColumn = (i % cols) + d;
-          
+
           if ((currentRow < rows) && (currentColumn < cols))
           {
             size_t newPosition = (currentRow * cols) + currentColumn;
