@@ -39,6 +39,11 @@ int main(int argc, char * argv[])
     return 2;
   }
 
+  if ((rows == 0) or (columns == 0))
+  {
+    return 0;
+  }
+
   std::ofstream output(argv[3]);
 
   int * input_matrix = nullptr;
