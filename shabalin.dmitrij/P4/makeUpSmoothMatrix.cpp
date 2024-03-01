@@ -6,14 +6,14 @@ double *shabalin::makeUpSmoothMatrix(const int *matrix, double *smooth, size_t r
   {
     double sum = 0.0;
     size_t count = 0;
-    for (size_t j = -1; j <= 1; ++j)
+    for (int j = -1; j <= 1; ++j)
     {
-      for (size_t d = -1; d <= 1; ++d)
+      for (int d = -1; d <= 1; ++d)
       {
         if (!((j == 0) && (d == 0)))
         {
-          size_t currentRow = (i / cols) + j;
-          size_t currentColumn = (i % cols) + d;
+          int currentRow = (i / cols) + j;
+          int currentColumn = (i % cols) + d;
           if ((currentRow > 0) && (currentColumn > 0))
           {
             if ((currentRow < rows) && (currentColumn < cols))
