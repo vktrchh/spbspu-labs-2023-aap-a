@@ -90,14 +90,10 @@ chistyakov::rectangle_t chistyakov::Complexquad::getFrameRect() const
 
 void chistyakov::Complexquad::move(const point_t & point)
 {
-  chistyakov::point_t points[4] = { pnt1_, pnt2_, pnt3_, pnt4_ };
-  for (int i = 0; i < 4; ++i)
-  {
-    points[i].x += point.x;
-    points[i].y += point.y;
-  }
-  cross_.x += point.x;
-  cross_.y += point.y;
+  rectangle_t area = getFrameRect();
+  double mx = point.x - area.pos.x;
+  double my = point.y - area.pos.y;
+  move(mx, my);
 }
 
 void chistyakov::Complexquad::move(const double mx, const double my)
