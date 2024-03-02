@@ -3,7 +3,7 @@
 
 size_t shabalin::findLargeSeriesOfEqualElements(const int *matrix, size_t rows, size_t cols)
 {
-  if (rows == 0 && cols == 0)
+  if (rows == 0 || cols == 0)
   {
     return 0;
   }

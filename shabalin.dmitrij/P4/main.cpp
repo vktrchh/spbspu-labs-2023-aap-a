@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
   char * analysEnd = nullptr;
   size_t task = std::strtoll(argv[1], std::addressof(analysEnd), 10);
 
-  if(*analysEnd != '\0')
+  if (*analysEnd != '\0')
   {
     std::cerr << "Invalid first argument" << "\n";
     return 1;
