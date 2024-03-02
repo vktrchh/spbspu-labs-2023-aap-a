@@ -28,10 +28,10 @@ chistyakov::rectangle_t chistyakov::Rectangle::getFrameRect() const
 
 void chistyakov::Rectangle::move(const point_t & point)
 {
-  leftDownCorner_.x += point.x;
-  leftDownCorner_.y += point.y;
-  rightUpCorner_.x += point.x;
-  rightUpCorner_.y += point.y;
+  rectangle_t area = getFrameRect();
+  double mx = point.x - area.pos.x;
+  double my = point.y - area.pos.y;
+  move(mx, my);
 }
 
 void chistyakov::Rectangle::move(const double mx, const double my)
