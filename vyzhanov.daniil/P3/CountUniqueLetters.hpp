@@ -5,7 +5,7 @@
 
 namespace vyzhanov
 {
-  size_t countUniqueLetters(const char* string);
+  int countUniqueLetters(const char* string);
 }
 
 #endif

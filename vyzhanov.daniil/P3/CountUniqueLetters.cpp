@@ -1,28 +1,20 @@
 #include "CountUniqueLetters.hpp"
 #include <cctype>
 
-size_t vyzhanov::countUniqueLetters(const char* string)
+int vyzhanov::countUniqueLetters(const char* string)
 {
-  size_t count = 0;
-  for (size_t i = 0; string[i] != '\0'; ++i)
+  int count = 0;
+  for (int symbol = 'a'; symbol <= 'z'; symbol++)
   {
-    if (std::isalpha(string[i]))
+    const char* secString = string;
+    while (*secString)
     {
-      int check = 1;
-      char symb = string[i];
-      size_t j = 0;
-      for (j = 0; j < i; ++j)
-      {
-        if (symb == string[j])
-        {
-          check = 0;
-          break;
-        }
-      }
-      if (check == 1)
+      if (*secString == symbol)
       {
         count++;
+        break;
       }
+      secString++;
     }
   }
   return count;
