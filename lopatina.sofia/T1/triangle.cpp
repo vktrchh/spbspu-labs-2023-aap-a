@@ -2,17 +2,11 @@
 #include <cmath>
 #include <algorithm>
 
-lopatina::Triangle::Triangle(point_t point1, point_t point2, point_t point3)
-{
-  p1_.x = point1.x;
-  p1_.y = point1.y;
-  p2_.x = point2.x;
-  p2_.y = point2.y;
-  p3_.x = point3.x;
-  p3_.y = point3.y;
-  pos_tri_.x = (point1.x + point2.x + point3.x) / 3.0;
-  pos_tri_.y = (point1.y + point2.y + point3.y) / 3.0;
-}
+lopatina::Triangle::Triangle(point_t point1, point_t point2, point_t point3):
+  p1_(point1),
+  p2_(point2),
+  p3_(point3)
+{}
 
 double lopatina::Triangle::getArea() const
 {
@@ -25,24 +19,23 @@ lopatina::rectangle_t lopatina::Triangle::getFrameRect() const
   double min_x = std::min({p1_.x, p2_.x, p3_.x});
   double max_y = std::max({p1_.y, p2_.y, p3_.y});
   double min_y = std::min({p1_.y, p2_.y, p3_.y});
-  double height_tri_ = max_y - min_y;
-  double width_tri_ = max_x - min_x;
-  point_t pos_ = {min_x + (width_tri_ / 2.0), min_y + (height_tri_ / 2.0)};
-  rectangle_t newRect{height_tri_, width_tri_, pos_};
+  double height = max_y - min_y;
+  double width = max_x - min_x;
+  point_t pos = {min_x + (width / 2.0), min_y + (height / 2.0)};
+  rectangle_t newRect{height, width, pos};
   return newRect;
 }
 
 void lopatina::Triangle::move(point_t new_pos)
 {
-  double dx = new_pos.x - pos_tri_.x;
-  double dy = new_pos.y - pos_tri_.y;
+  point_t pos_tri = {(p1_.x + p2_.x + p3_.x) / 3.0, (p1_.y + p2_.y + p3_.y) / 3.0};
+  double dx = new_pos.x - pos_tri.x;
+  double dy = new_pos.y - pos_tri.y;
   move(dx, dy);
 }
 
 void lopatina::Triangle::move(double dx, double dy)
 {
-  pos_tri_.x += dx;
-  pos_tri_.y += dy;
   p1_.x += dx;
   p1_.y += dy;
   p2_.x += dx;
@@ -53,10 +46,11 @@ void lopatina::Triangle::move(double dx, double dy)
 
 void lopatina::Triangle::scale(double k)
 {
-  p1_.x = pos_tri_.x + (p1_.x - pos_tri_.x) * k;
-  p1_.y = pos_tri_.y + (p1_.y - pos_tri_.y) * k;
-  p2_.x = pos_tri_.x + (p2_.x - pos_tri_.x) * k;
-  p2_.y = pos_tri_.y + (p2_.y - pos_tri_.y) * k;
-  p3_.x = pos_tri_.x + (p3_.x - pos_tri_.x) * k;
-  p3_.y = pos_tri_.y + (p3_.y - pos_tri_.y) * k;
+  point_t pos_tri = {(p1_.x + p2_.x + p3_.x) / 3.0, (p1_.y + p2_.y + p3_.y) / 3.0};
+  p1_.x = pos_tri.x + (p1_.x - pos_tri.x) * k;
+  p1_.y = pos_tri.y + (p1_.y - pos_tri.y) * k;
+  p2_.x = pos_tri.x + (p2_.x - pos_tri.x) * k;
+  p2_.y = pos_tri.y + (p2_.y - pos_tri.y) * k;
+  p3_.x = pos_tri.x + (p3_.x - pos_tri.x) * k;
+  p3_.y = pos_tri.y + (p3_.y - pos_tri.y) * k;
 }

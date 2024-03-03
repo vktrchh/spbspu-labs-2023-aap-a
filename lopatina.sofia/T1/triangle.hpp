@@ -19,10 +19,6 @@ namespace lopatina
     point_t p1_;
     point_t p2_;
     point_t p3_;
-    double height_tri_;
-    double width_tri_;
-    point_t pos_tri_;
-    point_t pos_;
   };
 }
 
