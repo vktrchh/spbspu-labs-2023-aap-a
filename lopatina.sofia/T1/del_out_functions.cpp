@@ -18,8 +18,8 @@ void lopatina::outputResult(std::ostream & output, Shape ** array, size_t counte
     double width = frame.width;
     double pos_x = frame.pos.x;
     double pos_y = frame.pos.y;
-    output << ' ' << round((pos_x - (width / 2.0)) * 10) / 10 << ' ' << round((pos_y - (height / 2.0)) * 10) / 10;
-    output << ' ' << round((pos_x + (width / 2.0)) * 10) / 10 << ' ' << round((pos_y + (height / 2.0)) * 10) / 10;
+    output << ' ' << std::round((pos_x - (width / 2.0)) * 10) / 10 << ' ' << std::round((pos_y - (height / 2.0)) * 10) / 10;
+    output << ' ' << std::round((pos_x + (width / 2.0)) * 10) / 10 << ' ' << std::round((pos_y + (height / 2.0)) * 10) / 10;
   }
   output << '\n';
 }
