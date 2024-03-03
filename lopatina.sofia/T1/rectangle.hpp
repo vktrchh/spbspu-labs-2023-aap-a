@@ -18,9 +18,6 @@ namespace lopatina
   private:
     point_t left_corner_;
     point_t right_corner_;
-    double height_rect_;
-    double width_rect_;
-    point_t pos_rect_;
   };
 }
 
