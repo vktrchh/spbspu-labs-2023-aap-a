@@ -34,7 +34,6 @@ void lopatina::Rectangle::move(double dx, double dy)
   left_corner_.y += dy;
   right_corner_.x += dx;
   right_corner_.y += dy;
-
 }
 
 void lopatina::Rectangle::scale(double k)
