@@ -10,9 +10,9 @@ lopatina::Diamond::Diamond(point_t central, point_t side_x, point_t side_y):
 
 double lopatina::Diamond::getArea() const
 {
-  double half_diag_1 = std::abs(side_y_vertex_.y - central_vertex_.y);
-  double half_diag_2 = std::abs(side_x_vertex_.x - central_vertex_.x);
-  return half_diag_1 * half_diag_2;
+  double diagonal_1 = 2.0 * std::abs(side_y_vertex_.y - central_vertex_.y);
+  double diagonal_2 = 2.0 * std::abs(side_x_vertex_.x - central_vertex_.x);
+  return diagonal_1 * diagonal_2 / 2.0;
 }
 
 lopatina::rectangle_t lopatina::Diamond::getFrameRect() const
