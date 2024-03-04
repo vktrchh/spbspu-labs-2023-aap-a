@@ -29,13 +29,14 @@ int main()
     {
       double center_x = 0.0, center_y = 0.0, index = 0.0;
       std::cin >> center_x >> center_y >> index;
+/*
       if (index <= 0.0)
       {
         std::cerr << "Incorrect scale index\n";
         deleteArray(array, counter);
         return 1;
       }
-
+*/
       if (figure_exist_flag == 0)
       {
         std::cerr << "Nothing to scale\n";
@@ -97,7 +98,6 @@ int main()
         }
         catch (const std::invalid_argument & e)
         {
-          //std::cout << "error: " << e.what() << '\n';
           error_flag = 1;
         }
       }

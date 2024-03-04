@@ -51,11 +51,11 @@ lopatina::Diamond::Diamond(point_t p1, point_t p2, point_t p3):
 {
   if (!((central_vertex_.x == side_y_vertex_.x) && (central_vertex_.y != side_y_vertex_.y)))
   {
-    throw std::invalid_argument("Figure has wrong parameter");
+    throw std::invalid_argument("Figure has wrong parameter\n");
   }
   if (!((central_vertex_.y == side_x_vertex_.y) && (central_vertex_.x != side_x_vertex_.x)))
   {
-    throw std::invalid_argument("Figure has wrong parameter");
+    throw std::invalid_argument("Figure has wrong parameter\n");
   }
 }
 
@@ -93,6 +93,10 @@ void lopatina::Diamond::move(double dx, double dy)
 
 void lopatina::Diamond::scale(double k)
 {
+  if (k <= 0.0)
+  {
+    throw std::invalid_argument("Incorrect scale index\n");
+  }
   side_x_vertex_.x = central_vertex_.x + (side_x_vertex_.x - central_vertex_.x) * k;
   side_x_vertex_.y = central_vertex_.y + (side_x_vertex_.y - central_vertex_.y) * k;
   side_y_vertex_.x = central_vertex_.x + (side_y_vertex_.x - central_vertex_.x) * k;

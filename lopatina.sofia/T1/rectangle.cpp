@@ -7,7 +7,7 @@ lopatina::Rectangle::Rectangle(point_t low_left, point_t up_right):
 {
   if ((low_left.x >= up_right.x) || (low_left.y >= up_right.y))
   {
-    throw std::invalid_argument("Figure has wrong parameter");
+    throw std::invalid_argument("Figure has wrong parameter\n");
   }
 }
 
@@ -44,6 +44,10 @@ void lopatina::Rectangle::move(double dx, double dy)
 
 void lopatina::Rectangle::scale(double k)
 {
+  if (k <= 0.0)
+  {
+    throw std::invalid_argument("Incorrect scale index\n");
+  }
   point_t pos = getFrameRect().pos;
   left_corner_.x = pos.x + (left_corner_.x - pos.x) * k;
   left_corner_.y = pos.y + (left_corner_.y - pos.y) * k ;

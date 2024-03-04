@@ -7,7 +7,7 @@ lopatina::Square::Square(point_t left_corner, double side):
 {
   if (side <= 0.0)
   {
-    throw std::invalid_argument("Figure has wrong parameter");
+    throw std::invalid_argument("Figure has wrong parameter\n");
   }
 }
 
@@ -39,6 +39,10 @@ void lopatina::Square::move(double dx, double dy)
 
 void lopatina::Square::scale(double k)
 {
+  if (k <= 0.0)
+  {
+    throw std::invalid_argument("Incorrect scale index\n");
+  }
   point_t pos = getFrameRect().pos;
   left_corner_.x = pos.x + (left_corner_.x - pos.x) * k;
   left_corner_.y = pos.y + (left_corner_.y - pos.y) * k;

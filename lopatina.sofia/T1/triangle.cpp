@@ -11,7 +11,7 @@ lopatina::Triangle::Triangle(point_t point1, point_t point2, point_t point3):
   double c = std::sqrt(std::pow(point1.x - point3.x, 2.0) + std::pow(point1.y - point3.y, 2.0));
   if ((a >= (b + c)) || (b >= (a + c)) || (c >= (a + b)))
   {
-    throw std::invalid_argument("Figure has wrong parameter");
+    throw std::invalid_argument("Figure has wrong parameter\n");
   }
 }
 
@@ -58,6 +58,10 @@ void lopatina::Triangle::move(double dx, double dy)
 
 void lopatina::Triangle::scale(double k)
 {
+  if (k <= 0.0)
+  {
+    throw std::invalid_argument("Incorrect scale index\n");
+  }
   point_t pos_tri = {(points_[0].x + points_[1].x + points_[2].x) / 3.0, (points_[0].y + points_[1].y + points_[2].y) / 3.0};
   for (size_t i = 0; i < 3; ++i)
   {
