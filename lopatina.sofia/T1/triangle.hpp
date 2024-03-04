@@ -16,9 +16,7 @@ namespace lopatina
     virtual void move(double x, double y);
     virtual void scale(double k);
   private:
-    point_t p1_;
-    point_t p2_;
-    point_t p3_;
+    point_t points_[3];
   };
 }
 

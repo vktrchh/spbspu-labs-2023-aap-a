@@ -4,9 +4,7 @@
 #include <stdexcept>
 
 lopatina::Triangle::Triangle(point_t point1, point_t point2, point_t point3):
-  p1_(point1),
-  p2_(point2),
-  p3_(point3)
+  points_{point1, point2, point3}
 {
   double a = std::sqrt(std::pow(point1.x - point2.x, 2.0) + std::pow(point1.y - point2.y, 2.0));
   double b = std::sqrt(std::pow(point2.x - point3.x, 2.0) + std::pow(point2.y - point3.y, 2.0));
@@ -19,15 +17,21 @@ lopatina::Triangle::Triangle(point_t point1, point_t point2, point_t point3):
 
 double lopatina::Triangle::getArea() const
 {
-  return 0.5 * (std::abs ((p2_.x - p1_.x) * (p3_.y - p1_.y) - (p3_.x - p1_.x) * (p2_.y - p1_.y)));
+  point_t p1 = points_[0];
+  point_t p2 = points_[1];
+  point_t p3 = points_[2];
+  return 0.5 * (std::abs ((p2.x - p1.x) * (p3.y - p1.y) - (p3.x - p1.x) * (p2.y - p1.y)));
 }
 
 lopatina::rectangle_t lopatina::Triangle::getFrameRect() const
 {
-  double max_x = std::max({p1_.x, p2_.x, p3_.x});
-  double min_x = std::min({p1_.x, p2_.x, p3_.x});
-  double max_y = std::max({p1_.y, p2_.y, p3_.y});
-  double min_y = std::min({p1_.y, p2_.y, p3_.y});
+  point_t p1 = points_[0];
+  point_t p2 = points_[1];
+  point_t p3 = points_[2];
+  double max_x = std::max({p1.x, p2.x, p3.x});
+  double min_x = std::min({p1.x, p2.x, p3.x});
+  double max_y = std::max({p1.y, p2.y, p3.y});
+  double min_y = std::min({p1.y, p2.y, p3.y});
   double height = max_y - min_y;
   double width = max_x - min_x;
   point_t pos = {min_x + (width / 2.0), min_y + (height / 2.0)};
@@ -37,7 +41,7 @@ lopatina::rectangle_t lopatina::Triangle::getFrameRect() const
 
 void lopatina::Triangle::move(point_t new_pos)
 {
-  point_t pos_tri = {(p1_.x + p2_.x + p3_.x) / 3.0, (p1_.y + p2_.y + p3_.y) / 3.0};
+  point_t pos_tri = {(points_[0].x + points_[1].x + points_[2].x) / 3.0, (points_[0].y + points_[1].y + points_[2].y) / 3.0};
   double dx = new_pos.x - pos_tri.x;
   double dy = new_pos.y - pos_tri.y;
   move(dx, dy);
@@ -45,21 +49,19 @@ void lopatina::Triangle::move(point_t new_pos)
 
 void lopatina::Triangle::move(double dx, double dy)
 {
-  p1_.x += dx;
-  p1_.y += dy;
-  p2_.x += dx;
-  p2_.y += dy;
-  p3_.x += dx;
-  p3_.y += dy;
+  for (size_t i = 0; i < 3; ++i)
+  {
+    points_[i].x += dx;
+    points_[i].y += dy;
+  }
 }
 
 void lopatina::Triangle::scale(double k)
 {
-  point_t pos_tri = {(p1_.x + p2_.x + p3_.x) / 3.0, (p1_.y + p2_.y + p3_.y) / 3.0};
-  p1_.x = pos_tri.x + (p1_.x - pos_tri.x) * k;
-  p1_.y = pos_tri.y + (p1_.y - pos_tri.y) * k;
-  p2_.x = pos_tri.x + (p2_.x - pos_tri.x) * k;
-  p2_.y = pos_tri.y + (p2_.y - pos_tri.y) * k;
-  p3_.x = pos_tri.x + (p3_.x - pos_tri.x) * k;
-  p3_.y = pos_tri.y + (p3_.y - pos_tri.y) * k;
+  point_t pos_tri = {(points_[0].x + points_[1].x + points_[2].x) / 3.0, (points_[0].y + points_[1].y + points_[2].y) / 3.0};
+  for (size_t i = 0; i < 3; ++i)
+  {
+    points_[i].x = pos_tri.x + (points_[i].x - pos_tri.x) * k;
+    points_[i].y = pos_tri.y + (points_[i].y - pos_tri.y) * k;
+  }
 }

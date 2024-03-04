@@ -49,10 +49,6 @@ lopatina::Diamond::Diamond(point_t p1, point_t p2, point_t p3):
   side_x_vertex_(defineSidePointX(p1, p2, p3)),
   side_y_vertex_(defineSidePointY(p1, p2, p3))
 {
-  if (((p1.x == p2.x) && (p1.y == p2.y)) || ((p2.x == p3.x) && (p2.y == p3.y)) || ((p1.x == p3.x) && (p1.y == p3.y)))
-  {
-    throw std::invalid_argument("Figure has wrong parameter");
-  }
   if (!((central_vertex_.x == side_y_vertex_.x) && (central_vertex_.y != side_y_vertex_.y)))
   {
     throw std::invalid_argument("Figure has wrong parameter");
