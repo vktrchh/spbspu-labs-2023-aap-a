@@ -47,7 +47,16 @@ int main()
         outputResult(std::cout, array, counter);
         for (size_t i = 0; i < counter; ++i)
         {
-          isoScale(array[i], {center_x, center_y}, index);
+          try
+          {
+            isoScale(array[i], {center_x, center_y}, index);
+          }
+          catch (const std::invalid_argument & e)
+          {
+            std::cerr << e.what();
+            deleteArray(array, counter);
+            return 1;
+          }
         }
         outputResult(std::cout, array, counter);
       }
