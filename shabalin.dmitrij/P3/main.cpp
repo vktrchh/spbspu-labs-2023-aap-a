@@ -111,7 +111,7 @@ int main()
   char *answer2 = new char[stringSize];
   size_t answer = duplicateNumbers(finalyString);
   std::cout << answer << "\n";
-  try 
+  try
   {
     answer2 = makeLowerCaseString(finalyString);
     std::cout << answer2;
