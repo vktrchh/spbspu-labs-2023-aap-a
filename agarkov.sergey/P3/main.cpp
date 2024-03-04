@@ -1,6 +1,7 @@
 #include <iostream>
 #include "inputCStr.hpp"
 #include "fillNewRepStr.hpp"
+#include "fillNewStrWithoutVow.hpp"
 
 int main()
 {
@@ -14,7 +15,9 @@ int main()
   }
 
   char* rep_str = new char[size/2 + 1];
-  rep_str[size/2 + 1] = '\0';
   fillNewRepStr(c_str, rep_str);
   std::cout << rep_str << "\n";
+  char* vow_str = new char[size];
+  fillNewStrWithoutVow(c_str, vow_str);
+  std::cout << vow_str << "\n";
 }
