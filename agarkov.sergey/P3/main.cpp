@@ -2,7 +2,8 @@
 
 int main()
 {
-  char a[100];
+  size_t capacity = 10;
+  char* a = new char[capacity];
   int count = 0;
   while (std::cin >> a[count])
   {
