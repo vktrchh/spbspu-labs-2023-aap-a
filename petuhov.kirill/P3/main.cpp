@@ -27,6 +27,7 @@ int main()
     petuhov::substractString(firstString, secondString);
     if (firstString[0] == '\0')
     {
+      delete[] firstString;
       std::cerr << "first string is empty";
       return 2;
     }
