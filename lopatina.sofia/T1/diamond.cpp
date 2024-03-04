@@ -1,12 +1,63 @@
 #include "diamond.hpp"
 #include <cstddef>
 #include <cmath>
+#include <stdexcept>
 
-lopatina::Diamond::Diamond(point_t central, point_t side_x, point_t side_y):
-  central_vertex_(central),
-  side_x_vertex_(side_x),
-  side_y_vertex_(side_y)
-{}
+lopatina::point_t defineCentralPoint(lopatina::point_t p1, lopatina::point_t p2, lopatina::point_t p3)
+{
+  if (((p1.x == p2.x) && (p1.y == p3.y)) || ((p1.x == p3.x) && (p1.y == p2.y)))
+  {
+    return p1;
+  }
+  else if (((p2.x == p1.x) && (p2.y == p3.y)) || ((p2.x == p3.x) && (p2.y == p1.y)))
+  {
+    return p2;
+  }
+  return p3;
+}
+
+lopatina::point_t defineSidePointX(lopatina::point_t p1, lopatina::point_t p2, lopatina::point_t p3)
+{
+  lopatina::point_t centre = defineCentralPoint(p1, p2, p3);
+  if ((centre.y == p1.y) && (centre.x != p1.x))
+  {
+    return p1;
+  }
+  else if ((centre.y == p2.y) && (centre.x != p2.x))
+  {
+    return p2;
+  }
+  return p3;
+}
+
+lopatina::point_t defineSidePointY(lopatina::point_t p1, lopatina::point_t p2, lopatina::point_t p3)
+{
+  lopatina::point_t centre = defineCentralPoint(p1, p2, p3);
+  if ((centre.x == p1.x) && (centre.y != p1.y))
+  {
+    return p1;
+  }
+  else if ((centre.x == p2.x) && (centre.y != p2.y))
+  {
+    return p2;
+  }
+  return p3;
+}
+
+lopatina::Diamond::Diamond(point_t p1, point_t p2, point_t p3):
+  central_vertex_(defineCentralPoint(p1, p2, p3)),
+  side_x_vertex_(defineSidePointX(p1, p2, p3)),
+  side_y_vertex_(defineSidePointY(p1, p2, p3))
+{
+  if (((p1.x == p2.x) && (p1.y == p2.y)) || ((p2.x == p3.x) && (p2.y == p3.y)) || ((p1.x == p3.x) && (p1.y == p3.y)))
+  {
+    throw std::invalid_argument("Figure has wrong parameter");
+  }
+  if (!((central_vertex_.x == side_y_vertex_.x) && (central_vertex_.y == side_x_vertex_.y)))
+  {
+    throw std::invalid_argument("Figure has wrong parameter");
+  }
+}
 
 double lopatina::Diamond::getArea() const
 {

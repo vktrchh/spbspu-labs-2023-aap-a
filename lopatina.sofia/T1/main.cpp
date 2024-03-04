@@ -1,13 +1,15 @@
 #include <iostream>
+#include <stdexcept>
 #include "base-types.hpp"
 #include "shape.hpp"
 #include "rectangle.hpp"
 #include "square.hpp"
 #include "triangle.hpp"
 #include "diamond.hpp"
-#include "check_functions.hpp"
 #include "del_out_functions.hpp"
 #include "isoscale.hpp"
+
+//void inputShapes(std::istream & in, )
 
 int main()
 {
@@ -61,18 +63,20 @@ int main()
       return 1;
     }
 
-    if (name == "RECTANGLE")
+
+   if (name == "RECTANGLE")
     {
       figure_exist_flag = 1;
       double low_left_x = 0.0, low_left_y = 0.0, up_right_x = 0.0, up_right_y = 0.0;
       std::cin >> low_left_x >> low_left_y >> up_right_x >> up_right_y;
-      if (!isRectangleCorrect({low_left_x, low_left_y}, {up_right_x, up_right_y}))
-      {
-        error_flag = 1;
-      }
-      else
+      try
       {
         array[counter++] = new Rectangle({low_left_x, low_left_y}, {up_right_x, up_right_y});
+      }
+      catch (const std::invalid_argument & e)
+      {
+        //std::cout << "rect: " << e.what() << '\n';
+        error_flag = 1;
       }
     }
 
@@ -81,13 +85,14 @@ int main()
       figure_exist_flag = 1;
       double low_left_x = 0.0, low_left_y = 0.0, side = 0.0;
       std::cin >> low_left_x >> low_left_y >> side;
-      if (side <= 0.0)
-      {
-        error_flag = 1;
-      }
-      else
+      try
       {
         array[counter++] = new Square({low_left_x, low_left_y}, side);
+      }
+      catch (const std::invalid_argument & e)
+      {
+        //std::cout << "sq: " << e.what() << '\n';
+        error_flag = 1;
       }
     }
 
@@ -96,13 +101,14 @@ int main()
       figure_exist_flag = 1;
       double point1_x = 0.0, point1_y = 0.0, point2_x = 0.0, point2_y = 0.0, point3_x = 0.0, point3_y = 0.0;
       std::cin >> point1_x >> point1_y >> point2_x >> point2_y >> point3_x >> point3_y;
-      if (!isTriangleCorrect({point1_x, point1_y}, {point2_x, point2_y}, {point3_x, point3_y}))
-      {
-        error_flag = 1;
-      }
-      else
+      try
       {
         array[counter++] = new Triangle({point1_x, point1_y}, {point2_x, point2_y}, {point3_x, point3_y});
+      }
+      catch (const std::invalid_argument & e)
+      {
+        //std::cout << "tri: " << e.what() << '\n';
+        error_flag = 1;
       }
     }
 
@@ -111,56 +117,14 @@ int main()
       figure_exist_flag = 1;
       double point1_x = 0.0, point1_y = 0.0, point2_x = 0.0, point2_y = 0.0, point3_x = 0.0, point3_y = 0.0;
       std::cin >> point1_x >> point1_y >> point2_x >> point2_y >> point3_x >> point3_y;
-      if (!isTriangleCorrect({point1_x, point1_y}, {point2_x, point2_y}, {point3_x, point3_y}))
+      try
       {
-        error_flag = 1;
+        array[counter++] = new Diamond({point1_x, point1_y}, {point2_x, point2_y}, {point3_x, point3_y});
       }
-      else
+      catch (const std::invalid_argument & e)
       {
-        point_t point1 = {0.0, 0.0};
-        point_t point2 = {0.0, 0.0};
-        point_t point3 = {0.0, 0.0};
-        point_t central_point = {0.0, 0.0};
-        point_t side_point_x = {0.0, 0.0};
-        point_t side_point_y = {0.0, 0.0};
-        int flag_diamond_condition = 0;
-
-        for (size_t i = 1; i < 4; ++i)
-        {
-          if (i == 1)
-          {
-            point1 = {point1_x, point1_y};
-            point2 = {point2_x, point2_y};
-            point3 = {point3_x, point3_y};
-          }
-          if (i == 2)
-          {
-            point1 = {point2_x, point2_y};
-            point2 = {point1_x, point1_y};
-            point3 = {point3_x, point3_y};
-          }
-          if (i == 3)
-          {
-            point1 = {point3_x, point3_y};
-            point2 = {point1_x, point1_y};
-            point3 = {point2_x, point2_y};
-          }
-          if (isCentralPoint(point1, point2, point3))
-          {
-            flag_diamond_condition = 1;
-            central_point = {point1.x, point1.y};
-            side_point_x = defineSidePointX(point1, point2, point3);
-            side_point_y = defineSidePointY(point1, point2, point3);
-          }
-        }
-        if (flag_diamond_condition == 0)
-        {
-          error_flag = 1;
-        }
-        else
-        {
-          array[counter++] = new Diamond(central_point, side_point_x, side_point_y);
-        }
+        //std::cout << "rect: " << e.what() << '\n';
+        error_flag = 1;
       }
     }
   }

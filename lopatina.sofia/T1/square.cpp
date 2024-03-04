@@ -1,9 +1,15 @@
 #include "square.hpp"
+#include <stdexcept>
 
 lopatina::Square::Square(point_t left_corner, double side):
   left_corner_(left_corner),
   side_(side)
-{}
+{
+  if (side <= 0.0)
+  {
+    throw std::invalid_argument("Figure has wrong parameter");
+  }
+}
 
 double lopatina::Square::getArea() const
 {

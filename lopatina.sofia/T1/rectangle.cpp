@@ -1,9 +1,15 @@
 #include "rectangle.hpp"
+#include <stdexcept>
 
 lopatina::Rectangle::Rectangle(point_t low_left, point_t up_right):
   left_corner_(low_left),
   right_corner_(up_right)
-{}
+{
+  if ((low_left.x >= up_right.x) || (low_left.y >= up_right.y))
+  {
+    throw std::invalid_argument("Figure has wrong parameter");
+  }
+}
 
 double lopatina::Rectangle::getArea() const
 {

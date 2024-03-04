@@ -1,12 +1,21 @@
 #include "triangle.hpp"
 #include <cmath>
 #include <algorithm>
+#include <stdexcept>
 
 lopatina::Triangle::Triangle(point_t point1, point_t point2, point_t point3):
   p1_(point1),
   p2_(point2),
   p3_(point3)
-{}
+{
+  double a = std::sqrt(std::pow(point1.x - point2.x, 2.0) + std::pow(point1.y - point2.y, 2.0));
+  double b = std::sqrt(std::pow(point2.x - point3.x, 2.0) + std::pow(point2.y - point3.y, 2.0));
+  double c = std::sqrt(std::pow(point1.x - point3.x, 2.0) + std::pow(point1.y - point3.y, 2.0));
+  if ((a >= (b + c)) || (b >= (a + c)) || (c >= (a + b)))
+  {
+    throw std::invalid_argument("Figure has wrong parameter");
+  }
+}
 
 double lopatina::Triangle::getArea() const
 {

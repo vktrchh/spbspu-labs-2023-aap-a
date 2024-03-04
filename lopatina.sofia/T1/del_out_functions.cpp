@@ -3,7 +3,7 @@
 #include <iomanip>
 #include <algorithm>
 
-void lopatina::outputResult(std::ostream & output, Shape ** array, size_t counter)
+void lopatina::outputResult(std::ostream & output, const Shape * const * array, size_t counter)
 {
   double sum_area = 0.0;
   for (size_t i = 0; i < counter; ++i)

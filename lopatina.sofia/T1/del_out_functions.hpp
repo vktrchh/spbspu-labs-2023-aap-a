@@ -6,7 +6,7 @@
 #include "base-types.hpp"
 namespace lopatina
 {
-  void outputResult(std::ostream & output, Shape ** array, size_t counter);
+  void outputResult(std::ostream & output, const Shape * const * array, size_t counter);
   void deleteArray(Shape ** array, size_t counter);
 }
 
