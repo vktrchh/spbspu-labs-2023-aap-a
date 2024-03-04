@@ -13,7 +13,7 @@ int main()
   try
   {
     firstString = petuhov::streamToString(std::cin);
-    if (firstString != nullptr)
+    if (firstString != nullptr && firstString[0] != '\0')
     {
       while (firstString[length] != '\0')
       {
