@@ -70,7 +70,7 @@ int duplicateNumbers(const char *str)
   return 0;
 }
 
-char *makeUpperCaseString(char *str)
+char *makeLowerCaseString(char *str)
 {
   if (str == nullptr || *str == '\0')
   {
@@ -105,23 +105,23 @@ int main()
   if (finalyString[0] == '\0')
   {
     delete[] finalyString;
-    std::cerr << "Error.";
+    std::cerr << "Error";
     return 1;
   }
+  char *answer2 = new char[stringSize];
   size_t answer = duplicateNumbers(finalyString);
   std::cout << answer << "\n";
-  try
+  try 
   {
-    char *answer2 = new char[stringSize];
+    answer2 = makeLowerCaseString(finalyString);
+    std::cout << answer2;
   }
-  catch (std::exception & e)
+  catch (std::exception( & e))
   {
     std::cerr << "Error: " << e.what() << "\n";
     delete[] answer2;
     return 1;
   }
-  answer2 = makeUpperCaseString(finalyString);
-  std::cout << answer2;
+  //std::cout << answer2;
   return 0;
 }
-
