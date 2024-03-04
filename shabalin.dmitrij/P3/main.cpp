@@ -116,7 +116,7 @@ int main()
     answer2 = makeLowerCaseString(finalyString);
     std::cout << answer2;
   }
-  catch (std::exception( & e))
+  catch (std::exception & e)
   {
     std::cerr << "Error: " << e.what() << "\n";
     delete[] answer2;
