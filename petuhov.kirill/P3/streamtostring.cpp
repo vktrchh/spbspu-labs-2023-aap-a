@@ -30,6 +30,7 @@ char * petuhov::streamToString(std::istream & input)
     stringBuffer[stringBufferSize++] = sym;
     string = stringBuffer;
   }
+  delete[] stringBuffer;
   stringBuffer = new char[stringBufferSize + 1];
   for (size_t i = 0; i < stringBufferSize; ++i)
   {
