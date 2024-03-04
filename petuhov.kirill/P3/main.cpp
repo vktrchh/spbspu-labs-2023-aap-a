@@ -25,7 +25,7 @@ int main()
 
     petuhov::removeSpaces(firstString, cloneString);
     petuhov::substractString(firstString, secondString);
-    if (!firstString)
+    if (firstString[0] == '\0')
     {
       std::cerr << "first string is empty";
       return 2;
