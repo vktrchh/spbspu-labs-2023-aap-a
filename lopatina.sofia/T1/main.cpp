@@ -9,8 +9,6 @@
 #include "del_out_functions.hpp"
 #include "isoscale.hpp"
 
-//void inputShapes(std::istream & in, )
-
 int main()
 {
   using namespace lopatina;
@@ -19,6 +17,9 @@ int main()
   size_t counter = 0;
   int error_flag = 0;
   int figure_exist_flag = 0;
+
+  std::string shapesNames[4] = {"RECTANGLE", "SQUARE", "TRIANGLE", "DIAMOND"};
+  size_t amountParameters[4] = {4, 3, 6, 6};
 
   while (counter != 1000)
   {
@@ -63,68 +64,42 @@ int main()
       return 1;
     }
 
-
-   if (name == "RECTANGLE")
+    double parameters[6] = {};
+    for (size_t i = 0; i < 4; ++i)
     {
-      figure_exist_flag = 1;
-      double low_left_x = 0.0, low_left_y = 0.0, up_right_x = 0.0, up_right_y = 0.0;
-      std::cin >> low_left_x >> low_left_y >> up_right_x >> up_right_y;
-      try
+      if (shapesNames[i] == name)
       {
-        array[counter++] = new Rectangle({low_left_x, low_left_y}, {up_right_x, up_right_y});
-      }
-      catch (const std::invalid_argument & e)
-      {
-        //std::cout << "rect: " << e.what() << '\n';
-        error_flag = 1;
-      }
-    }
-
-    if (name == "SQUARE")
-    {
-      figure_exist_flag = 1;
-      double low_left_x = 0.0, low_left_y = 0.0, side = 0.0;
-      std::cin >> low_left_x >> low_left_y >> side;
-      try
-      {
-        array[counter++] = new Square({low_left_x, low_left_y}, side);
-      }
-      catch (const std::invalid_argument & e)
-      {
-        //std::cout << "sq: " << e.what() << '\n';
-        error_flag = 1;
-      }
-    }
-
-    if (name == "TRIANGLE")
-    {
-      figure_exist_flag = 1;
-      double point1_x = 0.0, point1_y = 0.0, point2_x = 0.0, point2_y = 0.0, point3_x = 0.0, point3_y = 0.0;
-      std::cin >> point1_x >> point1_y >> point2_x >> point2_y >> point3_x >> point3_y;
-      try
-      {
-        array[counter++] = new Triangle({point1_x, point1_y}, {point2_x, point2_y}, {point3_x, point3_y});
-      }
-      catch (const std::invalid_argument & e)
-      {
-        //std::cout << "tri: " << e.what() << '\n';
-        error_flag = 1;
-      }
-    }
-
-    if (name == "DIAMOND")
-    {
-      figure_exist_flag = 1;
-      double point1_x = 0.0, point1_y = 0.0, point2_x = 0.0, point2_y = 0.0, point3_x = 0.0, point3_y = 0.0;
-      std::cin >> point1_x >> point1_y >> point2_x >> point2_y >> point3_x >> point3_y;
-      try
-      {
-        array[counter++] = new Diamond({point1_x, point1_y}, {point2_x, point2_y}, {point3_x, point3_y});
-      }
-      catch (const std::invalid_argument & e)
-      {
-        //std::cout << "diam: " << e.what() << '\n';
-        error_flag = 1;
+        figure_exist_flag = 1;
+        for (size_t j = 0; j < amountParameters[i]; ++j)
+        {
+          double param = 0.0;
+          std::cin >> param;
+          parameters[j] = param;
+        }
+        try
+        {
+          if (name == "RECTANGLE")
+          {
+            array[counter++] = new Rectangle({parameters[0], parameters[1]}, {parameters[2], parameters[3]});
+          }
+          if (name == "SQUARE")
+          {
+            array[counter++] = new Square({parameters[0], parameters[1]}, parameters[2]);
+          }
+          if (name == "TRIANGLE")
+          {
+            array[counter++] = new Triangle({parameters[0], parameters[1]}, {parameters[2], parameters[3]}, {parameters[4], parameters[5]});
+          }
+          if (name == "DIAMOND")
+          {
+            array[counter++] = new Diamond({parameters[0], parameters[1]}, {parameters[2], parameters[3]}, {parameters[4], parameters[5]});
+          }
+        }
+        catch (const std::invalid_argument & e)
+        {
+          //std::cout << "error: " << e.what() << '\n';
+          error_flag = 1;
+        }
       }
     }
   }
