@@ -2,7 +2,7 @@
 
 bool isVowels(char ch)
 {
-  return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u';
+  return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' || ch == 'y';
 }
 
 void fillNewStrWithoutVow(const char* source, char* dest)
