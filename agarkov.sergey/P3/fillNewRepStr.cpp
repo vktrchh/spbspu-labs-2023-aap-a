@@ -26,9 +26,10 @@ void fillNewRepStr(const char* source, char* dest)
       }
       if (exist_in_dest)
       {
-        *(dest++) = *i;
+        *dest = *i;
+        dest++;
       }
     }
   }
-  *(dest++) = '\0';
+  *dest = '\0';
 }
