@@ -57,9 +57,9 @@ int duplicateNumbers(const char *str)
     return 0;
   }
 
-  for (size_t i = 1; i < str[i] != '\0'; ++i)
+  for (size_t i = 1; str[i] != '\0'; ++i)
   {
-    for (size_t j = 0; j < str[j] != '\0' ; ++j)
+    for (size_t j = 0; str[j] != '\0' ; ++j)
     {
       if ((str[i] == str[j]) && (isdigit(str[i])))
       {
