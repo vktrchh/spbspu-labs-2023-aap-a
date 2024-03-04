@@ -29,14 +29,6 @@ int main()
     {
       double center_x = 0.0, center_y = 0.0, index = 0.0;
       std::cin >> center_x >> center_y >> index;
-/*
-      if (index <= 0.0)
-      {
-        std::cerr << "Incorrect scale index\n";
-        deleteArray(array, counter);
-        return 1;
-      }
-*/
       if (figure_exist_flag == 0)
       {
         std::cerr << "Nothing to scale\n";
@@ -105,7 +97,7 @@ int main()
             array[counter++] = new Diamond({parameters[0], parameters[1]}, {parameters[2], parameters[3]}, {parameters[4], parameters[5]});
           }
         }
-        catch (const std::invalid_argument & e)
+        catch (const std::invalid_argument &)
         {
           error_flag = 1;
         }
