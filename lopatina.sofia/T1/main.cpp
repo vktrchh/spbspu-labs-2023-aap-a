@@ -123,7 +123,7 @@ int main()
       }
       catch (const std::invalid_argument & e)
       {
-        //std::cout << "rect: " << e.what() << '\n';
+        //std::cout << "diam: " << e.what() << '\n';
         error_flag = 1;
       }
     }

@@ -53,7 +53,11 @@ lopatina::Diamond::Diamond(point_t p1, point_t p2, point_t p3):
   {
     throw std::invalid_argument("Figure has wrong parameter");
   }
-  if (!((central_vertex_.x == side_y_vertex_.x) && (central_vertex_.y == side_x_vertex_.y)))
+  if (!((central_vertex_.x == side_y_vertex_.x) && (central_vertex_.y != side_y_vertex_.y)))
+  {
+    throw std::invalid_argument("Figure has wrong parameter");
+  }
+  if (!((central_vertex_.y == side_x_vertex_.y) && (central_vertex_.x != side_x_vertex_.x)))
   {
     throw std::invalid_argument("Figure has wrong parameter");
   }
