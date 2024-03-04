@@ -76,7 +76,7 @@ char *makeLowerCaseString(char *str)
   {
     return 0;
   }
-  for (size_t i = 0; i < str[i] != '\0'; ++i)
+  for (size_t i = 0; str[i] != '\0'; ++i)
   {
     if(islower(str[i]))
       {
