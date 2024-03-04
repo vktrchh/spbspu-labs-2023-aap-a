@@ -13,7 +13,7 @@ int main()
   try
   {
     firstString = petuhov::streamToString(std::cin);
-    if (firstString != nullptr && firstString[0] != '\0')
+    if (firstString != nullptr)
     {
       while (firstString[length] != '\0')
       {
@@ -25,7 +25,7 @@ int main()
 
     petuhov::removeSpaces(firstString, cloneString);
     petuhov::substractString(firstString, secondString);
-    if (firstString[0] == '\0')
+    if (!firstString)
     {
       delete[] firstString;
       std::cerr << "first string is empty";
