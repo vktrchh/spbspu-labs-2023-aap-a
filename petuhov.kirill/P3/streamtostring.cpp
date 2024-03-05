@@ -17,7 +17,15 @@ char * petuhov::streamToString(std::istream & input)
       delete[] string;
       throw std::logic_error("Error reading input");
     }
-    buffer = new char[bufferSize + 1]; // 2
+    try 
+    {
+      buffer = new char[bufferSize + 1];
+    }
+    catch (std::bad_alloc &)
+    {
+      delete[] string;
+      throw;
+    }
     if (string != nullptr)
     {
       for (size_t i = 0; i < bufferSize - 1; ++i)
