@@ -17,7 +17,7 @@ char * petuhov::streamToString(std::istream & input)
       delete[] string;
       throw std::logic_error("Error reading input");
     }
-    try 
+    try
     {
       buffer = new char[bufferSize + 1];
     }
