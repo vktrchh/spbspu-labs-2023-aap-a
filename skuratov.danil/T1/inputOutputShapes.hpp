@@ -10,7 +10,7 @@ namespace skuratov
 {
   void clearingShapes(Shape** shapes, size_t count);
   void inputRectangle(std::istream& input, Shape** shapes, size_t& count);
-  void outputFrameRec(std::ostream& out, const Shape* shape);
+  void outputFrameRec(std::ostream& out, Shape* shape);
   void inputSquare(std::istream& input, Shape** shapes, size_t& count);
   void inputDiamond(std::istream& input, Shape** shapes, size_t& count);
   void inputParallelogram(std::istream& input, Shape** shapes, size_t& count);
