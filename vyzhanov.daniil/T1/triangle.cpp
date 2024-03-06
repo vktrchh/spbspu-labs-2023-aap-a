@@ -34,3 +34,29 @@ vyzhanov::rectangle_t vyzhanov::Triangle::getFrameRect() const
   point_t pos = { std::min(std::min(points_[0].x, points_[1].x), points_[2].x) + width / 2, std::min(std::min(points_[0].y, points_[1].y), points_[2].y) + height / 2 };
   return { width, height, pos };
 }
+
+void vyzhanov::Triangle::move(const point_t& pos)
+{
+  point_t cen = { (points_[0].x + points_[1].x + points_[2].x) / 3, (points_[0].y + points_[1].y + points_[2].y) / 3 };
+  move(pos.x - cen.x, pos.y - cen.y);
+}
+
+void vyzhanov::Triangle::move(double dx, double dy)
+{
+  for (int i = 0; i < 3; i++)
+  {
+    points_[i].x += dx;
+    points_[i].y += dy;
+  }
+}
+
+void vyzhanov::Triangle::scale(const double ratio)
+{
+  point_t cen = { (points_[0].x + points_[1].x + points_[2].x) / 3, (points_[0].y + points_[1].y + points_[2].y) / 3 };
+  points_[0].x = ratio * (points_[0].x - cen.x) + cen.x;
+  points_[0].y = ratio * (points_[0].y - cen.y) + cen.y;
+  points_[1].x = ratio * (points_[1].x - cen.x) + cen.x;
+  points_[1].y = ratio * (points_[1].y - cen.y) + cen.y;
+  points_[2].x = ratio * (points_[2].x - cen.x) + cen.x;
+  points_[2].y = ratio * (points_[2].y - cen.y) + cen.y;
+}
