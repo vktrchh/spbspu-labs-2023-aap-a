@@ -50,7 +50,6 @@ void skuratov::inputSquare(std::istream& input, Shape** shapes, size_t& count)
     {
       throw std::invalid_argument("Invalid arguments for the Square");
     }
-    ++i;
   }
   shapes[count] = new Square({ args[0], args[1] }, args[2]);
 }
@@ -69,17 +68,13 @@ void skuratov::inputDiamond(std::istream& input, Shape** shapes, size_t& count)
 void skuratov::inputParallelogram(std::istream& input, Shape** shapes, size_t& count)
 {
   double args[6] = {};
-  size_t i = 0;
-  do
+  for (size_t i = 0; i < 6; ++i)
   {
-    input >> args[i];
-    ++i;
-  }
-  while (i < 6 && input);
-
-  if (!input)
-  {
-    throw std::invalid_argument("Invalid arguments for the Parallelogram");
+      input >> args[i];
+      if (!input)
+      {
+          throw std::invalid_argument("Invalid arguments for the Parallelogram");
+      }
   }
   shapes[count] = new Parallelogram({ args[0], args[1] }, { args[2], args[3] }, { args[4], args[5] });
 }
