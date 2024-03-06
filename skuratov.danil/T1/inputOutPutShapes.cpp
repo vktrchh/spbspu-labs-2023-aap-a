@@ -31,7 +31,7 @@ void skuratov::inputRectangle(std::istream& input, Shape** shapes, size_t& count
   shapes[count] = new Rectangle({ args[0], args[1] }, { args[2], args[3] });
 }
 
-void skuratov::outputFrameRec(std::ostream& out, Shape* shape)
+void skuratov::outputFrameRec(std::ostream& out, const Shape* shape)
 {
   out << " ";
   out << shape->getFrameRect().pos.x - shape->getFrameRect().width / 2 << " ";
@@ -148,7 +148,7 @@ skuratov::Shape** skuratov::inputShapes(std::istream& input, size_t& count)
   return newShape;
 }
 
-void skuratov::outputShapes(std::ostream& out, Shape* const* shapes, size_t count)
+void skuratov::outputShapes(std::ostream& out, const Shape* const* shapes, size_t count)
 {
   double area = 0;
   for (size_t i = 0; i < count; ++i)
