@@ -38,24 +38,8 @@ double skuratov::Parallelogram::getArea() const
 
 skuratov::rectangle_t skuratov::Parallelogram::getFrameRect() const
 {
-  double width = {};
-  if (p1_.x == p2_.x)
-  {
-    width = std::abs(p2_.x - p3_.x);
-  }
-  else
-  {
-    width = std::abs(p2_.x - p1_.x);
-  }
-  double height = {};
-  if (p1_.y == p2_.y)
-  {
-    height = std::abs(p2_.y - p3_.y);
-  }
-  else
-  {
-    height = std::abs(p1_.y - p2_.y);
-  }
+  double width = std::abs(p2_.x - p3_.x) + std::abs(p1_.x - p2_.x);
+  double height = (p1_.y == p2_.y) * std::abs(p2_.y - p3_.y) + (p1_.y != p2_.y) * std::abs(p1_.y - p2_.y);
   point_t center = findCenOfParal(p1_, p2_, p3_);
   return { width, height, center };
 }
