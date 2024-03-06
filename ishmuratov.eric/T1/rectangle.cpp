@@ -1,4 +1,5 @@
 #include "rectangle.hpp"
+#include "triangle.hpp"
 
 ishmuratov::Rectangle::Rectangle(const point_t & point1, const point_t & point2):
   botLeft_(point1),
@@ -31,7 +32,7 @@ ishmuratov::rectangle_t ishmuratov::Rectangle::getFrameRect() const
   return tri.getFrameRect();
 }
 
-void ishmuratov::Rectangle::move(point_t & position)
+void ishmuratov::Rectangle::move(point_t position)
 {
   double center_x = getFrameRect().pos.x;
   double center_y = getFrameRect().pos.y;
@@ -47,6 +48,10 @@ void ishmuratov::Rectangle::move(double dx, double dy)
 
 void ishmuratov::Rectangle::scale(double factor)
 {
+  if (factor <= 0)
+  {
+    throw std::runtime_error("Invalid factor!");
+  }
   double dxLeft = (botLeft_.x - getFrameRect().pos.x) * (factor - 1);
   double dyLeft = (botLeft_.y - getFrameRect().pos.y) * (factor - 1);
   double dxRight = (topRight_.x - getFrameRect().pos.x) * (factor - 1);

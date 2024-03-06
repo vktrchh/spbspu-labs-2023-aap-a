@@ -34,7 +34,7 @@ int main()
   try
   {
     std::cin >> position.x >> position.y >> factor;
-    if ((!std::cin) || (factor < 0))
+    if (!std::cin)
     {
       throw std::runtime_error("Bad input!");
     }

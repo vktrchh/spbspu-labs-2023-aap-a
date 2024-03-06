@@ -1,6 +1,6 @@
 #include "output.hpp"
 
-void ishmuratov::outputShape(std::ostream & output, Shape ** shapes, size_t count)
+void ishmuratov::outputShape(std::ostream & output, const Shape * const * shapes, size_t count)
 {
   output << std::fixed << std::setprecision(1);
   double sumArea = 0;

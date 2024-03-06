@@ -3,12 +3,10 @@
 
 #include <iostream>
 #include "shape.hpp"
-#include "triangle.hpp"
-#include "data_process.hpp"
 
 namespace ishmuratov
 {
-  class Concave : public Shape
+  class Concave: public Shape
   {
     public:
       Concave(const point_t & point1, const point_t & point2, const point_t & point3, const point_t & point4);
@@ -16,7 +14,7 @@ namespace ishmuratov
       virtual double triangleCut() const;
       virtual double getArea() const;
       virtual rectangle_t getFrameRect() const;
-      virtual void move(point_t & position);
+      virtual void move(point_t position);
       virtual void move(double dx, double dy);
       virtual void scale(double factor);
     private:

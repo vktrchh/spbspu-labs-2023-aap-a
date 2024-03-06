@@ -1,4 +1,5 @@
 #include "triangle.hpp"
+#include "data_process.hpp"
 
 ishmuratov::Triangle::Triangle(const point_t & point1, const point_t & point2, const point_t & point3):
   corners_{ point1, point2, point3 }
@@ -30,7 +31,7 @@ ishmuratov::rectangle_t ishmuratov::Triangle::getFrameRect() const
   return { frame_width, frame_height, frame_pos };
 }
 
-void ishmuratov::Triangle::move(point_t & position)
+void ishmuratov::Triangle::move(point_t position)
 {
   point_t center = triangleCenter(corners_[0], corners_[1], corners_[2]);
   double dx = position.x - center.x;
@@ -48,6 +49,10 @@ void ishmuratov::Triangle::move(double dx, double dy)
 
 void ishmuratov::Triangle::scale(double factor)
 {
+  if (factor <= 0)
+  {
+    throw std::runtime_error("Invalid factor!");
+  }
   point_t center = triangleCenter(corners_[0], corners_[1], corners_[2]);
   scaleTriangle(corners_, center, factor);
 }

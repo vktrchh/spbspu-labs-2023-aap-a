@@ -7,7 +7,7 @@
 
 namespace ishmuratov
 {
-  void outputShape(std::ostream & output, Shape ** shapes, size_t count);
+  void outputShape(std::ostream & output, const Shape * const * shapes, size_t count);
 }
 
 #endif
