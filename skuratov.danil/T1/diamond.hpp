@@ -16,9 +16,9 @@ namespace skuratov
     virtual void scale(double scalingFactor);
     virtual ~Diamond() = default;
   private:
-    point_t corner1_;
-    point_t corner2_;
-    point_t corner3_;
+    point_t c1;
+    point_t c2;
+    point_t c3;
   };
 }
 

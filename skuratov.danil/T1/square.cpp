@@ -26,7 +26,7 @@ skuratov::rectangle_t skuratov::Square::getFrameRect() const
 void skuratov::Square::move(const point_t& A)
 {
   rectangle_t B = getFrameRect();
-  move (A.x - B.pos.x, A.y - B.pos.y);
+  move(A.x - B.pos.x, A.y - B.pos.y);
 }
 
 void skuratov::Square::move(double dx, double dy)

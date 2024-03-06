@@ -5,13 +5,11 @@
 #include <algorithm>
 
 skuratov::Diamond::Diamond(const point_t& corner1, const point_t& corner2, const point_t& corner3):
-  corner1_(corner1),
-  corner2_(corner2),
-  corner3_(corner3)
+  c1(corner1),
+  c2(corner2),
+  c3(corner3)
 {
-  if (!((corner1_.x == corner2_.x && corner2_.y == corner3_.y)
-    || (corner1_.x == corner3_.x && corner1_.y == corner2_.y)
-    || (corner1_.y == corner2_.y && corner2_.x == corner3_.x)))
+  if (!((c1.x == c2.x && c2.y == c3.y) || (c1.x == c3.x && c1.y == c2.y) || (c1.y == c2.y && c2.x == c3.x)))
   {
     throw std::invalid_argument("Error: diagonals of the diamond must be parallel to the coordinate axes");
   }
@@ -19,17 +17,17 @@ skuratov::Diamond::Diamond(const point_t& corner1, const point_t& corner2, const
 
 double skuratov::Diamond::getArea() const
 {
-  double diagonal1 = std::sqrt(std::pow(corner1_.x - corner3_.x, 2) + std::pow(corner1_.y - corner3_.y, 2));
-  double diagonal2 = std::sqrt(std::pow(corner1_.x - corner2_.x, 2) + std::pow(corner1_.y - corner2_.y, 2));
+  double diagonal1 = std::sqrt(std::pow(c1.x - c3.x, 2) + std::pow(c1.y - c3.y, 2));
+  double diagonal2 = std::sqrt(std::pow(c1.x - c2.x, 2) + std::pow(c1.y - c2.y, 2));
   return (diagonal1 * diagonal2) / 2;
 }
 
 skuratov::rectangle_t skuratov::Diamond::getFrameRect() const
 {
-  double minX = std::min({ corner1_.x, corner2_.x, corner3_.x });
-  double maxX = std::max({ corner1_.x, corner2_.x, corner3_.x });
-  double minY = std::min({ corner1_.y, corner2_.y, corner3_.y });
-  double maxY = std::max({ corner1_.y, corner2_.y, corner3_.y });
+  double minX = std::min({ c1.x, c2.x, c3.x });
+  double maxX = std::max({ c1.x, c2.x, c3.x });
+  double minY = std::min({ c1.y, c2.y, c3.y });
+  double maxY = std::max({ c1.y, c2.y, c3.y });
 
   double width = maxX - minX;
   double height = maxY - minY;
@@ -45,13 +43,16 @@ void skuratov::Diamond::move(const point_t& A)
 
 void skuratov::Diamond::move(double dx, double dy)
 {
-  corner1_.x += dx;
-  corner2_.x += dx;
-  corner3_.x += dx;
+  point_t vertices[] = { c1, c2, c3 };
 
-  corner1_.y += dy;
-  corner2_.y += dy;
-  corner3_.y += dy;
+  for (int i = 0; i < 3; ++i)
+  {
+    vertices[i].x += dx;
+    vertices[i].y += dy;
+  }
+  c1 = vertices[0];
+  c2 = vertices[1];
+  c3 = vertices[2];
 }
 
 void skuratov::Diamond::scale(double scalingFactor)
@@ -63,10 +64,11 @@ void skuratov::Diamond::scale(double scalingFactor)
 
   rectangle_t B = getFrameRect();
   point_t center = B.pos;
-  corner1_.x = center.x + scalingFactor * (corner1_.x - center.x);
-  corner1_.y = center.y + scalingFactor * (corner1_.y - center.y);
-  corner2_.x = center.x + scalingFactor * (corner2_.x - center.x);
-  corner2_.y = center.y + scalingFactor * (corner2_.y - center.y);
-  corner3_.x = center.x + scalingFactor * (corner3_.x - center.x);
-  corner3_.y = center.y + scalingFactor * (corner3_.y - center.y);
+
+  point_t points[] = { c1, c2, c3 };
+  for (auto& point : points)
+  {
+    point.x = center.x + scalingFactor * (point.x - center.x);
+    point.y = center.y + scalingFactor * (point.y - center.y);
+  }
 }

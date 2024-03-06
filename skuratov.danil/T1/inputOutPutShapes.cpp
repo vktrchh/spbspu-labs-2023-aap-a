@@ -140,7 +140,7 @@ skuratov::Shape** skuratov::inputShapes(std::istream& input, size_t& count)
     }
     catch (...)
     {
-      std::cerr << "eror\n";
+      std::cerr << "error\n";
       continue;
     }
   }

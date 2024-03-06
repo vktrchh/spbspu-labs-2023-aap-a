@@ -4,13 +4,13 @@
 #include <cmath>
 #include <algorithm>
 
-skuratov::point_t findCenOfParal(const skuratov::point_t& point1, const skuratov::point_t& point2, const skuratov::point_t& point3)
+skuratov::point_t findCenOfParal(const skuratov::point_t& p1, const skuratov::point_t& p2, const skuratov::point_t& p3)
 {
-  skuratov::point_t mid1 = { (point1.x + point2.x) / 2, (point1.y + point2.y) / 2 };
-  skuratov::point_t mid2 = { (point2.x + point3.x) / 2, (point2.y + point3.y) / 2 };
+  skuratov::point_t mid1 = { (p1.x + p2.x) / 2, (p1.y + p2.y) / 2 };
+  skuratov::point_t mid2 = { (p2.x + p3.x) / 2, (p2.y + p3.y) / 2 };
 
-  double slope1 = (point1.y - point3.y) / (point1.x - point3.x);
-  double slope2 = (point2.y - point3.y) / (point2.x - point3.x);
+  double slope1 = (p1.y - p3.y) / (p1.x - p3.x);
+  double slope2 = (p2.y - p3.y) / (p2.x - p3.x);
 
   skuratov::point_t center = {};
   center.x = (slope1 * mid1.x - slope2 * mid2.x + mid2.y - mid1.y) / (slope1 - slope2);
@@ -18,14 +18,12 @@ skuratov::point_t findCenOfParal(const skuratov::point_t& point1, const skuratov
   return center;
 }
 
-skuratov::Parallelogram::Parallelogram(const point_t& point1, const point_t& point2, const point_t& point3):
-  point1_(point1),
-  point2_(point2),
-  point3_(point3)
+skuratov::Parallelogram::Parallelogram(const point_t& p1, const point_t& p2, const point_t& p3):
+  p1_(p1),
+  p2_(p2),
+  p3_(p3)
 {
-  if ((point1_.x != point2_.x || point1_.y != point2_.y)
-    || (point1_.x != point3_.x || point1_.y != point3_.y)
-    || (point2_.x != point3_.x || point2_.y != point3_.y))
+  if ((p1_.x != p2_.x || p1_.y != p2_.y) || (p1_.x != p3_.x || p1_.y != p3_.y) || (p2_.x != p3_.x || p2_.y != p3_.y))
   {
     throw std::invalid_argument("At least one of the sides must be parallel to the abscissa axis!");
   }
@@ -33,22 +31,22 @@ skuratov::Parallelogram::Parallelogram(const point_t& point1, const point_t& poi
 
 double skuratov::Parallelogram::getArea() const
 {
-  double side1 = std::sqrt(std::pow(point2_.x - point1_.x, 2) + std::pow(point2_.y - point1_.y, 2));
-  double side2 = std::sqrt(std::pow(point3_.x - point1_.x, 2) + std::pow(point3_.y - point1_.y, 2));
+  double side1 = std::sqrt(std::pow(p2_.x - p1_.x, 2) + std::pow(p2_.y - p1_.y, 2));
+  double side2 = std::sqrt(std::pow(p3_.x - p1_.x, 2) + std::pow(p3_.y - p1_.y, 2));
   return side1 * side2;
 }
 
 skuratov::rectangle_t skuratov::Parallelogram::getFrameRect() const
 {
-  double width = std::abs(point2_.x - point3_.x) + std::abs(point1_.x - point2_.x);
-  double height = (point1_.y == point2_.y) * std::abs(point2_.y - point3_.y) + (point1_.y != point2_.y) * std::abs(point1_.y - point2_.y);
-  point_t center = findCenOfParal(point1_, point2_, point3_);
+  double width = std::abs(p2_.x - p3_.x) + std::abs(p1_.x - p2_.x);
+  double height = (p1_.y == p2_.y) * std::abs(p2_.y - p3_.y) + (p1_.y != p2_.y) * std::abs(p1_.y - p2_.y);
+  point_t center = findCenOfParal(p1_, p2_, p3_);
   return { width, height, center };
 }
 
 void skuratov::Parallelogram::move(const point_t& A)
 {
-  point_t center = findCenOfParal(point1_, point2_, point3_);
+  point_t center = findCenOfParal(p1_, p2_, p3_);
   double dx = A.x - center.x;
   double dy = A.y - center.y;
   move(dx, dy);
@@ -56,13 +54,13 @@ void skuratov::Parallelogram::move(const point_t& A)
 
 void skuratov::Parallelogram::move(double dx, double dy)
 {
-  point1_.x += dx;
-  point2_.x += dx;
-  point3_.x += dx;
+  p1_.x += dx;
+  p2_.x += dx;
+  p3_.x += dx;
 
-  point1_.y += dy;
-  point2_.y += dy;
-  point3_.y += dy;
+  p1_.y += dy;
+  p2_.y += dy;
+  p3_.y += dy;
 }
 
 void skuratov::Parallelogram::scale(double scalingFactor)
@@ -72,14 +70,12 @@ void skuratov::Parallelogram::scale(double scalingFactor)
     throw std::invalid_argument("Error: scale factor of parallelogram should be a positive");
   }
 
-  point_t center = findCenOfParal(point1_, point2_, point3_);
+  point_t center = findCenOfParal(p1_, p2_, p3_);
 
-  point1_.x = center.x + scalingFactor * (point1_.x - center.x);
-  point1_.y = center.y + scalingFactor * (point1_.y - center.y);
-
-  point2_.x = center.x + scalingFactor * (point2_.x - center.x);
-  point2_.y = center.y + scalingFactor * (point2_.y - center.y);
-
-  point3_.x = center.x + scalingFactor * (point3_.x - center.x);
-  point3_.y = center.y + scalingFactor * (point3_.y - center.y);
+  point_t points[] = { p1_, p2_, p3_ };
+  for (auto& point : points)
+  {
+    point.x = center.x + scalingFactor * (point.x - center.x);
+    point.y = center.y + scalingFactor * (point.y - center.y);
+  }
 }
