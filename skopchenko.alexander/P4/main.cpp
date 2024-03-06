@@ -51,11 +51,6 @@ int main(int argc, char * argv[])
     std::cerr << "Invalid Matrix dimensions\n";
     return 2;
   }
-  else if (rows == 0 && cols == 0)
-  {
-    //ADD TO OFSTREAM
-    return 0;
-  }
   else
   {
     int *matrix = nullptr;
