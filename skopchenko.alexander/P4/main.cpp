@@ -1,4 +1,4 @@
-kk#include "smoothed.h"
+#include "smoothed.h"
 #include "topclock.h"
 #include "input.h"
 #include "output.h"
