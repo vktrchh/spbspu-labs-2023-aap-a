@@ -15,7 +15,7 @@ namespace skuratov
   void inputDiamond(std::istream& input, Shape** shapes, size_t& count);
   void inputParallelogram(std::istream& input, Shape** shapes, size_t& count);
   Shape** inputShapes(std::istream& input, size_t& count);
-  void outputShapes(std::ostream& out, const Shape* const* shapes, size_t count);
+  void outputShapes(std::ostream& out, Shape* const* shapes, size_t count);
 }
 
 #endif

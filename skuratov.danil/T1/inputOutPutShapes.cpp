@@ -88,21 +88,21 @@ skuratov::Shape** skuratov::inputShapes(std::istream& input, size_t& count)
 {
   std::string shape = "";
   Shape** newShape = nullptr;
-  Shape** oldShape = nullptr;
   while (input >> shape && shape != "SCALE")
   {
-    oldShape = newShape;
-    newShape = new Shape * [count + 1] {};
-    if (oldShape)
-    {
-      for (size_t i = 0; i < count; ++i)
-      {
-        newShape[i] = oldShape[i];
-      }
-    }
-    delete[] oldShape;
     try
     {
+      Shape** oldShape = newShape;
+      newShape = new Shape*[count + 1] {};
+      if (oldShape)
+      {
+        for (size_t i = 0; i < count; ++i)
+        {
+          newShape[i] = oldShape[i];
+        }
+      }
+      delete[] oldShape;
+
       if (shape == "RECTANGLE")
       {
         skuratov::inputRectangle(input, newShape, count);
@@ -148,7 +148,7 @@ skuratov::Shape** skuratov::inputShapes(std::istream& input, size_t& count)
   return newShape;
 }
 
-void skuratov::outputShapes(std::ostream& out, const Shape* const* shapes, size_t count)
+void skuratov::outputShapes(std::ostream& out, Shape* const* shapes, size_t count)
 {
   double area = 0;
   for (size_t i = 0; i < count; ++i)
