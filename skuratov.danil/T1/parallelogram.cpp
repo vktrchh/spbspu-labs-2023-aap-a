@@ -38,8 +38,24 @@ double skuratov::Parallelogram::getArea() const
 
 skuratov::rectangle_t skuratov::Parallelogram::getFrameRect() const
 {
-  double width = std::abs(p2_.x - p3_.x) + std::abs(p1_.x - p2_.x);
-  double height = (p1_.y == p2_.y) * std::abs(p2_.y - p3_.y) + (p1_.y != p2_.y) * std::abs(p1_.y - p2_.y);
+  double width = {};
+  if (p1_.x == p2_.x)
+  {
+    width = std::abs(p2_.x - p3_.x);
+  }
+  else
+  {
+    width = std::abs(p2_.x - p1_.x);
+  }
+  double height = {};
+  if (p1_.y == p2_.y)
+  {
+    height = std::abs(p2_.y - p3_.y);
+  }
+  else
+  {
+    height = std::abs(p1_.y - p2_.y);
+  }
   point_t center = findCenOfParal(p1_, p2_, p3_);
   return { width, height, center };
 }
@@ -72,10 +88,12 @@ void skuratov::Parallelogram::scale(double scalingFactor)
 
   point_t center = findCenOfParal(p1_, p2_, p3_);
 
-  point_t points[] = { p1_, p2_, p3_ };
-  for (auto& point : points)
-  {
-    point.x = center.x + scalingFactor * (point.x - center.x);
-    point.y = center.y + scalingFactor * (point.y - center.y);
-  }
+  p1_.x = center.x + scalingFactor * (p1_.x - center.x);
+  p1_.y = center.y + scalingFactor * (p1_.y - center.y);
+
+  p2_.x = center.x + scalingFactor * (p2_.x - center.x);
+  p2_.y = center.y + scalingFactor * (p2_.y - center.y);
+
+  p3_.x = center.x + scalingFactor * (p3_.x - center.x);
+  p3_.y = center.y + scalingFactor * (p3_.y - center.y);
 }
