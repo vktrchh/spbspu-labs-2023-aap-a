@@ -1,4 +1,5 @@
 #include "inputCStr.hpp"
+#include <stdexcept>
 #include <istream>
 
 char* inputCStr(std::istream& in)
@@ -42,4 +43,3 @@ char* inputCStr(std::istream& in)
   c_str[size - 1] = '\0';
   return c_str;
 }
-

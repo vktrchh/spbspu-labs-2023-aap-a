@@ -1,5 +1,5 @@
 #include "fillNewRepStr.hpp"
-#include <iostream>
+
 void fillNewRepStr(const char* source, char* dest)
 {
   for (auto i = source; *i != '\0'; i++)
