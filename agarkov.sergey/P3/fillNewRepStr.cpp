@@ -8,7 +8,7 @@ void fillNewRepStr(const char* source, char* dest)
     for (auto j = source; j < i; j++)
     {
       if (*j == *i)
-      { 
+      {
         duplicate = true;
         break;
       }
