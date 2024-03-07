@@ -3,20 +3,12 @@
 #include <cmath>
 #include <algorithm>
 
-double findAreaOfTri(const vyzhanov::point_t& a, const vyzhanov::point_t& b, const vyzhanov::point_t& c);
-
-double findAreaOfTri(const vyzhanov::point_t& a, const vyzhanov::point_t& b, const vyzhanov::point_t& c)
-{
-  double sq = ((b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y)) / 2;
-  sq = std::abs(sq);
-  return sq;
-}
-
 vyzhanov::Triangle::Triangle(const point_t& a, const point_t& b, const point_t& c):
-  points_{ a, b, c },
-  size_(3)
+  a_(a),
+  b_(b),
+  c_(c)
 {
-  if (findAreaOfTri(a, b, c) == 0)
+  if (getArea() == 0)
   {
     throw std::invalid_argument("Invalid points");
   }
@@ -24,39 +16,43 @@ vyzhanov::Triangle::Triangle(const point_t& a, const point_t& b, const point_t& 
 
 double vyzhanov::Triangle::getArea() const
 {
-  return findAreaOfTri(points_[0], points_[1], points_[2]);
+  double S = ((b_.x - a_.x) * (c_.y - a_.y) - (c_.x - a_.x) * (b_.y - a_.y)) / 2;
+  return S;
 }
 
 vyzhanov::rectangle_t vyzhanov::Triangle::getFrameRect() const
 {
-  double height = (std::max(std::max(points_[0].y, points_[1].y), points_[2].y) - std::min(std::min(points_[0].y, points_[1].y), points_[2].y));
-  double width = (std::max(std::max(points_[0].x, points_[1].x), points_[2].x) - std::min(std::min(points_[0].x, points_[1].x), points_[2].x));
-  point_t pos = { std::min(std::min(points_[0].x, points_[1].x), points_[2].x) + width / 2, std::min(std::min(points_[0].y, points_[1].y), points_[2].y) + height / 2 };
-  return { width, height, pos };
+  double height = (std::max(std::max(a_.y, b_.y), c_.y) - std::min(std::min(b_.y, a_.y), c_.y));
+  double width = (std::max(std::max(a_.x, b_.x), c_.x) - std::min(std::min(a_.x, b_.x), c_.x));
+  point_t cen = { std::min(std::min(a_.x, b_.x), c_.x) + width / 2, std::min(std::min(a_.y, b_.y), c_.y) + height / 2 };
+  return { width, height, cen };
 }
 
 void vyzhanov::Triangle::move(const point_t& pos)
 {
-  point_t cen = { (points_[0].x + points_[1].x + points_[2].x) / 3, (points_[0].y + points_[1].y + points_[2].y) / 3 };
+  point_t cen = { (a_.x +b_.x + c_.x) / 3, (a_.y + b_.y + c_.y) / 3 };
   move(pos.x - cen.x, pos.y - cen.y);
 }
 
 void vyzhanov::Triangle::move(double dx, double dy)
 {
-  for (int i = 0; i < 3; i++)
-  {
-    points_[i].x += dx;
-    points_[i].y += dy;
-  }
+  a_.x += dx;
+  a_.y += dy;
+  b_.x += dx;
+  b_.y += dy;
+  c_.x += dx;
+  c_.y += dy;
 }
 
 void vyzhanov::Triangle::scale(const double ratio)
 {
-  point_t cen = { (points_[0].x + points_[1].x + points_[2].x) / 3, (points_[0].y + points_[1].y + points_[2].y) / 3 };
-  points_[0].x = ratio * (points_[0].x - cen.x) + cen.x;
-  points_[0].y = ratio * (points_[0].y - cen.y) + cen.y;
-  points_[1].x = ratio * (points_[1].x - cen.x) + cen.x;
-  points_[1].y = ratio * (points_[1].y - cen.y) + cen.y;
-  points_[2].x = ratio * (points_[2].x - cen.x) + cen.x;
-  points_[2].y = ratio * (points_[2].y - cen.y) + cen.y;
+  point_t cen = { (a_.x + b_.x + c_.x) / 3, (a_.y + b_.y + c_.y) / 3 };
+  a_.x = ratio * (cen.x - a_.x);
+  a_.y = ratio * (cen.y - a_.y);
+  b_.x = ratio * (cen.x - b_.x);
+  b_.y = ratio * (cen.y - b_.y);
+  c_.x = ratio * (cen.x - c_.x);
+  c_.y = ratio * (cen.y - c_.y);
+
 }
+
