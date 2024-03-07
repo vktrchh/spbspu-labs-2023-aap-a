@@ -9,7 +9,7 @@ int main()
   char* c_str = nullptr;
   try
   {
-    c_str = inputCStr(std::cin);
+    c_str = agarkov::inputCStr(std::cin);
   }
   catch (const std::exception& e)
   {
@@ -24,26 +24,11 @@ int main()
   std::cout << c_str << "\n";
 
   char* rep_str = nullptr;
-  try
-  {
-    char* rep_str = new char[size/2 + 1];
-    fillNewRepStr(c_str, rep_str);
-    std::cout << rep_str << "\n";
-  }
-  catch (const std::bad_alloc& e)
-  {
-    delete[] c_str;
-    delete[] rep_str;
-    std::cerr << e.what() << "\n";
-    return 1;
-  }
-
   char* vow_str = nullptr;
   try
   {
-    char* vow_str = new char[size];
-    fillNewStrWithoutVow(c_str, vow_str);
-    std::cout << vow_str << "\n";
+    rep_str = new char[size/2 + 1];
+    vow_str = new char[size];
   }
   catch (const std::bad_alloc& e)
   {
@@ -53,6 +38,10 @@ int main()
     std::cerr << e.what() << "\n";
     return 1;
   }
+  agarkov::fillNewRepStr(c_str, rep_str);
+  agarkov::fillNewStrWithoutVow(c_str, vow_str);
+  std::cout << rep_str << "\n";
+  std::cout << vow_str << "\n";
   delete[] c_str;
   delete[] rep_str;
   delete[] vow_str;

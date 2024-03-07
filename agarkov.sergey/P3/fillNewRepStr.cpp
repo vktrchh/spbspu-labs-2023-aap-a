@@ -1,6 +1,6 @@
 #include "fillNewRepStr.hpp"
 
-void fillNewRepStr(const char* source, char* dest)
+void agarkov::fillNewRepStr(const char* source, char* dest)
 {
   for (auto i = source; *i != '\0'; i++)
   {

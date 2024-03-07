@@ -5,7 +5,7 @@ bool isVowels(char ch)
   return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' || ch == 'y';
 }
 
-void fillNewStrWithoutVow(const char* source, char* dest)
+void agarkov::fillNewStrWithoutVow(const char* source, char* dest)
 {
   for (auto i = source; *i != '\0'; i++)
   {

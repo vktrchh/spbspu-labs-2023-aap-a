@@ -2,7 +2,7 @@
 #include <stdexcept>
 #include <istream>
 
-char* inputCStr(std::istream& in)
+char* agarkov::inputCStr(std::istream& in)
 {
   size_t capacity = 10;
   char* c_str = new char[capacity];

@@ -3,6 +3,9 @@
 
 #include <istream>
 
-char* inputCStr(std::istream& in);
+namespace agarkov
+{
+ char* inputCStr(std::istream& in);
+}
 
 #endif
