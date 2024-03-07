@@ -8,7 +8,7 @@ int main()
   char* c_str = nullptr;
   try
   {
-    c_str = inputCString(std::cin);
+    c_str = inputCStr(std::cin);
   }
   catch (const std::exception& e)
   {
@@ -20,7 +20,7 @@ int main()
   {
     size++;
   }
-  std::cout << c_string << "\n";
+  std::cout << c_str << "\n";
 
   char* rep_str = nullptr;
   char* vow_str = nullptr;
