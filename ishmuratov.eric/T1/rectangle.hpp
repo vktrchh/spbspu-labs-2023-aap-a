@@ -3,6 +3,7 @@
 
 #include <stdexcept>
 #include "shape.hpp"
+#include "triangle.hpp"
 
 namespace ishmuratov
 {
@@ -11,15 +12,14 @@ namespace ishmuratov
     public:
       Rectangle(const point_t & point1, const point_t & point2);
       virtual ~Rectangle();
-      virtual double triangleCut() const;
       virtual double getArea() const;
       virtual rectangle_t getFrameRect() const;
       virtual void move(point_t position);
       virtual void move(double dx, double dy);
       virtual void scale(double factor);
     private:
-      point_t botLeft_;
-      point_t topRight_;
+      Triangle tri1_;
+      Triangle tri2_;
   };
 }
 

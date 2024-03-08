@@ -1,21 +1,20 @@
 #include "concave.hpp"
-#include "triangle.hpp"
 #include "data_process.hpp"
 
 ishmuratov::Concave::Concave(const point_t & point1, const point_t & point2, const point_t & point3, const point_t & point4):
-  corners_{ point1, point2, point3 },
-  center_(point4)
+  tri1_(Triangle(point1, point2, point3)),
+  tri2_(Triangle(point2, point3, point4))
 {
-  if (triangleArea(corners_[0], corners_[1], corners_[2]) == 0)
+  if (tri1_.getArea() == 0)
   {
     throw std::invalid_argument("First 3 points don't form triangle!");
   }
-  ishmuratov::point_t v14 = { corners_[0].x - center_.x, corners_[0].y - center_.y };
-  ishmuratov::point_t v21 = { corners_[1].x - corners_[0].x, corners_[1].y - corners_[0].y };
-  ishmuratov::point_t v24 = { corners_[1].x - center_.x, corners_[1].y - center_.y };
-  ishmuratov::point_t v32 = { corners_[2].x - corners_[1].x, corners_[2].y - corners_[1].y };
-  ishmuratov::point_t v34 = { corners_[2].x - center_.x, corners_[2].y - center_.y };
-  ishmuratov::point_t v13 = { corners_[0].x - corners_[2].x, corners_[0].y - corners_[2].y };
+  ishmuratov::point_t v14 = { point1.x - point4.x, point1.y - point4.y };
+  ishmuratov::point_t v21 = { point2.x - point1.x, point2.y - point1.y };
+  ishmuratov::point_t v24 = { point2.x - point4.x, point2.y - point4.y };
+  ishmuratov::point_t v32 = { point3.x - point2.x, point3.y - point2.y };
+  ishmuratov::point_t v34 = { point3.x - point4.x, point3.y - point4.y };
+  ishmuratov::point_t v13 = { point1.x - point3.x, point1.y - point3.y };
   double ps1 = ishmuratov::pseudoScalar(v14, v21);
   double ps2 = ishmuratov::pseudoScalar(v24, v32);
   double ps3 = ishmuratov::pseudoScalar(v34, v13);
@@ -27,39 +26,26 @@ ishmuratov::Concave::Concave(const point_t & point1, const point_t & point2, con
 
 ishmuratov::Concave::~Concave() = default;
 
-double ishmuratov::Concave::triangleCut() const
-{
-  Triangle array[2] = { { { 0, 0 }, { 0, 1 }, { 1, 0 } }, { { 0, 0 }, { 0, 1 }, { 1, 0 } } };
-  array[0] = { corners_[0], corners_[1], corners_[2] };
-  array[1] = { corners_[1], corners_[2], center_ };
-  return array[0].getArea() - array[1].getArea();
-}
-
 double ishmuratov::Concave::getArea() const
 {
-  return triangleCut();
+  return tri1_.getArea() - tri2_.getArea();
 }
 
 ishmuratov::rectangle_t ishmuratov::Concave::getFrameRect() const
 {
-  Triangle tri = { corners_[0], corners_[1], corners_[2] };
-  return tri.getFrameRect();
+  return tri1_.getFrameRect();
 }
 
 void ishmuratov::Concave::move(point_t position)
 {
-  double dx = position.x - center_.x;
-  double dy = position.y - center_.y;
-  move(dx, dy);
+  tri1_.move(position);
+  tri2_.move(position);
 }
 
 void ishmuratov::Concave::move(double dx, double dy)
 {
-  for (size_t i = 0; i < 3; ++i)
-  {
-    corners_[i] = { corners_[i].x + dx, corners_[i].y + dy};
-  }
-  center_ = { center_.x + dx, center_.y + dy };
+  tri1_.move(dx, dy);
+  tri2_.move(dx, dy);
 }
 
 void ishmuratov::Concave::scale(double factor)
@@ -68,5 +54,6 @@ void ishmuratov::Concave::scale(double factor)
   {
     throw std::runtime_error("Invalid factor!");
   }
-  scaleTriangle(corners_, center_, factor);
+  tri1_.scale(factor);
+  tri2_.scale(factor);
 }
