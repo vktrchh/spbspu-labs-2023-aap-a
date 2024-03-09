@@ -26,7 +26,7 @@ void sakovskaia::countCounterclockwiseMatrix(int * a, size_t rows, size_t column
         a[index] = ++n;
       }
     }
-    if ((index < rows) or (circle != (ceil((std::min(rows, columns)) / 2) + 1)))
+    if ((index < rows) || (circle != (ceil((std::min(rows, columns)) / 2) + 1)))
     {
       a[circle * rows - circle] = ++n;
     }
