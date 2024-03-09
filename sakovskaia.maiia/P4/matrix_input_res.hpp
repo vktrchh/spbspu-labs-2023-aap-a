@@ -5,7 +5,7 @@
 
 namespace sakovskaia
 {
-  std::ofstream & printAnswer(std::ofstream & output, int * a, size_t b);
+  std::ostream & printAnswer(std::ostream & output, const int * a, size_t b);
   struct AnswerCounter
   {
     AnswerCounter();
