@@ -10,15 +10,9 @@ int main()
 {
   using namespace chernov;
   size_t sizeOfInput = 20;
-  try
-  {
-    char* input = new char[sizeOfInput]();
-  }
-  catch (const std::bad_alloc &e)
-  {
-    std::cerr << e.what() << "\n";
-    return 1;
-  }
+
+  char* input = new char[sizeOfInput]();
+
   char c = 0;
   size_t i = 0;
 
