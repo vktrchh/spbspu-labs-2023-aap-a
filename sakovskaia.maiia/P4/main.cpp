@@ -62,8 +62,6 @@ int main(int argc, char * argv[])
     catch (const std::logic_error & e)
     {
       std::cerr << e.what() << "\n";
-      input.close();
-      output.close();
       return 2;
     }
   }
@@ -81,8 +79,6 @@ int main(int argc, char * argv[])
       std::cerr << e.what() << "\n";
       delete [] input_matrix;
       delete [] counterclockwise_matrix;
-      input.close();
-      output.close();
       return 2;
     }
   }
@@ -107,10 +103,6 @@ int main(int argc, char * argv[])
       delete [] new_dynamic_matrix;
       delete [] new_dynamic_counterclockwise_matrix;
     }
-    input.close();
-    output.close();
     return 2;
   }
-  input.close();
-  output.close();
 }
