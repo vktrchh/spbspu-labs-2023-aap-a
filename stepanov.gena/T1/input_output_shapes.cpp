@@ -119,10 +119,7 @@ void stepanov::outputShapes(std::ostream& output, const Shape * const * shapes, 
   double area = 0.0;
   for (size_t i = 0; i < size_shapes; ++i)
   {
-    if (shapes[i])
-    {
-      area += shapes[i]->getArea();
-    }
+    area += shapes[i]->getArea();
   }
   output << std::fixed << std::setprecision(1);
   output << area;
