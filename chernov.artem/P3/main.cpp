@@ -11,7 +11,7 @@ int main()
   using namespace chernov;
   size_t sizeOfInput = 20;
 
-  char* input = new char[sizeOfInput]();
+  char* input = nullptr;
 
   char c = 0;
   size_t i = 0;
@@ -19,56 +19,63 @@ int main()
   std::cin >> std::noskipws;
 
   bool hasNonSpace = false;
-
-  while (std::cin >> c)
+  try
   {
-    if (!std::cin)
+    while (std::cin >> c)
     {
-      std::cerr << "Error input\n";
-      delete[] input;
-      return 1;
-    }
-    if (i < sizeOfInput - 1)
-    {
-      input[i++] = c;
-      if (!std::isspace(c))
+      if (!std::cin)
       {
-        hasNonSpace = true;
+        std::cerr << "Error input\n";
+        delete[] input;
+        return 1;
       }
-      if (c == '\n')
+      if (i < sizeOfInput - 1)
       {
-        input[i - 1] = '\0';
-        break;
+        input[i++] = c;
+        if (!std::isspace(c))
+        {
+          hasNonSpace = true;
+        }
+        if (c == '\n')
+        {
+          input[i - 1] = '\0';
+          break;
+        }
       }
-    }
-    else
-    {
-      char* oldInput = new char[sizeOfInput]();
-      sizeOfInput *= 2;
+      else
+      {
+        char* oldInput = new char[sizeOfInput]();
+        sizeOfInput *= 2;
 
-      for(size_t k = 0; k < i; ++k)
-      {
-        oldInput[k] = input[k];
-      }
+        for(size_t k = 0; k < i; ++k)
+        {
+          oldInput[k] = input[k];
+        }
 
-      delete[] input;
-      input = new char[sizeOfInput]();
+        delete[] input;
+        input = new char[sizeOfInput]();
 
-      for (size_t k = 0; k < i; k++)
-      {
-        input[k] = oldInput[k];
-      }
+        for (size_t k = 0; k < i; k++)
+        {
+          input[k] = oldInput[k];
+        }
 
-      input[i++] = c;
-      if (c == '\n')
-      {
-        input[i - 1] = '\0';
-        break;
+        input[i++] = c;
+        if (c == '\n')
+        {
+          input[i - 1] = '\0';
+          break;
+        }
+        delete[] oldInput;
       }
-      delete[] oldInput;
     }
   }
-
+  catch (const std::bad_alloc &e)
+  {
+    std::cerr << e.what() << "\n";
+    delete[] input;
+    return 1;
+  }
   if (!hasNonSpace)
   {
     std::cerr << "Empty input\n";
