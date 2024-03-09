@@ -140,7 +140,3 @@ void stepanov::outputShapes(std::ostream& output, const Shape * const * shapes, 
   }
   output << '\n';
 }
-
-
-
-
