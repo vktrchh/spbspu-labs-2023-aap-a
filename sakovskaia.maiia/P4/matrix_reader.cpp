@@ -7,7 +7,7 @@ void sakovskaia::inputMatrix(std::ifstream & input, int * a, size_t b)
   {
     if (!(input >> a[i]))
     {
-      throw (std::logic_error("Cannot create matrix"));
+      throw std::logic_error("Cannot create matrix");
     }
   }
 }
