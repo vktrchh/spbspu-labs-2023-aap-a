@@ -18,7 +18,7 @@ int main(int argc, char * argv[])
   {
     num = std::stoll(argv[1]);
   }
-  catch(const std::invalid_argument & e)
+  catch (const std::invalid_argument & e)
   {
     std::cerr << "Cannot read first argument\n";
     return 1;
