@@ -111,6 +111,7 @@ int main()
 
   char *answer2 = nullptr;
 
+/*
   try
   {
     char *answer2 = new char[stringSize];
@@ -121,6 +122,7 @@ int main()
     delete[] answer2;
     return 1;
   }
+*/
 
 //char *answer2 = new char[stringSize];
   size_t answer = duplicateNumbers(finalyString);
