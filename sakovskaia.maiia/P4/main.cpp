@@ -7,7 +7,6 @@
 int main(int argc, char * argv[])
 {
   using namespace sakovskaia;
-  AnswerCounter countanswer;
   if (argc != 4)
   {
     std::cerr << "Error in command line arguments\n";
@@ -91,7 +90,7 @@ int main(int argc, char * argv[])
   {
     inputMatrix(input, input_matrix, rows * columns);
     countCounterclockwiseMatrix(counterclockwise_matrix, rows, columns);
-    countanswer(input_matrix, counterclockwise_matrix, rows * columns);
+    AnswerCounter(input_matrix, counterclockwise_matrix, rows * columns);
     output << rows << " " << columns;
     printAnswer(output, input_matrix, rows * columns);
     if (num == 2)

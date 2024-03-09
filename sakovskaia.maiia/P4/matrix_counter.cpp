@@ -39,13 +39,9 @@ void sakovskaia::countCounterclockwiseMatrix(int * a, size_t rows, size_t column
   }
 }
 
-sakovskaia::AnswerCounter::AnswerCounter():
-  index(0)
-{}
-
-void sakovskaia::AnswerCounter::operator()(int * input_matrix, int * counterclockwise_matrix, size_t size)
+void sakovskaia::AnswerCounter(int * input_matrix, int * counterclockwise_matrix, size_t size)
 {
-  for (index = 0; index < size; ++index)
+  for (size_t index = 0; index < size; ++index)
   {
     input_matrix[index] += counterclockwise_matrix[index];
   }
