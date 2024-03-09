@@ -9,7 +9,7 @@ void sakovskaia::countCounterclockwiseMatrix(int * a, size_t rows, size_t column
   size_t circle = 1;
   size_t index = 0;
   size_t cnt_columns = columns;
-  for (circle = 1; circle <= (ceil((std::min(rows, columns)) / 2) + 1); circle += 1)
+  for (circle = 1; circle <= (std::ceil((std::min(rows, columns)) / 2) + 1); circle += 1)
   {
     for (index = cnt * rows + cnt; index <= (rows * columns - columns * circle + cnt); index = index + rows)
     {
