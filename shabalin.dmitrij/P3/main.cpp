@@ -57,9 +57,9 @@ int duplicateNumbers(const char *str)
     return 0;
   }
 
-  for (size_t i = 1; str[i] != '\0'; ++i)
+  for (size_t i = 0; str[i] != '\0'; ++i)
   {
-    for (size_t j = 0; str[j] != '\0' ; ++j)
+    for (size_t j = 1; str[j] != '\0' ; ++j)
     {
       if ((str[i] == str[j]) && (isdigit(str[i])))
       {
@@ -108,9 +108,24 @@ int main()
     std::cerr << "Error";
     return 1;
   }
-  char *answer2 = new char[stringSize];
+  
+  char *answer2 = nullptr;
+
+  try
+  {
+    char *answer2 = new char[stringSize];
+  }
+  catch (const std::bad_alloc & e)
+  {
+    std::cerr << "Error" << "\n";
+    delete[] answer2;
+    return 1;
+  }
+
+  //char *answer2 = new char[stringSize];
   size_t answer = duplicateNumbers(finalyString);
   std::cout << answer << "\n";
+  
   try
   {
     answer2 = makeLowerCaseString(finalyString);
@@ -123,5 +138,8 @@ int main()
     return 1;
   }
   //std::cout << answer2;
+  
+  delete[] answer2;
+  delete[] finalyString;
   return 0;
 }
