@@ -150,6 +150,7 @@ int main()
   char result[] = "123";
   makeLowerCaseString(finalyString, result, stringSize);
   std::cout << result;
+
   //delete[] answer2;
   return 0;
 }
