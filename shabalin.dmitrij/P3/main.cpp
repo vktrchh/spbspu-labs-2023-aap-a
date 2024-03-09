@@ -109,12 +109,12 @@ int main()
     return 1;
   }
 
-  char *answer2 = new char[stringSize + 1];
+  //char *answer2 = new char[stringSize + 1];
+  char *answer2 = nullptr;
 
-/*
   try
   {
-    char *answer2 = new char[stringSize];
+    char *answer2 = new char[stringSize + 1];
   }
   catch (const std::bad_alloc & e)
   {
@@ -122,7 +122,6 @@ int main()
     delete[] answer2;
     return 1;
   }
-*/
 
 //char *answer2 = new char[stringSize];
   size_t answer = duplicateNumbers(finalyString);
@@ -136,11 +135,10 @@ int main()
   catch (std::exception & e)
   {
     std::cerr << "Error: " << e.what() << "\n";
-    delete[] answer2;
+    delete[] finalyString;
     return 1;
   }
 
   delete[] answer2;
-  delete[] finalyString;
   return 0;
 }
