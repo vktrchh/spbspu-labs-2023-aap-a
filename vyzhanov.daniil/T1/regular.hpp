@@ -1,5 +1,5 @@
-#ifndef TRIANGLE_HPP
-#define TRIANGLE_HPP
+#ifndef REGULAR_HPP
+#define REGULAR_HPP
 
 #include <cstddef>
 #include "shape.hpp"

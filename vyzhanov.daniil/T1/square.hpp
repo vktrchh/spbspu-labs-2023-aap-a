@@ -1,5 +1,5 @@
-#ifndef RECTANGLE_HPP
-#define RECTANGLE_HPP
+#ifndef SQUARE_HPP
+#define SQUARE_HPP
 #include "base-types.hpp"
 #include "shape.hpp"
 namespace vyzhanov
