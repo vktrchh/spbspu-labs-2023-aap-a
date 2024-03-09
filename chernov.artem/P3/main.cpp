@@ -76,10 +76,13 @@ int main()
     return 1;
   }
 
+  char* stringWithDecimalDigitsRemoved = nullptr;
+  char* stringWithVowelsRemoved = nullptr;
+
   try
   {
-    char* stringWithDecimalDigitsRemoved = new char[sizeOfInput]();
-    char* stringWithVowelsRemoved = new char[sizeOfInput]();
+    stringWithDecimalDigitsRemoved = new char[sizeOfInput]();
+    stringWithVowelsRemoved = new char[sizeOfInput]();
   }
   catch (const std::bad_alloc &e)
   {
