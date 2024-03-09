@@ -90,7 +90,7 @@ int main(int argc, char * argv[])
   {
     inputMatrix(input, input_matrix, rows * columns);
     countCounterclockwiseMatrix(counterclockwise_matrix, rows, columns);
-    AnswerCounter(input_matrix, counterclockwise_matrix, rows * columns);
+    countAnswer(input_matrix, counterclockwise_matrix, rows * columns);
     output << rows << " " << columns;
     printAnswer(output, input_matrix, rows * columns);
     if (num == 2)

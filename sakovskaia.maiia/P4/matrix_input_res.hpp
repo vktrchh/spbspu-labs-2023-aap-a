@@ -6,6 +6,6 @@
 namespace sakovskaia
 {
   std::ostream & printAnswer(std::ostream & output, const int * a, size_t b);
-  void AnswerCounter(int * input_matrix, int * counterclockwise_matrix, size_t size);
+  void countAnswer(int * input_matrix, int * counterclockwise_matrix, size_t size);
 }
 #endif

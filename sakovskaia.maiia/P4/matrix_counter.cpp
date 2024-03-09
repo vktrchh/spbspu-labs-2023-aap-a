@@ -39,7 +39,7 @@ void sakovskaia::countCounterclockwiseMatrix(int * a, size_t rows, size_t column
   }
 }
 
-void sakovskaia::AnswerCounter(int * input_matrix, int * counterclockwise_matrix, size_t size)
+void sakovskaia::countAnswer(int * input_matrix, int * counterclockwise_matrix, size_t size)
 {
   for (size_t index = 0; index < size; ++index)
   {
