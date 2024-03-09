@@ -70,7 +70,7 @@ int duplicateNumbers(const char *str)
   return 0;
 }
 
-char *makeLowerCaseString(char *str)
+char *makeLowerCaseString(char *str, char *result, size_t sizeOfString)
 {
   if (str == nullptr || *str == '\0')
   {
@@ -78,12 +78,16 @@ char *makeLowerCaseString(char *str)
   }
   for (size_t i = 0; str[i] != '\0'; ++i)
   {
-    if(islower(str[i]))
+    if(isupper(str[i]))
       {
-        str[i] = toupper(str[i]);
+        str[i] = tolower(str[i]);
       }
   }
-  return str;
+  for (size_t j = 0; j < sizeOfString; ++j)
+  {
+    result[j] = str[j];
+  }
+  return result;
 }
 
 int main()
@@ -110,8 +114,9 @@ int main()
   }
 
   //char *answer2 = new char[stringSize + 1];
-  char *answer2 = nullptr;
+  //char *answer2 = nullptr;
 
+  /*
   try
   {
     char *answer2 = new char[stringSize + 1];
@@ -122,14 +127,16 @@ int main()
     delete[] answer2;
     return 1;
   }
+  */
 
 //char *answer2 = new char[stringSize];
   size_t answer = duplicateNumbers(finalyString);
   std::cout << answer << "\n";
 
+  /*
   try
   {
-    answer2 = makeLowerCaseString(finalyString);
+    char *answer2 = makeLowerCaseString(finalyString, );
     std::cout << answer2;
   }
   catch (std::exception & e)
@@ -138,7 +145,11 @@ int main()
     delete[] finalyString;
     return 1;
   }
+  */
 
-  delete[] answer2;
+  char result[] = "123";
+  makeLowerCaseString(finalyString, result, stringSize);
+  std::cout << result;
+  //delete[] answer2;
   return 0;
 }
