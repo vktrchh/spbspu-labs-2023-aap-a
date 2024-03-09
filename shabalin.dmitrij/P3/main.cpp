@@ -109,7 +109,7 @@ int main()
     return 1;
   }
 
-  char *answer2 = nullptr;
+  char *answer2 = new char[stringSize + 1];
 
 /*
   try
@@ -139,7 +139,6 @@ int main()
     delete[] answer2;
     return 1;
   }
-//std::cout << answer2;
 
   delete[] answer2;
   delete[] finalyString;
