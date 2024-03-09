@@ -122,7 +122,7 @@ int main()
     return 1;
   }
 
-  //char *answer2 = new char[stringSize];
+//char *answer2 = new char[stringSize];
   size_t answer = duplicateNumbers(finalyString);
   std::cout << answer << "\n";
 
@@ -137,7 +137,7 @@ int main()
     delete[] answer2;
     return 1;
   }
-  //std::cout << answer2;
+//std::cout << answer2;
 
   delete[] answer2;
   delete[] finalyString;
