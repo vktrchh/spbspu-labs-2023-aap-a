@@ -4,13 +4,21 @@
 #include <iostream>
 #include <cstddef>
 #include <cctype>
+#include <new>
 
 int main()
 {
   using namespace chernov;
   size_t sizeOfInput = 20;
-  char* input = new char[sizeOfInput]();
-
+  try
+  {
+    char* input = new char[sizeOfInput]();
+  }
+  catch (const std::bad_alloc &e)
+  {
+    std::cerr << e.what() << "\n";
+    return 1;
+  }
   char c = 0;
   size_t i = 0;
 
@@ -74,8 +82,17 @@ int main()
     return 1;
   }
 
-  char* stringWithDecimalDigitsRemoved = new char[sizeOfInput]();
-  char* stringWithVowelsRemoved = new char[sizeOfInput]();
+  try
+  {
+    char* stringWithDecimalDigitsRemoved = new char[sizeOfInput]();
+    char* stringWithVowelsRemoved = new char[sizeOfInput]();
+  }
+  catch (const std::bad_alloc &e)
+  {
+    std::cerr << "Allocation failed: " << e.what() << "\n";
+    delete[] input;
+    return 1;
+  }
 
   char* withoutDecimalDigits = removeDecimalDigits(input, stringWithDecimalDigitsRemoved, sizeOfInput);
   char* withoutVowels = removeVowels(input, stringWithVowelsRemoved, sizeOfInput);
