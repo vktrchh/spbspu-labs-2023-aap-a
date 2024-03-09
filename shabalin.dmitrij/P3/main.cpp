@@ -108,7 +108,7 @@ int main()
     std::cerr << "Error";
     return 1;
   }
-  
+
   char *answer2 = nullptr;
 
   try
