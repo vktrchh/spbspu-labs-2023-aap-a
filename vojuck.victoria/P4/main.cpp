@@ -1,12 +1,12 @@
 #include <iostream>
 #include <ifstream>
-#include <ofsream>
+#include <ofstream>
 #include <cstdlib>
 
 
 size_t inputArray(std::istream & in, int * array, size_t size, size_t toread);
 int findMaxSum(int* array, int rows, int cols);
-bool isUpperTriangular(int* matrix, int rows, int cols)
+bool isUpperTriangular(int* matrix, int rows, int cols);
 
 int main(int argc, char ** argv)
 {
@@ -17,16 +17,16 @@ int main(int argc, char ** argv)
   }
   int i  = 0;
   {
-    std::ifstrean input(argv[2]);
+    std::ifstream input(argv[2]);
     input >> i;
-    if(!iput)
+    if(!input)
     {
       std::cerr << "cannot read";
       return 2;
     }
   }
   std::ofstream output(argv[3]);
-  output << i << "n\";
+  output << i << "\n";
 
 }
 
