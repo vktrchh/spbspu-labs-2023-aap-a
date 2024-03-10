@@ -1,6 +1,7 @@
 #include "isUpperTriangular.hpp"
+#include <cstddef>
 
-bool isUpperTriangular(int* matrix, int rows, int cols)
+bool isUpperTriangular(int* matrix, size_t rows, size_t cols)
 {
   for (int i = 0; i < rows; i++)
   {
