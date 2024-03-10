@@ -6,13 +6,13 @@
 
 size_t inputArray(std::istream & in, int * array, size_t size, size_t toread);
 int findMaxSum(int* array, int rows, int cols);
-
+bool isUpperTriangular(int* matrix, int rows, int cols)
 
 int main(int argc, char ** argv)
 {
   if (argc != 4)
   {
-    std::cerr << "why not 3?(";
+    std::cerr << "it's will be a number of task, name of file to read and name of file to fill";
     return 1;
   }
   int i  = 0;
@@ -82,4 +82,17 @@ int findMaxSum(int* array, int rows, int cols)
   return maxSum;
 }
 
-
+bool isUpperTriangular(int* matrix, int rows, int cols)
+{
+  for (int i = 0; i < rows; i++)
+  {
+    for (int j = 0; j < cols; j++)
+    {
+      if (i > j && matrix[i * cols + j] != 0)
+      {
+        return false;
+      }
+    }
+  }
+  return true;
+}
