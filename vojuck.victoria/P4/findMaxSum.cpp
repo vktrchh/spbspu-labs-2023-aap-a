@@ -1,4 +1,4 @@
-#include "finfMaxSum.hpp"
+#include "findMaxSum.hpp"
 #include <iostream>
 #include <algorithm>
 
