@@ -58,36 +58,29 @@ int main(int argc, char * argv[])
   int new_input_matrix[10000] = {};
   int new_counterclockwise_matrix[10000] = {};
 
-  if (num == 1)
+  try
   {
-    try
+    if (num == 1)
     {
       input_matrix = new_input_matrix;
       counterclockwise_matrix = new_counterclockwise_matrix;
     }
-    catch (const std::logic_error & e)
-    {
-      std::cerr << e.what() << "\n";
-      return 2;
-    }
-  }
-  else if (num == 2)
-  {
-    try
+    else if (num == 2)
     {
       input_matrix = new int[rows * columns];
       counterclockwise_matrix = new int[rows * columns];
       new_dynamic_matrix = input_matrix;
       new_dynamic_counterclockwise_matrix = counterclockwise_matrix;
     }
-    catch (const std::logic_error & e)
-    {
-      std::cerr << e.what() << "\n";
-      delete [] input_matrix;
-      delete [] counterclockwise_matrix;
-      return 2;
-    }
   }
+  catch (const std::logic_error & e)
+  {
+    std::cerr << e.what() << "\n";
+    delete [] input_matrix;
+    delete [] counterclockwise_matrix;
+    return 2;
+  }
+
   try
   {
     inputMatrix(input, input_matrix, rows * columns);
@@ -95,11 +88,6 @@ int main(int argc, char * argv[])
     countAnswer(input_matrix, counterclockwise_matrix, rows * columns);
     output << rows << " " << columns;
     printAnswer(output, input_matrix, rows * columns);
-    if (num == 2)
-    {
-      delete [] new_dynamic_matrix;
-      delete [] new_dynamic_counterclockwise_matrix;
-    }
   }
   catch (const std::logic_error & e)
   {
@@ -110,5 +98,10 @@ int main(int argc, char * argv[])
       delete [] new_dynamic_counterclockwise_matrix;
     }
     return 2;
+  }
+  if (num == 2)
+  {
+    delete [] new_dynamic_matrix;
+    delete [] new_dynamic_counterclockwise_matrix;
   }
 }
