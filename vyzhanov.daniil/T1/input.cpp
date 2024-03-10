@@ -27,8 +27,8 @@ namespace vyzhanov
       throw std::invalid_argument("incorrect count of args");
     }
     point_t LeftCorner = { nums[0], nums[1] };
-    double length = nums[2];
-    return new Square(LeftCorner, length);
+    double len = nums[2];
+    return new Square(LeftCorner, len);
   }
 
   Shape* createTriangle(const double* nums, size_t length)
