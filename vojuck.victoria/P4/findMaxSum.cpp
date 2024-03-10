@@ -1,8 +1,9 @@
 #include "finfMaxSum.hpp"
 #include <iostream>
 #include <algorithm>
+#include <cstddef>
 
-int findMaxSum(int* array, int rows, int cols)
+int findMaxSum(int* array, size_t rows, size_t cols)
 {
   int n = 5;
   int maxSum = 0;
