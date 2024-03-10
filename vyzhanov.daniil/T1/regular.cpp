@@ -33,7 +33,7 @@ double vyzhanov::Regular::getArea() const
     smallRad = replace;
     replace = 0;
   }
-  int sideCount = std::round(-2.0 * PI / (std::asin(smallRad / bigRad) * 2.0 - PI));
+  size_t sideCount = std::round(-2.0 * PI / (std::asin(smallRad / bigRad) * 2.0 - PI));
   double len = 2.0 * bigRad * std::sin(PI / sideCount);
   return 0.5 * sideCount * len * smallRad;
 }
