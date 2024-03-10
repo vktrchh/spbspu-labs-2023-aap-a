@@ -1,36 +1,50 @@
+
 #include <iostream>
-#include <ifstream>
-#include <ofstream>
+#include <fstream>
 #include <cstdlib>
 
 
 size_t inputArray(std::istream & in, int * array, size_t size, size_t toread);
 int findMaxSum(int* array, int rows, int cols);
 bool isUpperTriangular(int* matrix, int rows, int cols);
+void fillMatrix(std::istream& in, int* array, size_t size);
+void outputMatrix(int* array, size_t size);
 
 int main(int argc, char ** argv)
 {
   if (argc != 4)
   {
-    std::cerr << "it's will be a number of task, name of file to read and name of file to fill";
+    std::cerr << "there should be 3 args: a number of task, name of file to read and name of file to fill";
     return 1;
   }
-  int i  = 0;
+  int rows = 0, cols = 0;
   {
     std::ifstream input(argv[2]);
-    input >> i;
+    input >> rows >> cols;
     if(!input)
     {
       std::cerr << "cannot read";
       return 2;
     }
+    std::ofstream output(argv[3]);
+    output << rows << " " << cols << "\n";
+    int* matrix = new int[rows * cols];
+    size_t result = inputArray(input, matrix, rows * cols, rows * cols);
+    if (result == rows*cols)
+    {
+      outputMatrix(matrix, rows*cols);
+    }
   }
-  std::ofstream output(argv[3]);
-  output << i << "\n";
-
 }
 
 
+void outputMatrix(int* array, size_t size)
+{
+  for (size_t i = 0; i < size; i++)
+  {
+    std::cout << array[i] << " ";
+  }
+}
 
 size_t inputArray(std::istream & in, int * array, size_t size, size_t toread)
 {
@@ -96,3 +110,5 @@ bool isUpperTriangular(int* matrix, int rows, int cols)
   }
   return true;
 }
+
+
