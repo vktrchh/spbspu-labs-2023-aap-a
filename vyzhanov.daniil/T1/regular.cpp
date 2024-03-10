@@ -1,6 +1,7 @@
 #include "regular.hpp"
 #include <stdexcept>
 #include <cmath>
+#include <limits>
 
 vyzhanov::Regular::Regular(const point_t& p1, const point_t& p2, const point_t& p3) :
   a_(p1),
