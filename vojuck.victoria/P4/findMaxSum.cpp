@@ -1,7 +1,6 @@
 #include "finfMaxSum.hpp"
 #include <iostream>
 #include <algorithm>
-#include <cstddef>
 
 int findMaxSum(int* array, size_t rows, size_t cols)
 {
