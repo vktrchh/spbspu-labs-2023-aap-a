@@ -1,7 +1,6 @@
 #include "inputArray.hpp"
 #include <iostream>
 #include <algorithm>
-#include <cstddef>
 
 size_t inputArray(std::istream & in, int * array, size_t size, size_t toread)
 {
