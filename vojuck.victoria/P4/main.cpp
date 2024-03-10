@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
@@ -17,27 +16,83 @@ int main(int argc, char ** argv)
     std::cerr << "there should be 3 args: a number of task, name of file to read and name of file to fill";
     return 1;
   }
-  int rows = 0, cols = 0;
+
+  int num = 0;
+
+  try
   {
-    std::ifstream input(argv[2]);
-    input >> rows >> cols;
-    if(!input)
-    {
-      std::cerr << "cannot read";
-      return 2;
-    }
-    std::ofstream output(argv[3]);
-    output << rows << " " << cols << "\n";
-    int* matrix = new int[rows * cols];
-    size_t result = inputArray(input, matrix, rows * cols, rows * cols);
+    num = std::stoll(argv[1]);
+  }
+  catch (const std::out_of_range &)
+  {
+    std::cerr << "Value of first CLA is too large\n";
+    return 3;
+  }
+  catch (const std::invalid_argument &)
+  {
+    std::cerr << "Cannot parse a value\n";
+    return 3;
+  }
+
+  std::ifstream input(argv[2]);
+  int rows = 0, cols = 0 ;
+  input >> rows >> cols;
+  if (!input)
+  {
+    std::cerr << "Cannot read!\n";
+    return 2;
+  }
+
+  if (rows != cols)
+  {
+    std::cerr << "The number of rows should be equal to cols\n";
+    return 2;
+  }
+
+  if (num != 1 && num != 2)
+  {
+    std::cerr << "Invalid argument for a number of task\n";
+    return 2;
+  }
+
+  int fixedMatrix[10000]{0};
+  int* matrix = nullptr;
+
+  std::ofstream output(argv[3]);
+
+  if (num == 1)
+  {
+    matrix = fixedMatrix;
+  }
+
+  if (num == 2)
+  {
+    matrix = new int[rows * cols];
+  }
+
+  try
+  {
+    size_t result = inputArray(input, matrix, rows*cols, rows*cols);
     if (result == rows*cols)
     {
-      outputMatrix(matrix, rows*cols);
       int maxSum = findMaxSum(matrix, rows, cols);
-      output << "\nMax sum: " << maxSum << "\n";
+      output << "Max sum: " << maxSum << "\n";
       output << "This matrix is" << (isUpperTriangular(matrix, rows, cols) ? "" : " not") << " upper triangular.\n";
     }
   }
+  catch (std::bad_alloc &)
+  {
+    std::cerr << "Not enough memory\n";
+    delete[] matrix;
+    return 3;
+  }
+  catch (...)
+  {
+    std::cerr << "Something went wrong\n";
+    delete[] matrix;
+    return 1;
+  }
+  delete[] matrix;
 }
 
 
