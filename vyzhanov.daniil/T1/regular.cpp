@@ -51,7 +51,7 @@ vyzhanov::rectangle_t vyzhanov::Regular::getFrameRect() const
     smallRad = replace;
     replace = 0;
   }
-  int sideCount = std::round(-2.0 * PI / (std::asin(smallRad / bigRad) * 2.0 - PI));
+  size_t sideCount = std::round(-2.0 * PI / (std::asin(smallRad / bigRad) * 2.0 - PI));
   double len = 2.0 * bigRad * std::sin(PI / sideCount);
   double maxX = std::numeric_limits< double >::lowest();
   double maxY = maxX;
