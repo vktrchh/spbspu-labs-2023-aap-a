@@ -11,6 +11,7 @@ namespace vyzhanov
   {
   public:
     Regular (const point_t& a, const point_t& b, const point_t& c);
+    virtual ~Regular() = default;
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t& pos);

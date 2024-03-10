@@ -2,7 +2,7 @@
 
 #include <stdexcept>
 
-vyzhanov::Rectangle::Rectangle(const point_t& leftCorner, const point_t& rightCorner) :
+vyzhanov::Rectangle::Rectangle(const point_t& leftCorner, const point_t& rightCorner):
   leftCorner_(leftCorner),
   rightCorner_(rightCorner)
 {
