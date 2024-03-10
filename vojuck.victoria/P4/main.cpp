@@ -33,6 +33,9 @@ int main(int argc, char ** argv)
     if (result == rows*cols)
     {
       outputMatrix(matrix, rows*cols);
+      int maxSum = findMaxSum(matrix, rows, cols);
+      output << "\nMax sum: " << maxSum << "\n";
+      output << "This matrix is" << (isUpperTriangular(matrix, rows, cols) ? "" : " not") << " upper triangular.\n";
     }
   }
 }
@@ -62,39 +65,21 @@ size_t inputArray(std::istream & in, int * array, size_t size, size_t toread)
 
 int findMaxSum(int* array, int rows, int cols)
 {
+  int n = 5;
   int maxSum = 0;
-  for (int i = 0; i < rows; i++)
-  {
-    int sum = 0;
-    for (int j = i; j < rows * cols; j += (cols + 1))
+  for (int i = 0; i < n; i++) {
+        int sum1 = 0;
+        int sum2 = 0;
+    for (int j = 0; j < n - i; j++)
     {
-      if (j % cols <= i)
-      {
-        sum += array[j];
-      }
+      sum1 += array[j + rows*j + i];
+      sum2 += array[j + i + cols*j];
     }
-      if (sum > maxSum)
-      {
-        maxSum = sum;
-      }
-  }
-  for (int i = cols; i < rows * cols; i += cols)
-  {
-    int sum = 0;
-    for (int j = i; j < rows * cols; j += (cols - 1))
-    {
-      if (j % cols >= i % cols)
-      {
-        sum += array[j];
-      }
-    }
-      if (sum > maxSum)
-      {
-        maxSum = sum;
-      }
+    maxSum = std::max(maxSum, std::max(sum1, sum2));
   }
   return maxSum;
 }
+
 
 bool isUpperTriangular(int* matrix, int rows, int cols)
 {
