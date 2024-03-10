@@ -13,14 +13,20 @@ int main(int argc, char * argv[])
     return 1;
   }
 
+  char * endptr = nullptr;
   int num = 0;
   try
   {
-    num = std::stoll(argv[1]);
+    num = std::strtoll(argv[1], std::addressof(endptr), 10);
   }
   catch (const std::invalid_argument & e)
   {
     std::cerr << "Cannot read first argument\n";
+    return 1;
+  }
+  if (* endptr != '\0')
+  {
+    std::cerr << "First argument error\n";
     return 1;
   }
   if ((num > 2) || (num < 1))
