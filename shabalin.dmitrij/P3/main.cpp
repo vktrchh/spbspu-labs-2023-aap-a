@@ -92,6 +92,7 @@ char *makeLowerCaseString(char *str, char *result)
 
 int main()
 {
+  using namespace shabalin;
   char *finalyString = nullptr;
 
   try
