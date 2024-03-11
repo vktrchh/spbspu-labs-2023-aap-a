@@ -14,7 +14,6 @@ int main()
   catch (std::exception & e)
   {
     std::cerr << "Error: " << e.what() << "\n";
-    delete[] finalyString;
     return 1;
   }
 
@@ -24,6 +23,7 @@ int main()
     std::cerr << "Error";
     return 1;
   }
+
   size_t answer = duplicateNumbers(finalyString);
   std::cout << answer << "\n";
 

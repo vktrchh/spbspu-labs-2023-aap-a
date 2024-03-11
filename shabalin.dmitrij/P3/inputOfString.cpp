@@ -36,7 +36,7 @@ char *shabalin::inputOfString(std::istream &input)
       }
     }
   }
-  inputString[stringSize] = '\0';
+  inputString[count] = '\0';
   input >> std::skipws;
   return inputString;
 }

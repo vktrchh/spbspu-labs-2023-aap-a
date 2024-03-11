@@ -2,22 +2,24 @@
 #include <cstddef>
 #include <cctype>
 
-int shabalin::duplicateNumbers(const char *str)
+size_t shabalin::duplicateNumbers(const char *str)
 {
   if (str == nullptr || *str == '\0')
   {
     return 0;
   }
 
+  size_t answer = 0;
+  
   for (size_t i = 0; str[i] != '\0'; ++i)
   {
     for (size_t j = 1; str[j] != '\0'; ++j)
     {
-      if ((str[i] == str[j]) && (isdigit(str[i])))
+      if ((str[i] == str[j]) && (isdigit(str[i])) && (i != j))
       {
-        return 1;
+        answer = 1;
       }
     }
   }
-  return 0;
+  return answer;
 }
