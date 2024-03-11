@@ -1,40 +1,30 @@
 #include "inputOfString.h"
 
-char *shabalin::inputOfString(std::istream &input)
+char *shabalin::inputOfString(std::istream &input, size_t stringSize)
 {
-  size_t stringSize = 50;
-  char *inputString = nullptr;
-  try
-  {
-    char *inputString = new char[stringSize];
-  }
-  catch(const std::exception& e)
-  {
-    delete[] inputString;
-    std::cerr << e.what() << '\n';
-  }
+  char *inputString = new char[stringSize];
+  size_t index = 0;
 
-  size_t count = 0;
-
-  char process = 0;
+  inputString = new char[stringSize];
+  char currentSymbol = 0;
   input >> std::noskipws;
 
-  while (input >> process && process != '\n')
+  while (input >> currentSymbol && currentSymbol != '\n')
   {
-    inputString[count] = process;
-    count += 1;
-    if (count == stringSize)
+    inputString[index] = currentSymbol;
+    index += 1;
+    if (index + 1 == stringSize)
     {
       try
       {
-        stringSize += 5;
-        char *temporaryString = new char[stringSize];
-        for (size_t i = 0; i < stringSize - 5; ++i)
+        char *temporaryString = new char[stringSize + 10];
+        for (size_t i = 0; i < stringSize; ++i)
         {
           temporaryString[i] = inputString[i];
         }
         delete[] inputString;
         inputString = temporaryString;
+        stringSize += 10;
       }
       catch (const std::bad_alloc &e)
       {
@@ -43,8 +33,9 @@ char *shabalin::inputOfString(std::istream &input)
         throw;
       }
     }
+    ++index;
   }
-  inputString[count] = '\0';
+  inputString[index] = '\0';
   input >> std::skipws;
   return inputString;
 }
