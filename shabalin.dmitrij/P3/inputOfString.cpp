@@ -1,6 +1,7 @@
 #include "inputOfString.h"
+#include <ios>
 #include <iostream>
-#include <cstddef>
+#include <new>
 
 char *inputOfString(std::istream &input)
 {
@@ -8,44 +9,43 @@ char *inputOfString(std::istream &input)
   char *inputString = nullptr;
 
   size_t stringSize_ = stringSize;
+  size_t count = 0;
 
-  try
+  inputString = new char[stringSize];
+
+  char process = 0;
+
+  input >> std::noskipws;
+
+  while (input >> process && process != '\n')
   {
-    inputString = new char[stringSize];
+    inputString[count] = process;
+    ++count;
 
-    char process;
-    size_t i = 0;
-
-    input >> std::noskipws;
-
-    while (input >> process && process != '\n')
+    if (count == stringSize)
     {
-      inputString[i] = process;
-      ++i;
-
-      if (i >= stringSize)
+    try
+    {
+      stringSize += 5;
+      char *temporaryString = new char[stringSize];
+      for (size_t i = 0; i < stringSize - 5; ++i)
       {
-        stringSize_ += stringSize;
-        char *temporaryString = new char[stringSize_];
-        std::copy(inputString, inputString + i, temporaryString);
-        delete[] inputString;
-        inputString = temporaryString;
-        delete[] temporaryString;
-       }
+        temporaryString[i] = inputString[i];
+      }
+      delete[] inputString;
+      inputString = temporaryString;
     }
-    if (i == 0 || inputString[0] == '\n')
+    catch (std::bad_alloc &e)
     {
+      input >> std::skipws;
       delete[] inputString;
       throw;
     }
+   }
   }
-  catch (const std::bad_alloc &e)
-  {
-    input >> std::skipws;
-    delete[] inputString;
-    throw;
-  }
+
   inputString[stringSize] = '\0';
+  input >> std::skipws;
   return inputString;
 }
 
