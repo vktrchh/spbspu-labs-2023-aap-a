@@ -2,7 +2,7 @@
 #include <cstddef>
 #include <cctype>
 
-char *makeLowerCaseString(char *str, char *result)
+char *shabalin::makeLowerCaseString(char *str, char *result)
 {
   if (str == nullptr || *str == '\0')
   {

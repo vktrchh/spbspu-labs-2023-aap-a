@@ -2,7 +2,7 @@
 #include <cstddef>
 #include <cctype>
 
-int duplicateNumbers(const char *str)
+int shabalin::duplicateNumbers(const char *str)
 {
   if (str == nullptr || *str == '\0')
   {

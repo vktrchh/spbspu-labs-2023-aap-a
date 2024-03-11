@@ -1,6 +1,6 @@
 #include "inputOfString.h"
 
-char *inputOfString(std::istream &input)
+char *shabalin::inputOfString(std::istream &input)
 {
   size_t stringSize = 50;
   char *inputString = new char[stringSize];
