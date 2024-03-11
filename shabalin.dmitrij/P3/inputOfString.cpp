@@ -3,11 +3,19 @@
 char *shabalin::inputOfString(std::istream &input)
 {
   size_t stringSize = 50;
-  char *inputString = new char[stringSize];
+  char *inputString = nullptr;
+  try
+  {
+    char *inputString = new char[stringSize];
+  }
+  catch(const std::exception& e)
+  {
+    delete[] inputString;
+    std::cerr << e.what() << '\n';
+  }
 
   size_t count = 0;
 
-  inputString = new char[stringSize];
   char process = 0;
   input >> std::noskipws;
 
