@@ -3,7 +3,7 @@
 #include <limits>
 #include <iostream>
 
-const int = min_int = std::numeric_limits< int >::min();
+const int min_int = std::numeric_limits< int >::min();
 
 vojuck::CounterAftMax::CounterAftMax()
 {

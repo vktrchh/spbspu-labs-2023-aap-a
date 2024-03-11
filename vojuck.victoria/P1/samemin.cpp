@@ -3,7 +3,7 @@
 #include <iostream>
 #include <limits>
 
-const int max_int = std::number_limits< int >::max();
+const int max_int = std::numeric_limits< int >::max();
 
 vojuck::CounterSameMin::CounterSameMin()
 {
