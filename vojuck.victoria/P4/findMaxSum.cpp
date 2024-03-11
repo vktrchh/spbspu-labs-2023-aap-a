@@ -5,12 +5,12 @@
 int findMaxSum(int* array, size_t rows, size_t cols)
 {
   int maxSum = 0;
-  for (int i = 0; i < rows; i++) {
+  for (size_t i = 0; i < rows; i++) {
         int sum1 = 0;
         int sum2 = 0;
-    for (int j = 0; j < n - i; j++)
+    for (size_t j = 0; j < cols - i; j++)
     {
-      sum1 += array[j + cols*j + i];
+      sum1 += array[j + rows*j + i];
       sum2 += array[j + i + cols*j];
     }
     maxSum = std::max(maxSum, std::max(sum1, sum2));
