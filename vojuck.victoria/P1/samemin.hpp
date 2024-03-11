@@ -7,8 +7,9 @@ namespace vojuck
   struct CounterSameMin
   {
     CounterSameMin();
-    void operator()(int number, int &minElement);
+    void operator()(int number);
     size_t operator()() const;
+    int minElement;
   private:
     size_t count_;
   };

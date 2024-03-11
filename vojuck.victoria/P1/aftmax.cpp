@@ -3,9 +3,13 @@
 #include <limits>
 #include <iostream>
 
-vojuck::CounterAftMax::CounterAftMax():
-  count_(0)
-{}
+const int = min_int = std::numeric_limits< int >::min();
+
+vojuck::CounterAftMax::CounterAftMax()
+{
+  count_ = 0;
+  maxElement = min_int;
+}
 
 void vojuck::CounterAftMax::operator()(int num)
 {

@@ -7,10 +7,6 @@ int main()
   CounterAftMax aftMaxCounter;
   CounterSameMin sameMinCounter;
   int number = 0;
-  int min_int = std::numeric_limits< int >::min();
-  int maxElement = min_int;
-  int max_int = std::numeric_limits< int >::max();
-  int minElement = max_int;
   do
   {
     std::cin >> number;
@@ -24,7 +20,7 @@ int main()
       try
       {
         aftMaxCounter(number);
-        sameMinCounter(number, minElement);
+        sameMinCounter(number);
       }
       catch (const std::exception & e)
       {

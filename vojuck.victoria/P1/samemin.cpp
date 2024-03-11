@@ -3,14 +3,18 @@
 #include <iostream>
 #include <limits>
 
-vojuck::CounterSameMin::CounterSameMin():
-  count_(1)
-{}
+const int max_int = std::number_limits< int >::max();
 
-void vojuck::CounterSameMin::operator()(int num, int &minElement)
+vojuck::CounterSameMin::CounterSameMin()
+{
+  count_ = 1;
+  minElement = max_int;
+}
+
+void vojuck::CounterSameMin::operator()(int num)
 {
   size_t max_size = std::numeric_limits< size_t >::max();
-  if (count_ == max_size)
+  if (count_ == max_size - 1)
   {
     throw std::logic_error("Sequence is too long =(((((");
   }
