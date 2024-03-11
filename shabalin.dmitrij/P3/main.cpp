@@ -70,7 +70,7 @@ int duplicateNumbers(const char *str)
   return 0;
 }
 
-char *makeLowerCaseString(char *str, char *result, size_t sizeOfString)
+char *makeLowerCaseString(char *str, char *result)
 {
   if (str == nullptr || *str == '\0')
   {
@@ -83,7 +83,7 @@ char *makeLowerCaseString(char *str, char *result, size_t sizeOfString)
         str[i] = tolower(str[i]);
       }
   }
-  for (size_t j = 0; j < sizeOfString; ++j)
+  for (size_t j = 0; str[j] != '\0'; ++j)
   {
     result[j] = str[j];
   }
@@ -148,7 +148,7 @@ int main()
   */
 
   char result[] = "123";
-  makeLowerCaseString(finalyString, result, stringSize);
+  makeLowerCaseString(finalyString, result);
   std::cout << result;
 
   return 0;
