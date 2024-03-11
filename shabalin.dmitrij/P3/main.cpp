@@ -96,7 +96,7 @@ int main()
 
   try
   {
-    finalyString = inputOfString(std::cin);
+    finalyString = shabalin::inputOfString(std::cin);
   }
   catch (std::exception & e)
   {
@@ -129,7 +129,7 @@ int main()
   */
 
 //char *answer2 = new char[stringSize];
-  size_t answer = duplicateNumbers(finalyString);
+  size_t answer = shabalin::duplicateNumbers(finalyString);
   std::cout << answer << "\n";
 
   /*
@@ -147,7 +147,7 @@ int main()
   */
 
   char result[] = "123";
-  makeLowerCaseString(finalyString, result);
+  shabalin::makeLowerCaseString(finalyString, result);
   std::cout << result;
 
   return 0;

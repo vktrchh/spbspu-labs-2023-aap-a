@@ -2,6 +2,9 @@
 #define INPUTOFSTRING_H
 #include <iostream>
 
-char *inputOfString(std::istream &input);
+namespace shabalin
+{
+  char *inputOfString(std::istream &input);
+}
 
 #endif
