@@ -4,8 +4,8 @@
 int main()
 {
   using namespace vojuck;
-  counterAftMax aftMaxCounter;
-  counterSameMin sameMinCounter;
+  CounterAftMax aftMaxCounter;
+  CounterSameMin sameMinCounter;
   int number = 0;
   int min_int = std::numeric_limits< int >::min();
   int maxElement = min_int;
@@ -23,7 +23,7 @@ int main()
     {
       try
       {
-        aftMaxCounter(number, maxElement);
+        aftMaxCounter(number);
         sameMinCounter(number, minElement);
       }
       catch (const std::exception & e)

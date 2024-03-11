@@ -1,16 +1,15 @@
 #ifndef AFT_MAX_HPP
 #define AFT_MAX_HPP
 #include <cstddef>
-#include <iostream>
-#include <limits>
 
 namespace vojuck
 {
-  struct counterAftMax
+  struct CounterAftMax
   {
-    counterAftMax();
-    void operator()(int number, int &maxElement);
+    CounterAftMax();
+    void operator()(int number);
     size_t operator()() const;
+    int maxElement;
   private:
     size_t count_;
   };

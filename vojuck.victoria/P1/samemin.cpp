@@ -1,11 +1,13 @@
 #include "samemin.hpp"
 #include <stdexcept>
+#include <iostream>
+#include <limits>
 
-vojuck::counterSameMin::counterSameMin():
+vojuck::CounterSameMin::CounterSameMin():
   count_(1)
 {}
 
-void vojuck::counterSameMin::operator()(int num, int &minElement)
+void vojuck::CounterSameMin::operator()(int num, int &minElement)
 {
   size_t max_size = std::numeric_limits< size_t >::max();
   if (count_ == max_size)
@@ -23,7 +25,7 @@ void vojuck::counterSameMin::operator()(int num, int &minElement)
   }
 }
 
-size_t vojuck::counterSameMin::operator()() const
+size_t vojuck::CounterSameMin::operator()() const
 {
   return count_;
 }
