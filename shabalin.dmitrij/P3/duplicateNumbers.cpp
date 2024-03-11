@@ -10,7 +10,7 @@ size_t shabalin::duplicateNumbers(const char *str)
   }
 
   size_t answer = 0;
-  
+
   for (size_t i = 0; str[i] != '\0'; ++i)
   {
     for (size_t j = 1; str[j] != '\0'; ++j)
