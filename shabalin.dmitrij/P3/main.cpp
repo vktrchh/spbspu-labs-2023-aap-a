@@ -93,7 +93,6 @@ char *makeLowerCaseString(char *str, char *result)
 int main()
 {
   char *finalyString = nullptr;
-  size_t stringSize = 50;
 
   try
   {
