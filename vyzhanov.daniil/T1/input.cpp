@@ -27,8 +27,8 @@ namespace vyzhanov
       throw std::invalid_argument("incorrect count of args");
     }
     point_t LeftCorner = { nums[0], nums[1] };
-    double leng = nums[2];
-    return new Square(LeftCorner, leng);
+    double len = nums[2];
+    return new Square(LeftCorner, len);
   }
 
   Shape* createTriangle(const double* nums, size_t length)
@@ -90,6 +90,16 @@ namespace vyzhanov
     length = index;
     return nums;
   }
+}
+
+void vyzhanov::doScale(Shape* shape, const point_t& point, const double ratio)
+{
+  point_t center = shape->getFrameRect().pos;
+  shape->move(point);
+  shape->scale(ratio);
+  double dx = (point.x - center.x) * ratio;
+  double dy = (point.y - center.y) * ratio;
+  shape->move(-dx, -dy);
 }
 
 void vyzhanov::deleteShapes(Shape* shapes[], size_t length)

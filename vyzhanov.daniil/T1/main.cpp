@@ -38,6 +38,10 @@ int main()
   }
   outputShapes( std::cout, shapes, length);
   std::cout << '\n';
+  for (size_t i = 0; i < length; i++)
+  {
+    doScale(shapes[i], point, ratio);
+  }
   outputShapes(std::cout, shapes, length);
   std::cout << '\n';
   for (size_t i = 0; i < length; i++)
