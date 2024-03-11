@@ -3,11 +3,11 @@
 
 #include <cstddef>
 #include "shape.hpp"
-#include "base-types.hpp"
+#include "triangle.hpp"
 
 namespace vyzhanov
 {
-  class Regular : public Shape
+  class Regular: public Shape
   {
   public:
     Regular (const point_t& a, const point_t& b, const point_t& c);
@@ -18,7 +18,8 @@ namespace vyzhanov
     virtual void move(double dx, double dy);
     virtual void scale(const double ratio);
   private:
-    point_t a_, b_, c_;
+    Triangle mainTri_;
+    point_t points_[3];
   };
 }
 
