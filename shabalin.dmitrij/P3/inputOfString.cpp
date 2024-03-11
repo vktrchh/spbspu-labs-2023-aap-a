@@ -8,7 +8,6 @@ char *inputOfString(std::istream &input)
   size_t stringSize = 50;
   char *inputString = nullptr;
 
-  size_t stringSize_ = stringSize;
   size_t count = 0;
 
   inputString = new char[stringSize];
