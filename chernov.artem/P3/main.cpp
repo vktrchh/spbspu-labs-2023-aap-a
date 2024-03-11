@@ -12,6 +12,18 @@ int main()
   size_t sizeOfInput = 20;
 
   char* input = nullptr;
+  char* oldInput = nullptr;
+  try
+  {
+    input = new char[sizeOfInput]();
+    oldInput = new char[sizeOfInput]();
+  }
+  catch (const std::bad_alloc &e)
+  {
+    std::cerr << "Allocation failed: " << e.what() << "\n";
+    delete[] input;
+    return 1;
+  }
 
   char c = 0;
   size_t i = 0;
