@@ -1,7 +1,7 @@
 #ifndef MAKELOWERCASESTRING_H
 #define MAKELOWERCASESTRING_H
 
-namespace shabalin 
+namespace shabalin
 {
   char *makeLowerCaseString(char *str, char *result);
 }
