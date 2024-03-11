@@ -1,5 +1,6 @@
 #include "aftmax.hpp"
 #include "samemin.hpp"
+#include <iostream>
 
 int main()
 {
