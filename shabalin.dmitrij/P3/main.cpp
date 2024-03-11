@@ -1,9 +1,8 @@
-#include <cctype>
-#include <cstring>
-#include <exception>
-#include <iostream>
-#include <cstddef>
+#include "duplicateNumbers.h"
+#include "makeLowerCaseString.h"
+#include "inputOfString.h"
 
+/*
 char *inputOfString(std::istream &input)
 {
   size_t stringSize = 50;
@@ -89,6 +88,7 @@ char *makeLowerCaseString(char *str, char *result)
   }
   return result;
 }
+*/
 
 int main()
 {
