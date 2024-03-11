@@ -1,4 +1,5 @@
 #include "duplicateNumbers.h"
+#include <cstddef>
 #include <cctype>
 
 int duplicateNumbers(const char *str)

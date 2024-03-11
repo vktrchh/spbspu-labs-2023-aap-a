@@ -1,6 +1,6 @@
 #include "inputOfString.h"
-#include <ios>
-#include <new>
+#include <iostream>
+#include <cstddef>
 
 char *inputOfString(std::istream &input)
 {
