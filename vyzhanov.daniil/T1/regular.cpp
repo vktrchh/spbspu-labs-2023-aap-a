@@ -24,7 +24,7 @@ double vyzhanov::Regular::getArea() const
   double bigRad = std::pow((points_[0].x - points_[1].x), 2) + std::pow((points_[0].y - points_[1].y), 2);
   double smallRad = std::pow((points_[0].x - points_[2].x), 2) + std::pow((points_[0].y - points_[2].y), 2);
   double PI = 3.14159265358979323846;
-  int sideCount = std::round(-2.0 * PI / (std::asin(std::max(smallRad, bigRad)/ std::min(smallRad, bigRad)) * 2.0 - PI));
+  size_t sideCount = std::round(-2.0 * PI / (std::asin(std::min(smallRad, bigRad) / std::max(smallRad, bigRad)) * 2.0 - PI));
   return mainTri_.getArea() * sideCount * 2;
 }
 
@@ -33,22 +33,21 @@ vyzhanov::rectangle_t vyzhanov::Regular::getFrameRect() const
   double bigRad = std::pow((points_[0].x - points_[1].x), 2) + std::pow((points_[0].y - points_[1].y), 2);
   double smallRad = std::pow((points_[0].x - points_[2].x), 2) + std::pow((points_[0].y - points_[2].y), 2);
   double PI = 3.14159265358979323846;
-  size_t sideCount = std::round(-2.0 * PI / (std::asin(std::max(smallRad, bigRad) / std::min(smallRad, bigRad)) * 2.0 - PI));
+  size_t sideCount = std::round(-2.0 * PI / (std::asin(std::min(smallRad, bigRad) / std::max(smallRad, bigRad)) * 2.0 - PI));
   double len = 2.0 * bigRad * std::sin(PI / sideCount);
   double maxX = std::numeric_limits< double >::lowest();
   double maxY = maxX;
   double minX = std::numeric_limits< double >::max();
   double minY = minX;
-
-  point_t point;
-  if (bigRad == std::max(bigRad, smallRad))
+  double replace = 0;
+  if (bigRad < smallRad)
   {
-      point = points_[1];
+      replace = bigRad;
+      bigRad = smallRad;
+      smallRad = replace;
+      replace = 0;
   }
-  else
-  {
-    point = points_[2];
-  }
+  point_t point = points_[1];
 
   point.x = point.x - points_[0].x;
   point.y = point.y - points_[0].y;
@@ -81,6 +80,8 @@ void vyzhanov::Regular::move(double dx, double dy)
 
 void vyzhanov::Regular::scale(double ratio)
 {
-  mainTri_.scale(ratio);
-  mainTri_.move(points_[1]);
+    points_[1].x = points_[0].x + (points_[1].x - points_[0].x) * ratio;
+    points_[1].y = points_[0].y + (points_[1].y - points_[0].y) * ratio;
+    points_[2].x = points_[0].x + (points_[2].x - points_[0].x) * ratio;
+    points_[2].y = points_[0].y + (points_[2].y - points_[0].y) * ratio;
 }
