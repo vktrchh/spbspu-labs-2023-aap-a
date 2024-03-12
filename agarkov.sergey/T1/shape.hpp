@@ -1,5 +1,6 @@
- #ifndef SHAPE_HPP
+#ifndef SHAPE_HPP
 #define SHAPE_HPP
+
 #include "baseTypes.hpp"
 
 namespace agarkov
