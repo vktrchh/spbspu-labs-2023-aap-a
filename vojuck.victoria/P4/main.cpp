@@ -79,6 +79,11 @@ int main(int argc, char ** argv)
       output << maxSum << "\n";
       output << isUpperTriangular(matrix, rows, cols);
     }
+    else
+    {
+      std::cerr << "Not enough data for matrix!\n";
+      return 2;
+    }
   }
   catch (std::bad_alloc &)
   {
