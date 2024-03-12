@@ -29,6 +29,11 @@ int main(int argc, char ** argv)
     std::cerr << "Cannot parse a value\n";
     return 3;
   }
+  if (num != 1 && num != 2)
+  {
+    std::cerr << "Invalid argument for a number of task\n";
+    return 2;
+  }
 
   std::ifstream input(argv[2]);
   size_t rows = 0, cols = 0 ;
@@ -38,10 +43,13 @@ int main(int argc, char ** argv)
     std::cerr << "Cannot read!\n";
     return 2;
   }
-  if (rows < 2)
+
+  std::ofstream output(argv[3]);
+
+  if (rows == 0 || cols == 0 || rows == 1 || cols == 1)
   {
-    std::cerr << "The matrix is too small!\n";
-    return 2;
+    output << 0;
+    return 0;
   }
   if (rows != cols)
   {
@@ -49,16 +57,8 @@ int main(int argc, char ** argv)
     return 2;
   }
 
-  if (num != 1 && num != 2)
-  {
-    std::cerr << "Invalid argument for a number of task\n";
-    return 2;
-  }
-
   long long  int fixedMatrix[10000] = {0};
   long long int * matrix = nullptr;
-
-  std::ofstream output(argv[3]);
 
   if (num == 1)
   {
