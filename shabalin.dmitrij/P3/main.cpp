@@ -23,14 +23,11 @@ int main()
     std::cerr << "Error" << "\n";
     return 1;
   }
-
-  size_t answer = duplicateNumbers(finalyString);
-  std::cout << answer << "\n";
+  std::cout << duplicateNumbers(finalyString) << "\n";
 
   char result[] = "123";
   makeLowerCaseString(finalyString, result);
   std::cout << result;
 
-  delete[] finalyString;
   return 0;
 }
