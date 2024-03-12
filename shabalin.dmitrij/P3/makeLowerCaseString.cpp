@@ -10,9 +10,9 @@ char *shabalin::makeLowerCaseString(char *str, char *result)
   }
   for (size_t i = 0; str[i] != '\0'; ++i)
   {
-    if(isupper(str[i]))
+    if (std::isupper(str[i]))
     {
-      str[i] = tolower(str[i]);
+      str[i] = std::tolower(str[i]);
     }
   }
   for (size_t j = 0; str[j] != '\0'; ++j)

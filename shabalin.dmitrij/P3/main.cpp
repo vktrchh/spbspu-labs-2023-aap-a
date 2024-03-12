@@ -57,7 +57,7 @@ int main()
     std::cout << duplicateNumbers(initialString) << "\n";
     char result[] = "123";
     std::cout << makeLowerCaseString(initialString, result) << "\n";
-    // delete[] initialString;
+    delete[] initialString;
     return 0;
   }
   catch (const std::bad_alloc &e)
