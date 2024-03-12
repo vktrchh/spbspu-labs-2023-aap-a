@@ -2,6 +2,6 @@
 #define FINDMAXSYM_HPP
 #include <cstddef>
 
-int findMaxSum(int* array, size_t rows, size_t cols);
+int findMaxSum(long long * array, size_t rows, size_t cols);
 
 #endif

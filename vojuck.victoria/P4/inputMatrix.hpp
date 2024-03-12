@@ -3,6 +3,6 @@
 #include <cstddef>
 #include <iostream>
 
-size_t inputArray(std::istream & in, int * array, size_t size, size_t toread);
+size_t inputArray(std::istream & in, long long int * array, size_t size, size_t toread);
 
 #endif

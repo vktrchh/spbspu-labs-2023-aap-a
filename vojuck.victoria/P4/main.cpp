@@ -51,8 +51,8 @@ int main(int argc, char ** argv)
     return 2;
   }
 
-  int fixedMatrix[10000]{0};
-  int* matrix = nullptr;
+  long long  int fixedMatrix[10000] = {0};
+  long long int * matrix = nullptr;
 
   std::ofstream output(argv[3]);
 
@@ -63,7 +63,7 @@ int main(int argc, char ** argv)
 
   if (num == 2)
   {
-    matrix = new int[rows * cols];
+    matrix = new long long int [rows * cols];
   }
 
   try
@@ -88,7 +88,10 @@ int main(int argc, char ** argv)
     delete[] matrix;
     return 1;
   }
-  delete[] matrix;
+  if (num == 2)
+  {
+    delete[] matrix;
+  }
 }
 
 
