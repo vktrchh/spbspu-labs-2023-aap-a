@@ -6,10 +6,9 @@ int main()
 {
   using namespace shabalin;
   char *finalyString = nullptr;
-  size_t stringSize = 50;
   try
   {
-    finalyString = inputOfString(std::cin, stringSize);
+    finalyString = inputOfString(std::cin);
   }
   catch (std::bad_alloc & e)
   {

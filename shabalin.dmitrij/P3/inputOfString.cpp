@@ -1,3 +1,4 @@
+/*
 #include "inputOfString.h"
 
 char *shabalin::inputOfString(std::istream &input, size_t stringSize)
@@ -49,4 +50,44 @@ char *shabalin::inputOfString(std::istream &input, size_t stringSize)
   input >> std::skipws;
   return inputString;
 }
+*/
 
+#include "inputOfString.h"
+#include <stdexcept>
+
+char * shabalin::inputOfString(std::istream& input)
+{
+  size_t stringSize = 10;
+  size_t count = 0;
+  char * initialArray = new char[stringSize];
+  char currentChar = 0;
+  input >> std::noskipws;
+  while ((input >> currentChar) && (currentChar != '\n'))
+  {
+    initialArray[count] = currentChar;
+    count += 1;
+    if (count == stringSize)
+    {
+      try
+      {
+        stringSize += 10;
+        char * newArray = new char[stringSize];
+        for (size_t i = 0; i < stringSize - 10; ++i)
+        {
+          newArray[i] = initialArray[i];
+        }
+        delete [] initialArray;
+        initialArray = newArray;
+      }
+      catch (const std::bad_alloc& e)
+      {
+        input >> std::skipws;
+        delete[] initialArray;
+        throw;
+      }
+    }
+  }
+  initialArray[count] = '\0';
+  input >> std::skipws;
+  return initialArray;
+}
