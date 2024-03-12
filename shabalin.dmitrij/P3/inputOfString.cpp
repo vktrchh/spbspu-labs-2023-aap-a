@@ -1,7 +1,7 @@
 #include "inputOfString.h"
 #include <stdexcept>
 
-char *shabalin::inputOfString(std::istream& input)
+char *shabalin::inputOfString(std::istream &input)
 {
   size_t stringSize = 10;
   size_t count = 0;
@@ -9,13 +9,13 @@ char *shabalin::inputOfString(std::istream& input)
   char currentChar = 0;
 
   input >> std::noskipws;
-  while ((input >> currentChar) && (currentChar != '\n'))
+  try
   {
-    initialString[count] = currentChar;
-    count += 1;
-    if (count == stringSize)
+    while ((input >> currentChar) && (currentChar != '\n'))
     {
-      try
+      initialString[count] = currentChar;
+      count += 1;
+      if (count == stringSize)
       {
         stringSize += 10;
         char *newArray = new char[stringSize];
@@ -26,15 +26,15 @@ char *shabalin::inputOfString(std::istream& input)
         delete[] initialString;
         initialString = newArray;
       }
-      catch (const std::bad_alloc& e)
-      {
-        input >> std::skipws;
-        delete[] initialString;
-        throw;
-      }
     }
+    initialString[count] = '\0';
+    input >> std::skipws;
   }
-  initialString[count] = '\0';
-  input >> std::skipws;
+  catch (const std::bad_alloc &e)
+  {
+    input >> std::skipws;
+    delete[] initialString;
+    throw;
+  }
   return initialString;
 }
