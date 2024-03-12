@@ -5,15 +5,15 @@ namespace agarkov
 {
   struct point_t
   {
-    double x;
-    double y;
+    double x_;
+    double y_;
   };
 
   struct rectangle_t
   {
-    point_t pos;
-    double width;
-    double height;
+    point_t pos_;
+    double width_;
+    double height_;
   };
 }
 
