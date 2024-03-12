@@ -2,7 +2,7 @@
 #include <iostream>
 #include <algorithm>
 
-int findMaxSum(int* array, size_t rows, size_t cols)
+int findMaxSum(long long * array, size_t rows, size_t cols)
 {
   int maxSum = 0;
   for (size_t i = 0; i < rows; i++) {
