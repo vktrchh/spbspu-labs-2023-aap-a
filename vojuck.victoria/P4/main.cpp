@@ -82,7 +82,10 @@ int main(int argc, char ** argv)
     else
     {
       std::cerr << "Not enough data for matrix!\n";
-      delete[] matrix;
+      if (num == 2)
+      {
+        delete[] matrix;
+      }
       return 2;
     }
   }
