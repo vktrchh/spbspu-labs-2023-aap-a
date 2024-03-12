@@ -72,8 +72,8 @@ int main(int argc, char ** argv)
     if (result == rows*cols)
     {
       int maxSum = findMaxSum(matrix, rows, cols);
-      output << "Max sum: " << maxSum << "\n";
-      output << "This matrix is" << (isUpperTriangular(matrix, rows, cols) ? "" : " not") << " upper triangular.\n";
+      output << maxSum << "\n";
+      output << isUpperTriangular(matrix, rows, cols);
     }
   }
   catch (std::bad_alloc &)
