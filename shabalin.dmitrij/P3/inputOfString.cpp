@@ -1,3 +1,4 @@
+/*
 #include "inputOfString.h"
 #include <stdexcept>
 
@@ -37,4 +38,49 @@ char *shabalin::inputOfString(std::istream &input)
     throw;
   }
   return initialString;
+}
+*/
+
+#include "inputOfString.h"
+#include <stdexcept>
+#include <iostream>
+#include <cstddef>
+
+char *shabalin::inputOfString(std::istream &input, char *initialString)
+{
+  size_t initialSize = 0;
+  size_t count = 0;
+  char currentChar = 0;
+  char *newArray = nullptr;
+
+  input >> std::noskipws;
+
+  try
+  {
+    initialString = new char[initialSize]();
+    while ((input >> currentChar) && (currentChar != '\n'))
+    {
+      initialString[count] = currentChar;
+      count += 1;
+      if (count == initialSize)
+      {
+        initialSize *= 2;
+        newArray = new char[initialSize]();
+        for (size_t i = 0; i < initialSize; ++i)
+        {
+          newArray[i] = initialString[i];
+        }
+        delete[] initialString;
+        initialString = newArray;
+        delete[] newArray;
+      }
+    }
+    initialString[count] = '\0';
+    input >> std::skipws;
+    return initialString;
+  }
+  catch (const std::bad_alloc &e)
+  {
+    throw;
+  }
 }
