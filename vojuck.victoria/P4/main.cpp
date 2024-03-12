@@ -38,7 +38,11 @@ int main(int argc, char ** argv)
     std::cerr << "Cannot read!\n";
     return 2;
   }
-
+  if (rows < 2)
+  {
+    std::cerr << "The matrix is too small!\n";
+    return 2;
+  }
   if (rows != cols)
   {
     std::cerr << "The number of rows should be equal to cols\n";
@@ -61,7 +65,7 @@ int main(int argc, char ** argv)
     matrix = fixedMatrix;
   }
 
-  if (num == 2)
+  else if (num == 2)
   {
     matrix = new long long int [rows * cols];
   }
