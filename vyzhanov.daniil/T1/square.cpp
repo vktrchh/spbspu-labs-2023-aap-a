@@ -34,6 +34,11 @@ void vyzhanov::Square::move(const double dx, const double dy)
 
 void vyzhanov::Square::scale(const double ratio)
 {
+  point_t center1 = firstTri_.getFrameRect().pos;
   firstTri_.scale(ratio);
   length_ *= ratio;
+  point_t center2 = firstTri_.getFrameRect().pos;
+  double dx = (center1.x - center2.x) * ratio / 3;
+  double dy = (center1.y - center2.y) * ratio / 3;
+  firstTri_.move(dx, dy);
 }

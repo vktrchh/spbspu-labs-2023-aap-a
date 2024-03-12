@@ -52,7 +52,6 @@ void vyzhanov::Triangle::scale(const double ratio)
   b_.x = ratio * (cen.x - b_.x);
   b_.y = ratio * (cen.y - b_.y);
   c_.x = ratio * (cen.x - c_.x);
-  c_.y = ratio * (cen.y - c_.y);
-
+  c_.y = cen.y + ratio * (cen.y - c_.y);
 }
 
