@@ -2,7 +2,17 @@
 
 char *shabalin::inputOfString(std::istream &input, size_t stringSize)
 {
-  char *inputString = new char[stringSize];
+  char *inputString = nullptr;
+  try
+  {
+    char *inputString = new char[stringSize];
+  }
+  catch (std::bad_alloc &e)
+  {
+    delete[] inputString;
+    std::cerr << "Error: " << e.what() << '\n';
+    throw;
+  }
   size_t index = 0;
 
   inputString = new char[stringSize];
