@@ -61,7 +61,6 @@ namespace vyzhanov
     double* nums = new double[size] {};
     double num = 0;
     size_t index = 0;
-    delete[] nums;
     while (input >> num)
     {
       nums[index] = num;
