@@ -19,8 +19,7 @@ agarkov::rectangle_t agarkov::Square::getFrameRectangle() const
 
 void agarkov::Square::move(double dx, double dy)
 {
-  dx++;
-  dy++;
+  left_bottom_.move(dx, dy);
 }
 
 void agarkov::Square::move(point_t position)
