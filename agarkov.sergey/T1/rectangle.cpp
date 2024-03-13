@@ -1,6 +1,7 @@
 #include "rectangle.hpp"
+#include <stdexcept>
 
-agarkov::Rectangle::Rectangle(const agarkov::point_t left_bottom, constag arkov::point_t right_top):
+agarkov::Rectangle::Rectangle(agarkov::point_t left_bottom, agarkov::point_t right_top):
   left_bottom_(left_bottom),
   right_top_(right_top)
 {
@@ -12,7 +13,7 @@ agarkov::Rectangle::Rectangle(const agarkov::point_t left_bottom, constag arkov:
 
 double agarkov::Rectangle::getArea() const
 {
-  return getFrameRectangle().height * getFrameRectangle().width;
+  return getFrameRectangle().height_ * getFrameRectangle().width_;
 }
 
 agarkov::rectangle_t agarkov::Rectangle::getFrameRectangle() const
@@ -37,17 +38,17 @@ void agarkov::Rectangle::move(const agarkov::point_t position)
   move(dx, dy);
 }
 
-void hrushchev::Rectangle::scale(const double k)
+void agarkov::Rectangle::scale(const double k)
 {
   if (k <= 0)
   {
     throw std::invalid_argument("Incorrect scale coefficient");
   }
-  point_t center = getFrameRectangle().pos;
-  left_bottom_.x = center.x_ + (left_bottom_.x_ - center.x_) * k;
-  left_bottom_.y = center.y_ + (left_bottom_.y_ - center.y_) * k;
-  right_top_.x = center.x_ + (right_top_.x_ - center.x_) * k;
-  right_top_.y = center.y_ + (right_top_.y_ - center.y_) * k;
+  point_t center = getFrameRectangle().pos_;
+  left_bottom_.x_ = center.x_ + (left_bottom_.x_ - center.x_) * k;
+  left_bottom_.y_ = center.y_ + (left_bottom_.y_ - center.y_) * k;
+  right_top_.x_ = center.x_ + (right_top_.x_ - center.x_) * k;
+  right_top_.y_ = center.y_ + (right_top_.y_ - center.y_) * k;
 }
 
 bool agarkov::Rectangle::isCorrectRectangle() const
