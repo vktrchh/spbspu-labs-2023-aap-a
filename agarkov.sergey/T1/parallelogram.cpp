@@ -7,6 +7,10 @@ agarkov::Parallelogram::Parallelogram(point_t point1, point_t point2, point_t po
   point2_(point2), 
   point3_(point3)
 {
+  if (!isCorrectParallelogram())
+  {
+    throw std::invalid_argument("Incorrect parallelogram argument");
+  }
 }
 
 double agarkov::Parallelogram::getArea() const
@@ -31,7 +35,7 @@ void agarkov::Parallelogram::move(double dx, double dy)
 
 void agarkov::Parallelogram::move(agarkov::point_t position)
 {
-  point_t centre = getLineCenter(point2_, point3_);
+  point_t centre = getLineCenter(point1_, point3_);
   double dx = position.x_ - centre.x_;
   double dy = position.y_ - centre.y_;
   move(dx, dy);
@@ -47,4 +51,9 @@ void agarkov::Parallelogram::scale(double k)
   point1_.unsaveScale(center, k);
   point2_.unsaveScale(center, k);
   point3_.unsaveScale(center, k);
+}
+
+bool agarkov::Parallelogram::isCorrectParallelogram() const
+{
+  return (point1_.y_ == point2_.y_) && (point2_.y_ != point3_.y_);
 }
