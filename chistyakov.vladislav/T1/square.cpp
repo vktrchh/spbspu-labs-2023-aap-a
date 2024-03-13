@@ -32,13 +32,13 @@ void chistyakov::Square::move(const point_t & point)
   move(mx, my);
 }
 
-void chistyakov::Square::move(const double mx, const double my)
+void chistyakov::Square::move(double mx, double my)
 {
   leftDownCorner_.x += mx;
   leftDownCorner_.y += my;
 }
 
-void chistyakov::Square::scale(const double ratio)
+void chistyakov::Square::scale(double ratio)
 {
   if (ratio <= 0.0)
   {

@@ -36,7 +36,7 @@ void chistyakov::Rectangle::move(const point_t & point)
   move(mx, my);
 }
 
-void chistyakov::Rectangle::move(const double mx, const double my)
+void chistyakov::Rectangle::move(double mx, double my)
 {
   leftDownCorner_.x += mx;
   leftDownCorner_.y += my;
@@ -44,7 +44,7 @@ void chistyakov::Rectangle::move(const double mx, const double my)
   rightUpCorner_.y += my;
 }
 
-void chistyakov::Rectangle::scale(const double ratio)
+void chistyakov::Rectangle::scale(double ratio)
 {
   if (ratio <= 0)
   {

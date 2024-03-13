@@ -94,7 +94,7 @@ void chistyakov::Complexquad::move(const point_t & point)
   move(mx, my);
 }
 
-void chistyakov::Complexquad::move(const double mx, const double my)
+void chistyakov::Complexquad::move(double mx, double my)
 {
   chistyakov::point_t points[4] = { pnt1_, pnt2_, pnt3_, pnt4_ };
   for (int i = 0; i < 4; ++i)
@@ -106,7 +106,7 @@ void chistyakov::Complexquad::move(const double mx, const double my)
   cross_.y += my;
 }
 
-void chistyakov::Complexquad::scale(const double ratio)
+void chistyakov::Complexquad::scale(double ratio)
 {
   chistyakov::point_t points[4] = { pnt1_, pnt2_, pnt3_, pnt4_ };
   for (int i = 0; i < 4; ++i)
