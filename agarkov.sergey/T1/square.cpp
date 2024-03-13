@@ -17,7 +17,7 @@ double agarkov::Square::getArea() const
   return (length_ * length_);
 }
 
-agarkov::rectangle_t agarkov::Square::getFrameRectangle() const
+agarkov::rectangle_t agarkov::Square::getFrameRect() const
 {
   point_t center = {left_bottom_.x + length_ / 2, left_bottom_.y + length_ / 2};
   return {center, length_, length_};
@@ -41,7 +41,7 @@ void agarkov::Square::scale(double k)
   {
     throw std::invalid_argument("Incorrect scale coefficient");
   }
-  point_t center = getFrameRectangle().pos;
+  point_t center = getFrameRect().pos;
   left_bottom_.unsaveScale(center, k);
   length_ *= k;
 }

@@ -14,10 +14,10 @@ agarkov::Rectangle::Rectangle(agarkov::point_t left_bottom, agarkov::point_t rig
 
 double agarkov::Rectangle::getArea() const
 {
-  return getFrameRectangle().height * getFrameRectangle().width;
+  return getFrameRect().height * getFrameRect().width;
 }
 
-agarkov::rectangle_t agarkov::Rectangle::getFrameRectangle() const
+agarkov::rectangle_t agarkov::Rectangle::getFrameRect() const
 {
   point_t centre_frame_rect = getLineCenter(left_bottom_, right_top_);
   double height_frame_rect = right_top_.y - left_bottom_.y;
@@ -45,7 +45,7 @@ void agarkov::Rectangle::scale(double k)
   {
     throw std::invalid_argument("Incorrect scale coefficient");
   }
-  point_t center = getFrameRectangle().pos;
+  point_t center = getFrameRect().pos;
   left_bottom_.unsaveScale(center, k);
   right_top_.unsaveScale(center, k);
 }

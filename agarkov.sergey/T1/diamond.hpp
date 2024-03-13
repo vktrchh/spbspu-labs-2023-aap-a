@@ -11,7 +11,7 @@ namespace agarkov
   public:
     Diamond(point_t point1, point_t point2, point_t center);
     double getArea() const override;
-    rectangle_t getFrameRectangle() const override;
+    rectangle_t getFrameRect() const override;
     void move(double dx, double dy) override;
     void move(point_t position) override;
     void scale(double k) override;

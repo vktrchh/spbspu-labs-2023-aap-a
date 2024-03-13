@@ -19,7 +19,7 @@ double agarkov::Diamond::getArea() const
   return (std::fabs(point2_.x - center_.x)) * (std::fabs(point1_.y - center_.y)) * 2;
 }
 
-agarkov::rectangle_t agarkov::Diamond::getFrameRectangle() const
+agarkov::rectangle_t agarkov::Diamond::getFrameRect() const
 {
   return {center_, (std::fabs(point2_.x - center_.x)) * 2, (std::fabs(point1_.y - center_.y)) * 2};
 }
