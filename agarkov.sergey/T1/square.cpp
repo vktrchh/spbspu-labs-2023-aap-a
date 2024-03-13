@@ -14,7 +14,7 @@ double agarkov::Square::getArea() const
 
 agarkov::rectangle_t agarkov::Square::getFrameRectangle() const
 {
-  return {{0,0}, 0, 0};
+  return {left_bottom_, length_, length_};
 }
 
 void agarkov::Square::move(double dx, double dy)
