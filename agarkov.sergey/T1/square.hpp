@@ -16,6 +16,7 @@ namespace agarkov
     void move(point_t position) override;
     void scale(double k) override;
 
+    bool isCorrectSquare();
     point_t left_bottom_;
     double length_;
   };

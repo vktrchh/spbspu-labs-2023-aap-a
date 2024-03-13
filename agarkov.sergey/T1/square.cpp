@@ -6,6 +6,10 @@ agarkov::Square::Square(agarkov::point_t left_bottom, double length):
   left_bottom_(left_bottom),
   length_(length)
 {
+  if (!isCorrectSquare())
+  {
+    throw std::invalid_argument("Incorrect square argument");
+  }
 }
 
 double agarkov::Square::getArea() const
@@ -40,4 +44,9 @@ void agarkov::Square::scale(double k)
   point_t center = getFrameRectangle().pos_;
   left_bottom_.x_ = center.x_ + (left_bottom_.x_ - center.x_) * k;
   left_bottom_.y_ = center.y_ + (left_bottom_.y_ - center.y_) * k;
+}
+
+bool agarkov::Square::isCorrectSquare()
+{
+  return length_ > 0;
 }
