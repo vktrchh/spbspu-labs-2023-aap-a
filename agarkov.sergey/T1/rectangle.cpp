@@ -29,19 +29,33 @@ agarkov::rectangle_t agarkov::Rectangle::getFrameRectangle() const
   return {centre_frame_rect, width_frame_rect, height_frame_rect};
 }
 
-void agarkov::Rectangle::move(const double dx, const double dy)
+void agarkov::Rectangle::move(double dx, double dy)
 {
   left_bottom_.move(dx, dy);
   right_top_.move(dx, dy);
 }
 
-void agarkov::Rectangle::move(const agarkov::point_t position)
+void agarkov::Rectangle::move(agarkov::point_t position)
 {
   point_t centre = getLineCenter(left_bottom_, right_top_);
   double dx = position.x - centre.x;
   double dy = position.y - centre.y;
   move(dx, dy);
 
+<<<<<<< HEAD
+=======
+void agarkov::Rectangle::scale(double k)
+{
+  if (k <= 0)
+  {
+    throw std::invalid_argument("Incorrect scale coefficient");
+  }
+  point_t center = getFrameRectangle().pos_;
+  left_bottom_.x_ = center.x_ + (left_bottom_.x_ - center.x_) * k;
+  left_bottom_.y_ = center.y_ + (left_bottom_.y_ - center.y_) * k;
+  right_top_.x_ = center.x_ + (right_top_.x_ - center.x_) * k;
+  right_top_.y_ = center.y_ + (right_top_.y_ - center.y_) * k;
+>>>>>>> f841b99b (move dx dy)
 }
 <<<<<<< HEAD
 =======

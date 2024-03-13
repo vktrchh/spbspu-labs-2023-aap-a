@@ -21,3 +21,10 @@ agarkov::rectangle_t agarkov::Parallelogram::getFrameRectangle() const
   double width_frame_rect = std::fabs(point3_.y_ - point1_.y_);
   return {centre_frame_rect, width_frame_rect, height_frame_rect};
 }
+
+void agarkov::Parallelogram::move(double dx, double dy)
+{
+  point1_.move(dx, dy);
+  point2_.move(dx, dy);
+  point3_.move(dx, dy);
+}
