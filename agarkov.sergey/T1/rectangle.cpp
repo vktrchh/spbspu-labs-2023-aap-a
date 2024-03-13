@@ -1,6 +1,7 @@
 #include "rectangle.hpp"
+#include <stdexcept>
 
-agarkov::Rectangle::Rectangle(const agarkov::point_t left_bottom, constag arkov::point_t right_top):
+agarkov::Rectangle::Rectangle(agarkov::point_t left_bottom, agarkov::point_t right_top):
   left_bottom_(left_bottom),
   right_top_(right_top)
 {
@@ -17,7 +18,7 @@ bool agarkov::Rectangle::isCorrectRectangle() const
 
 double agarkov::Rectangle::getArea() const
 {
-  return getFrameRectangle().height * getFrameRectangle().width;
+  return getFrameRectangle().height_ * getFrameRectangle().width_;
 }
 
 agarkov::rectangle_t agarkov::Rectangle::getFrameRectangle() const
@@ -40,4 +41,5 @@ void agarkov::Rectangle::move(const agarkov::point_t position)
   double dx = position.x - centre.x;
   double dy = position.y - centre.y;
   move(dx, dy);
+
 }
