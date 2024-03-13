@@ -9,14 +9,14 @@ agarkov::Parallelogram::Parallelogram(point_t point1, point_t point2, point_t po
 {
 }
 
-double agarkov::Parallelogram::getArea() const;
+double agarkov::Parallelogram::getArea() const
 {
   return std::fabs((point1_.x_ - point3_.x_) * (point2_.y_ - point1_.y_) - (point1_.x_ - point2_.x_) * (point3_.y_ - point1_.y_));
 }
 
 agarkov::rectangle_t agarkov::Parallelogram::getFrameRectangle() const
 {
-  point_t centre_frame_rect = getLineCenter(point2, point3);
+  point_t centre_frame_rect = getLineCenter(point2_, point3_);
   double height_frame_rect = std::fabs(point2_.y_ - point1_.y_);
   double width_frame_rect = std::fabs(point3_.y_ - point1_.y_);
   return {centre_frame_rect, width_frame_rect, height_frame_rect};
@@ -35,4 +35,16 @@ void agarkov::Parallelogram::move(agarkov::point_t position)
   double dx = position.x_ - centre.x_;
   double dy = position.y_ - centre.y_;
   move(dx, dy);
+}
+
+void agarkov::Parallelogram::scale(double k)
+{
+  if (k <= 0)
+  {
+    throw std::invalid_argument("Incorrect scale coefficient");
+  }
+  point_t center = getFrameRectangle().pos_;
+  point1_.unsaveScale(center, k);
+  point2_.unsaveScale(center, k);
+  point3_.unsaveScale(center, k);
 }

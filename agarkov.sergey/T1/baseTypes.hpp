@@ -8,6 +8,7 @@ namespace agarkov
     double x_;
     double y_;
     void move(double dx, double dy);
+    void unsaveScale(point_t center, double k);
   };
 
   struct rectangle_t
