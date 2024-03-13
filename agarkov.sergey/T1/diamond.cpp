@@ -31,3 +31,12 @@ void agarkov::Diamond::move(agarkov::point_t position)
   move(dx, dy);
 }
 
+void agarkov::Diamond::scale(double k)
+{
+  if (k <= 0)
+  {
+    throw std::invalid_argument("Incorrect scale coefficient");
+  }
+  point1_.unsaveScale(center_, k);
+  point2_.unsaveScale(center_, k);
+}
