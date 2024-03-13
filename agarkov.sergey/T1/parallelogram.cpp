@@ -28,3 +28,11 @@ void agarkov::Parallelogram::move(double dx, double dy)
   point2_.move(dx, dy);
   point3_.move(dx, dy);
 }
+
+void agarkov::Parallelogram::move(agarkov::point_t position)
+{
+  point_t centre = getLineCenter(point2_, point3_);
+  double dx = position.x_ - centre.x_;
+  double dy = position.y_ - centre.y_;
+  move(dx, dy);
+}
