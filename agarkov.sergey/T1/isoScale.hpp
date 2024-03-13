@@ -1,5 +1,5 @@
-#ifndef ISOSCALE_HPP 
-#define ISOSCALE_HPP 
+#ifndef ISOSCALE_HPP
+#define ISOSCALE_HPP
 
 #include "square.hpp"
 #include "baseTypes.hpp"
