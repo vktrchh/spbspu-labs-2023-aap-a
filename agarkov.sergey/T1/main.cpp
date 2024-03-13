@@ -13,8 +13,8 @@
 int main()
 {
   std::string shape_name = "";
-  double scale_coefficient = 0.0;
-  agarkov::point_t scale_point{0.0, 0.0};
+  //double scale_coefficient = 0.0;
+  //agarkov::point_t scale_point{0.0, 0.0};
   size_t capacity = 10;
   size_t buf = 10;
   size_t size = 0;
@@ -32,10 +32,20 @@ int main()
         shapes = expanded_shapes;
       }
       std::cin >> shape_name;
+      if (shape_name == "RECTANGLE")
+      {
+        double parameters[4]{};
+        std::cin >> parameters[0] >> parameters[1] >> parameters[2] >> parameters[3];
+        shape = new agarkov::Rectangle({parameters[0], parameters[1]}, {parameters[2], parameters[3]});
+        shapes[size] = shape;
+        std::cout << shapes[size]->getArea() << "\n";
+        size++;
+      }
+    }
     catch (...)
     {
       std::cerr << "Error\n";
-      hrushchev::deleteArray(shapes, size);
+      agarkov::deleteArray(shapes, size);
       return 1;
     }
   }
