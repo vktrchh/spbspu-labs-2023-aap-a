@@ -16,7 +16,7 @@ vyzhanov::Triangle::Triangle(const point_t& a, const point_t& b, const point_t& 
 
 double vyzhanov::Triangle::getArea() const
 {
-  double S = ((b_.x - a_.x) * (c_.y - a_.y) - (c_.x - a_.x) * (b_.y - a_.y)) / 2;
+  double S = (a_.x * (b_.x - c_.x) + b_.x * (c_.x - a_.x) + c_.x * (a_.y - b_.y)) / 2;
   return S;
 }
 
