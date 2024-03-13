@@ -42,8 +42,7 @@ void agarkov::Square::scale(double k)
     throw std::invalid_argument("Incorrect scale coefficient");
   }
   point_t center = getFrameRectangle().pos_;
-  left_bottom_.x_ = center.x_ + (left_bottom_.x_ - center.x_) * k;
-  left_bottom_.y_ = center.y_ + (left_bottom_.y_ - center.y_) * k;
+  left_bottom_.unsaveScale(center, k);
 }
 
 bool agarkov::Square::isCorrectSquare()
