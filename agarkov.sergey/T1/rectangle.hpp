@@ -15,7 +15,7 @@ namespace agarkov
     void move(double dx, double dy) override;
     void move(point_t position) override;
     void scale(double k) override;
-  private:
+
     bool isCorrectRectangle() const;
     point_t left_bottom_;
     point_t right_top_;
