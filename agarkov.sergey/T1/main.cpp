@@ -50,6 +50,15 @@ int main()
         std::cout << shapes[size]->getArea() << "\n";
         size++;
       }
+      if (shape_name == "PARALLELOGRAM")
+      {
+        double parameters[6]{};
+        std::cin >> parameters[0] >> parameters[1] >> parameters[2] >> parameters[3] >> parameters[4] >> parameters[5];
+        shape = new agarkov::Parallelogram({parameters[0], parameters[1]}, {parameters[2], parameters[3]}, {parameters[4], parameters[5]});
+        shapes[size] = shape;
+        std::cout << shapes[size]->getArea() << "\n";
+        size++;
+      }
     }
     catch (...)
     {
