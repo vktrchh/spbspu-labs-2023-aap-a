@@ -2,11 +2,12 @@
 #define WORKWITHARRAY
 
 #include <cstddef>
+#include "shape.hpp"
 
 namespace agarkov
 {
-  void expandArray(Shape** shapes, size_t capacity);
-  void deleteArray(Shape** shapes, size_t size);
+  Shape** expandArray(Shape** array, size_t capacity, size_t buf);
+  void deleteArray(Shape** array, size_t size);
 }
 
 #endif
