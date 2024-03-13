@@ -24,4 +24,4 @@ void agarkov::printShapes(std::ostream& out, const agarkov::Shape* const* array,
     double y2 = frame_rectangle.pos_.y_ + frame_rectangle.height_ / 2;
     out << x1 << " " << y1 << " " << x2 << " " << y2;
   }
-} 
+}
