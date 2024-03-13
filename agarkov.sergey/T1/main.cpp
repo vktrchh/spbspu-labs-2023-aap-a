@@ -5,4 +5,7 @@
 int main()
 {
   agarkov::Square sq = agarkov::Square({1, 1}, 1);
+  std::cout << sq.left_bottom_.x_ << " " << sq.left_bottom_.y_<< "\n";
+  sq.scale(3);
+  std::cout << sq.left_bottom_.x_ << " " << sq.left_bottom_.y_<< "\n";
 }
