@@ -45,9 +45,7 @@ chistyakov::Complexquad::Complexquad(const point_t & pnt1, const point_t & pnt2,
   cross_.y = pnt3.y + (pnt4.y - pnt3.y) * n;
 }
 
-chistyakov::Complexquad::~Complexquad()
-{
-}
+chistyakov::Complexquad::~Complexquad() = default;
 
 double chistyakov::Complexquad::getArea() const
 {
