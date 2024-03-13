@@ -7,7 +7,7 @@
 
 namespace chistyakov
 {
-  class Complexquad : public Shape
+  class Complexquad: public Shape
   {
   public:
     Complexquad(const point_t & pnt1, const point_t & pnt2, const point_t & pnt3, const point_t & pnt4);

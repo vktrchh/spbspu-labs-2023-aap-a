@@ -5,7 +5,7 @@
 
 namespace chistyakov
 {
-  class Square : public Shape
+  class Square: public Shape
   {
   public:
     Square(const point_t & leftDownCorner, const double side);
