@@ -15,7 +15,8 @@ namespace agarkov
     void move(double dx, double dy) override;
     void move(point_t position) override;
     void scale(double k) override;
-  private:
+
+    point_t getCentre() const;
     point_t left_bottom_;
     double length_;
   };
