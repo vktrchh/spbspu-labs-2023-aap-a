@@ -16,6 +16,8 @@ namespace agarkov
     double width_;
     double height_;
   };
+
+  point_t getLineCenter(point_t point1, point_t point2);
 }
 
 #endif

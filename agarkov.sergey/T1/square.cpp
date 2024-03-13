@@ -1,4 +1,5 @@
 #include "square.hpp"
+#include <stdexcept>
 #include "baseTypes.hpp"
 
 agarkov::Square::Square(agarkov::point_t left_bottom, double length):
@@ -14,7 +15,8 @@ double agarkov::Square::getArea() const
 
 agarkov::rectangle_t agarkov::Square::getFrameRectangle() const
 {
-  return {left_bottom_, length_, length_};
+  point_t center = {left_bottom_.x_ + length_ / 2, left_bottom_.y_ + length_ / 2};
+  return {center, length_, length_};
 }
 
 void agarkov::Square::move(double dx, double dy)
@@ -24,20 +26,18 @@ void agarkov::Square::move(double dx, double dy)
 
 void agarkov::Square::move(point_t position)
 {
-  point_t centre = getCentre();
-  double dx = position.x_ - centre.x_;
-  double dy = position.y_ - centre.y_;
+  double dx = position.x_ - (left_bottom_.x_ + length_ / 2);
+  double dy = position.y_ - (left_bottom_.y_ + length_ / 2);
   move(dx, dy);
 }
 
 void agarkov::Square::scale(double k)
 {
-  k++;
-}
-
-agarkov::point_t agarkov::Square::getCentre() const
-{
-  double x = left_bottom_.x_ + length_ / 2;
-  double y = left_bottom_.y_ + length_ / 2;
-  return {x, y};
+  if (k <= 0)
+  {
+    throw std::invalid_argument("Incorrect scale coefficient");
+  }
+  point_t center = getFrameRectangle().pos_;
+  left_bottom_.x_ = center.x_ + (left_bottom_.x_ - center.x_) * k;
+  left_bottom_.y_ = center.y_ + (left_bottom_.y_ - center.y_) * k;
 }
