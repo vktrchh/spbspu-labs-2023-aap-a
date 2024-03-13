@@ -14,3 +14,16 @@ bool agarkov::Rectangle::isCorrectRectangle() const
 {
   return ((left_bottom_.x < right_top_.x) && (left_bottom_.y < right_top_.y));
 }
+
+double agarkov::Rectangle::getArea() const
+{
+  return getFrameRectangle().height * getFrameRectangle().width;
+}
+
+agarkov::rectangle_t agarkov::Rectangle::getFrameRectangle() const
+{
+  point_t centre_frame_rect = getSegmentCenter(left_bottom_, right_top_);
+  double height_frame_rect = right_top_.y - left_bottom_.y;
+  double width_frame_rect = right_top_.x - left_bottom_.x;
+  return {centre_frame_rect, width_frame_rect, height_frame_rect};
+}
