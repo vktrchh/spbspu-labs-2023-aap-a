@@ -41,6 +41,15 @@ int main()
         std::cout << shapes[size]->getArea() << "\n";
         size++;
       }
+      if (shape_name == "SQUARE")
+      {
+        double parameters[3]{};
+        std::cin >> parameters[0] >> parameters[1] >> parameters[2];
+        shape = new agarkov::Square({parameters[0], parameters[1]}, parameters[2]);
+        shapes[size] = shape;
+        std::cout << shapes[size]->getArea() << "\n";
+        size++;
+      }
     }
     catch (...)
     {
