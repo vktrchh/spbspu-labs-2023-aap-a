@@ -43,7 +43,7 @@ int main()
   {
     std::cerr << "Bad input Shape!\n";
   }
-  
+
   freeArray(shapes, 1000);
 
   return 0;
