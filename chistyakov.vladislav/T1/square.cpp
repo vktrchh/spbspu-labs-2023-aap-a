@@ -11,9 +11,7 @@ chistyakov::Square::Square(const point_t & leftDownCorner, const double side):
   }
 }
 
-chistyakov::Square::~Square()
-{
-}
+chistyakov::Square::~Square() = = default;
 
 double chistyakov::Square::getArea() const
 {
