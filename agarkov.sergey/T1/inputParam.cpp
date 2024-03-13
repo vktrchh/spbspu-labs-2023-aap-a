@@ -1,4 +1,4 @@
-#include "inputparam.hpp"
+#include "inputParam.hpp"
 #include <istream>
 #include <cstddef>
 
