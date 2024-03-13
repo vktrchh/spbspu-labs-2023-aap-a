@@ -21,7 +21,7 @@ char * petuhov::streamToString(std::istream & input)
     {
       buffer = new char[bufferSize + 1];
     }
-    catch (std::bad_alloc &)
+    catch (const std::bad_alloc &e)
     {
       delete[] string;
       throw;
