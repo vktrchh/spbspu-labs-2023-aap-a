@@ -31,8 +31,13 @@ int main()
         delete[] shapes;
         shapes = expanded_shapes;
       }
-    std::cin >> shape_name;
+      std::cin >> shape_name;
+    catch (...)
+    {
+      std::cerr << "Error\n";
+      hrushchev::deleteArray(shapes, size);
+      return 1;
+    }
   }
-
-  while (std::cin)
+  while (std::cin);
 }
