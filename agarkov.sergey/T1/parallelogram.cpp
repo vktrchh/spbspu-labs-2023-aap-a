@@ -22,7 +22,7 @@ double agarkov::Parallelogram::getArea() const
 agarkov::rectangle_t agarkov::Parallelogram::getFrameRect() const
 {
   point_t centre_frame_rect = getLineCenter(point1_, point3_);
-  double height_frame_rect = std::max(std::fabs(point2_.y - point1_.y), std::fabs(point3_.y - point1_.y));
+  double height_frame_rect = std::fabs(point3_.y - point1_.y);
   double width_frame_rect = std::max(std::fabs(point3_.x - point1_.x), std::fabs(point3_.x - point2_.x));
   return {centre_frame_rect, width_frame_rect, height_frame_rect};
 }
