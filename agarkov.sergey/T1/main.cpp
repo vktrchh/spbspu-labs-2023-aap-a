@@ -17,6 +17,7 @@ int main()
   double scale_coefficient = 0.0;
   agarkov::point_t scale_point{0.0, 0.0};
   bool is_scaling = false;
+  bool has_broken_shape = false;
   size_t capacity = 10;
   size_t buf = 10;
   size_t size = 0;
@@ -75,6 +76,7 @@ int main()
     }
     catch (const std::invalid_argument& e)
     {
+      has_broken_shape = true;
       std::cerr << e.what() << "\n";
       continue;
     }
@@ -105,6 +107,10 @@ int main()
     }
     agarkov::printShapes(std::cout, shapes, size);
     std::cout << "\n";
+    if (has_broken_shape)
+    {
+      std::cerr << "Exist broken shape\n";
+    }
     agarkov::deleteArray(shapes, size);
   }
   else
