@@ -12,6 +12,7 @@ int main()
   double scaleInfo[3]{};
   Shape * shapes[1000]{};
   size_t size = 0;
+  bool isBadShape = false;
 
   for (size_t i = 0; i < 1000; ++i)
   {
@@ -20,7 +21,7 @@ int main()
 
   try
   {
-    inputShapes(std::cin, shapes, scaleInfo, size);
+    inputShapes(std::cin, shapes, scaleInfo, size, isBadShape);
     outputShape(std::cout, shapes, size);
     isotropScale(shapes, {scaleInfo[0], scaleInfo[1]}, scaleInfo[2], size);
     outputShape(std::cout, shapes, size);
@@ -38,6 +39,11 @@ int main()
     return 2;
   }
 
+  if (isBadShape)
+  {
+    std::cerr << "Bad input Shape!\n";
+  }
+  
   freeArray(shapes, 1000);
 
   return 0;
