@@ -12,6 +12,8 @@ chistyakov::Rectangle::Rectangle(const point_t & leftDownCorner, const point_t &
   }
 }
 
+chistyakov::Rectangle::~Rectangle() = default;
+
 double chistyakov::Rectangle::getArea() const
 {
   rectangle_t area = getFrameRect();
