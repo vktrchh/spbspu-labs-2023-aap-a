@@ -45,10 +45,8 @@ void agarkov::Rectangle::scale(double k)
     throw std::invalid_argument("Incorrect scale coefficient");
   }
   point_t center = getFrameRectangle().pos_;
-  left_bottom_.x_ = center.x_ + (left_bottom_.x_ - center.x_) * k;
-  left_bottom_.y_ = center.y_ + (left_bottom_.y_ - center.y_) * k;
-  right_top_.x_ = center.x_ + (right_top_.x_ - center.x_) * k;
-  right_top_.y_ = center.y_ + (right_top_.y_ - center.y_) * k;
+  left_bottom_.unsaveScale(center, k);
+  right_top_.unsaveScale(center, k);
 }
 
 bool agarkov::Rectangle::isCorrectRectangle() const

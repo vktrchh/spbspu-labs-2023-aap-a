@@ -43,7 +43,6 @@ void agarkov::Square::scale(double k)
   }
   point_t center = getFrameRectangle().pos_;
   left_bottom_.unsaveScale(center, k);
-  length_ *= k;
 }
 
 bool agarkov::Square::isCorrectSquare()
