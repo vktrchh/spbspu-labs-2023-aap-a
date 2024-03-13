@@ -21,9 +21,9 @@ double agarkov::Parallelogram::getArea() const
 
 agarkov::rectangle_t agarkov::Parallelogram::getFrameRect() const
 {
-  point_t centre_frame_rect = getLineCenter(point2_, point3_);
-  double height_frame_rect = std::fabs(point2_.y - point1_.y);
-  double width_frame_rect = std::fabs(point3_.y - point1_.y);
+  point_t centre_frame_rect = getLineCenter(point1_, point3_);
+  double height_frame_rect = std::fabs(point2_.y - point1_.y) * 2;
+  double width_frame_rect = std::fabs(point3_.y - point1_.y) * 2;
   return {centre_frame_rect, width_frame_rect, height_frame_rect};
 }
 
@@ -48,7 +48,7 @@ void agarkov::Parallelogram::scale(double k)
   {
     throw std::invalid_argument("Incorrect scale coefficient");
   }
-  point_t center = getFrameRect().pos;
+  point_t center = getLineCenter(point1_, point3_);
   point1_.unsaveScale(center, k);
   point2_.unsaveScale(center, k);
   point3_.unsaveScale(center, k);
