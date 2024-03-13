@@ -9,16 +9,17 @@ namespace agarkov
   class Parallelogram: public Shape
   {
   public:
-    Parallelogram(point_t left_bottom, point_t right_top);
+    Parallelogram(point_t point1, point_t point2, point_t point3);
     double getArea() const override;
-    rectangle_t getFrameParallelogram() const override;
+    rectangle_t getFrameRectangle() const override;
     void move(double dx, double dy) override;
     void move(point_t position) override;
     void scale(double k) override;
   private:
     bool isCorrectParallelogram() const;
-    point_t left_bottom_;
-    point_t right_top_;
+    point_t point1_;
+    point_t point2_;
+    point_t point3_;
   };
 }
 
