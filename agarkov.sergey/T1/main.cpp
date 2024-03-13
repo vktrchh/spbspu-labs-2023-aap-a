@@ -16,6 +16,7 @@ int main()
   std::string shape_name = "";
   double scale_coefficient = 0.0;
   agarkov::point_t scale_point{0.0, 0.0};
+  bool is_scaling = false;
   size_t capacity = 10;
   size_t buf = 10;
   size_t size = 0;
@@ -67,6 +68,7 @@ int main()
       }
       if (shape_name == "SCALE")
       {
+        is_scaling = true;
         std::cin >> scale_point.x_ >> scale_point.y_ >> scale_coefficient;
         break;
       }
@@ -84,12 +86,31 @@ int main()
     }
   }
   while (std::cin);
-  agarkov::printShapes(std::cout, shapes, size);
-  std::cout << "\n";
-  for (size_t i = 0; i < size; i++)
+  if (is_scaling && size > 0)
   {
-    agarkov::isoScale(shapes[i], scale_point, scale_coefficient);
+    agarkov::printShapes(std::cout, shapes, size);
+    std::cout << "\n";
+    try
+    {
+      for (size_t i = 0; i < size; i++)
+      {
+        agarkov::isoScale(shapes[i], scale_point, scale_coefficient);
+      }
+    }
+    catch (const std::invalid_argument& e)
+    {
+      std::cerr << e.what() << "\n";
+      agarkov::deleteArray(shapes, size);
+      return 1;
+    }
+    agarkov::printShapes(std::cout, shapes, size);
+    std::cout << "\n";
+    agarkov::deleteArray(shapes, size);
   }
-  agarkov::printShapes(std::cout, shapes, size);
-  agarkov::deleteArray(shapes, size);
+  else
+  {
+    agarkov::deleteArray(shapes, size);
+    std::cerr << "Error\n";
+    return 1;
+  }
 }
