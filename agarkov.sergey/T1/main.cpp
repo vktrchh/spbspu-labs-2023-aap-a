@@ -9,6 +9,7 @@
 #include "isoScale.hpp"
 #include "printShapes.hpp"
 #include "workWithArray.hpp"
+#include "inputParam.hpp"
 
 int main()
 {
@@ -35,7 +36,7 @@ int main()
       if (shape_name == "RECTANGLE")
       {
         double parameters[4]{};
-        std::cin >> parameters[0] >> parameters[1] >> parameters[2] >> parameters[3];
+        inputParam(std::cin, parameters, 4);
         shape = new agarkov::Rectangle({parameters[0], parameters[1]}, {parameters[2], parameters[3]});
         shapes[size] = shape;
         std::cout << shapes[size]->getArea() << "\n";
@@ -44,7 +45,7 @@ int main()
       if (shape_name == "SQUARE")
       {
         double parameters[3]{};
-        std::cin >> parameters[0] >> parameters[1] >> parameters[2];
+        inputParam(std::cin, parameters, 3);
         shape = new agarkov::Square({parameters[0], parameters[1]}, parameters[2]);
         shapes[size] = shape;
         std::cout << shapes[size]->getArea() << "\n";
@@ -53,8 +54,17 @@ int main()
       if (shape_name == "PARALLELOGRAM")
       {
         double parameters[6]{};
-        std::cin >> parameters[0] >> parameters[1] >> parameters[2] >> parameters[3] >> parameters[4] >> parameters[5];
+        inputParam(std::cin, parameters, 6);
         shape = new agarkov::Parallelogram({parameters[0], parameters[1]}, {parameters[2], parameters[3]}, {parameters[4], parameters[5]});
+        shapes[size] = shape;
+        std::cout << shapes[size]->getArea() << "\n";
+        size++;
+      }
+      if (shape_name == "DIAMOND")
+      {
+        double parameters[6]{};
+        inputParam(std::cin, parameters, 6);
+        shape = new agarkov::Diamond({parameters[0], parameters[1]}, {parameters[2], parameters[3]}, {parameters[4], parameters[5]});
         shapes[size] = shape;
         std::cout << shapes[size]->getArea() << "\n";
         size++;

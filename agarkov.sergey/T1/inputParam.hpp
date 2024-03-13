@@ -5,7 +5,7 @@
 
 namespace agarkov
 {
-  void inputArray(std::istream& input, double* parameters, size_t size);
+  void inputParam(std::istream& input, double* parameters, size_t size);
 }
 
 #endif
