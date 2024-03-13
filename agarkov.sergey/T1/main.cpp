@@ -91,4 +91,5 @@ int main()
     agarkov::isoScale(shapes[i], scale_point, scale_coefficient);
   }
   agarkov::printShapes(std::cout, shapes, size);
+  agarkov::deleteArray(shapes, size);
 }
