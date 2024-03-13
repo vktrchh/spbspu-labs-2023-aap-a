@@ -22,8 +22,22 @@ double agarkov::Rectangle::getArea() const
 
 agarkov::rectangle_t agarkov::Rectangle::getFrameRectangle() const
 {
-  point_t centre_frame_rect = getSegmentCenter(left_bottom_, right_top_);
+  point_t centre_frame_rect = getLineCenter(left_bottom_, right_top_);
   double height_frame_rect = right_top_.y - left_bottom_.y;
   double width_frame_rect = right_top_.x - left_bottom_.x;
   return {centre_frame_rect, width_frame_rect, height_frame_rect};
+}
+
+void agarkov::Rectangle::move(const double dx, const double dy)
+{
+  left_bottom_.move(dx, dy);
+  right_top_.move(dx, dy);
+}
+
+void agarkov::Rectangle::move(const agarkov::point_t position)
+{
+  point_t centre = getLineCenter(left_bottom_, right_top_);
+  double dx = position.x - centre.x;
+  double dy = position.y - centre.y;
+  move(dx, dy);
 }
