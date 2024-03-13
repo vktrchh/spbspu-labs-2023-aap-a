@@ -43,3 +43,11 @@ void agarkov::Rectangle::move(const agarkov::point_t position)
   move(dx, dy);
 
 }
+<<<<<<< HEAD
+=======
+
+bool agarkov::Rectangle::isCorrectRectangle() const
+{
+  return ((left_bottom_.x_ < right_top_.x_) && (left_bottom_.y_ < right_top_.y_));
+}
+>>>>>>> e94b406b (start parallelogram)
