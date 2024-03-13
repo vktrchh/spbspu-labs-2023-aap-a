@@ -7,6 +7,7 @@ namespace agarkov
   {
     double x_;
     double y_;
+    void move(double dx, double dy);
   };
 
   struct rectangle_t
