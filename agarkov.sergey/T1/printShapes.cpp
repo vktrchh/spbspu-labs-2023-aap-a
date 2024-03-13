@@ -4,7 +4,7 @@
 #include <cstddef>
 #include "shape.hpp"
 
-void agarkov::printData(std::ostream& out, const agarkov::Shape* const* array, const size_t size)
+void agarkov::printShapes(std::ostream& out, const agarkov::Shape* const* array, const size_t size)
 {
   out << std::fixed << std::setprecision(1);
   double sum = 0.0;

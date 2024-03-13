@@ -7,7 +7,7 @@
 
 namespace agarkov
 {
-  void printData(std::ostream& out, const Shape* const* array, size_t size);
+  void printShapes(std::ostream& out, const Shape* const* array, size_t size);
 }
 
 #endif

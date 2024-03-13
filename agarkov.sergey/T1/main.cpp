@@ -39,7 +39,6 @@ int main()
         agarkov::inputParam(std::cin, parameters, 4);
         shape = new agarkov::Rectangle({parameters[0], parameters[1]}, {parameters[2], parameters[3]});
         shapes[size] = shape;
-        std::cout << shapes[size]->getArea() << "\n";
         size++;
       }
       if (shape_name == "SQUARE")
@@ -48,7 +47,6 @@ int main()
         agarkov::inputParam(std::cin, parameters, 3);
         shape = new agarkov::Square({parameters[0], parameters[1]}, parameters[2]);
         shapes[size] = shape;
-        std::cout << shapes[size]->getArea() << "\n";
         size++;
       }
       if (shape_name == "PARALLELOGRAM")
@@ -57,7 +55,6 @@ int main()
         agarkov::inputParam(std::cin, parameters, 6);
         shape = new agarkov::Parallelogram({parameters[0], parameters[1]}, {parameters[2], parameters[3]}, {parameters[4], parameters[5]});
         shapes[size] = shape;
-        std::cout << shapes[size]->getArea() << "\n";
         size++;
       }
       if (shape_name == "DIAMOND")
@@ -66,13 +63,11 @@ int main()
         agarkov::inputParam(std::cin, parameters, 6);
         shape = new agarkov::Diamond({parameters[0], parameters[1]}, {parameters[2], parameters[3]}, {parameters[4], parameters[5]});
         shapes[size] = shape;
-        std::cout << shapes[size]->getArea() << "\n";
         size++;
       }
-      if (name_shape == "SCALE")
+      if (shape_name == "SCALE")
       {
-        is_scale = true;
-        std::cin >> scale_point.x >> scale_point.y >> scale_coefficient;
+        std::cin >> scale_point.x_ >> scale_point.y_ >> scale_coefficient;
         break;
       }
     }
@@ -89,4 +84,11 @@ int main()
     }
   }
   while (std::cin);
+  agarkov::printShapes(std::cout, shapes, size);
+  std::cout << "\n";
+  for (size_t i = 0; i < size; i++)
+  {
+    agarkov::isoScale(shapes[i], scale_point, scale_coefficient);
+  }
+  agarkov::printShapes(std::cout, shapes, size);
 }
