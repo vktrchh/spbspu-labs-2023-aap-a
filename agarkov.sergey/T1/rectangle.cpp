@@ -24,13 +24,13 @@ agarkov::rectangle_t agarkov::Rectangle::getFrameRectangle() const
   return {centre_frame_rect, width_frame_rect, height_frame_rect};
 }
 
-void agarkov::Rectangle::move(const double dx, const double dy)
+void agarkov::Rectangle::move(double dx, double dy)
 {
   left_bottom_.move(dx, dy);
   right_top_.move(dx, dy);
 }
 
-void agarkov::Rectangle::move(const agarkov::point_t position)
+void agarkov::Rectangle::move(agarkov::point_t position)
 {
   point_t centre = getLineCenter(left_bottom_, right_top_);
   double dx = position.x_ - centre.x_;
@@ -38,7 +38,7 @@ void agarkov::Rectangle::move(const agarkov::point_t position)
   move(dx, dy);
 }
 
-void agarkov::Rectangle::scale(const double k)
+void agarkov::Rectangle::scale(double k)
 {
   if (k <= 0)
   {
