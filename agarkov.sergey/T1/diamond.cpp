@@ -5,6 +5,10 @@ agarkov::Diamond::Diamond(point_t point1, point_t point2, point_t center):
   point2_(point2),
   center_(center)
 {
+  if (!isCorrectDiamond())
+  {
+    throw std::invalid_argument("Incorrect diamond argument");
+  }
 }
 
 double agarkov::Diamond::getArea() const
@@ -39,4 +43,9 @@ void agarkov::Diamond::scale(double k)
   }
   point1_.unsaveScale(center_, k);
   point2_.unsaveScale(center_, k);
+}
+
+bool agarkov::isCorrectDiamond()
+{
+  return (center_.x_ == point1_.x_) && (center_.y_ == point2_.y_);
 }
