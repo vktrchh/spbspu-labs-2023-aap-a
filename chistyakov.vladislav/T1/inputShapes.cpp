@@ -5,9 +5,6 @@
 
 void chistyakov::inputShapes(std::istream & input, Shape ** array, double * scaleInfo, size_t & size)
 {
-  std::string rectangle = "RECTANGLE";
-  std::string square = "SQUARE";
-  std::string complexquad = "COMPLEXQUAD";
   std::string shapeName = "";
   bool isScale = false;
 
@@ -21,6 +18,7 @@ void chistyakov::inputShapes(std::istream & input, Shape ** array, double * scal
     if (shapeName.find("RECTANGLE") != std::string::npos)
     {
       double cords[4]{};
+
       inputDouble(input, 4, cords);
       inputRectangle(cords, array, size);
     }
@@ -31,7 +29,7 @@ void chistyakov::inputShapes(std::istream & input, Shape ** array, double * scal
       inputDouble(input, 3, cords);
       inputSquare(cords, array, size);
     }
-    else if (shapeName.find(complexquad) != std::string::npos)
+    else if (shapeName.find("COMPLEXQUAD") != std::string::npos)
     {
       double cords[8]{};
 
