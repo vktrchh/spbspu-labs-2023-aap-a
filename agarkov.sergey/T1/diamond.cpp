@@ -1,6 +1,7 @@
 #include "diamond.hpp"
 #include <stdexcept>
 #include <cmath>
+#include "base-types.hpp"
 
 agarkov::Diamond::Diamond(point_t point1, point_t point2, point_t center):
   point1_(point1),

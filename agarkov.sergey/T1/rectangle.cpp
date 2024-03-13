@@ -1,5 +1,6 @@
 #include "rectangle.hpp"
 #include <stdexcept>
+#include "base-types.hpp"
 
 agarkov::Rectangle::Rectangle(agarkov::point_t left_bottom, agarkov::point_t right_top):
   left_bottom_(left_bottom),

@@ -1,6 +1,6 @@
 #include "square.hpp"
 #include <stdexcept>
-#include "baseTypes.hpp"
+#include "base-types.hpp"
 
 agarkov::Square::Square(agarkov::point_t left_bottom, double length):
   left_bottom_(left_bottom),

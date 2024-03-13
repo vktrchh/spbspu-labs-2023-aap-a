@@ -2,7 +2,7 @@
 #define ISOSCALE_HPP
 
 #include "square.hpp"
-#include "baseTypes.hpp"
+#include "base-types.hpp"
 
 namespace agarkov
 {

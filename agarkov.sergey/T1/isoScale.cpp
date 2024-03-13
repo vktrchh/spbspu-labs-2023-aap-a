@@ -1,7 +1,7 @@
 #include "isoScale.hpp"
 #include <stdexcept>
 #include "square.hpp"
-#include "baseTypes.hpp"
+#include "base-types.hpp"
 
 void agarkov::isoScale(agarkov::Shape* shape, agarkov::point_t point, double k)
 {

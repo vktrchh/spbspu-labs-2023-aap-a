@@ -2,7 +2,7 @@
 #define SQUARE_HPP
 
 #include "shape.hpp"
-#include "baseTypes.hpp"
+#include "base-types.hpp"
 
 namespace agarkov
 {

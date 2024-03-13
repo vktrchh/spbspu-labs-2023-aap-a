@@ -1,6 +1,7 @@
 #include "parallelogram.hpp"
 #include <stdexcept>
 #include <cmath>
+#include "base-types.hpp"
 
 agarkov::Parallelogram::Parallelogram(point_t point1, point_t point2, point_t point3):
   point1_(point1),
