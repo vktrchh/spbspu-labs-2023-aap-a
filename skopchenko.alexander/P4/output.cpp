@@ -9,7 +9,7 @@ void skopchenko::intOutput(std::ostream &oFile, int *matrix, size_t rows, size_t
     throw std::logic_error("Error during output:/");
   }
   oFile << std::fixed;
-  for (size_t i = 0; i < rows * cols; ++i)
+  for (size_t i = 0; i < rows * cols - 1; ++i)
   {
     if (!(oFile << ' ' << matrix[i]))
     {
@@ -25,7 +25,7 @@ void skopchenko::doubleOutput(std::ostream &oFile, const double *matrix, size_t 
     throw std::logic_error("Error during output:/");
   }
   oFile << std::fixed << std::setprecision(1);
-  for (size_t i = 0; i < rows * cols; ++i)
+  for (size_t i = 0; i < rows * cols - 1; ++i)
   {
     if (!(oFile << ' ' << matrix[i]))
     {
