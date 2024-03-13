@@ -5,17 +5,17 @@ namespace agarkov
 {
   struct point_t
   {
-    double x_;
-    double y_;
+    double x;
+    double y;
     void move(double dx, double dy);
     void unsaveScale(point_t center, double k);
   };
 
   struct rectangle_t
   {
-    point_t pos_;
-    double width_;
-    double height_;
+    point_t pos;
+    double width;
+    double height;
   };
 
   point_t getLineCenter(point_t point1, point_t point2);

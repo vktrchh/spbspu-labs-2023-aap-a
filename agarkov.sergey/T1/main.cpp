@@ -70,7 +70,7 @@ int main()
       if (shape_name == "SCALE")
       {
         is_scaling = true;
-        std::cin >> scale_point.x_ >> scale_point.y_ >> scale_coefficient;
+        std::cin >> scale_point.x >> scale_point.y >> scale_coefficient;
         break;
       }
     }

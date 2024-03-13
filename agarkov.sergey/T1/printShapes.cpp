@@ -18,10 +18,10 @@ void agarkov::printShapes(std::ostream& out, const agarkov::Shape* const* array,
   {
     out << " ";
     agarkov::rectangle_t frame_rectangle = array[i]->getFrameRectangle();
-    double x1 = frame_rectangle.pos_.x_ - frame_rectangle.width_ / 2;
-    double y1 = frame_rectangle.pos_.y_ - frame_rectangle.height_ / 2;
-    double x2 = frame_rectangle.pos_.x_ + frame_rectangle.width_ / 2;
-    double y2 = frame_rectangle.pos_.y_ + frame_rectangle.height_ / 2;
+    double x1 = frame_rectangle.pos.x - frame_rectangle.width / 2;
+    double y1 = frame_rectangle.pos.y - frame_rectangle.height / 2;
+    double x2 = frame_rectangle.pos.x + frame_rectangle.width / 2;
+    double y2 = frame_rectangle.pos.y + frame_rectangle.height / 2;
     out << x1 << " " << y1 << " " << x2 << " " << y2;
   }
 }
