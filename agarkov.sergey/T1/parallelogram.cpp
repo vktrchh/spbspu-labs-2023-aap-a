@@ -9,7 +9,15 @@ agarkov::Parallelogram::Parallelogram(point_t point1, point_t point2, point_t po
 {
 }
 
-double Parallelogram::getArea() const;
+double agarkov::Parallelogram::getArea() const;
 {
   return std::fabs((point1_.x_ - point3_.x_) * (point2_.y_ - point1_.y_) - (point1_.x_ - point2_.x_) * (point3_.y_ - point1_.y_));
+}
+
+agarkov::rectangle_t agarkov::Parallelogram::getFrameRectangle() const
+{
+  point_t centre_frame_rect = getLineCenter(point2, point3);
+  double height_frame_rect = std::fabs(point2_.y_ - point1_.y_);
+  double width_frame_rect = std::fabs(point3_.y_ - point1_.y_);
+  return {centre_frame_rect, width_frame_rect, height_frame_rect};
 }
