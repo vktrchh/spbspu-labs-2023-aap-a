@@ -1,5 +1,5 @@
-#ifndef DIAMOND_HPP
-#define DIAMOND_HPP
+#ifndef PARALLELOGRAM_HPP
+#define PARALLELOGRAM_HPP
 
 #include "shape.hpp"
 #include "baseTypes.hpp"
