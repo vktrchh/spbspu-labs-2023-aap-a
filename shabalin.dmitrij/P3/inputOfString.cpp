@@ -40,7 +40,7 @@ char *shabalin::inputOfString(std::istream &input)
   return initialString;
 }
 */
-
+/*
 #include "inputOfString.h"
 #include <stdexcept>
 #include <iostream>
@@ -83,4 +83,51 @@ char *shabalin::inputOfString(std::istream &input, char *initialString)
   {
     throw;
   }
+}
+*/
+#include "inputOfString.h"
+#include <cstring>
+#include <iostream>
+
+char* shabalin::inputOfString(std::istream& input, char* initialString, size_t& initialSize)
+{
+  initialString = new char[initialSize];
+  char inputChar = 0;
+
+  size_t count = 0;
+
+  input >> std::noskipws;
+
+  while (input >> inputChar)
+  {
+    if (!input)
+    {
+      throw std::runtime_error("Error input");
+    }
+    if (count == initialSize - 1)
+    {
+      initialSize += 10;
+      char* tempString = new char[initialSize];
+
+      for (size_t i = 0; i < count; i++)
+      {
+        tempString[i] = initialString[i];
+      }
+
+      delete[] initialString;
+      initialString = tempString;
+    }
+    else
+    {
+        initialString[count] = inputChar;
+        count++;
+        
+        if (inputChar == '\n')
+        {
+            initialString[count - 1] = '\0';
+            break;
+        }
+    }
+  }
+  return initialString;
 }
