@@ -51,7 +51,7 @@ void chistyakov::inputShapes(std::istream & input, Shape ** array, double * scal
     catch (const std::invalid_argument & e)
     {
       isBadShape = true;
-    } 
+    }
 
     shapeName.clear();
   }
