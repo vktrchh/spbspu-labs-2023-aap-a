@@ -1,7 +1,7 @@
 #include "square.hpp"
 #include <stdexcept>
 
-chistyakov::Square::Square(const point_t & leftDownCorner, const double side):
+chistyakov::Square::Square(const point_t & leftDownCorner, double side):
   leftDownCorner_(leftDownCorner),
   side_(side)
 {
