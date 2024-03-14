@@ -11,11 +11,11 @@ size_t shabalin::duplicateNumbers(const char *str)
 
   size_t answer = 0;
 
-  for (size_t i = 0; str[i] != '\0'; ++i)
+  for (size_t e = 0; str[e] != '\0'; ++e)
   {
-    for (size_t j = i + 1; str[j] != '\0'; ++j)
+    for (size_t k = e + 1; str[k] != '\0'; ++k)
     {
-      if ((str[i] == str[j]) && (std::isdigit(str[i])) && (i != j))
+      if ((str[e] == str[k]) && (std::isdigit(str[e])) && (e != k))
       {
         answer = 1;
       }

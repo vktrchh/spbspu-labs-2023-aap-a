@@ -8,16 +8,16 @@ char *shabalin::makeLowerCaseString(char *str, char *result)
   {
     return 0;
   }
-  for (size_t i = 0; str[i] != '\0'; ++i)
+  for (size_t e = 0; str[e] != '\0'; ++e)
   {
-    if(std::isupper(str[i]))
+    if(std::isupper(str[e]))
     {
-      str[i] = std::tolower(str[i]);
+      str[e] = std::tolower(str[e]);
     }
   }
-  for (size_t j = 0; str[j] != '\0'; ++j)
+  for (size_t e = 0; str[e] != '\0'; ++e)
   {
-    result[j] = str[j];
+    result[e] = str[e];
   }
   return result;
 }
