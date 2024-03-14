@@ -1,5 +1,5 @@
 #include "deleteDecimalDigits.hpp"
-#include "removeVowels.hpp"
+#include "deleteVowels.hpp"
 
 #include <iostream>
 #include <cstddef>
@@ -23,7 +23,7 @@ int main()
     delete[] input;
     return 1;
   }
-  
+
   char c = 0;
   size_t i = 0;
 
@@ -97,7 +97,7 @@ int main()
       delete[] oldInput;
     }
   }
-  
+
   if (!hasNonSpace)
   {
     std::cerr << "Empty input\n";
