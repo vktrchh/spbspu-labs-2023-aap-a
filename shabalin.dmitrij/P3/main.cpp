@@ -81,10 +81,10 @@ int main()
 {
   using namespace shabalin;
   char *initialString = nullptr;
-  size_t initialSize = 10;
+  //size_t initialSize = 10;
   try
   {
-    initialString = inputOfString(std::cin, initialString, initialSize);
+    initialString = inputOfString(std::cin);
 /*
     bool isOnlySpace = false;
     for (size_t j = 0; initialString[j] != '\0'; ++j)
@@ -109,12 +109,12 @@ int main()
       return 1;
     }
     std::cout << duplicateNumbers(initialString) << "\n";
-    size_t resultSize = initialSize;
-    char *result = new char[resultSize];
-
+    //size_t resultSize = initialSize;
+    //char *result = new char[resultSize];
+    char result[] = "31232";
     std::cout << makeLowerCaseString(initialString, result) << "\n";
 
-    delete[] result;
+    //delete[] result;
     delete[] initialString;
     return 0;
   }

@@ -1,4 +1,4 @@
-/*
+
 #include "inputOfString.h"
 #include <stdexcept>
 
@@ -39,7 +39,7 @@ char *shabalin::inputOfString(std::istream &input)
   }
   return initialString;
 }
-*/
+
 /*
 #include "inputOfString.h"
 #include <stdexcept>
@@ -84,7 +84,7 @@ char *shabalin::inputOfString(std::istream &input, char *initialString)
     throw;
   }
 }
-*/
+
 #include "inputOfString.h"
 #include <cstring>
 #include <iostream>
@@ -131,3 +131,4 @@ char *shabalin::inputOfString(std::istream &input, char *initialString, size_t &
   }
   return initialString;
 }
+*/
