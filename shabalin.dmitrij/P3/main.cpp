@@ -85,9 +85,9 @@ int main()
 
     bool isOnlySpace = false;
 
-    for (size_t i = 0; initialString[i] != '\0'; ++i)
+    for (size_t j = 0; initialString[j] != '\0'; ++j)
     {
-      if (!std::isspace(initialString[i]))
+      if (!std::isspace(initialString[j]))
       {
         isOnlySpace = true;
         break;
