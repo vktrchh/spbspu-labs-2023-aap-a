@@ -81,11 +81,10 @@ int main()
   size_t initialSize = 10;
   try
   {
-    initialString = new char[initialSize];
     initialString = inputOfString(std::cin, initialString, initialSize);
 
     bool isOnlySpace = false;
-    for (int j; initialString[j] != '\0'; ++j)
+    for (unsigned long long j = 0; initialString[j] != '\0'; ++j)
     {
       if (!std::isspace(initialString[j]))
       {
