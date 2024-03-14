@@ -34,7 +34,7 @@ int main()
   return 0;
 }
 
-
+*/
 #include <iostream>
 #include <stdexcept>
 #include "duplicateNumbers.h"
@@ -49,7 +49,7 @@ int main()
 
   try
   {
-    initialString = inputOfString(std::cin, initialString);
+    initialString = inputOfString(std::cin);
     if (initialString[0] == '\0')
     {
       std::cerr << "Error\n";
@@ -69,8 +69,8 @@ int main()
     return 1;
   }
 }
-*/
 
+/*
 #include <iostream>
 #include <stdexcept>
 #include "duplicateNumbers.h"
@@ -101,7 +101,7 @@ int main()
       delete[] initialString;
       throw std::invalid_argument("Empty input");
     }
-*/
+
     if (initialString[0] == '\0')
     {
       delete[] initialString;
@@ -124,3 +124,4 @@ int main()
     return 1;
   }
 }
+*/
