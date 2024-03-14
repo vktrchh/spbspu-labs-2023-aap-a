@@ -1,4 +1,4 @@
-
+/*
 #include <iostream>
 #include <stdexcept>
 #include "duplicateNumbers.h"
@@ -34,7 +34,7 @@ int main()
   return 0;
 }
 
-/*
+
 #include <iostream>
 #include <stdexcept>
 #include "duplicateNumbers.h"
@@ -69,6 +69,7 @@ int main()
     return 1;
   }
 }
+*/
 
 #include <iostream>
 #include <stdexcept>
@@ -79,14 +80,14 @@ int main()
 int main()
 {
   using namespace shabalin;
-  char *initialString = nullptr;
+  char *initialString = new char[10];
   size_t initialSize = 10;
   try
   {
     initialString = inputOfString(std::cin, initialString, initialSize);
 
     bool isOnlySpace = false;
-    for (unsigned long long j = 0; initialString[j] != '\0'; ++j)
+    for (size_t j = 0; initialString[j] != '\0'; ++j)
     {
       if (!std::isspace(initialString[j]))
       {
@@ -117,4 +118,3 @@ int main()
     return 1;
   }
 }
-*/
