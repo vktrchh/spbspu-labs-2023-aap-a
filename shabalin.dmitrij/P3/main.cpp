@@ -135,12 +135,9 @@ int main()
 {
   using namespace shabalin;
   char* inputArray = nullptr;
-  const size_t numberOfChars = 128;
-
   try
   {
     inputArray = inputOfString(std::cin);
-    std::cout << inputArray;
   }
   catch (const std::bad_alloc & e)
   {
