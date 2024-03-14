@@ -34,7 +34,7 @@ int main()
   return 0;
 }
 
-*/
+
 #include <iostream>
 #include <stdexcept>
 #include "duplicateNumbers.h"
@@ -70,7 +70,7 @@ int main()
   }
 }
 
-/*
+
 #include <iostream>
 #include <stdexcept>
 #include "duplicateNumbers.h"
@@ -124,3 +124,42 @@ int main()
   }
 }
 */
+
+#include <iostream>
+#include <stdexcept>
+#include "duplicateNumbers.h"
+#include "inputOfString.h"
+#include "makeLowerCaseString.h"
+
+int main()
+{
+  using namespace shabalin;
+  char* inputArray = nullptr;
+  const size_t numberOfChars = 128;
+
+  try
+  {
+    inputArray = inputOfString(std::cin);
+    std::cout << inputArray;
+  }
+  catch (const std::bad_alloc & e)
+  {
+    std::cerr << "Error: " << e.what() << "\n";
+    return 1;
+  }
+  catch (const std::invalid_argument & e)
+  {
+    std::cerr << "Error: " << e.what() << "\n";
+    return 2;
+  }
+
+  std::cout << duplicateNumbers(inputArray) << "\n";
+
+  char result[] = "abc";
+  makeLowerCaseString(inputArray, result);
+
+  std::cout << result << "\n";
+
+  delete[] inputArray;
+  return 0;
+}
