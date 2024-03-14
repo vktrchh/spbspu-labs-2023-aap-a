@@ -15,59 +15,43 @@ void chistyakov::inputShapes(std::istream & input, Shape ** array, double * scal
       shapeName.erase(0, 1);
     }
 
-    if (shapeName.find("RECTANGLE") != std::string::npos)
+    try
     {
-      double cords[4]{};
-      inputDouble(input, 4, cords);
-
-      try
+      if (shapeName.find("RECTANGLE") != std::string::npos)
       {
+        double cords[4]{};
+        inputDouble(input, 4, cords);
         inputRectangle(cords, array);
         size++;
       }
-      catch (const std::invalid_argument & e)
+      else if (shapeName.find("SQUARE") != std::string::npos)
       {
-        isBadShape = true;
-      }
-    }
-    else if (shapeName.find("SQUARE") != std::string::npos)
-    {
-      double cords[3]{};
-      inputDouble(input, 3, cords);
-
-      try
-      {
+        double cords[3]{};
+        inputDouble(input, 3, cords);
         inputSquare(cords, array);
         size++;
       }
-      catch (const std::invalid_argument & e)
+      else if (shapeName.find("COMPLEXQUAD") != std::string::npos)
       {
-        isBadShape = true;
-      }
-    }
-    else if (shapeName.find("COMPLEXQUAD") != std::string::npos)
-    {
-      double cords[8]{};
-      inputDouble(input, 8, cords);
-      try
-      {
+        double cords[8]{};
+        inputDouble(input, 8, cords);
         inputComplexquad(cords, array);
         size++;
       }
-      catch (const std::invalid_argument & e)
+      else if (shapeName.find("SCALE") != std::string::npos)
       {
-        isBadShape = true;
+        double cords[3]{};
+        isScale = true;
+
+        inputDouble(input, 3, cords);
+        parseInfoScale(cords, scaleInfo);
+        break;
       }
     }
-    else if (shapeName.find("SCALE") != std::string::npos)
+    catch (const std::invalid_argument & e)
     {
-      double cords[3]{};
-      isScale = true;
-
-      inputDouble(input, 3, cords);
-      parseInfoScale(cords, scaleInfo);
-      break;
-    }
+      isBadShape = true;
+    } 
 
     shapeName.clear();
   }
