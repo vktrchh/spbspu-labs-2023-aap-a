@@ -80,12 +80,12 @@ int main()
 int main()
 {
   using namespace shabalin;
-  char *initialString = new char[10];
+  char *initialString = nullptr;
   size_t initialSize = 10;
   try
   {
     initialString = inputOfString(std::cin, initialString, initialSize);
-
+/*
     bool isOnlySpace = false;
     for (size_t j = 0; initialString[j] != '\0'; ++j)
     {
@@ -101,7 +101,13 @@ int main()
       delete[] initialString;
       throw std::invalid_argument("Empty input");
     }
-
+*/
+    if (initialString[0] == '\0')
+    {
+      delete[] initialString;
+      std::cerr << "Empty input\n";
+      return 1;
+    }
     std::cout << duplicateNumbers(initialString) << "\n";
     size_t resultSize = initialSize;
     char *result = new char[resultSize];
