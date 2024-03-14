@@ -1,7 +1,7 @@
 #include "makeLowerCaseString.h"
 #include <cstddef>
 #include <cctype>
-
+/*
 char *shabalin::makeLowerCaseString(char *str, char *result)
 {
   if (str == nullptr || *str == '\0')
@@ -20,4 +20,16 @@ char *shabalin::makeLowerCaseString(char *str, char *result)
     result[j] = str[j];
   }
   return result;
+}
+*/
+
+void shabalin::makeLowerCaseString(char* str)
+{
+  for (size_t i = 0; str[i] != '\0'; ++i)
+  {
+    if (std::isalpha(str[i]) && std::isupper(str[i]))
+    {
+      str[i] = std::tolower(str[i]);
+    }
+  }
 }

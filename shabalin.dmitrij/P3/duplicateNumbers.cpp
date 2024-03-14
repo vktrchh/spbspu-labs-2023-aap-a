@@ -15,9 +15,9 @@ size_t shabalin::duplicateNumbers(const char *str)
     {
       if ((str[i] == str[k]) && (std::isdigit(str[i])) && (i != k))
       {
-        return 0;
+        return 1;
       }
     }
   }
-  return 1;
+  return 0;
 }

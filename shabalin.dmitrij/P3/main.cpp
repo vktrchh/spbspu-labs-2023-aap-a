@@ -151,11 +151,9 @@ int main()
   }
 
   std::cout << duplicateNumbers(inputArray) << "\n";
+  makeLowerCaseString(inputArray);
 
-  char result[] = "abc";
-  makeLowerCaseString(inputArray, result);
-
-  std::cout << result << "\n";
+  std::cout << inputArray << "\n";
 
   delete[] inputArray;
   return 0;
