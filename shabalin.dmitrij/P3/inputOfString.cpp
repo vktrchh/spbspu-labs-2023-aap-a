@@ -89,7 +89,7 @@ char *shabalin::inputOfString(std::istream &input, char *initialString)
 #include <cstring>
 #include <iostream>
 
-char* shabalin::inputOfString(std::istream& input, char* initialString, size_t& initialSize)
+char *shabalin::inputOfString(std::istream &input, char *initialString, size_t &initialSize)
 {
   initialString = new char[initialSize];
   char inputChar = 0;
@@ -107,7 +107,7 @@ char* shabalin::inputOfString(std::istream& input, char* initialString, size_t& 
     if (count == initialSize - 1)
     {
       initialSize += 10;
-      char* tempString = new char[initialSize];
+      char *tempString = new char[initialSize];
 
       for (size_t i = 0; i < count; i++)
       {
@@ -119,14 +119,14 @@ char* shabalin::inputOfString(std::istream& input, char* initialString, size_t& 
     }
     else
     {
-        initialString[count] = inputChar;
-        count++;
-        
-        if (inputChar == '\n')
-        {
-            initialString[count - 1] = '\0';
-            break;
-        }
+      initialString[count] = inputChar;
+      count++;
+
+      if (inputChar == '\n')
+      {
+        initialString[count - 1] = '\0';
+        break;
+      }
     }
   }
   return initialString;

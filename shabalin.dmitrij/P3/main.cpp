@@ -76,43 +76,43 @@ int main()
 
 int main()
 {
-    using namespace shabalin;
-    char* initialString = nullptr;
-    size_t initialSize = 10;
-    try
-    {
-        initialString = inputOfString(std::cin, initialString, initialSize);
-        
-        bool isOnlySpace = false;
-        
-        for(size_t i = 0; initialString[i] != '\0'; ++i)
-        {
-            if(!std::isspace(initialString[i]))
-            {
-                isOnlySpace = true;
-                break;
-            }
-        }
-        
-        if (!isOnlySpace)
-        {
-          delete[] initialString;
-          throw std::invalid_argument("Empty input");
-        }
-        
-        std::cout << duplicateNumbers(initialString) << "\n";
-        size_t resultSize = initialSize;
-        char* result = new char[resultSize];
-        
-        std::cout << makeLowerCaseString(initialString, result) << "\n";
+  using namespace shabalin;
+  char *initialString = nullptr;
+  size_t initialSize = 10;
+  try
+  {
+    initialString = inputOfString(std::cin, initialString, initialSize);
 
-        delete[] result;
-        delete[] initialString;
-        return 0;
-    }
-    catch (const std::exception& e)
+    bool isOnlySpace = false;
+
+    for (size_t i = 0; initialString[i] != '\0'; ++i)
     {
-        std::cerr << "Error: " << e.what() << "\n";
-        return 1;
+      if (!std::isspace(initialString[i]))
+      {
+        isOnlySpace = true;
+        break;
+      }
     }
+
+    if (!isOnlySpace)
+    {
+      delete[] initialString;
+      throw std::invalid_argument("Empty input");
+    }
+
+    std::cout << duplicateNumbers(initialString) << "\n";
+    size_t resultSize = initialSize;
+    char *result = new char[resultSize];
+
+    std::cout << makeLowerCaseString(initialString, result) << "\n";
+
+    delete[] result;
+    delete[] initialString;
+    return 0;
+  }
+  catch (const std::exception &e)
+  {
+    std::cerr << "Error: " << e.what() << "\n";
+    return 1;
+  }
 }
