@@ -1,4 +1,4 @@
-/*
+
 #include <iostream>
 #include <stdexcept>
 #include "duplicateNumbers.h"
@@ -9,9 +9,11 @@ int main()
 {
   using namespace shabalin;
   char *finalString = nullptr;
+  char *initialString = nullptr;
+  size_t initialSize = 50;
   try
   {
-    finalString = inputOfString(std::cin);
+    finalString = inputOfString(std::cin, initialString, initialSize);
     if (finalString[0] == '\0')
     {
       delete[] finalString;
@@ -31,7 +33,7 @@ int main()
   delete[] finalString;
   return 0;
 }
-*/
+
 /*
 #include <iostream>
 #include <stdexcept>
@@ -67,7 +69,7 @@ int main()
     return 1;
   }
 }
-*/
+
 #include <iostream>
 #include <stdexcept>
 #include "duplicateNumbers.h"
@@ -115,3 +117,4 @@ int main()
     return 1;
   }
 }
+*/
