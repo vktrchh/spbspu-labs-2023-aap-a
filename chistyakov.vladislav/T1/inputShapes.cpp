@@ -104,7 +104,7 @@ void chistyakov::inputDouble(std::istream & input, size_t numOfPoints, double * 
 
     if (!input)
     {
-      throw std::invalid_argument("Bad input!");
+      throw std::logic_error("Bad input!");
     }
   }
 }

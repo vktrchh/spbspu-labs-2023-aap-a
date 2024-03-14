@@ -26,12 +26,6 @@ int main()
     isotropScale(shapes, {scaleInfo[0], scaleInfo[1]}, scaleInfo[2], size);
     outputShape(std::cout, shapes, size);
   }
-  catch (const std::invalid_argument & e)
-  {
-    std::cerr << "Achtung " << e.what() << "\n";
-    freeArray(shapes, 1000);
-    return 1;
-  }
   catch (const std::logic_error & e)
   {
     std::cerr << "Error: " << e.what() << "\n";
