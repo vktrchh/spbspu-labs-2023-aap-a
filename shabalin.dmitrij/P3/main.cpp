@@ -85,7 +85,6 @@ int main()
   try
   {
     initialString = inputOfString(std::cin);
-/*
     bool isOnlySpace = false;
     for (size_t j = 0; initialString[j] != '\0'; ++j)
     {
