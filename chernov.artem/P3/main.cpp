@@ -1,5 +1,5 @@
 #include "deleteDecimalDigits.hpp"
-#include "deleteVowels.hpp"
+#include "removeVowels.hpp"
 
 #include <iostream>
 #include <cstddef>
@@ -16,78 +16,88 @@ int main()
   try
   {
     input = new char[sizeOfInput]();
-    oldInput = new char[sizeOfInput]();
   }
-  catch (const std::bad_alloc &e)
+  catch (const std::bad_alloc& e)
   {
     std::cerr << "Allocation failed: " << e.what() << "\n";
     delete[] input;
     return 1;
   }
-
+  
   char c = 0;
   size_t i = 0;
 
   std::cin >> std::noskipws;
 
   bool hasNonSpace = false;
-  try
+  while (std::cin >> c)
   {
-    while (std::cin >> c)
+    if (!std::cin)
     {
-      if (!std::cin)
+      std::cerr << "Error input\n";
+      delete[] input;
+      return 1;
+    }
+    if (i < sizeOfInput - 1)
+    {
+      input[i++] = c;
+      if (!std::isspace(c))
       {
-        std::cerr << "Error input\n";
+        hasNonSpace = true;
+      }
+      if (c == '\n')
+      {
+        input[i - 1] = '\0';
+        break;
+      }
+    }
+    else
+    {
+      sizeOfInput *= 2;
+
+      try
+      {
+        oldInput = new char[sizeOfInput]();
+      }
+      catch (const std::bad_alloc& e)
+      {
+        std::cerr << "Allocation failed: " << e.what() << "\n";
+        delete[] oldInput;
+        return 1;
+      }
+
+      for (size_t k = 0; k < i; ++k)
+      {
+        oldInput[k] = input[k];
+      }
+
+      delete[] input;
+      try
+      {
+        input = new char[sizeOfInput]();
+      }
+      catch (const std::bad_alloc& e)
+      {
+        std::cerr << "Allocation failed: " << e.what() << "\n";
         delete[] input;
         return 1;
       }
-      if (i < sizeOfInput - 1)
+
+      for (size_t k = 0; k < i; k++)
       {
-        input[i++] = c;
-        if (!std::isspace(c))
-        {
-          hasNonSpace = true;
-        }
-        if (c == '\n')
-        {
-          input[i - 1] = '\0';
-          break;
-        }
+        input[k] = oldInput[k];
       }
-      else
+
+      input[i++] = c;
+      if (c == '\n')
       {
-        char* oldInput = new char[sizeOfInput]();
-        sizeOfInput *= 2;
-
-        for(size_t k = 0; k < i; ++k)
-        {
-          oldInput[k] = input[k];
-        }
-
-        delete[] input;
-        input = new char[sizeOfInput]();
-
-        for (size_t k = 0; k < i; k++)
-        {
-          input[k] = oldInput[k];
-        }
-
-        input[i++] = c;
-        if (c == '\n')
-        {
-          input[i - 1] = '\0';
-          break;
-        }
-        delete[] oldInput;
+        input[i - 1] = '\0';
+        break;
       }
+      delete[] oldInput;
     }
   }
-  catch (const std::bad_alloc &e)
-  {
-    std::cerr << e.what() << "\n";
-    delete[] input;
-    return 1;
-  }
+  
   if (!hasNonSpace)
   {
     std::cerr << "Empty input\n";
@@ -101,12 +111,22 @@ int main()
   try
   {
     stringWithDecimalDigitsRemoved = new char[sizeOfInput]();
-    stringWithVowelsRemoved = new char[sizeOfInput]();
   }
-  catch (const std::bad_alloc &e)
+  catch (const std::bad_alloc& e)
   {
     std::cerr << "Allocation failed: " << e.what() << "\n";
-    delete[] input;
+    delete[] stringWithDecimalDigitsRemoved;
+    return 1;
+  }
+
+  try
+  {
+    stringWithVowelsRemoved = new char[sizeOfInput]();
+  }
+  catch (const std::bad_alloc& e)
+  {
+    std::cerr << "Allocation failed: " << e.what() << "\n";
+    delete[] stringWithVowelsRemoved;
     return 1;
   }
 
