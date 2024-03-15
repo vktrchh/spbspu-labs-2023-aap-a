@@ -134,9 +134,10 @@ int main()
 int main()
 {
   char *inputArray = nullptr;
+  size_t stringSize = 10;
   try
   {
-    inputArray = shabalin::inputOfString(std::cin);
+    inputArray = shabalin::inputOfString(std::cin, stringSize);
     if ((inputArray[0] == '\n') || (inputArray[0] == '\0'))
     {
       delete[] inputArray;

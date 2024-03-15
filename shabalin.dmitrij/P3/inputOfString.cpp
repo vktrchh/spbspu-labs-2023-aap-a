@@ -131,53 +131,42 @@ char *shabalin::inputOfString(std::istream &input, char *initialString, size_t &
   return initialString;
 }
 */
-
 #include "inputOfString.h"
+#include <iomanip>
+#include <stdexcept>
 
-char* shabalin::inputOfString(std::istream & input)
+char *shabalin::inputOfString(std::istream &input, size_t &sizeOfString)
 {
-  size_t sizeOfString = 50;
-  char *inputArray = new char[sizeOfString];
-
-  char char_ = 0;
+  char someChar = 0;
   size_t i = 0;
+  char *string = new char[sizeOfString]();
+
   input >> std::noskipws;
 
-  while ((input >> char_))
+  while (input >> someChar)
   {
-    if (i == sizeOfString)
-    {
-      try
-      {
-        char* newArray = new char[sizeOfString + 10];
-        for (size_t i = 0; i < sizeOfString; ++i)
-        {
-          newArray[i] = inputArray[i];
-        }
-        delete[] inputArray;
-        inputArray = newArray;
-        sizeOfString += 10;
-      }
-      catch (const std::bad_alloc &)
-      {
-        delete[] inputArray;
-        input >> std::skipws;
-        throw;
-      }
-    }
-    if (char_ == '\n')
-    {
-      inputArray[i] = 0;
-      break;
-    }
     if (!input)
     {
-      delete[] inputArray;
-      input >> std::skipws;
-      throw std::invalid_argument("Bad input, maybe try again?..");
+      throw std::logic_error("Input error");
     }
-    inputArray[i++] = char_;
+    if (i == sizeOfString - 1)
+    {
+      sizeOfString *= 2;
+      char *newString = new char[sizeOfString]();
+      for (size_t j = 0; j < i; j++)
+      {
+        newString[j] = string[j];
+      }
+      delete[] string;
+      string = newString;
+    }
+    string[i] = someChar;
+    i++;
+    if (someChar == '\n')
+    {
+      string[i - 1] = '\0';
+      break;
+    }
   }
-  input >> std::skipws;
-  return inputArray;
+  return string;
 }
