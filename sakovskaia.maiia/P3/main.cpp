@@ -27,7 +27,7 @@ int main()
     delete [] string;
     return 1;
   }
-  std::cout << checkRep(string)  << "\n" << printRep(string, new_sring) << "\n";
+  std::cout << checkRep(string)  << "\n" << printRep(string, new_string) << "\n";
   delete [] string;
   delete [] new_string;
   return 0;
