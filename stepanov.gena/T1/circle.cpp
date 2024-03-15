@@ -37,9 +37,5 @@ void stepanov::Circle::move(const double dx, const double dy)
 
 void stepanov::Circle::doScale(const double ratio)
 {
-  if (ratio <= 0.0)
-  {
-    throw std::invalid_argument("The ratio must be positive");
-  }
   radius_ *= ratio;
 }

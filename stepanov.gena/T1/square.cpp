@@ -36,10 +36,6 @@ void stepanov::Square::move(double dx, double dy)
 
 void stepanov::Square::doScale(double ratio)
 {
-  if (ratio <= 0.0)
-  {
-    throw std::invalid_argument("The ratio must be positive");
-  }
   point_t center = {leftCorner_.x + (length_ / 2.0), leftCorner_.y + (length_ / 2.0)};
   leftCorner_ = {center.x - (center.x - leftCorner_.x) * ratio, center.y - (center.y - leftCorner_.y) * ratio};
   length_ *= ratio;

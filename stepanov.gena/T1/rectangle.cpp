@@ -40,10 +40,6 @@ void stepanov::Rectangle::move(const double dx, const double dy)
 
 void stepanov::Rectangle::doScale(const double ratio)
 {
-  if (ratio <= 0.0)
-  {
-    throw std::invalid_argument("The ratio must be positive");
-  }
   point_t center = getFrameRect().pos;
   leftCorner_ = {center.x - (center.x - leftCorner_.x) * ratio, center.y - (center.y - leftCorner_.y) * ratio};
   rightCorner_ = {center.x + (center.x - leftCorner_.x), center.y + (center.y - leftCorner_.y)};

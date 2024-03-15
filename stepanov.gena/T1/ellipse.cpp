@@ -35,10 +35,6 @@ void stepanov::Ellipse::move(const double dx, const double dy)
 
 void stepanov::Ellipse::doScale(const double ratio)
 {
-  if (ratio <= 0.0)
-  {
-    throw std::invalid_argument("The ratio must be positive");
-  }
   radiusY_ *= ratio;
   radiusX_ *= ratio;
 }
