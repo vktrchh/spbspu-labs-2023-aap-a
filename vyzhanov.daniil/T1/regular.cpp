@@ -4,6 +4,7 @@
 #include <limits>
 
 vyzhanov::Regular::Regular(const point_t& p1, const point_t& p2, const point_t& p3):
+  mainTri_(Triangle(p1, p2, p3)),
   a_(p1),
   b_(p2),
   c_(p3)
@@ -28,8 +29,7 @@ double vyzhanov::Regular::getArea() const
   double smallRad = std::min(firstLine, secondLine);
   double bigRad = std::max(firstLine, secondLine);
   int sideCount = std::round(-2.0 * PI / (std::asin(smallRad / bigRad) * 2.0 - PI));
-  double len = 2.0 * bigRad * std::sin(PI / sideCount);
-  return 0.5 * sideCount * len * smallRad;
+  return mainTri_.getArea() * sideCount * 2;
 }
 
 vyzhanov::rectangle_t vyzhanov::Regular::getFrameRect() const
@@ -74,25 +74,20 @@ vyzhanov::rectangle_t vyzhanov::Regular::getFrameRect() const
 
 void vyzhanov::Regular::move(const point_t& point)
 {
-  double dx = point.x - a_.x;
-  double dy = point.y - a_.y;
+  point_t center = getFrameRect().pos;
+  double dx = point.x - center.x;
+  double dy = point.y - center.y;
   move(dx, dy);
 }
 
 void vyzhanov::Regular::move(double dx, double dy)
 {
-  a_.x += dx;
-  a_.y += dy;
-  b_.x += dx;
-  b_.y += dy;
-  c_.x += dx;
-  c_.y += dy;
+  mainTri_.move(dx, dy);
 }
 
 void vyzhanov::Regular::scale(double ratio)
 {
-  b_.x = a_.x + (b_.x - a_.x) * ratio;
-  b_.y = a_.y + (b_.y - a_.y) * ratio;
-  c_.x = a_.x + (c_.x - a_.x) * ratio;
-  c_.y = a_.y + (c_.y - a_.y) * ratio;
+  point_t center1 = mainTri_.getFrameRect().pos;
+  mainTri_.scale(ratio);
+  mainTri_.move(center1);
 }

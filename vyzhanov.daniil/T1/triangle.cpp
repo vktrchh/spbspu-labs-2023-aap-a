@@ -16,8 +16,12 @@ vyzhanov::Triangle::Triangle(const point_t& a, const point_t& b, const point_t& 
 
 double vyzhanov::Triangle::getArea() const
 {
-  double S = ((b_.x - a_.x) * (c_.y - a_.y) - (c_.x - a_.x) * (b_.y - a_.y)) / 2;
-  return S;
+   double firstLine = std::sqrt(std::pow(a_.x - b_.x, 2) + std::pow(a_.y - b_.y, 2));
+   double secondLine = std::sqrt(std::pow(a_.x - c_.x, 2) + std::pow(a_.y - c_.y, 2));
+   double thirdLine = std::sqrt(std::pow(b_.x - c_.x, 2) + std::pow(b_.y - c_.y, 2));
+   double p = (firstLine + secondLine + thirdLine) / 2;
+   double area = std::sqrt(p * (p - firstLine) * (p - secondLine) * (p - thirdLine));
+   return area;
 }
 
 vyzhanov::rectangle_t vyzhanov::Triangle::getFrameRect() const
@@ -52,6 +56,6 @@ void vyzhanov::Triangle::scale(const double ratio)
   b_.x = ratio * (cen.x - b_.x);
   b_.y = ratio * (cen.y - b_.y);
   c_.x = ratio * (cen.x - c_.x);
-  c_.y = cen.y + ratio * (cen.y - c_.y);
+  c_.y = ratio * (cen.y - c_.y);
 }
 
