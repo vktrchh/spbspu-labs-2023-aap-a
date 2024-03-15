@@ -6,14 +6,14 @@
 
 int main()
 {
-  char *inputArray = nullptr;
+  char *inputString = nullptr;
   size_t stringSize = 10;
   try
   {
-    inputArray = shabalin::inputOfString(std::cin, stringSize);
-    if ((inputArray[0] == '\n') || (inputArray[0] == '\0'))
+    inputString = shabalin::inputOfString(std::cin, stringSize);
+    if ((inputString[0] == '\n') || (inputString[0] == '\0'))
     {
-      delete[] inputArray;
+      delete[] inputString;
       std::cerr << "Error" << "\n";
       return 1;
     }
@@ -23,13 +23,11 @@ int main()
     std::cerr << "Error: " << e.what() << "\n";
     return 1;
   }
+  std::cout << shabalin::duplicateNumbers(inputString) << "\n";
 
+  shabalin::makeLowerCaseString(inputString);
+  std::cout << inputString << "\n";
 
-  std::cout << shabalin::duplicateNumbers(inputArray) << "\n";
-  shabalin::makeLowerCaseString(inputArray);
-
-  std::cout << inputArray << "\n";
-
-  delete[] inputArray;
+  delete[] inputString;
   return 0;
 }

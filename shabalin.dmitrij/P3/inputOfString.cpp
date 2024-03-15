@@ -4,13 +4,13 @@
 
 char *shabalin::inputOfString(std::istream &input, size_t &sizeOfString)
 {
-  char someChar = 0;
+  char someCharacter = 0;
   size_t index = 0;
   char *initialString = new char[sizeOfString]();
 
   input >> std::noskipws;
 
-  while (input >> someChar)
+  while (input >> someCharacter)
   {
     if (!input)
     {
@@ -27,7 +27,7 @@ char *shabalin::inputOfString(std::istream &input, size_t &sizeOfString)
       delete[] initialString;
       initialString = intermediateString;
     }
-    initialString[index] = someChar;
+    initialString[index] = someCharacter;
     index++;
   }
   return initialString;
