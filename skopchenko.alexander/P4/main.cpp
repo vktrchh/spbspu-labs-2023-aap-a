@@ -46,7 +46,13 @@ int main(int argc, char * argv[])
     std::cerr << "Couldn't read file\n";
     return 2;
   }
-  if (rows * cols == 0 || cols != rows)
+  if (rows == 0 && cols == 0)
+  {
+
+    return 0;
+
+  }
+  else if (rows * cols == 0 || cols != rows)
   {
     std::cerr << "Invalid Matrix dimensions\n";
     return 2;
