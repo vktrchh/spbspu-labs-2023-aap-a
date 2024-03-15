@@ -3,5 +3,6 @@
 namespace sakovskaia
 {
   int checkRep(const char * string);
+  void printRep(const char * string, char * answer);
 }
 #endif
