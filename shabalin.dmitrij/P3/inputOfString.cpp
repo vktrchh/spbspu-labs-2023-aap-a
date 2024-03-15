@@ -6,7 +6,7 @@ char *shabalin::inputOfString(std::istream &input, size_t &sizeOfString)
 {
   char someChar = 0;
   size_t index = 0;
-  char *string = new char[sizeOfString]();
+  char *initialString = new char[sizeOfString]();
 
   input >> std::noskipws;
 
@@ -19,22 +19,22 @@ char *shabalin::inputOfString(std::istream &input, size_t &sizeOfString)
     if (index == sizeOfString - 1)
     {
       sizeOfString *= 2;
-      char *newString = new char[sizeOfString]();
+      char *intermediateString = new char[sizeOfString]();
       for (size_t i = 0; i < index; i++)
       {
-        newString[i] = string[i];
+        intermediateString[i] = initialString[i];
       }
-      delete[] string;
-      string = newString;
+      delete[] initialString;
+      initialString = intermediateString;
     }
-    string[index] = someChar;
+    initialString[index] = someChar;
     index++;
 
     if (someChar == '\n')
     {
-      string[index - 1] = '\0';
+      initialString[index - 1] = '\0';
       break;
     }
   }
-  return string;
+  return initialString;
 }
