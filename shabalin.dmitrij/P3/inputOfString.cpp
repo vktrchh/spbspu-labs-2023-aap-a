@@ -14,16 +14,19 @@ char *shabalin::inputOfString(std::istream &input, size_t &sizeOfString)
   {
     if (!input)
     {
+      delete[] initialString;
       throw std::logic_error("Input error");
     }
     if (index == sizeOfString - 1)
     {
       sizeOfString *= 2;
       char *intermediateString = new char[sizeOfString]();
-      for (size_t i = 0; i < index; i++)
+
+      for (size_t i = 0; i < index; ++i)
       {
         intermediateString[i] = initialString[i];
       }
+
       delete[] initialString;
       initialString = intermediateString;
     }
