@@ -33,7 +33,7 @@ void stepanov::Ellipse::move(const double dx, const double dy)
   center_ = {center_.x + dx, center_.y + dy};
 }
 
-void stepanov::Ellipse::scale(const double ratio)
+void stepanov::Ellipse::doScale(const double ratio)
 {
   if (ratio <= 0.0)
   {

@@ -38,7 +38,7 @@ void stepanov::Rectangle::move(const double dx, const double dy)
   rightCorner_ = {rightCorner_.x + dx, rightCorner_.y + dy};
 }
 
-void stepanov::Rectangle::scale(const double ratio)
+void stepanov::Rectangle::doScale(const double ratio)
 {
   if (ratio <= 0.0)
   {

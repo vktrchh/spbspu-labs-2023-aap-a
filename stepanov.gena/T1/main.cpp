@@ -23,13 +23,17 @@ int main()
       deleteShapes(shapes, size_shapes);
       throw std::invalid_argument("Wrong input scale");
     }
-    if (ratio <= 0)
+    if (ratio > 0)
+    {
+      isoScale(shapes, center, ratio, size_shapes);
+      outputShapes(std::cout, shapes, size_shapes);
+    }
+    else
     {
       deleteShapes(shapes, size_shapes);
       throw std::invalid_argument("Ratio must be positive");
+
     }
-    isoScale(shapes, center, ratio, size_shapes);
-    outputShapes(std::cout, shapes, size_shapes);
   }
   catch (const std::bad_alloc&)
   {

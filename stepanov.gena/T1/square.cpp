@@ -34,7 +34,7 @@ void stepanov::Square::move(double dx, double dy)
   leftCorner_ = {leftCorner_.x + dx, leftCorner_.y + dy};
 }
 
-void stepanov::Square::scale(double ratio)
+void stepanov::Square::doScale(double ratio)
 {
   if (ratio <= 0.0)
   {

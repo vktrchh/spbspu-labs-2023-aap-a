@@ -14,10 +14,10 @@ namespace stepanov
     virtual rectangle_t getFrameRect() const;
     virtual void move(const point_t &p);
     virtual void move(double dx, double dy);
-    virtual void scale(double ratio);
   private:
     point_t leftCorner_;
     point_t rightCorner_;
+    virtual void doScale(double ratio);
   };
 }
 
