@@ -133,25 +133,32 @@ int main()
 
 int main()
 {
-  using namespace shabalin;
-  char* inputArray = nullptr;
+  char *inputArray = nullptr;
   try
   {
-    inputArray = inputOfString(std::cin);
+    inputArray = shabalin::inputOfString(std::cin);
+    if (inputArray = nullptr)
+    {
+      delete[] inputArray;
+      std::cerr << "Error." << "\n";
+      return 1;
+    }
+    if ((inputArray[0] == '\n') || (inputArray[0] == '\0'))
+    {
+      delete[] inputArray;
+      std::cerr << "Error" << "\n";
+      return 1;
+    }
   }
-  catch (const std::bad_alloc & e)
+  catch (const std::logic_error &e)
   {
     std::cerr << "Error: " << e.what() << "\n";
     return 1;
   }
-  catch (const std::invalid_argument & e)
-  {
-    std::cerr << "Error: " << e.what() << "\n";
-    return 2;
-  }
 
-  std::cout << duplicateNumbers(inputArray) << "\n";
-  makeLowerCaseString(inputArray);
+
+  std::cout << shabalin::duplicateNumbers(inputArray) << "\n";
+  shabalin::makeLowerCaseString(inputArray);
 
   std::cout << inputArray << "\n";
 

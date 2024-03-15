@@ -2,7 +2,7 @@
 #include <cstddef>
 #include <cctype>
 
-size_t shabalin::duplicateNumbers(const char *str)
+size_t shabalin::duplicateNumbers(const char *const str)
 {
   if (str == nullptr || *str == '\0')
   {
@@ -11,11 +11,14 @@ size_t shabalin::duplicateNumbers(const char *str)
 
   for (size_t i = 0; str[i] != '\0'; ++i)
   {
-    for (size_t k = 1; str[k] != '\0'; ++k)
+    if (std::isdigit(str[i]))
     {
-      if ((str[i] == str[k]) && (std::isdigit(str[i])) && (i != k))
+      for (size_t j = 0; str[j] != '\0'; ++j)
       {
-        return 1;
+        if (((str[i] == str[j])) && (i != j))
+        {
+          return 1;
+        }
       }
     }
   }
