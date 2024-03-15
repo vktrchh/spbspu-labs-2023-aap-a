@@ -1,4 +1,3 @@
-#include "matrix.hpp"
 #include "matrix_input_res.hpp"
 
 void sakovskaia::inputMatrix(std::ifstream & input, int * a, size_t b)

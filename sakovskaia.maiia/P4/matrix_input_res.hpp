@@ -5,7 +5,7 @@
 
 namespace sakovskaia
 {
+  void inputMatrix(std::ifstream & input, int * a, size_t b);
   std::ostream & printAnswer(std::ostream & output, const int * a, size_t b);
-  void countAnswer(int * input_matrix, int * counterclockwise_matrix, size_t size);
 }
 #endif

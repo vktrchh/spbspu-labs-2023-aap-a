@@ -1,6 +1,5 @@
 #include "matrix.hpp"
 #include <cmath>
-#include "matrix_input_res.hpp"
 
 void sakovskaia::countCounterclockwiseMatrix(int * a, size_t rows, size_t columns)
 {
