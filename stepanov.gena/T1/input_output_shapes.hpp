@@ -7,6 +7,7 @@
 
 namespace stepanov
 {
+  void inputArrayShape(std::istream& input, size_t const size, double * arguments);
   void inputRectangle(std::istream& input, Shape** shapes, size_t& size_shapes);
   void inputCircle(std::istream& input, Shape** shapes, size_t& size_shapes);
   void inputEllipse(std::istream& input, Shape** shapes, size_t& size_shapes);

@@ -6,10 +6,9 @@
 #include "ellipse.hpp"
 #include "square.hpp"
 
-void stepanov::inputRectangle(std::istream& input, Shape** shapes, size_t& size_shapes)
+void stepanov::inputArrayShape(std::istream& input, size_t const size, double * arguments)
 {
-  double arguments[4] = {};
-  for (int i = 0; i < 4; ++i)
+  for (size_t i = 0; i < size; ++i)
   {
     input >> arguments[i];
     if (!input)
@@ -17,51 +16,39 @@ void stepanov::inputRectangle(std::istream& input, Shape** shapes, size_t& size_
       throw std::invalid_argument("Invalid argument for Rectagle");
     }
   }
+}
+void stepanov::inputRectangle(std::istream& input, Shape** shapes, size_t& size_shapes)
+{
+  size_t size = 4;
+  double arguments[size] = {};
+  inputArrayShape(input, size, arguments);
   shapes[size_shapes] = new Rectangle({ arguments[0], arguments[1] }, { arguments[2], arguments[3] });
   ++size_shapes;
 }
 
 void stepanov::inputCircle(std::istream& input, Shape** shapes, size_t& size_shapes)
 {
-  double arguments[3] = {};
-  for (int i = 0; i < 3; ++i)
-  {
-    input >> arguments[i];
-    if (!input)
-    {
-      throw std::invalid_argument("Invalid argument for Circle");
-    }
-  }
+  size_t size = 3;
+  double arguments[size] = {};
+  inputArrayShape(input, size, arguments);
   shapes[size_shapes] = new Circle({ arguments[0], arguments[1] }, arguments[2]);
   ++size_shapes;
 }
 
 void stepanov::inputEllipse(std::istream& input, Shape** shapes, size_t& size_shapes)
 {
-  double arguments[4] = {};
-  for (int i = 0; i < 4; ++i)
-  {
-    input >> arguments[i];
-    if (!input)
-    {
-      throw std::invalid_argument("Invalid argument for Ellipse");
-    }
-  }
+  size_t size = 4;
+  double arguments[size] = {};
+  inputArrayShape(input, size, arguments);
   shapes[size_shapes] = new Ellipse({ arguments[0], arguments[1] }, arguments[2], arguments[3]);
   ++size_shapes;
 }
 
 void stepanov::inputSquare(std::istream& input, Shape** shapes, size_t& size_shapes)
 {
-  double arguments[3] = {};
-  for (int i = 0; i < 3; ++i)
-  {
-    input >> arguments[i];
-    if (!input)
-    {
-      throw std::invalid_argument("Invalid argument for Square");
-    }
-  }
+  size_t size = 3;
+  double arguments[size] = {};
+  inputArrayShape(input, size, arguments);
   shapes[size_shapes] = new Square({ arguments[0], arguments[1] }, arguments[2]);
   ++size_shapes;
 }
