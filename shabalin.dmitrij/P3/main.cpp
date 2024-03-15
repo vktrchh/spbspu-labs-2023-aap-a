@@ -137,12 +137,6 @@ int main()
   try
   {
     inputArray = shabalin::inputOfString(std::cin);
-    if (inputArray = nullptr)
-    {
-      delete[] inputArray;
-      std::cerr << "Error." << "\n";
-      return 1;
-    }
     if ((inputArray[0] == '\n') || (inputArray[0] == '\0'))
     {
       delete[] inputArray;
