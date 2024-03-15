@@ -11,7 +11,7 @@ int main()
   try
   {
     inputString = shabalin::inputOfString(std::cin, stringSize);
-    if ((inputString[0] == '\n') || (inputString[0] == '\0'))
+    if (inputString[0] == '\0')
     {
       delete[] inputString;
       std::cerr << "Error" << "\n";
