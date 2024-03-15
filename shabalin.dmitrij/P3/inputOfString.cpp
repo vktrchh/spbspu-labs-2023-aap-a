@@ -29,12 +29,6 @@ char *shabalin::inputOfString(std::istream &input, size_t &sizeOfString)
     }
     initialString[index] = someChar;
     index++;
-
-    if (someChar == '\n')
-    {
-      initialString[index - 1] = '\0';
-      break;
-    }
   }
   return initialString;
 }
