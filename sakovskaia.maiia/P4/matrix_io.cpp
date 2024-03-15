@@ -15,7 +15,8 @@ std::ostream & sakovskaia::printAnswer(std::ostream & output, const int * a, siz
 {
   if (b)
   {
-    for (size_t i = 0; i < b; i++)
+    output << a[0];
+    for (size_t i = 1; i < b; i++)
     {
       output << " " << a[i];
     }
