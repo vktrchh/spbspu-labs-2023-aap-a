@@ -138,7 +138,7 @@ char *shabalin::inputOfString(std::istream &input, char *initialString, size_t &
 char *shabalin::inputOfString(std::istream &input, size_t &sizeOfString)
 {
   char someChar = 0;
-  size_t i = 0;
+  size_t index = 0;
   char *string = new char[sizeOfString]();
 
   input >> std::noskipws;
@@ -149,22 +149,23 @@ char *shabalin::inputOfString(std::istream &input, size_t &sizeOfString)
     {
       throw std::logic_error("Input error");
     }
-    if (i == sizeOfString - 1)
+    if (index == sizeOfString - 1)
     {
       sizeOfString *= 2;
       char *newString = new char[sizeOfString]();
-      for (size_t j = 0; j < i; j++)
+      for (size_t i = 0; i < index; i++)
       {
-        newString[j] = string[j];
+        newString[i] = string[i];
       }
       delete[] string;
       string = newString;
     }
-    string[i] = someChar;
-    i++;
+    string[index] = someChar;
+    index++;
+
     if (someChar == '\n')
     {
-      string[i - 1] = '\0';
+      string[index - 1] = '\0';
       break;
     }
   }
