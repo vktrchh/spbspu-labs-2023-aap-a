@@ -28,10 +28,7 @@ int main()
       deleteShapes(shapes, size_shapes);
       throw std::invalid_argument("Ratio must be positive");
     }
-    for (size_t i = 0; i < size_shapes; ++i)
-    {
-      isoScale(shapes[i], center, ratio);
-    }
+    isoScale(shapes, center, ratio, size_shapes);
     outputShapes(std::cout, shapes, size_shapes);
   }
   catch (const std::bad_alloc&)
