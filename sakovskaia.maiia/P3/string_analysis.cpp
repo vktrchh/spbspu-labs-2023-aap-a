@@ -1,12 +1,11 @@
 #include "string_analysis.hpp"
+#include <cstddef>
 
 int sakovskaia::checkRep(const char * const string)
 {
-  size_t i = 0;
-  size_t j = 0;
-  for (i = 0; string[i] != '\n'; i++)
+  for (size_t i = 0; string[i] != '\n'; i++)
   {
-    for (j = 0; string[j] != '\n'; j++)
+    for (size_t j = 0; string[j] != '\n'; j++)
     {
       if ((string[i] == string[j]) && (i != j))
       {
@@ -19,16 +18,15 @@ int sakovskaia::checkRep(const char * const string)
 
 void sakovskaia::printRep(const char * const string, char * answer)
 {
-  size_t i = 0;
-  size_t j = 0;
   size_t a = 0;
-  for (i = 0; string[i] != '\n'; i++)
+  for (size_t i = 0; string[i] != '\n'; i++)
   {
-    for (j = 0; string[j] != '\n'; j++)
+    for (size_t j = 0; string[j] != '\n'; j++)
     {
       if ((string[i] == string[j]) && (i != j))
       {
-        answer[a++] = i;
+        answer[a] = i;
+        ++a;
       }
     }
   }
