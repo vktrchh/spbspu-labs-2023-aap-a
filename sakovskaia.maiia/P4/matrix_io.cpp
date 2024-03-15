@@ -13,7 +13,7 @@ void sakovskaia::inputMatrix(std::ifstream & input, int * a, size_t b)
 
 std::ostream & sakovskaia::printAnswer(std::ostream & output, const int * a, size_t b)
 {
-  if (b < 0)
+  if (!b)
   {
     throw std::logic_error("Output error");
   }
