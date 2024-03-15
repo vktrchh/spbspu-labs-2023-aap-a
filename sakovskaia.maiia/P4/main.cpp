@@ -24,7 +24,7 @@ int main(int argc, char * argv[])
     std::cerr << "Cannot read first argument\n";
     return 1;
   }
-  if (* endptr != '\0')
+  if (*endptr != '\0')
   {
     std::cerr << "First argument error\n";
     return 1;
