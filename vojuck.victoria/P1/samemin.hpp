@@ -9,8 +9,8 @@ namespace vojuck
     CounterSameMin();
     void operator()(int number);
     size_t operator()() const;
-    int minElement;
   private:
+    int minElement_;
     size_t count_;
   };
 }

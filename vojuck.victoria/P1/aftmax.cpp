@@ -1,27 +1,26 @@
-#include "aftmax.hpp"
 #include <stdexcept>
 #include <limits>
-#include <iostream>
+#include "aftmax.hpp"
 
-const int min_int = std::numeric_limits< int >::min();
+constexpr int min_int = std::numeric_limits< int >::min();
 
 vojuck::CounterAftMax::CounterAftMax()
 {
   count_ = 0;
-  maxElement = min_int;
+  maxElement_ = min_int;
 }
 
 void vojuck::CounterAftMax::operator()(int num)
 {
   size_t max_size = std::numeric_limits< size_t >::max();
-  if (max_size - count > 1)
+  if (max_size - count_ > 1)
   {
     throw std::logic_error("Sequence is too long =(((((");
   }
-  if (maxElement < num)
+  if (maxElement_ < num)
   {
     count_ = 0;
-    maxElement = num;
+    maxElement_ = num;
   }
   else
   {

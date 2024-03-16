@@ -1,6 +1,7 @@
+#include <iostream>
 #include "aftmax.hpp"
 #include "samemin.hpp"
-#include <iostream>
+
 
 int main()
 {
@@ -29,6 +30,7 @@ int main()
         return 2;
       }
     }
-  } while (number != 0);
+  }
+  while (number != 0);
   std::cout << "AftMax counter: " << aftMaxCounter() << " SameMin counter: " << sameMinCounter() << "\n";
 }
