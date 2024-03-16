@@ -1,41 +1,37 @@
 #include <iostream>
-#include <climits>
+#include <limits>
 
-int main ()
-{
-  int max = INT_MIN;
-  int secMax = INT_MIN;
+int main(){
+  int max = std::numeric_limits<int>::min();
+  int secMax = std::numeric_limits<int>::min();
 
   std::cout << "Введите последовательность чисел: ";
-  int num;
+  int num = 0;
   bool hasInput = false;
 
   while (std::cin >> num){
-    hasInput = true;
-    if (num == 0) {
-      if(!hasInput) {
-        std::cerr << "Ошибка! Пустая последовательность.\n" << std::endl;
-        return 2;
-      }
+    if (num == 0){
       break;
     }
+    hasInput = true;
     if (num > max){
       secMax = max;
       max = num;
-
-    } else if(num > secMax && num != max){
-      secMax = num;
+    } else if (num > secMax && num != max){
+        secMax = num;
     }
   }
   if (!hasInput){
     std::cerr << "Ошибка! Пустая последовательность.\n";
-    return 2;
+      return 2;
   }
+
   std::cout << "Второе число по величине: ";
-  if(secMax == INT_MIN){
-    std::cout << 0 << std::endl;
-  } else{
-    std::cout << secMax << std::endl;
+  if (secMax == std::numeric_limits<int>::min()){
+    std::cout << 0 << "\n";
+  } else {
+    std::cout << secMax << "\n";
   }
+
   return 0;
 }
