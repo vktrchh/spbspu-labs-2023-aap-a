@@ -14,7 +14,7 @@ vojuck::CounterAftMax::CounterAftMax()
 void vojuck::CounterAftMax::operator()(int num)
 {
   size_t max_size = std::numeric_limits< size_t >::max();
-  if (count_ == max_size - 1)
+  if (max_size - count > 1)
   {
     throw std::logic_error("Sequence is too long =(((((");
   }
