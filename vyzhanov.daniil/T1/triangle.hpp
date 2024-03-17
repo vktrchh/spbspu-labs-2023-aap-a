@@ -10,6 +10,7 @@ namespace vyzhanov
   {
   public:
     Triangle(const point_t& a, const point_t& b, const point_t& c);
+    Triangle() = default;
     virtual ~Triangle() = default;
     virtual double getArea() const;
     virtual rectangle_t getFrameRect() const;
