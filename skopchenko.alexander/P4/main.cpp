@@ -93,6 +93,7 @@ int main(int argc, char * argv[])
       if (arrType == 2)
       {
         delete[] matrix;
+        delete[] smooth;
       }
       return 2;
     }
