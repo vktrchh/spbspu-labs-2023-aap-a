@@ -4,7 +4,9 @@
 
 constexpr int min_int = std::numeric_limits< int >::min();
 
-vojuck::CounterAftMax::CounterAftMax() : count_(0), maxElement_(min_int) {}
+vojuck::CounterAftMax::CounterAftMax():
+  count_(0), maxElement_(min_int)
+{}
 
 void vojuck::CounterAftMax::operator()(int num)
 {

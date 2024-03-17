@@ -10,8 +10,8 @@ namespace vojuck
     void operator()(int number);
     size_t operator()() const;
   private:
-    int minElement_;
     size_t count_;
+    int minElement_;
   };
 }
 
