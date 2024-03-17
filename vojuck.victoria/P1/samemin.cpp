@@ -13,7 +13,7 @@ vojuck::CounterSameMin::CounterSameMin()
 void vojuck::CounterSameMin::operator()(int num)
 {
   size_t max_size = std::numeric_limits< size_t >::max();
-  if (max_size - count_ > 1)
+  if (max_size - count_ < 1)
   {
     throw std::logic_error("Sequence is too long =(((((");
   }
