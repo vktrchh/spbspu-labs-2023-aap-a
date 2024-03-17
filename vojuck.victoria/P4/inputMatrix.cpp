@@ -1,5 +1,5 @@
-#include "inputMatrix.hpp"
 #include <algorithm>
+#include "inputMatrix.hpp"
 
 size_t inputArray(std::istream & in, long long int * array, size_t size, size_t toread)
 {

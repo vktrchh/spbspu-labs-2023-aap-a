@@ -1,13 +1,13 @@
-#include "findMaxSum.hpp"
-#include <iostream>
 #include <algorithm>
+#include "findMaxSum.hpp"
 
 int findMaxSum(long long * array, size_t rows, size_t cols)
 {
   int maxSum = 0;
-  for (size_t i = 0; i < rows; i++) {
-        int sum1 = 0;
-        int sum2 = 0;
+  for (size_t i = 0; i < rows; i++)
+  {
+    int sum1 = 0;
+    int sum2 = 0;
     for (size_t j = 0; j < cols - i; j++)
     {
       sum1 += array[j + rows*j + i];
