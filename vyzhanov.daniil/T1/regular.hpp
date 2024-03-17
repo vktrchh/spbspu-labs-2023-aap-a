@@ -18,8 +18,7 @@ namespace vyzhanov
     virtual void move(double dx, double dy);
     virtual void scale(const double ratio);
   private:
-    Triangle* triangles_;
-    size_t size;
+    point_t a_, b_, c_;
   };
 }
 

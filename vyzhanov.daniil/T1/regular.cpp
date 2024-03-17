@@ -3,9 +3,10 @@
 #include <cmath>
 #include <limits>
 
-vyzhanov::Regular::Regular(const point_t& p1, const point_t& p2, const point_t& p3) :
-  triangles_(nullptr),
-  size(0)
+vyzhanov::Regular::Regular(const point_t& p1, const point_t& p2, const point_t& p3):
+  a_(p1),
+  b_(p2),
+  c_(p3)
 {
   double firstLine = std::pow(p1.x - p2.x, 2) + std::pow(p1.y - p2.y, 2);
   double secondLine = std::pow(p1.x - p3.x, 2) + std::pow(p1.y - p3.y, 2);
@@ -17,96 +18,81 @@ vyzhanov::Regular::Regular(const point_t& p1, const point_t& p2, const point_t& 
   {
     throw std::invalid_argument("Error: invalid regular agrugments");
   }
+}
+
+double vyzhanov::Regular::getArea() const
+{
+  double firstLine = std::sqrt(std::pow(a_.x - b_.x, 2) + std::pow(a_.y - b_.y, 2));
+  double secondLine = std::sqrt(std::pow(a_.x - c_.x, 2) + std::pow(a_.y - c_.y, 2));
+  const double PI = 3.14159265358979323846;
+  double smallRad = std::min(firstLine, secondLine);
+  double bigRad = std::max(firstLine, secondLine);
+  int sideCount = std::round(-2.0 * PI / (std::asin(smallRad / bigRad) * 2.0 - PI));
+  double len = 2.0 * bigRad * std::sin(PI / sideCount);
+  return 0.5 * sideCount * len * smallRad;
+}
+
+vyzhanov::rectangle_t vyzhanov::Regular::getFrameRect() const
+{
+  double firstLine = std::sqrt(std::pow(a_.x - b_.x, 2) + std::pow(a_.y - b_.y, 2));
+  double secondLine = std::sqrt(std::pow(a_.x - c_.x, 2) + std::pow(a_.y - c_.y, 2));
   double PI = 3.14159265358979323846;
   double smallRad = std::min(firstLine, secondLine);
   double bigRad = std::max(firstLine, secondLine);
   size_t sideCount = std::round(-2.0 * PI / (std::asin(smallRad / bigRad) * 2.0 - PI));
   double len = 2.0 * bigRad * std::sin(PI / sideCount);
-  double angle = 2.0 * asin(len / 2.0 / bigRad);
-  triangles_ = new Triangle[sideCount];
-  size = sideCount;
-  point_t firstPoint;
-  point_t secondPoint;
-  firstPoint.x = p2.x - p1.x;
-  firstPoint.y = p2.y - p1.y;
-  secondPoint.x = p3.x - p1.x;
-  secondPoint.y = p3.y - p1.y;
-  for (size_t i = 0; i != sideCount; ++i)
-  {
-    double firstX = firstPoint.x;
-    double firstY = firstPoint.y;
-    double secondX = secondPoint.x;
-    double secondY = secondPoint.y;
-    firstPoint.x = firstX * std::cos(angle) - firstY * std::sin(angle);
-    firstPoint.y = firstY * std::cos(angle) + firstX * std::sin(angle);
-    secondPoint.x = secondX * std::cos(angle) - secondY * std::sin(angle);
-    secondPoint.y = secondY * std::cos(angle) + secondX * std::sin(angle);
-    triangles_[i] = Triangle(p1, firstPoint, secondPoint);
-  }
-}
-
-double vyzhanov::Regular::getArea() const
-{
-  size_t i = 0;
-  size_t area = 0;
-  for (i = 0; i <= size; i++)
-  {
-     Triangle triangle = triangles_[i];
-     area += triangle.getArea();
-  }
-  return area * 2;
-}
-
-vyzhanov::rectangle_t vyzhanov::Regular::getFrameRect() const
-{
   double maxX = std::numeric_limits< double >::lowest();
   double maxY = maxX;
   double minX = std::numeric_limits< double >::max();
   double minY = minX;
-  for (size_t i = 0; i != size; i++)
+
+  point_t point;
+  if (bigRad == firstLine)
   {
-    Triangle triangle = triangles_[i];
-    double width = triangle.getFrameRect().width;
-    double height = triangle.getFrameRect().height;
-    point_t center = triangle.getFrameRect().pos;
-    maxX = std::max(center.x + (height / 2), maxX);
-    maxY = std::max(center.y + (width / 2), maxY);
-    minX = std::min(center.x - (height / 2), minX);
-    minY = std::min(center.y - (width / 2), minY);
+      point = b_;
   }
-  point_t centerPoint = { (maxX - minX) / 2, (maxY - minY) / 2 };
-  return { maxX - minX, maxY - minY, centerPoint };
+  else
+  {
+      point = c_;
+  }
+  point.x = point.x - a_.x;
+  point.y = point.y - a_.y;
+  double angle = 2.0 * asin(len / 2.0 / bigRad);
+  for (size_t i = 0; i != sideCount; ++i)
+  {
+    double x = point.x;
+    double y = point.y;
+    point.x = x * std::cos(angle) - y * std::sin(angle);
+    point.y = y * std::cos(angle) + x * std::sin(angle);
+    maxX = std::max(maxX, point.x);
+    minX = std::min(minX, point.x);
+    maxY = std::max(maxY, point.y);
+    minY = std::min(minY, point.y);
+  }
+  return { maxX - minX, maxY - minY, a_};
 }
 
 void vyzhanov::Regular::move(const point_t& point)
 {
-  size_t i = 0;
-  for (i = 0; i <= size; i++)
-  {
-    Triangle triangle = triangles_[i];
-    triangle.move(point);
-  }
+  double dx = point.x - a_.x;
+  double dy = point.y - a_.y;
+  move(dx, dy);
 }
 
 void vyzhanov::Regular::move(double dx, double dy)
 {
-  size_t i = 0;
-  for (i = 0; i <= size; i++)
-  {
-    Triangle triangle = triangles_[i];
-    triangle.move(dx, dy);
-  }
+  a_.x += dx;
+  a_.y += dy;
+  b_.x += dx;
+  b_.y += dy;
+  c_.x += dx;
+  c_.y += dy;
 }
 
 void vyzhanov::Regular::scale(double ratio)
 {
-  size_t i = 0;
-  for (i = 0; i <= size; i++)
-  {
-    point_t center1 = triangles_[i].getFrameRect().pos;
-    triangles_[i].scale(ratio);
-    triangles_[i].move(center1);
-  }
+  b_.x = a_.x + (b_.x - a_.x) * ratio;
+  b_.y = a_.y + (b_.y - a_.y) * ratio;
+  c_.x = a_.x + (c_.x - a_.x) * ratio;
+  c_.y = a_.y + (c_.y - a_.y) * ratio;
 }
-
-
