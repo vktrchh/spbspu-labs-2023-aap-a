@@ -98,59 +98,46 @@ int main(int argc, char * argv[])
       return 2;
     }
 
+    std::ofstream oFile(argv[3]);
+    if (!oFile.is_open())
+    {
+      std::cerr << "Couldn't open output file\n";
+      return 2;
+    }
+    size_t counter = 1;
+    int top = 0;
+    int left = 0;
+    skopchenko::smoothedMatrix(matrix, smooth, rows, cols);
     try
     {
-      std::ofstream oFile(argv[3]);
-      if (!oFile.is_open())
-      {
-        std::cerr << "Couldn't open output file\n";
-        return 2;
-      }
-      size_t counter = 1;
-      int top = 0;
-      int left = 0;
-      skopchenko::smoothedMatrix(matrix, smooth, rows, cols);
-      try
-      {
-        //skopchenko::doubleOutput(oFile, smooth, rows, cols);
-        //oFile << "\n";
-      }
-      catch (std::logic_error &e)
-      {
-        std::cerr << "Couldn't output matrix\n";
-        if (arrType == 2)
-        {
-          delete[] matrix;
-          delete[] smooth;
-        }
-        return 2;
-      }
-      skopchenko::topClock(matrix, rows , cols , counter , top , rows - 1 , left , cols - 1);
-      try
-      {
-        skopchenko::intOutput(oFile, matrix, rows, cols);
-        oFile << "\n";
-      }
-      catch (std::runtime_error &e)
-      {
-        std::cerr << "Couldn't output matrix\n";
-        if (arrType == 2)
-        {
-          delete[] matrix;
-          delete[] smooth;
-        }
-        return 2;
-      }
+      skopchenko::doubleOutput(oFile, smooth, rows, cols);
+      oFile << "\n";
     }
-    catch (std::logic_error &e)
+    catch (std::runtime_error &e)
     {
-      std::cerr << "Error while executing one of the functions";
+      std::cerr << "Couldn't output matrix\n";
       if (arrType == 2)
       {
         delete[] matrix;
         delete[] smooth;
       }
-      return 1;
+      return 2;
+    }
+    skopchenko::topClock(matrix, rows , cols , counter , top , rows - 1 , left , cols - 1);
+    try
+    {
+      skopchenko::intOutput(oFile, matrix, rows, cols);
+      oFile << "\n";
+    }
+    catch (std::runtime_error &e)
+    {
+      std::cerr << "Couldn't output matrix\n";
+      if (arrType == 2)
+      {
+        delete[] matrix;
+        delete[] smooth;
+      }
+      return 2;
     }
 
     if (arrType == 2)
