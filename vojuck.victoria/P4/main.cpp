@@ -72,12 +72,12 @@ int main(int argc, char ** argv)
 
   try
   {
-    size_t result = inputArray(input, matrix, rows*cols, rows*cols);
+    size_t result = vojuck::inputArray(input, matrix, rows*cols, rows*cols);
     if (result == rows*cols)
     {
-      int maxSum = findMaxSum(matrix, rows, cols);
+      int maxSum = vojuck::findMaxSum(matrix, rows, cols);
       output << maxSum << "\n";
-      output << isUpperTriangular(matrix, rows, cols);
+      output << vojuck::isUpperTriangular(matrix, rows, cols);
     }
     else
     {

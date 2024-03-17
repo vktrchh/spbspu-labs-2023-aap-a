@@ -1,6 +1,6 @@
 #include "isUpperTriangular.hpp"
 
-bool isUpperTriangular(long long * matrix, size_t rows, size_t cols)
+bool vojuck::isUpperTriangular(long long * matrix, size_t rows, size_t cols)
 {
   for (size_t i = 0; i < rows; i++)
   {
