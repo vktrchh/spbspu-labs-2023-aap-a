@@ -1,14 +1,21 @@
 #include "input.h"
 #include <fstream>
 
-void skopchenko::input(std::istream& iFile, int * matrix , size_t rows, size_t cols)
+void skopchenko::input(std::istream& iFile, int* matrix, size_t rows, size_t cols)
 {
-  for (size_t i = 0; i < rows * cols; i++)
-  {
-    iFile >> matrix[i];
-    if (!iFile)
+    size_t count = 0;
+
+    for (size_t i = 0; i < rows * cols; i++)
     {
-      throw std::logic_error("Bad input\n");
+        if (!(iFile >> matrix[i]))
+        {
+            throw std::logic_error("Bad input\n");
+        }
+        count++;
     }
-  }
+
+    if (count < rows * cols)
+    {
+        throw std::logic_error("Bad input\n");
+    }
 }
