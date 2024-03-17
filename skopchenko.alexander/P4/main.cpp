@@ -62,11 +62,12 @@ int main(int argc, char * argv[])
     int *matrix = nullptr;
     double *smooth = nullptr;
 
+    int fixedArray[10000] = {};
+    double smoothArray[10000] = {};
+
     if (arrType == 1)
     {
-      int fixedArray[10000] = {};
       matrix = fixedArray;
-      double smoothArray[10000] = {};
       smooth = smoothArray;
     } else
     {
