@@ -10,27 +10,36 @@ int main()
   int num = 0;
   bool hasInput = false;
 
-  while (std::cin >> num){
-    if (num == 0){
+  while (std::cin >> num)
+  {
+    if (num == 0)
+    {
       break;
     }
     hasInput = true;
-    if (num > max){
+    if (num > max)
+    {
       secMax = max;
       max = num;
-    } else if (num > secMax && num != max){
-        secMax = num;
-      }
+    }
+    else if (num > secMax && num != max)
+    {
+      secMax = num;
+    }
   }
-  if (!hasInput){
+  if (!hasInput)
+  {
     std::cerr << "Ошибка! Пустая последовательность.\n";
     return 2;
   }
 
   std::cout << "Второе число по величине: ";
-  if (secMax == std::numeric_limits<int>::min()){
+  if (secMax == std::numeric_limits <int>::min())
+  {
     std::cout << 0 << "\n";
-  } else {
+  }
+  else
+  {
     std::cout << secMax << "\n";
   }
 
