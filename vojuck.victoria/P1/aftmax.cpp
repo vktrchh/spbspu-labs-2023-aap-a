@@ -3,7 +3,6 @@
 #include "aftmax.hpp"
 
 constexpr int min_int = std::numeric_limits< int >::min();
-z
 vojuck::CounterAftMax::CounterAftMax():
   count_(0),
   maxElement_(min_int)
