@@ -24,7 +24,7 @@ int main()
   }
   if (!hasInput){
     std::cerr << "Ошибка! Пустая последовательность.\n";
-      return 2;
+    return 2;
   }
 
   std::cout << "Второе число по величине: ";
