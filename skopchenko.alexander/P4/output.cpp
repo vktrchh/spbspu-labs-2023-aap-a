@@ -25,7 +25,7 @@ void skopchenko::doubleOutput(std::ostream &oFile, const double *matrix, size_t 
     throw std::logic_error("Error during output:/");
   }
   oFile << std::fixed << std::setprecision(1);
-  for (size_t i = 0; i < rows * cols - 1; ++i)
+  for (size_t i = 0; i < rows * cols; ++i)
   {
     if (!(oFile << ' ' << matrix[i]))
     {
