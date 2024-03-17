@@ -15,7 +15,7 @@ int main()
     std::cerr << e.what() << "\n";
     return 1;
   }
-  size_t size = 10000;
+  size_t size = 128;
   char * new_string = nullptr;
   try
   {
