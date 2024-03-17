@@ -113,7 +113,7 @@ int main(int argc, char * argv[])
       try
       {
         //skopchenko::doubleOutput(oFile, smooth, rows, cols);
-        oFile << "\n";
+        //oFile << "\n";
       }
       catch (std::logic_error &e)
       {
