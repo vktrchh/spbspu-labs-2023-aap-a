@@ -16,7 +16,7 @@ vyzhanov::Regular::Regular(const point_t& p1, const point_t& p2, const point_t& 
   if (isReg)
   {
     throw std::invalid_argument("Error: invalid regular agrugments");
-  }    
+  }
   double PI = 3.14159265358979323846;
   double smallRad = std::min(firstLine, secondLine);
   double bigRad = std::max(firstLine, secondLine);
