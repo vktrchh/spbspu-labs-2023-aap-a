@@ -2,7 +2,6 @@
 #include <stdexcept>
 #include <cmath>
 #include <limits>
-#include <array>
 
 vyzhanov::Regular::Regular(const point_t& p1, const point_t& p2, const point_t& p3) :
   triangles_(nullptr),
@@ -17,7 +16,7 @@ vyzhanov::Regular::Regular(const point_t& p1, const point_t& p2, const point_t& 
   if (isReg)
   {
     throw std::invalid_argument("Error: invalid regular agrugments");
-  }    
+  }
   double PI = 3.14159265358979323846;
   double smallRad = std::min(firstLine, secondLine);
   double bigRad = std::max(firstLine, secondLine);
@@ -25,17 +24,14 @@ vyzhanov::Regular::Regular(const point_t& p1, const point_t& p2, const point_t& 
   double len = 2.0 * bigRad * std::sin(PI / sideCount);
   double angle = 2.0 * asin(len / 2.0 / bigRad);
   triangles_ = new Triangle[sideCount];
-  Triangle firstTri = Triangle(p1, p2, p3);
   size = sideCount;
-  triangles_[0] = firstTri;
   point_t firstPoint;
   point_t secondPoint;
   firstPoint.x = p2.x - p1.x;
   firstPoint.y = p2.y - p1.y;
   secondPoint.x = p3.x - p1.x;
   secondPoint.y = p3.y - p1.y;
-  size_t i = 0;
-  for (i = 1; i != sideCount; ++i)
+  for (size_t i = 0; i != sideCount; ++i)
   {
     double firstX = firstPoint.x;
     double firstY = firstPoint.y;
@@ -63,21 +59,20 @@ double vyzhanov::Regular::getArea() const
 
 vyzhanov::rectangle_t vyzhanov::Regular::getFrameRect() const
 {
-  size_t i = 0;
   double maxX = std::numeric_limits< double >::lowest();
   double maxY = maxX;
   double minX = std::numeric_limits< double >::max();
   double minY = minX;
-  for (i = 0; i <= size; i++)
+  for (size_t i = 0; i != size; i++)
   {
     Triangle triangle = triangles_[i];
     double width = triangle.getFrameRect().width;
     double height = triangle.getFrameRect().height;
     point_t center = triangle.getFrameRect().pos;
-    maxX = std::max(center.x + height, maxX);
-    maxY = std::max(center.y + width, maxY);
-    minX = std::min(center.x - height, minX);
-    minY = std::min(center.y - width, minY);
+    maxX = std::max(center.x + (height / 2), maxX);
+    maxY = std::max(center.y + (width / 2), maxY);
+    minX = std::min(center.x - (height / 2), minX);
+    minY = std::min(center.y - (width / 2), minY);
   }
   point_t centerPoint = { (maxX - minX) / 2, (maxY - minY) / 2 };
   return { maxX - minX, maxY - minY, centerPoint };
@@ -113,6 +108,5 @@ void vyzhanov::Regular::scale(double ratio)
     point_t center2 = triangles_[i].getFrameRect().pos;
     double dx = (center1.x - center2.x) * ratio / 3;
     double dy = (center1.y - center2.y) * ratio / 3;
-    triangles_[i].move(dx, dy);
   }
 }
