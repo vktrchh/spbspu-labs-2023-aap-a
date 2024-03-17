@@ -112,10 +112,10 @@ int main(int argc, char * argv[])
       skopchenko::smoothedMatrix(matrix, smooth, rows, cols);
       try
       {
-        skopchenko::doubleOutput(oFile, smooth, rows, cols);
+        //skopchenko::doubleOutput(oFile, smooth, rows, cols);
         oFile << "\n";
       }
-      catch (std::runtime_error &e)
+      catch (std::logic_error &e)
       {
         std::cerr << "Couldn't output matrix\n";
         if (arrType == 2)
@@ -144,7 +144,7 @@ int main(int argc, char * argv[])
     }
     catch (std::logic_error &e)
     {
-      std::cerr << "Error while executing one of functions";
+      std::cerr << "Error while executing one of the functions";
       if (arrType == 2)
       {
         delete[] matrix;
