@@ -16,6 +16,7 @@ void skopchenko::input(std::istream& iFile, int* matrix, size_t rows, size_t col
 
     if (count < rows * cols)
     {
-        throw std::logic_error("Bad input\n");
+      throw std::logic_error("Bad input\n");
     }
+
 }
