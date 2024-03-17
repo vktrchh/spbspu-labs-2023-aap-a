@@ -1,7 +1,7 @@
 #include <algorithm>
 #include "inputMatrix.hpp"
 
-size_t inputArray(std::istream & in, long long int * array, size_t size, size_t toread)
+size_t vojuck::inputArray(std::istream & in, long long int * array, size_t size, size_t toread)
 {
   for (size_t i = 0; i < std::min(size, toread); ++i)
   {
