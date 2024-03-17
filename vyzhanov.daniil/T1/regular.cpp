@@ -105,8 +105,8 @@ void vyzhanov::Regular::scale(double ratio)
   {
     point_t center1 = triangles_[i].getFrameRect().pos;
     triangles_[i].scale(ratio);
-    point_t center2 = triangles_[i].getFrameRect().pos;
-    double dx = (center1.x - center2.x) * ratio / 3;
-    double dy = (center1.y - center2.y) * ratio / 3;
+    triangles_[i].move(center1);
   }
 }
+
+
