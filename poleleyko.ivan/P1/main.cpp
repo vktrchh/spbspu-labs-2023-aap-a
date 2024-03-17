@@ -1,9 +1,10 @@
 #include <iostream>
 #include <limits>
 
-int main(){
-  int max = std::numeric_limits<int>::min();
-  int secMax = std::numeric_limits<int>::min();
+int main()
+{
+  int max = std::numeric_limits <int>::min();
+  int secMax = std::numeric_limits <int>::min();
 
   std::cout << "Введите последовательность чисел: ";
   int num = 0;
@@ -19,7 +20,7 @@ int main(){
       max = num;
     } else if (num > secMax && num != max){
         secMax = num;
-    }
+      }
   }
   if (!hasInput){
     std::cerr << "Ошибка! Пустая последовательность.\n";
