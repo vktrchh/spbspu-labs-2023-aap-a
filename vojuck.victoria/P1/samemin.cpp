@@ -5,7 +5,8 @@
 constexpr int max_int = std::numeric_limits< int >::max();
 
 vojuck::CounterSameMin::CounterSameMin():
-  count_(1), minElement_(max_int)
+  count_(1),
+  minElement_(max_int)
 {}
 
 void vojuck::CounterSameMin::operator()(int num)
