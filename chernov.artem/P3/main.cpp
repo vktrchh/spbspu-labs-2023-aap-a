@@ -20,7 +20,6 @@ int main()
   catch (const std::bad_alloc& e)
   {
     std::cerr << "Allocation failed: " << e.what() << "\n";
-    delete[] input;
     return 1;
   }
 
@@ -62,7 +61,7 @@ int main()
       catch (const std::bad_alloc& e)
       {
         std::cerr << "Allocation failed: " << e.what() << "\n";
-        delete[] oldInput;
+        delete[] input;
         return 1;
       }
 
@@ -79,7 +78,7 @@ int main()
       catch (const std::bad_alloc& e)
       {
         std::cerr << "Allocation failed: " << e.what() << "\n";
-        delete[] input;
+        delete[] oldInput;
         return 1;
       }
 
@@ -115,7 +114,8 @@ int main()
   catch (const std::bad_alloc& e)
   {
     std::cerr << "Allocation failed: " << e.what() << "\n";
-    delete[] stringWithDecimalDigitsRemoved;
+    delete[] input;
+    delete[] oldInput;
     return 1;
   }
 
@@ -126,7 +126,9 @@ int main()
   catch (const std::bad_alloc& e)
   {
     std::cerr << "Allocation failed: " << e.what() << "\n";
-    delete[] stringWithVowelsRemoved;
+    delete[] stringWithDecimalDigitsRemoved;
+    delete[] input;
+    delete[] oldInput;
     return 1;
   }
 
