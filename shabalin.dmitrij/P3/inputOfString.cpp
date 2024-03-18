@@ -19,16 +19,24 @@ char *shabalin::inputOfString(std::istream &input, size_t &sizeOfString)
     }
     if (index == sizeOfString - 1)
     {
-      sizeOfString *= 2;
-      char *intermediateString = new char[sizeOfString]();
-
-      for (size_t i = 0; i < index; ++i)
+      try
       {
-        intermediateString[i] = initialString[i];
-      }
+        sizeOfString *= 2;
+        char *intermediateString = new char[sizeOfString]();
 
-      delete[] initialString;
-      initialString = intermediateString;
+        for (size_t i = 0; i < index; ++i)
+        {
+          intermediateString[i] = initialString[i];
+        }
+
+        delete[] initialString;
+        initialString = intermediateString;
+      }
+      catch (std::bad_alloc &e)
+      {
+        delete[] initialString;
+        throw;
+      }
     }
     initialString[index] = someCharacter;
     index++;
