@@ -19,7 +19,7 @@ namespace vyzhanov
     virtual void scale(const double ratio);
   private:
     Triangle* triangles_;
-    size_t size;
+    size_t size_;
   };
 }
 
