@@ -67,7 +67,8 @@ int main(int argc, char * argv[])
     {
       matrix = fixedArray;
       smooth = smoothArray;
-    } else
+    }
+    else
     {
       try
       {
@@ -86,7 +87,7 @@ int main(int argc, char * argv[])
     {
       skopchenko::input(iFile, matrix, rows, cols);
     }
-    catch (std::logic_error &e)
+    catch (const std::logic_error &e)
     {
       std::cerr << "Couldn't input matrix\n";
       if (arrType == 2)
@@ -104,13 +105,13 @@ int main(int argc, char * argv[])
       return 2;
     }
 
-    skopchenko::smoothedMatrix(matrix, smooth, rows, cols);
+    skopchenko::makeSmoothMatrix(matrix, smooth, rows, cols);
     try
     {
       skopchenko::doubleOutput(oFile, smooth, rows, cols);
       oFile << "\n";
     }
-    catch (std::runtime_error &e)
+    catch (const std::runtime_error &e)
     {
       std::cerr << "Couldn't output matrix\n";
       if (arrType == 2)
@@ -126,7 +127,7 @@ int main(int argc, char * argv[])
       skopchenko::intOutput(oFile, matrix, rows, cols);
       oFile << "\n";
     }
-    catch (std::runtime_error &e)
+    catch (const std::runtime_error &e)
     {
       std::cerr << "Couldn't output matrix\n";
       if (arrType == 2)
