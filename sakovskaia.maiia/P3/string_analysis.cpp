@@ -34,4 +34,5 @@ void sakovskaia::printRep(const char * const string, char * answer)
       }
     }
   }
+  answer[a] = '\n';
 }
