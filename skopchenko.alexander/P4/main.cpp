@@ -1,9 +1,9 @@
-#include "smoothed.h"
-#include "topclock.h"
-#include "input.h"
-#include "output.h"
 #include <fstream>
 #include <iostream>
+#include "input.h"
+#include "output.h"
+#include "smoothed.h"
+#include "topclock.h"
 
 int main(int argc, char * argv[])
 {
