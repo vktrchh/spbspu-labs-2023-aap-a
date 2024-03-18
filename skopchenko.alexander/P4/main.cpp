@@ -103,9 +103,7 @@ int main(int argc, char * argv[])
       std::cerr << "Couldn't open output file\n";
       return 2;
     }
-    size_t counter = 1;
-    int top = 0;
-    int left = 0;
+
     skopchenko::smoothedMatrix(matrix, smooth, rows, cols);
     try
     {
@@ -122,7 +120,7 @@ int main(int argc, char * argv[])
       }
       return 2;
     }
-    skopchenko::topClock(matrix, rows , cols , counter , top , rows - 1 , left , cols - 1);
+    skopchenko::recursiveFunc(matrix, rows, cols);
     try
     {
       skopchenko::intOutput(oFile, matrix, rows, cols);
