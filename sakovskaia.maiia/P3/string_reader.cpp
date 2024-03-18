@@ -21,7 +21,7 @@ char * sakovskaia::readString(std::istream & input)
       size += 10;
       try
       {
-        char * new_buffer = new char[size];
+        char * new_buffer = new char[size]{};
         for (size_t j = 0; j < i; j++)
         {
           new_buffer[j] = buffer[j];
@@ -32,7 +32,7 @@ char * sakovskaia::readString(std::istream & input)
       catch (const std::bad_alloc &e)
       {
         delete [] buffer;
-        buffer = nullptr;
+        throw;
       }
     }
     buffer[i++] = c;

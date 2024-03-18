@@ -19,7 +19,7 @@ int main()
   char * new_string = nullptr;
   try
   {
-    new_string = new char[size];
+    new_string = new char[size]{};
   }
   catch (const std::bad_alloc & e)
   {
