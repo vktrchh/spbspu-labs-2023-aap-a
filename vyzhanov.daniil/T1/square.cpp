@@ -3,7 +3,7 @@
 #include <stdexcept>
 
 vyzhanov::Square::Square(const point_t& leftCorner, double length):
-  firstTri_(Triangle(leftCorner,{ leftCorner.x + length, leftCorner.y },{ leftCorner.x, leftCorner.y + length })),
+  firstTri_(Triangle(leftCorner, { leftCorner.x + length, leftCorner.y }, { leftCorner.x, leftCorner.y + length })),
   length_(length)
 {
   if (length_ <= 0)

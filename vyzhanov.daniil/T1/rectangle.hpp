@@ -5,7 +5,7 @@
 
 namespace vyzhanov
 {
-  class Rectangle : public Shape
+  class Rectangle: public Shape
   {
   public:
     Rectangle(const point_t& leftCorner, const point_t& rightCorner);

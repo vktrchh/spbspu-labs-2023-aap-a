@@ -36,7 +36,7 @@ int main()
     }
     return 1;
   }
-  outputShapes( std::cout, shapes, length);
+  outputShapes(std::cout, shapes, length);
   std::cout << '\n';
   for (size_t i = 0; i < length; i++)
   {
