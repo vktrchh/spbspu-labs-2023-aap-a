@@ -13,44 +13,80 @@ void stepanov::inputArrayShape(std::istream& input, size_t const size, double * 
     input >> arguments[i];
     if (!input)
     {
-      throw std::invalid_argument("Invalid argument for Rectagle");
+      throw std::invalid_argument("Invalid argument");
     }
   }
 }
 void stepanov::inputRectangle(std::istream& input, Shape** shapes, size_t& size_shapes)
 {
   size_t size = 4;
-  double arguments[size] = {};
-  inputArrayShape(input, size, arguments);
-  shapes[size_shapes] = new Rectangle({ arguments[0], arguments[1] }, { arguments[2], arguments[3] });
+  double * arguments = new double[size]{};
+  try
+  {
+    inputArrayShape(input, size, arguments);
+    shapes[size_shapes] = new Rectangle({ arguments[0], arguments[1] }, { arguments[2], arguments[3] });
+  }
+  catch (const std::exception&)
+  {
+    delete[] arguments;
+    throw;
+  }
   ++size_shapes;
+  delete[] arguments;
 }
 
 void stepanov::inputCircle(std::istream& input, Shape** shapes, size_t& size_shapes)
 {
   size_t size = 3;
-  double arguments[size] = {};
-  inputArrayShape(input, size, arguments);
-  shapes[size_shapes] = new Circle({ arguments[0], arguments[1] }, arguments[2]);
+  double * arguments = new double[size]{};
+  try
+  {
+    inputArrayShape(input, size, arguments);
+    shapes[size_shapes] = new Circle({ arguments[0], arguments[1] }, arguments[2]);
+  }
+  catch (const std::exception&)
+  {
+    delete[] arguments;
+    throw;
+  }
   ++size_shapes;
+  delete[] arguments;
 }
 
 void stepanov::inputEllipse(std::istream& input, Shape** shapes, size_t& size_shapes)
 {
   size_t size = 4;
-  double arguments[size] = {};
-  inputArrayShape(input, size, arguments);
-  shapes[size_shapes] = new Ellipse({ arguments[0], arguments[1] }, arguments[2], arguments[3]);
+  double * arguments = new double[size]{};
+  try
+  {
+    inputArrayShape(input, size, arguments);
+    shapes[size_shapes] = new Ellipse({ arguments[0], arguments[1] }, arguments[2], arguments[3]);
+  }
+  catch (const std::exception&)
+  {
+    delete[] arguments;
+    throw;
+  }
   ++size_shapes;
+  delete[] arguments;
 }
 
 void stepanov::inputSquare(std::istream& input, Shape** shapes, size_t& size_shapes)
 {
   size_t size = 3;
-  double arguments[size] = {};
-  inputArrayShape(input, size, arguments);
-  shapes[size_shapes] = new Square({ arguments[0], arguments[1] }, arguments[2]);
+  double * arguments = new double[size]{};
+  try
+  {
+    inputArrayShape(input, size, arguments);
+    shapes[size_shapes] = new Square({ arguments[0], arguments[1] }, arguments[2]);
+  }
+  catch (const std::exception&)
+  {
+    delete[] arguments;
+    throw;
+  }
   ++size_shapes;
+  delete[] arguments;
 }
 
 void::stepanov::deleteShapes(Shape** shapes, size_t size_shapes)
