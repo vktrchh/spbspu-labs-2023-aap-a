@@ -9,7 +9,6 @@ char * sakovskaia::readString(std::istream & input)
   char * new_buffer = nullptr;
   char c = 0;
   size_t i = 0;
-  size_t n = 1;
   input >> std::noskipws;
   while ((input >> c) && (c != '\n'))
   {
