@@ -10,8 +10,8 @@ int vojuck::findMaxSum(const long long * array, size_t rows, size_t cols)
     int sum2 = 0;
     for (size_t j = 0; j < cols - i; j++)
     {
-      sum1 += array[j + rows*j + i];
-      sum2 += array[j + i + cols*j];
+      sum1 += array[j + rows * j + i];
+      sum2 += array[j + i + cols * j];
     }
     maxSum = std::max(maxSum, std::max(sum1, sum2));
   }
