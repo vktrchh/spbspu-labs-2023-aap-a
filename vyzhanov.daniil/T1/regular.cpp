@@ -1,5 +1,4 @@
 #include "regular.hpp"
-#include <iostream>
 #include <stdexcept>
 #include <cmath>
 #include <limits>
