@@ -19,12 +19,12 @@ int main(int argc, char ** argv)
   {
     num = std::stoll(argv[1]);
   }
-  catch (const std::out_of_range & e)
+  catch (const std::out_of_range &)
   {
     std::cerr << "Value of first CLA is too large\n";
     return 3;
   }
-  catch (const std::invalid_argument & e)
+  catch (const std::invalid_argument &)
   {
     std::cerr << "Cannot parse a value\n";
     return 3;
@@ -89,7 +89,7 @@ int main(int argc, char ** argv)
       return 2;
     }
   }
-  catch (std::bad_alloc & e)
+  catch (const std::bad_alloc &)
   {
     std::cerr << "Not enough memory\n";
     delete[] matrix;
