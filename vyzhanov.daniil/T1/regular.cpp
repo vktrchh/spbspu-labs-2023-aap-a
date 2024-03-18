@@ -97,7 +97,6 @@ void vyzhanov::Regular::move(double dx, double dy)
     Triangle triangle = triangles_[i];
     triangle.move(dx, dy);
   }
-  delete[] triangles_;
 }
 
 void vyzhanov::Regular::scale(double ratio)
