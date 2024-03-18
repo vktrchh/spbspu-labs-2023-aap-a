@@ -1,4 +1,5 @@
 #include "topclock.h"
+#include "shortenedtopclock.h"
 
 void skopchenko::shortenedTopClk(int *matrix, size_t rows, size_t cols)
 {
@@ -8,7 +9,7 @@ void skopchenko::shortenedTopClk(int *matrix, size_t rows, size_t cols)
   topClock(matrix, rows, cols, counter, top, rows - 1, left, cols - 1);
 }
 
-void topClock(int *matrix, size_t rows, size_t cols, size_t value, size_t top, size_t bottom, size_t left, size_t right)
+void skopchenko::topClock(int *matrix, size_t rows, size_t cols, size_t value, size_t top, size_t bottom, size_t left, size_t right)
 {
   if (top > bottom || left > right)
   {
@@ -48,5 +49,5 @@ void topClock(int *matrix, size_t rows, size_t cols, size_t value, size_t top, s
     }
     left++;
   }
-  topClock(matrix, rows, cols, value, top, bottom, left, right);
+  skopchenko::topClock(matrix, rows, cols, value, top, bottom, left, right);
 }

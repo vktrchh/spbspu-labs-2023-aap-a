@@ -1,5 +1,6 @@
 #include "smoothed.h"
 #include "topclock.h"
+#include "shortenedtopclock.h"
 #include "input.h"
 #include "output.h"
 #include <fstream>
