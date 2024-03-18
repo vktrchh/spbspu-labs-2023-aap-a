@@ -47,10 +47,10 @@ vyzhanov::Regular::Regular(const point_t& p1, const point_t& p2, const point_t& 
 
 double vyzhanov::Regular::getArea() const
 {
+  size_t area = 0;
   for (size_t i = 0; i != size_; i++)
   {
-     Triangle triangle = triangles_[i];
-     area += triangle.getArea();
+     area += triangles_[i].getArea();
   }
   return area * 2;
 }
