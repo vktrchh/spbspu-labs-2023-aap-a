@@ -110,3 +110,8 @@ void vyzhanov::Regular::scale(double ratio)
     triangles_[i].move(center1);
   }
 }
+
+vyzhanov::Regular::~Regular()
+{
+    delete[] triangles_;
+}
