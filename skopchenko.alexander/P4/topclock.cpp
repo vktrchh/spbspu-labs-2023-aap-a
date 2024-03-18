@@ -1,6 +1,6 @@
 #include "topclock.h"
 
-void skopchenko::recursiveFunc(int *matrix, size_t rows, size_t cols)
+void skopchenko::shortenedTopClk(int *matrix, size_t rows, size_t cols)
 {
   size_t counter = 1;
   int top = 0;

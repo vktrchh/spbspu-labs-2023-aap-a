@@ -5,7 +5,7 @@
 
 namespace skopchenko
 {
-  void recursiveFunc(int *matrix, size_t rows, size_t cols);
+  void shortenedTopClk(int *matrix, size_t rows, size_t cols);
   void topClock(int *matrix, size_t rows, size_t cols, size_t value, size_t top, size_t bottom, size_t left, size_t right);
 }
 

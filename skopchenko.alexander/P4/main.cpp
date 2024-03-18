@@ -120,7 +120,7 @@ int main(int argc, char * argv[])
       }
       return 2;
     }
-    skopchenko::recursiveFunc(matrix, rows, cols);
+    skopchenko::shortenedTopClk(matrix, rows, cols);
     try
     {
       skopchenko::intOutput(oFile, matrix, rows, cols);
