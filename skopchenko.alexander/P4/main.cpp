@@ -48,9 +48,7 @@ int main(int argc, char * argv[])
   }
   if (rows == 0 && cols == 0)
   {
-
     return 0;
-
   }
   else if (rows * cols == 0 || cols != rows)
   {
@@ -143,10 +141,8 @@ int main(int argc, char * argv[])
 
     if (arrType == 2)
     {
-
       delete[] matrix;
       delete[] smooth;
-
     }
   }
 }
