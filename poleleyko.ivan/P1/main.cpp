@@ -34,7 +34,7 @@ int main()
   }
 
   std::cout << "Второе число по величине: ";
-  if (secMax == std::numeric_limits <int>::min())
+  if (secMax == std::numeric_limits< int >::min())
   {
     std::cout << 0 << "\n";
   }
