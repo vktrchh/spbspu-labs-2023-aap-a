@@ -58,7 +58,7 @@ double vyzhanov::Regular::getArea() const
 
 vyzhanov::rectangle_t vyzhanov::Regular::getFrameRect() const
 {
-  double maxX = std::numeric_limits< double >::lowest();
+  double maxX = std::numeric_limits< double >::min();
   double maxY = maxX;
   double minX = std::numeric_limits< double >::max();
   double minY = minX;
