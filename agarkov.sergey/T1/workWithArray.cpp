@@ -14,7 +14,7 @@ agarkov::Shape** agarkov::expandArray(agarkov::Shape** array, size_t capacity, s
     }
     return expanded_array;
   }
-  catch(...)
+  catch (...)
   {
     delete expanded_array;
     return expanded_array;

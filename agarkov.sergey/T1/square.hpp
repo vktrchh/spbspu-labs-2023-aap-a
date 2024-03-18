@@ -15,7 +15,7 @@ namespace agarkov
     void move(double dx, double dy) override;
     void move(point_t position) override;
     void scale(double k) override;
-
+  private:
     bool isCorrectSquare();
     point_t left_bottom_;
     double length_;

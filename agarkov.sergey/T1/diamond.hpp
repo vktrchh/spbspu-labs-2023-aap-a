@@ -15,7 +15,7 @@ namespace agarkov
     void move(double dx, double dy) override;
     void move(point_t position) override;
     void scale(double k) override;
-
+  private:
     bool isCorrectDiamond() const;
     point_t point1_;
     point_t point2_;

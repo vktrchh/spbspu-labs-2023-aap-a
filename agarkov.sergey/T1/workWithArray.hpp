@@ -1,5 +1,5 @@
-#ifndef WORKWITHARRAY
-#define WORKWITHARRAY
+#ifndef WORKWITHARRAY_HPP
+#define WORKWITHARRAY_HPP
 
 #include <cstddef>
 #include "shape.hpp"
