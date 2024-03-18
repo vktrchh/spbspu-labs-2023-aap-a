@@ -78,9 +78,12 @@ vyzhanov::rectangle_t vyzhanov::Regular::getFrameRect() const
 
 void vyzhanov::Regular::move(const point_t& point)
 {
+  point_t center = getFrameRect().pos;
+  double dx = point.x - center.x;
+  double dy = point.y - center.y;
   for (size_t i = 0; i != size_; i++)
   {
-    triangles_[i].move(point);
+    triangles_[i].move(dx, dy);
   }
 }
 
@@ -98,7 +101,10 @@ void vyzhanov::Regular::scale(double ratio)
   {
     point_t center1 = triangles_[i].getFrameRect().pos;
     triangles_[i].scale(ratio);
-    triangles_[i].move(center1);
+    point_t center2 = triangles_[i].getFrameRect().pos;
+    double dx = (center1.x - center2.x) * ratio;
+    double dy = (center1.y - center2.y) * ratio;
+    triangles_[i].move(dx, dy);
   }
 }
 
