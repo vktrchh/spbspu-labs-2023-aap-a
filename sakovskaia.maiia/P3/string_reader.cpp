@@ -1,10 +1,11 @@
 #include "string_reader.hpp"
 #include <iostream>
-#include <iomanip>
+#include <cstddef>
 
 char * sakovskaia::readString(std::istream & input)
 {
   size_t size = 10;
+  size_t new_size = 0;
   char * buffer = new char[size];
   char * new_buffer = nullptr;
   char c = 0;
@@ -17,10 +18,9 @@ char * sakovskaia::readString(std::istream & input)
       delete [] buffer;
       throw std::logic_error("Error in input");
     }
-    buffer[i++] = c;
     if (i == (size - 1))
     {
-      size_t new_size = size + 10;
+      new_size = size + 10;
       try
       {
         new_buffer = new char[new_size];
@@ -38,12 +38,13 @@ char * sakovskaia::readString(std::istream & input)
         buffer = nullptr;
       }
     }
-    buffer[i] = '\n';
-    if ((buffer[0] == '\n') || (buffer[0] == '\0'))
-    {
-      delete [] buffer;
-      throw std::logic_error("String is empty");
-    }
+    buffer[i++] = c;
+  }
+  buffer[i] = '\n';
+  if ((buffer[0] == '\n') || (buffer[0] == '\0'))
+  {
+    delete [] buffer;
+    throw std::logic_error("String is empty");
   }
   input >> std::skipws;
   return buffer;
