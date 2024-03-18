@@ -115,7 +115,6 @@ int main()
   {
     std::cerr << "Allocation failed: " << e.what() << "\n";
     delete[] input;
-    delete[] oldInput;
     return 1;
   }
 
@@ -128,7 +127,6 @@ int main()
     std::cerr << "Allocation failed: " << e.what() << "\n";
     delete[] stringWithDecimalDigitsRemoved;
     delete[] input;
-    delete[] oldInput;
     return 1;
   }
 
