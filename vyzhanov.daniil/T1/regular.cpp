@@ -112,5 +112,5 @@ void vyzhanov::Regular::scale(double ratio)
 
 vyzhanov::Regular::~Regular()
 {
-    delete[] triangles_;
+  delete[] triangles_;
 }
