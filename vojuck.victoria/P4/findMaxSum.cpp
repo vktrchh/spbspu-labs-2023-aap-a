@@ -1,6 +1,7 @@
 #include <algorithm>
 #include "findMaxSum.hpp"
 
+
 int vojuck::findMaxSum(long long * array, size_t rows, size_t cols)
 {
   int maxSum = 0;
