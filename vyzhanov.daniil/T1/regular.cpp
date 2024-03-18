@@ -26,15 +26,13 @@ vyzhanov::Regular::Regular(const point_t& p1, const point_t& p2, const point_t& 
   double len = 2.0 * bigRad * std::sin(PI / sideCount);
   double angle = 2.0 * asin(len / 2.0 / bigRad);
   triangles_ = new Triangle[sideCount + 1];
-  Triangle firstTri = {p1, p2, p3};
-  triangles_[0] = firstTri;
   point_t firstPoint;
   point_t secondPoint;
-  firstPoint.x = p2.x;
-  firstPoint.y = p2.y;
-  secondPoint.x = p3.x;
-  secondPoint.y = p3.y;
-  for (size_t i = 1; i != sideCount; ++i)
+  firstPoint.x = p2.x - p1.x;
+  firstPoint.y = p2.y - p1.y;
+  secondPoint.x = p3.x - p1.x;
+  secondPoint.y = p3.y - p1.y;
+  for (size_t i = 0; i != sideCount; ++i)
   {
     double firstX = firstPoint.x;
     double firstY = firstPoint.y;
@@ -50,10 +48,12 @@ vyzhanov::Regular::Regular(const point_t& p1, const point_t& p2, const point_t& 
 
 double vyzhanov::Regular::getArea() const
 {
-  size_t area = 0;
-  Triangle triangle = triangles_[0];
-  area = triangle.getArea();
-  return area * size_ * 2;
+  for (size_t i = 0; i != size_; i++)
+  {
+     Triangle triangle = triangles_[i];
+     area += triangle.getArea();
+  }
+  return area * 2;
 }
 
 vyzhanov::rectangle_t vyzhanov::Regular::getFrameRect() const
@@ -68,10 +68,10 @@ vyzhanov::rectangle_t vyzhanov::Regular::getFrameRect() const
     double width = triangle.getFrameRect().width;
     double height = triangle.getFrameRect().height;
     point_t center = triangle.getFrameRect().pos;
-    maxX = std::max(maxX, center.x + (height / 2));
-    minX = std::min(minX, center.x - (height / 2));
-    maxY = std::max(maxY, center.y + (width / 2));
-    minY = std::min(minY, center.y - (width / 2));
+    maxX = std::max(center.x + (height / 2), maxX);
+    maxY = std::max(center.y + (width / 2), maxY);
+    minX = std::min(center.x - (height / 2), minX);
+    minY = std::min(center.y - (width / 2), minY);
   }
   point_t centerPoint = { (maxX - minX) / 2, (maxY - minY) / 2 };
   return { maxX - minX, maxY - minY, centerPoint };
@@ -99,10 +99,7 @@ void vyzhanov::Regular::scale(double ratio)
   {
     point_t center1 = triangles_[i].getFrameRect().pos;
     triangles_[i].scale(ratio);
-    point_t center2 = triangles_[i].getFrameRect().pos;
-    double dx = (center1.x - center2.x) * ratio;
-    double dy = (center1.y - center2.y) * ratio;
-    triangles_[i].move(dx, dy);
+    triangles_[i].move(center1);
   }
 }
 
