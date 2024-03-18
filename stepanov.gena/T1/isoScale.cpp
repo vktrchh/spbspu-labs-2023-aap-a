@@ -3,7 +3,7 @@
 
 void stepanov::isoScale(Shape** figures, point_t& p, double ratio, size_t size_shapes)
 {
-  point_t points[size_shapes] = {};
+  point_t * points = new point_t[size_shapes]{};
   for (size_t i = 0; i < size_shapes; ++i)
   {
     points[i] = figures[i]->getFrameRect().pos;
@@ -22,4 +22,5 @@ void stepanov::isoScale(Shape** figures, point_t& p, double ratio, size_t size_s
     double dy = (points[i].y - figures[i]->getFrameRect().pos.y) * ratio;
     figures[i]->move(dx,dy);
   }
+  delete[] points;
 }
