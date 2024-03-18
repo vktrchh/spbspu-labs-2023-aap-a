@@ -38,10 +38,10 @@ vyzhanov::Regular::Regular(const point_t& p1, const point_t& p2, const point_t& 
     double firstY = firstPoint.y;
     double secondX = secondPoint.x;
     double secondY = secondPoint.y;
-    firstPoint.x = firstLine * std::cos(angle) + firstX;
-    firstPoint.y = firstLine * std::sin(angle); + firstY;
-    secondPoint.x = secondLine * std::cos(angle) + secondX;
-    secondPoint.y = secondLine * std::sin(angle) + secondY;
+    firstPoint.x = firstX * std::cos(angle) - firstY * std::sin(angle);
+    firstPoint.y = firstY * std::cos(angle) + firstX * std::sin(angle);
+    secondPoint.x = secondX * std::cos(angle) - secondY * std::sin(angle);
+    secondPoint.y = secondY * std::cos(angle) + secondX * std::sin(angle);
     triangles_[i] = Triangle(p1, firstPoint, secondPoint);
   }
 }
