@@ -4,7 +4,7 @@
 
 namespace vojuck
 {
-  bool isUpperTriangular(long long int* matrix, size_t rows, size_t cols);
+  bool isUpperTriangular(const long long int* matrix, size_t rows, size_t cols);
 }
 
 #endif

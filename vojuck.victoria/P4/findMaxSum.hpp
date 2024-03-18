@@ -4,7 +4,7 @@
 
 namespace vojuck
 {
-  int findMaxSum(long long * array, size_t rows, size_t cols);
+  int findMaxSum(const long long * array, size_t rows, size_t cols);
 }
 
 #endif
