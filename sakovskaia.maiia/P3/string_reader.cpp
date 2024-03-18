@@ -5,9 +5,7 @@
 char * sakovskaia::readString(std::istream & input)
 {
   size_t size = 10;
-  size_t new_size = 0;
   char * buffer = new char[size];
-  char * new_buffer = nullptr;
   char c = 0;
   size_t i = 0;
   input >> std::noskipws;
@@ -20,17 +18,16 @@ char * sakovskaia::readString(std::istream & input)
     }
     if (i == (size - 1))
     {
-      new_size = size + 10;
+      size += 10;
       try
       {
-        new_buffer = new char[new_size];
+        char * new_buffer = new char[size];
         for (size_t j = 0; j < i; j++)
         {
           new_buffer[j] = buffer[j];
         }
         delete [] buffer;
         buffer = new_buffer;
-        size = new_size;
       }
       catch (const std::bad_alloc &e)
       {
