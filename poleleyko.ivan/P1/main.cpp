@@ -3,8 +3,8 @@
 
 int main()
 {
-  int max = std::numeric_limits <int>::min();
-  int secMax = std::numeric_limits <int>::min();
+  int max = std::numeric_limits< int >::min();
+  int secMax = std::numeric_limits< int >::min();
 
   std::cout << "Введите последовательность чисел: ";
   int num = 0;
