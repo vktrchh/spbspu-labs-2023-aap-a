@@ -2,6 +2,7 @@
 
 #include "input.hpp"
 #include "output.hpp"
+#include "doScale.hpp"
 
 int main()
 {
@@ -40,7 +41,7 @@ int main()
   std::cout << '\n';
   for (size_t i = 0; i < length; i++)
   {
-    doScale(shapes[i], point, ratio);
+    doScale(*shapes[i], point, ratio);
   }
   outputShapes(std::cout, shapes, length);
   std::cout << '\n';

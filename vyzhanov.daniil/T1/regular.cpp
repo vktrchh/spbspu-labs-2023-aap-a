@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <cmath>
 #include <limits>
+#include "doScale.hpp"
 
 vyzhanov::Regular::Regular(const point_t& p1, const point_t& p2, const point_t& p3) :
   triangles_(nullptr),
@@ -97,14 +98,10 @@ void vyzhanov::Regular::move(double dx, double dy)
 
 void vyzhanov::Regular::scale(double ratio)
 {
+  point_t center = getFrameRect().pos;
   for (size_t i = 0; i != size_; i++)
   {
-    point_t center1 = triangles_[i].getFrameRect().pos;
-    triangles_[i].scale(ratio);
-    point_t center2 = triangles_[i].getFrameRect().pos;
-    double dx = (center1.x - center2.x) * ratio;
-    double dy = (center1.y - center2.y) * ratio;
-    triangles_[i].move(dx, dy);
+    doScale(triangles_[i], center, ratio);
   }
 }
 
