@@ -1,5 +1,5 @@
-#include <algorithm>
 #include "findMaxSum.hpp"
+#include <algorithm>
 
 int vojuck::findMaxSum(const long long * array, size_t rows, size_t cols)
 {
