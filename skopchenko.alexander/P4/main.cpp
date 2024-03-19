@@ -1,5 +1,5 @@
-#include <fstream>
 #include <iostream>
+#include <fstream>
 #include "input.h"
 #include "output.h"
 #include "smoothed.h"
