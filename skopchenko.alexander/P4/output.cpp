@@ -2,7 +2,7 @@
 #include <fstream>
 #include <iomanip>
 
-void skopchenko::intOutput(std::ostream &oFile, int *matrix, size_t rows, size_t cols)
+void skopchenko::outputInt(std::ostream &oFile, int *matrix, size_t rows, size_t cols)
 {
   if (!(oFile << rows << ' ' << cols))
   {
@@ -18,7 +18,7 @@ void skopchenko::intOutput(std::ostream &oFile, int *matrix, size_t rows, size_t
   }
 }
 
-void skopchenko::doubleOutput(std::ostream &oFile, const double *matrix, size_t rows, size_t cols)
+void skopchenko::outputDouble(std::ostream &oFile, const double *matrix, size_t rows, size_t cols)
 {
   if (!(oFile << rows << " " << cols))
   {

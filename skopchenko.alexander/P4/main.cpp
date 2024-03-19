@@ -108,7 +108,7 @@ int main(int argc, char * argv[])
     skopchenko::makeSmoothMatrix(matrix, smooth, rows, cols);
     try
     {
-      skopchenko::doubleOutput(oFile, smooth, rows, cols);
+      skopchenko::outputDouble(oFile, smooth, rows, cols);
       oFile << "\n";
     }
     catch (const std::runtime_error &e)
@@ -121,10 +121,10 @@ int main(int argc, char * argv[])
       }
       return 2;
     }
-    skopchenko::shortenedTopClk(matrix, rows, cols);
+    skopchenko::goClockwiseShort(matrix, rows, cols);
     try
     {
-      skopchenko::intOutput(oFile, matrix, rows, cols);
+      skopchenko::outputInt(oFile, matrix, rows, cols);
       oFile << "\n";
     }
     catch (const std::runtime_error &e)

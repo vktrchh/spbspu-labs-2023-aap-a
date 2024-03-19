@@ -5,7 +5,7 @@
 
 namespace skopchenko
 {
-  void shortenedTopClk(int *matrix, size_t rows, size_t cols);
+  void goClockwiseShort(int *matrix, size_t rows, size_t cols);
 }
 
 #endif

@@ -6,11 +6,8 @@
 
 namespace skopchenko
 {
-
-  void intOutput(std::ostream& oFile, int *matrix, size_t rows, size_t cols);
-
-  void doubleOutput(std::ostream& oFile, const double *matrix, size_t rows, size_t cols);
-
+  void outputInt(std::ostream& oFile, int *matrix, size_t rows, size_t cols);
+  void outputDouble(std::ostream& oFile, const double *matrix, size_t rows, size_t cols);
 }
 
 #endif
