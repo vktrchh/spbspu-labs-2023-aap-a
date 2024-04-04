@@ -17,11 +17,15 @@ int main()
     rezult = new char[size]{};
     if ( array == nullptr)
     {
+      delete [] rezult;
+      delete [] array;
       std::cerr << "no input";
       return 1;
     }
     if (array[0] == '\0' || array[0] == '\n')
     {
+      delete [] array;
+      delete [] rezult;
       std::cerr << "no input (" << "\n";
       return 1;
     }
