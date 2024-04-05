@@ -1,5 +1,5 @@
-#include "inputString.hpp"
 #include <stdexcept>
+#include "inputString.hpp"
 char * vojuck::inputString(std::istream& input)
 {
   int size = 20;
